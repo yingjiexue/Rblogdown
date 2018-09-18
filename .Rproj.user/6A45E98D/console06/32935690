@@ -1,0 +1,173 @@
+[0m[0KMicrosoft Windows [版本 10.0.17134.285][0K[?25l
+(c) 2018 Microsoft Corporation。保留所有权利。[0K
+[0K
+D:\Rblogdown>[0K[?25hgit init[0K]0;  - git  init[?25l
+[0K[?25h]0; Reinitialized existing Git repository in D:/Rblogdo[0Kw[?25l
+n/.git/[0K
+[0K
+D:\Rblogdown>[0K[?25hgit add .[0K]0;  - git  add .[?25l
+[0K[?25hwarning: LF will be replaced by CRLF in .Rhistory.[0K[?25l
+The file will have its original line endings in you[0Kr
+ working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user[0K/[?25l
+6A45E98D/pcs/files-pane.pper.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user[0K/
+6A45E98D/pcs/source-pane.pper.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user[0K/
+6A45E98D/pcs/windowlayoutstate.pper.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user[0K/[?25l
+6A45E98D/pcs/workbench-pane.pper.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user[0K/
+6A45E98D/rmd-outputs.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user[0K/
+6A45E98D/sources/prop/2BECE711.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user[0K/
+shared/notebooks/paths.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in public/2018[0K/[?25l
+09/17/第一次感受rblogdown-薛英杰/index.html.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+warning: LF will be replaced by CRLF in public/abou[0Kt
+/index.html.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+warning: LF will be replaced by CRLF in public/cate[0Kg
+ories/index.html.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+warning: LF will be replaced by CRLF in public/cate[0Kg
+ories/index.xml.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in public/cate[0Kg[?25l
+ories/生活杂记/index.html.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+warning: LF will be replaced by CRLF in public/cate[0Kg
+ories/生活杂记/index.xml.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+warning: LF will be replaced by CRLF in public/inde[0Kx
+.html.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+warning: LF will be replaced by CRLF in public/inde[0Kx
+.xml.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in public/post[0K/[?25l
+index.html.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+warning: LF will be replaced by CRLF in public/post[0K/
+index.xml.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+warning: LF will be replaced by CRLF in public/site[0Km
+ap.xml.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+warning: LF will be replaced by CRLF in public/tags[0K/
+index.html.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+warning: LF will be replaced by CRLF in public/tags[0K/
+index.xml.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user[0K/
+6A45E98D/sources/s-2BE86B79/369517C2.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+[0K[?25h]0; warning: LF will be replaced by CRLF in .Rproj.user[0K/[?25l
+6A45E98D/sources/s-2BE86B79/369517C2-contents.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user[0K/
+6A45E98D/sources/s-2BE86B79/516E0DEA.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user[0K/
+6A45E98D/sources/s-2BE86B79/516E0DEA-contents.[0K
+The file will have its original line endings in you[0Kr
+ working directory[0K
+[0K
+D:\Rblogdown>[0K[?25hgit commit -m "first comment"[0K[?25l
+[0K[?25h]0;  - git  commit -m "first comment"]0; [?25l
+*** Please tell me who you are.[0K
+[0K
+Run[0K
+[0K
+  git config --global user.email "you@example.com"[0K
+  git config --global user.name "Your Name"[0K
+[0K
+to set your account's default identity.[0K
+Omit --global to set the identity only in this repo[0Ks
+itory.[0K
+[0K
+fatal: unable to auto-detect email address (got 'yi[0Kn
+gjiexue@DESKTOP-U4N8P28.(none)')[0K
+[0K
+D:\Rblogdown>[0K[?25hit config --global user.name "Your Nam[0Ke[?25l
+"[0K[?25h[1G[?25l[1A[52G[?25h[?25lD:\Rblogdown>it config --global user.name "Your Nae[0K"
+[0K[1A[51G[?25h[?25lD:\Rblogdown>it config --global user.name "Your Ne"[0K
+[0K[1A[50G[?25h[?25lD:\Rblogdown>it config --global user.name "Your e"[0K
+[0K[1A[49G[?25h[?25lD:\Rblogdown>it config --global user.name "Youre"[0K
+[0K[1A[48G[?25h[?25lD:\Rblogdown>it config --global user.name "Your"[0K
+[0K[1A[48G[?25h[?25lD:\Rblogdown>it config --global user.name "You"[0K
+[0K[1A[47G[?25h[?25lD:\Rblogdown>it config --global user.name "Yo"[0K
+[0K[1A[46G[?25h[?25lD:\Rblogdown>it config --global user.name "Y"[0K
+[0K[1A[45G[?25h[?25lD:\Rblogdown>it config --global user.name ""[0K
+[0K[1A[44G[?25h[?25l
+'it' 不是内部或外部命令，也不是可运行的程序[0K
+或批处理文件。[0K
+[0K
+D:\Rblogdown>[0K[?25hit config --global user.name ""[0K[44G[?25lD:\Rblogdown>it config --global user.name "y"[0K[45G[?25h[?25lD:\Rblogdown>it config --global user.name "yi"[0K[46G[?25h[?25lD:\Rblogdown>it config --global user.name "yin"[0K[47G[?25h[?25lD:\Rblogdown>it config --global user.name "yinf"[0K[48G[?25h[?25lD:\Rblogdown>it config --global user.name "yinfj"[0K[49G[?25h[?25lD:\Rblogdown>it config --global user.name "yinfji"[0K[50G[?25h[?25lD:\Rblogdown>it config --global user.name "yinfj"[0K[49G[?25h[?25lD:\Rblogdown>it config --global user.name "yinf"[0K[48G[?25h[?25lD:\Rblogdown>it config --global user.name "yin"[0K[47G[?25h[?25lD:\Rblogdown>it config --global user.name "ying"[0K[48G[?25h[?25lD:\Rblogdown>it config --global user.name "yingj"[0K[49G[?25h[?25lD:\Rblogdown>it config --global user.name "yingji"[0K[50G[?25h[?25lD:\Rblogdown>it config --global user.name "yingjie"[0K[51G[?25h[?25lD:\Rblogdown>it config --global user.name "yingjiex[0K"
+[0K[1A[52G[?25h[?25lD:\Rblogdown>it config --global user.name "yingjiex[0Ku
+"[0K[1G[?25h[?25le"[0K[2G[?25h[1G[?25l[1A[52G[?25h[51G[50G[49G[48G[47G[46G[45G[44G[43G[42G[41G[40G[39G[38G[37G[36G[35G[34G[33G[32G[31G[30G[29G[28G[27G[26G[25G[24G[23G[22G[21G[20G[19G[18G[17G[16G[15G[14G[?25lD:\Rblogdown>git config --global user.name "yingjie[0Kx
+ue"[0K[1A[15G[?25h]0;  - git  config --global user.name "yingjiexue"[?25l
+
+[0K[?25h]0; [?25l
+D:\Rblogdown>[0K[?25hgit config --global user.name "yingjie[0Kx[?25l
+ue"[0K[?25h[?25l[1AD:\Rblogdown>it config --global user.name ""[0K
+[0K[1A[45G[?25h[?25lD:\Rblogdown>git commit -m "first comment"[0K
+[0K[1A[43G[?25h[?25lD:\Rblogdown>git add .[0K
+[0K[1A[23G[?25h]0;  - git  add .[?25l
+[?25h]0; [?25l
+D:\Rblogdown>[0K[?25hgit add .[0K[?25lD:\Rblogdown>git init[0K[?25h]0;  - git  init[?25l
+[0K[?25h]0; Reinitialized existing Git repository in D:/Rblogdo[0Kw[?25l
+n/.git/[0K
+[0K
+D:\Rblogdown>[0K[?25hgit init[0K[?25lD:\Rblogdown>git add .[0K[?25h]0;  - git  add .[?25l
+[0K[?25h]0; [?25l
+D:\Rblogdown>[0K[?25hgit add .[0K[?25lD:\Rblogdown>git init[0K[?25h[?25lD:\Rblogdown>git add .[0K[?25h[?25lD:\Rblogdown>git commit -m "first comment"[0K[?25h]0;  - git  commit -m "first comment"[?25l
+[0K[?25h]0; [?25l
+*** Please tell me who you are.[0K
+[0K
+Run[0K
+[0K
+  git config --global user.email "you@example.com"[0K
+  git config --global user.name "Your Name"[0K
+[0K
+to set your account's default identity.[0K
+Omit --global to set the identity only in this repo[0Ks
+itory.[0K
+[0K
+fatal: unable to auto-detect email address (got 'yi[0Kn
+gjiexue@DESKTOP-U4N8P28.(none)')[0K
+[0K
+D:\Rblogdown>[0K[?25h

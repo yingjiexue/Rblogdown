@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on A Hugo website</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on A Hugo website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 18 Sep 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Biliding My Blog Have Finished  </title>
+      <link>/2018/09/18/biliding-my-blog-have-finished/</link>
+      <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/09/18/biliding-my-blog-have-finished/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Building My Blog Have Finished  </title>
+      <link>/2018/09/18/building-my-blog-have-finished/</link>
+      <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/09/18/building-my-blog-have-finished/</guid>
+      <description>Today is the first day to build my blog,I want to record the bits and pieces of life.I think this is a new beginning and wish I stick with my writing.</description>
+    </item>
+    
+  </channel>
+</rss>

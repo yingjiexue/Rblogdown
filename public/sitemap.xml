@@ -13,6 +13,11 @@
   </url>
   
   <url>
+    <loc>/2018/09/17/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%84%9F%E5%8F%97rblogdown-%E8%96%9B%E8%8B%B1%E6%9D%B0/</loc>
+    <lastmod>2018-09-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/about/</loc>
     <lastmod>2016-05-05T21:48:51-07:00</lastmod>
   </url>
@@ -29,13 +34,13 @@
   </url>
   
   <url>
-    <loc>/tags/life/</loc>
+    <loc>/categories/life/</loc>
     <lastmod>2018-09-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/life/</loc>
+    <loc>/tags/life/</loc>
     <lastmod>2018-09-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -49,6 +54,12 @@
   <url>
     <loc>/tags/</loc>
     <lastmod>2018-09-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/%E7%94%9F%E6%B4%BB%E6%9D%82%E8%AE%B0/</loc>
+    <lastmod>2018-09-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

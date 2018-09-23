@@ -1,0 +1,74 @@
+[0m[0KMicrosoft Windows [版本 10.0.17134.285][0K[?25l
+(c) 2018 Microsoft Corporation。保留所有权利。[0K
+[0K
+D:\Rblogdown>[0K[?25hg[0Ki[0Kt[0K[18G[?25lD:\Rblogdown>git i[0K[?25hn[0Ki[0Kt[0K]0;  - git  init[?25l
+Reinitialized existing Git repository in D:/Rblogdown/.git[0K/
+[0K
+[0K[?25h]0; [?25l
+D:\Rblogdown>[0K[?25hg[0Ki[0Kt[0K[18G[?25lD:\Rblogdown>git a[0K[?25hd[0Kd[0K[22G[?25lD:\Rblogdown>git add .[0K[?25h]0;  - git  add .[?25l
+[0K[?25h]0; warning: LF will be replaced by CRLF in .Rhistory.[0K[?25l
+The file will have its original line endings in your worki[0Kn
+g directory[0K
+[0K
+D:\Rblogdown>[0K[?25hgit commit -m "first commit"[0K]0;  - git  commit -m "first commit"[?25l
+[0K[?25h]0; [master fb76692] first commit[0K[?25l
+ 22 files changed, 4 insertions(+), 96 deletions(-)[0K
+ delete mode 100644 .Rproj.user/6A45E98D/console06/1674425[0K9
+[0K
+ delete mode 100644 .Rproj.user/6A45E98D/pcs/files-pane.pp[0Ke
+r[0K
+ delete mode 100644 .Rproj.user/6A45E98D/pcs/source-pane.p[0Kp
+er[0K
+ delete mode 100644 .Rproj.user/6A45E98D/pcs/windowlayouts[0Kt
+ate.pper[0K
+ delete mode 100644 .Rproj.user/6A45E98D/pcs/workbench-pan[0Ke
+.pper[0K
+ delete mode 100644 .Rproj.user/6A45E98D/rmd-outputs[0K
+ delete mode 100644 .Rproj.user/6A45E98D/saved_source_mark[0Ke
+rs[0K
+ delete mode 100644 .Rproj.user/6A45E98D/sources/prop/1B79[0KF
+205[0K
+ delete mode 100644 .Rproj.user/6A45E98D/sources/prop/2BEC[0KE
+711[0K
+ delete mode 100644 .Rproj.user/6A45E98D/sources/prop/39F5[0K5
+E4B[0K
+ delete mode 100644 .Rproj.user/6A45E98D/sources/prop/577D[0K9
+72A[0K
+ delete mode 100644 .Rproj.user/6A45E98D/sources/prop/6BFD[0K7
+C80[0K
+ delete mode 100644 .Rproj.user/6A45E98D/sources/prop/7483[0K8
+AF4[0K
+ delete mode 100644 .Rproj.user/6A45E98D/sources/prop/A568[0K9
+3C2[0K
+ delete mode 100644 .Rproj.user/6A45E98D/sources/prop/AAB2[0K6
+940[0K
+ delete mode 100644 .Rproj.user/6A45E98D/sources/prop/AF89[0KD
+03E[0K
+ delete mode 100644 .Rproj.user/6A45E98D/sources/prop/EC4A[0K7
+54F[0K
+ delete mode 100644 .Rproj.user/6A45E98D/sources/prop/INDE[0KX
+[0K
+ delete mode 100644 .Rproj.user/shared/notebooks/96E11D2B-[0K2
+018-09-18-building-my-blog-have-finished/1/6A45E98D117B467[0K7
+/chunks.json[0K
+ delete mode 100644 .Rproj.user/shared/notebooks/paths[0K
+[0K
+D:\Rblogdown>[0K[?25hgit remote add origin https://github.com/ying[0Kj[?25l
+iexue/Rblogdown.git[0K[?25h[?25l
+fatal: remote origin already exists.[0K
+[0K
+D:\Rblogdown>[0K[?25hgit push -u origin master[0K]0;  - git  push -u origin master[?25l
+[0K[?25h]0; fatal: unable to access 'https://github.com/yingjiexue/Rbl[0Ko[?25l
+gdown/': Could not resolve host: github.com[0K
+[0K
+D:\Rblogdown>[0K[?25hgit remote add origin https://github.com/ying[0Kj[?25l
+iexue/Rblogdown[0K[?25h]0;  - git  remote add origin https://github.com/yingjiexue/Rblogdown[?25l
+[0K[?25h]0; fatal: remote origin already exists.[0K[?25l
+[0K
+D:\Rblogdown>[0K[?25hgit remote add origin https://github.com/ying[0Kj[?25l
+iexue/Rblogdown[0K[?25h[?25l[1AD:\Rblogdown>git push -u origin master[0K
+[0K[1A[39G[?25h[?25l
+[?25h]0;  - git  push -u origin master]0; fatal: unable to access 'https://github.com/yingjiexue/Rbl[0Ko[?25l
+gdown/': Could not resolve host: github.com[0K
+[0K
+D:\Rblogdown>[0K[?25h

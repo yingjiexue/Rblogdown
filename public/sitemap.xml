@@ -8,7 +8,7 @@
   </url>
   
   <url>
-    <loc>/daily/</loc>
+    <loc>/cn/</loc>
     <lastmod>2020-06-20T00:00:00+00:00</lastmod>
   </url>
   
@@ -23,12 +23,7 @@
   </url>
   
   <url>
-    <loc>/categories/life/</loc>
-    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
+    <loc>/en/</loc>
     <lastmod>2020-06-20T00:00:00+00:00</lastmod>
   </url>
   
@@ -38,22 +33,27 @@
   </url>
   
   <url>
-    <loc>/daily/the-first-day-of-my-blog/</loc>
-    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/2020/06/20/the-first-day-of-my-blog/</loc>
     <lastmod>2020-06-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>/2020/06/20/%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%90%AF%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9/</loc>
     <lastmod>2020-06-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/about/</loc>
+    <loc>/</loc>
+    <lastmod>2016-05-05T21:48:51-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/enabout/</loc>
+    <lastmod>2016-05-05T21:48:51-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/cnabout/</loc>
     <lastmod>2016-05-05T21:48:51-07:00</lastmod>
   </url>
   

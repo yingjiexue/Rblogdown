@@ -6,19 +6,10 @@
     <description>Recent content on xueyingjie&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 20 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 05 May 2016 21:48:51 -0700</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>the first day of my blog</title>
-      <link>/daily/the-first-day-of-my-blog/</link>
-      <pubDate>Sat, 20 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/daily/the-first-day-of-my-blog/</guid>
-      <description>Today, I am very happy to build my blog which will share my academic idea and experience of life. When I feel lonely and meet some trouble in writing paper,I can record my confusion to mediate intense mind. So wish me have a good life.</description>
-    </item>
     
     <item>
       <title>the first day of my blog</title>
@@ -30,12 +21,30 @@
     </item>
     
     <item>
-      <title>关于我</title>
-      <link>/about/</link>
+      <title>博客开启的第一天</title>
+      <link>/2020/06/20/%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%90%AF%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9/</link>
+      <pubDate>Sat, 20 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/06/20/%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%90%AF%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9/</guid>
+      <description>今天, 我通过blogdown建立了属于自己的博客，特别开心，用它可以分享学术圈的新思想和生活感受，尤其是当我感到无聊的时候，可以用它来记录我</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>/enabout/</link>
       <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>
       
-      <guid>/about/</guid>
-      <description>祖籍甘肃平凉泾州小县，个子不高、长的不帅，普通男青年一枚，本硕入坑经济统计市场调查与商务统计专业，进城下乡发问卷，走村入户搞调查，跑模型，写报告，最后啥都没学到，无奈之下，只能转行。话说金融行业发财机会较多，主是受影视剧影响，剧中基金经理身着小西装，脚蹬大皮鞋，抓住机会身价蹭蹭上涨，可谓是赚一年吃十年，何等潇洒。想着以后也要养家糊口，于是，走上了一条不归路——读博，成功跳坑四川某财金融学，发现事实并非如当初所想，金融市场赚钱甚是不易，还是专心写论文毕业再说，目前在为毕业奋斗中&amp;hellip;..。生活中的我貌似兴趣广泛，实则无欲无求，好读书不求甚解，玩游戏不管输赢，日常生活主要包括读书、打球、写代码，健身、吃瓜、看股票，他们几乎包揽了我大部分时间。</description>
+      <guid>/enabout/</guid>
+      <description>The ancestral home is a small county in Jingzhou, Pingliang, Gansu. He is not tall and handsome, one male young man. He is a major in economic statistics market survey and business statistics. He sent a questionnaire to the countryside and went to the village to investigate. Run the model, write a report, and finally learned nothing, but in desperation, can only change careers. It is said that the financial industry has more opportunities to make money, mainly due to the influence of film and television dramas.</description>
+    </item>
+    
+    <item>
+      <title>关于我</title>
+      <link>/cnabout/</link>
+      <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>
+      
+      <guid>/cnabout/</guid>
+      <description>祖籍甘肃平凉泾州小县，个子不高、长的不帅，普通男青年一枚，本硕入坑经济统计市场调查与商务统计专业，进城下乡发问卷，走村入户搞调查，跑模型，写</description>
     </item>
     
   </channel>

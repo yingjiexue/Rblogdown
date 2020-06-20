@@ -3,39 +3,48 @@ languageCode = "en-us"
 title = "xueyingjie's blog"
 theme = "hugo-lithium"
 googleAnalytics = ""
-disqusShortname = ""
+disqusShortname="Yingjie"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
-
+hasCJKLanguage= true
+enableEmoji=true
+footnotereturnlinkcontents= "↩"
+rssLimit=100
 [permalinks]
-    post = "/:year/:month/:day/:slug/"
-
+    en = "/:year/:month/:day/:slug/"
+    cn = "/:year/:month/:day/:slug/"
 [[menu.main]]
-    name = "Home"
-    url = "/categories/"
+    name = "主页"
+    url = "/"
     weight = 1
 [[menu.main]]
     name = "About"
-    url = "/about/"
-    weight = 2
+    url = "/enabout/"
+    weight = 5
 [[menu.main]]
-    name = "GitHub"
-    url = "https://github.com/yingjiexue"
-    weight = 3
-[[menu.main]]
-    name = "R"
-    url = "/layouts/"
+    name = "Blog"
+    url = "/en/"
     weight = 4
+[[menu.main]]
+    name = "关于"
+    url = "/cnabout/"
+    weight = 3    
+[[menu.main]]
+    name = "日志"
+    url = "/cn/"
+    weight = 2     
+
+
 
 [params]
-    description = "A website built through Hugo and blogdown."
-
+    description = "Personal website of Yingjie Xue; 薛英杰的个人网站"
+    footer="&copy; [Yingjie Xue](/) 2005 - 2020"
     # options for highlight.js (version, additional languages, and theme)
     highlightjsVersion = "9.11.0"
-    highlightjsCDN = "//cdn.bootcss.com"
+    highlightjsCDN = "//yingjie.org"
     highlightjsLang = ["r", "yaml"]
     highlightjsTheme = "github"
 
-    MathJaxCDN = "//cdn.bootcss.com"
+    MathJaxCDN = "//yingjie.org"
     MathJaxVersion = "2.7.1"
 
     [params.logo]

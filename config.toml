@@ -11,7 +11,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [[menu.main]]
     name = "Home"
-    url = "https://bookdown.org/yihui/blogdown"
+    url = "/categories/"
     weight = 1
 [[menu.main]]
     name = "About"
@@ -22,8 +22,8 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     url = "https://github.com/yingjiexue"
     weight = 3
 [[menu.main]]
-    name = "Twitter"
-    url = "https://twitter.com/rstudio"
+    name = "R"
+    url = "/layouts/"
     weight = 4
 
 [params]

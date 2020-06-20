@@ -13,7 +13,6 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     name = "Home"
     url = "https://bookdown.org/yihui/blogdown"
     weight = 1
-
 [[menu.main]]
     name = "About"
     url = "/about/"

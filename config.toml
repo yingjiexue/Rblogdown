@@ -12,29 +12,35 @@ rssLimit=100
 [permalinks]
     en = "/:year/:month/:day/:slug/"
     cn = "/:year/:month/:day/:slug/"
+
 [[menu.main]]
     name = "主页"
     url = "/"
     weight = 1
 [[menu.main]]
-    name = "About"
-    url = "/enabout/"
-    weight = 5
+    name = "日志"
+    url = "/cn/"
+    weight = 2      
+  
+[[menu.main]]
+    name = "研究"
+    url = "/research/"
+    weight = 3  
+[[menu.main]]
+    name = "关于"
+    url = "/cn_about/"
+    weight = 4
+    
 [[menu.main]]
     name = "Blog"
     url = "/en/"
-    weight = 4
+    weight = 5
 [[menu.main]]
-    name = "关于"
-    url = "/cnabout/"
-    weight = 3    
-[[menu.main]]
-    name = "日志"
-    url = "/cn/"
-    weight = 2     
-
-
-
+    name = "About"
+    url = "/en_about/"
+    weight = 6  
+  
+    
 [params]
     description = "Personal website of Yingjie Xue; 薛英杰的个人网站"
     footer="&copy; [Yingjie Xue](/) 2005 - 2020"
@@ -51,5 +57,5 @@ rssLimit=100
     url = "logo.png"
     width = 50
     height = 50
-    alt = "Logo"
+    alt = "Yingjie"
 

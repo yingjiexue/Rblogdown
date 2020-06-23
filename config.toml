@@ -1,6 +1,6 @@
 baseurl = "/"
 languageCode = "en-us"
-title = "xueyingjie's blog"
+title = "Yingjie"
 theme = "hugo-lithium"
 googleAnalytics = ""
 disqusShortname="Yingjie"
@@ -42,7 +42,7 @@ rssLimit=100
   
     
 [params]
-    description = "Personal website of Yingjie Xue; 薛英杰的个人网站"
+    description = ""
     footer="&copy; [Yingjie Xue](/) 2005 - 2020"
     # options for highlight.js (version, additional languages, and theme)
     highlightjsVersion = "9.11.0"

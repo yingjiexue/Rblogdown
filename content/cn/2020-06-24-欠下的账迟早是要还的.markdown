@@ -88,3 +88,39 @@ HTML为元素内容定义了多种数据类型，如脚本数据、样式表数�
 5.文档类型声明
 
 HTML文档需要以文档类型声明（英语非正式说法“doctype”）开头。在浏览器中，文档类型声明有助于确定渲染模式——特别是是否使用怪异模式。文档类型声明的初衷是通过基于文档类型定义（DTD）的SGML工具来解析并验证HTML文档
+
+# 示例总结
+
+以下面html文档内容来说明标签的具体含义和实际应用中的注意事项。
+
+```
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    
+    <title>Your Page Title</title>
+    
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  
+  <body>
+    <h1>A First-level Heading</h1>
+    
+    <p>A paragraph.</p>
+    
+    <img src="/images/foo.png" alt="A nice image" />
+    
+    <ul>
+      <li>An item.</li>
+      <li>Another item.</li>
+      <li>Yet another item.</li>
+    </ul>
+    
+    <script src="/js/bar.js"></script>
+  </body>
+
+</html>
+```
+我们申明文档类型为html，在文档头部，通过\<mate\>标签声明了字符编码为utf-8，用\<title\>标签指定了文档标题，用\<link\>标签指定了表格格式。文档主体\<body\>中，分别定义了一级标题\<h1\>、段落\<p\>、图片\<image\>、无序列表\<ul\>、三个项目列表\<li\>以及javascript文件\<script\>。如果想系统学习，请点击链接：<https://www.w3schools.com/>。

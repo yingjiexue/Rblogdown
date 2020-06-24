@@ -43,7 +43,7 @@ rssLimit=100
     
 [params]
     description = ""
-    footer="&copy; [Yingjie Xue](/) 2005 - 2020"
+    footer="&copy; [Yingjie Xue](/)2020| [Github](https://github.com/yingjiexue)"
     # options for highlight.js (version, additional languages, and theme)
     highlightjsVersion = "9.11.0"
     highlightjsCDN = "//yingjie.org"

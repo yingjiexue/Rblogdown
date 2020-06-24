@@ -1,0 +1,54 @@
+---
+title: 欠下的账迟早是要还的
+author: 薛英杰
+date: '2020-06-24'
+slug: 欠下的账迟早是要还的
+categories:
+  - diary
+tags:
+  - diary
+---
+
+Yihui大神开发[blogdown](https://bookdown.org/yihui/blogdown/)包后，各位大佬利用它建立了自己的个人主页，界面简单，美观大方，让人崇拜，叠加羡慕嫉妒恨，于是萌生了创建自己个人主页的宏伟想法。创建一个属于自己的主页并不难，具体教程参考:[用 R 语言的 blogdown+hugo+netlify+github 建博客](https://cosx.org/2018/01/build-blog-with-blogdown-hugo-netlify-github/),但要为自己定制一个个性化的hugo主题，对于我这样的菜鸟来说，堪比穷屌丝去追白富美，不是没有可能，至少需要很长的路要走。虽然大神为我们提供主题已经够用了，比如，默认主题[hugo-lithium](https://github.com/yihui/hugo-lithium)、[hugo-ivy](https://github.com/yihui/hugo-ivy)、[HUGO XMIN](https://deploy-preview-16--hugo-xmin.netlify.app)，但我却喜欢主题hugo-lithium的色调，hugo-ivy的版式，而这两种主题写公式不能识别，使得我有时不得不用HUGO XMIN。一句话，还是自己太菜，当年要是多学点web开发知识，也不至于现在这样抓耳挠腮，欠下的账迟早是要还的。
+
+一劳永逸的方法便是修改主题，对非专业人士来说难度着实不小，引用自 Yihui 的 blogdown 使用文档 1.6 Other themes 最下面引用的一段话：
+
+>If you choose to dig a rather deep hole, someday you will have no choice but keep on digging, even with tears. -— Liyun Chen13
+
+如果你选择挖一个深坑，某天你别无选择的时候，含泪也要挖下去。当主题不能完全满足自己需求时，这种想挖坑的冲动难以抑制。Yihui在文档中也写到：
+
+>Another thing to keep in mind is that the more effort you make in a complicated theme, the more difficult it is to switch to other themes in the future, because you may have customized a lot of things that are not straightforward to port to another theme.
+
+难归难，这事还得继续干呀，目前也只能忍受当前这种主题的诸多不便了。修改主题涉及HTML、Pandoc、markdown等相关知识，欠的帐太多，必须干掉这些拦路虎，才能有所进展。罗马不是一天建成的，索性就从HTML的基础知识学习吧！
+
+HTML语言又称超文本标记语言，是一种用于创建网页的标准标记语言,常与CSS、JavaScript一起被众多网站用于设计网页、网页应用程序以及移动应用程序的用户界面。网页浏览器可以读取HTML文件，并将其渲染成可视化网页。HTML文件的扩展名为.html或.htm,描述了一个网站的结构语义随着线索的呈现，使之成为一种标记语言而非编程语言。HTML标记包含标签（及其属性）、基于字符的数据类型、字符引用和实体引用等几个关键部分。HTML标签是最常见的，通常成对出现，比如与。这些成对出现的标签中，第一个标签是开始标签，第二个标签是结束标签。两个标签之间为元素的内容，有些标签没有内容，为空元素，如。HTML另一个重要组成部分为文档类型声明，这会触发标准模式渲染。首先给一个例子，熟悉一下HTMl的文档结构。
+
+以下是一个经典的Hello World程序的例子：
+
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>This is a title</title>
+  </head>
+  <body>
+    <p>Hello world!</p>
+  </body>
+</html>
+```
+
+\<html\>和\</html\>之间的文本描述网页，\<body\>和\</body\>之间的文本为可视页面内容。标记文本\<title\>This is a title\</title\>定义了浏览器的页面标题。
+
+文档标记类型\<\!DOCTYPE html\>用于HTML5。 如果未进行声明，浏览器会使用“怪异模式”进行渲染。
+
+1.元素
+
+
+
+2.属性
+
+3.字符与实体应用
+
+4.字符类型
+
+5.文档类型声明

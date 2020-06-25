@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Finace on xueyingjie&#39;s blog</title>
+    <link>/tags/finace/</link>
+    <description>Recent content in Finace on xueyingjie&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 20 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/finace/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ETF Ownership and Underlying Asset Price Volatility</title>
+      <link>/2020/06/20/etf-ownership-and-underlying-asset-price-volatility/</link>
+      <pubDate>Sat, 20 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/06/20/etf-ownership-and-underlying-asset-price-volatility/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

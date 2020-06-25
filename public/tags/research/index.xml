@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>research on xueyingjie&#39;s blog</title>
+    <link>/tags/research/</link>
+    <description>Recent content in research on xueyingjie&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 21 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/research/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ETF持股增加了股票市场波动吗？——基于中国A股市场的研究</title>
+      <link>/research/etf%E6%8C%81%E8%82%A1%E5%A2%9E%E5%8A%A0%E4%BA%86%E8%82%A1%E7%A5%A8%E5%B8%82%E5%9C%BA%E6%B3%A2%E5%8A%A8%E5%90%97%E5%9F%BA%E4%BA%8E%E4%B8%AD%E5%9B%BDa%E8%82%A1%E5%B8%82%E5%9C%BA%E7%9A%84%E7%A0%94%E7%A9%B6/</link>
+      <pubDate>Sun, 21 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/research/etf%E6%8C%81%E8%82%A1%E5%A2%9E%E5%8A%A0%E4%BA%86%E8%82%A1%E7%A5%A8%E5%B8%82%E5%9C%BA%E6%B3%A2%E5%8A%A8%E5%90%97%E5%9F%BA%E4%BA%8E%E4%B8%AD%E5%9B%BDa%E8%82%A1%E5%B8%82%E5%9C%BA%E7%9A%84%E7%A0%94%E7%A9%B6/</guid>
+      <description>pacman::p_load(data.table,zoo,readxl,foreign,plyr,plm,stringr, dplyr,tidyr,officer,flextable,formattable,tidyfst, stargazer,ggthemes,ggplot2,Rmisc,plot3D,panelvar, readr,rlist,lmtest,AER,stringr,future,rmongodb, future.apply,qs,fst,tinytex) rm(list = ls()) setwd(&amp;#39;F:\\科研\\ETF持股与市场波动&amp;#39;) #read data ##read fundmain data # fundmain&amp;lt;-read_xls</description>
+    </item>
+    
+  </channel>
+</rss>

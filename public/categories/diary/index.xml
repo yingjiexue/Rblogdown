@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>diary on Yingjie</title>
+    <link>/categories/diary/</link>
+    <description>Recent content in diary on Yingjie</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 25 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/diary/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>欠下的账迟早是要还的</title>
+      <link>/2020/06/25/%E6%AC%A0%E4%B8%8B%E7%9A%84%E8%B4%A6%E8%BF%9F%E6%97%A9%E6%98%AF%E8%A6%81%E8%BF%98%E7%9A%84/</link>
+      <pubDate>Thu, 25 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/06/25/%E6%AC%A0%E4%B8%8B%E7%9A%84%E8%B4%A6%E8%BF%9F%E6%97%A9%E6%98%AF%E8%A6%81%E8%BF%98%E7%9A%84/</guid>
+      <description>Yihui大神开发blogdown包后，各位大佬利用它建立了自己的个人主页，界面简单，美观大方，让人崇拜，叠加羡慕嫉妒恨，于是萌生了创建自己</description>
+    </item>
+    
+    <item>
+      <title>the first day of my blog</title>
+      <link>/2020/06/20/the-first-day-of-my-blog/</link>
+      <pubDate>Sat, 20 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/06/20/the-first-day-of-my-blog/</guid>
+      <description>Today, I am very happy to build my blog which will share my academic idea and experience of life. When I feel lonely and meet some trouble in writing paper,I can record my confusion to mediate intense mind. So wish me have a good life.</description>
+    </item>
+    
+    <item>
+      <title>博客开启的第一天</title>
+      <link>/2020/06/20/%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%90%AF%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9/</link>
+      <pubDate>Sat, 20 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/06/20/%E5%8D%9A%E5%AE%A2%E5%BC%80%E5%90%AF%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9/</guid>
+      <description>今天, 我通过blogdown建立了属于自己的博客，特别开心，用它可以分享学术圈的新思想和生活感受，尤其是当我感到无聊的时候，可以用它来记录我</description>
+    </item>
+    
+  </channel>
+</rss>

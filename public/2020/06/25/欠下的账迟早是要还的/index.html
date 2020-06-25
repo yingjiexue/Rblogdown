@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>欠下的账迟早是要还的 - Yingjie</title>
+    <meta property="og:title" content="欠下的账迟早是要还的 - Yingjie">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+      
+    
+
+    
+      
+      <meta property="description" content="Yihui大神开发blogdown包后，各位大佬利用它建立了自己的个人主页，界面简单，美观大方，让人崇拜，叠加羡慕嫉妒恨，于是萌生了创建自己个人主页的宏伟想法。创建个人主页其实不难，具体教程参考:用 R 语言的 blogdown&#43;hugo&#43;netlify&#43;github 建博客,但要为自己定制一个个性化的hugo主题，对于我这样的菜鸟来说，堪比穷屌丝去追白富美，不是没有可能，至少需要很长的路要走。虽 &amp;hellip;">
+      <meta property="og:description" content="Yihui大神开发blogdown包后，各位大佬利用它建立了自己的个人主页，界面简单，美观大方，让人崇拜，叠加羡慕嫉妒恨，于是萌生了创建自己个人主页的宏伟想法。创建个人主页其实不难，具体教程参考:用 R 语言的 blogdown&#43;hugo&#43;netlify&#43;github 建博客,但要为自己定制一个个性化的hugo主题，对于我这样的菜鸟来说，堪比穷屌丝去追白富美，不是没有可能，至少需要很长的路要走。虽 &amp;hellip;">
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+
+<link href='//yingjie.org/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+  </head>
+
+  
+  <body class="2020">
+    <header class="masthead">
+      <h1><a href="/">Yingjie</a></h1>
+
+
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" />
+  <label id="menu-label" for="menu-check" class="unselectable">
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="/">主页</a></li>
+  
+  <li><a href="/cn/">日志</a></li>
+  
+  <li><a href="/research/">研究</a></li>
+  
+  <li><a href="/cn_about/">关于</a></li>
+  
+  <li><a href="/en/">Blog</a></li>
+  
+  <li><a href="/en_about/">About</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+<h1>欠下的账迟早是要还的</h1>
+
+<h3>薛英杰
+  /  2020-06-25</h3>
+<hr>
+
+
+      </header>
+
+
+
+<p>Yihui大神开发<a href="https://bookdown.org/yihui/blogdown/">blogdown</a>包后，各位大佬利用它建立了自己的个人主页，界面简单，美观大方，让人崇拜，叠加羡慕嫉妒恨，于是萌生了创建自己个人主页的宏伟想法。创建个人主页其实不难，具体教程参考:<a href="https://cosx.org/2018/01/build-blog-with-blogdown-hugo-netlify-github/">用 R 语言的 blogdown+hugo+netlify+github 建博客</a>,但要为自己定制一个个性化的hugo主题，对于我这样的菜鸟来说，堪比穷屌丝去追白富美，不是没有可能，至少需要很长的路要走。虽然大神为我们提供主题已经够用了，比如，默认主题<a href="https://github.com/yihui/hugo-lithium">hugo-lithium</a>、<a href="https://github.com/yihui/hugo-ivy">hugo-ivy</a>、<a href="https://deploy-preview-16--hugo-xmin.netlify.app">HUGO XMIN</a>，但我却喜欢主题hugo-lithium的色调，hugo-ivy的版式，并且菜单栏的个性化设置还学要美化，现在看着还是比较丑。总之，还是自己太菜，当年要是多学点web开发知识，也不至于现在这样抓耳挠腮，欠下的账迟早是要还的。</p>
+<p>一劳永逸的方法便是修改主题，可以参考；<a href="https://github.com/yihui/hugo-xmin/pull/2">https://github.com/yihui/hugo-xmin/pull/2</a>,但对非专业人士来说难度着实不小，引用自 Yihui 的 blogdown 使用文档 1.6 Other themes 最下面引用的一段话：</p>
+<blockquote>
+<p>If you choose to dig a rather deep hole, someday you will have no choice but keep on digging, even with tears. -— Liyun Chen13</p>
+</blockquote>
+<p>如果你选择挖一个深坑，某天你别无选择的时候，含泪也要挖下去。当主题不能完全满足自己需求时，这种想挖坑的冲动难以抑制。Yihui在文档中也写到：</p>
+<blockquote>
+<p>Another thing to keep in mind is that the more effort you make in a complicated theme, the more difficult it is to switch to other themes in the future, because you may have customized a lot of things that are not straightforward to port to another theme.</p>
+</blockquote>
+<p>难归难，这事还得继续干呀，目前也只能忍受当前这种主题的诸多不便了。修改主题涉及HTML、Pandoc、markdown等相关知识，欠的帐太多，必须干掉这些拦路虎，才能有所进展。罗马不是一天建成的，索性就从HTML的基础知识学习吧！</p>
+<p>HTML语言又称超文本标记语言，是一种用于创建网页的标准标记语言,常与CSS、JavaScript一起被众多网站用于设计网页、网页应用程序以及移动应用程序的用户界面。网页浏览器可以读取HTML文件，并将其渲染成可视化网页。HTML文件的扩展名为.html或.htm,描述了一个网站的结构语义随着线索的呈现，使之成为一种标记语言而非编程语言。HTML标记包含标签（及其属性）、基于字符的数据类型、字符引用和实体引用等几个关键部分。HTML标签是最常见的，通常成对出现，比如与。这些成对出现的标签中，第一个标签是开始标签，第二个标签是结束标签。两个标签之间为元素的内容，有些标签没有内容，为空元素，如。HTML另一个重要组成部分为文档类型声明，这会触发标准模式渲染。首先给一个例子，熟悉一下HTMl的文档结构。</p>
+<p>以下是一个经典的Hello World程序的例子：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+  &lt;html&gt;
+  &lt;head&gt;
+  &lt;title&gt;This is a title&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;p&gt;Hello world!&lt;/p&gt;
+  &lt;/body&gt;
+  &lt;/html&gt;
+</code></pre><p>&lt;html&gt;和&lt;/html&gt;之间的文本描述网页，&lt;body&gt;和&lt;/body&gt;之间的文本为可视页面内容。标记文本&lt;title&gt;This is a title&lt;/title&gt;定义了浏览器的页面标题。</p>
+<p>文档标记类型&lt;!DOCTYPE html&gt;用于HTML5。 如果未进行声明，浏览器会使用“怪异模式”进行渲染。</p>
+<p>1.元素
+HTML文档由嵌套的HTML元素构成。它们用HTML标签表示，包含于尖括号中，如&lt;p&gt;。</p>
+<p>在一般情况下，一个元素由一对标签表示：“开始标签”&lt;p&gt;与“结束标签”&lt;/p&gt;。元素如果含有文本内容，就被放置在这些标签之间。</p>
+<p>在开始与结束标签之间也可以封装另外的标签，包括标签与文本的混合。这些嵌套元素是父元素的子元素。</p>
+<p>开始标签也可包含标签属性。这些属性有诸如标识文档区块、将样式信息绑定到文档演示和为一些如&lt;img&gt;等的标签嵌入图像、引用图像来源等作用。</p>
+<p>一些元素如换行符&lt;br&gt;，不允许嵌入任何内容，无论是文字或其他标签。这些元素只需一个单一的空标签（类似于一个开始标签），无需结束标签。</p>
+<p>许多标签是可选的，尤其是那些很常用的段落元素&lt;p&gt;的闭合端标签。HTML浏览器或其他介质可以从上下文识别出元素的闭合端以及由HTML标准所定义的结构规则。这些规则非常复杂，不是大多数HTML编码人员可以完全理解的。</p>
+<p>因此，一个HTML元素的一般形式为：&lt;tag attribute1=&quot;value1&quot;attribute2=&quot;value2&rdquo;&gt;'&lsquo;content&rsquo;'&lt;/tag&gt;。一些HTML元素被定义为空元素，其形式为&lt;tag attribute1=&quot;value1&quot;attribute2=&quot;value2&rdquo;&gt;。空元素不能封装任何内容。例如&lt;br&gt;标签或内联标签&lt;img&gt;。一个HTML元素的名称即为标签使用的名称。注意，结束标签的名称前面有一个斜杠“/”，空元素不需要也不允许结束标签。如果元素属性未标明，则使用其默认值。</p>
+<p>2.属性</p>
+<p>大多数元素的属性以“名称-值”的形式成对出现，由“=”分离并写在开始标签元素名之后。值一般由单引号或双引号包围，有些值的内容包含特定字符，在HTML中可以去掉引号（XHTML不行）[58][59]。不加引号的属性值被认为是不安全的[60]。有些属性无需成对出现，仅存在于开始标签中即可影响元素[8]，如img 元素的ismap 属性[61]。</p>
+<p>许多元素存在一些共通的属性：</p>
+<blockquote>
+<ul>
+<li>id属性为元素提供了在全文档内的唯一标识。它用于识别元素，以便样式表可以改变其表现属性，脚本可以改变、显示或删除其内容或格式化。对于蒂姆加到页面的URL，它为元素提供了一个全局唯一标识，通常为页面的子章节。例如，ID &ldquo;属性&quot;对于<a href="https://zh.wikipedia.org/wiki/HTML#">https://zh.wikipedia.org/wiki/HTML#</a>属性</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>class属性提供一种将类似元素分类的方式。常被用于语义化或格式化。例如，一个HTML文档可指定类&lt;class=&quot;标记&rdquo;&gt;来表明所有具有这一类值的元素都从属于文档的主文本。格式化后，这样的元素可能会聚集在一起，并作为页面脚注而不会出现在HTML代码中。类属性也被用于微格式的语义化。类值也可进行多声明。如&lt;class=&quot;标记 重要&rdquo;&gt;将元素同时放入標記与重要两类中。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>style属性可以将表现性质赋予一个特定元素。比起使用id或class 属性从样式表中选择元素，“style”被认为是一个更好的做法，尽管有时这对一个简单、专用或特别的样式显得太繁琐。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>title属性用于给元素一个附加的说明。 大多数浏览器中这一属性显示为工具提示。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>lang属性用于识别元素内容的语言，它可能与文档的主要语言不同。例如，在中文文档中</li>
+</ul>
+</blockquote>
+<p>3.字符与实体应用</p>
+<p>HTML定义了一系列共252个字符实体引用和1,114,050个字符值参考。二者都支持单个字符通过简单的标记写入。文字字符与其对应的标记渲染的效果相同。用这种方式“转义”字符的能力允许字符&lt;与&amp;（当分别被写作&amp;lt;和&amp;amp;时）被理解为字符数据而不是标记。</p>
+<blockquote>
+<p>例如&lt;通常为标签的开头，&amp;通常为字符实体引用与数字字符引用的开头；&amp;amp;或&amp;#x26;或&amp;#38;将&amp;作为元素的内容或属性的值。双引号字符&quot;在不被用于属性值的标示时必须转义为&amp;quot;或&amp;#x22;或&amp;#34;；相等地，当于单引号字符&rsquo;不被用于属性值的标示时，也必须转义为&amp;#x27;或&amp;#39;（或HTML5与XHTML文档中的&amp;apos;）。</p>
+</blockquote>
+<p>如果文档作者忽略了转义这样的字符，一些浏览器会尝试通过上下文猜测他们的意图。如果结果仍为无效标记，这会使其他浏览器或用户代理难以访问到该文档，并使它们尝试使用搜索和索引来解析该文档。
+那些难以输入或不在该文档字符编码中的字符也可通过转义来实现。例如通常只在西欧或南美的键盘出现的重音符e（é），可以在HTML文档中用作实体引用&amp;eacute; 或数字引用&amp;#xE9;或&amp;#233;。诸如UTF-8的Unicode字符编码与所有的现代浏览器兼容并允许直接访问全球书写系统几乎所有的字符</p>
+<p>4.字符类型</p>
+<p>HTML为元素内容定义了多种数据类型，如脚本数据、样式表数据以及许多属性值的类型，包括ID、名称、URI、数字长度单位、语言、媒体描述符颜色、字符编码、日期和时间等等。所有这些数据类型都是字符数据的特殊化。</p>
+<p>5.文档类型声明</p>
+<p>HTML文档需要以文档类型声明（英语非正式说法“doctype”）开头。在浏览器中，文档类型声明有助于确定渲染模式——特别是是否使用怪异模式。文档类型声明的初衷是通过基于文档类型定义（DTD）的SGML工具来解析并验证HTML文档</p>
+<h1 id="示例总结">示例总结</h1>
+<p>以下面html文档内容来说明标签的具体含义和实际应用中的注意事项。</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+  &lt;html&gt;
+  
+  &lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot; /&gt;
+  
+  &lt;title&gt;Your Page Title&lt;/title&gt;
+  
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/style.css&quot; /&gt;
+  &lt;/head&gt;
+  
+  &lt;body&gt;
+  &lt;h1&gt;A First-level Heading&lt;/h1&gt;
+  
+  &lt;p&gt;A paragraph.&lt;/p&gt;
+  
+  &lt;img src=&quot;/images/foo.png&quot; alt=&quot;A nice image&quot; /&gt;
+  
+  &lt;ul&gt;
+  &lt;li&gt;An item.&lt;/li&gt;
+  &lt;li&gt;Another item.&lt;/li&gt;
+  &lt;li&gt;Yet another item.&lt;/li&gt;
+  &lt;/ul&gt;
+  
+  &lt;script src=&quot;/js/bar.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+  
+  &lt;/html&gt;
+</code></pre><p>我们申明文档类型为html，在文档头部，通过&lt;mate&gt;标签声明了字符编码为utf-8，用&lt;title&gt;标签指定了文档标题，用&lt;link&gt;标签指定了表格格式。文档主体&lt;body&gt;中，分别定义了一级标题&lt;h1&gt;、段落&lt;p&gt;、图片&lt;image&gt;、无序列表&lt;ul&gt;、三个项目列表&lt;li&gt;以及javascript文件&lt;script&gt;。如果想系统学习，请点击链接：<a href="https://www.w3schools.com/">https://www.w3schools.com/</a>。</p>
+<p>最后，总结几点容易翻车的地方：文件路径和链接可能对初学者来讲比较困惑，路径和链接可能是相对或绝对的，可能出现或不出现协议和域名，要准确地理解这个问题，必须明白，当一个协议可能设定为http^[也可能是其他协议，比如：https,ftp]，其域名为：www.example.com，网站根目录下的文件为：foo/bar.ext时，链接的全部形式为：http://www.example.com/foo/bar.ext。</p>
+<blockquote>
+<ul>
+<li>如果你引用的资源文件都在同一个网站下，一般不建议加协议和域名，以便在协议和域名更改后网站还能继续运行。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>在相同的网站下，域名和协议既可以是绝对路径，也可是相对路径。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>如果连接不同的网站和网页，域名应该包括在连接中，但协议可以不包括在其中，由于不同协议的网站之间资源无法传递，所以能传递资源的网站一般具有相同的协议，因此可不包括在其中。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>大家最容易犯的错误是域名前不加双斜杠。</li>
+</ul>
+</blockquote>
+
+
+  <footer>
+  
+  
+
+
+
+<script src="//yingjie.org/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//yingjie.org/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//yingjie.org/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+  
+  <hr>
+  <div class="copyright">© <a href="/">Yingjie Xue</a>2020| <a href="https://github.com/yingjiexue">Github</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+

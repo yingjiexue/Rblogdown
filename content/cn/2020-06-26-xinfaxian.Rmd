@@ -1,0 +1,10 @@
+---
+title: xinfaxian
+author: xueying
+date: '2020-06-26'
+slug: xinfaxian
+categories:
+  - diary
+tags:
+  - diary
+---

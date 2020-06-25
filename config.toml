@@ -54,8 +54,8 @@ rssLimit=100
     MathJaxVersion = "2.7.1"
 
     [params.logo]
-    url = "logo.png"
+    url = "/images/logo.png"
     width = 50
     height = 50
-    alt = "Yingjie"
+    alt = "Public"
 

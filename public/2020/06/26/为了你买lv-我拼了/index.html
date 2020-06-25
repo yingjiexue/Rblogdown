@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>为你买LV，我拼了 - Yingjie</title>
+    <meta property="og:title" content="为你买LV，我拼了 - Yingjie">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+      
+    
+
+    
+      
+      <meta property="description" content="海上月是天上月，眼前人是心上人。 ——张爱玲
+[&amp;hellip;] 恋人之间最好的感情，莫过于此。有求必应，秒回信息，是每一位少女心中的期冀，但人生不如意十之八九，并非事事都能顺心。女朋友好不容易相中一款LV背包，无奈店铺缺货，时不时地需要上网查询是否已上新货，又担心刚上新货被别人秒光，看她一次次刷货无果，萌生了帮她搞定的想法。
+这么简单无脑，单调又重复的体力活，让她来做岂不是有点浪费时间。我决定 &amp;hellip;">
+      <meta property="og:description" content="海上月是天上月，眼前人是心上人。 ——张爱玲
+[&amp;hellip;] 恋人之间最好的感情，莫过于此。有求必应，秒回信息，是每一位少女心中的期冀，但人生不如意十之八九，并非事事都能顺心。女朋友好不容易相中一款LV背包，无奈店铺缺货，时不时地需要上网查询是否已上新货，又担心刚上新货被别人秒光，看她一次次刷货无果，萌生了帮她搞定的想法。
+这么简单无脑，单调又重复的体力活，让她来做岂不是有点浪费时间。我决定 &amp;hellip;">
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+
+<link href='//yingjie.org/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+  </head>
+
+  
+  <body class="2020">
+    <header class="masthead">
+      <h1><a href="/">Yingjie</a></h1>
+
+
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" />
+  <label id="menu-label" for="menu-check" class="unselectable">
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="/">主页</a></li>
+  
+  <li><a href="/cn/">日志</a></li>
+  
+  <li><a href="/research/">研究</a></li>
+  
+  <li><a href="/cn_about/">关于</a></li>
+  
+  <li><a href="/en/">Blog</a></li>
+  
+  <li><a href="/en_about/">About</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+<h1>为你买LV，我拼了</h1>
+
+<h3>薛英杰
+  /  2020-06-26</h3>
+<hr>
+
+
+      </header>
+
+
+
+<blockquote>
+<p>海上月是天上月，眼前人是心上人。        ——张爱玲</p>
+</blockquote>
+<p>恋人之间最好的感情，莫过于此。有求必应，秒回信息，是每一位少女心中的期冀，但人生不如意十之八九，并非事事都能顺心。女朋友好不容易相中一款LV背包，无奈店铺缺货，时不时地需要上网查询是否已上新货，又担心刚上新货被别人秒光，看她一次次刷货无果，萌生了帮她搞定的想法。</p>
+<p>这么简单无脑，单调又重复的体力活，让她来做岂不是有点浪费时间。我决定用知识武装头脑，交给计算机来干，以表我存在的实际价值。于是做了如下周密部署：</p>
+<blockquote>
+<ul>
+<li>每天早晨6:00到晚上10:00期间，每五分钟去检查一次，帮我确认是否新货已经补给。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>一旦发现网站上出现商品库存，立即提醒我们下单购买。</li>
+</ul>
+</blockquote>
+<p>理想很丰满，现实很骨感。听起来貌似很简单，做起来一点都不容易啊！那就来说说其中的曲折以及我是如何一步步实现的。</p>
+<p>首先，用到的是爬虫相关的知识，需要从固定的网站中提取相关特征来判断是否有新货补给，网站截图如下：</p>
+<h1 id="imageslvpng"><img src="/images/Lv.png" alt=""></h1>
+<p>网页源代码如下：</p>
+<h1 id="imagescodepng"><img src="/images/code.png" alt=""></h1>
+<p>如果购物标签为Call for avalability,说明无可货物可以利用，否则提醒我们出现货物补给。通过request 请求获得网页源代码，提取购买按钮上的标签文本，实现python代码如下：</p>
+<pre><code>import requests  %加载requests模块，用来请求网址以获得网页源代码%
+import bs4       %加载bs4模块，用来分析网页源代码，提取定位元素标签文本%
+
+#定义判断函数
+def Lv():
+    url='https://au.louisvuitton.com/eng-au/products/nano-speedy-monogram-010575' %访问网站网址%
+    headers = {'User-Agent' : 'Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 4 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19'} %请求浏览器信息%
+    r = requests.post(url, headers=headers)  %请求获取网页源代码%
+    content = bs4.BeautifulSoup(r.content.decode(&quot;utf-8&quot;), &quot;lxml&quot;) %解析网页源代码%
+    element = content.find(id='callToPurchase').stripped_strings  %获取网页代码文本%
+    calls=[i for i in element][0]          %输出文本%
+    if not calls=='Call for availability': %判断是否有货物补给，如果是返回True，否则返回False%
+        b=True
+    else:
+        b=False
+    return b   
+</code></pre><p>一旦发现有新货补给，那就可以通知我们人工下单。通知的方式有千百种，比如，设置声音提醒，邮件提醒、微信提醒和信息提醒。这几种方式中，微信提醒由于官方不在允许登录网页版微信，导致<a href="https://www.cnblogs.com/jiaoyu121/p/6944398.html">itchart</a>模块不能使用，可以扫码但不能登录，所以本文就用声音提醒和信息提醒来实现。声音提醒直接下载wav文件通过playsoud模块播放，短信提醒可以利用twilio，该网站支持多中语言短信服务，注册后送15美元，可以发500条短信，具体参考<a href="https://www.jianshu.com/p/d1f189d54a63">https://www.jianshu.com/p/d1f189d54a63</a>，代码如下：</p>
+<pre><code>from twilio.rest import Client
+import time
+from playsound import playsound
+
+#提取系统当前时间
+def GetNowTime():
+    return time.strftime(&quot;%H:%M:%S&quot;,time.localtime(time.time()))
+
+#短信发送函数
+def SendMassage():
+    # Your Account Sid and Auth Token from twilio.com/console
+    account_sid = 'AC83b7590144b3ee932fe17187efb5e4f3'
+    auth_token = '0a2edd859236e837dffa4f1861205ad0'
+    client = Client(account_sid, auth_token)
+    
+    message = client.messages.create(
+                                  from_='+12054795951',
+                                  body='你的LV包包有货啦，抓紧速度拍.....',
+                                  to='+8613458731241'
+                          )
+    print(message.sid)
+
+
+#货物补给后，发行短消息并播放音乐
+def mainfun():   
+    while GetNowTime()&gt;'06:00:00' and GetNowTime()&lt;'22:00:00': %六点到晚上十点期间检测网站变化%
+        packageinf=Lv()
+        if packageinf :
+            SendMassage()
+            break
+        else:
+            print(&quot;你的LV包包无货，请宝贝耐心等待.....&quot;)
+            laysound('E:\wav\nm0114.wav')
+            time.sleep(300)  %5分钟检测一次%
+            
+</code></pre><p>所有内容已介绍完，可能有人会问：</p>
+<blockquote>
+<p>为什么不把下单、付款等一系列的东东全部通过代码实现呢？</p>
+</blockquote>
+<p>那我会告诉你，这是奢侈品，我家亲爱的同一种包包不会买两次的，既然不会重复操作，写代码调试的时间远远超过人工购买的时间，我不傻，这样做得不偿失。最后，附上所有代码，有需要的直接拿走。</p>
+<pre><code>import requests
+import bs4
+from twilio.rest import Client
+import time
+from playsound import playsound
+
+def Lv():
+    url='https://au.louisvuitton.com/eng-au/products/nano-speedy-monogram-010575'
+    headers = {'User-Agent' : 'Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 4 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19'}
+    r = requests.post(url, headers=headers)
+    content = bs4.BeautifulSoup(r.content.decode(&quot;utf-8&quot;), &quot;lxml&quot;)
+    element = content.find(id='callToPurchase').stripped_strings
+    calls=[i for i in element][0]
+    if not calls=='Call for availability':
+        b=True
+    else:
+        b=False
+    return b   
+
+
+def GetNowTime():
+    return time.strftime(&quot;%H:%M:%S&quot;,time.localtime(time.time()))
+
+
+def SendMassage():
+    # Your Account Sid and Auth Token from twilio.com/console
+    account_sid = 'AC83b7590144b3ee932fe17187efb5e4f3'
+    auth_token = '0a2edd859236e837dffa4f1861205ad0'
+    client = Client(account_sid, auth_token)
+    
+    message = client.messages.create(
+                                  from_='+12054795951',
+                                  body='你的LV包包有货啦，抓紧速度拍.....',
+                                  to='+8613730829546'
+                          )
+    print(message.sid)
+    
+def mainfun():   
+    while GetNowTime()&gt;'06:00:00' and GetNowTime()&lt;'22:00:00':
+        packageinf=Lv()
+        if packageinf :
+            SendMassage()
+            break
+        else:
+            print(&quot;你的LV包包无货，请宝贝耐心等待.....&quot;)
+            playsound('E:\wav\nm0114.wav')
+            time.sleep(300)
+            
+if __name__ == '__main__':
+    mainfun()
+</code></pre>
+
+  <footer>
+  
+  
+
+
+
+<script src="//yingjie.org/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//yingjie.org/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//yingjie.org/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+  
+  <hr>
+  <div class="copyright">© <a href="/">Yingjie Xue</a>2020| <a href="https://github.com/yingjiexue">Github</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+

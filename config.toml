@@ -6,6 +6,7 @@ googleAnalytics = ""
 disqusShortname="Yingjie"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 hasCJKLanguage= true
+math = true
 enableEmoji=true
 footnotereturnlinkcontents= "↩"
 rssLimit=100

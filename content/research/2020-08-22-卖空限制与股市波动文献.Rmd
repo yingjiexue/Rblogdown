@@ -47,3 +47,44 @@ The Review of Financial Studies. 2003:16(2 ): 487–525.])。
 > 6、卖空禁令增大了买卖价差和股票价格的波动，有损市场效率和质量([Beber and Pagano,2013](https://doi.org/10.1111/j.1540-6261.2012.01802.x)^[Beber A.,Pangano M. Short‐Selling Bans Around the World: Evidence from the 2007–09 Crisis[J]. 2013, 68(1):343-381])。
 
 > 7、卖空可能导致皮格马利翁效应（Selef-fulfilling Prohency ），从而加速市场下跌([Aitken et al.,1998]( https://doi.org/10.1111/0022-1082.00088)^[ Aitken M. J.,  Frino A.  McCorry M. S.  Swan P. L. Short Sales Are Almost Instantaneously Bad News: Evidence from the Australian Stock Exchange[J]. Jounal of Finance,1998,53(6):2205-2223])。
+
+### 文献背景
+
+> 1、融资融券业务为研究卖空机制对股票价格稳定性的影响提供了很好的自然环境，我国股票市场只有少数股票被列为融资融券标的，有利于对比和事件分析得到稳健的结果。
+
+> 2、我国融资融券在参与者层面存在明显的非对称性，只有部分证券公司有融资融券权限，而且证券公司对融资融券的参与者设置了较高的门槛。
+
+> 3、由于制度设计等多方面的原因，自我国融资融券制度推出以来，市场融资融券量都比较小。
+
+### 研究设计
+
+1、价格稳定性的度量
+
+（1）月度收益的标准差和股票价格的振幅；（2）跳跃风险；（3）特质波动率
+
+2、实证模型
+
+为了检验融资融券交易是否会对资产价格的稳定性产生影响，使用非平衡面板回归模型分三层进行研究：
+
+（1）对融资融券制度推出后，融资融券标的股票和非融资融券标的股票的价格稳定性进行比较，具体如下：
+
+$$ Stability_{it}=\alpha_0+\beta Shotlist_{it}+\gamma Control_{it}+v_i+e_t+\epsilon_{it}$$
+
+其中，$Stability_{it}$表示股票价格稳定性，$Shotlist_{it}$为虚拟变量，融资融券标的取1，其他取0。
+
+接下来对股票被纳入和剔除融资融券标的前后的价格稳定性进行事件分析，具体模型如下：
+
+$$Stability_{it}=\alpha_0+\beta EventIN_{it}+\gamma Control_{it}+v_i+e_t+\epsilon_{it}$$
+
+$$Stability_{it}=\alpha_0+\beta EventOut_{it}+\gamma Control_{it}+v_i+e_t+\epsilon_{it}$$
+其中，$EventIN_{it}$和$EventOut_{it}$为虚拟变量，对于股票$i$事件（加入或剔除）前为1，否则为0.
+
+
+### 研究结论
+
+> 1、融资融券交易机制的推出有效地降低了股票价格的波动性。
+
+> 2、融资融券制度显著地降低了股票价格的跳跃风险，有利于抑制股价的暴涨暴跌。
+
+> 3、融资融券制度在抑制股票价格特质风险上起到了市值性作用，有助于增加上市公司信息透明度和市场信息效率。
+

@@ -175,6 +175,6 @@ per， University of North Carolina.]提出卖空约束大的股票吸收信息�
 
 > 8、[Li和Myers(2006)](https://doi.org/10.1016/j.jfineco.2004.11.003)^[Jin L, Myers S C. R2 around the world: New theory and new tests[J]. Journal of financial Economics, 2006, 79(2): 257-292.]研究发现，当卖空约束使得目标公司经营状况变得不透明时，其股价反映的特质信息就比较少。
 
-> 9、[廖士光（2011）](https://webvpn.swufe.edu.cn/https/77726476706e69737468656265737421fbf952d2243e635930068cb8/kcms/detail/detail.aspx?dbcode=CJFD&dbname=CJFD2011&filename=LXGZ201101007&v=MDY0OTVGWTRSOGVYMUx1eFlTN0RoMVQzcVRyV00xRnJDVVI3cWZiK1JtRnkzbFU3L05LVFhNZExHNEg5RE1ybzk=)^[廖士光.融资融券交易价格发现功能研究——基于标的证券确定与调整的视角[J].上海立信会计学院学报,2011,25(01):67-76.]利用沪深证券市场标的股票确定与调整事件进行分析，发现我国融资融券交易业务发展失衡，融资融券交易有助于提升标的股票市场的价格，融资融券交易的总体价格发现功能则有待进一步发挥。
+> 9、[廖士光（2011）](https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&dbname=CJFD2011&filename=LXGZ201101007&v=MDA5NDdmYitSbUZ5L21VN3pOS1RYTWRMRzRIOURNcm85Rlk0UjhlWDFMdXhZUzdEaDFUM3FUcldNMUZyQ1VSN3E=)^[廖士光.融资融券交易价格发现功能研究——基于标的证券确定与调整的视角[J].上海立信会计学院学报,2011,25(01):67-76.]利用沪深证券市场标的股票确定与调整事件进行分析，发现我国融资融券交易业务发展失衡，融资融券交易有助于提升标的股票市场的价格，融资融券交易的总体价格发现功能则有待进一步发挥。
 
-> 10、[杨德勇和吴琼（2011）](https://webvpn.swufe.edu.cn/https/77726476706e69737468656265737421fbf952d2243e635930068cb8/kcms/detail/detail.aspx?dbcode=CJFD&dbname=CJFD2011&filename=ZYCY201105006&v=MjU0NzExVDNxVHJXTTFGckNVUjdxZmIrUm1GeTNsVWJ6SlB6VElkN0c0SDlETXFvOUZZb1I4ZVgxTHV4WVM3RGg=)^[杨德勇,吴琼.融资融券对上海证券市场影响的实证分析——基于流动性和波动性的视角[J].中央财经大学学报,2011(05):28-34.]发现融资融券机制能够一定程度上抑制个股波动，并提高个股的流动性。
+> 10、[杨德勇和吴琼（2011）](https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&dbname=CJFD2011&filename=ZYCY201105006&v=MTgzMjlEaDFUM3FUcldNMUZyQ1VSN3FmYitSbUZ5L2xXci9PUHpUSWQ3RzRIOURNcW85RllvUjhlWDFMdXhZUzc=)^[杨德勇,吴琼.融资融券对上海证券市场影响的实证分析——基于流动性和波动性的视角[J].中央财经大学学报,2011(05):28-34.]发现融资融券机制能够一定程度上抑制个股波动，并提高个股的流动性。

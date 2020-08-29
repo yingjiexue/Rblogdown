@@ -31,7 +31,7 @@ tags:
 
 多数理论研究指出，卖空约束会导致系统性的定价误差，导致资产价格剧烈波动。
 
-> 1、在卖空交易缺失的市场，资产价格反映的是乐观投资者的估值，由此产生系统性泡沫，导致资产价格大幅波动（[Miller,1997](https://www.jstor.org/stable/2326520?seq=1)^[ Miller E. M.,Risk, Uncertainty, and Divergence of Opinion[J].The Journal of Finance, 1977 32(4):1151-1168.]）。
+> 1、在卖空交易缺失的市场，资产价格反映的是乐观投资者的估值，当投资者对某项风险看法存在广泛差异时，卖空约束使得悲观者离开市场，因而只反映了乐观投资者的观点，从而使股价向上偏离，由此产生系统性泡沫，导致资产价格大幅波动（[Miller,1997](https://www.jstor.org/stable/2326520?seq=1)^[ Miller E. M.,Risk, Uncertainty, and Divergence of Opinion[J].The Journal of Finance, 1977 32(4):1151-1168.]）。
 
 > 2、由于存在卖空约束，市场悲观情绪被隐藏，在资产价格下跌时，市场所积累的隐藏负面信息会突然释放，从而加速市场下跌([Hong and Stein,2003](https://doi.org/10.1093/rfs/hhg006)^[Harrison Hong, Jeremy C. Stein,Differences of Opinion, Short-Sales Constraints, and Market Crashes[J].
 The Review of Financial Studies. 2003:16(2 ): 487–525.])。
@@ -150,4 +150,31 @@ Econometrica,1994,62(6):1327-1347]）。
 
 ### 研究问题
 
-> 卖空机制
+> 卖空机制是否能够改善定价效率,缓解同涨同跌，暴涨暴跌等现象？
+
+### 相关文献
+
+> 1、由于政策限制、搜寻成本等原因，卖空约束使得股价不能及时或充分反映市场负面信息，从而导致定价效率较低及收益率分布不合理（Diamond and Verrechina,1987;Bris et al.,2007;Saffri and Sigurdsson,2011）
+
+> 2、由于政策环境、市场情况和发展阶段不同，允许卖空并不能对定价效率产生一定影响，反而在一定情况，可能因为投资者利用私人信息、杠杆交易、市场委托等行为加大市场波动（Allen and Gale,1991;Kemi and Madhaven,1995;Bai et al.,2006;Charoenrook and Daouk,2005）。
+
+> 3、[Diamond和Verrechina（1987）](https://doi.org/10.1016/0304-405X(87)90042-0)^[Diamond D. W. and  Verrecchia R. E.,Constraints on short-selling and asset price adjustment to private information[J].Journal of Financial Economics,1987,
+18(2):277-311.
+]建立了一个卖空约束排除部分信息交易者的模型，证明了卖空约束损害了股票定价效率，因为其削弱了股价对私人信息的调整速度。
+
+> 4、[Charles和Owen(2002)](https://doi.org/10.1016/S0304-405X(02)00224-6)^[Charles M. J. and Owen A. L. Short Sale
+Constraints and Stock Returns[J].Journal of Financial Econom⁃
+ics，2002，66(2-3):207-239.]研究发现卖空成本很高的股票具有更高的估值水平以及未来更低的收益率。
+
+> 5、[Reed(2003)]()^[Reed A.,Costly Short Selling and Stock Price Adjustment to Earnings Announcements[J],Working pa⁃
+per， University of North Carolina.]提出卖空约束大的股票吸收信息非常缓慢，并且股价对负面信息反映更慢，表明卖空约束对市场信息反映是不对称的。
+
+> 6、在允许卖空的市场上，股价能够快速吸收负面信息，与监管者所认为的卖空约束能够防止市场恐慌的观点相反，不能卖空导致市场奔溃的概率较大（[Bris,2007](https://doi.org/10.1111/j.1540-6261.2007.01230.x)^[Bris A, Goetzmann W N, Zhu N. Efficiency and the bear: Short sales and markets around the world[J]. The Journal of Finance, 2007, 62(3): 1029-1079.]）。
+
+> 7、[Saffi和Sigurdsson(2011)](https://doi.org/10.1093/rfs/hhq124)^[Saffi P A C, Sigurdsson K. Price efficiency and short selling[J]. The Review of Financial Studies, 2011, 24(3): 821-852.]根据全球26个国家在2005-2008年期间的股票数据，采用信贷余额作为卖空约束的代理变量，发现卖空约束对于股票吸收市场和个股负面信息速度有明显负面影响，并且放松卖空约束与价格不稳定性和极端负收益并无直接联系。
+
+> 8、[Li和Myers(2006)](https://doi.org/10.1016/j.jfineco.2004.11.003)^[Jin L, Myers S C. R2 around the world: New theory and new tests[J]. Journal of financial Economics, 2006, 79(2): 257-292.]研究发现，当卖空约束使得目标公司经营状况变得不透明时，其股价反映的特质信息就比较少。
+
+> 9、[廖士光（2011）](https://webvpn.swufe.edu.cn/https/77726476706e69737468656265737421fbf952d2243e635930068cb8/kcms/detail/detail.aspx?dbcode=CJFD&dbname=CJFD2011&filename=LXGZ201101007&v=MDY0OTVGWTRSOGVYMUx1eFlTN0RoMVQzcVRyV00xRnJDVVI3cWZiK1JtRnkzbFU3L05LVFhNZExHNEg5RE1ybzk=)^[廖士光.融资融券交易价格发现功能研究——基于标的证券确定与调整的视角[J].上海立信会计学院学报,2011,25(01):67-76.]利用沪深证券市场标的股票确定与调整事件进行分析，发现我国融资融券交易业务发展失衡，融资融券交易有助于提升标的股票市场的价格，融资融券交易的总体价格发现功能则有待进一步发挥。
+
+> 10、[杨德勇和吴琼（2011）](https://webvpn.swufe.edu.cn/https/77726476706e69737468656265737421fbf952d2243e635930068cb8/kcms/detail/detail.aspx?dbcode=CJFD&dbname=CJFD2011&filename=ZYCY201105006&v=MjU0NzExVDNxVHJXTTFGckNVUjdxZmIrUm1GeTNsVWJ6SlB6VElkN0c0SDlETXFvOUZZb1I4ZVgxTHV4WVM3RGg=)^[杨德勇,吴琼.融资融券对上海证券市场影响的实证分析——基于流动性和波动性的视角[J].中央财经大学学报,2011(05):28-34.]发现融资融券机制能够一定程度上抑制个股波动，并提高个股的流动性。

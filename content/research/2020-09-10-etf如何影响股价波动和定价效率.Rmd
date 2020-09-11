@@ -7,6 +7,8 @@ categories:
   - research
 tags:
   - research
+output: html_document
+runtime: shiny
 ---
 
 
@@ -79,15 +81,12 @@ except that ETFs are bought and sold throughout the day on stock exchanges
 
 ```{r,results = 'asis',echo=FALSE,fig.align='center'}
 pacman::p_load(readxl,foreign,plyr,plm,stringr,dplyr,tidyr,knitr,
-  officer,flextable,stargazer,ggthemes,ggplot2)
-data<-read.csv("D:\\科研\\ETF持股与市场波动\\indexnav.csv")%>%
-  select(-X)%>%unique()%>%mutate(x=1:n(),Tasset=round(Tasset,2))%>%
-  select(x,index_code,name,Tasset)
-subdat1<-data%>%filter(x<=60)
-subdat2<-data%>%filter(x>60)
-dats<-cbind(subdat1,subdat2)
-names(dats)<-c("编号","指数代码","指数简称","ETF总资产(亿)","编号","指数代码","指数简称","ETF总资产(亿)")
-knitr::kable(dats, caption = "指数ETF资产规模")
+  officer,flextable,stargazer,ggthemes,ggplot2,shiny)
+
+numericInput("n",
+"How many cars?", 5)
+renderTable({
+head(cars, input$n)})
 
 ```
 

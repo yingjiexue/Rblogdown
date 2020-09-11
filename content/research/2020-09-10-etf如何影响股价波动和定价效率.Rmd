@@ -73,3 +73,21 @@ except that ETFs are bought and sold throughout the day on stock exchanges
 
 # ![](/images/Enum.png)
 
+截至2020年9月，中国A股市场被ETF跟踪的指数有120个，跟踪指数ETF规模50亿以上的指数有14个，从指数规模来看，宽指ETF规模较大，沪深300ETF规模高达1283.14亿，排名前三的沪深300、中证500和上证50指数ETF市场份额占比高达52.1%，占据了ETF市场的半壁江山。详细指数跟踪ETF规模见表1。
+
+# ![图2 指数基金规模](/images/index.png)
+
+```{r,results = 'asis',echo=FALSE,fig.align='center'}
+pacman::p_load(readxl,foreign,plyr,plm,stringr,dplyr,tidyr,knitr,
+  officer,flextable,stargazer,ggthemes,ggplot2)
+data<-read.csv("D:\\科研\\ETF持股与市场波动\\indexnav.csv")%>%
+  select(-X)%>%unique()%>%mutate(x=1:n(),Tasset=round(Tasset,2))%>%
+  select(x,index_code,name,Tasset)
+subdat1<-data%>%filter(x<=60)
+subdat2<-data%>%filter(x>60)
+dats<-cbind(subdat1,subdat2)
+names(dats)<-c("编号","指数代码","指数简称","ETF总资产(亿)","编号","指数代码","指数简称","ETF总资产(亿)")
+knitr::kable(dats, caption = "指数ETF资产规模")
+
+```
+

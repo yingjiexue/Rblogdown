@@ -29,11 +29,15 @@ except that ETFs are bought and sold throughout the day on stock exchanges
 
 按照ETF标的类型，ETF可分为：
 
-> 1、指数ETF
+> 1、指数型ETF
 
-> 2、商品ETF 
+> 2、商品型ETF 
 
-> 3、货币ETF
+> 3、货币型ETF
+
+> 4、债券型ETF
+
+> 5、混合型ETF
 
 按照ETF构造目的，ETF可分为：
 
@@ -82,7 +86,8 @@ except that ETFs are bought and sold throughout the day on stock exchanges
 
 ```{r,results = 'asis',echo=FALSE,fig.align='center'}
 pacman::p_load(readxl,foreign,plyr,plm,stringr,dplyr,tidyr,knitr,
-  officer,flextable,stargazer,ggthemes,ggplot2,shiny,DT)
+  officer,flextable,stargazer,ggthemes,ggplot2,shiny,DT,reticulate)
+use_condaenv("r-reticulate")
 data<-read.csv("D:\\科研\\ETF持股与市场波动\\indexnav.csv")%>%
   select(-X)%>%unique()%>%mutate(x=1:n(),Tasset=round(Tasset,2))%>%
   select(x,index_code,name,Tasset)
@@ -93,5 +98,50 @@ names(dats)<-c("编号","指数代码","指数简称","ETF总资产(亿)","编�
 #knitr::kable(dats, caption = "指数ETF资产规模")
 DT::datatable(dats,rownames = FALSE,extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel',  'print')))
 
+```
+
+到2020年9月，中国A股市场上共有301只ETF，其中股票型ETF２６１只，混合型ETF２２只，债券型ETF１７只，商品型ETF６只，货币型ETF３只，由此可见，中国A股市场主要以股票型ETF为主。有需要了解ETF及其标的的读者可以在搜索框中输入关键词来查找相应的ETF和对应标的资产。
+
+```{python,echo=FALSE}
+import tushare as ts
+import pandas as pd
+import numpy as np
+
+ts.set_token('e9b0707d99b6b1d43bfd5710a8a35b9d09a14dffe81ecbc005457fe8')
+pro = ts.pro_api()
+df = pro.fund_basic(market='E')
+etf=""
+cout=0
+for i in df["ts_code"]:
+    cout=cout+1
+    if cout==1:
+        etf=pro.fund_share(ts_code=i,trade_date='20200911',fund_type='ETF')
+    else:
+        etf=etf.append(pro.fund_share(ts_code=i,trade_date='20200911',fund_type='ETF'))
+
+
+    
+
+```
+
+
+
+```{r,echo=FALSE,fig.align='center',warning=FALSE,message =FALSE}
+pacman::p_load(readxl,foreign,plyr,plm,stringr,dplyr,tidyr,knitr,
+  officer,flextable,stargazer,ggthemes,ggplot2,shiny,DT,reticulate)
+maketf<-py$etf
+
+ETF<-py$df%>%
+  filter(ts_code%in%maketf$ts_code&status=="L"&market=="E")%>%
+  select(ts_code,name,fund_type,list_date, benchmark )
+
+ETFnum<-ETF%>%group_by(fund_type)%>%
+  summarise(num=n())%>%ungroup()%>%
+  arrange(desc(num))
+
+barplot(ETFnum$num,names.arg = ETFnum$fund_type,col="black",ylim=c(0,280),space = 1 )
+box(bty="l")
+text(seq(1.5,10,2),ETFnum$num+10,labels =ETFnum$num+2 )
+DT::datatable(ETF,rownames = FALSE,extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel',  'print')))
 ```
 

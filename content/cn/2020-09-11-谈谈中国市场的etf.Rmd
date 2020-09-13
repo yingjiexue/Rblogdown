@@ -100,7 +100,7 @@ DT::datatable(dats,rownames = FALSE,extensions = 'Buttons', options = list(dom =
 
 ```
 
-到2020年9月，中国A股市场上共有301只ETF，其中股票型ETF２６１只，混合型ETF２２只，债券型ETF１７只，商品型ETF６只，货币型ETF３只，由此可见，中国A股市场主要以股票型ETF为主。有需要了解ETF及其标的的读者可以在搜索框中输入关键词来查找相应的ETF和对应标的资产。
+到2020年9月，中国A股市场上共有301只ETF，其中股票型ETF263只，混合型ETF24只，债券型ETF19只，商品型ETF8只，货币型ETF5只，由此可见，中国A股市场主要以股票型ETF为主。有需要了解ETF及其标的的读者可以在搜索框中输入关键词来查找相应的ETF和对应标的资产。
 
 ```{python,echo=FALSE}
 import tushare as ts
@@ -129,7 +129,7 @@ for i in df["ts_code"]:
 ```{r,echo=FALSE,fig.align='center',warning=FALSE,message =FALSE}
 pacman::p_load(readxl,foreign,plyr,plm,stringr,dplyr,tidyr,knitr,
   officer,flextable,stargazer,ggthemes,ggplot2,shiny,DT,reticulate)
-maketf<-py$etf
+maketf<-py$etf%>%filter(fund_type=="ETF")
 
 ETF<-py$df%>%
   filter(ts_code%in%maketf$ts_code&status=="L"&market=="E")%>%

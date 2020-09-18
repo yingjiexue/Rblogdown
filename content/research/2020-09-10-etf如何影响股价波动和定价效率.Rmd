@@ -70,7 +70,7 @@ Itzhak Ben-Davia  Francesco Franzoni Rabih Moussawi
 
 > 平均来说，ETF比基础资产更具有流动性，表现在在买卖价差、价格影响和换手率上，短期客户会自动选择低交易成本的资产（[Amihud and Mendelson,1984](https://doi.org/10.1016/0304-405X(86)90065-6)）^[Amihud Y, Mendelson H. Asset pricing and the bid-ask spread[J]. Journal of financial Economics, 1986, 17(2): 223-249.],而且使用交易数据发现机构持有ETF的期限显著短于基础资产。
 
-> **思考？**
+> **$\color{red}{思考？}$**
 
 >  *ETF比基础资产更具有流动性，且机构投资者持有ETF的期限短于基础资产，是一个现实的现象，但这并不意味着ETF吸引了短期投资者，虽然Amihud 这么认为，像中国市场，大型券商为作为机构投资者为ETF提供流动性，有维护ETF和基础资产价格均衡的义务和套利需求，持有ETF期限短并不意味着吸引了噪声交易者。*
 
@@ -205,7 +205,7 @@ $$Synch_{i,t}=\gamma_0+\beta_1Treated_i+\beta_2Treated_{i}*After_{i,t}+\gamma Co
 
 > 随着ETF持股比例上升，被基金公司持有的流通股比例上升，大比例的流通股变得不活跃，即使这些股票在ETF层面可以以一篮子资产交易，但对想从事个股层面的投资来说，这些股票不可利用。更重要的是，ETF为噪声交易者提供了备选的投资工具，ETF持股比例上升后，从事个股交易的噪声交易者将迁移到ETF。因此，ETF持股比例增加会吸引基础资产的流动性，使得噪声交易者减少，反过来抑制了信息交易者获取信息
 
-> **思考？**
+>**$\color{red}{思考？}$**
 
 > 核心思想认为，信息收集者获取证券价值信息回报的方式是将信息卖给不了解信息的噪声交易者，而ETF出现导致噪声交易者从单个资产迁移到ETF，从而影响了噪声交易者对信息的需求，进而导致基础资产的定价效率低下。**值得怀疑的是：**噪声交易者对信息的需求难道是取决于ETF？或者说ETF有改变投资者对信息需求的功能？这显然不现实。资本市场上的投资者是理性的，如果一个信息为其带来的收益大于其获取信息的成本，那么其必然会进行信息搜集活动。而且，没有信息的噪声交易者离开市场，不仅增加了资产价格反应价值的准确性，还节约了信息收集成本。
 
@@ -219,6 +219,8 @@ $$Synch_{i,t}=\gamma_0+\beta_1Treated_i+\beta_2Treated_{i}*After_{i,t}+\gamma Co
 > *交易成本增加阻止交易者获取股票价值相关的信息，这将导致公司层面信息环境恶化，降低了股票反应公司层面信息的速度*
 
 ### 相关文献观点
+
+> 1、ETF持股增加可能提高公司盈利中宏观信息的价格发现功能（[Glosten et al.,2016](https://www.rhsmith.umd.edu/files/Documents/Departments/Finance/fall2015/glosten.pdf)^[Glosten L, Nallareddy S, Zou Y. ETF trading and informational efficiency of underlying securities[J]. Unpublished working Paper, 2016.]）。他们将公司盈余分解为宏观层面和微观层面的成分，发现ETF持股增加有助于吸收企业宏观层面的盈余信息，而ETF持股增加对公司层面盈余成分和收益影响不显著。
 
 
 >  **不熟悉的英语表达：**

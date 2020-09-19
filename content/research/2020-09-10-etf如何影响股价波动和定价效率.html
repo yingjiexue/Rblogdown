@@ -276,13 +276,84 @@ css: style.css
 <p>1、ETF持股增加可能提高公司盈利中宏观信息的价格发现功能（<a href="https://www.rhsmith.umd.edu/files/Documents/Departments/Finance/fall2015/glosten.pdf">Glosten et al.,2016</a><a href="#section-fn18" class="footnote-ref" id="section-fnref18"><sup>18</sup></a>）。他们将公司盈余分解为宏观层面和微观层面的成分，发现ETF持股增加有助于吸收企业宏观层面的盈余信息，而ETF持股增加对公司层面盈余成分和收益影响不显著。</p>
 </blockquote>
 <blockquote>
-<p><strong>不熟悉的英语表达：</strong></p>
+<p><span style="color:red">2、大量研究表明与ETF套利机制联系的交易可以改善基础资产的价格发现功能</span>（<a href="https://doi.org/10.1046/j.1540-6261.2003.00609.x">Hasbrouck 2003</a><a href="#section-fn19" class="footnote-ref" id="section-fnref19"><sup>19</sup></a>; <a href="https://ssrn.com/abstract=862604">Yu 2005</a><a href="#section-fn20" class="footnote-ref" id="section-fnref20"><sup>20</sup></a>; <a href="https://ssrn.com/abstract=1094485">Chen and Strother 2008</a><a href="#section-fn21" class="footnote-ref" id="section-fnref21"><sup>21</sup></a> ; <a href="https://ssrn.com/abstract=1926287">Fang and Sang 2012</a><a href="#section-fn22" class="footnote-ref" id="section-fnref22"><sup>22</sup></a>; <a href="https://doi.org/10.1016/j.gfj.2013.10.005">Ivanov et al. 2013</a><a href="#section-fn23" class="footnote-ref" id="section-fnref23"><sup>23</sup></a>）。</p>
 </blockquote>
+<blockquote>
+<p>3、Lee and So(2015)认为市场效率的研究需要分析一个联合均衡，在均衡下，所有市场都出清。</p>
+</blockquote>
+<blockquote>
+<p>4、ETF出现后，噪声交易者会离开基础资产，迁移到ETF交易上（Milgrom and Stokey 1982; Rubinstein 1989）。</p>
+</blockquote>
+<blockquote>
+<p><strong>对噪声交易者的理解？</strong></p>
+</blockquote>
+<blockquote>
+<p>噪声交易者有许多别称，像流动性交易者（liquidity traders）、无信息交易者(uninformed traders)等。<a href="https://doi.org/10.1111/j.1540-6261.1986.tb04513.x">Black（1986）</a><a href="#section-fn24" class="footnote-ref" id="section-fnref24"><sup>24</sup></a>提出，噪声交易者出于流动性原因而从事非信息交易，他们错误地认为他们具有信息优势，或者可以从交易中获得效用。也就是说噪声会像交易信息一样交易噪声。或许，从客观的角度来看，噪声交易者不交易更好，但他们还是乐意从事交易。也许，他们交易的噪声就是他们所认为的信息。</p>
+</blockquote>
+</div>
+<div id="section-研究设计-1" class="section level3">
+<h3>研究设计</h3>
+<p>本文未来研究公司股份被ETF持有比例上升是否降低了股票定价效率，认为ETF持股导致股票定价效率下降取决于公司的信息环境：（1）提高了市场参与者的交易成本；（2）股价反应公司层面信息的程度。</p>
+<blockquote>
+<p><strong>1、研究假设</strong></p>
+</blockquote>
+<blockquote>
+<p>H1：ETF出现后，噪声交易者者从基础资产迁移到ETF，导致交易成本上升</p>
+</blockquote>
+<blockquote>
+<p>H2: ETF 持股增加降低了基础资产的定价效率</p>
+</blockquote>
+<blockquote>
+<p><strong>2计量模型</strong></p>
+</blockquote>
+<blockquote>
+<p>为了检验H1，我们检验ETF持股比例变化与交易成本（买卖价差；流动性）关系，建立以下模型：</p>
+</blockquote>
+<p><span class="math display">\[\Delta TradeCost_{i,t}=\beta_1 \Delta ETF_{i,t-1}+\beta_2 \Delta INST_{i,t-1}+\\
+\sum_k \beta_k \Delta Controls_{i,t-1}+\epsilon_{it} \]</span></p>
+<blockquote>
+<p>为了检验H2，我们以股价同步性和盈利信息反应程度作为定价效率的代理变量，分别建立以下模型：</p>
+</blockquote>
+<blockquote>
+<p>(1)股价同步性</p>
+</blockquote>
+<p><span class="math display">\[\Delta SYNCH_{i,t}=\beta_1 \Delta ETF_{i,t-1}+\beta_2 \Delta INST_{i,t-1}+\\
+\sum_k \beta_k \Delta Controls_{i,t-1}+\epsilon_{it} \]</span></p>
+<blockquote>
+<p>（2）盈利信息的反应
+<span class="math display">\[RET_{i,t}=\beta_1 EARN_{i,t-1}+\beta_2 EARN_{i,t}+\beta_3 EARN_{i,t+1}+\beta_4 ETF_{i,t-1}+\\
+\qquad \qquad\qquad \qquad\beta_5 EARN_{i,t-1}ETF_{i,t-1}+\beta_6 EARN_{i,t}ETF_{i,t-1}+\beta_7 EARN_{i,t+1}ETF_{i,t-1}+\\
+\sum_k \beta_k \Delta Controls_{i,t-1}+\epsilon_{it} \]</span></p>
+</blockquote>
+<blockquote>
+<p>(3)分析师覆盖</p>
+</blockquote>
+<p><span class="math display">\[\Delta ANALYST_{i,t}=\beta_1 \Delta ETF_{i,t-1}+\beta_2 \Delta INST_{i,t-1}+\\
+\sum_k \beta_k \Delta Controls_{i,t-1}+\epsilon_{it} \]</span></p>
+</div>
+<div id="section-研究结论-1" class="section level3">
+<h3>研究结论</h3>
+<blockquote>
+<p>1、理论工作关于ETF持股对定价效率的影响提供了两种预测：（1）大量研究市场微观结构的文献认为，与ETF套利相联系的交易改善了基础资产日内价格发现功能（Hasbrouck 2003；Fang and Sang 2012；Ivanov et al. 2013），短期内ETF提高了基础资产的定价效率。（2）噪声理性预期相关的文献表明，ETF持股可能与资产定价效率是负向关系，他们认为定价效率是代理人面临信息搜集成本的函数，代理人企图从获取资产价值信息中受益（Diamond and Verrcchia 1981; Grossman and Stiglitz 1980;Admati 1985）。从长期来看，噪声交易者从基础资产迁移到ETF，增加了信息交易成本，从而降低定价效率。</p>
+</blockquote>
+<blockquote>
+<p>2、我们发现ETF持股增加与与同期盈利信息融入股票价格正相关，随着时间，ETF改变和未来盈余增加，这种关系变负。</p>
+</blockquote>
+<blockquote>
+<p>3、研究提出了ETF持股变化与宏观和公司层面盈利消息的影响不同，我们发现ETF持股可能改善了同期盈利的价格发现功能。</p>
+</blockquote>
+<blockquote>
+<p>4、ETF持股可能增加了市场参与者的交易成本，进一步影响信息融入股票价格。</p>
+</blockquote>
+<p><strong>不熟悉的英语表达：</strong></p>
 <blockquote>
 <p>inherent tension 内在张力，可以引深为内在矛盾</p>
 </blockquote>
 <blockquote>
 <p>discentive 抑制作用</p>
+</blockquote>
+<blockquote>
+<p>moniker 绰号</p>
 </blockquote>
 </div>
 </div>
@@ -307,5 +378,11 @@ css: style.css
 <li id="section-fn16"><p>Chan K, Hameed A. Stock price synchronicity and analyst coverage in emerging markets[J]. Journal of Financial Economics, 2006, 80(1): 115-147.<a href="#section-fnref16" class="footnote-back">↩︎</a></p></li>
 <li id="section-fn17"><p>才静涵,夏乐.卖空制度、流动性与信息不对称问题研究——香港市场的个案[J].管理科学学报,2011,14(02):71-85.<a href="#section-fnref17" class="footnote-back">↩︎</a></p></li>
 <li id="section-fn18"><p>Glosten L, Nallareddy S, Zou Y. ETF trading and informational efficiency of underlying securities[J]. Unpublished working Paper, 2016.<a href="#section-fnref18" class="footnote-back">↩︎</a></p></li>
+<li id="section-fn19"><p>Hasbrouck J. Intraday price formation in US equity index markets[J]. The Journal of Finance, 2003, 58(6): 2375-2400.<a href="#section-fnref19" class="footnote-back">↩︎</a></p></li>
+<li id="section-fn20"><p>Yu L. Basket securities, price formation, and informational efficiency[J]. Price Formation, and Informational Efficiency (March 25, 2005), 2005.<a href="#section-fnref20" class="footnote-back">↩︎</a></p></li>
+<li id="section-fn21"><p>Chen G, Strother T S. On the contribution of index exchange traded funds to price discovery in the presence of price limits without short selling[J]. Available at SSRN 1094485, 2008.<a href="#section-fnref21" class="footnote-back">↩︎</a></p></li>
+<li id="section-fn22"><p>Fang Y, Sanger G C. Index price discovery in the cash market[C]//Midwest Finance Association 2012 Annual Meetings Paper. 2011.<a href="#section-fnref22" class="footnote-back">↩︎</a></p></li>
+<li id="section-fn23"><p>Ivanov S I, Jones F J, Zaima J K. Analysis of DJIA, S&amp;P 500, S&amp;P 400, NASDAQ 100 and Russell 2000 ETFs and their influence on price discovery[J]. Global Finance Journal, 2013, 24(3): 171-187.<a href="#section-fnref23" class="footnote-back">↩︎</a></p></li>
+<li id="section-fn24"><p>Black F. Noise[J]. The journal of finance, 1986, 41(3): 528-543.<a href="#section-fnref24" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>

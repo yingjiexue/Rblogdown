@@ -4,7 +4,27 @@
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2020-09-11T00:00:00+00:00</lastmod>
+    <lastmod>2020-09-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/research/</loc>
+    <lastmod>2020-09-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/research/</loc>
+    <lastmod>2020-09-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-09-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/research/%E5%99%AA%E5%A3%B0%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8/</loc>
+    <lastmod>2020-09-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -18,27 +38,12 @@
   </url>
   
   <url>
-    <loc>/tags/</loc>
-    <lastmod>2020-09-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/2020/09/11/%E8%B0%88%E8%B0%88%E4%B8%AD%E5%9B%BD%E5%B8%82%E5%9C%BA%E7%9A%84etf/</loc>
     <lastmod>2020-09-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/research/etf%E5%A6%82%E4%BD%95%E5%BD%B1%E5%93%8D%E8%82%A1%E4%BB%B7%E6%B3%A2%E5%8A%A8%E5%92%8C%E5%AE%9A%E4%BB%B7%E6%95%88%E7%8E%87/</loc>
-    <lastmod>2020-09-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/research/</loc>
-    <lastmod>2020-09-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/research/</loc>
     <lastmod>2020-09-10T00:00:00+00:00</lastmod>
   </url>
   

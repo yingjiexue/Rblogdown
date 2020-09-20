@@ -6,10 +6,19 @@
     <description>Recent content in research on Yingjie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 20 Sep 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/research/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>噪声无处不在</title>
+      <link>/research/%E5%99%AA%E5%A3%B0%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8/</link>
+      <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/research/%E5%99%AA%E5%A3%B0%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8/</guid>
+      <description>噪声，无时无刻不出现在我们身边。自然界的声音、金融市场的信息、经济周期的波动都包含了或多或少的“噪声”，它对世界和人们看世界的视角影响深远，</description>
+    </item>
     
     <item>
       <title>ETF如何影响股价波动和定价效率？</title>

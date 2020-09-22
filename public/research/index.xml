@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>文献阅读 on Yingjie</title>
+    <link>/research/</link>
+    <description>Recent content in 文献阅读 on Yingjie</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 31 Jan 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/research/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>噪声无处不在</title>
+      <link>/research/%E5%99%AA%E5%A3%B0%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8/</link>
+      <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/research/%E5%99%AA%E5%A3%B0%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8/</guid>
+      <description>噪声，无时无刻不出现在我们身边。自然界的声音、金融市场的信息、经济周期的波动都包含了或多或少的“噪声”，它对世界和人们看世界的视角影响深远，</description>
+    </item>
+    
+    <item>
+      <title>ETF如何影响股价波动和定价效率？</title>
+      <link>/research/etf%E5%A6%82%E4%BD%95%E5%BD%B1%E5%93%8D%E8%82%A1%E4%BB%B7%E6%B3%A2%E5%8A%A8%E5%92%8C%E5%AE%9A%E4%BB%B7%E6%95%88%E7%8E%87/</link>
+      <pubDate>Thu, 10 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/research/etf%E5%A6%82%E4%BD%95%E5%BD%B1%E5%93%8D%E8%82%A1%E4%BB%B7%E6%B3%A2%E5%8A%A8%E5%92%8C%E5%AE%9A%E4%BB%B7%E6%95%88%E7%8E%87/</guid>
+      <description>常言道：“祸兮福所倚，福兮祸所伏”。昨天正沉浸在稳健医疗新股中签的喜悦中，突然电脑桌面弹出邮件通知，打开一看，原来是编辑部送来了拒稿通知。仔</description>
+    </item>
+    
+    <item>
+      <title>卖空限制与股市波动文献</title>
+      <link>/research/%E5%8D%96%E7%A9%BA%E9%99%90%E5%88%B6%E4%B8%8E%E8%82%A1%E5%B8%82%E6%B3%A2%E5%8A%A8%E6%96%87%E7%8C%AE/</link>
+      <pubDate>Sat, 22 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/research/%E5%8D%96%E7%A9%BA%E9%99%90%E5%88%B6%E4%B8%8E%E8%82%A1%E5%B8%82%E6%B3%A2%E5%8A%A8%E6%96%87%E7%8C%AE/</guid>
+      <description>卖空交易与股票价格稳定性——来自中国融资融券市场的自然实验 李志生 杜爽 林秉旋 2015年《金融研究》 摘要 基于2009年4月－2013年12月我国</description>
+    </item>
+    
+    <item>
+      <title>信息与股票市场波动文献阅读</title>
+      <link>/research/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%82%A1%E7%A5%A8%E5%B8%82%E5%9C%BA%E6%B3%A2%E5%8A%A8%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/</link>
+      <pubDate>Mon, 27 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/research/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%82%A1%E7%A5%A8%E5%B8%82%E5%9C%BA%E6%B3%A2%E5%8A%A8%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/</guid>
+      <description>Information, trading and volatility Charles M. Jones, Gautam Kaul, Marc L. Lipson Journal of Financial Economics 36(1994) 摘要 通过比较交易和非交易期间股票收益波动行为，我们检验了交易和信息流对短期股票价格的影响。本文将非交易时期</description>
+    </item>
+    
+  </channel>
+</rss>

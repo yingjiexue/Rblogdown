@@ -4,21 +4,66 @@
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2020-06-26T00:00:00+00:00</lastmod>
+    <lastmod>2020-09-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/diary/</loc>
-    <lastmod>2020-06-26T00:00:00+00:00</lastmod>
+    <loc>/tags/research/</loc>
+    <lastmod>2020-09-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/diary/</loc>
-    <lastmod>2020-06-26T00:00:00+00:00</lastmod>
+    <loc>/categories/research/</loc>
+    <lastmod>2020-09-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/</loc>
+    <lastmod>2020-09-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/research/%E5%99%AA%E5%A3%B0%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8/</loc>
+    <lastmod>2020-09-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/cn/</loc>
+    <lastmod>2020-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/diary/</loc>
+    <lastmod>2020-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2020/09/11/%E8%B0%88%E8%B0%88%E4%B8%AD%E5%9B%BD%E5%B8%82%E5%9C%BA%E7%9A%84etf/</loc>
+    <lastmod>2020-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/research/etf%E5%A6%82%E4%BD%95%E5%BD%B1%E5%93%8D%E8%82%A1%E4%BB%B7%E6%B3%A2%E5%8A%A8%E5%92%8C%E5%AE%9A%E4%BB%B7%E6%95%88%E7%8E%87/</loc>
+    <lastmod>2020-09-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/research/%E5%8D%96%E7%A9%BA%E9%99%90%E5%88%B6%E4%B8%8E%E8%82%A1%E5%B8%82%E6%B3%A2%E5%8A%A8%E6%96%87%E7%8C%AE/</loc>
+    <lastmod>2020-08-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/research/%E4%BF%A1%E6%81%AF%E4%B8%8E%E8%82%A1%E7%A5%A8%E5%B8%82%E5%9C%BA%E6%B3%A2%E5%8A%A8%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/</loc>
+    <lastmod>2020-07-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2020/07/01/%E6%9C%8B%E5%8F%8B%E7%9A%84%E6%B2%89%E9%BB%98/</loc>
+    <lastmod>2020-07-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/diary/</loc>
     <lastmod>2020-06-26T00:00:00+00:00</lastmod>
   </url>
   
@@ -49,6 +94,11 @@
   
   <url>
     <loc>/cn/</loc>
+    <lastmod>2017-01-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/research/</loc>
     <lastmod>2017-01-31T00:00:00+00:00</lastmod>
   </url>
   

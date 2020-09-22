@@ -1,0 +1,288 @@
+---
+title: ETF如何影响股价波动和定价效率？
+author: 薛英杰
+date: '2020-09-10'
+slug: etf如何影响股价波动和定价效率
+categories:
+  - research
+tags:
+  - research
+output: html_document
+runtime: shiny
+css: style.css
+---
+
+
+
+
+常言道：“祸兮福所倚，福兮祸所伏”。昨天正沉浸在稳健医疗新股中签的喜悦中，突然电脑桌面弹出邮件通知，打开一看，原来是编辑部送来了拒稿通知。仔细瞧了瞧，发现外审意见比较负面，两位审稿人怼我论文的意见相加篇幅长达三千多字，为编辑部提供了充足的拒稿理由啊！！！，其中一位审稿人非常尽责，从选题，摘要、文献综述、研究假设到最后的结论，均提出了致命的意见，另一位审稿人认为文章对一些关键概念之间的逻辑关系理顺不清，未能对一些经验证据给出合乎逻辑的解释。说实在的，个别意见提的还是比较中肯，文章还得进一步打磨。所以，今天就回顾一下以往读过的两篇核心文献，理理研究问题的逻辑关系，顺便说说我正在做的东西。
+
+## [ETF 增加了股市波动吗？]( https://doi.org/10.1111/jofi.12727)
+
+```
+Itzhak Ben-Davia  Francesco Franzoni Rabih Moussawi
+
+2018 The Jounal of Finance 
+```
+
+### 摘要
+
+由于交易成本较低，ETF对短期流动性交易者来说是一个潜在的催化剂，流动性冲击可能通过套利渠道传递到基础资产，增加了篮子内证券的非基本面波动。我们利用指数成分的外生变化发现ETF持股比例高的股票呈现出显著高波动的特征。ETF持股增加了股票价格的负向自相关，由于被ETF持有比例高的股票每月获得高达5.6%的风险溢价，所以波动增加似乎引起了不可分散的风险。
+
+### 研究问题
+
+> 一方面，ETF为基础资产受需求冲击提供了缓冲作用。[Grossman(1989)](https://www.nber.org/papers/w2357)^[Grossman, Sanford J. An Analysis of the Implications for Stock and Futures Price Volatility of Program Trading and Dynamic Hedging Strategies[J]. The Journal of Business, 1988,61(3):275-298]明确指出，期货的发行在缓解需求冲击方面与ETF类似，他认为期货的存在具备额外的做市力量来吸收流动性冲击的影响，降低了现货市场的波动。
+
+> 另一方面，ETF为散户交易者构建投资策略提供了便利的工具，ETF的流动性可能吸引高频需求，这种需求可能通过套利机制影响基础资产价格，从而使基础资产暴露了新的需求冲击，使基础资产的价格更易波动。
+
+> **那么，ETF到底是增加了基础资产的波动还是降低了基础资产价格的波动？**
+
+### 研究相关文献
+
+> 1、ETF持股是与基础资产的高联动性相关（Da and Shive,2015^[Da Z, Shive S. When the bellwether dances to noise: Evidence from exchange-traded funds[R]. Working Paper, University of Notre Dame, 2013.]）。ETF将相同的冲击融入基础资产，增加了基础资产的联动性。
+
+> 2、由于套利机制的存在，ETF加剧了基础资产流动性的联动（[Agarwal et al.,2017]( http://dx.doi.org/10.2139/ssrn.3001524)^[Agarwal V, Hanouna P, Moussawi R, et al. Do ETFs increase the commonality in liquidity of underlying stocks?[C]//28th Annual Conference on Financial Economics and Accounting. 2018.]）
+
+> 3、[Israeli et al.(2015)](https://link.springer.com/article/10.1007/s11142-017-9400-8)^[Israeli D, Lee C M C, Sridharan S A. Is there a dark side to exchange traded funds? An information perspective[J]. Review of Accounting Studies, 2017, 22(3): 1048-1083.]研究发现ETF持股增加导致了基础资产的高交易成本和低信息挖掘收益，导致了股价信息含量降低。
+
+> 4、[Evans et al.(2017)](https://ssrn.com/abstract=2961954)^[Evans R B, Moussawi R, Pagano M S, et al. ETF Short Interest and Failures-to-Deliver: Naked Short-Selling or Operational Shorting?[J]. 2019.]研究发现ETF持股增加了基础资产日内买卖价差，特别是AP在ETF份额申购赎回过程中更活跃时，这种现象更明显。
+
+> 5、[Bhattacharya and O’Hara (2017)](https://ssrn.com/abstract=2740699)^[Bhattacharya A, O’Hara M. Can ETFs increase market fragility[J]. Effect of information linkages in ETF markets, 2016.]从理论上证明了ETF可能由于信息联系而增加了股票价格的脆弱性。
+
+> 6、[Malamud (2015)](https://ssrn.com/abstract=2831973)^[Malamud S. A dynamic equilibrium model of ETFs[J]. 2016.]通过流动性冲击传染渠道和投资者要求获得补偿的时变风险溢价两方面建立ETF影响股价波动的模型。
+
+> 7、ETF是一个改善价格发现功能的工具（[Glosten et al,2016](https://www.rhsmith.umd.edu/files/Documents/Departments/Finance/fall2015/glosten.pdf)^[Glosten L, Nallareddy S, Zou Y. ETF trading and informational efficiency of underlying securities[J]. Unpublished working Paper, 2016.]; [Madhavan and Sobczyk,2016](https://www.joim.com/wp-content/uploads/emember/downloads/p051418.pdf)^[Madhavan A, Sobczyk A. Price dynamics and liquidity of exchange-traded funds[J]. Journal of Investment Management, 2016, 14(2): 1-17.]）。
+
+> 8、[Subrahmanyam(1991)](https://doi.org/10.1093/rfs/4.1.17)^[Subrahmanyam A. A theory of trading in stock index futures[J]. The Review of Financial Studies, 1991, 4(1): 17-51.]提出，与标的资产相比，ETF不存在严重的信息不对称情况，其买卖价差平均来说比较低
+
+> 9、[Andrei and Hasler,2015](https://doi.org/10.1093/rfs/hhu059)^[Andrei D, Hasler M. Investor attention and stock market volatility[J]. The review of financial studies, 2015, 28(1): 33-72.]认为投资者关注越多的股票会更快地反映基本面信息，股价波动更大。
+
+> 10、在股票调出Russell 2000指数后，并不影响分析师覆盖（[Keim，2015](https://doi.org/10.1093/rfs/9.1.1)^[Keim D B, Madhavan A. The upstairs market for large-block transactions: Analysis and measurement of price effects[J]. The Review of Financial Studies, 1996, 9(1): 1-36.]）。  而且股票调入Russell指数并没有导致媒体覆盖的增加（[Crane et al.,2014](http://portal.idc.ac.il/en/main/research/caesareacenter/annualsummit/documents/crane_michenaud_weston.pdf)^[Crane A D, Michenaud S, Weston J P. The effect of institutional ownership on payout policy: A regression discontinuity design approach[J]. SSRN Electronic Journal, 2012, 12: 1-45.]）。
+
+
+### 一些概念
+
+> **流动性冲击：**与资产未来现金流信息不相关的冲击
+
+### 实证思路及结论
+
+> **1、ETF是否吸引了短期投资者？**
+
+> 平均来说，ETF比基础资产更具有流动性，表现在在买卖价差、价格影响和换手率上，短期客户会自动选择低交易成本的资产（[Amihud and Mendelson,1984](https://doi.org/10.1016/0304-405X(86)90065-6)）^[Amihud Y, Mendelson H. Asset pricing and the bid-ask spread[J]. Journal of financial Economics, 1986, 17(2): 223-249.],而且使用交易数据发现机构持有ETF的期限显著短于基础资产。
+
+> **<span style="color:red">思考？</span>**
+
+>  *ETF比基础资产更具有流动性，且机构投资者持有ETF的期限短于基础资产，是一个现实的现象，但这并不意味着ETF吸引了短期投资者，虽然Amihud 这么认为，像中国市场，大型券商为作为机构投资者为ETF提供流动性，有维护ETF和基础资产价格均衡的义务和套利需求，持有ETF期限短并不意味着吸引了噪声交易者。*
+
+> **2、ETF持股如何影响股票波动？**
+
+> 使用最小二乘回归，我们在股票层面研究了ETF持股比例对股价波动性的影响，发现ETF持股比例与股价波动有显著的正向关系。特别地，对于ETF持股比例变化的冲击改变了股票在标普500分组中的中位数。
+
+> **3、虽然在最小二乘回归中，我们控制了公司特征和固定效应，单ETF持股比例仍然可能是一个内生变量，如何解决内生性问题？**
+
+> 为了排除这个疑虑，我们使用Russell指数每年调整作为自然实验，利用Russell100和Russell200之间分配股票的固定规则，把指数调换事件作为ETF持股的工具变量。进一步证实了ETF持股变化对股票价格波动的正向关系。具体来讲，跟随指数调整的ETF持股变化将股票波动中位数推高至波动分布的65%。
+
+> **4、ETF持股比例增加导致股票价格波动性是股价对基本面消息的反映还是非基本需求冲击的结果？**
+  
+>  信息和噪声都能导致股票价格波动上升，股价波动是信息驱动还是噪声导致？我们认为如果是噪声交易导致股价波动股价会出现反转效应，而信息会导致一个永久的改变。首先，我们在股票层面使用ETF资金流作为解释变量，预测股票收益，我们发现大多数ETF资金流相关的股票价格会在接下来的40天后反转，与ETF转换非基本面需求冲击的理论一致，ETF持股导致的波动很可能由噪声交易引起。其次，使用方差比率，我们发现ETF持股比率导致股价在日度数据上频繁地偏离随机游走，收益自相关系数变负。
+
+
+> **5、ETF影响股价波动的渠道是什么？**
+
+> 使用OLS和IV回归，我们证明了ETF冲击吸引了高换手率的交易者，这和ETF吸引了新客户的观点一致，需求冲击被传递到基础资产。第二，我们提供了间接的证据证明ETF套利活动在影响股价波动中的作用，特别地，在高套利限制的股票中，ETF对股价波动的影响是微弱的。
+
+> **6、如果ETF引起的波动是否是一个新的风险来源？**
+
+>  如果ETF引起的股价波动是不可分散的，由于大多数股票包含在ETF篮子中，投资者可能需要一个风险补偿，和这个想法一致，我们发现ETF持股高低的多空组合获得高达每月5.6%的收益，在用七因子模型调整和Fama McBeth回归控制ETF资金流影响后后，仍然存在显著的超额收益，表明ETF是一个新的系统性风险的来源。
+
+## 定价效率文献梳理
+
+做科研文献梳理非常关键，有时候找不到与自己实证结果相近的解释，可能是梳理文献时遗漏了重要文献的结果。读博以来，一直阅读的是英文论文，忽略了对中文文献的认真梳理，这次吃了大亏，审稿人说我文献梳理不够，这个毛病为我论文被拒添了砖，加了瓦。定价效率的度量通常有两个指标，一个是股价同步性，一个是股价反映信息的延迟程度。通常学者认为股价同步性越高，是公司特质信息较少的缘故，同步性越高的股票通常定价效率较低，但也有学者认为股价同步性越高更多地反映了市场或行业信息，从而提高了定价效率。我在ETF持股与基础资产定价效率影响的研究中，发现ETF持股比例越高，股价同步性越强，价格反应信息的延迟程度越低，价格延迟程度越低表明ETF交易提高了定价效率，但加剧了股价同步性，这就导致我非常困惑，ETF持股比例提升到底是按提升股票定价效率来解释还是按降低定价效率来解释。今天重新梳理文献时，发现也有一篇文献的实证结论与我类似，此时此刻，有种久旱逢甘霖的感觉，同时也自责自己对文献梳理不够精细。
+
+## [融资融券制度与市场定价效率——基于卖空摩擦的视角](https://kns.cnki.net/KCMS/detail/detail.aspx?dbname=cjfd2017&filename=tjyj201701009&dbcode=cjfq)
+
+```
+顾琪 王策
+2017 统计研究
+
+```
+
+### 摘要
+
+我国融资融券制度不同于国外成熟市场的一个重要特征是存在较大的卖空摩擦,但这一卖空摩擦对市场定价效率的影响及其作用机制尚未被研究揭示。本文运用双重差分固定效应模型、处理效应模型和倾向性匹配双重差分模型,研究了融资融券制度中的卖空摩擦对市场定价效率的影响及其内在机制。实证结果表明,融资融券制度中的卖空摩擦抑制了市场参与者对公司特质信息的充分挖掘,促使其过度利用市场或行业信息进行交易,从而延缓了公司特质信息融入股价,加速了市场或行业信息融入股价,最终加剧了股价同涨同跌现象,不利于市场定价效率的提高。本文研究结论为监管部门合理扩大融资融券标的范围、降低交易成本和交易门槛,营造高效的市场环境提供了依据和思路。
+
+### 研究问题
+
+> 我国融资融券制度中存在的卖空摩擦，对股价同步性及定价效率有影响？产生这一影响的作用机制是什么？
+
+### 研究思路
+
+> 一方面，由于交易者搜集、分析公司特质信息存在成本，而目前较高的卖空交易成本极大地压缩了交易者的套利空间，使交易者挖掘公司特质信息的激励被大幅削弱。
+
+> 另一方面，只允许部分标的参与融资融券交易，会使拥有非标的证券负面信息的交易者无法卖空，而拥有市场或行业信息的交易者，可做空行业内任意可融券标的的证券来获得收益。这并不影响拥有行业或市场信息的交易者的卖空行为。这从整体上延缓股票特质信息融入股价，而加速了行业信息融入股价，最终导致股价同步性增加，不利于市场定价效率的提高。
+
+
+### 相关文献
+
+>  1、[Boehmer等（2008）](https://doi.org/10.1111/j.1540-6261.2008.01324.x)^[Boehmer E, Jones C M, Zhang X. Which shorts are informed?[J]. The Journal of Finance, 2008, 63(2): 491-527.]研究牛禹证券交易所定价难数据发现，市场中各类股票都存在卖空交易，卖空交易者获利是利用信息优势。
+
+>  2、[Chan和Hameed(2006)](https://doi.org/10.1016/j.jfineco.2005.03.010)^[Chan K, Hameed A. Stock price synchronicity and analyst coverage in emerging markets[J]. Journal of Financial Economics, 2006, 80(1): 115-147.]研究新型市场发现，分析师跟进的作用更多的是挖掘市场和行业层面的信息，进而导致股价同步性的增加。
+
+> 3、[才静涵和夏乐（2011）](https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&dbname=CJFD2011&filename=JCYJ201102008&v=MDczMTZWYnJBTHk3U1pMRzRIOURNclk5RmJJUjhlWDFMdXhZUzdEaDFUM3FUcldNMUZyQ1VSN3FmYnVkb0ZDbmw=)^[才静涵,夏乐.卖空制度、流动性与信息不对称问题研究——香港市场的个案[J].管理科学学报,2011,14(02):71-85.]研究发现，香港市场引入卖空机制后，市场交易活跃度下降，知情交易概率（PIN）和信息不对称程度升高，是源于噪声交易者参与程度降低。
+
+### 研究设计
+
+> **1、股价同步性度量**
+
+>   本文借鉴Durnev等（2004）股价同步性指标，使用市场行业模型计算股价的回归拟合系数$R^2$，具体如下：
+
+$$r_{i,t}=\alpha_i+\beta_{i,1}r_{m,t}+\beta_{i,2}r_{m,t-1}+\beta_{i,3}r_{j,t}+\beta_{i,1}r_{j,t-1}+\epsilon_{i,t}  (1)$$
+
+>  其中，i,j和t分别表示公司、行业和时间。$r_{i,t}$表示公司i第t日的考虑红利在投资的个股收益率，$r_{m,t}$和$r_{j,t}$分别表示第t日该公司所在市场的市值加权市场收益率和所在子行业的市场加权行业收益率（**剔除本公司自身**）.
+
+> 再将回归$R^2$经$Synch=ln(\frac{R^2}{1-R^2})$变换后，得到市场行业同步性。Synch值越大，股价同步性越高。
+
+> **2、股价反应滞后变量**
+
+> 在式（1）的市场行业模型的基础上，再加入滞后3期的行业收益率进行回归，得到非限制性回归模型的回归拟合度$R^2_{unrestrit}$,而式（1）则作为对应限制性回归，设定$\varphi_{i,n}=0$,回归拟合度为$R^2_restrict$。具体回归模型如下：
+
+$$r_{i,t}=\alpha_i+\beta_{i,1}r_{m,t}+\beta_{i,2}r_{m,t-1}+\beta_{i,3}r_{j,t}+\beta_{i,1}r_{j,t-1}+\sum_{n=2}^{4}{\varphi_{j,t-n}r_{j,t-n}}+\epsilon_{i,t}  (2)$$
+
+将$Delay1=1-R^2_{restrit}/R^2_{unrestrit}$作为信息延迟反应的指标，该指标相当于对3期滞后变量的显著性进行F或LM联合检验。由于$Delay1$无法区分不同滞后系数的大小，将非限制性回归模型中滞后变量系数与所有回归系数相除，可以构造出$Delay2$作为测度的补充。具体如下：
+
+$$Delay2=\frac{\sum_{n=2}^{4}{|\varphi_{i,n}|}}{\sum_{n=1}^{4}{|\beta_{i,n}|}+\sum_{n=2}^{4}{|\varphi_{i,n}|}}$$
+
+> **3、噪音交易指标**
+
+> 本文借鉴已有研究，采用方差比率检验来考察噪声交易者的参与程度。具体而言，通过计算证券q期收益率方差与但其收益率方差的比值，得到方差比率VR(q)，来考察证券价格的随机游走，在随机游走的假设下，方差比率期望为1。市场的噪声交易比例越高，则方差比偏离1的程度越大，具体如下：
+
+$$VR(q)=\frac{Var[r_i(q)]}{qVar[r_t]}=1+2\sum_{k}^{q-1}(1-\frac{k}{q})\rho(k) (3)$$
+
+> 其中，多期收益率$r_t(k)=r_t+r_{t-1}+\dots+r_{t-k+1}$，$\rho(k)$为$r_t$的k阶自回归系数。
+
+> VR(q)-1反应了有噪声交易者引起的股价波动的变动方向。若该值为正，即自回归系数加总为正，说明股价波动存在均值偏离的动量效应；反之，存在均值回归的反转效应，用(3)式得到的方差比率改造后得到噪声交易者参与程度，具体如下：‘
+
+$$NoiseTrd=|VR(q)-1|$$
+
+> **4、实证模型**
+
+> 为了检验做空摩擦对股价同步性的影响，利用融资融券推出作为自然实验，使用双重差分固定效应模型来验证：
+
+$$Synch_{i,t}=\gamma_0+\beta_1Treated_i+\beta_2Treated_{i}*After_{i,t}+\gamma Controls_{i,t}+YearDummies+IndustryDummies+\epsilon$$
+
+### 研究结论
+> 1、融资融券制度中的卖空摩擦，增加了股价的同步性，抑制了市场定价效率的提升
+
+> 2、融资融券制度对股价同步性的提高作用随着分析师跟进的增加而减弱
+
+> 3、融资融券制度推出后，标的证券对行业信息反应显著提升，反应滞后性显著下降
+
+> 4、融资融券制度抑制了噪声交易者的参与程度
+
+
+## [Is there a dark side to exchange traded funds? A information perspective](https://link.springer.com/article/10.1007/s11142-017-9400-8)
+
+      Doron Israeli    Charles M. C. Lee    Suhas A. Sridharan
+      
+      2017 Review of Accounting Studies
+      
+
+### 摘要
+
+我们检验了ETF持股增加是否伴随着基础资产定价效率降低，我们的研究表明ETF持股增加伴随着较高的交易成本（买卖价差和市场流动性）、股票收益同步性增加、未来盈余相应系数降低和公司分析师覆盖降低。我们的研究从信息收集的视角支持ETF持股增加可能导致较高的交易成本和低收益，这些结果导致基础资产信息含量较小。
+
+### 研究问题
+
+> 拥有信息成本的噪声理性预期模型刻画了为掌握信息而拓展资源的代理人，通过与无信息的代理人交易，掌握信息的代理人获得了信息搜集的收益。从而，将他们掌握的信息融入股价。在许多这种模型中，无信息交易者调整供给为信息获取和处理付出努力的人提供了有效的奖励。掌握信息的投资者面临的成本约束与交易中获得收益的均衡反应了市场的证券信息效率。信息获取激励和传播之间的内在矛盾是理解证券价格信息效率的关键。那么ETF的出现，对信息获取和传播有什么影响？
+
+
+
+### 研究思路
+
+>  在无摩擦的市场上，一个公司的持股结构应该对定价效率没有影响，但与信息获取成本相关的市场摩擦，直接影响了基础资产的定价效率，ETF出现可能会影响信息的获取和处理，从而影响定价效率。
+
+>   **该论文的核心思路认为，ETF持股可以通过影响交易单个证券的投资者可利用的流通股数量和愿意交易这些证券的无信息交易者数量来解释ETF持股对基础资产定价效率的影响。**
+
+> 随着ETF持股比例上升，被基金公司持有的流通股比例上升，大比例的流通股变得不活跃，即使这些股票在ETF层面可以以一篮子资产交易，但对想从事个股层面的投资来说，这些股票不可利用。更重要的是，ETF为噪声交易者提供了备选的投资工具，ETF持股比例上升后，从事个股交易的噪声交易者将迁移到ETF。因此，ETF持股比例增加会吸引基础资产的流动性，使得噪声交易者减少，反过来抑制了信息交易者获取信息
+
+>**<span style="color:red">思考？</span>**
+
+> 核心思想认为，信息收集者获取证券价值信息回报的方式是将信息卖给不了解信息的噪声交易者，而ETF出现导致噪声交易者从单个资产迁移到ETF，从而影响了噪声交易者对信息的需求，进而导致基础资产的定价效率低下。**值得怀疑的是：**噪声交易者对信息的需求难道是取决于ETF？或者说ETF有改变投资者对信息需求的功能？这显然不现实。资本市场上的投资者是理性的，如果一个信息为其带来的收益大于其获取信息的成本，那么其必然会进行信息搜集活动。而且，没有信息的噪声交易者离开市场，不仅增加了资产价格反应价值的准确性，还节约了信息收集成本。
+
+
+>  **两个核心假设：**
+
+>  1、ETF持股比例越高、基础资产的交易成本越高
+
+> 2、交易成本增加恶化了基础资产定价效率
+
+> *交易成本增加阻止交易者获取股票价值相关的信息，这将导致公司层面信息环境恶化，降低了股票反应公司层面信息的速度*
+
+### 相关文献观点
+
+> 1、ETF持股增加可能提高公司盈利中宏观信息的价格发现功能（[Glosten et al.,2016](https://www.rhsmith.umd.edu/files/Documents/Departments/Finance/fall2015/glosten.pdf)^[Glosten L, Nallareddy S, Zou Y. ETF trading and informational efficiency of underlying securities[J]. Unpublished working Paper, 2016.]）。他们将公司盈余分解为宏观层面和微观层面的成分，发现ETF持股增加有助于吸收企业宏观层面的盈余信息，而ETF持股增加对公司层面盈余成分和收益影响不显著。
+
+> <span style="color:red">2、大量研究表明与ETF套利机制联系的交易可以改善基础资产的价格发现功能</span>（[Hasbrouck 2003](https://doi.org/10.1046/j.1540-6261.2003.00609.x)^[Hasbrouck J. Intraday price formation in US equity index markets[J]. The Journal of Finance, 2003, 58(6): 2375-2400.]; [Yu 2005](https://ssrn.com/abstract=862604)^[Yu L. Basket securities, price formation, and informational efficiency[J]. Price Formation, and Informational Efficiency (March 25, 2005), 2005.]; [Chen and Strother 2008](https://ssrn.com/abstract=1094485)^[Chen G, Strother T S. On the contribution of index exchange traded funds to price discovery in the presence of price limits without short selling[J]. Available at SSRN 1094485, 2008.] ; [Fang and Sang 2012](https://ssrn.com/abstract=1926287)^[Fang Y, Sanger G C. Index price discovery in the cash market[C]//Midwest Finance Association 2012 Annual Meetings Paper. 2011.]; [Ivanov et al. 2013](https://doi.org/10.1016/j.gfj.2013.10.005)^[Ivanov S I, Jones F J, Zaima J K. Analysis of DJIA, S&P 500, S&P 400, NASDAQ 100 and Russell 2000 ETFs and their influence on price discovery[J]. Global Finance Journal, 2013, 24(3): 171-187.]）。
+
+
+>  3、[Lee and So(2015)](https://d1wqtxts1xzle7.cloudfront.net/62881674/LeeSo2015-AlphanomicsPublished20200408-115903-u0w3tn.pdf?1586404053=&response-content-disposition=inline%3B+filename%3DAlphanomics_The_Informational_Underpinni.pdf&Expires=1600518900&Signature=SJ5IPpifXr2eZHg40UQtlfk5l5RgNOit4DUyADDTZJOP2dcNNTMzkrJs5ETvgRw4KLJD85EYq0e6O2alFOEgW4IgyxTj5Dst7MuHcnRKEg-PY~ZPtERT4yqQgWmpkg9h4vLa3kAIGrxAxEWXOxOI7Ul7U77CfjZ8cKppXdSWjNrm3uA~Og4Sksr2Lm9Dec0JAMqqraJgyhKAGNdfPauSoKZVBG3g0GLXnDA2DyqNFfbTdSvUmC9RTymVDGONj~45OHMVoQY7qgxK4KSu-RZKm~zzsfg4y4rbuBAhPB0l7-IFfcsovNGYWR4jZDXrbDiZSSWb4QcpUuw6awkyApevFQ__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA)^[Lee C M C, So E C. Alphanomics: The informational underpinnings of market efficiency[M]. now Publishers Incorporated, 2015.]认为市场效率的研究需要分析一个联合均衡，在均衡下，所有市场都出清。
+
+>  4、ETF出现后，噪声交易者会离开基础资产，迁移到ETF交易上（[Milgrom and Stokey 1982](https://doi.org/10.1016/0022-0531(82)90046-1)^[Milgrom P, Stokey N. Information, trade and common knowledge[J]. Journal of economic theory, 1982, 26(1): 17-27.]; [Rubinstein 1989](https://doi.org/10.2469/faj.v45.n5.20)^[Rubinstein M. Market basket alternatives[J]. Financial Analysts Journal, 1989, 45(5): 20-29.]）。
+
+
+
+>  **对噪声交易者的理解？**
+
+>   噪声交易者有许多别称，像流动性交易者（liquidity traders）、无信息交易者(uninformed traders)等。[Black（1986）](https://doi.org/10.1111/j.1540-6261.1986.tb04513.x)^[Black F. Noise[J]. The journal of finance, 1986, 41(3): 528-543.]提出，噪声交易者出于流动性原因而从事非信息交易，他们错误地认为他们具有信息优势，或者可以从交易中获得效用。也就是说噪声会像交易信息一样交易噪声。或许，从客观的角度来看，噪声交易者不交易更好，但他们还是乐意从事交易。也许，他们交易的噪声就是他们所认为的信息。
+
+### 研究设计
+
+本文未来研究公司股份被ETF持有比例上升是否降低了股票定价效率，认为ETF持股导致股票定价效率下降取决于公司的信息环境：（1）提高了市场参与者的交易成本；（2）股价反应公司层面信息的程度。
+
+> **1、研究假设**
+
+>  H1：ETF出现后，噪声交易者者从基础资产迁移到ETF，导致交易成本上升
+
+>  H2: ETF 持股增加降低了基础资产的定价效率
+
+> **2计量模型**
+
+>  为了检验H1，我们检验ETF持股比例变化与交易成本（买卖价差；流动性）关系，建立以下模型：
+
+$$\Delta TradeCost_{i,t}=\beta_1 \Delta ETF_{i,t-1}+\beta_2 \Delta INST_{i,t-1}+\\
+\sum_k \beta_k \Delta Controls_{i,t-1}+\epsilon_{it} $$
+
+> 为了检验H2，我们以股价同步性和盈利信息反应程度作为定价效率的代理变量，分别建立以下模型：
+
+> (1)股价同步性
+
+$$\Delta SYNCH_{i,t}=\beta_1 \Delta ETF_{i,t-1}+\beta_2 \Delta INST_{i,t-1}+\\
+\sum_k \beta_k \Delta Controls_{i,t-1}+\epsilon_{it} $$
+
+>（2）盈利信息的反应
+$$RET_{i,t}=\beta_1 EARN_{i,t-1}+\beta_2 EARN_{i,t}+\beta_3 EARN_{i,t+1}+\beta_4 ETF_{i,t-1}+\\
+ \qquad \qquad\qquad \qquad\beta_5 EARN_{i,t-1}ETF_{i,t-1}+\beta_6 EARN_{i,t}ETF_{i,t-1}+\beta_7 EARN_{i,t+1}ETF_{i,t-1}+\\
+\sum_k \beta_k \Delta Controls_{i,t-1}+\epsilon_{it} $$
+
+> (3)分析师覆盖
+
+$$\Delta ANALYST_{i,t}=\beta_1 \Delta ETF_{i,t-1}+\beta_2 \Delta INST_{i,t-1}+\\
+\sum_k \beta_k \Delta Controls_{i,t-1}+\epsilon_{it} $$
+
+### 研究结论
+
+> 1、理论工作关于ETF持股对定价效率的影响提供了两种预测：（1）大量研究市场微观结构的文献认为，与ETF套利相联系的交易改善了基础资产日内价格发现功能（Hasbrouck 2003；Fang and Sang 2012；Ivanov et al. 2013），短期内ETF提高了基础资产的定价效率。（2）噪声理性预期相关的文献表明，ETF持股可能与资产定价效率是负向关系，他们认为定价效率是代理人面临信息搜集成本的函数，代理人企图从获取资产价值信息中受益（Diamond and Verrcchia 1981; Grossman and Stiglitz 1980;Admati 1985）。从长期来看，噪声交易者从基础资产迁移到ETF，增加了信息交易成本，从而降低定价效率。
+
+> 2、我们发现ETF持股增加与与同期盈利信息融入股票价格正相关，随着时间，ETF改变和未来盈余增加，这种关系变负。
+
+> 3、研究提出了ETF持股变化与宏观和公司层面盈利消息的影响不同，我们发现ETF持股可能改善了同期盈利的价格发现功能。
+
+> 4、ETF持股可能增加了市场参与者的交易成本，进一步影响信息融入股票价格。
+
+ **不熟悉的英语表达：**
+
+>   inherent tension 内在张力，可以引深为内在矛盾
+
+>   discentive  抑制作用
+
+>   moniker  绰号

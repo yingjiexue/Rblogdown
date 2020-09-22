@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cn on Yingjie</title>
+    <link>/categories/cn/</link>
+    <description>Recent content in cn on Yingjie</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 11 Sep 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/cn/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>谈谈中国市场的ETF</title>
+      <link>/2020/09/11/%E8%B0%88%E8%B0%88%E4%B8%AD%E5%9B%BD%E5%B8%82%E5%9C%BA%E7%9A%84etf/</link>
+      <pubDate>Fri, 11 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/09/11/%E8%B0%88%E8%B0%88%E4%B8%AD%E5%9B%BD%E5%B8%82%E5%9C%BA%E7%9A%84etf/</guid>
+      <description>ETF是什么玩意？ ETF是什么？ETF是什么，ETF到底是什么？不懂得东西问三遍，要是谁还不了解ETF，索性就来看看，该贴可以为你科普一下，</description>
+    </item>
+    
+    <item>
+      <title>“朋友”的沉默</title>
+      <link>/2020/07/01/%E6%9C%8B%E5%8F%8B%E7%9A%84%E6%B2%89%E9%BB%98/</link>
+      <pubDate>Wed, 01 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/07/01/%E6%9C%8B%E5%8F%8B%E7%9A%84%E6%B2%89%E9%BB%98/</guid>
+      <description>世事变幻，沧海桑田，现在的你，已非当初我所熟知的你，如今的我，不知是否还是你所认识的我？回忆往昔峥嵘岁月，一切历历在目。 相遇是缘，相识是份。</description>
+    </item>
+    
+  </channel>
+</rss>

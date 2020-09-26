@@ -99,8 +99,8 @@ vR2<-function(x,k){
 
 ##计算每月统计量及噪声交易指标
 VR<-stockdata%>%mutate(yms= format(as.Date(trade_date),"%Y-%m"))%>%
-  group_by(ts_code,yms)%>%summarise(VR51=vR1(dayreturn,5),VR52=vR2(dayreturn,5))%%
-  ungroup()%>%mutate(NoiseTrad1=abs(VR51-1),NoiseTrad2=abs(VR52-1))
+  group_by(ts_code,yms)%>%summarise(VR51=round(vR1(dayreturn,5),3),VR52=round(vR2(dayreturn,5),3))%>%
+  ungroup()%>%mutate(NoiseTrad1=round(abs(VR51-1),3),NoiseTrad2=round(abs(VR52-1),3))
 ```
 
 
@@ -108,7 +108,6 @@ VR<-stockdata%>%mutate(yms= format(as.Date(trade_date),"%Y-%m"))%>%
 由于全部月度数据太大，这儿只展示2019年9月以后的数据，需要完整数据的，代码拿去自己跑。
 
 ```{r,results = 'asis',echo=FALSE,fig.align='center',warning=FALSE,message =FALSE}
-
 load("F:/科研/开题准备/实证/analsisold/varianceRatio.RData")
 DT::datatable(VR,rownames = FALSE,extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel',  'print')))
 ```

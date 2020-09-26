@@ -105,7 +105,7 @@ VR<-stockdata%>%mutate(yms= format(as.Date(trade_date),"%Y-%m"))%>%
 
 
 
-由于全部月度数据太大，这儿只展示2010年1月以后的数据，需要完整数据的，代码拿去自己跑。
+由于全部月度数据太大，这儿只展示2019年1月以后的数据，需要完整数据的，代码拿去自己跑。
 
 ```{r,results = 'asis',echo=FALSE,fig.align='center',warning=FALSE,message =FALSE}
 

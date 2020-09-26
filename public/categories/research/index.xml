@@ -6,10 +6,19 @@
     <description>Recent content in research on Yingjie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 20 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 25 Sep 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/research/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>方差比率检验的实证计算</title>
+      <link>/research/%E6%96%B9%E5%B7%AE%E6%AF%94%E7%8E%87%E6%A3%80%E9%AA%8C%E7%9A%84%E5%AE%9E%E8%AF%81%E8%AE%A1%E7%AE%97/</link>
+      <pubDate>Fri, 25 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/research/%E6%96%B9%E5%B7%AE%E6%AF%94%E7%8E%87%E6%A3%80%E9%AA%8C%E7%9A%84%E5%AE%9E%E8%AF%81%E8%AE%A1%E7%AE%97/</guid>
+      <description>方差比率检验是金融经济学检验市场有效性的常用方法。Fama在1965到1970年提出了有效市场假说，他认为资产价格会准确及时地反应资产价值相</description>
+    </item>
     
     <item>
       <title>噪声无处不在</title>

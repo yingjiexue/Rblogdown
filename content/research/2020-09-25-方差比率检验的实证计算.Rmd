@@ -1,0 +1,114 @@
+---
+title: 方差比率检验的实证计算
+author: 薛英杰
+date: '2020-09-25'
+slug: 方差比率检验的实证计算
+categories:
+  - research
+tags:
+  - research
+---
+
+方差比率检验是金融经济学检验市场有效性的常用方法。Fama在1965到1970年提出了有效市场假说，他认为资产价格会准确及时地反应资产价值相关的信息，也就是说通过历史信息投资者并不能获得超额收益。这并不意味着投资者不能战胜市场，而是说“没有免费的午餐”，投资者获得的超额收益一定承担了额外的风险。根据资产价格当时反应的信息，市场有效性被划分为弱有效、半强势和强有效市场。弱有效市场是说资产价格只反应了资产相关的历史信息，半强势是说资产价格反应了所有公开信息，强势则说资产价格反应了所有信息（包括私人信息）。
+
+市场效率是信息套利者参与市场的副产品。信息套利者是经济主体，他们根据出现的新信息购买被低估的资产并出售被高估的资产。 通过这样做，这些信息套利者将新信息反映到证券价格中。如果市场是有效的，就不可能存在资产被低估或高估的情形，所以信息套利者的期望收益应该是零。因此，市场不可能是完全有效的（参见 [Grossman and Stiglitz 1980](https://drive.google.com/file/d/0B-Tg2v8FPT_KUkxuWm9TZ0d4UzA/view) ^[Grossman S J, Stiglitz J E. On the impossibility of informationally efficient markets[J]. The American economic review, 1980, 70(3): 393-408.]），信息套利者赚取的经济租金是由于噪声交易者的“低效”行为而赚取的（参见[Black 1986](https://drive.google.com/file/d/0B-Tg2v8FPT_KMjliRjg0clVpWG8/view) ^[Black F. Noise[J]. The journal of finance, 1986, 41(3): 528-543.]）。但市场并不能排除信息套利者和噪声交易者，他们的存在影响了市场有效性。
+
+我们通常说的市场有效性检验一般是弱有效的检验，因为历史信息已经反映在资产价格中了，反映历史信息对应的就是弱有效的市场。资产价格一般用随机游走来描述，因此，大多数情况下，市场有效性的检验都是基于随机游走的检验，而方差比率检验也是基于随机游走假设（参见[Amélie Charles和Olivier Darné，2009](https://hal.archives-ouvertes.fr/hal-00771078/document) ^[Charles A, Darné O. Variance‐ratio tests of random walk: an overview[J]. Journal of Economic Surveys, 2009, 23(3): 503-527.]）,Amelie and olivier对各种方差比率检验的形式和方法做了详细的描述，我们就选择最常用的两种方法来解释，并通过R语言来实现计算。
+
+> 给定一个时间序列$\{y_t\}^T_{t=1}$,随机游走假设对应的一阶自回归模型的系数$\phi=1$,一阶自回归模型如下：
+
+$$y_t=\mu +\phi y_{t-1}+\epsilon_t$$
+
+>  其中，$\mu$是一个未知的漂浮项，$\epsilon_t$是独立同分布的误差项。
+
+大多数研究都是通过方差比率的方法来检验随机游走，他们认为时间序列$y_t$的一阶差分$x_t=y_t-y_{t-1}$服从一个鞅差分过程，则将方差比率定义为：
+
+$$V(k)=\frac{Var(x_t+x_{t-1}+x_{t-2}+\cdots+x_{t-k+1})/k}{Var(x_t)} \\ =\frac{Var(y_t-y_{t-k})/k}{Var(y_t-y_{t-1})}\\=1+\sum_{i-1}^{k-1}{(1-\frac{i}{k})}\rho_i$$
+
+
+其中，$\rho_i$是$x_t$之后i阶自回归系数。
+
+**核心思想：**
+
+> 方差比率检验的核心思想是$x_t$是可观测的，它是独立同分布的，并不随着时间变化，则会有$Var(x_t+x_{t-1}+x_{t-2}+\cdots+x_{t-k+1})=kVar(x_t)$,即$V(k)=1$,也就是说假设$H_0:\rho_1=\rho_2=\cdots=\rho_{k-1}=0$成立,说明$x_t$是序列不相关的，即$y_t$服从随机游走，市场是有效的。
+
+那么$V(k)$只是一个统计量，我们如何来估计它呢？说来也简单，统计的思想不就是用样本来估计总体嘛，分布构造分子分母对应的检验统计量就好，具体如下：
+
+$$VR(k)=\frac{\hat{\sigma}^2(k)}{\hat{\sigma}^2(1)}$$
+
+其中，$\hat{\sigma}^2(1)$是$x_t$的方差，被定义为：
+
+$$\hat{\sigma}^2(1)=\frac{1}{T-1}\sum^{T}_{t=1}{(x_t-\hat{\mu})^2}$$
+
+而$\hat{\mu}=1/T\sum_{t=1}^{T}x_t$,是$x_t$的均值。
+
+对于$\hat{\sigma}^2(k)$有很多方法计算，由于受样本量的限制，为了提高统计检验效率，常常使用重叠时间的观测值。例如，[Lo and MacKinlay (1988)](https://doi.org/10.1093/rfs/1.1.41) ^[Lo A W, MacKinlay A C. Stock market prices do not follow random walks: Evidence from a simple specification test[J]. The review of financial studies, 1988, 1(1): 41-66.] 提倡使用估计量如下：
+
+$$\hat{\sigma}^2(k)=m^{-1}\sum_{k}^{T}(x_t+x_{t-1}+x_{t-2}+\cdots+x_{t-k+1}-k \hat{\mu})^2$$
+
+其中，$m=k(T-k+1)(1-kT^{-1})$,m被选择后，$\hat{\sigma}^2(1)$就是$Var(x_t)$的无偏估计量。
+
+ [Wright (2000)](https://www.tandfonline.com/doi/abs/10.1080/07350015.2000.10524842?needAccess=true#aHR0cHM6Ly93d3cudGFuZGZvbmxpbmUuY29tL2RvaS9wZGYvMTAuMTA4MC8wNzM1MDAxNS4yMDAwLjEwNTI0ODQyP25lZWRBY2Nlc3M9dHJ1ZUBAQDA=)^[Wright J H. Alternative variance-ratio tests using ranks and signs[J]. Journal of Business & Economic Statistics, 2000, 18(1): 1-9.]将VR统计量改写为：
+ 
+ $$VR(x;k)=\frac{(kT)^{-1}\sum_{k}^{T}(x_t+x_{t-1}+x_{t-2}+\cdots+x_{t-k+1}-k \hat{\mu})^2}{\frac{1}{T}\sum^{T}_{t=1}{(x_t-\hat{\mu})^2}}$$
+ 
+现在有一些研究采用方差比率检验来考察噪声者的参与程度。在随机游走原假设下，方差比率的期望为1，表明市场无噪声交易者，如果市场上噪声交易比率越高，则方差比偏离1的程度越大。因此，$VR(k)-1$反映了噪声交易引起的股价波动方向，若该值为正，即自回归系数加总为正，说明股价波动存在均值偏离的动量效应，反之，说明存在均值回归的反转效应。，$VR(k)$偏离1的程度，反映了噪声交易者的参与程度，所以，可以用$NoiseTrd=|VR(k)-1|$代表噪声交易者的参与程度。
+ 
+一般情况下，我们认为$y_t$为股票对数价格，则$x_t$为股票收益，有了数据我们就可以采用以上两种方法来计算检验统计量$VR(k)$和噪声参与程度$NoiseTrd$。代码如下：
+```
+##加载数据处理需要的程序包
+pacman::p_load(readxl,foreign,plyr,plm,stringr,dplyr,tidyr,knitr,
+  officer,flextable,stargazer,ggthemes,ggplot2,shiny,DT,reticulate)
+
+##读入收益率数据
+load("F:/科研/开题准备/实证/analsisold/dayreturns.RData")
+
+##Lo and MacKinlay 方法计算函数
+vR1<-function(x,k){
+  T<-length(x)
+  m=k*(T-k+1)*(1-k/T)
+  mu=mean(x)
+  len<-k:T
+  if(k==1){
+    sim=cumsum(x)
+  }else{
+    sim=tail(cumsum(x),-(k-1))
+  }
+  sigmak<-sum((sim-len*mu)^2)/m
+  sigma1<-var(x)
+  VRk<-sigmak/(sigma1)
+  return(VRk)
+}
+
+##Wright方法计算函数
+vR2<-function(x,k){
+  T<-length(x)
+  m=k*T
+  mu=mean(x)
+  len<-k:T
+  if(k==1){
+    sim=cumsum(x)
+  }else{
+    sim=tail(cumsum(x),-(k-1))
+  }
+  sigmak<-sum((sim-len*mu)^2)/m
+  sigma1<-var(x)
+  VRk<-sigmak/(sigma1)
+  return(VRk)
+}
+
+##计算每月统计量及噪声交易指标
+VR<-stockdata%>%mutate(yms= format(as.Date(trade_date),"%Y-%m"))%>%
+  group_by(ts_code,yms)%>%summarise(VR51=vR1(dayreturn,5),VR52=vR2(dayreturn,5))%%
+  ungroup()%>%mutate(NoiseTrad1=abs(VR51-1),NoiseTrad2=abs(VR52-1))
+```
+
+
+
+由于全部月度数据太大，这儿只展示2010年1月以后的数据，需要完整数据的，代码拿去自己跑。
+
+```{r,results = 'asis',echo=FALSE,fig.align='center',warning=FALSE,message =FALSE}
+
+load("F:/科研/开题准备/实证/analsisold/varianceRatio.RData")
+DT::datatable(VR,rownames = FALSE,extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel',  'print')))
+```

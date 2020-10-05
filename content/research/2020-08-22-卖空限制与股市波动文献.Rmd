@@ -225,31 +225,32 @@ $$y_{it}=\beta_0+\beta_1 D_t+\beta_2D_g+\gamma D_tD_g+\sum{X_{it}}+\epsilon_i$$
 
 ### 研究问题
 
-对于个股而言，融资融券增加了知情交易者利用公司特质信息获利的能力和途径，这势必增加股价的信息含量。而目前国内外研究主要关注融资融券交易的卖空机制对股票波动性、流动性、股票收益分布及定价效率的影响，但鲜有研究涉及融资融券交易对股价信息含量的影响。Roll(1988)发现市场和产业层面的信息只能解释个股股价小部分的波动，未解释的部分（股价特质性波动）由公司特质信息或噪声噪声，并且公司特质信息进入股价的主要方式是私有信息知情交易者的交易，因此，大多数研究认为特质波动是股价中特质信息的可行测度。但另一些研究表明股价特质波动受到噪声交易（Lee and Liu ,2011）、信息传递延缓（Dasgupta et al., 2010）和公司盈余质量恶化（Rajgopal and Venkatachalam,2011）等非信息效率因素的影响。融资融券交易对股价特质性波动有何影响？ 作用机制如何？ 有何经济意义？
+对于个股而言，融资融券增加了知情交易者利用公司特质信息获利的能力和途径，这势必增加股价的信息含量。而目前国内外研究主要关注融资融券交易的卖空机制对股票波动性、流动性、股票收益分布及定价效率的影响，但鲜有研究涉及融资融券交易对股价信息含量的影响。[Roll(1988)](https://doi.org/10.1111/j.1540-6261.1988.tb04591.x) ^[Roll， Richard， 1988，R2， Journal of Finance， Vol.25，
+pp. 541~566.]发现市场和产业层面的信息只能解释个股股价小部分的波动，未解释的部分（股价特质性波动）由公司特质信息或噪声噪声，并且公司特质信息进入股价的主要方式是私有信息知情交易者的交易，因此，大多数研究认为特质波动是股价中特质信息的可行测度。但另一些研究表明股价特质波动受到噪声交易（[Lee and Liu ,2011](https://doi.org/10.1016/j.jbankfin.2010.11.002) ^[Lee D W, Liu M H. Does more information in stock price lead to greater or smaller idiosyncratic return volatility?[J]. Journal of Banking & Finance, 2011, 35(6): 1563-1580.]）、信息传递延缓（[Dasgupta et al., 2010](https://www.jstor.org/stable/27919561) ^[Dasgupta S, Gan J, Gao N. Transparency, price informativeness, and stock return synchronicity: Theory and evidence[J]. Journal of Financial and Quantitative Analysis, 2010: 1189-1220.]）和公司盈余质量恶化（[Rajgopal and Venkatachalam,2011](https://doi.org/10.1016/j.jacceco.2010.06.001) ^[Rajgopal S, Venkatachalam M. Financial reporting quality and idiosyncratic return volatility[J]. Journal of Accounting and Economics, 2011, 51(1-2): 1-20.]）等非信息效率因素的影响。融资融券交易对股价特质性波动有何影响？ 作用机制如何？ 有何经济意义？
 
 ### 相关文献
 
-> 1、Miller(1977)认为，卖空交易的限制将使得股价无法反映负面私有信息，进而导致股价高估，增加市场波动。
+> 1、[Miller(1977)](https://www.jstor.org/stable/2326520) ^[Miller E M. Risk, uncertainty, and divergence of opinion[J]. The Journal of finance, 1977, 32(4): 1151-1168.]认为，卖空交易的限制将使得股价无法反映负面私有信息，进而导致股价高估，增加市场波动。
 
-> 2、Seguin(1990)发现信用交易能增大信息流入和市场厚度，被允许使用信用交易的 OTC 股票股价波动性减小， 噪音交易变低。
+> 2、[Seguin(1990)](https://doi.org/10.1016/0304-3932(90)90033-Z) ^[Seguin P J. Stock volatility and margin trading[J]. Journal of Monetary Economics, 1990, 26(1): 101-121.]发现信用交易能增大信息流入和市场厚度，被允许使用信用交易的 OTC 股票股价波动性减小， 噪音交易变低。
 
 > 3、杨德勇和吴琼（2011） 利用事件研究法检验了融资融券业务开通前后个股的波动性，结果表
 明融资融券交易降低了个股波动性。
 
-> 4、Hardouvelis（1990）发现提高信用交易保证金将部分利用市场非理性情绪的投机排挤出市场，进而降低了个股股价的波动。
+> 4、[Hardouvelis（1990）](https://www.jstor.org/stable/2006705)^[Hardouvelis G A. Margin requirements, volatility, and the transitory component of stock prices[J]. The American economic review, 1990: 736-762.]发现提高信用交易保证金将部分利用市场非理性情绪的投机排挤出市场，进而降低了个股股价的波动。
 
-> 5、Saffi 和 Sigurdsson（2011） 发现卖空限制降低了股价对市场和公司负面信息的吸收速度； 但放松卖空约束并不一定导致股价波动率上升以及极端值频率提高。
+> 5、[Saffi 和 Sigurdsson（2011）](https://doi.org/10.1093/rfs/hhq124)^[Saffi P A C, Sigurdsson K. Price efficiency and short selling[J]. The Review of Financial Studies, 2011, 24(3): 821-852.] 发现卖空限制降低了股价对市场和公司负面信息的吸收速度； 但放松卖空约束并不一定导致股价波动率上升以及极端值频率提高。
 
-> 6、Saffi 和 Sigurdsson（2011） 则利用个股回报与上一期市场回报的相关系数、 股价对市
+> 6、[Saffi 和 Sigurdsson（2011）](https://doi.org/10.1093/rfs/hhq124)^[Saffi P A C, Sigurdsson K. Price efficiency and short selling[J]. The Review of Financial Studies, 2011, 24(3): 821-852.] 则利用个股回报与上一期市场回报的相关系数、 股价对市
 场信息反应的延迟程度以及股票收益分布等指标刻画股价的定价效率，并发现融券余额较少的股票，
 股价定价效率较低。
 
-> 7、Morck 等人（2000）考察了产权保护对股价特质性波动的影响，其发现产权保护好的国家， 投资者收集私有信息套利的激励更大，股价特质性波动更高。
+> 7、[Morck 等人（2000）](https://doi.org/10.1016/S0304-405X(00)00071-4)^[Morck R, Yeung B, Yu W. The information content of stock markets: why do emerging markets have synchronous stock price movements?[J]. Journal of financial economics, 2000, 58(1-2): 215-260.]考察了产权保护对股价特质性波动的影响，其发现产权保护好的国家， 投资者收集私有信息套利的激励更大，股价特质性波动更高。
 
-> 8、Jin 和Myers（2006） 发现公司信息透明度高的市场股价特质性波动更大； 存在卖空约束的市
+> 8、[Jin 和Myers（2006）](https://doi.org/10.1016/j.jfineco.2004.11.003)^[Jin L, Myers S C. R2 around the world: New theory and new tests[J]. Journal of financial Economics, 2006, 79(2): 257-292.] 发现公司信息透明度高的市场股价特质性波动更大； 存在卖空约束的市
 场， 公司负面特质信息不易进入股价而致特质性波动更低。
 
-> 9、Lee 和 Liu（2011） 也发现股价特质性波动和其他股价信息含量指标（如PIN）呈现U型关系， 与噪音正相关。
+> 9、[Lee and Liu ,2011](https://doi.org/10.1016/j.jbankfin.2010.11.002) ^[Lee D W, Liu M H. Does more information in stock price lead to greater or smaller idiosyncratic return volatility?[J]. Journal of Banking & Finance, 2011, 35(6): 1563-1580.] 也发现股价特质性波动和其他股价信息含量指标（如PIN）呈现U型关系， 与噪音正相关。
 
 ### 核心观点
 

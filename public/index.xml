@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>R并行计算软件包及用法</title>
+      <link>/research/r%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E5%8C%85%E5%8F%8A%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Tue, 13 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/research/r%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E5%8C%85%E5%8F%8A%E7%94%A8%E6%B3%95/</guid>
+      <description>随着数据量的不断增大，实现一次计算需要花费的时间越来越长，等待结果的过程让人着急，尤其是R语言，其运行受内存限制很大，必须将数据完全读入内存</description>
+    </item>
+    
+    <item>
       <title>噪声交易与定价效率文献梳理</title>
       <link>/research/%E5%99%AA%E5%A3%B0%E4%BA%A4%E6%98%93%E4%B8%8E%E5%AE%9A%E4%BB%B7%E6%95%88%E7%8E%87%E6%96%87%E7%8C%AE%E6%A2%B3%E7%90%86/</link>
       <pubDate>Mon, 05 Oct 2020 00:00:00 +0000</pubDate>

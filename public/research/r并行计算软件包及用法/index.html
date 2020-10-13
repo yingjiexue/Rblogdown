@@ -1,0 +1,251 @@
+<script type="text/javascript"
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>R并行计算软件包及用法 - Yingjie</title>
+    <meta property="og:title" content="R并行计算软件包及用法 - Yingjie">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+      
+    
+
+    
+      
+      <meta property="description" content="随着数据量的不断增大，实现一次计算需要花费的时间越来越长，等待结果的过程让人着急，尤其是R语言，其运行受内存限制很大，必须将数据完全读入内存才能处理，对硬件的要求较高。面临庞大的数据量，如何提升运算速度，缩短等待时间？多核并行计算很大程度上可以缓解我们的焦虑。今天就把常用的并行计算程序包和使用方法总结一下。
+[&amp;hellip;] 核心程序包：parallel
+[&amp;hellip;] 支持大数据并行的 &amp;hellip;">
+      <meta property="og:description" content="随着数据量的不断增大，实现一次计算需要花费的时间越来越长，等待结果的过程让人着急，尤其是R语言，其运行受内存限制很大，必须将数据完全读入内存才能处理，对硬件的要求较高。面临庞大的数据量，如何提升运算速度，缩短等待时间？多核并行计算很大程度上可以缓解我们的焦虑。今天就把常用的并行计算程序包和使用方法总结一下。
+[&amp;hellip;] 核心程序包：parallel
+[&amp;hellip;] 支持大数据并行的 &amp;hellip;">
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+
+<link href='//yingjie.org/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+  </head>
+
+  
+  <body class="research">
+    <header class="masthead">
+      <h1><a href="/">Yingjie</a></h1>
+
+
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" />
+  <label id="menu-label" for="menu-check" class="unselectable">
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="/">主页</a></li>
+  
+  <li><a href="/cn/">日志</a></li>
+  
+  <li><a href="/research/">研究</a></li>
+  
+  <li><a href="/cn_about/">关于</a></li>
+  
+  <li><a href="/en/">Blog</a></li>
+  
+  <li><a href="/en_about/">About</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+<h1>R并行计算软件包及用法</h1>
+
+<h3>薛英杰
+  /  2020-10-13</h3>
+<hr>
+
+
+      </header>
+
+
+
+
+
+
+<p>随着数据量的不断增大，实现一次计算需要花费的时间越来越长，等待结果的过程让人着急，尤其是R语言，其运行受内存限制很大，必须将数据完全读入内存才能处理，对硬件的要求较高。面临庞大的数据量，如何提升运算速度，缩短等待时间？多核并行计算很大程度上可以缓解我们的焦虑。今天就把常用的并行计算程序包和使用方法总结一下。</p>
+<div id="并行r-packages" class="section level3">
+<h3>并行R packages</h3>
+<blockquote>
+<p><strong>核心程序包</strong>：parallel</p>
+</blockquote>
+<blockquote>
+<p><strong>支持大数据并行的程序包</strong>：sparklyr,iotools,pbdR</p>
+</blockquote>
+<blockquote>
+<p><strong>多核并行程序包</strong>：foreach, future.apply,snow,snowFT,snowfall,future</p>
+</blockquote>
+</div>
+<div id="相关实例" class="section level3">
+<h3>相关实例</h3>
+<blockquote>
+<p>我们通过模拟随机游走过程，来测试并行运算与普通循环的效率差异。</p>
+</blockquote>
+<blockquote>
+<p>1.基础循环程序</p>
+</blockquote>
+<pre class="r"><code>num_walkers=1000
+num_paths=200
+x=matrix(0,num_paths,num_walkers)
+x2=rep(0,num_paths)
+
+##模拟一个随机游走，初始值从0开始
+
+set.seed(47)              #设置随机种子
+ts=proc.time()            #记录程序运行时间
+
+result&lt;-for(i in 1:num_walkers){
+    for(k in 2:num_paths)
+    {
+      x[k,i]&lt;-x[k-1,i]+rnorm(1,0,1)
+    }
+    
+}
+proc.time()-ts</code></pre>
+<pre><code>## 用户 系统 流逝 
+## 0.48 0.00 0.54</code></pre>
+<blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>paraller 包示例</li>
+</ol>
+</blockquote>
+<pre class="r"><code>pacman::p_load(parallel)
+num_walkers=1000
+num_paths=200
+##模拟一个随机游走，初始值从0开始
+
+set.seed(47)              #设置随机种子
+ts=proc.time()            #记录程序运行时间
+computer&lt;-function(i,num_paths){
+    x0=0
+    ds=rnorm(0,num_paths)
+  return(cumsum(c(x0,ds[1:num_paths-1])))
+}
+
+
+ncores&lt;-detectCores(logical = F)
+cl&lt;-makeCluster(ncores)
+result&lt;-clusterApply(cl,x=1:num_walkers,fun=computer,num_paths )
+stopCluster(cl)
+proc.time()-ts</code></pre>
+<pre><code>## 用户 系统 流逝 
+## 0.24 0.88 1.78</code></pre>
+<blockquote>
+<ol start="3" style="list-style-type: decimal">
+<li>foreach 包示例</li>
+</ol>
+</blockquote>
+<pre class="r"><code>pacman::p_load(foreach,doParallel) #加载程序包
+
+num_walkers=1000
+num_paths=200
+x2=rep(0,num_paths)
+
+##模拟一个随机游走，初始值从0开始
+
+set.seed(47)              #设置随机种子
+ts=proc.time()            #记录程序运行时间
+registerDoParallel(4)
+result&lt;-foreach(i=1:num_walkers)%dopar%{
+    for(k in 2:num_paths)
+    {
+      x2[k]&lt;-x2[k-1]+rnorm(1,0,1)
+    }
+    return(x2)
+    
+}
+stopImplicitCluster()
+proc.time()-ts</code></pre>
+<pre><code>## 用户 系统 流逝 
+## 0.52 0.24 1.70</code></pre>
+<blockquote>
+<ol start="4" style="list-style-type: decimal">
+<li>future.apply包</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><strong>我觉得最好用的包</strong></p>
+</blockquote>
+<pre class="r"><code>pacman::p_load(future.apply)
+
+num_walkers=1000
+num_paths=200
+
+
+##模拟一个随机游走，初始值从0开始
+
+set.seed(47)              #设置随机种子
+ts=proc.time()            #记录程序运行时间
+computer&lt;-function(i,num_paths){
+  x0=0
+  ds=rnorm(0,num_paths)
+  return(cumsum(c(x0,ds[1:num_paths-1])))
+}
+
+plan(multiprocess)        ##启动多核运行
+result&lt;-future_lapply(1:num_walkers,computer,num_paths )
+proc.time()-ts</code></pre>
+<pre><code>## 用户 系统 流逝 
+## 0.20 0.11 3.47</code></pre>
+</div>
+
+
+  <footer>
+  
+  
+
+
+
+<script src="//yingjie.org/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//yingjie.org/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//yingjie.org/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+  
+  <hr>
+  <div class="copyright">© <a href="/">Yingjie Xue</a>2020| <a href="https://github.com/yingjiexue">Github</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+

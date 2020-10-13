@@ -1,0 +1,128 @@
+---
+title: R并行计算软件包及用法
+author: 薛英杰
+date: '2020-10-13'
+slug: r并行计算软件包及用法
+categories:
+  - research
+tags:
+  - research
+---
+
+随着数据量的不断增大，实现一次计算需要花费的时间越来越长，等待结果的过程让人着急，尤其是R语言，其运行受内存限制很大，必须将数据完全读入内存才能处理，对硬件的要求较高。面临庞大的数据量，如何提升运算速度，缩短等待时间？多核并行计算很大程度上可以缓解我们的焦虑。今天就把常用的并行计算程序包和使用方法总结一下。
+
+### 并行R packages
+
+> **核心程序包**：parallel
+
+> **支持大数据并行的程序包**：sparklyr,iotools,pbdR
+
+> **多核并行程序包**：foreach, future.apply,snow,snowFT,snowfall,future
+
+###  相关实例
+
+> 我们通过模拟随机游走过程，来测试并行运算与普通循环的效率差异。
+
+> 1.基础循环程序
+```{r}
+
+num_walkers=1000
+num_paths=200
+x=matrix(0,num_paths,num_walkers)
+x2=rep(0,num_paths)
+
+##模拟一个随机游走，初始值从0开始
+
+set.seed(47)              #设置随机种子
+ts=proc.time()            #记录程序运行时间
+
+result<-for(i in 1:num_walkers){
+    for(k in 2:num_paths)
+    {
+      x[k,i]<-x[k-1,i]+rnorm(1,0,1)
+    }
+    
+}
+proc.time()-ts
+
+```
+
+
+> 2. paraller 包示例
+
+```{r}
+pacman::p_load(parallel)
+num_walkers=1000
+num_paths=200
+##模拟一个随机游走，初始值从0开始
+
+set.seed(47)              #设置随机种子
+ts=proc.time()            #记录程序运行时间
+computer<-function(i,num_paths){
+    x0=0
+    ds=rnorm(0,num_paths)
+  return(cumsum(c(x0,ds[1:num_paths-1])))
+}
+
+
+ncores<-detectCores(logical = F)
+cl<-makeCluster(ncores)
+result<-clusterApply(cl,x=1:num_walkers,fun=computer,num_paths )
+stopCluster(cl)
+proc.time()-ts
+
+```
+
+> 3. foreach 包示例
+
+```{r}
+pacman::p_load(foreach,doParallel) #加载程序包
+
+num_walkers=1000
+num_paths=200
+x2=rep(0,num_paths)
+
+##模拟一个随机游走，初始值从0开始
+
+set.seed(47)              #设置随机种子
+ts=proc.time()            #记录程序运行时间
+registerDoParallel(4)
+result<-foreach(i=1:num_walkers)%dopar%{
+    for(k in 2:num_paths)
+    {
+      x2[k]<-x2[k-1]+rnorm(1,0,1)
+    }
+    return(x2)
+    
+}
+stopImplicitCluster()
+proc.time()-ts
+
+```
+
+> 4. future.apply包
+
+> **我觉得最好用的包**
+
+```{r}
+pacman::p_load(future.apply)
+
+num_walkers=1000
+num_paths=200
+
+
+##模拟一个随机游走，初始值从0开始
+
+set.seed(47)              #设置随机种子
+ts=proc.time()            #记录程序运行时间
+computer<-function(i,num_paths){
+  x0=0
+  ds=rnorm(0,num_paths)
+  return(cumsum(c(x0,ds[1:num_paths-1])))
+}
+
+plan(multiprocess)        ##启动多核运行
+result<-future_lapply(1:num_walkers,computer,num_paths )
+proc.time()-ts
+
+```

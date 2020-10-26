@@ -344,7 +344,7 @@ $$\Delta ANALYST_{i,t}=\beta_1 \Delta ETF_{i,t-1}+\beta_2 \Delta INST_{i,t-1}+\\
 
 ### 不熟悉的英文表达
 
-> 1. unilateral ban 单变禁令
+> 1. unilateral ban 单边禁令
 
 > 2. <span style="color:red">jeopardize</span> the stability of the financial system 损害了金融系统的稳定性 
 

@@ -213,7 +213,7 @@ $$y_{it}=\beta_0+\beta_1 D_t+\beta_2D_g+\gamma D_tD_g+\sum{X_{it}}+\epsilon_i$$
 点虽然对某些股票具有一定积极作用， 但总体上还非常有限。
 
 
-# [融资融券对股价特质性波动的影响机理研究：基于双重差分模型的建议](https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&dbname=CJFDLAST2015&filename=GLSJ201408005&v=2205LbYcuSG2hUK6jHWtfONE7ou%25mmd2FqCDy03Z9eXbsn2GiAite4FWA3%25mmd2FDUL%25mmd2FNtd%25mmd2B85)^[[1]肖浩,孔爱国.融资融券对股价特质性波动的影响机理研究:基于双重差分模型的检验[J].管理世界,2014(08):30-43+187-188.]
+# [融资融券对股价特质性波动的影响机理研究：基于双重差分模型的检验](https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&dbname=CJFDLAST2015&filename=GLSJ201408005&v=2205LbYcuSG2hUK6jHWtfONE7ou%25mmd2FqCDy03Z9eXbsn2GiAite4FWA3%25mmd2FDUL%25mmd2FNtd%25mmd2B85)^[[1]肖浩,孔爱国.融资融券对股价特质性波动的影响机理研究:基于双重差分模型的检验[J].管理世界,2014(08):30-43+187-188.]
 
       肖浩 孔爱国
       

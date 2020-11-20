@@ -233,9 +233,29 @@ ETF offerings, its former CEO said, Hedge funds tend to use our ETFs as a tactic
 to get in and out of segments that are difficult for them to access directly. Greece is a good
 example. GREK has seen a lot hedge fund trading
 
+> 如果投资者是知情交易者，他们厌恶风险，由于特质风险可以被分散掉，他们更关注系统性风险。因此，他们既可以利用ETF交易系统性风险，也可以来交易特质风险。（1）当ETF可以利用时，投资者可以直接基于系统性风险进行交易，他们更愿意了解更多系统性风险相关的信息，进而进行择时交易。（2）当ETF可以利用时,投资者可以利用ETF对冲系统性风险，进而从事个股层面的套利。
+
+> **随着信息不对称程度增加，非知情交易者因逆向选择问题而不愿意交易，他们担心他们的交易对手是掌握更多信息的投资者，这样他们做出的任何交易都是最糟糕的交易。** 
 
 ### 相关文献
 
-> 1、被动投资通过增加系统信息提高了股价的信息含量（Glosten et al. (2016) and Cong and Xu (2016)）
+> 1、被动投资通过增加系统信息提高了股价的信息含量（[Glosten et al. (2016)](https://www.rhsmith.umd.edu/files/Documents/Departments/Finance/fall2015/glosten.pdf)^[Glosten L, Nallareddy S, Zou Y. ETF trading and informational efficiency of underlying securities[J]. Unpublished working Paper, 2016.]; [Cong and Xu (2016)](https://dx.doi.org/10.2139/ssrn.2800590)^[Cong L W, Xu D. Rise of factor investing: asset prices, informational efficiency, and security design[C]//29th Australasian Finance and Banking Conference. 2016.]）
 
-> 2、被动持股增加了非基本面波动，导致股价信息含量的降低（Ben-David et al. (2018) and Kacperczyk et al. (2018)）
+> 2、被动持股增加了非基本面波动，导致股价信息含量的降低（[Ben-David et al. (2018)](https://doi.org/10.1111/jofi.12727)^[Ben‐David I, Franzoni F, Moussawi R. Do ETFs increase volatility?[J]. The Journal of Finance, 2018, 73(6): 2471-2535.]; [Kacperczyk et al. (2018)](https://dx.doi.org/10.2139/ssrn.3137803)^[Kacperczyk M T, Nosal J B, Sundaresan S. Market power and price informativeness[J]. Available at SSRN 3137803, 2018.]）
+
+> 3、[Grossman and Stiglitz(1980)](https://www.jstor.org/stable/1805228)^[Grossman S J, Stiglitz J E. On the impossibility of informationally efficient markets[J]. The American economic review, 1980, 70(3): 393-408.]将价格效率定义为基于条件变量的股票价格方差。
+
+> 4、在股票市场，非知情交易者更喜欢延迟交易到不确定性被解除（[Admati and Pfleiderer，1988](https://doi.org/10.1093/rfs/1.1.3)^[Admati A R, Pfleiderer P. A theory of intraday patterns: Volume and price variability[J]. The Review of Financial Studies, 1988, 1(1): 3-40.]； Wang，1994）
+
+
+### 研究结论
+
+> 1、被动持股影响投资者变成知情交易者和知情投资应该了解什么。
+ 
+> 2、被动投资者使投资者了解公司特质更有吸引力，并允许投资者对冲他们的系统性风险。
+
+> 3、被动持股使投资者更容易在系统风险上押注，使非知情交易者更易实现分散。
+
+> 4、本文发现过去30年股价平均信息含量在递减，在公司层面，被动投资导致股价信息含量降低。
+
+> 5、被动持股与股价信息搜集递减相关，这是因为投资者担心反向因果。

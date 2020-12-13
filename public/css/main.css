@@ -35,10 +35,10 @@ code {
 }
 
 .header {
-  padding: 20px 0;
+  padding: 5px 0;
   position: relative;
   background: #f5f5f5;
-  border-bottom: 5px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
 }
 
 .nav {

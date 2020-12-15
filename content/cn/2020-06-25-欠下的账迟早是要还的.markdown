@@ -1,12 +1,11 @@
 ---
-title: 欠下的账迟早是要还的
-author: 薛英杰
+title: "欠下的账迟早是要还的"
+author: "薛英杰"
 date: '2020-06-25'
+output: pdf_document
+categories: diary
+tags: diary
 slug: 欠下的账迟早是要还的
-categories:
-  - diary
-tags:
-  - diary
 ---
 Yihui大神开发[blogdown](https://bookdown.org/yihui/blogdown/)包后，各位大佬利用它建立了自己的个人主页，界面简单，美观大方，让人崇拜，叠加羡慕嫉妒恨，于是萌生了创建自己个人主页的宏伟想法。创建个人主页其实不难，具体教程参考:[用 R 语言的 blogdown+hugo+netlify+github 建博客](https://cosx.org/2018/01/build-blog-with-blogdown-hugo-netlify-github/),但要为自己定制一个个性化的hugo主题，对于我这样的菜鸟来说，堪比穷屌丝去追白富美，不是没有可能，至少需要很长的路要走。虽然大神为我们提供主题已经够用了，比如，默认主题[hugo-lithium](https://github.com/yihui/hugo-lithium)、[hugo-ivy](https://github.com/yihui/hugo-ivy)、[HUGO XMIN](https://deploy-preview-16--hugo-xmin.netlify.app)，但我却喜欢主题hugo-lithium的色调，hugo-ivy的版式，并且菜单栏的个性化设置还学要美化，现在看着还是比较丑。总之，还是自己太菜，当年要是多学点web开发知识，也不至于现在这样抓耳挠腮，欠下的账迟早是要还的。
 

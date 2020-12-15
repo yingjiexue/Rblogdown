@@ -1,0 +1,700 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={信息与股票市场波动文献阅读},
+  pdfauthor={薛英杰},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{信息与股票市场波动文献阅读}
+\author{薛英杰}
+\date{2020-07-27}
+
+\begin{document}
+\maketitle
+
+\hypertarget{information-trading-and-volatility}{%
+\section{Information, trading and
+volatility}\label{information-trading-and-volatility}}
+
+\begin{verbatim}
+Charles M. Jones, Gautam Kaul, Marc L. Lipson
+
+Journal of Financial Economics 36(1994)
+\end{verbatim}
+
+\hypertarget{ux6458ux8981}{%
+\subsubsection{摘要}\label{ux6458ux8981}}
+
+\begin{quote}
+通过比较交易和非交易期间股票收益波动行为，我们检验了交易和信息流对短期股票价格的影响。本文将非交易时期定义为交易所和公司股票交易正常开放，但投资者自己选择不交易的时期，在修正报价反弹和粘性后，我们刚发现大部分日内股票波动发生在没有交易的情况下，特别是大公司，这种现象非常突出。此外，我们提供了一个新的证据：公开信息是短期收益波动的主要来源。
+\end{quote}
+
+\hypertarget{ux7814ux7a76ux95eeux9898}{%
+\subsubsection{研究问题}\label{ux7814ux7a76ux95eeux9898}}
+
+\begin{quote}
+　交易以及公开或私人信息如何影响短期股票收益的波动？
+\end{quote}
+
+\hypertarget{ux7814ux7a76ux903bux8f91}{%
+\subsubsection{研究逻辑}\label{ux7814ux7a76ux903bux8f91}}
+
+\begin{quote}
+由于交易与非交易时期在两个关键方面是可比的，一方面，一旦非交易时期不可预测，交易者的信息收集和交易活动就不会依赖他们的交易能力；另一方面，一旦公司正常运行，释放公开信息的活动是不改变的。这样我们可以直接度量交易和股票收益波动之间的关系。由于不存在代理人获得信息的困惑，收益的波动可能反应了信息的出现，所以我们重点会强调信息流与波动的关系。
+\end{quote}
+
+\begin{quote}
+首先，通过比较交易和非交易时期股票收益的方差，研究了交易和波动的关系，计算了交易（周一收盘到周五收盘收益的波动）和非交易（周五收盘到下周一收盘收益的波动）日的方差比率，并使用买卖价差和价格粘性修正了方差比率。发现大公司非交易与交易时期的方差比率比小公司高出50\%。
+\end{quote}
+
+\begin{quote}
+其次，使用交易和非交易分类评价了决定短期波动的公开或私有信息的重要性。假设当交易所和公司都正常营业，公开信息以固定比率出现，并融入资产价格中，而私有信息的出现是随机的，交易需要这些信息来影响股价。在这种情况下，非交易与交易的方差比率有明确的经济含义：他们反映了决定收益波动公开信息的重要性。
+\end{quote}
+
+\begin{quote}
+最后，假设私有信息占总信息流的一小部分，公开信息主导了投资者交易。具体来讲，每天有数以万计的企业和宏观层面的信息公开宣布，有大量的证据支持投资者交易与这些信息的公布相关。在这种情况下，非交易与交易方差比率有不同的解释：他们反映了非交易日和交易日内公开信息的流动。
+\end{quote}
+
+到底哪一种假设说法是正确的呢？验证他们有利于理解信息与波动的关系。
+
+\hypertarget{ux7814ux7a76ux7ed3ux8bba}{%
+\subsubsection{研究结论}\label{ux7814ux7a76ux7ed3ux8bba}}
+
+\begin{quote}
+（1）公开信息显著地决定了股票收益的波动，而且私有信息在其中也扮演了主要角色。
+\end{quote}
+
+\begin{quote}
+（2）为了区分两种假设，本文在非交易定义下检验了市场微观结构特征，研究发现逆向选择成分占报价价差的一小部分。我们进一步比较了交易日与非交易日证券的买卖价差，如果私有信息在在波动决定中扮演主要角色，非交易日的买卖价差应该比交易日小，否则，说明公有信息在波动决定性扮演主要角色。研究发现公开信息在波动决定中扮演者主要角色，而且私有信息只占总体信息的一小部分。
+\end{quote}
+
+\hypertarget{information-and-volatility-linkages-in-the-stock-bond-and-meoney-markets}{%
+\section{Information and volatility linkages in the stock, bond and
+meoney
+markets}\label{information-and-volatility-linkages-in-the-stock-bond-and-meoney-markets}}
+
+\begin{verbatim}
+ Jeff Fleming,  Chris Kirby,  Barbara Ostdiek
+ 
+ Journal of Financial Econimics 49(1988)
+\end{verbatim}
+
+\hypertarget{ux6458ux8981-1}{%
+\subsubsection{摘要}\label{ux6458ux8981-1}}
+
+\begin{quote}
+本文建立了简单的投机交易模型，研究了股票市场、债券市场和货币市场之间波动联系的本质，该模型用市场共同信息预测了市场之间的强波动联系，同时，共同信息影响了各市场预期，通过市场的羊群效应引起了信息溢出。为了度量市场波动之间的联系，我们使用了GMM估计了四个交易模型的随机波动的代理变量，结果表明：我们的设定解释了许多可观测的数据特征，三个市场确实存在较强的波动联系，而且波动联系在1987年股票市场崩盘后变得更强。
+\end{quote}
+
+\hypertarget{ux7814ux7a76ux95eeux9898-1}{%
+\subsubsection{研究问题}\label{ux7814ux7a76ux95eeux9898-1}}
+
+\begin{quote}
+当期望股票市场波动增加时，组合管理者常常会从股票投资转移到债券投资上，因此，不同市场之间的波动联系对投资和风险管理决定来说越来越重要，是什么决定了股票、债券和货币市场的波动？
+\end{quote}
+
+\hypertarget{ux7814ux7a76ux903bux8f91-1}{%
+\subsubsection{研究逻辑}\label{ux7814ux7a76ux903bux8f91-1}}
+
+\begin{quote}
+如果股票、债券和货币市场的波动是相关的，债券不可能为投资者提供一个安全的避风港，当交易者在不同市场分配仓位时，其暴露的净波动取决于市场波动的相关性。投资者如果考虑了交易市场波动的相关性，可以有效地进行风险管理。
+\end{quote}
+
+\begin{quote}
+\textbf{各市场之间的波动联系以波动与信息流的相关想为基础}\href{https://doi.org/10.1111/j.1540-6261.1989.tb02401.x}{(Ross,1989)},为了检验不同市场间的波动联系，做了如下工作：
+\end{quote}
+
+\begin{quote}
+1.建立了投机交易模型，刻画了不同市场间的波动联系，做出了信息如何作用不同市场的联系。在这个模型中，这种联系有两个不同的来源，一是信息同时影响多个市场的期望收益，二是市场间的集群效应引起信息溢出。信息事件影响了投资者的预期，直接影响的投资者对该资产的需求。信息事件对单个资产的影响通过溢出效应传递到其他市场，改变了其他市场的预期，从而使得不同市场的波动具有相关性。
+\end{quote}
+
+\begin{quote}
+2.建立了一个随机波动模型，探索了波动与信息流入的关系，通过GMM对模型施加约束，估计了不同市场信息流的相关性。
+\end{quote}
+
+\hypertarget{ux6295ux673aux4ea4ux6613ux6a21ux578b}{%
+\subsubsection{投机交易模型}\label{ux6295ux673aux4ea4ux6613ux6a21ux578b}}
+
+假设经济中包含大量的主动投机者，这些投机者持有多头或空头头寸，交易对手超过一个，这些交易者对未来市场的预期不同，并且每天市场都处于均衡状态。当新信息出现后，投资者会修正他们对未来的预期，交易成本为零时，信息事件一直产生交易直到市场价格达到新的均衡，每天的交易数量取决于当天的信息含量。
+
+让\(F_{t,T}^s\)代表t时刻到期日为T的股票期货合约的价格，\(S_{T}^s\)为T时刻股票现货的实现价格，投资者t时刻持有多头期货头寸，期望获得利润为:
+
+\[E[\pi_{t,T}^s] \equiv E[S_T^s]-F_{t,T}^s\]
+
+假设在收益方差受约束下，投资者最大化收益，应用均值方差有效理论，可以得到每个交易者的需求函数如下：
+
+\[ Q_s=\frac{E[\pi_{t,T}^s]}{2\alpha \sigma_s^2} (1)\]
+其中，\(Q_s\)股票期货合约的需求数量，\(\alpha\)是投资者的风险厌恶系数，\(\sigma_s^2\)是投资收益\(\pi_{t,T}^s\)的方差。
+
+在方程1中，投资者对合同的需求数量取决于三个参数：
+
+\begin{quote}
+（1）期货合同的期望收益
+\end{quote}
+
+\begin{quote}
+（2）投资者的风险厌恶水平
+\end{quote}
+
+\begin{quote}
+（3）期货合同的收益波动
+\end{quote}
+
+当期望收益\(E[\pi_{t,T}^s] >0\)时，投资者持有多头头寸，当期望收益\(E[\pi_{t,T}^s] <0\)时,投资者持有空头头寸，其头寸的多少更期望收益的大小成正相关，跟风险厌恶程度和方差负相关。
+
+进一步一般化这个模型，假设不同市场收益具有相关性，需求函数具有跨市场依赖性，让\(\beta_b\)代表股票期货和债券期货收益的回归系数，\(\sigma^2_{s|b}\)代表回归误差的方差，类似地我们定义\(\beta_s\)和\(\sigma^2_{b|s}\)分别为债券期货跟股票期货收益的回归系数和误差的方差。通过均值---方差最优决策，我们的到不同市场的需求函数如下：
+
+\[Q_s=\frac{E[\pi_{t,T}^s]}{2\alpha \sigma_{s|b}^2}-\beta_b\frac{E[\pi_{t,T}^b]}{2\alpha \sigma_{s|b}^2}\]
+
+\[Q_b=\frac{E[\pi_{t,T}^b]}{2\alpha \sigma_{b|s}^2}-\beta_s\frac{E[\pi_{t,T}^s]}{2\alpha \sigma_{b|s}^2}\]
+
+\begin{quote}
+表明交易者对股票期货的需求与其期望收益成正比，与风险厌恶和波动成反比。当股票收益和债券收益相关时，可以对冲风险。交易者对股票期货的需求随可利用的债券合同增加。
+\end{quote}
+
+\begin{quote}
+两个需求函数揭示了信息是如何建立了市场之间的联系，一方面信息同时影响不同市场的期望收益，产生交易量和波动，另一方面，信息通过集群效应改变了市场的预期和波动。
+\end{quote}
+
+\hypertarget{ux7814ux7a76ux7ed3ux8bba-1}{%
+\subsubsection{研究结论}\label{ux7814ux7a76ux7ed3ux8bba-1}}
+
+\begin{quote}
+本文研究了创造波动的信息在不同市场中的作用，建立了简单的交易投机模型，一方面共同信息影响了投资者对于不同市场的预期，另一方面，由于市场集群效应的存在改变了市场期望。
+\end{quote}
+
+\hypertarget{information-trading-and-volatility-evidence-fron-firm-specific-news}{%
+\section{Information, Trading, and Volatility: Evidence fron
+Firm-Specific
+News}\label{information-trading-and-volatility-evidence-fron-firm-specific-news}}
+
+\begin{verbatim}
+Jacob Boudoukh, Ronen Feldman, Shimon Kogan, Matthew Richardson
+
+The Review of Financial Studies,2019,32(3)
+\end{verbatim}
+
+\hypertarget{ux6458ux8981-2}{%
+\subsubsection{摘要}\label{ux6458ux8981-2}}
+
+\begin{quote}
+什么推动了股票价格？以前的文献认为交易相关的私有信息是初级的推动者，我们通过文本分析来识别基本面信息，重新审视这个问题。我们发现，在多种消息类型的摩擦下，私有信息占隔夜特质波动的49.6\%（vs
+交易期间的占比为12.4\%），我们使用公开信息出现的度量重新研究了以前文献中关于股票收益与总因子回归的\(R^2\)。
+\end{quote}
+
+\hypertarget{ux7814ux7a76ux95eeux9898-2}{%
+\subsubsection{研究问题}\label{ux7814ux7a76ux95eeux9898-2}}
+
+不同类型的信息如何影响股票收益的波动？股票收益的波动到底是公开信息、私有信息，还是投资者定价误差引起？
+
+\hypertarget{ux6587ux732eux89c2ux70b9}{%
+\subsubsection{文献观点}\label{ux6587ux732eux89c2ux70b9}}
+
+\begin{quote}
+1.由于信息逐渐通过交易反应到资产价格中，因此，私有信息在交易时间内可能影响收益波动，理性交易的私有信息是收益波动的主要驱动者（French
+and Roll,1986）。
+\end{quote}
+
+\begin{quote}
+2.一小部分股价波动可以被相关的公开信息解释，股价动量是大量为考虑的公开信息的反应（Hirshleifer,2001）
+\end{quote}
+
+\hypertarget{ux7814ux7a76ux903bux8f91-2}{%
+\subsubsection{研究逻辑}\label{ux7814ux7a76ux903bux8f91-2}}
+
+\begin{quote}
+本文认为公司层面的公开信息是股票收益波动的一个非常重要成分，我们使用文本分析从新闻中识别出具体公司事件相关的公开信息，然后重新检验现存关于交易或非交易日的相关研究结论。
+\end{quote}
+
+\begin{quote}
+许多文献都将新闻文章作为公开信息的代理变量，由于企业可能发布许多与基本面无关的消息，使得
+这种代理的信息效率较低。而研究者关注的是通过新闻消息可以辨别出那些与上市公司相关，那些无关，处理巨量的新闻消息是一项繁重的任务，幸运地是文本分析可以帮助我们来更好地识别相关新闻。本文用两种方法来识别新闻中的消息事件：
+\end{quote}
+
+\begin{quote}
+1.可利用的商业信息提取平台（VIP）
+\end{quote}
+
+\begin{quote}
+2.机器学习方法
+\end{quote}
+
+\begin{quote}
+使用这两种方法，我们可以把每一篇文章的日期与股票代码进行匹配，形成一个相同价值相关的信息和未被识别的信息事件序列，然后，围绕具体信息事件检验交易日和非交易日收益波动。消息被识别日期股票收益的波动时其他日期波动的2倍。
+\end{quote}
+
+\hypertarget{ux7ed3ux8bba}{%
+\subsubsection{结论}\label{ux7ed3ux8bba}}
+
+\begin{quote}
+文本分析的创新可以让我们更好地识别新闻相关性及其内容。使用监督学习的方法识别了公司层面事件，把事件相关的股票收益方差识别出来。文章中使用的方法对于深度分析股价和信息相关性非常有用。
+\end{quote}
+
+\hypertarget{does-more-information-in-stock-price-lead-to-greater-or-smaller-idiosyncratic-return-volatility}{%
+\subsection{Does more information in stock price lead to greater or
+smaller idiosyncratic return
+volatility?}\label{does-more-information-in-stock-price-lead-to-greater-or-smaller-idiosyncratic-return-volatility}}
+
+\begin{verbatim}
+ Dong Wook Lee; Marke H. Liu
+ 
+ Journal of Banking and Finance
+\end{verbatim}
+
+\hypertarget{ux6458ux8981-3}{%
+\subsubsection{摘要}\label{ux6458ux8981-3}}
+
+\begin{quote}
+我们利用多资产、多期噪声理性预期模型研究了价格信息和特质收益波动的关系。我们证明了价格信息和特质收益波动的关系成U型或负相关，使用几个价格信息的代理变量，我们验证了价格信息和特质收益波动之间的U型关系。我们的研究与以下两种文献的观点相反：（1）大量研究表明价格信息含量越多的股票特质收益的波动越高，（2）价格信息含量越多降低了股票特质收益的波动。
+\end{quote}
+
+\hypertarget{ux7814ux7a76ux95eeux9898-3}{%
+\subsubsection{研究问题}\label{ux7814ux7a76ux95eeux9898-3}}
+
+\begin{quote}
+越来越多的研究发现，股价信息含量与特质收益波动相关，股价信息含量越多，其特质收益的波动越高。进而，大量研究都用股票特质收益波动作为股价信息含量的度量。但另一部分研究认为，特质波动越高意味着更多的交易噪声和误定价。他们则用特质收益波动作为信息含量多少的反向指标。因此，股票特质收益波动与股价信息含量的真实关系任然值得研究。这篇文章企图更好地理解股价信息含量和特质波动率的关系。
+\end{quote}
+
+\hypertarget{ux7814ux7a76ux601dux8def}{%
+\subsubsection{研究思路}\label{ux7814ux7a76ux601dux8def}}
+
+\begin{quote}
+本文用多个资产、多期的噪声理性期望模型证明特质波动与股价信息含量的关系。在模型中有三种投资者：（1）流动性交易者，他们对股票的需求是外生的，不依赖于股票基本面价值；（2）知情交易者，他们会为获得基本面价值相关的噪声信号而付出相应的成本，并基于这些私有信号而交易；（3）非知情交易者，他们没有关于股票价值的私有信息，但他们能推断出股票价格传达的信息，他们的需求取决于股票价格。
+\end{quote}
+
+\begin{quote}
+股票价格的均衡受股票基本面价值和噪声的影响，本文将特质波动分解成两部分，一部分是有流动性交易者引起的噪声，另一部分为基本面信息相关的部分，进一步将信息相关的部分分解为信息更新相关的特质波动和不确定性消除相关的特质波动。作者认为信息更新相关的特质波动代表基本面价值的变化，其随信息含量的能加而增加，而不确定性消除相关的特质波动随股价信息含量增加而降低。
+\end{quote}
+
+\begin{quote}
+{\textbf{随着更多的投资着选择生产信息，更多的信息被反应在股价中，从而提高了股价的信息含量，反过来增加了信息更新部分的特质波动。随着信息融入股价，剩余股票价值相关的不确定性降低，不确定性消除导致股价特质波动下降。所以信息含量提升增加了信息更新相关的股价特质波动，降低了不确定性相关的波动，信息相关的特质波动是信息更新导致的波动与不确定性下降导致的波动的总和。当不确定逐渐被消除时，特质波动先下降，后上升。}}
+\end{quote}
+
+\begin{quote}
+\textbf{由于更多的投资着选择生产信息，知情交易者可以利用私有信息来抵消噪声交易对股价的影响，从而使股价中含有更少的噪声，特质波动降低。所以，噪声导致的特质波动随着信息含量提升而递减。}
+\end{quote}
+
+\hypertarget{ux76f8ux5173ux6587ux732e}{%
+\subsubsection{相关文献}\label{ux76f8ux5173ux6587ux732e}}
+
+\begin{quote}
+1、\href{https://doi.org/10.1016/S0304-405X(00)00071-4}{Morck et
+al.(200)}\footnote{Morck R, Yeung B, Yu W. The information content of
+  stock markets: why do emerging markets have synchronous stock price
+  movements?{[}J{]}. Journal of financial economics, 2000, 58(1-2):
+  215-260.}发现，发达国家的股票有较高的特质波动，他们认为，产权保护促进了信息套利，将公司层面给的信息资本化，增加了股票的特质波动。
+\end{quote}
+
+\begin{quote}
+2、\href{https://doi.org/10.2307/1911841}{West(1988)}\footnote{West K D.
+  Dividend innovations and stock price volatility{[}J{]}. Econometrica:
+  Journal of the Econometric Society, 1988: 37-61.}证明了价格中包含更多未来红利信息导致了一个更低的特质波动。
+\end{quote}
+
+\begin{quote}
+3、\href{https://doi.org/10.1142/S2010139214500189}{Kelly(2014)}\footnote{Kelly
+  P J. Information efficiency and firm-specific return variation{[}J{]}.
+  The Quarterly Journal of Finance, 2014, 4(04): 1450018.}发现信息环境越好的公司与更高市场模型的R2有关，例如，更低的特质波动。
+\end{quote}
+
+\begin{quote}
+4、\href{https://doi.org/10.1016/S0304-405X(99)00017-3}{Krishnaswami and
+Subramaniam（1999）}\footnote{Krishnaswami S, Subramaniam V. Information
+  asymmetry, valuation, and the corporate spin-off decision{[}J{]}.
+  Journal of Financial economics, 1999, 53(1): 73-112.}使用高特质波动作为股价缺乏信息和信息不对称程度的度量。
+\end{quote}
+
+\begin{quote}
+5、\href{https://doi.org/10.1016/j.jfineco.2004.11.003}{Jin and
+Myers(2006)}\footnote{Jin L, Myers S C. R2 around the world: New theory
+  and new tests{[}J{]}. Journal of financial Economics, 2006, 79(2):
+  257-292.}建立了一个模型，证明了股价信息含量和特质波动之间的正向关系，在模型中，公司内部人员可以获得外部人员无法观测的经营现金流相关的信息。
+\end{quote}
+
+\begin{quote}
+6、在多期、多资产的噪声理性期望模型中，\href{https://dx.doi.org/10.2139/ssrn.676113}{Ozoguz(2005)}\footnote{Ozoguz
+  A. Informed Trading, Return Synchronicity and Equilibrium Asset
+  Pricing{[}J{]}. Return Synchronicity and Equilibrium Asset Pricing
+  (February 2005), 2005.}证明了股价信息含量与特质波动之间的负向关系，它定义的特质波动只捕获了不确定性消失相关的特质波动。
+\end{quote}
+
+\begin{quote}
+7、\href{}{Roll(1988)}\footnote{Roll R. R2 {[}J{]}{[}J{]}. Journal of
+  Finance, 1988, 43(3): 541-566.}观察到普通股价格变化只有一小部分能被市场或行业因素解释。
+\end{quote}
+
+\begin{quote}
+8、\href{https://doi.org/10.1111/0022-1082.00318}{Campbell et
+al.(2001)}\footnote{Campbell J Y, Lettau M, Malkiel B G, et al.~Have
+  individual stocks become more volatile? An empirical exploration of
+  idiosyncratic risk{[}J{]}. The journal of finance, 2001, 56(1): 1-43.}发现美国普通股的特质波动在过去十年中显著增加。
+\end{quote}
+
+\hypertarget{ux7814ux7a76ux7ed3ux8bba-2}{%
+\subsubsection{研究结论}\label{ux7814ux7a76ux7ed3ux8bba-2}}
+
+\begin{quote}
+1、不存在参数值使得特质波动随着股价信息含量单调递增。
+\end{quote}
+
+\begin{quote}
+2、存在一个参数值，使得股价信息含量和特质波动成U型关系。
+\end{quote}
+
+\begin{quote}
+3、存在一个参数值，使得特质波动随着股价信息含量单调递减。当噪声交易者的对资产的需求方差相比基本面价值方差更大时，特质波动随着信息含量单调递减越明显。
+\end{quote}
+
+\hypertarget{passive-ownership-and-price-informativeness}{%
+\subsection{Passive Ownership and Price
+Informativeness}\label{passive-ownership-and-price-informativeness}}
+
+\begin{verbatim}
+ MARCO SAMMON
+ 
+ Job Market Paper
+ 
+\end{verbatim}
+
+\hypertarget{ux6458ux8981-4}{%
+\subsubsection{摘要}\label{ux6458ux8981-4}}
+
+\begin{quote}
+虽然在过去30年中，被动持股快速增长，但关于被动持股为什么能影响股价信息含量以及如何影响股价信息含量。这篇文章为回答这个问题提供了新答案，检验了被动持股改变如何影响投资者收集信息。我们建立了一个被动持股如何影响投资者收集信息以及投资者如何在系统风险和特质风险上分配有限注意的模型。该模型通过数据中可观察到的交易量、收益和波动将投资者的认知决策和股价信息含量联系起来，受该模型的启发，建立了三个股价信息含量的度量，他们在过去三十年是递减的。在横截面上，被动持股增加显著与股价信息含量显著地负相关。为了探索因果关系，我们证明了在指数调整引起的拟外生被动持股增加后股价信息含量是下降的。
+\end{quote}
+
+\hypertarget{ux7814ux7a76ux95eeux9898-4}{%
+\subsubsection{研究问题}\label{ux7814ux7a76ux95eeux9898-4}}
+
+\begin{quote}
+在理论和实证文献中，关于被动持股如何影响股价信息含量并没有一致的结论，本文回答了为什么被动持股能影响股价信息含量以及如何影响股价信息含量。
+\end{quote}
+
+\begin{quote}
+\textbf{核心观点：}
+{给定一个机械的交易规则，从直觉上讲，随着越多的投资者变成被动投资者，将有更少的投资者从事基本面研究，导致股价信息含量降低。这与过去30年盈余公告前，股价信息含量较低的事实一致。}
+\end{quote}
+
+\hypertarget{ux7814ux7a76ux601dux8def-1}{%
+\subsubsection{研究思路}\label{ux7814ux7a76ux601dux8def-1}}
+
+\begin{quote}
+为了刻画被动投资和信息效率的关系，我们需要明确股价信息含量的测度，并理解其作用机制。\textbf{由于被动投资是基于机械的规则，投资者更像非知情交易者，随着非知情投资者的比例增加，股价信息含量将降低。}
+\end{quote}
+
+\begin{quote}
+被动持股并不意味着无信息，被动基金被大量主动投资者持有，被动持股可能影响信息获取的群体以及他们获得什么信息。ETF持有者可能是寻找特定系统风险因子的机构投资者，ETF的出现可能是投资者了解更多的系统性风险。大多数投资者通过ETF来主动管理资产，只有30\%的ETF投资者在做被动投资。例如：
+in reference to Global X's ETF offerings, its former CEO said, Hedge
+funds tend to use our ETFs as a tactical play to get in and out of
+segments that are difficult for them to access directly. Greece is a
+good example. GREK has seen a lot hedge fund trading
+\end{quote}
+
+\begin{quote}
+如果投资者是知情交易者，他们厌恶风险，由于特质风险可以被分散掉，他们更关注系统性风险。因此，他们既可以利用ETF交易系统性风险，也可以来交易特质风险。（1）当ETF可以利用时，投资者可以直接基于系统性风险进行交易，他们更愿意了解更多系统性风险相关的信息，进而进行择时交易。（2）当ETF可以利用时,投资者可以利用ETF对冲系统性风险，进而从事个股层面的套利。
+\end{quote}
+
+\begin{quote}
+\textbf{随着信息不对称程度增加，非知情交易者因逆向选择问题而不愿意交易，他们担心他们的交易对手是掌握更多信息的投资者，这样他们做出的任何交易都是最糟糕的交易。}
+\end{quote}
+
+\hypertarget{ux76f8ux5173ux6587ux732e-1}{%
+\subsubsection{相关文献}\label{ux76f8ux5173ux6587ux732e-1}}
+
+\begin{quote}
+1、被动投资通过增加系统信息提高了股价的信息含量（\href{https://www.rhsmith.umd.edu/files/Documents/Departments/Finance/fall2015/glosten.pdf}{Glosten
+et al.~(2016)}\footnote{Glosten L, Nallareddy S, Zou Y. ETF trading and
+  informational efficiency of underlying securities{[}J{]}. Unpublished
+  working Paper, 2016.};
+\href{https://dx.doi.org/10.2139/ssrn.2800590}{Cong and Xu
+(2016)}\footnote{Cong L W, Xu D. Rise of factor investing: asset prices,
+  informational efficiency, and security design{[}C{]}//29th
+  Australasian Finance and Banking Conference. 2016.}）
+\end{quote}
+
+\begin{quote}
+2、被动持股增加了非基本面波动，导致股价信息含量的降低（\href{https://doi.org/10.1111/jofi.12727}{Ben-David
+et al.~(2018)}\footnote{Ben‐David I, Franzoni F, Moussawi R. Do ETFs
+  increase volatility?{[}J{]}. The Journal of Finance, 2018, 73(6):
+  2471-2535.}; \href{https://dx.doi.org/10.2139/ssrn.3137803}{Kacperczyk
+et al.~(2018)}\footnote{Kacperczyk M T, Nosal J B, Sundaresan S. Market
+  power and price informativeness{[}J{]}. Available at SSRN 3137803,
+  2018.}）
+\end{quote}
+
+\begin{quote}
+3、\href{https://www.jstor.org/stable/1805228}{Grossman and
+Stiglitz(1980)}\footnote{Grossman S J, Stiglitz J E. On the
+  impossibility of informationally efficient markets{[}J{]}. The
+  American economic review, 1980, 70(3): 393-408.}将价格效率定义为基于条件变量的股票价格方差。
+\end{quote}
+
+\begin{quote}
+4、在股票市场，非知情交易者更喜欢延迟交易到不确定性被解除（\href{https://doi.org/10.1093/rfs/1.1.3}{Admati
+and Pfleiderer，1988}\footnote{Admati A R, Pfleiderer P. A theory of
+  intraday patterns: Volume and price variability{[}J{]}. The Review of
+  Financial Studies, 1988, 1(1): 3-40.}； Wang，1994）
+\end{quote}
+
+\hypertarget{ux7814ux7a76ux7ed3ux8bba-3}{%
+\subsubsection{研究结论}\label{ux7814ux7a76ux7ed3ux8bba-3}}
+
+\begin{quote}
+1、被动持股影响投资者变成知情交易者和知情投资应该了解什么。
+\end{quote}
+
+\begin{quote}
+2、被动投资者使投资者了解公司特质更有吸引力，并允许投资者对冲他们的系统性风险。
+\end{quote}
+
+\begin{quote}
+3、被动持股使投资者更容易在系统风险上押注，使非知情交易者更易实现分散。
+\end{quote}
+
+\begin{quote}
+4、本文发现过去30年股价平均信息含量在递减，在公司层面，被动投资导致股价信息含量降低。
+\end{quote}
+
+\begin{quote}
+5、被动持股与股价信息搜集递减相关，这是因为投资者担心反向因果。
+\end{quote}
+
+\hypertarget{passive-investors-not-passive-ownership}{%
+\subsection{\texorpdfstring{\href{https://doi.org/10.1016/j.jfineco.2016.03.003}{Passive
+Investors, not passive
+ownership}}{Passive Investors, not passive ownership}}\label{passive-investors-not-passive-ownership}}
+
+\begin{verbatim}
+Ian R. Appel, Todd A. Gormley, Donald B. Keim
+
+Journal of Financial Economics
+\end{verbatim}
+
+\hypertarget{ux6458ux8981-5}{%
+\subsubsection{摘要}\label{ux6458ux8981-5}}
+
+\begin{quote}
+被动的机构投资者是美国股票市场的重要组成部分，为了检验被动投资者是否影响了公司治理以及通过什么机制影响了公司治理，我们建立了被动基金持股变化和罗素指数1000与2000指数之间的联系。我们发现被动共同基金影响公司的治理选择，导致了更多的独立董事，收购护城河消除和更加公平的投票权。被动投资者通过他们投票集团发挥作用，与观察到治理差异增加了公司价值一致，被动持股与企业长期业绩改善相联系。
+\end{quote}
+
+\hypertarget{ux7814ux7a76ux95eeux9898-5}{%
+\subsubsection{研究问题}\label{ux7814ux7a76ux95eeux9898-5}}
+
+\begin{quote}
+\textbf{近三十年来，被动投资快速增长，带来了一个不可回避的问题：被动投资导致持股分散，如何才能有效低监督管理者？}
+\end{quote}
+
+\begin{quote}
+一些人担心被动投资缺乏监督大的分散组合的动力和资源，懒投资者市场份额的增加削弱了公司治理，损害了公司业绩，而另一部分人认为被动投资并不等于被动持股。所以我们来检验被动的机构投资者是否影响了公司治理结构，最终影响了公司业绩。
+\end{quote}
+
+\begin{quote}
+{(1)为什么被动投资增长可能削弱公司治理和表现？}
+\end{quote}
+
+\begin{quote}
+首先，机构投资者可能缺乏监督管理者的激励，被动基金目的在于履行一个比较基准的业绩表现，不像主动型基金，他们没有提高单个股票表现的动机。其次，被动投资者可能难以对管理层施加影响，通过最小化与跟踪指数的偏离权重，被动的机构投资者往往缺乏非被动投资者影响管理层的渠道和方法，例如累积持股和减少头寸。第三，给他们一个分散的持有组合，被动投资者可能没有足够的资源来研究和监督组合内每一个公司的政策。
+\end{quote}
+
+\begin{quote}
+{(2)为什么被动投资增长可能提高公司治理和表现？}
+\end{quote}
+
+\begin{quote}
+首先，由于被动投资的机构监督企业管理者有利于提高其管理的资产产值，他们并不乐意分散他们的头寸再表现不佳的股票，更容易被激励持有股票和监督管理者，以提高公司的治理选择和表现。其次，管理被动基金的机构可能使用其持股规模施加影响。所有机构投资者有一个受托责任，代替股东的最优利益来投票，并且管理者更倾向于从主动投资者的角度为被动投资者考虑。第三，虽然，被动机构可能缺乏监督分散组合内每一只股票的精力，但他们可能会以低的成本有效地参与与他们认为最优的公司治理相符合的公司职责的监督。
+\end{quote}
+
+\hypertarget{ux7814ux7a76ux601dux8def-2}{%
+\subsubsection{研究思路}\label{ux7814ux7a76ux601dux8def-2}}
+
+\begin{quote}
+我们利用罗素指数1000与罗素指数2000之间的成分股调整作为工具变量，研究了被动基金持股对公司治理结构和业绩表现的影响。具体来讲，我们使用给定年份股票是否调入罗素指数2000的虚拟变量作为工具变量，这个工具变量依赖的假设是在市值确定的情况下，股票被调入指数并不直接影响公司治理和业绩表现，而是通过被动持股影响公司治理和业绩表现。
+\end{quote}
+
+\begin{quote}
+\textbf{被动的机构确实改变了企业公司治理问题上的投票策略，机构代理投票政策对董事会的治理的影响表现在三个方面:}（1）支持更加独立的董事会；（2）反对逆向收购；（3）反对不平等的投票权。在此基础上，我们分析了投票结果，管理层和股东意见相关的治理可能和被动投资者发挥的作用直接相关。
+\end{quote}
+
+\hypertarget{ux76f8ux5173ux6587ux732e-2}{%
+\subsubsection{相关文献}\label{ux76f8ux5173ux6587ux732e-2}}
+
+\begin{quote}
+1、被动的机构投资者可能被激励监督管理层，并改善市场表现，因为这样可以提高其管理的资产价值（\href{https://doi.org/10.1016/S0304-405X(99)00011-2}{Del
+Guercio and Hawkins, 1999}\footnote{Del Guercio D, Hawkins J. The
+  motivation and impact of pension fund activism{[}J{]}. Journal of
+  financial economics, 1999, 52(3): 293-340.}）
+\end{quote}
+
+\begin{quote}
+2、虽然被动的机构投资者可能缺乏监督管理分散组合中每一个公司政策选择的精力，但他们可能有效、广泛地从事低成本的监督，使公司按照他们认为最好的治理模式进行管理。（
+Black,
+\href{https://heinonline.org/HOL/LandingPage?handle=hein.journals/uclalr39\&div=30\&id=\&page=}{1992}\footnote{Black
+  B S. Agents watching agents: The promise of institutional investor
+  voice{[}J{]}. UCLA l. Rev., 1991, 39: 811.},
+\href{https://dx.doi.org/10.2139/ssrn.45100}{1998}\footnote{Black B S.
+  Shareholder activism and corporate governance in the United
+  States{[}J{]}. As published in The New Palgrave Dictionary of
+  Economics and the Law, 1998, 3: 459-465.}）
+\end{quote}
+
+\begin{quote}
+3、在罗素2000指数中排名靠前股票的媒体和分析师覆盖并没有显著增加
+(\href{https://doi.org/10.1093/rfs/hhw012}{Crane, Michenaud, and
+Weston，2014}\footnote{Crane A D, Michenaud S, Weston J P. The effect of
+  institutional ownership on payout policy: Evidence from index
+  thresholds{[}J{]}. The Review of Financial Studies, 2016, 29(6):
+  1377-1408.})。
+\end{quote}
+
+\hypertarget{ux7814ux7a76ux8d21ux732e}{%
+\subsubsection{研究贡献}\label{ux7814ux7a76ux8d21ux732e}}
+
+\begin{quote}
+1、我们的研究贡献了机构持股对公司治理和公司政策的影响，被动持股很少研究，但其重要性一直在上升
+\end{quote}
+
+\begin{quote}
+2、我们的研究和一些执行被动投资策略的养老基金相关，但其却成功地从事主动投资。
+\end{quote}
+
+\begin{quote}
+3、我们的研究与被动投资者可能缺乏监督管理层的意愿和能力相反。
+\end{quote}
+
+\hypertarget{ux7814ux7a76ux7ed3ux8bba-4}{%
+\subsubsection{研究结论}\label{ux7814ux7a76ux7ed3ux8bba-4}}
+
+\begin{quote}
+1、我们发现被动共同基金持股对公司治理的三个方面均有影响。被动基金持股增加与董事会的独立增加、反收购程度和投票权的对称程度相关。
+\end{quote}
+
+\begin{quote}
+2、我们证明了一个关键的机制，被动投资者主要通过大投票集团的权力对管理层施加影响，被动持股与管理层提议支持票的份额下降有关。说明管理者面临着一个更有争议和更专注的股东基础，并增加了治理相关股东提案的支持度。
+\end{quote}
+
+\begin{quote}
+3、被动投资者影响治理结果的另一种机制是促进其他投资者的积极努力。但我们并没有发现对冲基金持股事件和公司收购事件的概率随被动持股而上升。
+\end{quote}
+
+\begin{quote}
+4、被动投资对公司价值有正向影响，被动持股越高的公司未来价值越高，被动基金长期持股与公司ROA和托宾Q的改善相关。
+\end{quote}
+
+\begin{quote}
+5、被动投资者并不是被动持股者，被动基金成功地影响公司治理选择并改善了公司的长期表现。
+\end{quote}
+
+\begin{quote}
+6、股票被调入罗素指数2000后分析师覆盖降低
+\end{quote}
+
+\hypertarget{the-effect-of-institutional-ownership-on-firm-transparency-and-information-production}{%
+\subsection{The effect of institutional ownership on firm transparency
+and information
+production}\label{the-effect-of-institutional-ownership-on-firm-transparency-and-information-production}}
+
+\begin{verbatim}
+  Audra L. Boone, Joshua T. White
+  Journal of Financial Economics
+  
+\end{verbatim}
+
+\hypertarget{ux6458ux8981-6}{%
+\subsubsection{摘要}\label{ux6458ux8981-6}}
+
+\begin{quote}
+我们罗素1000/2000指数的调整检验了机构持股对公司的信息和交易环境的影响，由于指数和基本策略，罗素2000指数排名靠前的公司比罗素1000指数排名靠后的公司机构持股比例高，指数分割点附近的公司特征类似，我们发现机构持股比例越高越高意味着更大的管理层披露、分析师跟踪和流动性，导致更低的信息不对称。指数化机构低于更低信息不对称程度的偏好有利于信息生产，提高管理层监督并降低交易成本。
+\end{quote}
+
+\hypertarget{ux7814ux7a76ux95eeux9898-6}{%
+\subsubsection{研究问题}\label{ux7814ux7a76ux95eeux9898-6}}
+
+\begin{quote}
+虽然机构投资者表现出异质性的投资和交易策略，但没人知道他们对信息偏好的变化如何影响信息生产和交易环境。由于一个公司的信息环境影响投资、流动性和风险，理解机构投资者影响信息环境对资本市场影响有重要的意义。
+\end{quote}
+
+\hypertarget{ux7814ux7a76ux601dux8def-3}{%
+\subsubsection{研究思路}\label{ux7814ux7a76ux601dux8def-3}}
+
+\begin{quote}
+以前的研究也证明了机构投资者持股和信息环境的关系，但这种因果关系受内生性影响，因此，机构投资者如何影响信息环境仍需要研究。为了克服这个困难，我们使用罗素1000指数和2000指数来研究机构持股如何影响一个公司的信息环境。
+\end{quote}
+
+\begin{quote}
+我们围绕罗素1000和2000指数切换基于两个突出的公司特征来识别外生世界，首先，门槛两侧的公司呈现了类似的特征，其次，由于每个指数是加权构建，罗素2000指数排名靠前的公司比罗素1000指数排名靠后的公司有显著高的组合权重。
+\end{quote}
+
+\hypertarget{ux76f8ux5173ux6587ux732e-3}{%
+\subsubsection{相关文献}\label{ux76f8ux5173ux6587ux732e-3}}
+
+\hypertarget{ux7814ux7a76ux7ed3ux8bba-5}{%
+\subsubsection{研究结论}\label{ux7814ux7a76ux7ed3ux8bba-5}}
+
+\hypertarget{ux4e0dux719fux6089ux7684ux82f1ux6587}{%
+\subsubsection{不熟悉的英文}\label{ux4e0dux719fux6089ux7684ux82f1ux6587}}
+
+\begin{quote}
+predilection 偏好，偏爱，嗜好 例：He has a predilection for rich
+food,他偏好油腻食物。
+\end{quote}
+
+\begin{quote}
+salient 显著的，突出的，主要的
+\end{quote}
+
+\end{document}

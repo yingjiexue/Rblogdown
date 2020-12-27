@@ -6,10 +6,19 @@
     <description>Recent content in research on Yingjie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 29 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 27 Dec 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/research/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>被动投资与股票定价效率的文献梳理</title>
+      <link>/research/%E8%A2%AB%E5%8A%A8%E6%8A%95%E8%B5%84%E4%B8%8E%E8%82%A1%E7%A5%A8%E5%AE%9A%E4%BB%B7%E6%95%88%E7%8E%87%E7%9A%84%E6%96%87%E7%8C%AE%E6%A2%B3%E7%90%86/</link>
+      <pubDate>Sun, 27 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/research/%E8%A2%AB%E5%8A%A8%E6%8A%95%E8%B5%84%E4%B8%8E%E8%82%A1%E7%A5%A8%E5%AE%9A%E4%BB%B7%E6%95%88%E7%8E%87%E7%9A%84%E6%96%87%E7%8C%AE%E6%A2%B3%E7%90%86/</guid>
+      <description>Passive Ownership and Price Informativeness MARCO SAMMON Job Market Paper 摘要 虽然在过去30年中，被动持股快速增长，但关于被动持股为什么能影响股价信息含量以及如何影响股价信息含量。这篇文章为回答</description>
+    </item>
     
     <item>
       <title>R语言如何估计结构方程模型</title>

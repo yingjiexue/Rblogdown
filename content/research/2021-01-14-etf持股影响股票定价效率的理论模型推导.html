@@ -1,0 +1,72 @@
+---
+title: ETF持股影响股票定价效率的理论模型推导
+author: ''
+date: '2021-01-14'
+slug: etf持股影响股票定价效率的理论模型推导
+categories:
+  - research
+tags:
+  - research
+---
+
+
+
+<div id="机理分析" class="section level3">
+<h3>机理分析</h3>
+<p>定价效率是证券价格反映信息的能力，表现在股价反映信息的速度和准确性上（Saffi and Sigurdsson，2011）。关于证券市场信息与定价效率的关系在理论界已做出了充分的研究，提出了有效市场理论、金融市场噪声理论和交易摩擦理论等。目前，学术界普遍认为，ETF主要通过交易成本和限制等市场摩擦影响成分股的定价效率。与发达市场不同，A股市场各项制度和规则不够完善，交易成本较高，卖空限制严重，散户投资者持有市场88%的流通股（Liu et al.，2019），这都会影响定价效率。而且，高效价格发现机制的形成，离不开发达的信息中介机构和相对成熟的投资者群体（朱红军等，2008），中介机构的信息生产和挖掘能力也是影响定价效率的重要因素。因此，我们认为交易成本、卖空限制和信息挖掘三种是ETF影响定价效率的中介渠道。</p>
+</div>
+<div id="模型建立" class="section level3">
+<h3>模型建立</h3>
+<p>我们的模型尝试捕获证券市场的四个主要特征：（1）投资者异质性，（2）交易成本非零，（3）卖空存在限制，（4）知情投资者主动挖掘市场信心。投资者异质性体现在投资者的风险承担和关于未来资产回报信息上的差异，他们出于承担风险和信息投机的目的而交易。</p>
+<blockquote>
+<p>证券市场</p>
+</blockquote>
+<p>市场持续存在两期，分别为0期与1期，投资者在竞争的证券市场上交易，可交易的产品有无风险债券、股票和ETF基金，在1期，投资者获得投资收益，假定每单位债券的固定收益为1，股票价值为<span class="math inline">\(V=F+\mu\)</span>，其中<span class="math inline">\(\mu\)</span>和<span class="math inline">\(F\)</span>分别为相互独立的均匀分布，<span class="math inline">\(F\sim U[-a_F,a_F]\)</span>，<span class="math inline">\(\mu\sim U[-a_\mu,a_\mu]\)</span></p>
+<blockquote>
+<p>投资者</p>
+</blockquote>
+<p>市场上有两类投资者，一类为知情投资者，另一类为非知情投资者，每一类投资者完全相同，而且知情投资者与非知情投资者面临的信息不同，知情交易者掌握其投资资产的所有信息，非知情交易者通过资产价格来推断该资产价值相关的信息，假设一个投资者为知情交易者的概率为<span class="math inline">\(w\)</span>，则为非知情交易者的概率为<span class="math inline">\(1-w\)</span>。</p>
+<blockquote>
+<p>禀赋</p>
+</blockquote>
+<p>每位投资者<span class="math inline">\(i（i=I,U）\)</span>初始的债券禀赋为零，<span class="math inline">\(\bar\theta\)</span>单位的股票资产，投资者通过选择1期持股有的股票量<span class="math inline">\(\theta_i\)</span>来最大化期望效用</p>
+<blockquote>
+<p>信息结构</p>
+</blockquote>
+<p>在0期，知情投资者观察到私有信息<span class="math inline">\(F\)</span>，所有投资者都能观察到股票的市场价格<span class="math inline">\(P\)</span>，这样知情投资者的信息集为<span class="math inline">\(I_I=\{F,P\}\)</span>，非知情交易者的信息集为<span class="math inline">\(I_U=\{P\}\)</span>，在1期所有不确定性都被消除。</p>
+<blockquote>
+<p>财富及效用函数</p>
+</blockquote>
+<p>每一位投资者都是风险厌恶者，其对效用函数为Markowiz-Tobin均值方差函数，让<span class="math inline">\(\theta_i\)</span>表示投资者<span class="math inline">\(i\)</span>最有持股，<span class="math inline">\(w_i\)</span>为投资者<span class="math inline">\(i\)</span>在1期的最终财富，具体公式如下：</p>
+<p><span class="math display">\[W_i=\bar\theta P+\theta_i(V-P)\]</span></p>
+<p>投资者效用函数为：</p>
+<p><span class="math display">\[E[W_i|I_i]-\frac{1}{2}Var[W_i|I_i]\]</span></p>
+<blockquote>
+<p><strong>ETF持股作为外生冲击，通过交易成本、卖空限制，信息挖掘三种渠道来影响投资的决策行为。交易成本主要影响投资者从股票价格获取信息的准确性，卖空限制影响投资者对资产的需求，信息挖掘影响投资者成为知情投资的概率，ETF持股比例越高，股票交易成本越低，卖空限制越小，信息挖掘越充分，投资者成为知情交易者的概率越高，从股票价格中获取的信息越准确。</strong>假设ETF持有股票i的市值比例为<span class="math inline">\(\eta\)</span>，则投资者成为知情交易者的概率<span class="math inline">\(w\)</span>是ETF持股比例的增函数，卖空限制和交易成本是ETF持股比例的减函数。</p>
+</blockquote>
+</div>
+<div id="模型求解" class="section level3">
+<h3>模型求解</h3>
+<blockquote>
+<p>投资者最大化期望效用，具体如下：</p>
+</blockquote>
+<p><span class="math display">\[Max \hspace{0.4cm} E[W_i|I_i]-\frac{1}{2}Var[W_i|I_i] \hspace{0.4cm}i=I,U\\
+s.t \hspace{0.4cm} W_i=\bar\theta P+\theta_i(V-P)\]</span></p>
+<p>由于<span class="math inline">\(E[W_i|I_i]=\bar\theta P+\theta_i(E[F|I_i]-P)\)</span>,<span class="math inline">\(Var[W_i|I_i]=\theta_i^2(Var[F|I_i]+\sigma_u^2)\)</span>,则投资者的效用为：</p>
+<p><span class="math display">\[U_i(W_i)=\bar\theta P+\theta_i(E[F|I_i]-P)-\frac{1}{2}\theta_i^2(Var[F|I_i]+\sigma_u^2)\]</span>
+一阶条件为：</p>
+<p><span class="math display">\[\frac{\partial U_i}{\partial \theta_i}=(E[F|I_i]-P)-\theta_i(Var[F|I_i]+\sigma_u^2)=0\]</span>
+<span class="math display">\[\theta_i=\frac{E[F|I_i]-P}{Var[F|I_i]+\sigma_u^2}\]</span></p>
+<blockquote>
+<p>(1)投资者信息对称</p>
+</blockquote>
+<p>在信息对称条件下，<span class="math inline">\(P\)</span>、<span class="math inline">\(F\)</span>均为公开信息，投资者的交易成本为0，知情交易者与非知情交易者面临相同的信息集，即<span class="math inline">\(I_u=I_I=\{F,P\}\)</span>，此时，<span class="math inline">\(E[F|I_I]=E[F|I_U]=F\)</span>,<span class="math inline">\(Var[F|I_I]=Var[F|I_U]=0\)</span>。</p>
+<p>投资者的需求函数为：</p>
+<p><span class="math display">\[\theta_I=\theta_U=\frac{F-P}{\sigma_u^2}\]</span></p>
+<p>均衡价格为：</p>
+<p><span class="math display">\[P^\star=F-\sigma_u^2\bar\theta\]</span></p>
+<blockquote>
+<p>(2)信息不对称</p>
+</blockquote>
+<p>当信息不对称时，两类投资者掌握的信息不同，知情投资者掌握股票价值和价格信息，非知情投资者掌握价格信息，只能通过价格来推断资产价值信息。由于信息不对称条件下，求解比较复杂，参考Yang Bai et al.研究，我们先猜测一种均衡下的价格函数，在此价格函数下推导出投资者的需求，并证明在此均衡价格下市场出清。我们认为股票价格取决于经济状态变量，受交易成本和噪声影响，且股票价格只取决于信号<span class="math inline">\(S=\frac{1}{2}(F-c(\eta)\varepsilon)\)</span>，股票价格是<span class="math inline">\(S\)</span>的严格增函数。其中，<span class="math inline">\(\varepsilon \sim U[-a_F,a_F]\)</span></p>
+</div>

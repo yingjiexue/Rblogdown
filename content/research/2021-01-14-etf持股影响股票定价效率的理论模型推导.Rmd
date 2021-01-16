@@ -16,7 +16,7 @@ tags:
 
 ### 模型建立
 
-我们的模型尝试捕获证券市场的四个主要特征：（1）投资者异质性，（2）交易成本非零，（3）卖空存在限制，（4）知情投资者主动挖掘市场信心。投资者异质性体现在投资者的风险承担和关于未来资产回报信息上的差异，他们出于承担风险和信息投机的目的而交易。
+我们的模型尝试捕获证券市场的四个主要特征：（1）投资者异质性，（2）交易成本非零，（3）卖空存在限制，（4）知情投资者主动挖掘市场信息。投资者异质性体现在投资者的风险承担和关于未来资产回报信息上的差异，他们出于承担风险和信息投机的目的而交易。
 
 
 > 证券市场
@@ -90,7 +90,7 @@ $$\theta_I==\frac{F-P}{\sigma_u^2}$$
 $$f(S)=\int f(F,\frac{F-2S}{c})dF=\int f_F(F)f_{\varepsilon}(\frac{F-2S}{c})dF\\
  \hspace{5cm}=\frac{1}{4a_F^2}\int I[-a_F<F<a_F]I[-ca_F+2S<F<ca_F+2S]dF$$
  
-由于$F$同时属于区间$[-a_F<F<a_F]$和$[-ac_F+2S<F<ca_F+2S]$，则需要取其交集，对$S$进行讨论。
+由于$F$同时属于区间$[-a_F<F<a_F]$和$[-ca_F+2S<F<ca_F+2S]$，则需要取其交集，对$S$进行讨论。
 
 当$S\ge\frac{(1-c)a_F}{2}$时，$F\in [-ca_F+2S,a_F]$，则
 
@@ -172,3 +172,30 @@ $$P=2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+\frac{1}{3}c^
 $$\theta_I=\bar\theta+(1-w)\frac{S+c\varepsilon+\frac{1}{3}c^2a_F^2\bar\theta}{\sigma_u^2+\frac{1}{3}wc^2a_F^2}$$
 
 $$\theta_U=\bar\theta-w\frac{S+c\varepsilon+\frac{1}{3}c^2a_F^2\bar\theta}{\sigma_u^2+\frac{1}{3}wc^2a_F^2}$$
+
+### 均衡价格，最有需求模拟
+
+参数设定，$a_u=a_F=2$，$\theta=0.1$，$w=0.5$，$c=0.01$，具体代码如下：
+```{r,warning=FALSE}
+set.seed(100)
+theta=0.1
+au<-af<-2
+simamu=au^2/3
+c=0
+w=0.5
+epsilon<-runif(101,-2,2)
+S=seq(-1,1,0.02)
+P=2*S+c*epsilon-theta*simamu-(1-w)*((S+c*epsilon+c^2*af^2*theta/3)/(1+w*c^2*af^2/simamu/3))
+
+plot(S,P,lty=3,xlim = c(-1,1))
+
+abline(v=0,col="red")
+abline(h=0,col="blue")
+
+thetaI=theta+(1-w)*((S+c*epsilon+c^2*af^2*theta/3)/(simamu+w*c^2*af^2/3))
+thetaU=theta-w*((S+c*epsilon+c^2*af^2*theta/3)/(simamu+w*c^2*af^2/3))
+
+plot(S,thetaI,type = "l",col="red")
+lines(S,thetaU,col="blue",lty=3)
+```
+

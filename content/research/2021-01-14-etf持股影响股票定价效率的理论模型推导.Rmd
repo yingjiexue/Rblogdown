@@ -244,6 +244,7 @@ P=\left\{
 \end{equation}$$
 将均衡价格代入需求函数，得到均衡需求如下：
 
+
 $$\theta_I=\bar\theta+(1-w)\frac{S+c\varepsilon+V[F|S]\bar\theta}{\sigma_u^2+wV[F|S]}$$
 $$\theta_U=\bar\theta-w\frac{S+c\varepsilon+V[F|S]\bar\theta}{\sigma_u^2+wV[F|S]}$$
 

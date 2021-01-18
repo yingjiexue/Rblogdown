@@ -178,50 +178,169 @@ E[F|S]=\int Ff(F|S)dF=\left\{
 \begin{aligned}
 &amp;\frac{1}{(1+c)a_F-2S}\int _{-ca_F+2S}^{a_F}FdF,\hspace{0.5cm}S\ge\frac{(1-c)a_F}{2} \\
 &amp;\frac{1}{2ca_F}\int _{-ca_F+2S}^{ca_F+2S}FdF,\hspace{0.5cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
-&amp;\frac{1}{(1+c)a_F+2S)}\int _{-a_F}^{ca_F+2S}FdF,\hspace{0.5cm}S\le-\frac{(1-c)a_F}{2}  
+&amp;\frac{1}{(1+c)a_F+2S}\int _{-a_F}^{ca_F+2S}FdF,\hspace{0.5cm}S\le-\frac{(1-c)a_F}{2}  
 \end{aligned}
-\right.\\ \hspace{4cm}
+\right.\\ \hspace{2cm}
 =\left\{
 \begin{aligned}
-&amp;\frac{(1-c^2)a_F+4S(ca_F-S)}{2((1+c)a_F-2S))},\hspace{0.5cm}S\ge\frac{(1-c)a_F}{2} \\
+&amp;\frac{(1-c)a_F+2S}{2},\hspace{0.5cm}S\ge\frac{(1-c)a_F}{2} \\
 &amp;2S,\hspace{0.5cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
-&amp;\frac{(c^2-1)a_F+4S(ca_F+S)}{2((1+c)a_F+2S))},\hspace{0.5cm}S\le-\frac{(1-c)a_F}{2}  
+&amp;\frac{2S-(1-c)a_F}{2},\hspace{0.5cm}S\le-\frac{(1-c)a_F}{2}  
 \end{aligned}
 \right.
 \end{equation}\]</span></p>
 <p><span class="math display">\[\begin{equation}
 E[F^2|S]=\int F^2f(F|S)dF=\left\{
 \begin{aligned}
-&amp;\frac{1}{(1+c)a_F-2S}\int _{-ca_F+2S}^{a_F}F^2dF,\hspace{0.5cm}S\ge\frac{(1-c)a_F}{2} \\
+&amp;\frac{1}{(1+c)a_F-2S}\int _{-ca_F+2S}^{a_F}F^2dF,\hspace{1cm}S\ge\frac{(1-c)a_F}{2} \\
 &amp;\frac{1}{2ca_F}\int _{-ca_F+2S}^{ca_F+2S}F^2dF,\hspace{0.5cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
-&amp;\frac{1}{(1+c)a_F+2S)}\int _{-a_F}^{ca_F+2S}F^2dF,\hspace{0.5cm}S\le-\frac{(1-c)a_F}{2}  
+&amp;\frac{1}{(1+c)a_F+2S)}\int _{-a_F}^{ca_F+2S}F^2dF,\hspace{1cm}S\le-\frac{(1-c)a_F}{2}  
 \end{aligned}
-\right.\\ \hspace{4cm}
+\right.\\ \hspace{8cm}
 =\left\{
 \begin{aligned}
-&amp;\frac{a_F^3-(2S-ca_F)^3}{3((1+c)a_F-2S))},\hspace{0.5cm}S\ge\frac{(1-c)a_F}{2} \\
-&amp;4S^2+c^2a_F^2/3,\hspace{0.5cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
-&amp;\frac{(c^2-1)a_F+4S(ca_F+S)}{2((1+c)a_F+2S))},\hspace{0.5cm}S\le-\frac{(1-c)a_F}{2}  
+&amp;\frac{(1+c^2-c)a_F^2+2(1-2c)a_FS+4S^2}{3},\hspace{3cm}S\ge\frac{(1-c)a_F}{2} \\
+&amp;4S^2+c^2a_F^2/3,\hspace{6cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
+&amp;\frac{(1+c^2-c)a_F^2-2(1-2c)a_FS+4S^2}{3},\hspace{3cm}S\le-\frac{(1-c)a_F}{2}  
+\end{aligned}
+\right.
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+V[F|S]
+=\left\{
+\begin{aligned}
+&amp;\frac{[(1+c)a_F-2S]^2}{12},\hspace{3cm}S\ge\frac{(1-c)a_F}{2} \\
+&amp;c^2a_F^2/3,\hspace{2.5cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
+&amp;\frac{[(1+c)a_F+2S]^2}{12},\hspace{3cm}S\le-\frac{(1-c)a_F}{2}  
+\end{aligned}
+\right.
+\end{equation}\]</span></p>
+<p>定价效率条件均值与方差模拟，参数设定，<span class="math inline">\(a_u=a_F=2\)</span>，<span class="math inline">\(\theta=0.1\)</span>，<span class="math inline">\(w=0.5\)</span>，<span class="math inline">\(c=0.01\)</span>，具体代码如下：</p>
+<pre class="r"><code>library(plyr)
+condmean&lt;-function(S,c,af){
+  cm&lt;-NULL
+  if(S&gt;=(1-c)*af/2){
+    cm&lt;-((1-c)*af+2*S)/2
+  }else{
+    if(S&lt;=-(1-c)*af/2){
+      cm&lt;-(2*S-(1-c)*af)/2
+    }else{
+      cm=2*S
+    }
+  }
+  return(cm)
+}
+
+condvar&lt;-function(S,c,af){
+  vr&lt;-NULL
+  if(S&gt;=(1-c)*af/2){
+    vr&lt;-((1+c)*af-2*S)^2/12
+  }else{
+    if(S&lt;=-(1-c)*af/2){
+      vr&lt;-((1+c)*af+2*S)^2/12
+    }else{
+      vr&lt;-(2*c*af)^2/12
+    }
+  }
+  return(vr)
+}
+set.seed(100)
+theta=0.1
+au&lt;-af&lt;-2
+simamu=au^2/3
+c=seq(0,1,0.05)
+w=0.5
+epsilon&lt;-runif(101,-2,2)
+S=seq(-1,1,0.02)
+
+plot(S,laply(S,condmean,0.8,2),type = &quot;l&quot;,ylim = c(-1.8,1.8))
+lines(S,laply(S,condmean,0.04,2),col=&quot;red&quot;)</code></pre>
+<p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>plot(S,laply(S,condvar,0.8,2),type = &quot;l&quot;,ylim = c(-1.8,1.8))
+lines(S,laply(S,condvar,0.04,2),col=&quot;red&quot;)</code></pre>
+<p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<pre class="r"><code>plot(c,laply(c,condmean,S=-0.8,af=2),type = &quot;l&quot;)</code></pre>
+<p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-1-3.png" width="672" /></p>
+<pre class="r"><code>plot(c,laply(c,condvar,S=-0.8,af=2),type = &quot;l&quot;)</code></pre>
+<p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-1-4.png" width="672" /></p>
+<p>此时,非知情交易者的需求函数分别为
+<span class="math display">\[\begin{equation}
+\theta_U=\left\{
+\begin{aligned}
+&amp;\frac{S-P}{\frac{1}{12}[(1+c)a_F-2S]^2+\sigma_u^2},\hspace{0.5cm}S\ge\frac{(1-c)a_F}{2} \\
+&amp;\frac{S-P}{\frac{1}{3}(c^2a_F^2)+\sigma_u^2},\hspace{0.5cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
+&amp;\frac{S-P}{\frac{1}{12}[(1+c)a_F+2S]^2+\sigma_u^2},\hspace{0.5cm}S\le-\frac{(1-c)a_F}{2}  
+\end{aligned}
+\right.
+\end{equation}\]</span></p>
+<p>将<span class="math inline">\(\theta_I\)</span>和<span class="math inline">\(\theta_U\)</span>代入市场出清条件<span class="math inline">\(w\theta_I+(1-w)\theta_U=\bar\theta\)</span>得</p>
+<p><span class="math display">\[w\frac{F-P}{\sigma_u^2}+(1-w)\frac{S-P}{V[F|S])+\sigma_u^2}=\bar\theta\]</span>
+解得均衡价格为：</p>
+<p><span class="math display">\[P=2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+V[F|S]\bar\theta}{1+wV[F|S]/\sigma_u^2}\]</span>
+即</p>
+<p><span class="math display">\[\begin{equation}
+P=\left\{
+\begin{aligned}
+&amp;2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{1+w\frac{1}{12}[(1+c)a_F-2S]^2/\sigma_u^2},\hspace{0.5cm}S\ge\frac{(1-c)a_F}{2} \\
+&amp;2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+\frac{1}{3}(c^2a_F^2)\bar\theta}{1+w\frac{1}{3}(c^2a_F^2)/\sigma_u^2},\hspace{0.5cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
+&amp;2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{1+w\frac{1}{12}[(1+c)a_F+2S]^2/\sigma_u^2},\hspace{0.5cm}S\le-\frac{(1-c)a_F}{2}  
 \end{aligned}
 \right.
 \end{equation}\]</span>
-为了方便计算，令<span class="math inline">\(\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2}\)</span></p>
-<p>此时,<span class="math inline">\(F\)</span>的条件均值、方差和非知情交易者的需求函数分别为</p>
-<p><span class="math display">\[E[F|S]=2S\]</span></p>
-<p><span class="math display">\[Var[F|S]=\frac{c^2a_F^2}{3}\]</span></p>
-<p><span class="math display">\[\theta_U=\frac{S-P}{\frac{1}{3}(c^2a_F^2)+\sigma_u^2}\]</span></p>
-<p>将<span class="math inline">\(\theta_I\)</span>和<span class="math inline">\(\theta_U\)</span>代入市场出清条件<span class="math inline">\(w\theta_I+(1-w)\theta_U=\bar\theta\)</span>得</p>
-<p><span class="math display">\[w\frac{F-P}{\sigma_u^2}+(1-w)\frac{S-P}{\frac{1}{3}(c^2a_F^2)+\sigma_u^2}=\bar\theta\]</span>
-解得均衡价格为：</p>
-<p><span class="math display">\[P=2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+\frac{1}{3}c^2a_F^2\bar\theta}{1+\frac{1}{3}wc^2a_F^2/\sigma_u^2}\]</span></p>
-<p>将均衡价格代入需求函数，得到均衡需求如下：</p>
-<p><span class="math display">\[\theta_I=\bar\theta+(1-w)\frac{S+c\varepsilon+\frac{1}{3}c^2a_F^2\bar\theta}{\sigma_u^2+\frac{1}{3}wc^2a_F^2}\]</span></p>
-<p><span class="math display">\[\theta_U=\bar\theta-w\frac{S+c\varepsilon+\frac{1}{3}c^2a_F^2\bar\theta}{\sigma_u^2+\frac{1}{3}wc^2a_F^2}\]</span></p>
+将均衡价格代入需求函数，得到均衡需求如下：</p>
+<p><span class="math display">\[\theta_I=\bar\theta+(1-w)\frac{S+c\varepsilon+V[F|S]\bar\theta}{\sigma_u^2+wV[F|S]}\]</span>
+<span class="math display">\[\theta_U=\bar\theta-w\frac{S+c\varepsilon+V[F|S]\bar\theta}{\sigma_u^2+wV[F|S]}\]</span></p>
+<p>即
+<span class="math display">\[\begin{equation}
+\theta_I=\left\{
+\begin{aligned}
+&amp;\bar\theta+(1-w)\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F-2S]^2},\hspace{0.5cm}S\ge\frac{(1-c)a_F}{2} \\
+&amp;\bar\theta+(1-w)\frac{S+c\varepsilon+\frac{1}{3}(c^2a_F^2)\bar\theta}{\sigma_u^2+w\frac{1}{3}(c^2a_F^2)},\hspace{0.5cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
+&amp;\bar\theta+(1-w)\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F+2S]^2},\hspace{0.5cm}S\le-\frac{(1-c)a_F}{2}  
+\end{aligned}
+\right.
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+\theta_U=\left\{
+\begin{aligned}
+&amp;\bar\theta-w\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F-2S]^2},\hspace{0.5cm}S\ge\frac{(1-c)a_F}{2} \\
+&amp;\bar\theta-w\frac{S+c\varepsilon+\frac{1}{3}(c^2a_F^2)\bar\theta}{\sigma_u^2+w\frac{1}{3}(c^2a_F^2)},\hspace{0.5cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
+&amp;\bar\theta-w\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F+2S]^2},\hspace{0.5cm}S\le-\frac{(1-c)a_F}{2}  
+\end{aligned}
+\right.
+\end{equation}\]</span></p>
 </div>
 <div id="均衡价格最有需求模拟" class="section level3">
 <h3>均衡价格，最有需求模拟</h3>
 <p>参数设定，<span class="math inline">\(a_u=a_F=2\)</span>，<span class="math inline">\(\theta=0.1\)</span>，<span class="math inline">\(w=0.5\)</span>，<span class="math inline">\(c=0.01\)</span>，具体代码如下：</p>
-<pre class="r"><code>set.seed(100)
+<pre class="r"><code>condmean&lt;-function(S,c,af){
+  cm&lt;-NULL
+  if(S&gt;=(1-c)*af/2){
+    cm&lt;-((1-c)*af+2*S)/2
+  }else{
+    if(S&lt;=-(1-c)*af/2){
+      cm&lt;-(2*S-(1-c)*af)/2
+    }else{
+      cm=2*S
+    }
+  }
+  return(cm)
+}
+
+condvar&lt;-function(S,c,af){
+  vr&lt;-NULL
+  if(S&gt;=(1-c)*af/2){
+    vr&lt;-((1+c)*af-2*S)^2/12
+  }else{
+    if(S&lt;=-(1-c)*af/2){
+      vr&lt;-((1+c)*af+2*S)^2/12
+    }else{
+      vr&lt;-(2*c*af)^2/12
+    }
+  }
+  return(vr)
+}
+set.seed(100)
 theta=0.1
 au&lt;-af&lt;-2
 simamu=au^2/3
@@ -229,19 +348,18 @@ c=0
 w=0.5
 epsilon&lt;-runif(101,-2,2)
 S=seq(-1,1,0.02)
-P=2*S+c*epsilon-theta*simamu-(1-w)*((S+c*epsilon+c^2*af^2*theta/3)/(1+w*c^2*af^2/simamu/3))
+VFI=laply(S,condvar,c,2)
+P=2*S+c*epsilon-theta*simamu-(1-w)*((S+c*epsilon+VFI)/(1+w*VFI/simamu))
 
-plot(S,P,lty=3,xlim = c(-1,1))
+plot(S,P,lty=3,type = &quot;l&quot;)</code></pre>
+<p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>thetaI=theta+(1-w)*((S+c*epsilon+VFI*theta)/(simamu+w*VFI))
+thetaU=theta-w*((S+c*epsilon+VFI*theta)/(simamu+w*VFI))
 
-abline(v=0,col=&quot;red&quot;)
-abline(h=0,col=&quot;blue&quot;)</code></pre>
-<p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<pre class="r"><code>thetaI=theta+(1-w)*((S+c*epsilon+c^2*af^2*theta/3)/(simamu+w*c^2*af^2/3))
-thetaU=theta-w*((S+c*epsilon+c^2*af^2*theta/3)/(simamu+w*c^2*af^2/3))
-
-plot(S,thetaI,type = &quot;l&quot;,col=&quot;red&quot;)
-lines(S,thetaU,col=&quot;blue&quot;,lty=3)</code></pre>
-<p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+plot(S,thetaU,col=&quot;blue&quot;,lty=3,type = &quot;l&quot;)
+lines(S,thetaI,col=&quot;red&quot;)
+abline(h=theta,lty=3)</code></pre>
+<p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
 </div>
 
 

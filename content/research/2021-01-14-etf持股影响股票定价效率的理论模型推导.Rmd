@@ -79,7 +79,7 @@ $$P^\star=F-\sigma_u^2\bar\theta$$
 
 > (2)信息不对称
 
-当信息不对称时，两类投资者掌握的信息不同，知情投资者掌握股票价值和价格信息，非知情投资者掌握价格信息，只能通过价格来推断资产价值信息。由于信息不对称条件下，求解比较复杂，参考Yang Bai et al.研究，我们先猜测一种均衡下的价格函数，在此价格函数下推导出投资者的需求，并证明在此均衡价格下市场出清。我们认为股票价格取决于经济状态变量，受交易成本和噪声影响，且股票价格只取决于信号$S=\frac{1}{2}(F-c\varepsilon)$，股票价格是$S$的严格增函数。其中，$c\varepsilon \sim U[-a_F,a_F]$，$0< c\leq1$。
+当信息不对称时，两类投资者掌握的信息不同，知情投资者掌握股票价值和价格信息，非知情投资者掌握价格信息，只能通过价格来推断资产价值信息。由于信息不对称条件下，求解比较复杂，参考Yang Bai et al.研究，我们先猜测一种均衡下的价格函数，在此价格函数下推导出投资者的需求，并证明在此均衡价格下市场出清。我们认为股票价格取决于经济状态变量，受交易成本和噪声影响，且股票价格只取决于信号$S=\frac{1}{2}(F-c\varepsilon)$，股票价格是$S$的严格增函数。其中，$\varepsilon \sim U[-a_F,a_F]$，$0< c\leq 1$，\frac{(1+c)a_F}{2}\ge S\leq \frac{(1+c)a_F}{2}。
 
 对于知情交易者来说，在信息集$I=\{F,P\}$下的需求函数为：
 
@@ -120,16 +120,16 @@ f(F|S)=f(F,F-2S)/f(S)=\left\{
 $$\begin{equation}
 E[F|S]=\int Ff(F|S)dF=\left\{
 \begin{aligned}
-&\frac{1}{(1+c)a_F-2S}\int _{-ca_F+2S}^{a_F}FdF,\hspace{0.5cm}S\ge\frac{(1-c)a_F}{2} \\
-&\frac{1}{2ca_F}\int _{-ca_F+2S}^{ca_F+2S}FdF,\hspace{0.5cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
-&\frac{1}{(1+c)a_F+2S}\int _{-a_F}^{ca_F+2S}FdF,\hspace{0.5cm}S\le-\frac{(1-c)a_F}{2}  
+&\frac{1}{(1+c)a_F-2S}\int _{-ca_F+2S}^{a_F}FdF,\hspace{0.5cm} \frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} \\
+&\frac{1}{2ca_F}\int _{-ca_F+2S}^{ca_F+2S}FdF,\hspace{0.5cm}-\frac{(1-c)a_F}{2}< S <\frac{(1-c)a_F}{2} \\
+&\frac{1}{(1+c)a_F+2S}\int _{-a_F}^{ca_F+2S}FdF,\hspace{0.5cm}-\frac{(1+c)a_F}{2}\le S\le-\frac{(1-c)a_F}{2}  
 \end{aligned}
 \right.\\ \hspace{2cm}
 =\left\{
 \begin{aligned}
-&\frac{(1-c)a_F+2S}{2},\hspace{0.5cm}S\ge\frac{(1-c)a_F}{2} \\
-&2S,\hspace{0.5cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
-&\frac{2S-(1-c)a_F}{2},\hspace{0.5cm}S\le-\frac{(1-c)a_F}{2}  
+&\frac{(1-c)a_F+2S}{2},\hspace{0.5cm}\frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2}\\
+&2S,\hspace{0.5cm}-\frac{(1-c)a_F}{2}< S< \frac{(1-c)a_F}{2}\\
+&\frac{2S-(1-c)a_F}{2},\hspace{0.5cm}-\frac{(1+c)a_F}{2}\le S\le-\frac{(1-c)a_F}{2}  
 \end{aligned}
 \right.
 \end{equation}$$
@@ -137,16 +137,16 @@ E[F|S]=\int Ff(F|S)dF=\left\{
 $$\begin{equation}
 E[F^2|S]=\int F^2f(F|S)dF=\left\{
 \begin{aligned}
-&\frac{1}{(1+c)a_F-2S}\int _{-ca_F+2S}^{a_F}F^2dF,\hspace{1cm}S\ge\frac{(1-c)a_F}{2} \\
-&\frac{1}{2ca_F}\int _{-ca_F+2S}^{ca_F+2S}F^2dF,\hspace{0.5cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
-&\frac{1}{(1+c)a_F+2S)}\int _{-a_F}^{ca_F+2S}F^2dF,\hspace{1cm}S\le-\frac{(1-c)a_F}{2}  
+&\frac{1}{(1+c)a_F-2S}\int _{-ca_F+2S}^{a_F}F^2dF,\hspace{1cm}\frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} \\
+&\frac{1}{2ca_F}\int _{-ca_F+2S}^{ca_F+2S}F^2dF,\hspace{0.5cm}-\frac{(1-c)a_F}{2}< S<\frac{(1-c)a_F}{2} \\
+&\frac{1}{(1+c)a_F+2S)}\int _{-a_F}^{ca_F+2S}F^2dF,\hspace{1cm}- \frac{(1+c)a_F}{2}\le S\le-\frac{(1-c)a_F}{2}  
 \end{aligned}
 \right.\\ \hspace{8cm}
 =\left\{
 \begin{aligned}
-&\frac{(1+c^2-c)a_F^2+2(1-2c)a_FS+4S^2}{3},\hspace{3cm}S\ge\frac{(1-c)a_F}{2} \\
-&4S^2+c^2a_F^2/3,\hspace{6cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
-&\frac{(1+c^2-c)a_F^2-2(1-2c)a_FS+4S^2}{3},\hspace{3cm}S\le-\frac{(1-c)a_F}{2}  
+&\frac{(1+c^2-c)a_F^2+2(1-2c)a_FS+4S^2}{3},\hspace{1cm}\frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2}  \\
+&4S^2+c^2a_F^2/3,\hspace{7cm}-\frac{(1-c)a_F}{2}< S <\frac{(1-c)a_F}{2} \\
+&\frac{(1+c^2-c)a_F^2-2(1-2c)a_FS+4S^2}{3},\hspace{1cm}-\frac{(1+c)a_F}{2}\le S\le-\frac{(1-c)a_F}{2}  
 \end{aligned}
 \right.
 \end{equation}$$
@@ -156,9 +156,9 @@ $$\begin{equation}
 V[F|S]
 =\left\{
 \begin{aligned}
-&\frac{[(1+c)a_F-2S]^2}{12},\hspace{3cm}S\ge\frac{(1-c)a_F}{2} \\
-&c^2a_F^2/3,\hspace{2.5cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
-&\frac{[(1+c)a_F+2S]^2}{12},\hspace{3cm}S\le-\frac{(1-c)a_F}{2}  
+&\frac{[(1+c)a_F-2S]^2}{12},\hspace{1cm}\frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2}\\
+&c^2a_F^2/3,\hspace{3.5cm}-\frac{(1-c)a_F}{2}< S<\frac{(1-c)a_F}{2} \\
+&\frac{[(1+c)a_F+2S]^2}{12},\hspace{1cm}-\frac{(1+c)a_F}{2}\le S\le-\frac{(1-c)a_F}{2}  
 \end{aligned}
 \right.
 \end{equation}$$
@@ -194,19 +194,20 @@ condvar<-function(S,c,af){
   return(vr)
 }
 set.seed(100)
-theta=0.1
+theta=0.2
 au<-af<-2
 simamu=au^2/3
-c=seq(0,1,0.05)
+c<-0.2
 w=0.5
 epsilon<-runif(101,-2,2)
-S=seq(-1,1,0.02)
+S=seq(-(1+c)*au/2,(1+c)*au/2,0.02)
 
 plot(S,laply(S,condmean,0.8,2),type = "l",ylim = c(-1.8,1.8))
 lines(S,laply(S,condmean,0.04,2),col="red")
 plot(S,laply(S,condvar,0.8,2),type = "l",ylim = c(-1.8,1.8))
 lines(S,laply(S,condvar,0.04,2),col="red")
 
+c=seq(0,1,0.05)
 plot(c,laply(c,condmean,S=-0.8,af=2),type = "l")
 plot(c,laply(c,condvar,S=-0.8,af=2),type = "l")
 
@@ -217,9 +218,9 @@ plot(c,laply(c,condvar,S=-0.8,af=2),type = "l")
 $$\begin{equation}
 \theta_U=\left\{
 \begin{aligned}
-&\frac{S-P}{\frac{1}{12}[(1+c)a_F-2S]^2+\sigma_u^2},\hspace{0.5cm}S\ge\frac{(1-c)a_F}{2} \\
-&\frac{S-P}{\frac{1}{3}(c^2a_F^2)+\sigma_u^2},\hspace{0.5cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
-&\frac{S-P}{\frac{1}{12}[(1+c)a_F+2S]^2+\sigma_u^2},\hspace{0.5cm}S\le-\frac{(1-c)a_F}{2}  
+&\frac{S-P}{\frac{1}{12}[(1+c)a_F-2S]^2+\sigma_u^2},\hspace{0.5cm}\frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2}\\
+&\frac{S-P}{\frac{1}{3}(c^2a_F^2)+\sigma_u^2},\hspace{0.5cm}-\frac{(1-c)a_F}{2}< S< \frac{(1-c)a_F}{2} \\
+&\frac{S-P}{\frac{1}{12}[(1+c)a_F+2S]^2+\sigma_u^2},\hspace{0.5cm}-\frac{(1+c)a_F}{2}\le S\le-\frac{(1-c)a_F}{2}  
 \end{aligned}
 \right.
 \end{equation}$$
@@ -236,9 +237,9 @@ $$P=2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+V[F|S]\bar\th
 $$\begin{equation}
 P=\left\{
 \begin{aligned}
-&2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{1+w\frac{1}{12}[(1+c)a_F-2S]^2/\sigma_u^2},\hspace{0.5cm}S\ge\frac{(1-c)a_F}{2} \\
-&2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+\frac{1}{3}(c^2a_F^2)\bar\theta}{1+w\frac{1}{3}(c^2a_F^2)/\sigma_u^2},\hspace{0.5cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
-&2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{1+w\frac{1}{12}[(1+c)a_F+2S]^2/\sigma_u^2},\hspace{0.5cm}S\le-\frac{(1-c)a_F}{2}  
+&2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{1+w\frac{1}{12}[(1+c)a_F-2S]^2/\sigma_u^2},\hspace{0.5cm} \frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} \\
+&2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+\frac{1}{3}(c^2a_F^2)\bar\theta}{1+w\frac{1}{3}(c^2a_F^2)/\sigma_u^2},\hspace{0.5cm}-\frac{(1-c)a_F}{2}< S< \frac{(1-c)a_F}{2} \\
+&2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{1+w\frac{1}{12}[(1+c)a_F+2S]^2/\sigma_u^2},\hspace{0.5cm} -\frac{(1+c)a_F}{2} \le S\le-\frac{(1-c)a_F}{2}  
 \end{aligned}
 \right.
 \end{equation}$$
@@ -252,9 +253,9 @@ $$\theta_U=\bar\theta-w\frac{S+c\varepsilon+V[F|S]\bar\theta}{\sigma_u^2+wV[F|S]
 $$\begin{equation}
 \theta_I=\left\{
 \begin{aligned}
-&\bar\theta+(1-w)\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F-2S]^2},\hspace{0.5cm}S\ge\frac{(1-c)a_F}{2} \\
-&\bar\theta+(1-w)\frac{S+c\varepsilon+\frac{1}{3}(c^2a_F^2)\bar\theta}{\sigma_u^2+w\frac{1}{3}(c^2a_F^2)},\hspace{0.5cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
-&\bar\theta+(1-w)\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F+2S]^2},\hspace{0.5cm}S\le-\frac{(1-c)a_F}{2}  
+&\bar\theta+(1-w)\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F-2S]^2},\hspace{0.5cm} \frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} \\
+&\bar\theta+(1-w)\frac{S+c\varepsilon+\frac{1}{3}(c^2a_F^2)\bar\theta}{\sigma_u^2+w\frac{1}{3}(c^2a_F^2)},\hspace{0.5cm}-\frac{(1-c)a_F}{2}< S<\frac{(1-c)a_F}{2} \\
+&\bar\theta+(1-w)\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F+2S]^2},\hspace{0.5cm}-\frac{(1+c)a_F}{2} \le S\le-\frac{(1-c)a_F}{2}  
 \end{aligned}
 \right.
 \end{equation}$$
@@ -262,14 +263,14 @@ $$\begin{equation}
 $$\begin{equation}
 \theta_U=\left\{
 \begin{aligned}
-&\bar\theta-w\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F-2S]^2},\hspace{0.5cm}S\ge\frac{(1-c)a_F}{2} \\
-&\bar\theta-w\frac{S+c\varepsilon+\frac{1}{3}(c^2a_F^2)\bar\theta}{\sigma_u^2+w\frac{1}{3}(c^2a_F^2)},\hspace{0.5cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
-&\bar\theta-w\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F+2S]^2},\hspace{0.5cm}S\le-\frac{(1-c)a_F}{2}  
+&\bar\theta-w\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F-2S]^2},\hspace{0.5cm}\frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} \\
+&\bar\theta-w\frac{S+c\varepsilon+\frac{1}{3}(c^2a_F^2)\bar\theta}{\sigma_u^2+w\frac{1}{3}(c^2a_F^2)},\hspace{0.5cm}-\frac{(1-c)a_F}{2}< S< \frac{(1-c)a_F}{2} \\
+&\bar\theta-w\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F+2S]^2},\hspace{0.5cm}-\frac{(1+c)a_F}{2} \le S\le-\frac{(1-c)a_F}{2}  
 \end{aligned}
 \right.
 \end{equation}$$
 
-### 均衡价格，最有需求模拟
+### 均衡价格，最优需求模拟
 
 参数设定，$a_u=a_F=2$，$\theta=0.1$，$w=0.5$，$c=0.01$，具体代码如下：
 ```{r,warning=FALSE}
@@ -301,13 +302,13 @@ condvar<-function(S,c,af){
   return(vr)
 }
 set.seed(100)
-theta=0.1
+theta=0.2
 au<-af<-2
 simamu=au^2/3
 c=0
 w=0.5
 epsilon<-runif(101,-2,2)
-S=seq(-1,1,0.02)
+S=seq(-(1+c)*au/2,(1+c)*au/2,0.02)
 VFI=laply(S,condvar,c,2)
 P=2*S+c*epsilon-theta*simamu-(1-w)*((S+c*epsilon+VFI)/(1+w*VFI/simamu))
 
@@ -321,4 +322,25 @@ plot(S,thetaU,col="blue",lty=3,type = "l")
 lines(S,thetaI,col="red")
 abline(h=theta,lty=3)
 ```
+期望价格为：
 
+$$E[P]=\int _{\frac{(1-c)a_F}{2}}^{\frac{(1+c)a_F}{2}}Pf(S)dS+\int _{-\frac{(1-c)a_F}{2}}^{\frac{(1-c)a_F}{2}}Pf(S)dS+\int _{-\frac{(1+c)a_F}{2}}^{-\frac{(1-c)a_F}{2}}Pf(S)dS\\
+=\frac{1}{(1+c)a_F}\bigg[S^2-\bar\theta\sigma_u^2S-(1-w)[\frac{3\sigma_u^2}{2w}ln(1+\frac{w}{12\sigma_u^2}[(1+c)a_F-2S])+\frac{\bar\theta\sigma_u^2}{w}S\\+(\frac{\bar\theta\sigma_u^2}{2w}-\frac{(1+c)a_F}{4})(\frac{w}{12\sigma_u^2})^{-\frac{1}{2}}arctan(\sqrt{\frac{w}{12\sigma_u^2}}[(1+c)a_F-2S])\bigg]\bigg|_{\frac{(1-c)a_F}{2}}^{\frac{(1+c)a_F}{2}}\\
++\frac{1}{(1+c)a_F}\bigg[S^2-\bar\theta\sigma_u^2S-(1-w)[\frac{S^2}{2(1+\frac{wc^2a_F^2}{3\sigma_u^2})}+\frac{S\frac{c^2a_F^2\bar\theta}{3}}{(1+\frac{wc^2a_F^2}{3\sigma_u^2})}\bigg]\bigg|_{-\frac{(1-c)a_F}{2}}^{\frac{(1-c)a_F}{2}}\\
++\frac{1}{(1+c)a_F}\bigg[S^2-\bar\theta\sigma_u^2S-(1-w)[\frac{3\sigma_u^2}{2w}ln(1+\frac{w}{12\sigma_u^2}[(1+c)a_F+2S])+\frac{\bar\theta\sigma_u^2}{w}S\\-(\frac{\bar\theta\sigma_u^2}{2w}+\frac{(1+c)a_F}{4})(\frac{w}{12\sigma_u^2})^{-\frac{1}{2}}arctan(\sqrt{\frac{w}{12\sigma_u^2}}[(1+c)a_F+2S])\bigg]\bigg|_{-\frac{(1+c)a_F}{2}}^{-\frac{(1-c)a_F}{2}}\\
+=\frac{1}{(1+c)a_F}\bigg[-\bar\theta\sigma_u^2(1+c)a_F-(1-w)\frac{(1-c)c^2a_F^3}{1+wc^2a_F^2/3\sigma_u^2}-\frac{\theta\sigma_u^2}{w}\sqrt{12\sigma_u^2/w}arctan(\sqrt{\frac{w}{12\sigma_u^2}}2ca_F)\bigg]$$
+
+参数设定，$a_u=a_F=2$，$\theta=0.1$，$w=0.5$，$c=0.01$，具体代码如下：
+```{r,warning=FALSE}
+
+set.seed(100)
+theta=0.2
+au<-af<-2
+simamu=au^2/3
+c=seq(0,1,0.01)
+w=0.5
+P=(-theta*simamu*(1+c)*af-(1-w)*(1-c)*c^2*af^3/(1+w*c^2*af^2/(3*simamu))-theta*simamu/w*sqrt(12*simamu/w)*atan(sqrt(w/(12*simamu))*2*c*af))/((1+c)*af)
+
+plot(c,P,lty=3,type = "l")
+abline(h=-theta*simamu,col="red",lty=3)
+```

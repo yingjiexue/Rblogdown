@@ -342,7 +342,7 @@ condvar&lt;-function(S,c,af){
   return(vr)
 }
 set.seed(100)
-theta=0.2
+theta=0.1
 au&lt;-af&lt;-2
 simamu=au^2/3
 c=0
@@ -350,7 +350,7 @@ w=0.5
 epsilon&lt;-runif(101,-2,2)
 S=seq(-(1+c)*au/2,(1+c)*au/2,0.02)
 VFI=laply(S,condvar,c,2)
-P=2*S+c*epsilon-theta*simamu-(1-w)*((S+c*epsilon+VFI)/(1+w*VFI/simamu))
+P=2*S+c*epsilon-theta*simamu-(1-w)*((S+c*epsilon+VFI*theta)/(1+w*VFI/simamu))
 
 plot(S,P,lty=3,type = &quot;l&quot;)</code></pre>
 <p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
@@ -361,23 +361,77 @@ plot(S,thetaU,col=&quot;blue&quot;,lty=3,type = &quot;l&quot;)
 lines(S,thetaI,col=&quot;red&quot;)
 abline(h=theta,lty=3)</code></pre>
 <p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-2-2.png" width="672" />
-期望价格为：</p>
-<p><span class="math display">\[E[P]=\int _{\frac{(1-c)a_F}{2}}^{\frac{(1+c)a_F}{2}}Pf(S)dS+\int _{-\frac{(1-c)a_F}{2}}^{\frac{(1-c)a_F}{2}}Pf(S)dS+\int _{-\frac{(1+c)a_F}{2}}^{-\frac{(1-c)a_F}{2}}Pf(S)dS\\
-=\frac{1}{(1+c)a_F}\bigg[S^2-\bar\theta\sigma_u^2S-(1-w)[\frac{3\sigma_u^2}{2w}ln(1+\frac{w}{12\sigma_u^2}[(1+c)a_F-2S])+\frac{\bar\theta\sigma_u^2}{w}S\\+(\frac{\bar\theta\sigma_u^2}{2w}-\frac{(1+c)a_F}{4})(\frac{w}{12\sigma_u^2})^{-\frac{1}{2}}arctan(\sqrt{\frac{w}{12\sigma_u^2}}[(1+c)a_F-2S])\bigg]\bigg|_{\frac{(1-c)a_F}{2}}^{\frac{(1+c)a_F}{2}}\\
-+\frac{1}{(1+c)a_F}\bigg[S^2-\bar\theta\sigma_u^2S-(1-w)[\frac{S^2}{2(1+\frac{wc^2a_F^2}{3\sigma_u^2})}+\frac{S\frac{c^2a_F^2\bar\theta}{3}}{(1+\frac{wc^2a_F^2}{3\sigma_u^2})}\bigg]\bigg|_{-\frac{(1-c)a_F}{2}}^{\frac{(1-c)a_F}{2}}\\
-+\frac{1}{(1+c)a_F}\bigg[S^2-\bar\theta\sigma_u^2S-(1-w)[\frac{3\sigma_u^2}{2w}ln(1+\frac{w}{12\sigma_u^2}[(1+c)a_F+2S])+\frac{\bar\theta\sigma_u^2}{w}S\\-(\frac{\bar\theta\sigma_u^2}{2w}+\frac{(1+c)a_F}{4})(\frac{w}{12\sigma_u^2})^{-\frac{1}{2}}arctan(\sqrt{\frac{w}{12\sigma_u^2}}[(1+c)a_F+2S])\bigg]\bigg|_{-\frac{(1+c)a_F}{2}}^{-\frac{(1-c)a_F}{2}}\\
-=\frac{1}{(1+c)a_F}\bigg[-\bar\theta\sigma_u^2(1+c)a_F-(1-w)\frac{(1-c)c^2a_F^3}{1+wc^2a_F^2/3\sigma_u^2}-\frac{\theta\sigma_u^2}{w}\sqrt{12\sigma_u^2/w}arctan(\sqrt{\frac{w}{12\sigma_u^2}}2ca_F)\bigg]\]</span></p>
+由于<span class="math inline">\(F\)</span>与<span class="math inline">\(\varepsilon\)</span>为相互独立的均匀分布<span class="math inline">\([-a_F,a_F]\)</span>，股票价格可以表示为：
+<span class="math display">\[\begin{equation}
+P=\left\{
+\begin{aligned}
+&amp;F-\bar\theta\sigma_u^2-(1-w)\frac{\frac{1}{2}(F+c\varepsilon)+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{1+w\frac{1}{12}[(1+c)a_F-2S]^2/\sigma_u^2},\hspace{0.5cm} (1-c)a_F+c\varepsilon\le F \le (1+c)a_F+c\varepsilon \\
+&amp;F-\bar\theta\sigma_u^2-(1-w)\frac{\frac{1}{2}(F+c\varepsilon)+\frac{1}{3}(c^2a_F^2)\bar\theta}{1+w\frac{1}{3}(c^2a_F^2)/\sigma_u^2},\hspace{0.5cm}-(1-c)a_F+c\varepsilon&lt; F&lt; (1-c)a_F+c\varepsilon \\
+&amp;F-\bar\theta\sigma_u^2-(1-w)\frac{\frac{1}{2}(F+c\varepsilon)+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{1+w\frac{1}{12}[(1+c)a_F+2S]^2/\sigma_u^2},\hspace{0.5cm} -(1+c)a_F+c\varepsilon \le F\le-(1-c)a_F+c\varepsilon  
+\end{aligned}
+\right.
+\end{equation}\]</span>
+则期望价格为：</p>
+<p><span class="math display">\[E[P]=\int _{-a_F}^{a_F}d\varepsilon\int _{(1-c)a_F+c\varepsilon}^{(1+c)a_F+c\varepsilon}Pf(F)f(\varepsilon)dF+\int _{-a_F}^{a_F}\int _{-(1-c)a_F+c\varepsilon}^{(1-c)a_F+c\varepsilon}Pf(F)f(\varepsilon)dF+\int _{-a_F}^{a_F}d\varepsilon\int _{-(1+c)a_F+c\varepsilon}^{-(1-c)a_F+c\varepsilon}Pf(F)f(\varepsilon)dF\\
+=-\frac{2\sigma_u^2c\bar \theta}{w}-\sigma_u^2(1-c)\bar\theta-(1-w)\frac{(1-c)c^2a_F^2\bar\theta}{3+wc^2a_F^2/\sigma_u^2}+(1-w)\frac{\sigma_u^2\bar\theta}{wa_F}(\frac{w}{12\sigma_u^2})^{-\frac{1}{2}}arctan(\sqrt{\frac{w}{12\sigma_u^2}2ca_F})\]</span></p>
 <p>参数设定，<span class="math inline">\(a_u=a_F=2\)</span>，<span class="math inline">\(\theta=0.1\)</span>，<span class="math inline">\(w=0.5\)</span>，<span class="math inline">\(c=0.01\)</span>，具体代码如下：</p>
 <pre class="r"><code>set.seed(100)
-theta=0.2
+library(plyr)
+theta=0.1
 au&lt;-af&lt;-2
 simamu=au^2/3
-c=seq(0,1,0.01)
+c=seq(0,1,0.1)
 w=0.5
-P=(-theta*simamu*(1+c)*af-(1-w)*(1-c)*c^2*af^3/(1+w*c^2*af^2/(3*simamu))-theta*simamu/w*sqrt(12*simamu/w)*atan(sqrt(w/(12*simamu))*2*c*af))/((1+c)*af)
+P=-2*simamu*c*theta/w-theta*simamu*(1-c)-(1-w)*(1-c)*c^2*af^2*theta/(3+w*c^2*af^2/simamu)+(1-w)*(simamu*theta/(w*af))*sqrt(12*simamu/w)*atan(sqrt(w/(12*simamu))*2*c*af)
+
+condmean&lt;-function(S,c,af){
+  cm&lt;-NULL
+  if(S&gt;=(1-c)*af/2&amp;S&lt;=(1+c)*af/2){
+    cm&lt;-((1-c)*af+2*S)/2
+  }else{
+    if(S&lt;=-(1-c)*af/2&amp;S&gt;=-(1+c)*af/2){
+      cm&lt;-(2*S-(1-c)*af)/2
+    }else{
+      cm=2*S
+    }
+  }
+  return(cm)
+}
+
+condvar&lt;-function(S,c,af){
+  vr&lt;-NULL
+  if(S&gt;=(1-c)*af/2&amp;S&lt;=(1+c)*af/2){
+    vr&lt;-((1+c)*af-2*S)^2/12
+  }else{
+    if(S&lt;=-(1-c)*af/2&amp;S&gt;=-(1+c)*af/2){
+      vr&lt;-((1+c)*af+2*S)^2/12
+    }else{
+      vr&lt;-(2*c*af)^2/12
+    }
+  }
+  return(vr)
+}
+
+
+w=0.5
+
+meanP&lt;-function(c,w){
+  theta=0.1
+  au&lt;-af&lt;-2
+  simamu=au^2/3
+  epsilon&lt;-runif(1000000,-2,2)
+  df&lt;-runif(1000000,-2,2)
+  S=(df-epsilon*c)/2
+  VFI=laply(S,condvar,c,2)
+  mP=mean(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
+  return(data.frame(c,w,mP,me=mean(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+VFI)/(1+w*VFI/simamu))))
+}
+
+mp&lt;-ldply(c,meanP,w)
 
 plot(c,P,lty=3,type = &quot;l&quot;)
-abline(h=-theta*simamu,col=&quot;red&quot;,lty=3)</code></pre>
+abline(h=-theta*simamu,col=&quot;red&quot;,lty=3)
+lines(mp$c,mp$mP,col=&quot;blue&quot;,lty=3)</code></pre>
 <p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 

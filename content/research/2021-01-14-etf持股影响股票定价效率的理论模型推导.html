@@ -343,13 +343,16 @@ meanP&lt;-function(c,w){
   S=(df-epsilon*c)/2
   VFI=laply(S,condvar,c,2)
   mP=mean(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
-  return(data.frame(c,w,mP,me=mean(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+VFI)/(1+w*VFI/simamu))))
+  VR=var(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
+  return(data.frame(c,w,mP,VR))
 }
 
 mp&lt;-ldply(c,meanP,w)
 
-plot(c,P,lty=3,type = &quot;l&quot;)
-abline(h=-theta*simamu,col=&quot;red&quot;,lty=3)
-lines(mp$c,mp$mP,col=&quot;blue&quot;,lty=3)</code></pre>
+plot(mp$c,mp$mP,lty=3,type = &quot;l&quot;,col=&quot;blue&quot;)
+abline(h=max(mp$mP),col=&quot;red&quot;,lty=3)</code></pre>
 <p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>plot(mp$c,mp$VR,lty=3,type = &quot;l&quot;,col=&quot;blue&quot;)
+abline(h=min(mp$VR),col=&quot;red&quot;,lty=3)</code></pre>
+<p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
 </div>

@@ -388,12 +388,16 @@ meanP<-function(c,w){
   S=(df-epsilon*c)/2
   VFI=laply(S,condvar,c,2)
   mP=mean(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
-  return(data.frame(c,w,mP,me=mean(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+VFI)/(1+w*VFI/simamu))))
+  VR=var(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
+  return(data.frame(c,w,mP,VR))
 }
 
 mp<-ldply(c,meanP,w)
 
-plot(c,P,lty=3,type = "l")
-abline(h=-theta*simamu,col="red",lty=3)
-lines(mp$c,mp$mP,col="blue",lty=3)
+plot(mp$c,mp$mP,lty=3,type = "l",col="blue")
+abline(h=max(mp$mP),col="red",lty=3)
+
+plot(mp$c,mp$VR,lty=3,type = "l",col="blue")
+abline(h=min(mp$VR),col="red",lty=3)
+
 ```

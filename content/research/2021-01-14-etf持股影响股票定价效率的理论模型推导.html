@@ -71,11 +71,11 @@ s.t \hspace{0.4cm} W_i=\bar\theta P+\theta_i(V-P)\]</span></p>
 <p>当信息不对称时，两类投资者掌握的信息不同，知情投资者掌握股票价值和价格信息，非知情投资者掌握价格信息，只能通过价格来推断资产价值信息。由于信息不对称条件下，求解比较复杂，参考Yang Bai et al.研究，我们先猜测一种均衡下的价格函数，在此价格函数下推导出投资者的需求，并证明在此均衡价格下市场出清。我们认为股票价格取决于经济状态变量，受交易成本和噪声影响，且股票价格只取决于信号<span class="math inline">\(S=\frac{1}{2}(F-c\varepsilon)\)</span>，股票价格是<span class="math inline">\(S\)</span>的严格增函数。其中，<span class="math inline">\(\varepsilon \sim U[-a_F,a_F]\)</span>，<span class="math inline">\(0&lt; c\leq 1\)</span>，<span class="math inline">\(\frac{(1+c)a_F}{2}\ge S\leq \frac{(1+c)a_F}{2}\)</span>。</p>
 <p>对于知情交易者来说，在信息集<span class="math inline">\(I=\{F,P\}\)</span>下的需求函数为：</p>
 <p><span class="math display">\[\theta_I==\frac{F-P}{\sigma_u^2}\]</span></p>
-<p>对于非知情交易者来说，在信息集<span class="math inline">\(I=\{P\}\)</span>下，<span class="math inline">\(E[F|I_U]=E[F|P]=E[F|S]\)</span>，<span class="math inline">\(Var[F|I_U]=Var[F|P]=Var[F|S]\)</span>。由于<span class="math inline">\(c\varepsilon\)</span>与<span class="math inline">\(F\)</span>独立同分布，则其联合密度函数为<span class="math inline">\(f(F,\varepsilon)=f_F(F)f_{\varepsilon}(\varepsilon)\)</span>，且<span class="math inline">\(\varepsilon=\frac{F-2S}{c}\)</span>，则<span class="math inline">\(S\)</span>的概率密度函数为：</p>
+<p>对于非知情交易者来说，在信息集<span class="math inline">\(I=\{P\}\)</span>下，<span class="math inline">\(E[F|I_U]=E[F|P]=E[F|S]\)</span>，<span class="math inline">\(Var[F|I_U]=Var[F|P]=Var[F|S]\)</span>。由于<span class="math inline">\(\varepsilon\)</span>与<span class="math inline">\(F\)</span>独立同分布，则其联合密度函数为<span class="math inline">\(f(F,\varepsilon)=f_F(F)f_{\varepsilon}(\varepsilon)\)</span>，且<span class="math inline">\(\varepsilon=\frac{F-2S}{c}\)</span>，则<span class="math inline">\(S\)</span>的概率密度函数为：</p>
 <p><span class="math display">\[f(S)=\int f(F,\frac{F-2S}{c})dF=\int f_F(F)f_{\varepsilon}(\frac{F-2S}{c})dF\\
  \hspace{5cm}=\frac{1}{4a_F^2}\int I[-a_F&lt;F&lt;a_F]I[-ca_F+2S&lt;F&lt;ca_F+2S]dF\]</span></p>
 <p>由于<span class="math inline">\(F\)</span>同时属于区间<span class="math inline">\([-a_F&lt;F&lt;a_F]\)</span>和<span class="math inline">\([-ca_F+2S&lt;F&lt;ca_F+2S]\)</span>，则需要取其交集，对<span class="math inline">\(S\)</span>进行讨论。</p>
-<p>当$S  <span class="math inline">\(时，\)</span>F$，则</p>
+<p>当<span class="math inline">\(\frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2}\)</span>时，<span class="math inline">\(F\in [-ca_F+2S,a_F]\)</span>，则</p>
 <p><span class="math display">\[f(S)=\frac{1}{4a_F^2}\int _{-ca_F+2S}^{a_F}dF=\frac{(1+c)a_F-2S}{4a_F^2}\]</span></p>
 <p>当<span class="math inline">\(-\frac{(1+c)a_F}{2}\le S\le-\frac{(1-c)a_F}{2}\)</span>时，<span class="math inline">\(F\in [-a_F,ca_F+2S]\)</span>，则</p>
 <p><span class="math display">\[f(S)=\frac{1}{4a_F^2}\int _{-a_F}^{ca_F+2S}dF=\frac{(1+c)a_F+2S}{4a_F^2}\]</span>
@@ -315,14 +315,14 @@ Empo&lt;-mp%&gt;%mutate(EPdif=mP-optima$mP,EVdif=mp$VR-optima$VR)
 
 nmp&lt;-Reduce(function(x,y)rbind(x,y),future_lapply((1-seq(0,1,0.05)),mpf,seq(0,1,0.05)))
 nmp&lt;-nmp[nmp$w==(1-nmp$c),]%&gt;%mutate(mP=mP-optima$mP,VR=VR-optima$VR)
-res&lt;-persp(c,w, matrix(Empo$EPdif,21,21), theta = 30, shade = 0.75,col =rainbow(441),ltheta=30,ticktype=&quot;detailed&quot;,xlab = &quot;c&quot;,zlab = &quot;E[P]-E[P*]&quot;)
+res&lt;-persp(c,w, matrix(Empo$EPdif,21,21), theta = 30,phi = 30, shade = 0.75,col =rainbow(441),ltheta=30,ticktype=&quot;detailed&quot;,xlab = &quot;c&quot;,zlab = &quot;E[P]-E[P*]&quot;)
 
 lines(trans3d(nmp$c,nmp$w,nmp$mP,pmat = res) ,type = &quot;l&quot;,lwd=3)</code></pre>
 <p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <pre class="r"><code>plot(nmp$w,nmp$mP,type = &quot;l&quot;,lwd=3)
 abline(h=0,col=&quot;red&quot;)</code></pre>
 <p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
-<pre class="r"><code>res&lt;-persp(c,w, matrix(Empo$EVdif,21,21), theta = -50, shade = 0.75,col =rainbow(441),ltheta=30,phi = 30,ticktype=&quot;detailed&quot;,xlab = &quot;c&quot;,zlab = &quot;Var[P]-Var[P*]&quot;)
+<pre class="r"><code>res&lt;-persp(c,w, matrix(Empo$EVdif,21,21), theta = -50, shade = 0.75,col =rainbow(441),ltheta=30,ticktype=&quot;detailed&quot;,xlab = &quot;c&quot;,zlab = &quot;Var[P]-Var[P*]&quot;)
 lines(trans3d(nmp$c,nmp$w,nmp$VR,pmat = res) ,type = &quot;l&quot;,lwd=3)</code></pre>
 <p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
 <pre class="r"><code>plot(nmp$w,nmp$VR,type = &quot;l&quot;,lwd=3)
@@ -331,4 +331,7 @@ abline(h=0,col=&quot;red&quot;)</code></pre>
 <blockquote>
 <p>(3)信息不对称下卖空限制对定价效率的影响</p>
 </blockquote>
+<p>我们假设投资者受卖空限制约束，对于投资者<span class="math inline">\(i(i=I,U)\)</span>来说，其持有的股票头寸大于某个非正常数<span class="math inline">\(\theta_i\ge-b_i,b_i\ge0\)</span>，为了方便，我们假设卖空限制在同类投资者相同，但不同投资者者中不同，特别对于知情投资者来说，其可以持有空头头寸到<span class="math inline">\(b_i\)</span>。</p>
+<p>根据效用最大化一阶条件，投资者的最优持股为：</p>
+<p><span class="math display">\[\theta_i=max\bigg[\frac{(E[F|I_i]-P)}{Var[F|I_i]+\sigma_u^2},-b_i\bigg]\]</span></p>
 </div>

@@ -85,14 +85,14 @@ $$P^\star=F-\sigma_u^2\bar\theta$$
 
 $$\theta_I==\frac{F-P}{\sigma_u^2}$$
 
-对于非知情交易者来说，在信息集$I=\{P\}$下，$E[F|I_U]=E[F|P]=E[F|S]$，$Var[F|I_U]=Var[F|P]=Var[F|S]$。由于$c\varepsilon$与$F$独立同分布，则其联合密度函数为$f(F,\varepsilon)=f_F(F)f_{\varepsilon}(\varepsilon)$，且$\varepsilon=\frac{F-2S}{c}$，则$S$的概率密度函数为：
+对于非知情交易者来说，在信息集$I=\{P\}$下，$E[F|I_U]=E[F|P]=E[F|S]$，$Var[F|I_U]=Var[F|P]=Var[F|S]$。由于$\varepsilon$与$F$独立同分布，则其联合密度函数为$f(F,\varepsilon)=f_F(F)f_{\varepsilon}(\varepsilon)$，且$\varepsilon=\frac{F-2S}{c}$，则$S$的概率密度函数为：
 
 $$f(S)=\int f(F,\frac{F-2S}{c})dF=\int f_F(F)f_{\varepsilon}(\frac{F-2S}{c})dF\\
  \hspace{5cm}=\frac{1}{4a_F^2}\int I[-a_F<F<a_F]I[-ca_F+2S<F<ca_F+2S]dF$$
  
 由于$F$同时属于区间$[-a_F<F<a_F]$和$[-ca_F+2S<F<ca_F+2S]$，则需要取其交集，对$S$进行讨论。
 
-当$\frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} $时，$F\in [-ca_F+2S,a_F]$，则
+当$\frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2}$时，$F\in [-ca_F+2S,a_F]$，则
 
 $$f(S)=\frac{1}{4a_F^2}\int _{-ca_F+2S}^{a_F}dF=\frac{(1+c)a_F-2S}{4a_F^2}$$
 
@@ -363,14 +363,14 @@ Empo<-mp%>%mutate(EPdif=mP-optima$mP,EVdif=mp$VR-optima$VR)
 
 nmp<-Reduce(function(x,y)rbind(x,y),future_lapply((1-seq(0,1,0.05)),mpf,seq(0,1,0.05)))
 nmp<-nmp[nmp$w==(1-nmp$c),]%>%mutate(mP=mP-optima$mP,VR=VR-optima$VR)
-res<-persp(c,w, matrix(Empo$EPdif,21,21), theta = 30, shade = 0.75,col =rainbow(441),ltheta=30,ticktype="detailed",xlab = "c",zlab = "E[P]-E[P*]")
+res<-persp(c,w, matrix(Empo$EPdif,21,21), theta = 30,phi = 30, shade = 0.75,col =rainbow(441),ltheta=30,ticktype="detailed",xlab = "c",zlab = "E[P]-E[P*]")
 
 lines(trans3d(nmp$c,nmp$w,nmp$mP,pmat = res) ,type = "l",lwd=3)
 
 plot(nmp$w,nmp$mP,type = "l",lwd=3)
 abline(h=0,col="red")
 
-res<-persp(c,w, matrix(Empo$EVdif,21,21), theta = -50, shade = 0.75,col =rainbow(441),ltheta=30,phi = 30,ticktype="detailed",xlab = "c",zlab = "Var[P]-Var[P*]")
+res<-persp(c,w, matrix(Empo$EVdif,21,21), theta = -50, shade = 0.75,col =rainbow(441),ltheta=30,ticktype="detailed",xlab = "c",zlab = "Var[P]-Var[P*]")
 lines(trans3d(nmp$c,nmp$w,nmp$VR,pmat = res) ,type = "l",lwd=3)
 plot(nmp$w,nmp$VR,type = "l",lwd=3)
 abline(h=0,col="red")
@@ -378,4 +378,10 @@ abline(h=0,col="red")
 ```
 
 > (3)信息不对称下卖空限制对定价效率的影响
+
+我们假设投资者受卖空限制约束，对于投资者$i(i=I,U)$来说，其持有的股票头寸大于某个非正常数$\theta_i\ge-b_i,b_i\ge0$，为了方便，我们假设卖空限制在同类投资者相同，但不同投资者者中不同，特别对于知情投资者来说，其可以持有空头头寸到$b_i$。
+
+根据效用最大化一阶条件，投资者的最优持股为：
+
+$$\theta_i=max\bigg[\frac{(E[F|I_i]-P)}{Var[F|I_i]+\sigma_u^2},-b_i\bigg]$$
 

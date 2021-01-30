@@ -68,16 +68,16 @@ s.t \hspace{0.4cm} W_i=\bar\theta P+\theta_i(V-P)\]</span></p>
 <blockquote>
 <p>(2)信息不对称</p>
 </blockquote>
-<p>当信息不对称时，两类投资者掌握的信息不同，知情投资者掌握股票价值和价格信息，非知情投资者掌握价格信息，只能通过价格来推断资产价值信息。由于信息不对称条件下，求解比较复杂，参考Yang Bai et al.研究，我们先猜测一种均衡下的价格函数，在此价格函数下推导出投资者的需求，并证明在此均衡价格下市场出清。我们认为股票价格取决于经济状态变量，受交易成本和噪声影响，且股票价格只取决于信号<span class="math inline">\(S=\frac{1}{2}(F-c\varepsilon)\)</span>，股票价格是<span class="math inline">\(S\)</span>的严格增函数。其中，<span class="math inline">\(\varepsilon \sim U[-a_F,a_F]\)</span>，<span class="math inline">\(0&lt; c\leq 1\)</span>，S。</p>
+<p>当信息不对称时，两类投资者掌握的信息不同，知情投资者掌握股票价值和价格信息，非知情投资者掌握价格信息，只能通过价格来推断资产价值信息。由于信息不对称条件下，求解比较复杂，参考Yang Bai et al.研究，我们先猜测一种均衡下的价格函数，在此价格函数下推导出投资者的需求，并证明在此均衡价格下市场出清。我们认为股票价格取决于经济状态变量，受交易成本和噪声影响，且股票价格只取决于信号<span class="math inline">\(S=\frac{1}{2}(F-c\varepsilon)\)</span>，股票价格是<span class="math inline">\(S\)</span>的严格增函数。其中，<span class="math inline">\(\varepsilon \sim U[-a_F,a_F]\)</span>，<span class="math inline">\(0&lt; c\leq 1\)</span>，<span class="math inline">\(\frac{(1+c)a_F}{2}\ge S\leq \frac{(1+c)a_F}{2}\)</span>。</p>
 <p>对于知情交易者来说，在信息集<span class="math inline">\(I=\{F,P\}\)</span>下的需求函数为：</p>
 <p><span class="math display">\[\theta_I==\frac{F-P}{\sigma_u^2}\]</span></p>
 <p>对于非知情交易者来说，在信息集<span class="math inline">\(I=\{P\}\)</span>下，<span class="math inline">\(E[F|I_U]=E[F|P]=E[F|S]\)</span>，<span class="math inline">\(Var[F|I_U]=Var[F|P]=Var[F|S]\)</span>。由于<span class="math inline">\(c\varepsilon\)</span>与<span class="math inline">\(F\)</span>独立同分布，则其联合密度函数为<span class="math inline">\(f(F,\varepsilon)=f_F(F)f_{\varepsilon}(\varepsilon)\)</span>，且<span class="math inline">\(\varepsilon=\frac{F-2S}{c}\)</span>，则<span class="math inline">\(S\)</span>的概率密度函数为：</p>
 <p><span class="math display">\[f(S)=\int f(F,\frac{F-2S}{c})dF=\int f_F(F)f_{\varepsilon}(\frac{F-2S}{c})dF\\
  \hspace{5cm}=\frac{1}{4a_F^2}\int I[-a_F&lt;F&lt;a_F]I[-ca_F+2S&lt;F&lt;ca_F+2S]dF\]</span></p>
 <p>由于<span class="math inline">\(F\)</span>同时属于区间<span class="math inline">\([-a_F&lt;F&lt;a_F]\)</span>和<span class="math inline">\([-ca_F+2S&lt;F&lt;ca_F+2S]\)</span>，则需要取其交集，对<span class="math inline">\(S\)</span>进行讨论。</p>
-<p>当<span class="math inline">\(S\ge\frac{(1-c)a_F}{2}\)</span>时，<span class="math inline">\(F\in [-ca_F+2S,a_F]\)</span>，则</p>
+<p>当$S  <span class="math inline">\(时，\)</span>F$，则</p>
 <p><span class="math display">\[f(S)=\frac{1}{4a_F^2}\int _{-ca_F+2S}^{a_F}dF=\frac{(1+c)a_F-2S}{4a_F^2}\]</span></p>
-<p>当<span class="math inline">\(S\le-\frac{(1-c)a_F}{2}\)</span>时，<span class="math inline">\(F\in [-a_F,ca_F+2S]\)</span>，则</p>
+<p>当<span class="math inline">\(-\frac{(1+c)a_F}{2}\le S\le-\frac{(1-c)a_F}{2}\)</span>时，<span class="math inline">\(F\in [-a_F,ca_F+2S]\)</span>，则</p>
 <p><span class="math display">\[f(S)=\frac{1}{4a_F^2}\int _{-a_F}^{ca_F+2S}dF=\frac{(1+c)a_F+2S}{4a_F^2}\]</span>
 当<span class="math inline">\(-\frac{(1-c)a_F}{2}&lt;S&lt;\frac{(1-c)a_F}{2}\)</span>时，<span class="math inline">\(F\in [-ca_F+2S,ca_F+2S]\)</span>，则</p>
 <p><span class="math display">\[f(S)=\frac{1}{4a_F^2}\int _{-ca_F+2S}^{ca_F+2S}dF=\frac{2ca_F}{4a_F^2}\]</span></p>
@@ -85,9 +85,9 @@ s.t \hspace{0.4cm} W_i=\bar\theta P+\theta_i(V-P)\]</span></p>
 <p><span class="math display">\[\begin{equation}
 f(F|S)=f(F,F-2S)/f(S)=\left\{
 \begin{aligned}
-&amp;\frac{1}{(1+c)a_F-2S}I[-ca_F+2S,a_F](F),\hspace{0.5cm}S\ge\frac{(1-c)a_F}{2} \\
+&amp;\frac{1}{(1+c)a_F-2S}I[-ca_F+2S,a_F](F),\hspace{0.5cm}\frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} \\
 &amp;\frac{1}{2ca_F}I[-ca_F+2S,ca_F+2S](F),\hspace{0.5cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
-&amp;\frac{1}{(1+c)a_F+2S}I[-a_F,ca_F+2S](F),\hspace{0.5cm}S\le-\frac{(1-c)a_F}{2} 
+&amp;\frac{1}{(1+c)a_F+2S}I[-a_F,ca_F+2S](F),\hspace{0.5cm}-\frac{(1+c)a_F}{2}\le S\le-\frac{(1-c)a_F}{2}
 \end{aligned}
 \right.
 \end{equation}\]</span></p>
@@ -135,36 +135,9 @@ V[F|S]
 \right.
 \end{equation}\]</span></p>
 <p>定价效率条件均值与方差模拟，参数设定，<span class="math inline">\(a_u=a_F=2\)</span>，<span class="math inline">\(\theta=0.1\)</span>，<span class="math inline">\(w=0.5\)</span>，<span class="math inline">\(c=0.01\)</span>，具体代码如下：</p>
-<pre class="r"><code>library(plyr)
-condmean&lt;-function(S,c,af){
-  cm&lt;-NULL
-  if(S&gt;=(1-c)*af/2){
-    cm&lt;-((1-c)*af+2*S)/2
-  }else{
-    if(S&lt;=-(1-c)*af/2){
-      cm&lt;-(2*S-(1-c)*af)/2
-    }else{
-      cm=2*S
-    }
-  }
-  return(cm)
-}
-
-condvar&lt;-function(S,c,af){
-  vr&lt;-NULL
-  if(S&gt;=(1-c)*af/2){
-    vr&lt;-((1+c)*af-2*S)^2/12
-  }else{
-    if(S&lt;=-(1-c)*af/2){
-      vr&lt;-((1+c)*af+2*S)^2/12
-    }else{
-      vr&lt;-(2*c*af)^2/12
-    }
-  }
-  return(vr)
-}
+<pre class="r"><code>pacman::p_load(future.apply,plyr,ETFpe)
 set.seed(100)
-theta=0.2
+theta=0.1
 au&lt;-af&lt;-2
 simamu=au^2/3
 c&lt;-0.2
@@ -172,11 +145,11 @@ w=0.5
 epsilon&lt;-runif(101,-2,2)
 S=seq(-(1+c)*au/2,(1+c)*au/2,0.02)
 
-plot(S,laply(S,condmean,0.8,2),type = &quot;l&quot;,ylim = c(-1.8,1.8))
-lines(S,laply(S,condmean,0.04,2),col=&quot;red&quot;)</code></pre>
+plot(S,condmean(S,0.8,2),type = &quot;l&quot;,ylim = c(-1.8,1.8))
+lines(S,condmean(S,0.4,2),col=&quot;red&quot;)</code></pre>
 <p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<pre class="r"><code>plot(S,laply(S,condvar,0.8,2),type = &quot;l&quot;,ylim = c(-1.8,1.8))
-lines(S,laply(S,condvar,0.04,2),col=&quot;red&quot;)</code></pre>
+<pre class="r"><code>plot(S,condvar(S,0.8,2),type = &quot;l&quot;,ylim = c(-1.8,1.8))
+lines(S,condvar(S,0.4,2),col=&quot;red&quot;)</code></pre>
 <p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
 <pre class="r"><code>c=seq(0,1,0.05)
 plot(c,laply(c,condmean,S=-0.8,af=2),type = &quot;l&quot;)</code></pre>
@@ -233,33 +206,8 @@ P=\left\{
 <div id="均衡价格最优需求模拟" class="section level3">
 <h3>均衡价格，最优需求模拟</h3>
 <p>参数设定，<span class="math inline">\(a_u=a_F=2\)</span>，<span class="math inline">\(\theta=0.1\)</span>，<span class="math inline">\(w=0.5\)</span>，<span class="math inline">\(c=0.01\)</span>，具体代码如下：</p>
-<pre class="r"><code>condmean&lt;-function(S,c,af){
-  cm&lt;-NULL
-  if(S&gt;=(1-c)*af/2){
-    cm&lt;-((1-c)*af+2*S)/2
-  }else{
-    if(S&lt;=-(1-c)*af/2){
-      cm&lt;-(2*S-(1-c)*af)/2
-    }else{
-      cm=2*S
-    }
-  }
-  return(cm)
-}
+<pre class="r"><code>pacman::p_load(future.apply,plyr,Rcpp)
 
-condvar&lt;-function(S,c,af){
-  vr&lt;-NULL
-  if(S&gt;=(1-c)*af/2){
-    vr&lt;-((1+c)*af-2*S)^2/12
-  }else{
-    if(S&lt;=-(1-c)*af/2){
-      vr&lt;-((1+c)*af+2*S)^2/12
-    }else{
-      vr&lt;-(2*c*af)^2/12
-    }
-  }
-  return(vr)
-}
 set.seed(100)
 theta=0.1
 au&lt;-af&lt;-2
@@ -294,65 +242,93 @@ P=\left\{
 <p><span class="math display">\[E[P]=\int _{-a_F}^{a_F}d\varepsilon\int _{(1-c)a_F+c\varepsilon}^{(1+c)a_F+c\varepsilon}Pf(F)f(\varepsilon)dF+\int _{-a_F}^{a_F}\int _{-(1-c)a_F+c\varepsilon}^{(1-c)a_F+c\varepsilon}Pf(F)f(\varepsilon)dF+\int _{-a_F}^{a_F}d\varepsilon\int _{-(1+c)a_F+c\varepsilon}^{-(1-c)a_F+c\varepsilon}Pf(F)f(\varepsilon)dF\\
 =-\frac{2\sigma_u^2c\bar \theta}{w}-\sigma_u^2(1-c)\bar\theta-(1-w)\frac{(1-c)c^2a_F^2\bar\theta}{3+wc^2a_F^2/\sigma_u^2}+(1-w)\frac{\sigma_u^2\bar\theta}{wa_F}(\frac{w}{12\sigma_u^2})^{-\frac{1}{2}}arctan(\sqrt{\frac{w}{12\sigma_u^2}2ca_F})\]</span></p>
 <p>参数设定，<span class="math inline">\(a_u=a_F=2\)</span>，<span class="math inline">\(\theta=0.1\)</span>，<span class="math inline">\(w=0.5\)</span>，<span class="math inline">\(c=0.01\)</span>，具体代码如下：</p>
-<pre class="r"><code>set.seed(100)
-library(plyr)
+<pre class="r"><code>pacman::p_load(future.apply,plyr,ETFpe,tidyr,dplyr)
+set.seed(100)
+
 theta=0.1
 au&lt;-af&lt;-2
 simamu=au^2/3
 c=seq(0,1,0.1)
-w=0.5
-P=-2*simamu*c*theta/w-theta*simamu*(1-c)-(1-w)*(1-c)*c^2*af^2*theta/(3+w*c^2*af^2/simamu)+(1-w)*(simamu*theta/(w*af))*sqrt(12*simamu/w)*atan(sqrt(w/(12*simamu))*2*c*af)
+w=seq(0,1,0.1)
 
-condmean&lt;-function(S,c,af){
-  cm&lt;-NULL
-  if(S&gt;=(1-c)*af/2&amp;S&lt;=(1+c)*af/2){
-    cm&lt;-((1-c)*af+2*S)/2
-  }else{
-    if(S&lt;=-(1-c)*af/2&amp;S&gt;=-(1+c)*af/2){
-      cm&lt;-(2*S-(1-c)*af)/2
-    }else{
-      cm=2*S
-    }
-  }
-  return(cm)
-}
-
-condvar&lt;-function(S,c,af){
-  vr&lt;-NULL
-  if(S&gt;=(1-c)*af/2&amp;S&lt;=(1+c)*af/2){
-    vr&lt;-((1+c)*af-2*S)^2/12
-  }else{
-    if(S&lt;=-(1-c)*af/2&amp;S&gt;=-(1+c)*af/2){
-      vr&lt;-((1+c)*af+2*S)^2/12
-    }else{
-      vr&lt;-(2*c*af)^2/12
-    }
-  }
-  return(vr)
-}
-
-
-w=0.5
-
-meanP&lt;-function(c,w){
+meanPV&lt;-function(c,w){
   theta=0.1
   au&lt;-af&lt;-2
   simamu=au^2/3
   epsilon&lt;-runif(1000000,-2,2)
   df&lt;-runif(1000000,-2,2)
   S=(df-epsilon*c)/2
-  VFI=laply(S,condvar,c,2)
+  VFI=condvar(S,c,2)
   mP=mean(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
   VR=var(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
   return(data.frame(c,w,mP,VR))
 }
 
-mp&lt;-ldply(c,meanP,w)
+mpf&lt;-function(w,c){
+  return(ldply(c,meanPV,w))
+}
 
-plot(mp$c,mp$mP,lty=3,type = &quot;l&quot;,col=&quot;blue&quot;)
-abline(h=max(mp$mP),col=&quot;red&quot;,lty=3)</code></pre>
+mc&lt;-ldply(c,meanPV,0.5)
+
+mp&lt;-ldply(w,mpf,0.8)
+
+plot(mc$c,mc$mP,lty=3,type = &quot;l&quot;,col=&quot;blue&quot;)
+abline(h=max(mc$mP),col=&quot;red&quot;,lty=3)</code></pre>
 <p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<pre class="r"><code>plot(mp$c,mp$VR,lty=3,type = &quot;l&quot;,col=&quot;blue&quot;)
-abline(h=min(mp$VR),col=&quot;red&quot;,lty=3)</code></pre>
+<pre class="r"><code>plot(mc$c,mc$VR,lty=3,type = &quot;l&quot;,col=&quot;blue&quot;)
+abline(h=min(mc$VR),col=&quot;red&quot;,lty=3)</code></pre>
 <p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<pre class="r"><code>plot(mp$w,mp$mP,lty=3,type = &quot;l&quot;,col=&quot;blue&quot;)
+abline(h=max(mp$mP),col=&quot;red&quot;,lty=3)</code></pre>
+<p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
+<pre class="r"><code>plot(mp$w,mp$VR,lty=3,type = &quot;l&quot;,col=&quot;blue&quot;)
+abline(h=max(mp$VR),col=&quot;red&quot;,lty=3)</code></pre>
+<p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-3-4.png" width="672" /></p>
+<p>根据前面分析，我们知道交易成本和投资者知情概率是ETF持股比例的函数，交易成本随ETF持股比例递减，知情交易概率随ETF持股比例递增，不妨设其函数形式分别为<span class="math inline">\(c=1-\lambda\)</span>,<span class="math inline">\(w=\lambda\)</span>，则ETF持股对定价效率的影响的蒙特卡洛模拟如下：</p>
+<pre class="r"><code>theta=0.1
+au&lt;-af&lt;-2
+simamu=au^2/3
+c=seq(0,1,0.05)
+w=seq(0,1,0.05)
+meanPV&lt;-function(c,w){
+  theta=0.1
+  au&lt;-af&lt;-2
+  simamu=au^2/3
+  epsilon&lt;-runif(1000000,-3,3)
+  df&lt;-runif(1000000,-2,2)
+  S=(df-epsilon*c)/2
+  VFI=condvar(S,c,2)
+  mP=mean(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
+  VR=var(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
+  return(data.frame(c,w,mP,VR))
+}
+
+
+mpf&lt;-function(w,c){
+  return(ldply(c,meanPV,w))
+}
+plan(multiprocess)        ##启动多核运行
+mp&lt;-Reduce(function(x,y) rbind(x,y),future_lapply(w,mpf,c))
+optima&lt;-mp%&gt;%filter(w==1&amp;c==0)
+
+Empo&lt;-mp%&gt;%mutate(EPdif=mP-optima$mP,EVdif=mp$VR-optima$VR)
+
+nmp&lt;-Reduce(function(x,y)rbind(x,y),future_lapply((1-seq(0,1,0.05)),mpf,seq(0,1,0.05)))
+nmp&lt;-nmp[nmp$w==(1-nmp$c),]%&gt;%mutate(mP=mP-optima$mP,VR=VR-optima$VR)
+res&lt;-persp(c,w, matrix(Empo$EPdif,21,21), theta = 30, shade = 0.75,col =rainbow(441),ltheta=30,ticktype=&quot;detailed&quot;,xlab = &quot;c&quot;,zlab = &quot;E[P]-E[P*]&quot;)
+
+lines(trans3d(nmp$c,nmp$w,nmp$mP,pmat = res) ,type = &quot;l&quot;,lwd=3)</code></pre>
+<p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>plot(nmp$w,nmp$mP,type = &quot;l&quot;,lwd=3)
+abline(h=0,col=&quot;red&quot;)</code></pre>
+<p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<pre class="r"><code>res&lt;-persp(c,w, matrix(Empo$EVdif,21,21), theta = -50, shade = 0.75,col =rainbow(441),ltheta=30,phi = 30,ticktype=&quot;detailed&quot;,xlab = &quot;c&quot;,zlab = &quot;Var[P]-Var[P*]&quot;)
+lines(trans3d(nmp$c,nmp$w,nmp$VR,pmat = res) ,type = &quot;l&quot;,lwd=3)</code></pre>
+<p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
+<pre class="r"><code>plot(nmp$w,nmp$VR,type = &quot;l&quot;,lwd=3)
+abline(h=0,col=&quot;red&quot;)</code></pre>
+<p><img src="/research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-4-4.png" width="672" /></p>
+<blockquote>
+<p>(3)信息不对称下卖空限制对定价效率的影响</p>
+</blockquote>
 </div>

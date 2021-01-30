@@ -79,7 +79,7 @@ $$P^\star=F-\sigma_u^2\bar\theta$$
 
 > (2)信息不对称
 
-当信息不对称时，两类投资者掌握的信息不同，知情投资者掌握股票价值和价格信息，非知情投资者掌握价格信息，只能通过价格来推断资产价值信息。由于信息不对称条件下，求解比较复杂，参考Yang Bai et al.研究，我们先猜测一种均衡下的价格函数，在此价格函数下推导出投资者的需求，并证明在此均衡价格下市场出清。我们认为股票价格取决于经济状态变量，受交易成本和噪声影响，且股票价格只取决于信号$S=\frac{1}{2}(F-c\varepsilon)$，股票价格是$S$的严格增函数。其中，$\varepsilon \sim U[-a_F,a_F]$，$0< c\leq 1$，\frac{(1+c)a_F}{2}\ge S\leq \frac{(1+c)a_F}{2}。
+当信息不对称时，两类投资者掌握的信息不同，知情投资者掌握股票价值和价格信息，非知情投资者掌握价格信息，只能通过价格来推断资产价值信息。由于信息不对称条件下，求解比较复杂，参考Yang Bai et al.研究，我们先猜测一种均衡下的价格函数，在此价格函数下推导出投资者的需求，并证明在此均衡价格下市场出清。我们认为股票价格取决于经济状态变量，受交易成本和噪声影响，且股票价格只取决于信号$S=\frac{1}{2}(F-c\varepsilon)$，股票价格是$S$的严格增函数。其中，$\varepsilon \sim U[-a_F,a_F]$，$0< c\leq 1$，$\frac{(1+c)a_F}{2}\ge S\leq \frac{(1+c)a_F}{2}$。
 
 对于知情交易者来说，在信息集$I=\{F,P\}$下的需求函数为：
 
@@ -92,11 +92,11 @@ $$f(S)=\int f(F,\frac{F-2S}{c})dF=\int f_F(F)f_{\varepsilon}(\frac{F-2S}{c})dF\\
  
 由于$F$同时属于区间$[-a_F<F<a_F]$和$[-ca_F+2S<F<ca_F+2S]$，则需要取其交集，对$S$进行讨论。
 
-当$S\ge\frac{(1-c)a_F}{2}$时，$F\in [-ca_F+2S,a_F]$，则
+当$\frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} $时，$F\in [-ca_F+2S,a_F]$，则
 
 $$f(S)=\frac{1}{4a_F^2}\int _{-ca_F+2S}^{a_F}dF=\frac{(1+c)a_F-2S}{4a_F^2}$$
 
-当$S\le-\frac{(1-c)a_F}{2}$时，$F\in [-a_F,ca_F+2S]$，则
+当$-\frac{(1+c)a_F}{2}\le S\le-\frac{(1-c)a_F}{2}$时，$F\in [-a_F,ca_F+2S]$，则
 
 $$f(S)=\frac{1}{4a_F^2}\int _{-a_F}^{ca_F+2S}dF=\frac{(1+c)a_F+2S}{4a_F^2}$$
 当$-\frac{(1-c)a_F}{2}<S<\frac{(1-c)a_F}{2}$时，$F\in [-ca_F+2S,ca_F+2S]$，则
@@ -108,9 +108,9 @@ $$f(S)=\frac{1}{4a_F^2}\int _{-ca_F+2S}^{ca_F+2S}dF=\frac{2ca_F}{4a_F^2}$$
 $$\begin{equation}
 f(F|S)=f(F,F-2S)/f(S)=\left\{
 \begin{aligned}
-&\frac{1}{(1+c)a_F-2S}I[-ca_F+2S,a_F](F),\hspace{0.5cm}S\ge\frac{(1-c)a_F}{2} \\
+&\frac{1}{(1+c)a_F-2S}I[-ca_F+2S,a_F](F),\hspace{0.5cm}\frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} \\
 &\frac{1}{2ca_F}I[-ca_F+2S,ca_F+2S](F),\hspace{0.5cm}\frac{(1-c)a_F}{2}\ge S\ge-\frac{(1-c)a_F}{2} \\
-&\frac{1}{(1+c)a_F+2S}I[-a_F,ca_F+2S](F),\hspace{0.5cm}S\le-\frac{(1-c)a_F}{2} 
+&\frac{1}{(1+c)a_F+2S}I[-a_F,ca_F+2S](F),\hspace{0.5cm}-\frac{(1+c)a_F}{2}\le S\le-\frac{(1-c)a_F}{2}
 \end{aligned}
 \right.
 \end{equation}$$
@@ -165,36 +165,9 @@ V[F|S]
 
 定价效率条件均值与方差模拟，参数设定，$a_u=a_F=2$，$\theta=0.1$，$w=0.5$，$c=0.01$，具体代码如下：
 ```{r}
-library(plyr)
-condmean<-function(S,c,af){
-  cm<-NULL
-  if(S>=(1-c)*af/2){
-    cm<-((1-c)*af+2*S)/2
-  }else{
-    if(S<=-(1-c)*af/2){
-      cm<-(2*S-(1-c)*af)/2
-    }else{
-      cm=2*S
-    }
-  }
-  return(cm)
-}
-
-condvar<-function(S,c,af){
-  vr<-NULL
-  if(S>=(1-c)*af/2){
-    vr<-((1+c)*af-2*S)^2/12
-  }else{
-    if(S<=-(1-c)*af/2){
-      vr<-((1+c)*af+2*S)^2/12
-    }else{
-      vr<-(2*c*af)^2/12
-    }
-  }
-  return(vr)
-}
+pacman::p_load(future.apply,plyr,ETFpe)
 set.seed(100)
-theta=0.2
+theta=0.1
 au<-af<-2
 simamu=au^2/3
 c<-0.2
@@ -202,10 +175,10 @@ w=0.5
 epsilon<-runif(101,-2,2)
 S=seq(-(1+c)*au/2,(1+c)*au/2,0.02)
 
-plot(S,laply(S,condmean,0.8,2),type = "l",ylim = c(-1.8,1.8))
-lines(S,laply(S,condmean,0.04,2),col="red")
-plot(S,laply(S,condvar,0.8,2),type = "l",ylim = c(-1.8,1.8))
-lines(S,laply(S,condvar,0.04,2),col="red")
+plot(S,condmean(S,0.8,2),type = "l",ylim = c(-1.8,1.8))
+lines(S,condmean(S,0.4,2),col="red")
+plot(S,condvar(S,0.8,2),type = "l",ylim = c(-1.8,1.8))
+lines(S,condvar(S,0.4,2),col="red")
 
 c=seq(0,1,0.05)
 plot(c,laply(c,condmean,S=-0.8,af=2),type = "l")
@@ -274,33 +247,8 @@ $$\begin{equation}
 
 参数设定，$a_u=a_F=2$，$\theta=0.1$，$w=0.5$，$c=0.01$，具体代码如下：
 ```{r,warning=FALSE}
-condmean<-function(S,c,af){
-  cm<-NULL
-  if(S>=(1-c)*af/2){
-    cm<-((1-c)*af+2*S)/2
-  }else{
-    if(S<=-(1-c)*af/2){
-      cm<-(2*S-(1-c)*af)/2
-    }else{
-      cm=2*S
-    }
-  }
-  return(cm)
-}
+pacman::p_load(future.apply,plyr,Rcpp)
 
-condvar<-function(S,c,af){
-  vr<-NULL
-  if(S>=(1-c)*af/2){
-    vr<-((1+c)*af-2*S)^2/12
-  }else{
-    if(S<=-(1-c)*af/2){
-      vr<-((1+c)*af+2*S)^2/12
-    }else{
-      vr<-(2*c*af)^2/12
-    }
-  }
-  return(vr)
-}
 set.seed(100)
 theta=0.1
 au<-af<-2
@@ -339,65 +287,95 @@ $$E[P]=\int _{-a_F}^{a_F}d\varepsilon\int _{(1-c)a_F+c\varepsilon}^{(1+c)a_F+c\v
 
 参数设定，$a_u=a_F=2$，$\theta=0.1$，$w=0.5$，$c=0.01$，具体代码如下：
 ```{r,warning=FALSE}
+pacman::p_load(future.apply,plyr,ETFpe,tidyr,dplyr)
 set.seed(100)
-library(plyr)
+
 theta=0.1
 au<-af<-2
 simamu=au^2/3
 c=seq(0,1,0.1)
-w=0.5
-P=-2*simamu*c*theta/w-theta*simamu*(1-c)-(1-w)*(1-c)*c^2*af^2*theta/(3+w*c^2*af^2/simamu)+(1-w)*(simamu*theta/(w*af))*sqrt(12*simamu/w)*atan(sqrt(w/(12*simamu))*2*c*af)
+w=seq(0,1,0.1)
 
-condmean<-function(S,c,af){
-  cm<-NULL
-  if(S>=(1-c)*af/2&S<=(1+c)*af/2){
-    cm<-((1-c)*af+2*S)/2
-  }else{
-    if(S<=-(1-c)*af/2&S>=-(1+c)*af/2){
-      cm<-(2*S-(1-c)*af)/2
-    }else{
-      cm=2*S
-    }
-  }
-  return(cm)
-}
-
-condvar<-function(S,c,af){
-  vr<-NULL
-  if(S>=(1-c)*af/2&S<=(1+c)*af/2){
-    vr<-((1+c)*af-2*S)^2/12
-  }else{
-    if(S<=-(1-c)*af/2&S>=-(1+c)*af/2){
-      vr<-((1+c)*af+2*S)^2/12
-    }else{
-      vr<-(2*c*af)^2/12
-    }
-  }
-  return(vr)
-}
-
-
-w=0.5
-
-meanP<-function(c,w){
+meanPV<-function(c,w){
   theta=0.1
   au<-af<-2
   simamu=au^2/3
   epsilon<-runif(1000000,-2,2)
   df<-runif(1000000,-2,2)
   S=(df-epsilon*c)/2
-  VFI=laply(S,condvar,c,2)
+  VFI=condvar(S,c,2)
   mP=mean(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
   VR=var(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
   return(data.frame(c,w,mP,VR))
 }
 
-mp<-ldply(c,meanP,w)
+mpf<-function(w,c){
+  return(ldply(c,meanPV,w))
+}
 
-plot(mp$c,mp$mP,lty=3,type = "l",col="blue")
+mc<-ldply(c,meanPV,0.5)
+
+mp<-ldply(w,mpf,0.8)
+
+plot(mc$c,mc$mP,lty=3,type = "l",col="blue")
+abline(h=max(mc$mP),col="red",lty=3)
+
+plot(mc$c,mc$VR,lty=3,type = "l",col="blue")
+abline(h=min(mc$VR),col="red",lty=3)
+
+plot(mp$w,mp$mP,lty=3,type = "l",col="blue")
 abline(h=max(mp$mP),col="red",lty=3)
 
-plot(mp$c,mp$VR,lty=3,type = "l",col="blue")
-abline(h=min(mp$VR),col="red",lty=3)
+plot(mp$w,mp$VR,lty=3,type = "l",col="blue")
+abline(h=max(mp$VR),col="red",lty=3)
 
 ```
+
+根据前面分析，我们知道交易成本和投资者知情概率是ETF持股比例的函数，交易成本随ETF持股比例递减，知情交易概率随ETF持股比例递增，不妨设其函数形式分别为$c=1-\lambda$,$w=\lambda$，则ETF持股对定价效率的影响的蒙特卡洛模拟如下：
+```{r}
+theta=0.1
+au<-af<-2
+simamu=au^2/3
+c=seq(0,1,0.05)
+w=seq(0,1,0.05)
+meanPV<-function(c,w){
+  theta=0.1
+  au<-af<-2
+  simamu=au^2/3
+  epsilon<-runif(1000000,-3,3)
+  df<-runif(1000000,-2,2)
+  S=(df-epsilon*c)/2
+  VFI=condvar(S,c,2)
+  mP=mean(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
+  VR=var(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
+  return(data.frame(c,w,mP,VR))
+}
+
+
+mpf<-function(w,c){
+  return(ldply(c,meanPV,w))
+}
+plan(multiprocess)        ##启动多核运行
+mp<-Reduce(function(x,y) rbind(x,y),future_lapply(w,mpf,c))
+optima<-mp%>%filter(w==1&c==0)
+
+Empo<-mp%>%mutate(EPdif=mP-optima$mP,EVdif=mp$VR-optima$VR)
+
+nmp<-Reduce(function(x,y)rbind(x,y),future_lapply((1-seq(0,1,0.05)),mpf,seq(0,1,0.05)))
+nmp<-nmp[nmp$w==(1-nmp$c),]%>%mutate(mP=mP-optima$mP,VR=VR-optima$VR)
+res<-persp(c,w, matrix(Empo$EPdif,21,21), theta = 30, shade = 0.75,col =rainbow(441),ltheta=30,ticktype="detailed",xlab = "c",zlab = "E[P]-E[P*]")
+
+lines(trans3d(nmp$c,nmp$w,nmp$mP,pmat = res) ,type = "l",lwd=3)
+
+plot(nmp$w,nmp$mP,type = "l",lwd=3)
+abline(h=0,col="red")
+
+res<-persp(c,w, matrix(Empo$EVdif,21,21), theta = -50, shade = 0.75,col =rainbow(441),ltheta=30,phi = 30,ticktype="detailed",xlab = "c",zlab = "Var[P]-Var[P*]")
+lines(trans3d(nmp$c,nmp$w,nmp$VR,pmat = res) ,type = "l",lwd=3)
+plot(nmp$w,nmp$VR,type = "l",lwd=3)
+abline(h=0,col="red")
+
+```
+
+> (3)信息不对称下卖空限制对定价效率的影响
+

@@ -384,4 +384,42 @@ abline(h=0,col="red")
 根据效用最大化一阶条件，投资者的最优持股为：
 
 $$\theta_i=max\bigg[\frac{(E[F|I_i]-P)}{Var[F|I_i]+\sigma_u^2},-b_i\bigg]$$
+当信息对称时，与交易成本的类似，我们猜测一种均衡下的价格函数，在此价格函数下推到投资者的市场需求函数，为了简便，让$c=1$,股票价格只取决于信号$S=\frac{1}{2}(F-\varepsilon)$。在卖空限制下，投资者被阻挡在市场外，股票价格不在反应投资者者的需求，并独立于$S$，当$S$低于卖空限制门限$z$时，股票价格为常数$\bar p$，当$S$大于卖空门限$z$时，股票价格是$S$的增函数，其中，$\bar p$是$S=z$时的股票价格，$z<0$。
 
+对于知情交易者来说，在信息集$I=\{F,P\}$下的需求函数为：
+
+$$\theta_i=max\bigg[\frac{F-P}{\sigma_u^2},-b_I\bigg]$$
+
+对于非知情交易者来说，在信息集$I=\{F,P\}$下，$E[F|I_U]=E[F|P]=E[F|S]$，$Var[F|I_U]=Var[F|P]=Var[F|S]$。由于$\varepsilon$与$F$独立同分布，则其联合密度函数为$f(F,\varepsilon)=f_F(F)f_{\varepsilon}(\varepsilon)$，且，$\varepsilon=F-2S$。则$S$的概率密度函数为：
+
+$$f(S)=\int f(F,F-2S)dF=\int f_F(F)f_{\varepsilon}(F-2S)dF\\
+ \hspace{5cm}=\frac{1}{4a_F^2}\int I[-a_F<F<a_F]I[-a_F+2S<F<a_F+2S]dF$$
+由于$F$同时属于区间$[-a_F<F<a_F]$和$[-ca_F+2S<F<ca_F+2S]$，则需要取其交集，对$S$进行讨论。
+
+当$0\le S \le a_F$时，$F\in[-a_F+2S,a_F]$，则
+
+$$f(S)=\frac{1}{4a_F^2}\int _{-a_F+2S}^{a_F}dF=\frac{2a_F-2S}{4a_F^2}$$
+
+当$z\le S< 0$时，$F\in [-a_F,a_F+2S]$，则
+
+$$f(S)=\frac{1}{4a_F^2}\int _{-a_F}^{a_F+2S}dF=\frac{2a_F+2S}{4a_F^2}$$
+所以，当$z\le S \le a_F$时，条件概率密度函数$f(F|S)$可以表示为：
+
+$$f(F|S)=\frac{f_F(F)f_Y(F-2S)}{f(S)}\\=\frac{1}{2(a_F-|S|)}I[-a_F,a_F](F)I[-a_F,a_F](F-2S)$$
+则$E[F|S]=S$,$Var[F|S]=\frac{1}{3}(a_F-|S|)^2$
+
+
+当$-a_F<S<z$时，$F\in [-a_F,a_F+2z]$且$\varepsilon\in[-a_F,-F+2z]$，此时，投资者只能通过不变的股价推测出$S\le z$的概率，则概率为：
+
+$$F(S\le z)=\frac{1}{8a_F^2}\int _{-a_F}^{a_F+2z}dF\int_{F-2z}^{a_F}d\varepsilon=\frac{2(a_F+z)^2}{8a_F^2}$$
+而
+
+$$f(F,S\le z)=\int_{-a_F}^zf_F(F)f_\varepsilon(F-2S)dS\\
+=\int_{F-2z}^{a_F}\frac{1}{2}f_F(F)f_\varepsilon(\varepsilon)d\varepsilon\\
+=\frac{a_F+2z-F}{8a_F^2}I[-a_F,2z+a_F](F)$$
+
+所以
+
+$$f(F|S\le z)=\frac{f(F,S\le z)}{F(S\le z)}=\frac{a_F+2z-F}{2(a_F+z)^2}I[-a_F,2z+a_F](F)$$
+
+则$E[F|S\le z]=\frac{1}{3}(2z-a_F)$,$Var[F|P]=\frac{2}{9}(z+a_F)^2$

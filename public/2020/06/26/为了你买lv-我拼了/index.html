@@ -39,15 +39,15 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
 
 
 
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="../../../../css/style.css" />
+    <link rel="stylesheet" href="../../../../css/fonts.css" />
     
   </head>
 
   
   <body class="2020">
     <header class="masthead">
-      <h1><a href="/">Yingjie</a></h1>
+      <h1><a href="../../../../">Yingjie</a></h1>
 
 
 
@@ -61,17 +61,17 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
   <ul>
   
   
-  <li><a href="/">主页</a></li>
+  <li><a href="../../../../">主页</a></li>
   
-  <li><a href="/cn/">日志</a></li>
+  <li><a href="../../../../cn/">日志</a></li>
   
-  <li><a href="/research/">研究</a></li>
+  <li><a href="../../../../research/">研究</a></li>
   
-  <li><a href="/cn_about/">关于</a></li>
+  <li><a href="../../../../cn_about/">关于</a></li>
   
-  <li><a href="/en/">Blog</a></li>
+  <li><a href="../../../../en/">Blog</a></li>
   
-  <li><a href="/en_about/">About</a></li>
+  <li><a href="../../../../en_about/">About</a></li>
   
   
   </ul>
@@ -110,9 +110,9 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
 </blockquote>
 <p>理想很丰满，现实很骨感。听起来貌似很简单，做起来一点都不容易啊！那就来说说其中的曲折以及我是如何一步步实现的。</p>
 <p>首先，会用到爬虫相关的知识，需要从固定的网站中提取相关特征来判断是否有新货补给，网站截图如下：</p>
-<h1 id="imageslvpng"><img src="/images/Lv.png" alt=""></h1>
+<h1 id="imageslvpng"><img src="../../../../images/Lv.png" alt=""></h1>
 <p>网页源代码如下：</p>
-<h1 id="imagescodepng"><img src="/images/code.png" alt=""></h1>
+<h1 id="imagescodepng"><img src="../../../../images/code.png" alt=""></h1>
 <p>如果购物标签为Call for avalability,说明无货物可以利用，否则提醒我们出现货物补给。通过request 请求获得网页源代码，提取购买按钮上的标签文本，实现python代码如下：</p>
 <pre><code>import requests  %加载requests模块，用来请求网址以获得网页源代码%
 import bs4       %加载bs4模块，用来分析网页源代码，提取定位元素标签文本%
@@ -167,7 +167,7 @@ def mainfun():
             time.sleep(300)  %5分钟检测一次%
             
 </code></pre><p>短信发送的测试结果如下：</p>
-<h1 id="imagesinfjpg"><img src="/images/inf.jpg" alt=""></h1>
+<h1 id="imagesinfjpg"><img src="../../../../images/inf.jpg" alt=""></h1>
 <p>所有内容已介绍完，你可能会问：</p>
 <blockquote>
 <p>为什么不把下单、付款等一系列的东东全部通过代码实现呢？</p>
@@ -243,7 +243,7 @@ if __name__ == '__main__':
 
   
   <hr>
-  <div class="copyright">© <a href="/">Yingjie Xue</a>2020| <a href="https://github.com/yingjiexue">Github</a></div>
+  <div class="copyright">© <a href="../../../../">Yingjie Xue</a>2020| <a href="https://github.com/yingjiexue">Github</a></div>
   
   </footer>
   </article>

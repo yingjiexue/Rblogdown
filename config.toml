@@ -1,4 +1,5 @@
 baseurl = "/"
+relativeurls= true
 languageCode = "en-us"
 title = "Yingjie"
 theme = "hugo-lithium"

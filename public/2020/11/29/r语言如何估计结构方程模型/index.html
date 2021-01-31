@@ -37,15 +37,15 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
 
 
 
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="../../../../css/style.css" />
+    <link rel="stylesheet" href="../../../../css/fonts.css" />
     
   </head>
 
   
   <body class="2020">
     <header class="masthead">
-      <h1><a href="/">Yingjie</a></h1>
+      <h1><a href="../../../../">Yingjie</a></h1>
 
 
 
@@ -59,17 +59,17 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
   <ul>
   
   
-  <li><a href="/">主页</a></li>
+  <li><a href="../../../../">主页</a></li>
   
-  <li><a href="/cn/">日志</a></li>
+  <li><a href="../../../../cn/">日志</a></li>
   
-  <li><a href="/research/">研究</a></li>
+  <li><a href="../../../../research/">研究</a></li>
   
-  <li><a href="/cn_about/">关于</a></li>
+  <li><a href="../../../../cn_about/">关于</a></li>
   
-  <li><a href="/en/">Blog</a></li>
+  <li><a href="../../../../en/">Blog</a></li>
   
-  <li><a href="/en_about/">About</a></li>
+  <li><a href="../../../../en_about/">About</a></li>
   
   
   </ul>
@@ -260,31 +260,31 @@ summary(tofit.model_m,rsquar=TRUE,fit.measures = TRUE) #结构方程模型结果
          whatLabels = &quot;std&quot;,
          edge.label.cex = 1,
          layout = &quot;tree&quot;)</code></pre>
-<p><img src="/cn/2020-11-29-r语言如何估计结构方程模型_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="../../../../cn/2020-11-29-r语言如何估计结构方程模型_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p><strong>2、circle</strong></p>
 <pre class="r"><code>semPaths(object = tofit.model_m,
          whatLabels = &quot;std&quot;,
          edge.label.cex = 1,
          layout = &quot;circle&quot;)</code></pre>
-<p><img src="/cn/2020-11-29-r语言如何估计结构方程模型_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<p><img src="../../../../cn/2020-11-29-r语言如何估计结构方程模型_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 <strong>3、spring</strong></p>
 <pre class="r"><code>semPaths(object = tofit.model_m,
          whatLabels = &quot;std&quot;,
          edge.label.cex = 1,
          layout = &quot;spring&quot;)</code></pre>
-<p><img src="/cn/2020-11-29-r语言如何估计结构方程模型_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="../../../../cn/2020-11-29-r语言如何估计结构方程模型_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p><strong>4、tree2</strong></p>
 <pre class="r"><code>semPaths(object = tofit.model_m,
          whatLabels = &quot;std&quot;,
          edge.label.cex = 1,
          layout = &quot;tree2&quot;)</code></pre>
-<p><img src="/cn/2020-11-29-r语言如何估计结构方程模型_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="../../../../cn/2020-11-29-r语言如何估计结构方程模型_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p><strong>5、circle2</strong></p>
 <pre class="r"><code>semPaths(object = tofit.model_m,
          whatLabels = &quot;std&quot;,
          edge.label.cex = 1,
          layout = &quot;circle2&quot;)</code></pre>
-<p><img src="/cn/2020-11-29-r语言如何估计结构方程模型_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="../../../../cn/2020-11-29-r语言如何估计结构方程模型_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>但这些布局样式都不满足我们的需求时，怎么办？不用怕，有万能的布局设置，一般人还不知道，就需要设置每一个节点的位置，在二维平面内，两个坐标确定唯一的一个节点，因此，7个节点应该用2乘7的矩阵来确定所有节点的位置，具体如下：</p>
 <pre class="r"><code>ly&lt;-matrix(c(-0.5, 2.5,
              0.5,2.5,
@@ -299,7 +299,7 @@ semPaths(tofit.model_m, &quot;path&quot;,label.prop = 0.5,residuals=F, fade = FA
          sizeLat = 10,nodeLabels=c(&quot;Delayr&quot;,&quot;NoiseTrde&quot;,&quot;Iliquidity&quot;,&quot;Shortratio&quot;,&quot;Analyscover&quot;,&quot;ETFOwnership&quot;,&quot;Pefficency&quot;),
          edge.color=&quot;black&quot;,rotation=3,whatLabels=&quot;est&quot;,label.cex=1.8,node.width=1.4,node.height=0.2,
          edge.label.cex=1,sizeMan=8)</code></pre>
-<p><img src="/cn/2020-11-29-r语言如何估计结构方程模型_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="../../../../cn/2020-11-29-r语言如何估计结构方程模型_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p><strong>图片旋转</strong></p>
 <p>参数rotation 可以用来设置图片旋转角度，旋转可选的值有：1，2，3，4，分别是默认、逆时针旋转90°、180°以及270° <em>在设置节点位置后，旋转参数就不会起作用了</em></p>
 <pre class="r"><code>semPaths(tofit.model_m, &quot;path&quot;,label.prop = 0.5,residuals=F, fade = FALSE,
@@ -307,7 +307,7 @@ semPaths(tofit.model_m, &quot;path&quot;,label.prop = 0.5,residuals=F, fade = FA
          sizeLat = 10,nodeLabels=c(&quot;Delayr&quot;,&quot;NoiseTrde&quot;,&quot;Iliquidity&quot;,&quot;Shortratio&quot;,&quot;Analyscover&quot;,&quot;ETFOwnership&quot;,&quot;Pefficency&quot;),
          edge.color=&quot;black&quot;,rotation=1,whatLabels=&quot;est&quot;,label.cex=1.8,node.width=1.4,node.height=0.2,
          edge.label.cex=1,sizeMan=8) #旋转270度</code></pre>
-<p><img src="/cn/2020-11-29-r语言如何估计结构方程模型_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="../../../../cn/2020-11-29-r语言如何估计结构方程模型_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p><strong>配色</strong>
 我们可以给节点和路径线条配色，节点配色用color参数，线条配色用edge.color参数，如果标出系数正负不同的路径，可以使用posCol和negCol参数来定义分别的路径颜色，比如节点配成浅蓝lightblue，正系数路径配成红色，负系数路径配成绿色，具体如下：</p>
 <pre class="r"><code>semPaths(tofit.model_m, &quot;path&quot;,layout =ly,label.prop = 0.5,residuals=F, fade = FALSE,posCol=&quot;red&quot;,negCol=&quot;green&quot;,color = &quot;lightblue&quot;,
@@ -315,7 +315,7 @@ semPaths(tofit.model_m, &quot;path&quot;,label.prop = 0.5,residuals=F, fade = FA
          sizeLat = 10,nodeLabels=c(&quot;Delayr&quot;,&quot;NoiseTrde&quot;,&quot;Iliquidity&quot;,&quot;Shortratio&quot;,&quot;Analyscover&quot;,&quot;ETFOwnership&quot;,&quot;Pefficency&quot;),
          edge.color=c(&quot;green&quot;,&quot;red&quot;),rotation=3,whatLabels=&quot;est&quot;,label.cex=1.8,node.width=1.4,node.height=0.2,
          edge.label.cex=1,sizeMan=8)</code></pre>
-<p><img src="/cn/2020-11-29-r语言如何估计结构方程模型_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<p><img src="../../../../cn/2020-11-29-r语言如何估计结构方程模型_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 <strong>节点参数设置</strong></p>
 <p>edge.label.cex是设置edge（路径、线）上的字体大小，默认0.8</p>
 <p>label.cex 节点标签的大小设置</p>
@@ -340,7 +340,7 @@ semPaths(tofit.model_m, &quot;path&quot;,label.prop = 0.5,residuals=F, fade = FA
 
   
   <hr>
-  <div class="copyright">© <a href="/">Yingjie Xue</a>2020| <a href="https://github.com/yingjiexue">Github</a></div>
+  <div class="copyright">© <a href="../../../../">Yingjie Xue</a>2020| <a href="https://github.com/yingjiexue">Github</a></div>
   
   </footer>
   </article>

@@ -168,7 +168,8 @@ V[F|S]
 pacman::p_load(future.apply,plyr,ETFpe)
 set.seed(100)
 theta=0.1
-au<-af<-2
+au<-4
+af<-2
 simamu=au^2/3
 c<-0.2
 w=0.5
@@ -251,7 +252,8 @@ pacman::p_load(future.apply,plyr,Rcpp)
 
 set.seed(100)
 theta=0.1
-au<-af<-2
+au<-4
+af<-2
 simamu=au^2/3
 c=0
 w=0.5
@@ -291,7 +293,8 @@ pacman::p_load(future.apply,plyr,ETFpe,tidyr,dplyr)
 set.seed(100)
 
 theta=0.1
-au<-af<-2
+au<-4
+af<-2
 simamu=au^2/3
 c=seq(0,1,0.1)
 w=seq(0,1,0.1)
@@ -334,7 +337,8 @@ abline(h=max(mp$VR),col="red",lty=3)
 根据前面分析，我们知道交易成本和投资者知情概率是ETF持股比例的函数，交易成本随ETF持股比例递减，知情交易概率随ETF持股比例递增，不妨设其函数形式分别为$c=1-\lambda$,$w=\lambda$，则ETF持股对定价效率的影响的蒙特卡洛模拟如下：
 ```{r}
 theta=0.1
-au<-af<-2
+au<-4
+af<-2
 simamu=au^2/3
 c=seq(0,1,0.05)
 w=seq(0,1,0.05)
@@ -379,7 +383,7 @@ abline(h=0,col="red")
 
 > (3)信息不对称下卖空限制对定价效率的影响
 
-我们假设投资者受卖空限制约束，对于投资者$i(i=I,U)$来说，其持有的股票头寸大于某个非正常数$\theta_i\ge-b_i,b_i\ge0$，为了方便，我们假设卖空限制在同类投资者相同，但不同投资者者中不同，特别对于知情投资者来说，其可以持有空头头寸到$b_i$。
+我们假设投资者受卖空限制约束，对于投资者$i(i=I,U)$来说，其持有的股票头寸大于某个非正常数$\theta_i\ge-b_i,b_i\ge0$，为了方便，我们假设卖空限制在同类投资者相同，但不同投资者者中不同，特别对于知情投资者来说，其可以持有空头头寸到$b_i$，非知情交易者不受卖空限制约束。
 
 根据效用最大化一阶条件，投资者的最优持股为：
 
@@ -388,11 +392,11 @@ $$\theta_i=max\bigg[\frac{(E[F|I_i]-P)}{Var[F|I_i]+\sigma_u^2},-b_i\bigg]$$
 
 对于知情交易者来说，在信息集$I=\{F,P\}$下的需求函数为：
 
-$$\theta_i=max\bigg[\frac{F-P}{\sigma_u^2},-b_I\bigg]$$
+$$\theta_I=max\bigg[\frac{F-P}{\sigma_u^2},-b_I\bigg]$$
 
 对于非知情交易者来说，在信息集$I=\{F,P\}$下，$E[F|I_U]=E[F|P]=E[F|S]$，$Var[F|I_U]=Var[F|P]=Var[F|S]$。由于$\varepsilon$与$F$独立同分布，则其联合密度函数为$f(F,\varepsilon)=f_F(F)f_{\varepsilon}(\varepsilon)$，且，$\varepsilon=F-2S$。则$S$的概率密度函数为：
 
-$$f(S)=\int f(F,F-2S)dF=\int f_F(F)f_{\varepsilon}(F-2S)dF\\
+$$f(S)=\int f(F,F-2S)dF=\int f_F(F)f_{\varepsilon}(F-2S)dF \\
  \hspace{5cm}=\frac{1}{4a_F^2}\int I[-a_F<F<a_F]I[-a_F+2S<F<a_F+2S]dF$$
 由于$F$同时属于区间$[-a_F<F<a_F]$和$[-ca_F+2S<F<ca_F+2S]$，则需要取其交集，对$S$进行讨论。
 
@@ -423,3 +427,124 @@ $$f(F,S\le z)=\int_{-a_F}^zf_F(F)f_\varepsilon(F-2S)dS\\
 $$f(F|S\le z)=\frac{f(F,S\le z)}{F(S\le z)}=\frac{a_F+2z-F}{2(a_F+z)^2}I[-a_F,2z+a_F](F)$$
 
 则$E[F|S\le z]=\frac{1}{3}(2z-a_F)$,$Var[F|P]=\frac{2}{9}(z+a_F)^2$
+
+因此，条件期望和方差如下：
+
+$$\begin{equation}
+E[F|S]
+=\left\{
+\begin{aligned}
+&S \hspace{3.5cm}  z<S \\
+&\frac{1}{3}(2z-a_F)\hspace{1cm} z\le S  \\
+\end{aligned}
+\right.
+\end{equation}$$
+
+
+$$\begin{equation}
+V[F|S]
+=\left\{
+\begin{aligned}
+&\frac{1}{3}(a_F-|S|)^2,\hspace{1cm}z< S \\
+&\frac{2}{9}(z+a_F)^2,\hspace{1.5cm}z\le S\\
+\end{aligned}
+\right.
+\end{equation}$$
+
+非知情交易者的需求函数可以表示为：
+
+$$\begin{equation}
+\theta_U=\left\{
+\begin{aligned}
+&\frac{S-P}{\frac{1}{3}(a_F-|S|)^2+\sigma_u^2},\hspace{0.5cm} S> z\\
+&\frac{\frac{1}{3}(2z-a_F)-P}{\frac{2}{9}(z+a_F)^2+\sigma_u^2},\hspace{0.5cm} S \le z\\  
+\end{aligned}
+\right.
+\end{equation}$$
+
+由于非知情交易者不受卖空限制约束，知情交易者的卖空限制约束为$-b$,因此，我们需要确定知情交易者受卖空限制和不受卖空限制的临界条件。
+
+当$S>z$时，知情投资者的需求为$\frac{F-P}{\sigma_u^2}$或$-b$，将该需求代入市场出清条件，可以得到对应的均衡价格。
+
+> **知情投资者不受卖空限制的均衡价格**，即$\frac{F-P}{\sigma_u^2}>-b$时市场出清条件为：
+
+$$w\frac{F-P}{\sigma_u^2}+(1-w)\frac{S-P}{\frac{1}{3}(a_F-|S|)^2+\sigma_u^2}=\bar\theta$$
+
+解得均衡价格为：
+
+$$P=2S+\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+\varepsilon+\frac{1}{3}(a_F-|S|)^2\bar\theta}{1+w\frac{1}{3}(a_F-|S|)^2/\sigma_u^2}$$
+将均衡价格代入知情交易者不受卖空限制约束的条件，求解S，便得到投资者不受卖空限制约束的条件，即
+
+$$\bar\theta\sigma_u^2+(1-w)\frac{S+\varepsilon+\frac{1}{3}(a_F-|S|)^2\bar\theta}{1+w\frac{1}{3}(a_F-|S|)^2/\sigma_u^2}>-b\sigma_u^2$$
+由于$S>=0$,投资者不受卖空限制约束，所以，我们只讨论$S<0$的情况，此时，投资者不受卖空限制约束的条件为:
+
+$$\bar\theta\sigma_u^2-(1-w)\frac{S+\varepsilon+\frac{1}{3}(a_F+S)^2\bar\theta}{1+w\frac{1}{3}(a_F+S)^2/\sigma_u^2}>-b\sigma_u^2$$
+解得
+
+$$S>-a_F-\frac{3}{2}(w\hat b+\hat \theta)^{-1}+\frac{3}{2}\sqrt{(w\hat b+\hat \theta)^{-2}+\frac{4}{3}(a_F+\varepsilon)(w\hat b+\hat \theta)^{-1}-\frac{4}{3}(\hat b+\hat \theta)(w\hat b+\hat \theta)^{-1}\sigma_u^2}$$
+其中$\bar b=b/(1-w)$,$\hat \theta=\theta/(1-w)$。因此，投资者不受卖空限制的临界点为：
+
+$$z^*=-a_F-\frac{3}{2}(w\hat b+\hat \theta)^{-1}+\frac{3}{2}\sqrt{(w\hat b+\hat \theta)^{-2}+\frac{4}{3}(a_F-\varepsilon)(w\hat b+\hat \theta)^{-1}-\frac{4}{3}(\hat b+\hat \theta)(w\hat b+\hat \theta)^{-1}\sigma_u^2}$$
+
+**知情投资者持股等于卖空限量$-b$,不受卖空限制**，市场出清条件为：
+
+$$-wb+(1-w)\frac{S-P}{\frac{1}{3}(a_F-|S|)^2+\sigma_u^2}=\bar\theta$$
+
+解得均衡价格为：
+
+$$P=S-(w b+\hat \theta)\bigg[\frac{1}{3}(a_F-|S|)^2+\sigma_u^2\bigg]$$
+其中$\bar b=b/(1-w)$,$\hat \theta=\theta/(1-w)$。
+
+此时，$S=z$,投资者受卖空限制约束，此时市场出清条件为：
+
+$$-wb+(1-w)\frac{\frac{1}{3}(2z-a_F)-P}{\frac{2}{9}(z+a_F)^2+\sigma_u^2}=\bar\theta$$
+解得均衡价格为
+
+$$P=\frac{1}{3}(2z-a_F)-(w\hat b+\hat \theta)(\frac{2}{9}(z+a_F)^2+\sigma_u^2)$$
+将均衡价格代入卖空限制约束条件，$\frac{F-P}{\sigma_u^2}=-b$得：
+
+
+解得
+
+$$z=-a_F-3(w\hat b+\hat \theta)^{-1}+3\sqrt{(w\hat b+\hat \theta)^{-2}+\frac{1}{2}(a_F-\varepsilon)(w\hat b+\hat \theta)^{-1}-\frac{1}{2}(\hat b+\hat \theta)(w\hat b+\hat \theta)^{-1}\sigma_u^2}$$
+
+当$S< z$时，知情投资者的需求不能得到满足，只能实现$-b$，此时市场无法出清，市场价格有卖空限制条件决定。即$\frac{2S+\varepsilon-P}{\sigma_u^2}=-b$,且$S=z$
+
+解得均衡价格为：
+
+$$P=2z+\varepsilon+b\sigma_u^2$$
+综上所述，股票均衡价格为：
+
+$$\begin{equation}
+P=\left\{
+\begin{aligned}
+&2S+\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+\varepsilon+\frac{1}{3}(a_F-|S|)^2\bar\theta}{1+w\frac{1}{3}(a_F-|S|)^2/\sigma_u^2},\hspace{0.5cm} S > z^*  \\
+&S-(w\hat b+\hat \theta)\bigg[\frac{1}{3}(a_F-|S|)^2+\sigma_u^2\bigg],\hspace{0.5cm}z< S\le z^* \\
+&2z+\varepsilon+b\sigma_u^2,\hspace{0.5cm}  S\le z  
+\end{aligned}
+\right.
+\end{equation}$$
+
+市场出清时，投资者的需求为：
+
+> 知情投资者的需求函数
+
+$$\begin{equation}
+\theta_I=\left\{
+\begin{aligned}
+&\bar\theta+(1-w)\frac{S+c\varepsilon+\frac{1}{12}[a_F-|S|]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[a_F-|S|]^2},\hspace{0.5cm} S > z^* \\
+&-b,\hspace{0.5cm} S<z^* \\
+\end{aligned}
+\right.
+\end{equation}$$
+
+> 非知情投资者的需求函数
+
+$$\begin{equation}
+\theta_U=\left\{
+\begin{aligned}
+&\bar\theta-w\frac{S+c\varepsilon+\frac{1}{12}[a_F-|S|]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[a_F-|S|]^2},\hspace{0.5cm} S > z^* \\
+&\hat \theta +w\hat b,\hspace{0.5cm} S<z^* \\
+\end{aligned}
+\right.
+\end{equation}$$

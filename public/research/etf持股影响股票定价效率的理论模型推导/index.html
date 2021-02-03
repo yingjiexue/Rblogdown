@@ -102,7 +102,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
 <blockquote>
 <p>证券市场</p>
 </blockquote>
-<p>市场持续存在两期，分别为0期与1期，投资者在竞争的证券市场上交易，可交易的产品有无风险债券、股票和ETF基金，在1期，投资者获得投资收益，假定每单位债券的固定收益为1，股票价值为<span class="math inline">\(V=F+\mu\)</span>，其中<span class="math inline">\(\mu\)</span>和<span class="math inline">\(F\)</span>分别为相互独立的均匀分布，<span class="math inline">\(F\sim U[-a_F,a_F]\)</span>，<span class="math inline">\(\mu\sim U[-a_\mu,a_\mu]\)</span></p>
+<p>市场持续存在两期，分别为0期与1期，投资者在竞争的证券市场上交易，可交易的产品有无风险债券、股票和ETF基金，在1期，投资者获得投资收益，同时，投资者面临的流动性成本为<span class="math inline">\(cv\varepsilon\)</span>。假定每单位债券的固定收益为1，股票价值为<span class="math inline">\(V=F+\mu\)</span>。</p>
 <blockquote>
 <p>投资者</p>
 </blockquote>
@@ -119,9 +119,14 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
 <p>财富及效用函数</p>
 </blockquote>
 <p>每一位投资者都是风险厌恶者，其对效用函数为Markowiz-Tobin均值方差函数，让<span class="math inline">\(\theta_i\)</span>表示投资者<span class="math inline">\(i\)</span>最有持股，<span class="math inline">\(w_i\)</span>为投资者<span class="math inline">\(i\)</span>在1期的最终财富，具体公式如下：</p>
-<p><span class="math display">\[W_i=\bar\theta P+\theta_i(V-P)\]</span></p>
+<p><span class="math display">\[W_i=\bar\theta P+\theta_i(V-P)-cv\varepsilon\]</span></p>
 <p>投资者效用函数为：</p>
 <p><span class="math display">\[E[W_i|I_i]-\frac{1}{2}Var[W_i|I_i]\]</span></p>
+<blockquote>
+<p>经济环境中随机变量分布假定</p>
+</blockquote>
+<p>为了简化计算，我们给定经济冲击相关随机变量的分布，假设<span class="math inline">\(F\)</span>、<span class="math inline">\(\mu\)</span>、<span class="math inline">\(v\)</span>、<span class="math inline">\(\varepsilon\)</span>为均匀分布，且<span class="math inline">\(F\)</span>、<span class="math inline">\(\mu\)</span>、<span class="math inline">\(\varepsilon\)</span>相互独立，<span class="math inline">\(v\)</span>与<span class="math inline">\(\mu\)</span>的协方差为<span class="math inline">\(\sigma_{vu}\)</span>,与其他随机变量独立，不损失一般性，<span class="math inline">\(F\sim U[-a_F,a_F]\)</span>，<span class="math inline">\(\mu\sim U[-a_\mu,a_\mu]\)</span>,<span class="math inline">\(v\sim U[-a_v,a_v]\)</span>，<span class="math inline">\(\varepsilon\sim U[-a_\varepsilon,a_\varepsilon]\)</span>，并且<span class="math inline">\(F\)</span>、<span class="math inline">\(\mu\)</span>、<span class="math inline">\(\varepsilon\)</span>的方差分别为，<span class="math inline">\(\sigma_F^2\)</span>、<span class="math inline">\(\sigma_u^2\)</span>、<span class="math inline">\(\sigma_v^2\)</span>和<span class="math inline">\(\sigma_{\varepsilon}^2\)</span>。为了保证价格函数的单调性，我们需要对参数做出以下限制：</p>
+<p><span class="math display">\[\sigma_u\ge \sigma_F\ge \sigma_{v\varepsilon}\sigma_{\varepsilon}\]</span></p>
 <blockquote>
 <p><strong>ETF持股作为外生冲击，通过交易成本、卖空限制，信息挖掘三种渠道来影响投资的决策行为。交易成本主要影响投资者从股票价格获取信息的准确性，卖空限制影响投资者对资产的需求，信息挖掘影响投资者成为知情投资的概率，ETF持股比例越高，股票交易成本越低，卖空限制越小，信息挖掘越充分，投资者成为知情交易者的概率越高，从股票价格中获取的信息越准确。</strong>假设ETF持有股票i的市值比例为<span class="math inline">\(\eta\)</span>，则投资者成为知情交易者的概率<span class="math inline">\(w\)</span>是ETF持股比例的增函数，卖空限制和交易成本是ETF持股比例的减函数。</p>
 </blockquote>
@@ -131,37 +136,37 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
 <blockquote>
 <p>投资者最大化期望效用，具体如下：</p>
 </blockquote>
-<p><span class="math display">\[Max \hspace{0.4cm} E[W_i|I_i]-\frac{1}{2}Var[W_i|I_i] \hspace{0.4cm}i=I,U\\
-s.t \hspace{0.4cm} W_i=\bar\theta P+\theta_i(V-P)\]</span></p>
-<p>由于<span class="math inline">\(E[W_i|I_i]=\bar\theta P+\theta_i(E[F|I_i]-P)\)</span>,<span class="math inline">\(Var[W_i|I_i]=\theta_i^2(Var[F|I_i]+\sigma_u^2)\)</span>,则投资者的效用为：</p>
-<p><span class="math display">\[U_i(W_i)=\bar\theta P+\theta_i(E[F|I_i]-P)-\frac{1}{2}\theta_i^2(Var[F|I_i]+\sigma_u^2)\]</span>
+<p><span class="math display">\[Max \hspace{0.4cm} E[W_i|I_i]-\frac{1}{2}Var[W_i|I_i] \hspace{0.4cm}i=I,U \\
+s.t \hspace{0.4cm} W_i=\bar\theta P+\theta_i(V-P)-cv\varepsilon\]</span></p>
+<p>由于<span class="math inline">\(E[W_i|I_i]=\bar\theta P+\theta_i(E[F|I_i]-P)\)</span>,<span class="math inline">\(Var[W_i|I_i]=\theta_i^2(Var[F|I_i]+\sigma_u^2)+2\theta_ic\varepsilon\sigma_{uv}+c^2\varepsilon^2\sigma_{v}^2\)</span>,则投资者的效用为：</p>
+<p><span class="math display">\[U_i(W_i)=\bar\theta P+\theta_i(E[F|I_i]-P)-\frac{1}{2}\theta_i^2(Var[F|I_i]+\sigma_u^2)-\theta_ic\varepsilon\sigma_{uv}+c^2\varepsilon^2\sigma_{v}^2\]</span>
 一阶条件为：</p>
-<p><span class="math display">\[\frac{\partial U_i}{\partial \theta_i}=(E[F|I_i]-P)-\theta_i(Var[F|I_i]+\sigma_u^2)=0\]</span>
-<span class="math display">\[\theta_i=\frac{E[F|I_i]-P}{Var[F|I_i]+\sigma_u^2}\]</span></p>
+<p><span class="math display">\[\frac{\partial U_i}{\partial \theta_i}=(E[F|I_i]-P)-\theta_i(Var[F|I_i]+\sigma_u^2)-c\varepsilon\sigma_{uv}=0\]</span>
+<span class="math display">\[\theta_i=\frac{E[F|I_i]-c\varepsilon\sigma_{uv}-P}{Var[F|I_i]+\sigma_u^2}\]</span></p>
 <blockquote>
 <p>(1)投资者信息对称</p>
 </blockquote>
 <p>在信息对称条件下，<span class="math inline">\(P\)</span>、<span class="math inline">\(F\)</span>均为公开信息，投资者的交易成本为0，知情交易者与非知情交易者面临相同的信息集，即<span class="math inline">\(I_u=I_I=\{F,P\}\)</span>，此时，<span class="math inline">\(E[F|I_I]=E[F|I_U]=F\)</span>,<span class="math inline">\(Var[F|I_I]=Var[F|I_U]=0\)</span>。</p>
 <p>投资者的需求函数为：</p>
-<p><span class="math display">\[\theta_I=\theta_U=\frac{F-P}{\sigma_u^2}\]</span></p>
+<p><span class="math display">\[\theta_I=\theta_U=\frac{F-c\varepsilon\sigma_{uv}-P}{\sigma_u^2}\]</span></p>
 <p>均衡价格为：</p>
-<p><span class="math display">\[P^\star=F-\sigma_u^2\bar\theta\]</span></p>
+<p><span class="math display">\[P^\star=F-c\varepsilon\sigma_{uv}-\sigma_u^2\bar\theta\]</span></p>
 <blockquote>
 <p>(2)信息不对称</p>
 </blockquote>
-<p>当信息不对称时，两类投资者掌握的信息不同，知情投资者掌握股票价值和价格信息，非知情投资者掌握价格信息，只能通过价格来推断资产价值信息。由于信息不对称条件下，求解比较复杂，参考Yang Bai et al.研究，我们先猜测一种均衡下的价格函数，在此价格函数下推导出投资者的需求，并证明在此均衡价格下市场出清。我们认为股票价格取决于经济状态变量，受交易成本和噪声影响，且股票价格只取决于信号<span class="math inline">\(S=\frac{1}{2}(F-c\varepsilon)\)</span>，股票价格是<span class="math inline">\(S\)</span>的严格增函数。其中，<span class="math inline">\(\varepsilon \sim U[-a_F,a_F]\)</span>，<span class="math inline">\(0&lt; c\leq 1\)</span>，<span class="math inline">\(\frac{(1+c)a_F}{2}\ge S\leq \frac{(1+c)a_F}{2}\)</span>。</p>
+<p>当信息不对称时，两类投资者掌握的信息不同，知情投资者掌握股票价值和价格信息，非知情投资者掌握价格信息，只能通过价格来推断资产价值信息。由于信息不对称条件下，求解比较复杂，参考Yang Bai et al.研究，我们先猜测一种均衡下的价格函数，在此价格函数下推导出投资者的需求，并证明在此均衡价格下市场出清。我们认为股票价格取决于经济状态变量，股票价格只取决于信号<span class="math inline">\(S=\frac{1}{2}(F-c\varepsilon\sigma_{uv})\)</span>，股票价格是<span class="math inline">\(S\)</span>的严格增函数。在<span class="math inline">\(\sigma_{uv}=\sigma_F/\sigma_{\varepsilon}\)</span>限制下，<span class="math inline">\(\sigma_{uv}\varepsilon \sim U[-a_F,a_F]\)</span>。则<span class="math inline">\(c\varepsilon\sigma_{uv} \sim U[-ca_F,ca_F]\)</span></p>
 <p>对于知情交易者来说，在信息集<span class="math inline">\(I=\{F,P\}\)</span>下的需求函数为：</p>
-<p><span class="math display">\[\theta_I==\frac{F-P}{\sigma_u^2}\]</span></p>
-<p>对于非知情交易者来说，在信息集<span class="math inline">\(I=\{P\}\)</span>下，<span class="math inline">\(E[F|I_U]=E[F|P]=E[F|S]\)</span>，<span class="math inline">\(Var[F|I_U]=Var[F|P]=Var[F|S]\)</span>。由于<span class="math inline">\(\varepsilon\)</span>与<span class="math inline">\(F\)</span>独立同分布，则其联合密度函数为<span class="math inline">\(f(F,\varepsilon)=f_F(F)f_{\varepsilon}(\varepsilon)\)</span>，且<span class="math inline">\(\varepsilon=\frac{F-2S}{c}\)</span>，则<span class="math inline">\(S\)</span>的概率密度函数为：</p>
-<p><span class="math display">\[f(S)=\int f(F,\frac{F-2S}{c})dF=\int f_F(F)f_{\varepsilon}(\frac{F-2S}{c})dF\\
- \hspace{5cm}=\frac{1}{4a_F^2}\int I[-a_F&lt;F&lt;a_F]I[-ca_F+2S&lt;F&lt;ca_F+2S]dF\]</span></p>
+<p><span class="math display">\[\theta_I=\frac{2S-P}{\sigma_u^2}\]</span></p>
+<p>对于非知情交易者来说，在信息集<span class="math inline">\(I=\{P\}\)</span>下，<span class="math inline">\(E[F|I_U]=E[F|P]=E[F|S]\)</span>，<span class="math inline">\(Var[F|I_U]=Var[F|P]=Var[F|S]\)</span>。由于<span class="math inline">\(\sigma_{uv}\varepsilon\)</span>与<span class="math inline">\(F\)</span>独立同分布，则其联合密度函数为<span class="math inline">\(f(F,\varepsilon)=f_F(F)f_{c\sigma_{uv}\varepsilon}(c\sigma_{uv}\varepsilon)\)</span>，则<span class="math inline">\(S\)</span>的概率密度函数为：</p>
+<p><span class="math display">\[f(S)=\int f(F,F-2S)dF=\int f_F(F)f_{c\sigma_{uv}\varepsilon}(F-2S)dF\\
+ \hspace{5cm}=\frac{1}{4ca_F^2}\int I[-a_F&lt;F&lt;a_F]I[-ca_F+2S&lt;F&lt;ca_F+2S]dF\]</span></p>
 <p>由于<span class="math inline">\(F\)</span>同时属于区间<span class="math inline">\([-a_F&lt;F&lt;a_F]\)</span>和<span class="math inline">\([-ca_F+2S&lt;F&lt;ca_F+2S]\)</span>，则需要取其交集，对<span class="math inline">\(S\)</span>进行讨论。</p>
 <p>当<span class="math inline">\(\frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2}\)</span>时，<span class="math inline">\(F\in [-ca_F+2S,a_F]\)</span>，则</p>
-<p><span class="math display">\[f(S)=\frac{1}{4a_F^2}\int _{-ca_F+2S}^{a_F}dF=\frac{(1+c)a_F-2S}{4a_F^2}\]</span></p>
+<p><span class="math display">\[f(S)=\frac{1}{4ca_F^2}\int _{-ca_F+2S}^{a_F}dF=\frac{(1+c)a_F-2S}{4ca_F^2}\]</span></p>
 <p>当<span class="math inline">\(-\frac{(1+c)a_F}{2}\le S\le-\frac{(1-c)a_F}{2}\)</span>时，<span class="math inline">\(F\in [-a_F,ca_F+2S]\)</span>，则</p>
-<p><span class="math display">\[f(S)=\frac{1}{4a_F^2}\int _{-a_F}^{ca_F+2S}dF=\frac{(1+c)a_F+2S}{4a_F^2}\]</span>
+<p><span class="math display">\[f(S)=\frac{1}{4ca_F^2}\int _{-a_F}^{ca_F+2S}dF=\frac{(1+c)a_F+2S}{4ca_F^2}\]</span>
 当<span class="math inline">\(-\frac{(1-c)a_F}{2}&lt;S&lt;\frac{(1-c)a_F}{2}\)</span>时，<span class="math inline">\(F\in [-ca_F+2S,ca_F+2S]\)</span>，则</p>
-<p><span class="math display">\[f(S)=\frac{1}{4a_F^2}\int _{-ca_F+2S}^{ca_F+2S}dF=\frac{2ca_F}{4a_F^2}\]</span></p>
+<p><span class="math display">\[f(S)=\frac{1}{4ca_F^2}\int _{-ca_F+2S}^{ca_F+2S}dF=\frac{2ca_F}{4ca_F^2}\]</span></p>
 <p>因此，我们便可求得条件概率密度函数，具体如下：</p>
 <p><span class="math display">\[\begin{equation}
 f(F|S)=f(F,F-2S)/f(S)=\left\{
@@ -222,16 +227,17 @@ theta=0.1
 au&lt;-4
 af&lt;-2
 simamu=au^2/3
-c&lt;-0.2
+c1&lt;-0.8
+c2=0.4
 w=0.5
 epsilon&lt;-runif(101,-2,2)
-S=seq(-(1+c)*au/2,(1+c)*au/2,0.02)
-
-plot(S,condmean(S,0.8,2),type = &quot;l&quot;,ylim = c(-1.8,1.8))
-lines(S,condmean(S,0.4,2),col=&quot;red&quot;)</code></pre>
+S1=seq(-(1+c1)*af/2,(1+c1)*af/2,0.02)
+S2=seq(-(1+c2)*af/2,(1+c2)*af/2,0.02)
+plot(S1,condmean(S1,c1,2),type = &quot;l&quot;)
+lines(S2,condmean(S2,c2,2),col=&quot;red&quot;)</code></pre>
 <p><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<pre class="r"><code>plot(S,condvar(S,0.8,2),type = &quot;l&quot;,ylim = c(-1.8,1.8))
-lines(S,condvar(S,0.4,2),col=&quot;red&quot;)</code></pre>
+<pre class="r"><code>plot(S1,condvar(S1,c1,2),type = &quot;l&quot;)
+lines(S2,condvar(S2,c2,2),col=&quot;red&quot;)</code></pre>
 <p><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
 <pre class="r"><code>c=seq(0,1,0.05)
 plot(c,laply(c,condmean,S=-0.8,af=2),type = &quot;l&quot;)</code></pre>
@@ -249,38 +255,38 @@ plot(c,laply(c,condmean,S=-0.8,af=2),type = &quot;l&quot;)</code></pre>
 \right.
 \end{equation}\]</span></p>
 <p>将<span class="math inline">\(\theta_I\)</span>和<span class="math inline">\(\theta_U\)</span>代入市场出清条件<span class="math inline">\(w\theta_I+(1-w)\theta_U=\bar\theta\)</span>得</p>
-<p><span class="math display">\[w\frac{F-P}{\sigma_u^2}+(1-w)\frac{S-P}{V[F|S])+\sigma_u^2}=\bar\theta\]</span>
+<p><span class="math display">\[w\frac{2S-P}{\sigma_u^2}+(1-w)\frac{S-P}{V[F|S])+\sigma_u^2}=\bar\theta\]</span>
 解得均衡价格为：</p>
-<p><span class="math display">\[P=2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+V[F|S]\bar\theta}{1+wV[F|S]/\sigma_u^2}\]</span>
+<p><span class="math display">\[P=2S-\bar\theta\sigma_u^2-(1-w)\frac{S+V[F|S]\bar\theta}{1+wV[F|S]/\sigma_u^2}\]</span>
 即</p>
 <p><span class="math display">\[\begin{equation}
 P=\left\{
 \begin{aligned}
-&amp;2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{1+w\frac{1}{12}[(1+c)a_F-2S]^2/\sigma_u^2},\hspace{0.5cm} \frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} \\
-&amp;2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+\frac{1}{3}(c^2a_F^2)\bar\theta}{1+w\frac{1}{3}(c^2a_F^2)/\sigma_u^2},\hspace{0.5cm}-\frac{(1-c)a_F}{2}&lt; S&lt; \frac{(1-c)a_F}{2} \\
-&amp;2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{1+w\frac{1}{12}[(1+c)a_F+2S]^2/\sigma_u^2},\hspace{0.5cm} -\frac{(1+c)a_F}{2} \le S\le-\frac{(1-c)a_F}{2}  
+&amp;2S-\bar\theta\sigma_u^2-(1-w)\frac{S+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{1+w\frac{1}{12}[(1+c)a_F-2S]^2/\sigma_u^2},\hspace{0.5cm} \frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} \\
+&amp;2S-\bar\theta\sigma_u^2-(1-w)\frac{S+\frac{1}{3}(c^2a_F^2)\bar\theta}{1+w\frac{1}{3}(c^2a_F^2)/\sigma_u^2},\hspace{0.5cm}-\frac{(1-c)a_F}{2}&lt; S&lt; \frac{(1-c)a_F}{2} \\
+&amp;2S-\bar\theta\sigma_u^2-(1-w)\frac{S+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{1+w\frac{1}{12}[(1+c)a_F+2S]^2/\sigma_u^2},\hspace{0.5cm} -\frac{(1+c)a_F}{2} \le S\le-\frac{(1-c)a_F}{2}  
 \end{aligned}
 \right.
 \end{equation}\]</span>
 将均衡价格代入需求函数，得到均衡需求如下：</p>
-<p><span class="math display">\[\theta_I=\bar\theta+(1-w)\frac{S+c\varepsilon+V[F|S]\bar\theta}{\sigma_u^2+wV[F|S]}\]</span>
-<span class="math display">\[\theta_U=\bar\theta-w\frac{S+c\varepsilon+V[F|S]\bar\theta}{\sigma_u^2+wV[F|S]}\]</span></p>
+<p><span class="math display">\[\theta_I=\bar\theta+(1-w)\frac{S+V[F|S]\bar\theta}{\sigma_u^2+wV[F|S]}\]</span>
+<span class="math display">\[\theta_U=\bar\theta-w\frac{S+V[F|S]\bar\theta}{\sigma_u^2+wV[F|S]}\]</span></p>
 <p>即
 <span class="math display">\[\begin{equation}
 \theta_I=\left\{
 \begin{aligned}
-&amp;\bar\theta+(1-w)\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F-2S]^2},\hspace{0.5cm} \frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} \\
-&amp;\bar\theta+(1-w)\frac{S+c\varepsilon+\frac{1}{3}(c^2a_F^2)\bar\theta}{\sigma_u^2+w\frac{1}{3}(c^2a_F^2)},\hspace{0.5cm}-\frac{(1-c)a_F}{2}&lt; S&lt;\frac{(1-c)a_F}{2} \\
-&amp;\bar\theta+(1-w)\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F+2S]^2},\hspace{0.5cm}-\frac{(1+c)a_F}{2} \le S\le-\frac{(1-c)a_F}{2}  
+&amp;\bar\theta+(1-w)\frac{S+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F-2S]^2},\hspace{0.5cm} \frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} \\
+&amp;\bar\theta+(1-w)\frac{S+\frac{1}{3}(c^2a_F^2)\bar\theta}{\sigma_u^2+w\frac{1}{3}(c^2a_F^2)},\hspace{0.5cm}-\frac{(1-c)a_F}{2}&lt; S&lt;\frac{(1-c)a_F}{2} \\
+&amp;\bar\theta+(1-w)\frac{S+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F+2S]^2},\hspace{0.5cm}-\frac{(1+c)a_F}{2} \le S\le-\frac{(1-c)a_F}{2}  
 \end{aligned}
 \right.
 \end{equation}\]</span></p>
 <p><span class="math display">\[\begin{equation}
 \theta_U=\left\{
 \begin{aligned}
-&amp;\bar\theta-w\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F-2S]^2},\hspace{0.5cm}\frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} \\
-&amp;\bar\theta-w\frac{S+c\varepsilon+\frac{1}{3}(c^2a_F^2)\bar\theta}{\sigma_u^2+w\frac{1}{3}(c^2a_F^2)},\hspace{0.5cm}-\frac{(1-c)a_F}{2}&lt; S&lt; \frac{(1-c)a_F}{2} \\
-&amp;\bar\theta-w\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F+2S]^2},\hspace{0.5cm}-\frac{(1+c)a_F}{2} \le S\le-\frac{(1-c)a_F}{2}  
+&amp;\bar\theta-w\frac{S+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F-2S]^2},\hspace{0.5cm}\frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} \\
+&amp;\bar\theta-w\frac{S+\frac{1}{3}(c^2a_F^2)\bar\theta}{\sigma_u^2+w\frac{1}{3}(c^2a_F^2)},\hspace{0.5cm}-\frac{(1-c)a_F}{2}&lt; S&lt; \frac{(1-c)a_F}{2} \\
+&amp;\bar\theta-w\frac{S+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F+2S]^2},\hspace{0.5cm}-\frac{(1+c)a_F}{2} \le S\le-\frac{(1-c)a_F}{2}  
 \end{aligned}
 \right.
 \end{equation}\]</span></p>
@@ -297,31 +303,24 @@ af&lt;-2
 simamu=au^2/3
 c=0
 w=0.5
-epsilon&lt;-runif(101,-2,2)
-S=seq(-(1+c)*au/2,(1+c)*au/2,0.02)
+S&lt;-runif(1000,-(1+c)*af/2,(1+c)*af/2)
 VFI=laply(S,condvar,c,2)
-P=2*S+c*epsilon-theta*simamu-(1-w)*((S+c*epsilon+VFI*theta)/(1+w*VFI/simamu))
+P=2*S-theta*simamu-(1-w)*((S+VFI*theta)/(1+w*VFI/simamu))
+
+Ep&lt;--theta*simamu*(1+c)-(1-w)*(6*simamu*log(1+(c*theta*w*af)/(6*simamu))/w+(2*simamu*c*theta*af)/w-(simamu*theta)*(w)*sqrt(12*simamu/w)*atan(sqrt(w/(12*simamu)*2*af))+((c*af)^2*theta*(1-c)*af/(3+w*(c*af)^2/(3*simamu))))
 
 plot(S,P,lty=3,type = &quot;l&quot;)</code></pre>
 <p><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre class="r"><code>thetaI=theta+(1-w)*((S+c*epsilon+VFI*theta)/(simamu+w*VFI))
-thetaU=theta-w*((S+c*epsilon+VFI*theta)/(simamu+w*VFI))
+<pre class="r"><code>S=seq(-(1+c)*af/2,(1+c)*af/2,0.02)
+VFI=laply(S,condvar,c,2)
+thetaI=theta+(1-w)*((S+VFI*theta)/(simamu+w*VFI))
+thetaU=theta-w*((S+VFI*theta)/(simamu+w*VFI))
 
 plot(S,thetaU,col=&quot;blue&quot;,lty=3,type = &quot;l&quot;)
 lines(S,thetaI,col=&quot;red&quot;)
 abline(h=theta,lty=3)</code></pre>
 <p><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-2-2.png" width="672" />
-由于<span class="math inline">\(F\)</span>与<span class="math inline">\(\varepsilon\)</span>为相互独立的均匀分布<span class="math inline">\([-a_F,a_F]\)</span>，股票价格可以表示为：
-<span class="math display">\[\begin{equation}
-P=\left\{
-\begin{aligned}
-&amp;F-\bar\theta\sigma_u^2-(1-w)\frac{\frac{1}{2}(F+c\varepsilon)+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{1+w\frac{1}{12}[(1+c)a_F-2S]^2/\sigma_u^2},\hspace{0.5cm} (1-c)a_F+c\varepsilon\le F \le (1+c)a_F+c\varepsilon \\
-&amp;F-\bar\theta\sigma_u^2-(1-w)\frac{\frac{1}{2}(F+c\varepsilon)+\frac{1}{3}(c^2a_F^2)\bar\theta}{1+w\frac{1}{3}(c^2a_F^2)/\sigma_u^2},\hspace{0.5cm}-(1-c)a_F+c\varepsilon&lt; F&lt; (1-c)a_F+c\varepsilon \\
-&amp;F-\bar\theta\sigma_u^2-(1-w)\frac{\frac{1}{2}(F+c\varepsilon)+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{1+w\frac{1}{12}[(1+c)a_F+2S]^2/\sigma_u^2},\hspace{0.5cm} -(1+c)a_F+c\varepsilon \le F\le-(1-c)a_F+c\varepsilon  
-\end{aligned}
-\right.
-\end{equation}\]</span>
-则期望价格为：</p>
+由于<span class="math inline">\(F\)</span>与<span class="math inline">\(c\sigma_{uv}\varepsilon}\)</span>为相互独立的均匀分布，则<span class="math inline">\(S\)</span>为区间<span class="math inline">\([-\frac{1+c}{2}a_F,\frac{1+c}{2}a_F]\)</span>上的均匀分布，股票价格的期望为：</p>
 <p><span class="math display">\[E[P]=\int _{-a_F}^{a_F}d\varepsilon\int _{(1-c)a_F+c\varepsilon}^{(1+c)a_F+c\varepsilon}Pf(F)f(\varepsilon)dF+\int _{-a_F}^{a_F}\int _{-(1-c)a_F+c\varepsilon}^{(1-c)a_F+c\varepsilon}Pf(F)f(\varepsilon)dF+\int _{-a_F}^{a_F}d\varepsilon\int _{-(1+c)a_F+c\varepsilon}^{-(1-c)a_F+c\varepsilon}Pf(F)f(\varepsilon)dF\\
 =-\frac{2\sigma_u^2c\bar \theta}{w}-\sigma_u^2(1-c)\bar\theta-(1-w)\frac{(1-c)c^2a_F^2\bar\theta}{3+wc^2a_F^2/\sigma_u^2}+(1-w)\frac{\sigma_u^2\bar\theta}{wa_F}(\frac{w}{12\sigma_u^2})^{-\frac{1}{2}}arctan(\sqrt{\frac{w}{12\sigma_u^2}2ca_F})\]</span></p>
 <p>参数设定，<span class="math inline">\(a_u=a_F=2\)</span>，<span class="math inline">\(\theta=0.1\)</span>，<span class="math inline">\(w=0.5\)</span>，<span class="math inline">\(c=0.01\)</span>，具体代码如下：</p>
@@ -337,14 +336,15 @@ w=seq(0,1,0.1)
 
 meanPV&lt;-function(c,w){
   theta=0.1
-  au&lt;-af&lt;-2
+  au&lt;-4
+  af&lt;-2
   simamu=au^2/3
   epsilon&lt;-runif(1000000,-2,2)
   df&lt;-runif(1000000,-2,2)
   S=(df-epsilon*c)/2
   VFI=condvar(S,c,2)
-  mP=mean(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
-  VR=var(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
+  mP=mean(2*S-theta*simamu-(1-w)*(S+theta*VFI)/(1+w*VFI/simamu))
+  VR=var(2*S-theta*simamu-(1-w)*(S+theta*VFI)/(1+w*VFI/simamu))
   return(data.frame(c,w,mP,VR))
 }
 
@@ -369,7 +369,8 @@ abline(h=max(mp$mP),col=&quot;red&quot;,lty=3)</code></pre>
 abline(h=max(mp$VR),col=&quot;red&quot;,lty=3)</code></pre>
 <p><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-3-4.png" width="672" /></p>
 <p>根据前面分析，我们知道交易成本和投资者知情概率是ETF持股比例的函数，交易成本随ETF持股比例递减，知情交易概率随ETF持股比例递增，不妨设其函数形式分别为<span class="math inline">\(c=1-\lambda\)</span>,<span class="math inline">\(w=\lambda\)</span>，则ETF持股对定价效率的影响的蒙特卡洛模拟如下：</p>
-<pre class="r"><code>theta=0.1
+<pre class="r"><code>set.seed(100)
+theta=0.1
 au&lt;-4
 af&lt;-2
 simamu=au^2/3
@@ -377,14 +378,15 @@ c=seq(0,1,0.05)
 w=seq(0,1,0.05)
 meanPV&lt;-function(c,w){
   theta=0.1
-  au&lt;-af&lt;-2
+  au&lt;-4
+  af&lt;-2
   simamu=au^2/3
-  epsilon&lt;-runif(1000000,-3,3)
+  epsilon&lt;-runif(1000000,-2,2)
   df&lt;-runif(1000000,-2,2)
   S=(df-epsilon*c)/2
   VFI=condvar(S,c,2)
-  mP=mean(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
-  VR=var(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
+  mP=mean(2*S-theta*simamu-(1-w)*(S+theta*VFI)/(1+w*VFI/simamu))
+  VR=var(2*S-theta*simamu-(1-w)*(S+theta*VFI)/(1+w*VFI/simamu))
   return(data.frame(c,w,mP,VR))
 }
 
@@ -418,26 +420,26 @@ abline(h=0,col=&quot;red&quot;)</code></pre>
 </blockquote>
 <p>我们假设投资者受卖空限制约束，对于投资者<span class="math inline">\(i(i=I,U)\)</span>来说，其持有的股票头寸大于某个非正常数<span class="math inline">\(\theta_i\ge-b_i,b_i\ge0\)</span>，为了方便，我们假设卖空限制在同类投资者相同，但不同投资者者中不同，特别对于知情投资者来说，其可以持有空头头寸到<span class="math inline">\(b_i\)</span>，非知情交易者不受卖空限制约束。</p>
 <p>根据效用最大化一阶条件，投资者的最优持股为：</p>
-<p><span class="math display">\[\theta_i=max\bigg[\frac{(E[F|I_i]-P)}{Var[F|I_i]+\sigma_u^2},-b_i\bigg]\]</span>
-当信息对称时，与交易成本的类似，我们猜测一种均衡下的价格函数，在此价格函数下推到投资者的市场需求函数，为了简便，让<span class="math inline">\(c=1\)</span>,股票价格只取决于信号<span class="math inline">\(S=\frac{1}{2}(F-\varepsilon)\)</span>。在卖空限制下，投资者被阻挡在市场外，股票价格不在反应投资者者的需求，并独立于<span class="math inline">\(S\)</span>，当<span class="math inline">\(S\)</span>低于卖空限制门限<span class="math inline">\(z\)</span>时，股票价格为常数<span class="math inline">\(\bar p\)</span>，当<span class="math inline">\(S\)</span>大于卖空门限<span class="math inline">\(z\)</span>时，股票价格是<span class="math inline">\(S\)</span>的增函数，其中，<span class="math inline">\(\bar p\)</span>是<span class="math inline">\(S=z\)</span>时的股票价格，<span class="math inline">\(z&lt;0\)</span>。</p>
+<p><span class="math display">\[\theta_i=max\bigg[\frac{(E[F|I_i]-c\sigma_{uv}\varepsilon-P)}{Var[F|I_i]+\sigma_u^2},-b_i\bigg]\]</span>
+当信息对称时，与交易成本的类似，我们猜测一种均衡下的价格函数，在此价格函数下推到投资者的市场需求函数，为了简便，让<span class="math inline">\(c=1\)</span>,股票价格只取决于信号<span class="math inline">\(S=\frac{1}{2}(F-\sigma_{uv}\varepsilon)\)</span>。在卖空限制下，投资者被阻挡在市场外，股票价格不在反应投资者者的需求，并独立于<span class="math inline">\(S\)</span>，当<span class="math inline">\(S\)</span>低于卖空限制门限<span class="math inline">\(z\)</span>时，股票价格为常数<span class="math inline">\(\bar p\)</span>，当<span class="math inline">\(S\)</span>大于卖空门限<span class="math inline">\(z\)</span>时，股票价格是<span class="math inline">\(S\)</span>的增函数，其中，<span class="math inline">\(\bar p\)</span>是<span class="math inline">\(S=z\)</span>时的股票价格，<span class="math inline">\(z&lt;0\)</span>。</p>
 <p>对于知情交易者来说，在信息集<span class="math inline">\(I=\{F,P\}\)</span>下的需求函数为：</p>
-<p><span class="math display">\[\theta_I=max\bigg[\frac{F-P}{\sigma_u^2},-b_I\bigg]\]</span></p>
-<p>对于非知情交易者来说，在信息集<span class="math inline">\(I=\{F,P\}\)</span>下，<span class="math inline">\(E[F|I_U]=E[F|P]=E[F|S]\)</span>，<span class="math inline">\(Var[F|I_U]=Var[F|P]=Var[F|S]\)</span>。由于<span class="math inline">\(\varepsilon\)</span>与<span class="math inline">\(F\)</span>独立同分布，则其联合密度函数为<span class="math inline">\(f(F,\varepsilon)=f_F(F)f_{\varepsilon}(\varepsilon)\)</span>，且，<span class="math inline">\(\varepsilon=F-2S\)</span>。则<span class="math inline">\(S\)</span>的概率密度函数为：</p>
-<p><span class="math display">\[f(S)=\int f(F,F-2S)dF=\int f_F(F)f_{\varepsilon}(F-2S)dF \\
+<p><span class="math display">\[\theta_I=max\bigg[\frac{F-\sigma_{uv}\varepsilon-P}{\sigma_u^2},-b_I\bigg]\]</span></p>
+<p>对于非知情交易者来说，在信息集<span class="math inline">\(I=\{F,P\}\)</span>下，<span class="math inline">\(E[F|I_U]=E[F|P]=E[F|S]\)</span>，<span class="math inline">\(Var[F|I_U]=Var[F|P]=Var[F|S]\)</span>。由于<span class="math inline">\(\sigma_{uv}\varepsilon\)</span>与<span class="math inline">\(F\)</span>独立同分布，则其联合密度函数为<span class="math inline">\(f(F,\varepsilon)=f_F(F)f_{\sigma_{uv}\varepsilon}(\sigma_{uv}\varepsilon)\)</span>，且，<span class="math inline">\(\sigma_{uv}\varepsilon=F-2S\)</span>。则<span class="math inline">\(S\)</span>的概率密度函数为：</p>
+<p><span class="math display">\[f(S)=\int f(F,F-2S)dF=\int f_F(F)f_{\sigma_{uv}\varepsilon}(F-2S)dF \\
  \hspace{5cm}=\frac{1}{4a_F^2}\int I[-a_F&lt;F&lt;a_F]I[-a_F+2S&lt;F&lt;a_F+2S]dF\]</span>
-由于<span class="math inline">\(F\)</span>同时属于区间<span class="math inline">\([-a_F&lt;F&lt;a_F]\)</span>和<span class="math inline">\([-ca_F+2S&lt;F&lt;ca_F+2S]\)</span>，则需要取其交集，对<span class="math inline">\(S\)</span>进行讨论。</p>
+由于<span class="math inline">\(F\)</span>同时属于区间<span class="math inline">\([-a_F&lt;F&lt;a_F]\)</span>和<span class="math inline">\([-a_F+2S&lt;F&lt;a_F+2S]\)</span>，则需要取其交集，对<span class="math inline">\(S\)</span>进行讨论。</p>
 <p>当<span class="math inline">\(0\le S \le a_F\)</span>时，<span class="math inline">\(F\in[-a_F+2S,a_F]\)</span>，则</p>
 <p><span class="math display">\[f(S)=\frac{1}{4a_F^2}\int _{-a_F+2S}^{a_F}dF=\frac{2a_F-2S}{4a_F^2}\]</span></p>
 <p>当<span class="math inline">\(z\le S&lt; 0\)</span>时，<span class="math inline">\(F\in [-a_F,a_F+2S]\)</span>，则</p>
 <p><span class="math display">\[f(S)=\frac{1}{4a_F^2}\int _{-a_F}^{a_F+2S}dF=\frac{2a_F+2S}{4a_F^2}\]</span>
 所以，当<span class="math inline">\(z\le S \le a_F\)</span>时，条件概率密度函数<span class="math inline">\(f(F|S)\)</span>可以表示为：</p>
-<p><span class="math display">\[f(F|S)=\frac{f_F(F)f_Y(F-2S)}{f(S)}\\=\frac{1}{2(a_F-|S|)}I[-a_F,a_F](F)I[-a_F,a_F](F-2S)\]</span>
+<p><span class="math display">\[f(F|S)=\frac{f_F(F)f_{\sigma_{uv}\varepsilon}(F-2S)}{f(S)}\\=\frac{1}{2(a_F-|S|)}I[-a_F,a_F](F)I[-a_F,a_F](F-2S)\]</span>
 则<span class="math inline">\(E[F|S]=S\)</span>,<span class="math inline">\(Var[F|S]=\frac{1}{3}(a_F-|S|)^2\)</span></p>
 <p>当<span class="math inline">\(-a_F&lt;S&lt;z\)</span>时，<span class="math inline">\(F\in [-a_F,a_F+2z]\)</span>且<span class="math inline">\(\varepsilon\in[-a_F,-F+2z]\)</span>，此时，投资者只能通过不变的股价推测出<span class="math inline">\(S\le z\)</span>的概率，则概率为：</p>
 <p><span class="math display">\[F(S\le z)=\frac{1}{8a_F^2}\int _{-a_F}^{a_F+2z}dF\int_{F-2z}^{a_F}d\varepsilon=\frac{2(a_F+z)^2}{8a_F^2}\]</span>
 而</p>
 <p><span class="math display">\[f(F,S\le z)=\int_{-a_F}^zf_F(F)f_\varepsilon(F-2S)dS\\
-=\int_{F-2z}^{a_F}\frac{1}{2}f_F(F)f_\varepsilon(\varepsilon)d\varepsilon\\
+=\int_{F-2z}^{a_F}\frac{1}{2}f_F(F)f_{\sigma_{uv}\varepsilon}(\sigma_{uv}\varepsilon)d\varepsilon\\
 =\frac{a_F+2z-F}{8a_F^2}I[-a_F,2z+a_F](F)\]</span></p>
 <p>所以</p>
 <p><span class="math display">\[f(F|S\le z)=\frac{f(F,S\le z)}{F(S\le z)}=\frac{a_F+2z-F}{2(a_F+z)^2}I[-a_F,2z+a_F](F)\]</span></p>
@@ -475,17 +477,17 @@ V[F|S]
 <blockquote>
 <p><strong>知情投资者不受卖空限制的均衡价格</strong>，即<span class="math inline">\(\frac{F-P}{\sigma_u^2}&gt;-b\)</span>时市场出清条件为：</p>
 </blockquote>
-<p><span class="math display">\[w\frac{F-P}{\sigma_u^2}+(1-w)\frac{S-P}{\frac{1}{3}(a_F-|S|)^2+\sigma_u^2}=\bar\theta\]</span></p>
+<p><span class="math display">\[w\frac{2S-P}{\sigma_u^2}+(1-w)\frac{S-P}{\frac{1}{3}(a_F-|S|)^2+\sigma_u^2}=\bar\theta\]</span></p>
 <p>解得均衡价格为：</p>
-<p><span class="math display">\[P=2S+\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+\varepsilon+\frac{1}{3}(a_F-|S|)^2\bar\theta}{1+w\frac{1}{3}(a_F-|S|)^2/\sigma_u^2}\]</span>
+<p><span class="math display">\[P=2S-\bar\theta\sigma_u^2-(1-w)\frac{S+\frac{1}{3}(a_F-|S|)^2\bar\theta}{1+w\frac{1}{3}(a_F-|S|)^2/\sigma_u^2}\]</span>
 将均衡价格代入知情交易者不受卖空限制约束的条件，求解S，便得到投资者不受卖空限制约束的条件，即</p>
-<p><span class="math display">\[\bar\theta\sigma_u^2+(1-w)\frac{S+\varepsilon+\frac{1}{3}(a_F-|S|)^2\bar\theta}{1+w\frac{1}{3}(a_F-|S|)^2/\sigma_u^2}&gt;-b\sigma_u^2\]</span>
+<p><span class="math display">\[\bar\theta\sigma_u^2+(1-w)\frac{S+\frac{1}{3}(a_F-|S|)^2\bar\theta}{1+w\frac{1}{3}(a_F-|S|)^2/\sigma_u^2}&gt;-b\sigma_u^2\]</span>
 由于<span class="math inline">\(S&gt;=0\)</span>,投资者不受卖空限制约束，所以，我们只讨论<span class="math inline">\(S&lt;0\)</span>的情况，此时，投资者不受卖空限制约束的条件为:</p>
-<p><span class="math display">\[\bar\theta\sigma_u^2-(1-w)\frac{S+\varepsilon+\frac{1}{3}(a_F+S)^2\bar\theta}{1+w\frac{1}{3}(a_F+S)^2/\sigma_u^2}&gt;-b\sigma_u^2\]</span>
+<p><span class="math display">\[\bar\theta\sigma_u^2-(1-w)\frac{S+\frac{1}{3}(a_F+S)^2\bar\theta}{1+w\frac{1}{3}(a_F+S)^2/\sigma_u^2}&gt;-b\sigma_u^2\]</span>
 解得</p>
-<p><span class="math display">\[S&gt;-a_F-\frac{3}{2}(w\hat b+\hat \theta)^{-1}+\frac{3}{2}\sqrt{(w\hat b+\hat \theta)^{-2}+\frac{4}{3}(a_F+\varepsilon)(w\hat b+\hat \theta)^{-1}-\frac{4}{3}(\hat b+\hat \theta)(w\hat b+\hat \theta)^{-1}\sigma_u^2}\]</span>
+<p><span class="math display">\[S&gt;-a_F-\frac{3}{2}(w\hat b+\hat \theta)^{-1}+\frac{3}{2}\sqrt{(w\hat b+\hat \theta)^{-2}+\frac{4}{3}a_F(w\hat b+\hat \theta)^{-1}-\frac{4}{3}(\hat b+\hat \theta)(w\hat b+\hat \theta)^{-1}\sigma_u^2}\]</span>
 其中<span class="math inline">\(\bar b=b/(1-w)\)</span>,<span class="math inline">\(\hat \theta=\theta/(1-w)\)</span>。因此，投资者不受卖空限制的临界点为：</p>
-<p><span class="math display">\[z^*=-a_F-\frac{3}{2}(w\hat b+\hat \theta)^{-1}+\frac{3}{2}\sqrt{(w\hat b+\hat \theta)^{-2}+\frac{4}{3}(a_F-\varepsilon)(w\hat b+\hat \theta)^{-1}-\frac{4}{3}(\hat b+\hat \theta)(w\hat b+\hat \theta)^{-1}\sigma_u^2}\]</span></p>
+<p><span class="math display">\[z^*=-a_F-\frac{3}{2}(w\hat b+\hat \theta)^{-1}+\frac{3}{2}\sqrt{(w\hat b+\hat \theta)^{-2}+\frac{4}{3}a_F(w\hat b+\hat \theta)^{-1}-\frac{4}{3}(\hat b+\hat \theta)(w\hat b+\hat \theta)^{-1}\sigma_u^2}\]</span></p>
 <p><strong>知情投资者持股等于卖空限量<span class="math inline">\(-b\)</span>,不受卖空限制</strong>，市场出清条件为：</p>
 <p><span class="math display">\[-wb+(1-w)\frac{S-P}{\frac{1}{3}(a_F-|S|)^2+\sigma_u^2}=\bar\theta\]</span></p>
 <p>解得均衡价格为：</p>
@@ -497,17 +499,17 @@ V[F|S]
 <p><span class="math display">\[P=\frac{1}{3}(2z-a_F)-(w\hat b+\hat \theta)(\frac{2}{9}(z+a_F)^2+\sigma_u^2)\]</span>
 将均衡价格代入卖空限制约束条件，<span class="math inline">\(\frac{F-P}{\sigma_u^2}=-b\)</span>得：</p>
 <p>解得</p>
-<p><span class="math display">\[z=-a_F-3(w\hat b+\hat \theta)^{-1}+3\sqrt{(w\hat b+\hat \theta)^{-2}+\frac{1}{2}(a_F-\varepsilon)(w\hat b+\hat \theta)^{-1}-\frac{1}{2}(\hat b+\hat \theta)(w\hat b+\hat \theta)^{-1}\sigma_u^2}\]</span></p>
-<p>当<span class="math inline">\(S&lt; z\)</span>时，知情投资者的需求不能得到满足，只能实现<span class="math inline">\(-b\)</span>，此时市场无法出清，市场价格有卖空限制条件决定。即<span class="math inline">\(\frac{2S+\varepsilon-P}{\sigma_u^2}=-b\)</span>,且<span class="math inline">\(S=z\)</span></p>
+<p><span class="math display">\[z=-a_F-3(w\hat b+\hat \theta)^{-1}+3\sqrt{(w\hat b+\hat \theta)^{-2}+\frac{1}{2}a_F(w\hat b+\hat \theta)^{-1}-\frac{1}{2}(\hat b+\hat \theta)(w\hat b+\hat \theta)^{-1}\sigma_u^2}\]</span></p>
+<p>当<span class="math inline">\(S&lt; z\)</span>时，知情投资者的需求不能得到满足，只能实现<span class="math inline">\(-b\)</span>，此时市场无法出清，市场价格有卖空限制条件决定。即<span class="math inline">\(\frac{2S-P}{\sigma_u^2}=-b\)</span>,且<span class="math inline">\(S=z\)</span></p>
 <p>解得均衡价格为：</p>
-<p><span class="math display">\[P=2z+\varepsilon+b\sigma_u^2\]</span>
+<p><span class="math display">\[P=2z+b\sigma_u^2\]</span>
 综上所述，股票均衡价格为：</p>
 <p><span class="math display">\[\begin{equation}
 P=\left\{
 \begin{aligned}
-&amp;2S+\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+\varepsilon+\frac{1}{3}(a_F-|S|)^2\bar\theta}{1+w\frac{1}{3}(a_F-|S|)^2/\sigma_u^2},\hspace{0.5cm} S &gt; z^*  \\
+&amp;2S-\bar\theta\sigma_u^2-(1-w)\frac{S+\frac{1}{3}(a_F-|S|)^2\bar\theta}{1+w\frac{1}{3}(a_F-|S|)^2/\sigma_u^2},\hspace{0.5cm} S &gt; z^*  \\
 &amp;S-(w\hat b+\hat \theta)\bigg[\frac{1}{3}(a_F-|S|)^2+\sigma_u^2\bigg],\hspace{0.5cm}z&lt; S\le z^* \\
-&amp;2z+\varepsilon+b\sigma_u^2,\hspace{0.5cm}  S\le z  
+&amp;2z+b\sigma_u^2,\hspace{0.5cm}  S\le z  
 \end{aligned}
 \right.
 \end{equation}\]</span></p>
@@ -518,7 +520,7 @@ P=\left\{
 <p><span class="math display">\[\begin{equation}
 \theta_I=\left\{
 \begin{aligned}
-&amp;\bar\theta+(1-w)\frac{S+c\varepsilon+\frac{1}{12}[a_F-|S|]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[a_F-|S|]^2},\hspace{0.5cm} S &gt; z^* \\
+&amp;\bar\theta+(1-w)\frac{S+\frac{1}{3}[a_F-|S|]^2\bar\theta}{\sigma_u^2+w\frac{1}{3}[a_F-|S|]^2},\hspace{0.5cm} S &gt; z^* \\
 &amp;-b,\hspace{0.5cm} S&lt;z^* \\
 \end{aligned}
 \right.
@@ -529,11 +531,103 @@ P=\left\{
 <p><span class="math display">\[\begin{equation}
 \theta_U=\left\{
 \begin{aligned}
-&amp;\bar\theta-w\frac{S+c\varepsilon+\frac{1}{12}[a_F-|S|]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[a_F-|S|]^2},\hspace{0.5cm} S &gt; z^* \\
+&amp;\bar\theta-w\frac{S+\frac{1}{3}[a_F-|S|]^2\bar\theta}{\sigma_u^2+w\frac{1}{3}[a_F-|S|]^2},\hspace{0.5cm} S &gt; z^* \\
 &amp;\hat \theta +w\hat b,\hspace{0.5cm} S&lt;z^* \\
 \end{aligned}
 \right.
 \end{equation}\]</span></p>
+<p>蒙特卡洛模拟：</p>
+<blockquote>
+<p>条件均值与条件方差模拟</p>
+</blockquote>
+<pre class="r"><code>pacman::p_load(future.apply,plyr,ETFpe)
+set.seed(100)
+theta&lt;-0.1
+b&lt;-0.1
+w&lt;-0.1
+au&lt;-2
+af&lt;-2
+simamu=1^2/3
+bb&lt;-b/(1-w)
+btheta&lt;-theta/(1-w)
+c=1
+condit&lt;-function(bb,w,btheta,af,simamu){
+  zs&lt;--af-1.5/((w*bb+btheta))+1.5*sqrt((w*bb+btheta)^(-2)+4*af/(3*(w*bb+btheta))-4*(bb+btheta)*simamu/(3*(w*bb+btheta)))
+  z&lt;--af-3/((w*bb+btheta))+3*sqrt((w*bb+btheta)^(-2)+af/(2*(w*bb+btheta))-(bb+btheta)*simamu/(2*(w*bb+btheta)))
+  return(data.frame(zs,z))
+}
+
+zz&lt;-condit(bb,w,btheta,af,simamu)
+
+S=seq(-(1+c)*af/2,(1+c)*af/2,0.02)
+mv&lt;-function(S,z,af){
+  dat&lt;-data.frame(S=S,z=z$z,af=af)%&gt;%mutate(mf=ifelse(S&gt;z,S,(2*z-af)/3),
+                                      mv=ifelse(S&gt;z,(af-abs(S))^2/3,2*(z+af)^2/9),
+                                      mvf=(af-abs(S))^2/3)
+  return(dat)
+}
+
+mvs&lt;-mv(S,zz,af)
+
+plot(S,mvs$mf,type = &quot;l&quot;,ylim = c(-2,2))
+lines(S,S,col=&quot;red&quot;)</code></pre>
+<p><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>plot(S,mvs$mv,type = &quot;l&quot;)
+lines(S,mvs$mvf,col=&quot;red&quot;)</code></pre>
+<p><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<pre class="r"><code>P&lt;-function(S,z,w,af,theta,simamu,b){
+   dat&lt;-data.frame(S=S,z=z$z,zs=z$zs,w=w,af=af,theta=theta,simamu=simamu,b=b)%&gt;%
+     mutate(mp=ifelse(S&gt;zs,2*S-theta*simamu-(1-w)*(S+(af-abs(S))^2*theta/3)/(1+w*(af-abs(S))^2/(3*simamu)),ifelse(S&gt;z&amp;S&lt;=zs,S-(w*b+theta)/(1-w)*(simamu+(af-abs(S))^2/3),2*z+b*simamu)),mpf=2*S-theta*simamu-(1-w)*(S+(af-abs(S))^2*theta/3)/(1+w*(af-abs(S))^2/(3*simamu)))
+  return(dat)
+}
+
+JhP&lt;-P(S,zz,w,af,theta,simamu,b)
+
+plot(S,JhP$mp,type = &quot;l&quot;,ylim = c(-2,2))
+lines(S,JhP$mpf,type = &quot;l&quot;,col=&quot;red&quot;)</code></pre>
+<p><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
+<blockquote>
+<p>卖空限制下需求曲线模拟</p>
+</blockquote>
+<pre class="r"><code>pacman::p_load(future.apply,plyr,Rcpp)
+
+set.seed(100)
+b&lt;-0.1
+w&lt;-0.5
+au&lt;-2
+af&lt;-2
+simamu=1^2/3
+bb&lt;-b/(1-w)
+btheta&lt;-theta/(1-w)
+c=1
+condit&lt;-function(bb,w,btheta,af,simamu){
+  zs&lt;--af-1.5/((w*bb+btheta))+1.5*sqrt((w*bb+btheta)^(-2)+4*af/(3*(w*bb+btheta))-4*(bb+btheta)*simamu/(3*(w*bb+btheta)))
+  z&lt;--af-3/((w*bb+btheta))+3*sqrt((w*bb+btheta)^(-2)+af/(2*(w*bb+btheta))-(bb+btheta)*simamu/(2*(w*bb+btheta)))
+  return(data.frame(zs,z))
+}
+
+zz&lt;-condit(bb,w,btheta,af,simamu)
+
+S=seq(-(1+c)*af/2,(1+c)*af/2,0.02)
+
+thetaf&lt;-function(S,z,w,af,theta,simamu,b){
+   dat&lt;-data.frame(S=S,z=z$z,zs=z$zs,w=w,af=af,theta=theta,simamu=simamu,b=b)%&gt;%
+     mutate(Itheta=ifelse(S&gt;zs,theta+(1-w)*(S+(af-abs(S))^2*theta/3)/(simamu+w*(af-abs(S))^2/3),-b),
+            Utheta=ifelse(S&gt;zs,theta-w*(S+(af-abs(S))^2*theta/3)/(simamu+w*(af-abs(S))^2/3),(theta+w*b)/(1-w)))
+  return(dat)
+}
+
+dtheta=thetaf(S,zz,w,af,theta,simamu,b)
+
+
+plot(dtheta$S,dtheta$Utheta,col=&quot;blue&quot;,lty=3,type = &quot;l&quot;,ylim=c(min(min(dtheta$Utheta),min(dtheta$Itheta)),max(max(dtheta$Utheta),max(dtheta$Itheta))))
+lines(dtheta$S,dtheta$Itheta,col=&quot;red&quot;)
+abline(h=theta,lty=3)</code></pre>
+<p><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<blockquote>
+<p>卖空限制对定价效率和波动的影响</p>
+</blockquote>
+<p><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-7-1.png" width="672" /><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-7-2.png" width="672" /><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-7-3.png" width="672" /><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-7-4.png" width="672" /></p>
 </div>
 
 

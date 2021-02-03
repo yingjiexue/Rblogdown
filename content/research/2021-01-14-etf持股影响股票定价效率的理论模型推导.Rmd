@@ -21,7 +21,7 @@ tags:
 
 > 证券市场
 
-市场持续存在两期，分别为0期与1期，投资者在竞争的证券市场上交易，可交易的产品有无风险债券、股票和ETF基金，在1期，投资者获得投资收益，假定每单位债券的固定收益为1，股票价值为$V=F+\mu$，其中$\mu$和$F$分别为相互独立的均匀分布，$F\sim U[-a_F,a_F]$，$\mu\sim U[-a_\mu,a_\mu]$
+市场持续存在两期，分别为0期与1期，投资者在竞争的证券市场上交易，可交易的产品有无风险债券、股票和ETF基金，在1期，投资者获得投资收益，同时，投资者面临的流动性成本为$cv\varepsilon$。假定每单位债券的固定收益为1，股票价值为$V=F+\mu$。
 
 > 投资者
 
@@ -39,12 +39,17 @@ tags:
 
 每一位投资者都是风险厌恶者，其对效用函数为Markowiz-Tobin均值方差函数，让$\theta_i$表示投资者$i$最有持股，$w_i$为投资者$i$在1期的最终财富，具体公式如下：
 
-$$W_i=\bar\theta P+\theta_i(V-P)$$
+$$W_i=\bar\theta P+\theta_i(V-P)-cv\varepsilon$$
 
 投资者效用函数为：
 
 $$E[W_i|I_i]-\frac{1}{2}Var[W_i|I_i]$$
 
+>  经济环境中随机变量分布假定
+
+为了简化计算，我们给定经济冲击相关随机变量的分布，假设$F$、$\mu$、$v$、$\varepsilon$为均匀分布，且$F$、$\mu$、$\varepsilon$相互独立，$v$与$\mu$的协方差为$\sigma_{vu}$,与其他随机变量独立，不损失一般性，$F\sim U[-a_F,a_F]$，$\mu\sim U[-a_\mu,a_\mu]$,$v\sim U[-a_v,a_v]$，$\varepsilon\sim U[-a_\varepsilon,a_\varepsilon]$，并且$F$、$\mu$、$\varepsilon$的方差分别为，$\sigma_F^2$、$\sigma_u^2$、$\sigma_v^2$和$\sigma_{\varepsilon}^2$。为了保证价格函数的单调性，我们需要对参数做出以下限制：
+
+$$\sigma_u\ge \sigma_F\ge \sigma_{v\varepsilon}\sigma_{\varepsilon}$$
 
 > **ETF持股作为外生冲击，通过交易成本、卖空限制，信息挖掘三种渠道来影响投资的决策行为。交易成本主要影响投资者从股票价格获取信息的准确性，卖空限制影响投资者对资产的需求，信息挖掘影响投资者成为知情投资的概率，ETF持股比例越高，股票交易成本越低，卖空限制越小，信息挖掘越充分，投资者成为知情交易者的概率越高，从股票价格中获取的信息越准确。**假设ETF持有股票i的市值比例为$\eta$，则投资者成为知情交易者的概率$w$是ETF持股比例的增函数，卖空限制和交易成本是ETF持股比例的减函数。
 
@@ -53,17 +58,17 @@ $$E[W_i|I_i]-\frac{1}{2}Var[W_i|I_i]$$
 
 > 投资者最大化期望效用，具体如下：
 
-$$Max \hspace{0.4cm} E[W_i|I_i]-\frac{1}{2}Var[W_i|I_i] \hspace{0.4cm}i=I,U\\
-s.t \hspace{0.4cm} W_i=\bar\theta P+\theta_i(V-P)$$
+$$Max \hspace{0.4cm} E[W_i|I_i]-\frac{1}{2}Var[W_i|I_i] \hspace{0.4cm}i=I,U \\
+s.t \hspace{0.4cm} W_i=\bar\theta P+\theta_i(V-P)-cv\varepsilon$$
 
 
-由于$E[W_i|I_i]=\bar\theta P+\theta_i(E[F|I_i]-P)$,$Var[W_i|I_i]=\theta_i^2(Var[F|I_i]+\sigma_u^2)$,则投资者的效用为：
+由于$E[W_i|I_i]=\bar\theta P+\theta_i(E[F|I_i]-P)$,$Var[W_i|I_i]=\theta_i^2(Var[F|I_i]+\sigma_u^2)+2\theta_ic\varepsilon\sigma_{uv}+c^2\varepsilon^2\sigma_{v}^2$,则投资者的效用为：
 
-$$U_i(W_i)=\bar\theta P+\theta_i(E[F|I_i]-P)-\frac{1}{2}\theta_i^2(Var[F|I_i]+\sigma_u^2)$$
+$$U_i(W_i)=\bar\theta P+\theta_i(E[F|I_i]-P)-\frac{1}{2}\theta_i^2(Var[F|I_i]+\sigma_u^2)-\theta_ic\varepsilon\sigma_{uv}+c^2\varepsilon^2\sigma_{v}^2$$
 一阶条件为：
 
-$$\frac{\partial U_i}{\partial \theta_i}=(E[F|I_i]-P)-\theta_i(Var[F|I_i]+\sigma_u^2)=0$$
-$$\theta_i=\frac{E[F|I_i]-P}{Var[F|I_i]+\sigma_u^2}$$
+$$\frac{\partial U_i}{\partial \theta_i}=(E[F|I_i]-P)-\theta_i(Var[F|I_i]+\sigma_u^2)-c\varepsilon\sigma_{uv}=0$$
+$$\theta_i=\frac{E[F|I_i]-c\varepsilon\sigma_{uv}-P}{Var[F|I_i]+\sigma_u^2}$$
 
 > (1)投资者信息对称
 
@@ -71,37 +76,37 @@ $$\theta_i=\frac{E[F|I_i]-P}{Var[F|I_i]+\sigma_u^2}$$
 
 投资者的需求函数为：
 
-$$\theta_I=\theta_U=\frac{F-P}{\sigma_u^2}$$
+$$\theta_I=\theta_U=\frac{F-c\varepsilon\sigma_{uv}-P}{\sigma_u^2}$$
 
 均衡价格为：
 
-$$P^\star=F-\sigma_u^2\bar\theta$$
+$$P^\star=F-c\varepsilon\sigma_{uv}-\sigma_u^2\bar\theta$$
 
 > (2)信息不对称
 
-当信息不对称时，两类投资者掌握的信息不同，知情投资者掌握股票价值和价格信息，非知情投资者掌握价格信息，只能通过价格来推断资产价值信息。由于信息不对称条件下，求解比较复杂，参考Yang Bai et al.研究，我们先猜测一种均衡下的价格函数，在此价格函数下推导出投资者的需求，并证明在此均衡价格下市场出清。我们认为股票价格取决于经济状态变量，受交易成本和噪声影响，且股票价格只取决于信号$S=\frac{1}{2}(F-c\varepsilon)$，股票价格是$S$的严格增函数。其中，$\varepsilon \sim U[-a_F,a_F]$，$0< c\leq 1$，$\frac{(1+c)a_F}{2}\ge S\leq \frac{(1+c)a_F}{2}$。
+当信息不对称时，两类投资者掌握的信息不同，知情投资者掌握股票价值和价格信息，非知情投资者掌握价格信息，只能通过价格来推断资产价值信息。由于信息不对称条件下，求解比较复杂，参考Yang Bai et al.研究，我们先猜测一种均衡下的价格函数，在此价格函数下推导出投资者的需求，并证明在此均衡价格下市场出清。我们认为股票价格取决于经济状态变量，股票价格只取决于信号$S=\frac{1}{2}(F-c\varepsilon\sigma_{uv})$，股票价格是$S$的严格增函数。在$\sigma_{uv}=\sigma_F/\sigma_{\varepsilon}$限制下，$\sigma_{uv}\varepsilon \sim U[-a_F,a_F]$。则$c\varepsilon\sigma_{uv} \sim U[-ca_F,ca_F]$
 
 对于知情交易者来说，在信息集$I=\{F,P\}$下的需求函数为：
 
-$$\theta_I==\frac{F-P}{\sigma_u^2}$$
+$$\theta_I=\frac{2S-P}{\sigma_u^2}$$
 
-对于非知情交易者来说，在信息集$I=\{P\}$下，$E[F|I_U]=E[F|P]=E[F|S]$，$Var[F|I_U]=Var[F|P]=Var[F|S]$。由于$\varepsilon$与$F$独立同分布，则其联合密度函数为$f(F,\varepsilon)=f_F(F)f_{\varepsilon}(\varepsilon)$，且$\varepsilon=\frac{F-2S}{c}$，则$S$的概率密度函数为：
+对于非知情交易者来说，在信息集$I=\{P\}$下，$E[F|I_U]=E[F|P]=E[F|S]$，$Var[F|I_U]=Var[F|P]=Var[F|S]$。由于$\sigma_{uv}\varepsilon$与$F$独立同分布，则其联合密度函数为$f(F,\varepsilon)=f_F(F)f_{c\sigma_{uv}\varepsilon}(c\sigma_{uv}\varepsilon)$，则$S$的概率密度函数为：
 
-$$f(S)=\int f(F,\frac{F-2S}{c})dF=\int f_F(F)f_{\varepsilon}(\frac{F-2S}{c})dF\\
- \hspace{5cm}=\frac{1}{4a_F^2}\int I[-a_F<F<a_F]I[-ca_F+2S<F<ca_F+2S]dF$$
+$$f(S)=\int f(F,F-2S)dF=\int f_F(F)f_{c\sigma_{uv}\varepsilon}(F-2S)dF\\
+ \hspace{5cm}=\frac{1}{4ca_F^2}\int I[-a_F<F<a_F]I[-ca_F+2S<F<ca_F+2S]dF$$
  
 由于$F$同时属于区间$[-a_F<F<a_F]$和$[-ca_F+2S<F<ca_F+2S]$，则需要取其交集，对$S$进行讨论。
 
 当$\frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2}$时，$F\in [-ca_F+2S,a_F]$，则
 
-$$f(S)=\frac{1}{4a_F^2}\int _{-ca_F+2S}^{a_F}dF=\frac{(1+c)a_F-2S}{4a_F^2}$$
+$$f(S)=\frac{1}{4ca_F^2}\int _{-ca_F+2S}^{a_F}dF=\frac{(1+c)a_F-2S}{4ca_F^2}$$
 
 当$-\frac{(1+c)a_F}{2}\le S\le-\frac{(1-c)a_F}{2}$时，$F\in [-a_F,ca_F+2S]$，则
 
-$$f(S)=\frac{1}{4a_F^2}\int _{-a_F}^{ca_F+2S}dF=\frac{(1+c)a_F+2S}{4a_F^2}$$
+$$f(S)=\frac{1}{4ca_F^2}\int _{-a_F}^{ca_F+2S}dF=\frac{(1+c)a_F+2S}{4ca_F^2}$$
 当$-\frac{(1-c)a_F}{2}<S<\frac{(1-c)a_F}{2}$时，$F\in [-ca_F+2S,ca_F+2S]$，则
 
-$$f(S)=\frac{1}{4a_F^2}\int _{-ca_F+2S}^{ca_F+2S}dF=\frac{2ca_F}{4a_F^2}$$
+$$f(S)=\frac{1}{4ca_F^2}\int _{-ca_F+2S}^{ca_F+2S}dF=\frac{2ca_F}{4ca_F^2}$$
 
 因此，我们便可求得条件概率密度函数，具体如下：
 
@@ -171,15 +176,16 @@ theta=0.1
 au<-4
 af<-2
 simamu=au^2/3
-c<-0.2
+c1<-0.8
+c2=0.4
 w=0.5
 epsilon<-runif(101,-2,2)
-S=seq(-(1+c)*au/2,(1+c)*au/2,0.02)
-
-plot(S,condmean(S,0.8,2),type = "l",ylim = c(-1.8,1.8))
-lines(S,condmean(S,0.4,2),col="red")
-plot(S,condvar(S,0.8,2),type = "l",ylim = c(-1.8,1.8))
-lines(S,condvar(S,0.4,2),col="red")
+S1=seq(-(1+c1)*af/2,(1+c1)*af/2,0.02)
+S2=seq(-(1+c2)*af/2,(1+c2)*af/2,0.02)
+plot(S1,condmean(S1,c1,2),type = "l")
+lines(S2,condmean(S2,c2,2),col="red")
+plot(S1,condvar(S1,c1,2),type = "l")
+lines(S2,condvar(S2,c2,2),col="red")
 
 c=seq(0,1,0.05)
 plot(c,laply(c,condmean,S=-0.8,af=2),type = "l")
@@ -202,34 +208,34 @@ $$\begin{equation}
 
 将$\theta_I$和$\theta_U$代入市场出清条件$w\theta_I+(1-w)\theta_U=\bar\theta$得
 
-$$w\frac{F-P}{\sigma_u^2}+(1-w)\frac{S-P}{V[F|S])+\sigma_u^2}=\bar\theta$$
+$$w\frac{2S-P}{\sigma_u^2}+(1-w)\frac{S-P}{V[F|S])+\sigma_u^2}=\bar\theta$$
 解得均衡价格为：
 
-$$P=2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+V[F|S]\bar\theta}{1+wV[F|S]/\sigma_u^2}$$
+$$P=2S-\bar\theta\sigma_u^2-(1-w)\frac{S+V[F|S]\bar\theta}{1+wV[F|S]/\sigma_u^2}$$
 即
 
 $$\begin{equation}
 P=\left\{
 \begin{aligned}
-&2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{1+w\frac{1}{12}[(1+c)a_F-2S]^2/\sigma_u^2},\hspace{0.5cm} \frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} \\
-&2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+\frac{1}{3}(c^2a_F^2)\bar\theta}{1+w\frac{1}{3}(c^2a_F^2)/\sigma_u^2},\hspace{0.5cm}-\frac{(1-c)a_F}{2}< S< \frac{(1-c)a_F}{2} \\
-&2S+c\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{1+w\frac{1}{12}[(1+c)a_F+2S]^2/\sigma_u^2},\hspace{0.5cm} -\frac{(1+c)a_F}{2} \le S\le-\frac{(1-c)a_F}{2}  
+&2S-\bar\theta\sigma_u^2-(1-w)\frac{S+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{1+w\frac{1}{12}[(1+c)a_F-2S]^2/\sigma_u^2},\hspace{0.5cm} \frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} \\
+&2S-\bar\theta\sigma_u^2-(1-w)\frac{S+\frac{1}{3}(c^2a_F^2)\bar\theta}{1+w\frac{1}{3}(c^2a_F^2)/\sigma_u^2},\hspace{0.5cm}-\frac{(1-c)a_F}{2}< S< \frac{(1-c)a_F}{2} \\
+&2S-\bar\theta\sigma_u^2-(1-w)\frac{S+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{1+w\frac{1}{12}[(1+c)a_F+2S]^2/\sigma_u^2},\hspace{0.5cm} -\frac{(1+c)a_F}{2} \le S\le-\frac{(1-c)a_F}{2}  
 \end{aligned}
 \right.
 \end{equation}$$
 将均衡价格代入需求函数，得到均衡需求如下：
 
 
-$$\theta_I=\bar\theta+(1-w)\frac{S+c\varepsilon+V[F|S]\bar\theta}{\sigma_u^2+wV[F|S]}$$
-$$\theta_U=\bar\theta-w\frac{S+c\varepsilon+V[F|S]\bar\theta}{\sigma_u^2+wV[F|S]}$$
+$$\theta_I=\bar\theta+(1-w)\frac{S+V[F|S]\bar\theta}{\sigma_u^2+wV[F|S]}$$
+$$\theta_U=\bar\theta-w\frac{S+V[F|S]\bar\theta}{\sigma_u^2+wV[F|S]}$$
 
 即
 $$\begin{equation}
 \theta_I=\left\{
 \begin{aligned}
-&\bar\theta+(1-w)\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F-2S]^2},\hspace{0.5cm} \frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} \\
-&\bar\theta+(1-w)\frac{S+c\varepsilon+\frac{1}{3}(c^2a_F^2)\bar\theta}{\sigma_u^2+w\frac{1}{3}(c^2a_F^2)},\hspace{0.5cm}-\frac{(1-c)a_F}{2}< S<\frac{(1-c)a_F}{2} \\
-&\bar\theta+(1-w)\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F+2S]^2},\hspace{0.5cm}-\frac{(1+c)a_F}{2} \le S\le-\frac{(1-c)a_F}{2}  
+&\bar\theta+(1-w)\frac{S+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F-2S]^2},\hspace{0.5cm} \frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} \\
+&\bar\theta+(1-w)\frac{S+\frac{1}{3}(c^2a_F^2)\bar\theta}{\sigma_u^2+w\frac{1}{3}(c^2a_F^2)},\hspace{0.5cm}-\frac{(1-c)a_F}{2}< S<\frac{(1-c)a_F}{2} \\
+&\bar\theta+(1-w)\frac{S+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F+2S]^2},\hspace{0.5cm}-\frac{(1+c)a_F}{2} \le S\le-\frac{(1-c)a_F}{2}  
 \end{aligned}
 \right.
 \end{equation}$$
@@ -237,9 +243,9 @@ $$\begin{equation}
 $$\begin{equation}
 \theta_U=\left\{
 \begin{aligned}
-&\bar\theta-w\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F-2S]^2},\hspace{0.5cm}\frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} \\
-&\bar\theta-w\frac{S+c\varepsilon+\frac{1}{3}(c^2a_F^2)\bar\theta}{\sigma_u^2+w\frac{1}{3}(c^2a_F^2)},\hspace{0.5cm}-\frac{(1-c)a_F}{2}< S< \frac{(1-c)a_F}{2} \\
-&\bar\theta-w\frac{S+c\varepsilon+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F+2S]^2},\hspace{0.5cm}-\frac{(1+c)a_F}{2} \le S\le-\frac{(1-c)a_F}{2}  
+&\bar\theta-w\frac{S+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F-2S]^2},\hspace{0.5cm}\frac{(1-c)a_F}{2}\le S \le \frac{(1+c)a_F}{2} \\
+&\bar\theta-w\frac{S+\frac{1}{3}(c^2a_F^2)\bar\theta}{\sigma_u^2+w\frac{1}{3}(c^2a_F^2)},\hspace{0.5cm}-\frac{(1-c)a_F}{2}< S< \frac{(1-c)a_F}{2} \\
+&\bar\theta-w\frac{S+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[(1+c)a_F+2S]^2},\hspace{0.5cm}-\frac{(1+c)a_F}{2} \le S\le-\frac{(1-c)a_F}{2}  
 \end{aligned}
 \right.
 \end{equation}$$
@@ -257,32 +263,24 @@ af<-2
 simamu=au^2/3
 c=0
 w=0.5
-epsilon<-runif(101,-2,2)
-S=seq(-(1+c)*au/2,(1+c)*au/2,0.02)
+S<-runif(1000,-(1+c)*af/2,(1+c)*af/2)
 VFI=laply(S,condvar,c,2)
-P=2*S+c*epsilon-theta*simamu-(1-w)*((S+c*epsilon+VFI*theta)/(1+w*VFI/simamu))
+P=2*S-theta*simamu-(1-w)*((S+VFI*theta)/(1+w*VFI/simamu))
+
+Ep<--theta*simamu*(1+c)-(1-w)*(6*simamu*log(1+(c*theta*w*af)/(6*simamu))/w+(2*simamu*c*theta*af)/w-(simamu*theta)*(w)*sqrt(12*simamu/w)*atan(sqrt(w/(12*simamu)*2*af))+((c*af)^2*theta*(1-c)*af/(3+w*(c*af)^2/(3*simamu))))
 
 plot(S,P,lty=3,type = "l")
 
-
-thetaI=theta+(1-w)*((S+c*epsilon+VFI*theta)/(simamu+w*VFI))
-thetaU=theta-w*((S+c*epsilon+VFI*theta)/(simamu+w*VFI))
+S=seq(-(1+c)*af/2,(1+c)*af/2,0.02)
+VFI=laply(S,condvar,c,2)
+thetaI=theta+(1-w)*((S+VFI*theta)/(simamu+w*VFI))
+thetaU=theta-w*((S+VFI*theta)/(simamu+w*VFI))
 
 plot(S,thetaU,col="blue",lty=3,type = "l")
 lines(S,thetaI,col="red")
 abline(h=theta,lty=3)
 ```
-由于$F$与$\varepsilon$为相互独立的均匀分布$[-a_F,a_F]$，股票价格可以表示为：
-$$\begin{equation}
-P=\left\{
-\begin{aligned}
-&F-\bar\theta\sigma_u^2-(1-w)\frac{\frac{1}{2}(F+c\varepsilon)+\frac{1}{12}[(1+c)a_F-2S]^2\bar\theta}{1+w\frac{1}{12}[(1+c)a_F-2S]^2/\sigma_u^2},\hspace{0.5cm} (1-c)a_F+c\varepsilon\le F \le (1+c)a_F+c\varepsilon \\
-&F-\bar\theta\sigma_u^2-(1-w)\frac{\frac{1}{2}(F+c\varepsilon)+\frac{1}{3}(c^2a_F^2)\bar\theta}{1+w\frac{1}{3}(c^2a_F^2)/\sigma_u^2},\hspace{0.5cm}-(1-c)a_F+c\varepsilon< F< (1-c)a_F+c\varepsilon \\
-&F-\bar\theta\sigma_u^2-(1-w)\frac{\frac{1}{2}(F+c\varepsilon)+\frac{1}{12}[(1+c)a_F+2S]^2\bar\theta}{1+w\frac{1}{12}[(1+c)a_F+2S]^2/\sigma_u^2},\hspace{0.5cm} -(1+c)a_F+c\varepsilon \le F\le-(1-c)a_F+c\varepsilon  
-\end{aligned}
-\right.
-\end{equation}$$
-则期望价格为：
+由于$F$与$c\sigma_{uv}\varepsilon}$为相互独立的均匀分布，则$S$为区间$[-\frac{1+c}{2}a_F,\frac{1+c}{2}a_F]$上的均匀分布，股票价格的期望为：
 
 $$E[P]=\int _{-a_F}^{a_F}d\varepsilon\int _{(1-c)a_F+c\varepsilon}^{(1+c)a_F+c\varepsilon}Pf(F)f(\varepsilon)dF+\int _{-a_F}^{a_F}\int _{-(1-c)a_F+c\varepsilon}^{(1-c)a_F+c\varepsilon}Pf(F)f(\varepsilon)dF+\int _{-a_F}^{a_F}d\varepsilon\int _{-(1+c)a_F+c\varepsilon}^{-(1-c)a_F+c\varepsilon}Pf(F)f(\varepsilon)dF\\
 =-\frac{2\sigma_u^2c\bar \theta}{w}-\sigma_u^2(1-c)\bar\theta-(1-w)\frac{(1-c)c^2a_F^2\bar\theta}{3+wc^2a_F^2/\sigma_u^2}+(1-w)\frac{\sigma_u^2\bar\theta}{wa_F}(\frac{w}{12\sigma_u^2})^{-\frac{1}{2}}arctan(\sqrt{\frac{w}{12\sigma_u^2}2ca_F})$$
@@ -301,14 +299,15 @@ w=seq(0,1,0.1)
 
 meanPV<-function(c,w){
   theta=0.1
-  au<-af<-2
+  au<-4
+  af<-2
   simamu=au^2/3
   epsilon<-runif(1000000,-2,2)
   df<-runif(1000000,-2,2)
   S=(df-epsilon*c)/2
   VFI=condvar(S,c,2)
-  mP=mean(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
-  VR=var(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
+  mP=mean(2*S-theta*simamu-(1-w)*(S+theta*VFI)/(1+w*VFI/simamu))
+  VR=var(2*S-theta*simamu-(1-w)*(S+theta*VFI)/(1+w*VFI/simamu))
   return(data.frame(c,w,mP,VR))
 }
 
@@ -336,6 +335,7 @@ abline(h=max(mp$VR),col="red",lty=3)
 
 根据前面分析，我们知道交易成本和投资者知情概率是ETF持股比例的函数，交易成本随ETF持股比例递减，知情交易概率随ETF持股比例递增，不妨设其函数形式分别为$c=1-\lambda$,$w=\lambda$，则ETF持股对定价效率的影响的蒙特卡洛模拟如下：
 ```{r}
+set.seed(100)
 theta=0.1
 au<-4
 af<-2
@@ -344,14 +344,15 @@ c=seq(0,1,0.05)
 w=seq(0,1,0.05)
 meanPV<-function(c,w){
   theta=0.1
-  au<-af<-2
+  au<-4
+  af<-2
   simamu=au^2/3
-  epsilon<-runif(1000000,-3,3)
+  epsilon<-runif(1000000,-2,2)
   df<-runif(1000000,-2,2)
   S=(df-epsilon*c)/2
   VFI=condvar(S,c,2)
-  mP=mean(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
-  VR=var(2*S+c*epsilon-theta*simamu-(1-w)*(S+c*epsilon+theta*VFI)/(1+w*VFI/simamu))
+  mP=mean(2*S-theta*simamu-(1-w)*(S+theta*VFI)/(1+w*VFI/simamu))
+  VR=var(2*S-theta*simamu-(1-w)*(S+theta*VFI)/(1+w*VFI/simamu))
   return(data.frame(c,w,mP,VR))
 }
 
@@ -387,18 +388,18 @@ abline(h=0,col="red")
 
 根据效用最大化一阶条件，投资者的最优持股为：
 
-$$\theta_i=max\bigg[\frac{(E[F|I_i]-P)}{Var[F|I_i]+\sigma_u^2},-b_i\bigg]$$
-当信息对称时，与交易成本的类似，我们猜测一种均衡下的价格函数，在此价格函数下推到投资者的市场需求函数，为了简便，让$c=1$,股票价格只取决于信号$S=\frac{1}{2}(F-\varepsilon)$。在卖空限制下，投资者被阻挡在市场外，股票价格不在反应投资者者的需求，并独立于$S$，当$S$低于卖空限制门限$z$时，股票价格为常数$\bar p$，当$S$大于卖空门限$z$时，股票价格是$S$的增函数，其中，$\bar p$是$S=z$时的股票价格，$z<0$。
+$$\theta_i=max\bigg[\frac{(E[F|I_i]-c\sigma_{uv}\varepsilon-P)}{Var[F|I_i]+\sigma_u^2},-b_i\bigg]$$
+当信息对称时，与交易成本的类似，我们猜测一种均衡下的价格函数，在此价格函数下推到投资者的市场需求函数，为了简便，让$c=1$,股票价格只取决于信号$S=\frac{1}{2}(F-\sigma_{uv}\varepsilon)$。在卖空限制下，投资者被阻挡在市场外，股票价格不在反应投资者者的需求，并独立于$S$，当$S$低于卖空限制门限$z$时，股票价格为常数$\bar p$，当$S$大于卖空门限$z$时，股票价格是$S$的增函数，其中，$\bar p$是$S=z$时的股票价格，$z<0$。
 
 对于知情交易者来说，在信息集$I=\{F,P\}$下的需求函数为：
 
-$$\theta_I=max\bigg[\frac{F-P}{\sigma_u^2},-b_I\bigg]$$
+$$\theta_I=max\bigg[\frac{F-\sigma_{uv}\varepsilon-P}{\sigma_u^2},-b_I\bigg]$$
 
-对于非知情交易者来说，在信息集$I=\{F,P\}$下，$E[F|I_U]=E[F|P]=E[F|S]$，$Var[F|I_U]=Var[F|P]=Var[F|S]$。由于$\varepsilon$与$F$独立同分布，则其联合密度函数为$f(F,\varepsilon)=f_F(F)f_{\varepsilon}(\varepsilon)$，且，$\varepsilon=F-2S$。则$S$的概率密度函数为：
+对于非知情交易者来说，在信息集$I=\{F,P\}$下，$E[F|I_U]=E[F|P]=E[F|S]$，$Var[F|I_U]=Var[F|P]=Var[F|S]$。由于$\sigma_{uv}\varepsilon$与$F$独立同分布，则其联合密度函数为$f(F,\varepsilon)=f_F(F)f_{\sigma_{uv}\varepsilon}(\sigma_{uv}\varepsilon)$，且，$\sigma_{uv}\varepsilon=F-2S$。则$S$的概率密度函数为：
 
-$$f(S)=\int f(F,F-2S)dF=\int f_F(F)f_{\varepsilon}(F-2S)dF \\
+$$f(S)=\int f(F,F-2S)dF=\int f_F(F)f_{\sigma_{uv}\varepsilon}(F-2S)dF \\
  \hspace{5cm}=\frac{1}{4a_F^2}\int I[-a_F<F<a_F]I[-a_F+2S<F<a_F+2S]dF$$
-由于$F$同时属于区间$[-a_F<F<a_F]$和$[-ca_F+2S<F<ca_F+2S]$，则需要取其交集，对$S$进行讨论。
+由于$F$同时属于区间$[-a_F<F<a_F]$和$[-a_F+2S<F<a_F+2S]$，则需要取其交集，对$S$进行讨论。
 
 当$0\le S \le a_F$时，$F\in[-a_F+2S,a_F]$，则
 
@@ -409,7 +410,7 @@ $$f(S)=\frac{1}{4a_F^2}\int _{-a_F+2S}^{a_F}dF=\frac{2a_F-2S}{4a_F^2}$$
 $$f(S)=\frac{1}{4a_F^2}\int _{-a_F}^{a_F+2S}dF=\frac{2a_F+2S}{4a_F^2}$$
 所以，当$z\le S \le a_F$时，条件概率密度函数$f(F|S)$可以表示为：
 
-$$f(F|S)=\frac{f_F(F)f_Y(F-2S)}{f(S)}\\=\frac{1}{2(a_F-|S|)}I[-a_F,a_F](F)I[-a_F,a_F](F-2S)$$
+$$f(F|S)=\frac{f_F(F)f_{\sigma_{uv}\varepsilon}(F-2S)}{f(S)}\\=\frac{1}{2(a_F-|S|)}I[-a_F,a_F](F)I[-a_F,a_F](F-2S)$$
 则$E[F|S]=S$,$Var[F|S]=\frac{1}{3}(a_F-|S|)^2$
 
 
@@ -419,7 +420,7 @@ $$F(S\le z)=\frac{1}{8a_F^2}\int _{-a_F}^{a_F+2z}dF\int_{F-2z}^{a_F}d\varepsilon
 而
 
 $$f(F,S\le z)=\int_{-a_F}^zf_F(F)f_\varepsilon(F-2S)dS\\
-=\int_{F-2z}^{a_F}\frac{1}{2}f_F(F)f_\varepsilon(\varepsilon)d\varepsilon\\
+=\int_{F-2z}^{a_F}\frac{1}{2}f_F(F)f_{\sigma_{uv}\varepsilon}(\sigma_{uv}\varepsilon)d\varepsilon\\
 =\frac{a_F+2z-F}{8a_F^2}I[-a_F,2z+a_F](F)$$
 
 所以
@@ -451,6 +452,8 @@ V[F|S]
 \right.
 \end{equation}$$
 
+
+
 非知情交易者的需求函数可以表示为：
 
 $$\begin{equation}
@@ -468,23 +471,23 @@ $$\begin{equation}
 
 > **知情投资者不受卖空限制的均衡价格**，即$\frac{F-P}{\sigma_u^2}>-b$时市场出清条件为：
 
-$$w\frac{F-P}{\sigma_u^2}+(1-w)\frac{S-P}{\frac{1}{3}(a_F-|S|)^2+\sigma_u^2}=\bar\theta$$
+$$w\frac{2S-P}{\sigma_u^2}+(1-w)\frac{S-P}{\frac{1}{3}(a_F-|S|)^2+\sigma_u^2}=\bar\theta$$
 
 解得均衡价格为：
 
-$$P=2S+\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+\varepsilon+\frac{1}{3}(a_F-|S|)^2\bar\theta}{1+w\frac{1}{3}(a_F-|S|)^2/\sigma_u^2}$$
+$$P=2S-\bar\theta\sigma_u^2-(1-w)\frac{S+\frac{1}{3}(a_F-|S|)^2\bar\theta}{1+w\frac{1}{3}(a_F-|S|)^2/\sigma_u^2}$$
 将均衡价格代入知情交易者不受卖空限制约束的条件，求解S，便得到投资者不受卖空限制约束的条件，即
 
-$$\bar\theta\sigma_u^2+(1-w)\frac{S+\varepsilon+\frac{1}{3}(a_F-|S|)^2\bar\theta}{1+w\frac{1}{3}(a_F-|S|)^2/\sigma_u^2}>-b\sigma_u^2$$
+$$\bar\theta\sigma_u^2+(1-w)\frac{S+\frac{1}{3}(a_F-|S|)^2\bar\theta}{1+w\frac{1}{3}(a_F-|S|)^2/\sigma_u^2}>-b\sigma_u^2$$
 由于$S>=0$,投资者不受卖空限制约束，所以，我们只讨论$S<0$的情况，此时，投资者不受卖空限制约束的条件为:
 
-$$\bar\theta\sigma_u^2-(1-w)\frac{S+\varepsilon+\frac{1}{3}(a_F+S)^2\bar\theta}{1+w\frac{1}{3}(a_F+S)^2/\sigma_u^2}>-b\sigma_u^2$$
+$$\bar\theta\sigma_u^2-(1-w)\frac{S+\frac{1}{3}(a_F+S)^2\bar\theta}{1+w\frac{1}{3}(a_F+S)^2/\sigma_u^2}>-b\sigma_u^2$$
 解得
 
-$$S>-a_F-\frac{3}{2}(w\hat b+\hat \theta)^{-1}+\frac{3}{2}\sqrt{(w\hat b+\hat \theta)^{-2}+\frac{4}{3}(a_F+\varepsilon)(w\hat b+\hat \theta)^{-1}-\frac{4}{3}(\hat b+\hat \theta)(w\hat b+\hat \theta)^{-1}\sigma_u^2}$$
+$$S>-a_F-\frac{3}{2}(w\hat b+\hat \theta)^{-1}+\frac{3}{2}\sqrt{(w\hat b+\hat \theta)^{-2}+\frac{4}{3}a_F(w\hat b+\hat \theta)^{-1}-\frac{4}{3}(\hat b+\hat \theta)(w\hat b+\hat \theta)^{-1}\sigma_u^2}$$
 其中$\bar b=b/(1-w)$,$\hat \theta=\theta/(1-w)$。因此，投资者不受卖空限制的临界点为：
 
-$$z^*=-a_F-\frac{3}{2}(w\hat b+\hat \theta)^{-1}+\frac{3}{2}\sqrt{(w\hat b+\hat \theta)^{-2}+\frac{4}{3}(a_F-\varepsilon)(w\hat b+\hat \theta)^{-1}-\frac{4}{3}(\hat b+\hat \theta)(w\hat b+\hat \theta)^{-1}\sigma_u^2}$$
+$$z^*=-a_F-\frac{3}{2}(w\hat b+\hat \theta)^{-1}+\frac{3}{2}\sqrt{(w\hat b+\hat \theta)^{-2}+\frac{4}{3}a_F(w\hat b+\hat \theta)^{-1}-\frac{4}{3}(\hat b+\hat \theta)(w\hat b+\hat \theta)^{-1}\sigma_u^2}$$
 
 **知情投资者持股等于卖空限量$-b$,不受卖空限制**，市场出清条件为：
 
@@ -506,21 +509,21 @@ $$P=\frac{1}{3}(2z-a_F)-(w\hat b+\hat \theta)(\frac{2}{9}(z+a_F)^2+\sigma_u^2)$$
 
 解得
 
-$$z=-a_F-3(w\hat b+\hat \theta)^{-1}+3\sqrt{(w\hat b+\hat \theta)^{-2}+\frac{1}{2}(a_F-\varepsilon)(w\hat b+\hat \theta)^{-1}-\frac{1}{2}(\hat b+\hat \theta)(w\hat b+\hat \theta)^{-1}\sigma_u^2}$$
+$$z=-a_F-3(w\hat b+\hat \theta)^{-1}+3\sqrt{(w\hat b+\hat \theta)^{-2}+\frac{1}{2}a_F(w\hat b+\hat \theta)^{-1}-\frac{1}{2}(\hat b+\hat \theta)(w\hat b+\hat \theta)^{-1}\sigma_u^2}$$
 
-当$S< z$时，知情投资者的需求不能得到满足，只能实现$-b$，此时市场无法出清，市场价格有卖空限制条件决定。即$\frac{2S+\varepsilon-P}{\sigma_u^2}=-b$,且$S=z$
+当$S< z$时，知情投资者的需求不能得到满足，只能实现$-b$，此时市场无法出清，市场价格有卖空限制条件决定。即$\frac{2S-P}{\sigma_u^2}=-b$,且$S=z$
 
 解得均衡价格为：
 
-$$P=2z+\varepsilon+b\sigma_u^2$$
+$$P=2z+b\sigma_u^2$$
 综上所述，股票均衡价格为：
 
 $$\begin{equation}
 P=\left\{
 \begin{aligned}
-&2S+\varepsilon-\bar\theta\sigma_u^2-(1-w)\frac{S+\varepsilon+\frac{1}{3}(a_F-|S|)^2\bar\theta}{1+w\frac{1}{3}(a_F-|S|)^2/\sigma_u^2},\hspace{0.5cm} S > z^*  \\
+&2S-\bar\theta\sigma_u^2-(1-w)\frac{S+\frac{1}{3}(a_F-|S|)^2\bar\theta}{1+w\frac{1}{3}(a_F-|S|)^2/\sigma_u^2},\hspace{0.5cm} S > z^*  \\
 &S-(w\hat b+\hat \theta)\bigg[\frac{1}{3}(a_F-|S|)^2+\sigma_u^2\bigg],\hspace{0.5cm}z< S\le z^* \\
-&2z+\varepsilon+b\sigma_u^2,\hspace{0.5cm}  S\le z  
+&2z+b\sigma_u^2,\hspace{0.5cm}  S\le z  
 \end{aligned}
 \right.
 \end{equation}$$
@@ -532,7 +535,7 @@ P=\left\{
 $$\begin{equation}
 \theta_I=\left\{
 \begin{aligned}
-&\bar\theta+(1-w)\frac{S+c\varepsilon+\frac{1}{12}[a_F-|S|]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[a_F-|S|]^2},\hspace{0.5cm} S > z^* \\
+&\bar\theta+(1-w)\frac{S+\frac{1}{3}[a_F-|S|]^2\bar\theta}{\sigma_u^2+w\frac{1}{3}[a_F-|S|]^2},\hspace{0.5cm} S > z^* \\
 &-b,\hspace{0.5cm} S<z^* \\
 \end{aligned}
 \right.
@@ -543,8 +546,173 @@ $$\begin{equation}
 $$\begin{equation}
 \theta_U=\left\{
 \begin{aligned}
-&\bar\theta-w\frac{S+c\varepsilon+\frac{1}{12}[a_F-|S|]^2\bar\theta}{\sigma_u^2+w\frac{1}{12}[a_F-|S|]^2},\hspace{0.5cm} S > z^* \\
+&\bar\theta-w\frac{S+\frac{1}{3}[a_F-|S|]^2\bar\theta}{\sigma_u^2+w\frac{1}{3}[a_F-|S|]^2},\hspace{0.5cm} S > z^* \\
 &\hat \theta +w\hat b,\hspace{0.5cm} S<z^* \\
 \end{aligned}
 \right.
 \end{equation}$$
+
+
+蒙特卡洛模拟：
+
+> 条件均值与条件方差模拟
+
+```{r}
+pacman::p_load(future.apply,plyr,ETFpe)
+set.seed(100)
+theta<-0.1
+b<-0.1
+w<-0.1
+au<-2
+af<-2
+simamu=1^2/3
+bb<-b/(1-w)
+btheta<-theta/(1-w)
+c=1
+condit<-function(bb,w,btheta,af,simamu){
+  zs<--af-1.5/((w*bb+btheta))+1.5*sqrt((w*bb+btheta)^(-2)+4*af/(3*(w*bb+btheta))-4*(bb+btheta)*simamu/(3*(w*bb+btheta)))
+  z<--af-3/((w*bb+btheta))+3*sqrt((w*bb+btheta)^(-2)+af/(2*(w*bb+btheta))-(bb+btheta)*simamu/(2*(w*bb+btheta)))
+  return(data.frame(zs,z))
+}
+
+zz<-condit(bb,w,btheta,af,simamu)
+
+S=seq(-(1+c)*af/2,(1+c)*af/2,0.02)
+mv<-function(S,z,af){
+  dat<-data.frame(S=S,z=z$z,af=af)%>%mutate(mf=ifelse(S>z,S,(2*z-af)/3),
+                                      mv=ifelse(S>z,(af-abs(S))^2/3,2*(z+af)^2/9),
+                                      mvf=(af-abs(S))^2/3)
+  return(dat)
+}
+
+mvs<-mv(S,zz,af)
+
+plot(S,mvs$mf,type = "l",ylim = c(-2,2))
+lines(S,S,col="red")
+plot(S,mvs$mv,type = "l")
+lines(S,mvs$mvf,col="red")
+
+P<-function(S,z,w,af,theta,simamu,b){
+   dat<-data.frame(S=S,z=z$z,zs=z$zs,w=w,af=af,theta=theta,simamu=simamu,b=b)%>%
+     mutate(mp=ifelse(S>zs,2*S-theta*simamu-(1-w)*(S+(af-abs(S))^2*theta/3)/(1+w*(af-abs(S))^2/(3*simamu)),ifelse(S>z&S<=zs,S-(w*b+theta)/(1-w)*(simamu+(af-abs(S))^2/3),2*z+b*simamu)),mpf=2*S-theta*simamu-(1-w)*(S+(af-abs(S))^2*theta/3)/(1+w*(af-abs(S))^2/(3*simamu)))
+  return(dat)
+}
+
+JhP<-P(S,zz,w,af,theta,simamu,b)
+
+plot(S,JhP$mp,type = "l",ylim = c(-2,2))
+lines(S,JhP$mpf,type = "l",col="red")
+
+```
+
+> 卖空限制下需求曲线模拟
+
+```{r echo=TRUE}
+pacman::p_load(future.apply,plyr,Rcpp)
+
+set.seed(100)
+b<-0.1
+w<-0.5
+au<-2
+af<-2
+simamu=1^2/3
+bb<-b/(1-w)
+btheta<-theta/(1-w)
+c=1
+condit<-function(bb,w,btheta,af,simamu){
+  zs<--af-1.5/((w*bb+btheta))+1.5*sqrt((w*bb+btheta)^(-2)+4*af/(3*(w*bb+btheta))-4*(bb+btheta)*simamu/(3*(w*bb+btheta)))
+  z<--af-3/((w*bb+btheta))+3*sqrt((w*bb+btheta)^(-2)+af/(2*(w*bb+btheta))-(bb+btheta)*simamu/(2*(w*bb+btheta)))
+  return(data.frame(zs,z))
+}
+
+zz<-condit(bb,w,btheta,af,simamu)
+
+S=seq(-(1+c)*af/2,(1+c)*af/2,0.02)
+
+thetaf<-function(S,z,w,af,theta,simamu,b){
+   dat<-data.frame(S=S,z=z$z,zs=z$zs,w=w,af=af,theta=theta,simamu=simamu,b=b)%>%
+     mutate(Itheta=ifelse(S>zs,theta+(1-w)*(S+(af-abs(S))^2*theta/3)/(simamu+w*(af-abs(S))^2/3),-b),
+            Utheta=ifelse(S>zs,theta-w*(S+(af-abs(S))^2*theta/3)/(simamu+w*(af-abs(S))^2/3),(theta+w*b)/(1-w)))
+  return(dat)
+}
+
+dtheta=thetaf(S,zz,w,af,theta,simamu,b)
+
+
+plot(dtheta$S,dtheta$Utheta,col="blue",lty=3,type = "l",ylim=c(min(min(dtheta$Utheta),min(dtheta$Itheta)),max(max(dtheta$Utheta),max(dtheta$Itheta))))
+lines(dtheta$S,dtheta$Itheta,col="red")
+abline(h=theta,lty=3)
+```
+
+> 卖空限制对定价效率和波动的影响
+
+```{r echo=FALSE, message=TRUE, warning=FALSE}
+pacman::p_load(future.apply,plyr,Rcpp)
+options(dplyr.summarise.inform = FALSE)
+set.seed(100)
+b<-seq(0,1,0.05)
+w<-seq(0,1,0.05)
+au<-2
+af<-2
+simamu=1^2/3
+
+sx<-function(b,w,af,simamu,theta){
+  dat<-data.frame(w,b)%>%mutate(xz=(1-w)*af-(b+theta)*simamu)%>%
+    filter(xz>=0)%>%select(-xz)
+  return(dat)
+}
+
+bw<-ldply(b,sx,w,af,simamu,theta)%>%filter(w<=0.8)
+
+bb<-bw$b/(1-bw$w)
+btheta<-theta/(1-bw$w)
+c=1
+condit<-function(bb,w,btheta,af,simamu){
+  zs<--af-1.5/((w*bb+btheta))+1.5*sqrt((w*bb+btheta)^(-2)+4*af/(3*(w*bb+btheta))-4*(bb+btheta)*simamu/(3*(w*bb+btheta)))
+  z<--af-3/((w*bb+btheta))+3*sqrt((w*bb+btheta)^(-2)+af/(2*(w*bb+btheta))-(bb+btheta)*simamu/(2*(w*bb+btheta)))
+  return(data.frame(zs,z))
+}
+
+zz<-condit(bb,bw$w,btheta,af,simamu)
+
+S=runif(10000,-(1+c)*af/2,(1+c)*af/2)
+
+
+MVP<-function(w,b,S,z,af,theta,simamu){
+  dat<-data.frame(S=S,z=z$z,zs=z$zs,w=w,af=af,theta=theta,simamu=simamu,b=b)%>%
+     mutate(mp=ifelse(S>zs,2*S-theta*simamu-(1-w)*(S+(af-abs(S))^2*theta/3)/(1+w*(af-abs(S))^2/(3*simamu)),ifelse(S>z&S<=zs,S-(w*b+theta)/(1-w)*(simamu+(af-abs(S))^2/3),2*z+b*simamu)),mpf=2*S-theta*simamu-(1-w)*(S+(af-abs(S))^2*theta/3)/(1+w*(af-abs(S))^2/(3*simamu)))%>%group_by(w,b)%>%summarise(Ep=mean(mp)-mean(mpf),Vr=var(mp)-var(mpf))%>%as.data.frame()
+  return(dat)
+}
+
+MV<-function(i,bw,S,zz,af,theta,simamu){
+  w<-bw$w[i]
+  b<-bw$b[i]
+  z<-zz[i,]
+  return(MVP(w,b,S,z,af,theta,simamu))
+}
+
+JhP<-ldply(1:nrow(bw),MV,bw,S,zz,af,theta,simamu)
+
+
+nbw<-data.frame(w=seq(0,0.8,0.05),b=1.25*seq(0,0.8,0.05))
+bb1<-nbw$b/(1-nbw$w)
+btheta1<-theta/(1-nbw$w)
+zz1<-condit(bb1,nbw$w,btheta1,af,simamu)
+nJhP<-ldply(1:nrow(nbw),MV,nbw,S,zz1,af,theta,simamu)
+
+res<-persp(seq(0,0.8,0.05),seq(0,1,0.05), matrix(JhP$Ep,17,21), theta = 210,phi = 30, shade = 0.75,col =rainbow(441),ltheta=30,ticktype="detailed",xlab = "c",zlab = "E[P]-E[P*]")
+
+lines(trans3d(nJhP$w,nJhP$b,nJhP$Ep,pmat = res) ,type = "l",lwd=3)
+
+plot(nJhP$b,nJhP$Ep,type = "l",lwd=3)
+abline(h=0,col="red")
+
+res<-persp(seq(0,0.8,0.05),seq(0,1,0.05), matrix(JhP$Vr,17,21), theta = 50,phi = 30, shade = 0.75,col =rainbow(441),ltheta=30,ticktype="detailed",xlab = "c",zlab = "Var[P]-Var[P*]")
+lines(trans3d(nJhP$w,nJhP$b,nJhP$Vr,pmat = res) ,type = "l",lwd=3)
+plot(nJhP$b,nJhP$Vr,type = "l",lwd=3)
+abline(h=0,col="red")
+
+```
+
+
+

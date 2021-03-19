@@ -6,10 +6,19 @@
     <description>Recent content in Tags on Yingjie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 19 Mar 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>research</title>
+      <link>/tags/research/</link>
+      <pubDate>Fri, 19 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/research/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>diary</title>
@@ -17,15 +26,6 @@
       <pubDate>Wed, 27 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>/tags/diary/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>research</title>
-      <link>/tags/research/</link>
-      <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/research/</guid>
       <description></description>
     </item>
     

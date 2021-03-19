@@ -627,7 +627,60 @@ abline(h=theta,lty=3)</code></pre>
 <blockquote>
 <p>卖空限制对定价效率和波动的影响</p>
 </blockquote>
-<p><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-7-1.png" width="672" /><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-7-2.png" width="672" /><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-7-3.png" width="672" /><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-7-4.png" width="672" /></p>
+<pre class="r"><code>pacman::p_load(future.apply,plyr,Rcpp,dplyr)
+options(dplyr.summarise.inform = FALSE)
+set.seed(100)
+b&lt;-seq(0,1,0.05)
+w&lt;-seq(0,1,0.05)
+au&lt;-2
+af&lt;-2
+simamu=1^2/3
+theta&lt;-0.1
+sx&lt;-function(b,w,af,simamu,theta){
+  dat&lt;-data.frame(w,b)%&gt;%mutate(xz=(1-w)*af-(b+theta)*simamu)%&gt;%
+    filter(xz&gt;=0)%&gt;%select(-xz)
+  return(dat)
+}
+bw&lt;-ldply(b,sx,w,af,simamu,theta)%&gt;%filter(w&lt;=0.8)
+bb&lt;-bw$b/(1-bw$w)
+btheta&lt;-theta/(1-bw$w)
+c=1
+condit&lt;-function(bb,w,btheta,af,simamu){
+  zs&lt;--af-1.5/((w*bb+btheta))+1.5*sqrt((w*bb+btheta)^(-2)+4*af/(3*(w*bb+btheta))-4*(bb+btheta)*simamu/(3*(w*bb+btheta)))
+  z&lt;--af-3/((w*bb+btheta))+3*sqrt((w*bb+btheta)^(-2)+af/(2*(w*bb+btheta))-(bb+btheta)*simamu/(2*(w*bb+btheta)))
+  return(data.frame(zs,z))
+}
+zz&lt;-condit(bb,bw$w,btheta,af,simamu)
+S=runif(10000,-(1+c)*af/2,(1+c)*af/2)
+MVP&lt;-function(w,b,S,z,af,theta,simamu){
+  dat&lt;-data.frame(S=S,z=z$z,zs=z$zs,w=w,af=af,theta=theta,simamu=simamu,b=b)%&gt;%
+     mutate(mp=ifelse(S&gt;zs,2*S-theta*simamu-(1-w)*(S+(af-abs(S))^2*theta/3)/(1+w*(af-abs(S))^2/(3*simamu)),ifelse(S&gt;z&amp;S&lt;=zs,S-(w*b+theta)/(1-w)*(simamu+(af-abs(S))^2/3),2*z+b*simamu)),mpf=2*S-theta*simamu-(1-w)*(S+(af-abs(S))^2*theta/3)/(1+w*(af-abs(S))^2/(3*simamu)))%&gt;%group_by(w,b)%&gt;%summarise(Ep=mean(mp)-mean(mpf),Vr=var(mp)-var(mpf))%&gt;%as.data.frame()
+  return(dat)
+}
+MV&lt;-function(i,bw,S,zz,af,theta,simamu){
+  w&lt;-bw$w[i]
+  b&lt;-bw$b[i]
+  z&lt;-zz[i,]
+  return(MVP(w,b,S,z,af,theta,simamu))
+}
+JhP&lt;-ldply(1:nrow(bw),MV,bw,S,zz,af,theta,simamu)
+nbw&lt;-data.frame(w=seq(0,0.8,0.05),b=1.25*seq(0,0.8,0.05))
+bb1&lt;-nbw$b/(1-nbw$w)
+btheta1&lt;-theta/(1-nbw$w)
+zz1&lt;-condit(bb1,nbw$w,btheta1,af,simamu)
+nJhP&lt;-ldply(1:nrow(nbw),MV,nbw,S,zz1,af,theta,simamu)
+res&lt;-persp(seq(0,0.8,0.05),seq(0,1,0.05), matrix(JhP$Ep,17,21), theta = 210,phi = 30, shade = 0.75,col =rainbow(441),ltheta=30,ticktype=&quot;detailed&quot;,xlab = &quot;c&quot;,zlab = &quot;E[P]-E[P*]&quot;)
+lines(trans3d(nJhP$w,nJhP$b,nJhP$Ep,pmat = res) ,type = &quot;l&quot;,lwd=3)</code></pre>
+<p><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>plot(nJhP$b,nJhP$Ep,type = &quot;l&quot;,lwd=3)
+abline(h=0,col=&quot;red&quot;)</code></pre>
+<p><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<pre class="r"><code>res&lt;-persp(seq(0,0.8,0.05),seq(0,1,0.05), matrix(JhP$Vr,17,21), theta = 50,phi = 30, shade = 0.75,col =rainbow(441),ltheta=30,ticktype=&quot;detailed&quot;,xlab = &quot;c&quot;,zlab = &quot;Var[P]-Var[P*]&quot;)
+lines(trans3d(nJhP$w,nJhP$b,nJhP$Vr,pmat = res) ,type = &quot;l&quot;,lwd=3)</code></pre>
+<p><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-7-3.png" width="672" /></p>
+<pre class="r"><code>plot(nJhP$b,nJhP$Vr,type = &quot;l&quot;,lwd=3)
+abline(h=0,col=&quot;red&quot;)</code></pre>
+<p><img src="../../research/2021-01-14-etf持股影响股票定价效率的理论模型推导_files/figure-html/unnamed-chunk-7-4.png" width="672" /></p>
 </div>
 
 

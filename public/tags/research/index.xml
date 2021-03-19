@@ -6,10 +6,19 @@
     <description>Recent content in research on Yingjie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 14 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 19 Mar 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/research/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>关于流动性与交易成本</title>
+      <link>/post/%E5%85%B3%E4%BA%8E%E6%B5%81%E5%8A%A8%E6%80%A7%E4%B8%8E%E4%BA%A4%E6%98%93%E6%88%90%E6%9C%AC/</link>
+      <pubDate>Fri, 19 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/%E5%85%B3%E4%BA%8E%E6%B5%81%E5%8A%A8%E6%80%A7%E4%B8%8E%E4%BA%A4%E6%98%93%E6%88%90%E6%9C%AC/</guid>
+      <description>流动性在金融中是一个非常重要的概念，是指资产的变现能力。通俗来说，假如我有一个苹果，但想吃梨，所以就需要找一个手中有梨但想吃苹果的人来交换，</description>
+    </item>
     
     <item>
       <title>ETF持股影响股票定价效率的理论模型推导</title>

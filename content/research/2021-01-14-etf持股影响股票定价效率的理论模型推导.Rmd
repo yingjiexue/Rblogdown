@@ -646,8 +646,8 @@ abline(h=theta,lty=3)
 
 > 卖空限制对定价效率和波动的影响
 
-```{r echo=FALSE, message=TRUE, warning=FALSE}
-pacman::p_load(future.apply,plyr,Rcpp)
+```{r message=TRUE, warning=FALSE}
+pacman::p_load(future.apply,plyr,Rcpp,dplyr)
 options(dplyr.summarise.inform = FALSE)
 set.seed(100)
 b<-seq(0,1,0.05)
@@ -655,15 +655,13 @@ w<-seq(0,1,0.05)
 au<-2
 af<-2
 simamu=1^2/3
-
+theta<-0.1
 sx<-function(b,w,af,simamu,theta){
   dat<-data.frame(w,b)%>%mutate(xz=(1-w)*af-(b+theta)*simamu)%>%
     filter(xz>=0)%>%select(-xz)
   return(dat)
 }
-
 bw<-ldply(b,sx,w,af,simamu,theta)%>%filter(w<=0.8)
-
 bb<-bw$b/(1-bw$w)
 btheta<-theta/(1-bw$w)
 c=1
@@ -672,41 +670,29 @@ condit<-function(bb,w,btheta,af,simamu){
   z<--af-3/((w*bb+btheta))+3*sqrt((w*bb+btheta)^(-2)+af/(2*(w*bb+btheta))-(bb+btheta)*simamu/(2*(w*bb+btheta)))
   return(data.frame(zs,z))
 }
-
 zz<-condit(bb,bw$w,btheta,af,simamu)
-
 S=runif(10000,-(1+c)*af/2,(1+c)*af/2)
-
-
 MVP<-function(w,b,S,z,af,theta,simamu){
   dat<-data.frame(S=S,z=z$z,zs=z$zs,w=w,af=af,theta=theta,simamu=simamu,b=b)%>%
      mutate(mp=ifelse(S>zs,2*S-theta*simamu-(1-w)*(S+(af-abs(S))^2*theta/3)/(1+w*(af-abs(S))^2/(3*simamu)),ifelse(S>z&S<=zs,S-(w*b+theta)/(1-w)*(simamu+(af-abs(S))^2/3),2*z+b*simamu)),mpf=2*S-theta*simamu-(1-w)*(S+(af-abs(S))^2*theta/3)/(1+w*(af-abs(S))^2/(3*simamu)))%>%group_by(w,b)%>%summarise(Ep=mean(mp)-mean(mpf),Vr=var(mp)-var(mpf))%>%as.data.frame()
   return(dat)
 }
-
 MV<-function(i,bw,S,zz,af,theta,simamu){
   w<-bw$w[i]
   b<-bw$b[i]
   z<-zz[i,]
   return(MVP(w,b,S,z,af,theta,simamu))
 }
-
 JhP<-ldply(1:nrow(bw),MV,bw,S,zz,af,theta,simamu)
-
-
 nbw<-data.frame(w=seq(0,0.8,0.05),b=1.25*seq(0,0.8,0.05))
 bb1<-nbw$b/(1-nbw$w)
 btheta1<-theta/(1-nbw$w)
 zz1<-condit(bb1,nbw$w,btheta1,af,simamu)
 nJhP<-ldply(1:nrow(nbw),MV,nbw,S,zz1,af,theta,simamu)
-
 res<-persp(seq(0,0.8,0.05),seq(0,1,0.05), matrix(JhP$Ep,17,21), theta = 210,phi = 30, shade = 0.75,col =rainbow(441),ltheta=30,ticktype="detailed",xlab = "c",zlab = "E[P]-E[P*]")
-
 lines(trans3d(nJhP$w,nJhP$b,nJhP$Ep,pmat = res) ,type = "l",lwd=3)
-
 plot(nJhP$b,nJhP$Ep,type = "l",lwd=3)
 abline(h=0,col="red")
-
 res<-persp(seq(0,0.8,0.05),seq(0,1,0.05), matrix(JhP$Vr,17,21), theta = 50,phi = 30, shade = 0.75,col =rainbow(441),ltheta=30,ticktype="detailed",xlab = "c",zlab = "Var[P]-Var[P*]")
 lines(trans3d(nJhP$w,nJhP$b,nJhP$Vr,pmat = res) ,type = "l",lwd=3)
 plot(nJhP$b,nJhP$Vr,type = "l",lwd=3)

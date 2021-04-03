@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "http://sitename.com"
 relativeurls= true
 languageCode = "en-us"
 title = "Yingjie"

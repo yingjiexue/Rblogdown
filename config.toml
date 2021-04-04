@@ -56,7 +56,7 @@ rssLimit=100
     MathJaxVersion = "2.7.1"
 
     [params.logo]
-    url = "/images/logo.png"
+    url = "logo.png"
     width = 50
     height = 50
     alt = "Public"

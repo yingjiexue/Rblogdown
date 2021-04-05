@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Yingjie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 19 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 03 Apr 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>机构投资者提高了价格效率吗？</title>
+      <link>/post/%E6%9C%BA%E6%9E%84%E6%8A%95%E8%B5%84%E8%80%85%E6%8F%90%E9%AB%98%E4%BA%86%E4%BB%B7%E6%A0%BC%E6%95%88%E7%8E%87%E5%90%97/</link>
+      <pubDate>Sat, 03 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/%E6%9C%BA%E6%9E%84%E6%8A%95%E8%B5%84%E8%80%85%E6%8F%90%E9%AB%98%E4%BA%86%E4%BB%B7%E6%A0%BC%E6%95%88%E7%8E%87%E5%90%97/</guid>
+      <description>信息在金融和经济资源配置中发挥了关键作用。Fama(1970)提出了有效市场假说，认为有效的市场中，信息可以被快速、准确、完整地纳入股票价格</description>
+    </item>
     
     <item>
       <title>关于流动性与交易成本</title>
@@ -18,6 +27,15 @@
       
       <guid>/post/%E5%85%B3%E4%BA%8E%E6%B5%81%E5%8A%A8%E6%80%A7%E4%B8%8E%E4%BA%A4%E6%98%93%E6%88%90%E6%9C%AC/</guid>
       <description>流动性在金融中是一个非常重要的概念，是指资产的变现能力。通俗来说，假如我有一个苹果，但想吃梨，所以就需要找一个手中有梨但想吃苹果的人来交换，</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/post/2021-04-05-%E9%98%85%E8%AF%BB%E6%91%98%E5%BD%95%E4%B8%8E%E6%84%9F%E6%82%9F%E6%9D%82%E8%AE%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2021-04-05-%E9%98%85%E8%AF%BB%E6%91%98%E5%BD%95%E4%B8%8E%E6%84%9F%E6%82%9F%E6%9D%82%E8%AE%B0/</guid>
+      <description></description>
     </item>
     
   </channel>

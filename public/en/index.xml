@@ -6,10 +6,20 @@
     <description>Recent content in Ens on Yingjie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 20 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 07 Apr 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/en/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>What is  Short Interest?</title>
+      <link>/2021/04/07/what-is-short-intrest/</link>
+      <pubDate>Wed, 07 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/04/07/what-is-short-intrest/</guid>
+      <description>When I am reading paper, a financial concept made me very confusion, that was “Short Interest”. After looking up some explaination, I understood it and made a note.
+What is Short Interest?Short interest refers to the number of shares sold short but not yet repurchased or covered. The short interest of a company can be indicated as an absolute number or as a percentage of shares outstanding. The short interest is looked at by investors to help determine the prevailing market sentiment toward a stock.</description>
+    </item>
     
     <item>
       <title>the first day of my blog</title>

@@ -1,0 +1,85 @@
+---
+title: What is  Short Interest?
+author: Yinjige Xue
+date: '2021-04-07'
+slug: what-is-short-intrest
+categories:
+  - research
+tags:
+  - research
+---
+When I am reading paper, a financial concept made me very confusion, that was "Short Interest". After looking up some explaination, I understood it and made a note.
+
+### What is Short Interest?
+
+Short interest refers to the number of shares sold short but not yet repurchased or covered. The short interest of a company can be indicated as an absolute number or as a percentage of shares outstanding. The short interest is looked at by investors to help determine the prevailing market sentiment toward a stock.
+
+### Short Interest: Shorting a Stock
+
+Recall that short interest is the “number of shares sold short but not yet repurchased or covered.” Therefore, it increases when more investors short a stock. Below indicates the process of shorting a stock:
+
+ 
+
+**1. Borrow the stock**
+
+The trader will typically contact their broker, who will locate another investor who owns the stock to borrow the stock from them with the promise to return the stock at a predetermined later date. The brokerage may also loan the trader the stock from its own equity holdings. The trader pays fees and/or interest to the broker for borrowing the stock.
+
+ 
+
+**2. Sell the stock**
+
+The trader will then immediately sell the stock on the open market.
+
+ 
+
+**3. Repurchase of stock**
+
+As the stock declines in value, the trader will then repurchase the stock at the lower price. The repurchase of a shorted stock is referred to as short covering.
+
+ 
+
+**4. Return the stock**
+The trader will then return the borrowed stock to the broker and earn a profit. The profit is the difference between the price the trader received when they sold the stock and the price they paid to repurchase the stock. However, if the stock price rises after the trader sells short, then he/she will incur a loss when they have to pay a higher price to repurchase the stock.
+
+ 
+
+In the steps outlined above, short interest is created when the trader sells the stock but has not yet repurchased the stock (steps 2-3).
+
+ 
+
+### Importance of Short Interest
+
+The short interest in a company is used to assess sentiment around its stock. In other words, it provides insight into how investors feel about the company’s stock. For most stocks, there is an average amount of short interest that is commonly held by investors.
+
+When the short interest of a company increases, it is often a warning sign that the stock sentiment is bearish (negative) and that investors expect the stock price to decline. On the other hand, when it decreases, this provides an indication to investors that the stock sentiment is bullish (positive).
+
+Although short interest is important to investors, it should not be the sole determinant when making investment decisions.
+
+ 
+
+### Formula for Short Interest
+
+The short interest can either be expressed as an absolute number or as a percentage of float. In expressing the interest as a percentage, the following formula is used:
+
+$$Short\ Interest=\frac{No. of Shares Short and Not Covered}{Share Float}$$
+
+
+ 
+
+**Example of Short Interest**
+
+ShortSqueeze.com provides information regarding the short interest volumes of public companies. Facebook (Ticker: FB) shows a short interest of 34,462,100 with 2,380,703,100 shares in float. Determine the short interest for Facebook as a percentage.
+
+ 
+
+$$Short\ Interest=\frac{34462100}{2380703}=1.45\%$$
+
+ 
+
+### Understanding Short Squeeze
+
+When talking about short interest, the topic of short squeeze often comes up. Short squeeze is used to describe a situation where a stock with a significant amount of short interest increases dramatically in price, forcing short sellers to cover their short positions in order to avoid incurring larger losses.
+
+A short squeeze is typically caused by a sudden positive development in a stock, resulting in a strong bullish sentiment and a sharply rising share price. In a short squeeze, traders who do not cover their short positions run the risk of suffering substantial losses. Stocks with a high short interest are more susceptible to a short squeeze.
+
+ 

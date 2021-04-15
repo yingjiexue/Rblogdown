@@ -370,6 +370,7 @@ $$\Delta ANALYST_{i,t}=\beta_1 \Delta ETF_{i,t-1}+\beta_2 \Delta INST_{i,t-1}+\\
 
 ### 研究思路
 
+
 > 众所周知，ETF是一个指数基金，被动跟踪一个指数，与共同基金相比，ETF交易成本低，透明性高，可以实现T+0交易，投资者可以在二级市场上买卖ETF份额，同时申购赎回一篮子股票，当ETF价格和净值不一致时，套利者进入将消除ETF折溢价是的ETF价格与净值一致。因此，ETF出现使得价格更加快速的反映基本面信息。 另外，由于ETF套利交易的存在，被ETF持有的股票暴露了较高的投资者关注，从而，使信息调整更加迅速。主要由于ETF的套利交易者通常是专业理性的机构投资者，加上ETF特殊的申购和赎回机制，每一次交易对应的是一篮子股票交易，直接提高了股价吸收私有信息的效率。
 
 > ETF属于特殊类型的机构投资者，机构投资者的特征对金融市场定价效率的影响学术界讨论的热门话题。而且关于机构投资者对股票定价效率的影响在文献中并未得到一致结论。通常认为机构投资者通过参与研究、公司治理来提高信息披露质量（[Boone and White 2015](https://doi.org/10.1016/j.jfineco.2015.05.008)^[Boone A L, White J T. The effect of institutional ownership on firm transparency and information production[J]. Journal of Financial Economics, 2015, 117(3): 508-533.]; [Gillan and

@@ -1,0 +1,25 @@
+---
+title: blogdown package 更新中的一些新变化
+author: 薛英杰
+date: '2021-04-23'
+slug: blogdown-package-更新中的一些新变化
+categories:
+  - cn
+tags:
+  - diary
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>R语言作为一种免费开源语言，备受使用者的喜爱，源程序和package一直不断地优化并推出新版本，为了感受新款程序的魅力，我们不得不定期更新R与相应的package。虽然新版本可能修补了源程序的不足，但是，一方面更新过程中难免会出现新的错误，另一方面有些新变化使我们难以适应。</p>
+<p>就拿blogdown package来说，blogdown 0.18版后new post 功能增加了自动补全作者姓名、发帖日期、子目录的功能，如图1，在Addins中点New Post会自动补全这些项目。真是解放了我们的双手啊！而blogdown 0.20版后需要在子目录下面在建新的文件夹来保存我们新帖子的相关内容，文件夹内我们要发帖子的文件名字变为index,新旧版本的文件保存方式有天壤之别，两种文件保存方式并存有点让人难以接受，具体如图2所示。</p>
+<p><img src="/post/2021-04-23-blogdown-package-更新中的一些新变化_files/newp1.PNG" /></p>
+<p style="text-align:center;">
+图1
+</p>
+<p><img src="/post/2021-04-23-blogdown-package-更新中的一些新变化_files/newp2.PNG" /></p>
+<p style="text-align:center;">
+图2
+</p>
+<p>怎么办呢？接受新的不习惯还是沿用旧的风格。随你便吧！接受新的不习惯相对比较容易，直接更新blogdown就OK。要沿用旧的风格还需要花点心思，其实也简单，装个旧package不就可以了，但关键在于update R软件后package搬家不一定完全成功，这就需要我们了解到底是哪里出现了问题。首先贴上blogdown每个版本的新变化，以供你查找问题，请点<a href="https://github.com/rstudio/blogdown/blob/master/NEWS.md#changes-in-blogdown-version-020">链接</a>。然后取下旧版本的blogdown吧，所有版本的blogdown都在<a href="https://github.com/rstudio/blogdown/releases">这里</a>。</p>

@@ -61,3 +61,8 @@ rssLimit=100
     height = 50
     alt = "Public"
 
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

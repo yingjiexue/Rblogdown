@@ -73,8 +73,48 @@ m<-mongo(collection = "stockbase",db="stockdata")
 
 ##查询字段有上市公司代码（symbol）、股票名称(name)、上市日期(list_date)，查询条件为上市日期(list_date)大于2021-01-01
 
-newfirm<-m$find(query = '{"list_date":{"$gt":"20210101"}}',
-                  fields = '{"symbol":"ture","name":"ture","list_date":"ture","_id":"false"}')
+newfirm<-m$find(query = '{"list_date":{"$gt":"20210101"}}'
+                  )
 DT::datatable(newfirm,rownames = FALSE,extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c( 'print')))
+```
+
+### 2 操纵数据
+
+操纵数据主要有增、删、改，查，对应的主要函数为insert、remove、update,find和drop。具体示例如下：
+```{r}
+### 加载软件包
+pacman::p_load(data.table,plyr,stringr,dplyr,mongolite,future.apply,future,flextable,DT)
+
+###在test表中创建文件iris
+test<-mongo("iris","test")
+
+###产生数据
+str <- c('{"name" : "jerry"}' , '{"name": "anna", "age" : 23}', '{"name": "joe"}')
+
+###在test表文件iris中插入数据
+test$insert(str)
+
+###查找iris文件中的数据
+test$find()
+
+###补全缺失年龄
+test$update('{"name":"jerry"}','{"$set":{"age":"12"}}')
+
+###查看结果
+test$find()
+
+###删除name为joe的记录
+test$remove('{"name":"joe"}')
+
+###查看结果
+test$find()
+
+###删除表test
+test$drop()
+
+
+
+
+
 ```
 

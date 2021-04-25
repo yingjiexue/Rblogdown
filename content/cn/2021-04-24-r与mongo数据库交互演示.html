@@ -60,23 +60,23 @@ pacman::p_load(data.table,plyr,stringr,dplyr,mongolite,future.apply,future)
 ##建立R与MongoDB数据库的链接，collection为数据表对应的文件，db为数据库中的表
 m&lt;-mongo(collection = &quot;tradedatadaily&quot;,db=&quot;stockdata&quot;)
 
-##查询字段有上市公司代码（symbol）、收盘价(close)、前收盘价(pre_close)，查询条件为交易日期(trade_date)等于2021-04-21
+##查询字段有上市公司代码（symbol）、收盘价(close)、前收盘价(pre_close)，查询条件为交易日期(trade_date)等于2021-04-23
 
-tradedata&lt;-m$find(query = &#39;{&quot;trade_date&quot;:&quot;20210421&quot;}&#39;,
+tradedata&lt;-m$find(query = &#39;{&quot;trade_date&quot;:&quot;20210423&quot;}&#39;,
                   fields = &#39;{&quot;symbol&quot;:&quot;ture&quot;,&quot;trade_date&quot;:&quot;ture&quot;,&quot;close&quot;:&quot;ture&quot;,&quot;pre_close&quot;:&quot;ture&quot;}&#39;)
 head(tradedata)</code></pre>
 <pre><code>##               _id symbol trade_date close pre_close
-## 1 000001_20210421 000001   20210421 23.01     21.69
-## 2 000002_20210421 000002   20210421 28.65     28.73
-## 3 000004_20210421 000004   20210421 18.49     18.88
-## 4 000005_20210421 000005   20210421  2.30      2.31
-## 5 000006_20210421 000006   20210421  5.54      5.53
-## 6 000007_20210421 000007   20210421  3.83      3.95</code></pre>
+## 1 000001_20210423 000001   20210423 23.29     22.98
+## 2 000002_20210423 000002   20210423 28.09     29.02
+## 3 000004_20210423 000004   20210423 18.64     18.33
+## 4 000005_20210423 000005   20210423  2.29      2.30
+## 5 000006_20210423 000006   20210423  5.37      5.52
+## 6 000007_20210423 000007   20210423  3.73      3.81</code></pre>
 <pre class="r"><code>##计算收益并分组统计上市公司数量
 fdstb&lt;-tradedata%&gt;%mutate(rets=close/pre_close-1)%&gt;%mutate(groups=cut(rets,c(-0.25,-0.15,-0.1,-0.05,-0.03,-.01,0,0.01,0.03,0.05,0.1,0.15,0.25),labels = c(&quot;&lt;-15%&quot;,&quot;&lt;-10%&quot;,&quot;&lt;-5%&quot;,&quot;&lt;-3%&quot;,&quot;&lt;-1%&quot;,&quot;&lt;0%&quot;,&quot;0%&lt;&quot;,&quot;1%&lt;&quot;,&quot;3%&lt;&quot;,&quot;5%&lt;&quot;,&quot;10%&lt;&quot;,&quot;15%&lt;&quot;),right=F))%&gt;%group_by(groups)%&gt;%summarise(cout=n())
 
-barplot(fdstb$cout,names.arg = fdstb$groups,col =c(rep(&quot;green&quot;,6),rep(&quot;red&quot;,6)),cex.names = 0.7,ylim = c(0,1350),axes = F)
-text(c(0.7,1.9,3.1,4.3,5.5,6.7,7.9,9.1,10.3,11.5,12.6,13.9),fdstb$cout+c(8,8,8,8,8,10,10,10,10.3,9,9,9)+32,fdstb$cout,cex = 0.8)</code></pre>
+barplot(fdstb$cout,names.arg = fdstb$groups,col =c(rep(&quot;green&quot;,6),rep(&quot;red&quot;,6)),cex.names = 0.7,ylim = c(0,1700),axes = F)
+text(c(0.7,1.9,3.1,4.3,5.5,6.7,7.9,9.1,10.3,11.5,12.6,13.9),fdstb$cout+c(8,8,8,8,15,10,10,10,10.3,9,9,9)+32,fdstb$cout,cex = 0.8)</code></pre>
 <p><img src="/cn/2021-04-24-r与mongo数据库交互演示_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <blockquote>
 <p>从MongoDB数据库中提取2021年IPO且市值的公司</p>

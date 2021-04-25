@@ -49,17 +49,17 @@ pacman::p_load(data.table,plyr,stringr,dplyr,mongolite,future.apply,future)
 ##建立R与MongoDB数据库的链接，collection为数据表对应的文件，db为数据库中的表
 m<-mongo(collection = "tradedatadaily",db="stockdata")
 
-##查询字段有上市公司代码（symbol）、收盘价(close)、前收盘价(pre_close)，查询条件为交易日期(trade_date)等于2021-04-21
+##查询字段有上市公司代码（symbol）、收盘价(close)、前收盘价(pre_close)，查询条件为交易日期(trade_date)等于2021-04-23
 
-tradedata<-m$find(query = '{"trade_date":"20210421"}',
+tradedata<-m$find(query = '{"trade_date":"20210423"}',
                   fields = '{"symbol":"ture","trade_date":"ture","close":"ture","pre_close":"ture"}')
 head(tradedata)
 
 ##计算收益并分组统计上市公司数量
 fdstb<-tradedata%>%mutate(rets=close/pre_close-1)%>%mutate(groups=cut(rets,c(-0.25,-0.15,-0.1,-0.05,-0.03,-.01,0,0.01,0.03,0.05,0.1,0.15,0.25),labels = c("<-15%","<-10%","<-5%","<-3%","<-1%","<0%","0%<","1%<","3%<","5%<","10%<","15%<"),right=F))%>%group_by(groups)%>%summarise(cout=n())
 
-barplot(fdstb$cout,names.arg = fdstb$groups,col =c(rep("green",6),rep("red",6)),cex.names = 0.7,ylim = c(0,1350),axes = F)
-text(c(0.7,1.9,3.1,4.3,5.5,6.7,7.9,9.1,10.3,11.5,12.6,13.9),fdstb$cout+c(8,8,8,8,8,10,10,10,10.3,9,9,9)+32,fdstb$cout,cex = 0.8)
+barplot(fdstb$cout,names.arg = fdstb$groups,col =c(rep("green",6),rep("red",6)),cex.names = 0.7,ylim = c(0,1700),axes = F)
+text(c(0.7,1.9,3.1,4.3,5.5,6.7,7.9,9.1,10.3,11.5,12.6,13.9),fdstb$cout+c(8,8,8,8,15,10,10,10,10.3,9,9,9)+32,fdstb$cout,cex = 0.8)
 ```
 
 > 从MongoDB数据库中提取2021年IPO且市值的公司

@@ -501,7 +501,7 @@ Starks 2000](https://doi.org/10.1016/S0304-405X(00)00058-1)^[Gillan S L, Starks 
 
 > 5.机构投资者的投资决策受公司消息影响，所以其持股变化反映了私有信息（[Chakravarty,2001](https://doi.org/10.1016/S0304-405X(01)00063-0) ^[Chakravarty S. Stealth-trading: Which traders’ trades move stock prices?[J]. Journal of Financial Economics, 2001, 61(2): 289-307.]）
 
-> 6. 越来越多的机构投资者使用ETF替代股票期货合约,具体来讲，在2015年，40%的机构投资者使用ETF替代股票期货合约，78%的期货用户计划在未来12个月用ETF替代期货（[Greewich Associate,2016](https://doi.org/10.2469/faj.v63.n5.4841) ^[Greenwood R M, Sosner N. Trading patterns and excess comovement of stock returns[J]. Financial Analysts Journal, 2007, 63(5): 69-81.]）
+> 6. 越来越多的机构投资者使用ETF替代股票期货合约,具体来讲，在2015年，40%的机构投资者使用ETF替代股票期货合约，78%的期货用户计划在未来12个月用ETF替代期货（[Greewich Associate,2016](https://www.greenwich.com/asset-management/institutional-investment-etfs-versatility-fuels-growth) ^[Greenwich Associates (2016) Institutional investment in ETFs: Versatility fuels growth. Accessed January 1, 2016, ]）
 
 > 7. 由于ETF交易成本较低，并不面临与期货移仓相关的误定价风险，对基金投资者来说，ETF是一个更好的备选工具（[Madhavan et al.,2014](https://doi.org/10.3905/jii.2014.5.2.066) ^[Madhavan A, Marchioni U, Li W, et al. Equity ETFs versus index futures: a comparison for fully funded investors[J]. The Journal of Index Investing, 2014, 5(2): 66-75.]）。
 

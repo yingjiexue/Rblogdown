@@ -95,7 +95,6 @@ example. GREK has seen a lot hedge fund trading
 
 
 
-
 ### 相关文献
 
 > 1、被动的机构投资者可能被激励监督管理层，并改善市场表现，因为这样可以提高其管理的资产价值（[Del Guercio and Hawkins, 1999](https://doi.org/10.1016/S0304-405X(99)00011-2)^[Del Guercio D, Hawkins J. The motivation and impact of pension fund activism[J]. Journal of financial economics, 1999, 52(3): 293-340.]）

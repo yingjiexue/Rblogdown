@@ -1,0 +1,147 @@
+---
+title: R与Mongo数据库交互演示
+author: 薛英杰
+date: '2021-04-24'
+slug: r与mongo数据库交互演示
+categories:
+  - cn
+tags:
+  - diary
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="/rmarkdown-libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/datatables-binding/datatables.js"></script>
+<link href="/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js"></script>
+<link href="/rmarkdown-libs/dt-ext-buttons/css/buttons.dataTables.min.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/dt-ext-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/rmarkdown-libs/dt-ext-buttons/js/buttons.flash.min.js"></script>
+<script src="/rmarkdown-libs/dt-ext-buttons/js/buttons.html5.min.js"></script>
+<script src="/rmarkdown-libs/dt-ext-buttons/js/buttons.colVis.min.js"></script>
+<script src="/rmarkdown-libs/dt-ext-buttons/js/buttons.print.min.js"></script>
+<link href="/rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/crosstalk/js/crosstalk.min.js"></script>
+
+
+<p>MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。同时，他也是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的。而R语言作为一种统计数据分析语言，必然需要输入数据才能进行各种运算，那么当R语言偶遇MongoDB时，该怎么从MongoDB中读入数据，又该如何将数据写入MongoDB呢？</p>
+<p>我们都知道R是“包治百病”，与MongoDB交互自然也离不开package。链接MongoDB的R package有三个，分别为：rmongodb、RMongo、Mongolite，他们版本和使用手册如下：</p>
+<p>Package:<a href="https://cran.r-project.org/src/contrib/Archive/rmongodb/">rmongodb(2011)</a>、<a href="https://cran.r-project.org/src/contrib/Archive/RMongo/">RMongo(2011)</a>、<a href="https://cran.r-project.org/web/packages/mongolite/index.html">Mongolite(2014)</a></p>
+<p>User Manual:<a href="https://www.rdocumentation.org/packages/rmongodb/versions/1.8.0">rmongodb Usage</a> <a href="https://www.rdocumentation.org/packages/RMongo/versions/0.0.25/topics/RMongo-package">RMongo Usage</a> <a href="https://jeroen.github.io/mongolite/">Mongolite Usage</a></p>
+<p>目前rmongodb和RMongo都已下架，上面的package和User Manual均为历史遗留版本，不过也都能使用。今天重点介绍一下Mongolite包，通过他来实现R语言与MongoDB的交互，可以参考Presentation: <a href="http://jeroen.github.io/mongo-slides">UseR 2015 slides</a>。</p>
+<p>要实现R语言与MongoDB的交互，首先需要开启MongoDB，在命令行窗口中输入：</p>
+<pre><code>    D:Mongo\bin\mongod --dbpath D:Mongo\data\db
+    </code></pre>
+<p><img src="/cn/2021-04-24-r与mongo数据库交互演示_files/mongs.PNG" /></p>
+<p>接下来在R环境中加载相关软件包，建立R与MongoDB链接，具体如下：</p>
+<pre class="r"><code>##加载软件包
+pacman::p_load(data.table,plyr,stringr,dplyr,mongolite,future.apply,future)
+
+##建立R与MongoDB数据库的链接，collection为数据表对应的文件，db为数据库中的表
+m&lt;-mongo(collection = &quot;tradedatadaily&quot;,db=&quot;stockdata&quot;)
+
+##断开链接
+rm()
+gc()</code></pre>
+<pre><code>##           used (Mb) gc trigger (Mb) max used (Mb)
+## Ncells  714015 38.2    1365881   73  1365881   73
+## Vcells 1209355  9.3    8388608   64  1691559   13</code></pre>
+<div id="查询数据" class="section level3">
+<h3>1.查询数据</h3>
+<blockquote>
+<p>假设我们需要从MongoDB数据库中查找2021-04-21股票交易数据，统计各收益水平下的上市公司数量，具体代码如下：</p>
+</blockquote>
+<pre class="r"><code>##加载软件包
+pacman::p_load(data.table,plyr,stringr,dplyr,mongolite,future.apply,future)
+
+##建立R与MongoDB数据库的链接，collection为数据表对应的文件，db为数据库中的表
+m&lt;-mongo(collection = &quot;tradedatadaily&quot;,db=&quot;stockdata&quot;)
+
+##查询字段有上市公司代码（symbol）、收盘价(close)、前收盘价(pre_close)，查询条件为交易日期(trade_date)等于2021-04-21
+
+tradedata&lt;-m$find(query = &#39;{&quot;trade_date&quot;:&quot;20210421&quot;}&#39;,
+                  fields = &#39;{&quot;symbol&quot;:&quot;ture&quot;,&quot;trade_date&quot;:&quot;ture&quot;,&quot;close&quot;:&quot;ture&quot;,&quot;pre_close&quot;:&quot;ture&quot;}&#39;)
+head(tradedata)</code></pre>
+<pre><code>##               _id symbol trade_date close pre_close
+## 1 000001_20210421 000001   20210421 23.01     21.69
+## 2 000002_20210421 000002   20210421 28.65     28.73
+## 3 000004_20210421 000004   20210421 18.49     18.88
+## 4 000005_20210421 000005   20210421  2.30      2.31
+## 5 000006_20210421 000006   20210421  5.54      5.53
+## 6 000007_20210421 000007   20210421  3.83      3.95</code></pre>
+<pre class="r"><code>##计算收益并分组统计上市公司数量
+fdstb&lt;-tradedata%&gt;%mutate(rets=close/pre_close-1)%&gt;%mutate(groups=cut(rets,c(-0.25,-0.15,-0.1,-0.05,-0.03,-.01,0,0.01,0.03,0.05,0.1,0.15,0.25),labels = c(&quot;&lt;-15%&quot;,&quot;&lt;-10%&quot;,&quot;&lt;-5%&quot;,&quot;&lt;-3%&quot;,&quot;&lt;-1%&quot;,&quot;&lt;0%&quot;,&quot;0%&lt;&quot;,&quot;1%&lt;&quot;,&quot;3%&lt;&quot;,&quot;5%&lt;&quot;,&quot;10%&lt;&quot;,&quot;15%&lt;&quot;),right=F))%&gt;%group_by(groups)%&gt;%summarise(cout=n())
+
+barplot(fdstb$cout,names.arg = fdstb$groups,col =c(rep(&quot;green&quot;,6),rep(&quot;red&quot;,6)),cex.names = 0.7,ylim = c(0,1350),axes = F)
+text(c(0.7,1.9,3.1,4.3,5.5,6.7,7.9,9.1,10.3,11.5,12.6,13.9),fdstb$cout+c(8,8,8,8,8,10,10,10,10.3,9,9,9)+32,fdstb$cout,cex = 0.8)</code></pre>
+<p><img src="/cn/2021-04-24-r与mongo数据库交互演示_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<blockquote>
+<p>从MongoDB数据库中提取2021年IPO且市值的公司</p>
+</blockquote>
+<pre class="r"><code>##加载软件包
+pacman::p_load(data.table,plyr,stringr,dplyr,mongolite,future.apply,future,flextable,DT)
+
+##建立R与MongoDB数据库的链接，collection为数据表对应的文件，db为数据库中的表
+m&lt;-mongo(collection = &quot;stockbase&quot;,db=&quot;stockdata&quot;)
+
+##查询字段有上市公司代码（symbol）、股票名称(name)、上市日期(list_date)，查询条件为上市日期(list_date)大于2021-01-01
+
+newfirm&lt;-m$find(query = &#39;{&quot;list_date&quot;:{&quot;$gt&quot;:&quot;20210101&quot;}}&#39;
+                  )
+DT::datatable(newfirm,rownames = FALSE,extensions = &#39;Buttons&#39;, options = list(dom = &#39;Bfrtip&#39;,buttons = c( &#39;print&#39;)))</code></pre>
+<div id="htmlwidget-1" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"filter":"none","extensions":["Buttons"],"data":[["003030.SZ","003031.SZ","003032.SZ","003033.SZ","003035.SZ","003036.SZ","003037.SZ","003038.SZ","003039.SZ","003040.SZ","003041.SZ","003042.SZ","003043.SZ","300926.SZ","300927.SZ","300928.SZ","300929.SZ","300930.SZ","300931.SZ","300932.SZ","300933.SZ","300935.SZ","300936.SZ","300937.SZ","300938.SZ","300939.SZ","300940.SZ","300941.SZ","300942.SZ","300943.SZ","300945.SZ","300946.SZ","300947.SZ","300948.SZ","300949.SZ","300950.SZ","300951.SZ","300952.SZ","300953.SZ","300955.SZ","300956.SZ","300957.SZ","300958.SZ","300959.SZ","300960.SZ","300961.SZ","300962.SZ","300963.SZ","300965.SZ","300966.SZ","300967.SZ","300968.SZ","300969.SZ","300970.SZ","300971.SZ","300972.SZ","300973.SZ","300975.SZ","300976.SZ","300977.SZ","300980.SZ","300983.SZ","600916.SH","601279.SH","601963.SH","603324.SH","603759.SH","605005.SH","605016.SH","605055.SH","605060.SH","605077.SH","605081.SH","605086.SH","605098.SH","605117.SH","605122.SH","605133.SH","605208.SH","605228.SH","605268.SH","605277.SH","605286.SH","605298.SH","605303.SH","605337.SH","605368.SH","605378.SH","605389.SH","605398.SH","688059.SH","688070.SH","688079.SH","688083.SH","688092.SH","688109.SH","688183.SH","688191.SH","688195.SH","688201.SH","688260.SH","688315.SH","688316.SH","688317.SH","688328.SH","688329.SH","688350.SH","688456.SH","688468.SH","688533.SH","688606.SH","688607.SH","688609.SH","688611.SH","688616.SH","688617.SH","688619.SH","688626.SH","688628.SH","688630.SH","688633.SH","688636.SH","688639.SH","688656.SH","688659.SH","688661.SH","688662.SH","688663.SH","688665.SH","688667.SH","688669.SH","688676.SH","688677.SH","688680.SH","688682.SH","688683.SH","688687.SH","688689.SH","688696.SH","688819.SH"],["003030","003031","003032","003033","003035","003036","003037","003038","003039","003040","003041","003042","003043","300926","300927","300928","300929","300930","300931","300932","300933","300935","300936","300937","300938","300939","300940","300941","300942","300943","300945","300946","300947","300948","300949","300950","300951","300952","300953","300955","300956","300957","300958","300959","300960","300961","300962","300963","300965","300966","300967","300968","300969","300970","300971","300972","300973","300975","300976","300977","300980","300983","600916","601279","601963","603324","603759","605005","605016","605055","605060","605077","605081","605086","605098","605117","605122","605133","605208","605228","605268","605277","605286","605298","605303","605337","605368","605378","605389","605398","688059","688070","688079","688083","688092","688109","688183","688191","688195","688201","688260","688315","688316","688317","688328","688329","688350","688456","688468","688533","688606","688607","688609","688611","688616","688617","688619","688626","688628","688630","688633","688636","688639","688656","688659","688661","688662","688663","688665","688667","688669","688676","688677","688680","688682","688683","688687","688689","688696","688819"],["祖名股份","中瓷电子","传智教育","征和工业","南网能源","泰坦股份","三和管桩","鑫铂股份","顺控发展","楚天龙","真爱美家","中农联合","华亚智能","博俊科技","江天化学","华安鑫创","华骐环保","屹通新材","通用电梯","三友联众","中辰股份","盈建科","中英科技","药易购","信测标准","秋田微","南极光","创识科技","易瑞生物","春晖智控","曼卡龙","恒而达","德必集团","冠中生态","奥雅设计","德固特","博硕科技","恒辉安防","震裕科技","嘉亨家化","英力股份","贝泰妮","建工修复","线上线下","通业科技","深水海纳","中金辐照","中洲特材","恒宇信通","共同药业","晓鸣股份","格林精密","恒帅股份","华绿生物","博亚精工","C万辰","立高食品","C商络","C达瑞","C瑞捷","C祥源","C尤安","中国黄金","英利汽车","重庆银行","盛剑环境","海天股份","合兴股份","百龙创园","迎丰股份","联德股份","华康股份","太和水","龙高股份","行动教育","德业股份","四方新材","嵘泰股份","永茂泰","神通科技","王力安防","新亚电子","同力日升","必得科技","园林股份","李子园","蓝天燃气","野马电池","长龄液压","新炬网络","华锐精密","纵横股份","美迪凯","中望软件","爱科科技","品茗股份","生益电子","智洋创新","腾景科技","信安世纪","昀冢科技","诺禾致源","青云科技-U","之江生物","深科达","艾隆科技","富淼科技","有研粉材","科美诊断","上声电子","奥泰生物","康众医疗","九联科技","杭州柯林","西力科技","惠泰医疗","罗普特","翔宇医疗","优利德","芯碁微装","星球石墨","智明达","N华恒","浩欧博","元琛科技","和林微纳","富信科技","新风光","四方光电","菱电电控","聚石化学","金盘科技","海泰新光","海优新材","霍莱沃","莱尔科技","凯因科技","银河微电","极米科技","天能股份"],["浙江","河北","江苏","山东","广东","浙江","广东","安徽","广东","广东","浙江","山东","江苏","江苏","江苏","北京","安徽","浙江","江苏","广东","江苏","北京","江苏","四川","深圳","深圳","深圳","福建","深圳","浙江","浙江","福建","上海","山东","深圳","山东","深圳","江苏","浙江","福建","安徽","云南","北京","江苏","深圳","深圳","深圳","上海","北京","湖北","宁夏","广东","浙江","江苏","湖北","福建","广东","江苏","广东","深圳","湖北","上海","北京","吉林","重庆","上海","四川","浙江","山东","浙江","浙江","浙江","上海","福建","上海","浙江","重庆","江苏","上海","浙江","浙江","浙江","江苏","江苏","浙江","浙江","河南","浙江","江苏","上海","湖南","四川","浙江","广东","浙江","浙江","广东","山东","福建","北京","江苏","北京","北京","上海","深圳","江苏","江苏","北京","北京","江苏","浙江","江苏","广东","浙江","浙江","深圳","福建","河南","广东","安徽","江苏","四川","安徽","江苏","安徽","江苏","广东","山东","湖北","湖北","广东","海南","山东","上海","上海","广东","北京","江苏","四川","浙江"],["食品","元器件","文教休闲","机械基件","新型电力","纺织机械","水泥","铝","水务","元器件","纺织","农药化肥","专用机械","汽车配件","化工原料","汽车服务","环境保护","小金属","运输设备","元器件","电气设备","软件服务","元器件","医药商业","综合类","元器件","元器件","软件服务","生物制药","机械基件","服饰","机械基件","综合类","环境保护","建筑工程","专用机械","元器件","纺织","机械基件","塑料","IT设备","日用化工","环境保护","通信设备","电气设备","环境保护","综合类","小金属","元器件","化学制药","农业综合","元器件","汽车配件","种植业","机械基件","种植业","食品","元器件","元器件","建筑工程","塑料","建筑工程","黄金","汽车配件","银行","环境保护","水务","汽车配件","食品","纺织","机械基件","食品","环境保护","矿物制品","文教休闲","家用电器","其他建材","汽车配件","汽车配件","汽车配件","家居用品","电气设备","运输设备","运输设备","建筑工程","乳制品","供气供热","电气设备","机械基件","软件服务","机械基件","航空","半导体","软件服务","专用机械","软件服务","元器件","电气设备","元器件","通信设备","元器件","医疗保健","软件服务","生物制药","元器件","专用机械","化工原料","铜","医疗保健","元器件","生物制药","医疗保健","通信设备","电气设备","电器仪表","医疗保健","软件服务","医疗保健","电器仪表","专用机械","专用机械","元器件","化工原料","生物制药","环境保护","元器件","半导体","电气设备","电器仪表","汽车配件","化工原料","电气设备","医疗保健","塑料","软件服务","化工原料","生物制药","元器件","IT设备","电气设备"],["祖名豆制品股份有限公司","河北中瓷电子科技股份有限公司","江苏传智播客教育科技股份有限公司","青岛征和工业股份有限公司","南方电网综合能源股份有限公司","浙江泰坦股份有限公司","广东三和管桩股份有限公司","安徽鑫铂铝业股份有限公司","广东顺控发展股份有限公司","楚天龙股份有限公司","浙江真爱美家股份有限公司","山东中农联合生物科技股份有限公司","苏州华亚智能科技股份有限公司","江苏博俊工业科技股份有限公司","南通江天化学股份有限公司","华安鑫创控股(北京)股份有限公司","安徽华骐环保科技股份有限公司","杭州屹通新材料股份有限公司","通用电梯股份有限公司","三友联众集团股份有限公司","中辰电缆股份有限公司","北京盈建科软件股份有限公司","常州中英科技股份有限公司","四川合纵药易购医药股份有限公司","深圳信测标准技术服务股份有限公司","深圳秋田微电子股份有限公司","深圳市南极光电子科技股份有限公司","福建创识科技股份有限公司","深圳市易瑞生物技术股份有限公司","浙江春晖智能控制股份有限公司","曼卡龙珠宝股份有限公司","福建恒而达新材料股份有限公司","上海德必文化创意产业发展(集团)股份有限公司","青岛冠中生态股份有限公司","深圳奥雅设计股份有限公司","青岛德固特节能装备股份有限公司","深圳市博硕科技股份有限公司","江苏恒辉安防股份有限公司","宁波震裕科技股份有限公司","嘉亨家化股份有限公司","安徽英力电子科技股份有限公司","云南贝泰妮生物科技集团股份有限公司","北京建工环境修复股份有限公司","无锡线上线下通讯信息技术股份有限公司","深圳通业科技股份有限公司","深水海纳水务集团股份有限公司","中金辐照股份有限公司","上海中洲特种合金材料股份有限公司","恒宇信通航空装备(北京)股份有限公司","湖北共同药业股份有限公司","宁夏晓鸣农牧股份有限公司","广东格林精密部件股份有限公司","宁波恒帅股份有限公司","江苏华绿生物科技股份有限公司","襄阳博亚精工装备股份有限公司","福建万辰生物科技股份有限公司","立高食品股份有限公司","南京商络电子股份有限公司","东莞市达瑞电子股份有限公司","深圳瑞捷工程咨询股份有限公司","湖北祥源新材科技股份有限公司","上海尤安建筑设计股份有限公司","中国黄金集团黄金珠宝股份有限公司","长春英利汽车工业股份有限公司","重庆银行股份有限公司","上海盛剑环境系统科技股份有限公司","海天水务集团股份公司","合兴汽车电子股份有限公司","山东百龙创园生物科技股份有限公司","浙江迎丰科技股份有限公司","杭州联德精密机械股份有限公司","浙江华康药业股份有限公司","上海太和水环境科技发展股份有限公司","龙岩高岭土股份有限公司","上海行动教育科技股份有限公司","宁波德业科技股份有限公司","重庆四方新材股份有限公司","江苏嵘泰工业股份有限公司","上海永茂泰汽车科技股份有限公司","神通科技集团股份有限公司","王力安防科技股份有限公司","新亚电子股份有限公司","江苏同力日升机械股份有限公司","江苏必得科技股份有限公司","杭州市园林绿化股份有限公司","浙江李子园食品股份有限公司","河南蓝天燃气股份有限公司","浙江野马电池股份有限公司","江苏长龄液压股份有限公司","上海新炬网络信息技术股份有限公司","株洲华锐精密工具股份有限公司","成都纵横自动化技术股份有限公司","杭州美迪凯光电科技股份有限公司","广州中望龙腾软件股份有限公司","杭州爱科科技股份有限公司","杭州品茗安控信息技术股份有限公司","生益电子股份有限公司","智洋创新科技股份有限公司","腾景科技股份有限公司","北京信安世纪科技股份有限公司","苏州昀冢电子科技股份有限公司","北京诺禾致源科技股份有限公司","北京青云科技股份有限公司","上海之江生物科技股份有限公司","深圳市深科达智能装备股份有限公司","苏州艾隆科技股份有限公司","江苏富淼科技股份有限公司","有研粉末新材料股份有限公司","科美诊断技术股份有限公司","苏州上声电子股份有限公司","杭州奥泰生物技术股份有限公司","江苏康众数字医疗科技股份有限公司","广东九联科技股份有限公司","杭州柯林电气股份有限公司","杭州西力智能科技股份有限公司","深圳惠泰医疗器械股份有限公司","罗普特科技集团股份有限公司","河南翔宇医疗设备股份有限公司","优利德科技(中国)股份有限公司","合肥芯碁微电子装备股份有限公司","南通星球石墨股份有限公司","成都智明达电子股份有限公司","安徽华恒生物科技股份有限公司","江苏浩欧博生物医药股份有限公司","安徽元琛环保科技股份有限公司","苏州和林微纳科技股份有限公司","广东富信科技股份有限公司","新风光电子科技股份有限公司","四方光电股份有限公司","武汉菱电汽车电控系统股份有限公司","广东聚石化学股份有限公司","海南金盘智能科技股份有限公司","青岛海泰新光科技股份有限公司","上海海优威新材料股份有限公司","上海霍莱沃电子系统技术股份有限公司","广东莱尔新材料科技股份有限公司","北京凯因科技股份有限公司","常州银河世纪微电子股份有限公司","成都极米科技股份有限公司","天能电池集团股份有限公司"],["Zuming Bean Products Corp.","Hebei Sinopack Electronic Technology Co.,Ltd.","Jiangsu Chuanzhiboke Education Technology Co., Ltd.","Qingdao CHOHO Industrial Co., Ltd.","China Southern Power Grid Energy Efficiency&amp;Clean Energy Co.,Ltd.","Zhejiang Taitan Co., Ltd.","GUANGDONG SANHE PILE CO.,LTD.","Anhui Xinbo Aluminum Co., Ltd.","Guangdong Shunkong Development Co. Ltd.","Chutian Dragon Co., Ltd.","Zhejiang Truelove Vogue Co., Ltd","Shandong Sino-Agri United Biotechnology Co.,Ltd","Suzhou Huaya Intelligence Technology Co., Ltd.","Jiangsu Bojun Industrial Technology Co.,Ltd","Nantong Jiangtian Chemical Co., Ltd.","Haxc Holdings (Beijing) Co., Ltd.","Anhui Huaqi Environmental Protection&amp;Technology Co.,Ltd.","Hang Zhou Yitong New Materials Co.,Ltd.","General Elevator Co., Ltd.","Sanyou Corporation Limited","Sinostar Cable Co., Ltd.","Beijing YJK Building Software Co.,Ltd.","Changzhou Zhongying Science &amp; Technology Co., Ltd.","Sichuan Hezong Medicine Co., Ltd.","EMTEK(Shenzhen)Co., Ltd.","Shenzhen AV-Display Co., Ltd.","Shen Zhen Australis Electronic Technology Co.,Ltd.","Chase Science Co.,Ltd","Shenzhen Bioeasy Biotechnology Co.,Ltd.","Zhejiang Chunhui Intelligent Control Co., Ltd.","Mclon Jewellery Co.,Ltd.","Hengda New Materials (Fujian) Co.,Ltd","Shanghai DOBE Cultural&amp;Creative Industry Development (Group) Co. Ltd.","Qingdao Greensum Ecology Co.,Ltd.","Shenzhen L&amp;A Design Holding Limited","Doright Co.,Ltd.","Shenzhen BSC Technology Co.,Ltd.","Jiangsu Hanvo Safety Product Co., Ltd.","Ningbo Zhenyu Technology Co., Ltd.","Jahen Household Products Co.,Ltd.","Anhui Shiny Electronic Technology Co., Ltd.","Yunnan Botanee Bio-Technology Group Co. LTD","BCEG Environmental Remediation Co., Ltd.","Wuxi Online Offline Communication Information Technology Co., Ltd.","Shenzhen Tongye Technology Co.,Ltd.","Hynar Water Group Co., Ltd.","Zhongjin Irradiation Incorporated Company","Shanghai Zhongzhou Special Alloy Materials Co., Ltd.","Beijing Hengyu Datacom Aviation Equipment Co., Ltd","Hubei Goto Biopharm Co.,Ltd.","Ningxia Xiaoming Agriculture &amp; Animal Husbandry Co., Ltd.","Guangdong Green Precision Components Co., Ltd.","NINGBO HENGSHUAI Co., LTD.","Jiangsu Chinagreen Biological Technology Co.,Ltd.","Xiangyang BOYA Precision Industrial Equipments Co., Ltd.","Fujian Wanchen Biotechnology Co., Ltd.","Ligao Foods Co.,Ltd","Nanjing Sunlord Electronics Corporation Ltd.","Dongguan Tarry Electronics Co.,Ltd.","Shenzhen Ridge Engineering Consulting Co., Ltd.","Hubei Xiangyuan New Material Technology Inc.","Shanghai Urban Architecture Design Co.,Ltd.","China National Gold Group Gold Jewellery Co.,Ltd","Changchun Engley Automobile Industry Co.,Ltd.","Bank of Chongqing Co., Ltd.","Shanghai Sheng Jian Environment Technology Co., Ltd.","Haitian Water Group Co.,Ltd","CWB Automotive Electronics Co., Ltd.","Shandong Bailong Chuangyuan Bio-Tech Co., Ltd.","Zhejiang Yingfeng Technology Co.,Ltd.","Allied Machinery Co.,Ltd.","Zhejiang Huakang Pharmaceutical Co., Ltd.","Shanghai Taihe Water Environmental Technology Development Co.,Ltd.","Longyan Kaolin Clay Co., Ltd.","Shanghai Action Education Technology Co.,Ltd","Ningbo Deye Technology Co., Ltd.","Chongqing Sifang New Material Co., Ltd.","Jiangsu Rongtai Industry Co., Ltd.","Shanghai Yongmaotai Automotive Technology Co., Ltd.","Shentong Technology Group Co.,Ltd","Wangli Security &amp; Surveillance Product Co., Ltd","Xinya Electronic Co., Ltd.","Jiangsu Tongli Risheng Machinery Co., Ltd.","Jiangsu Bide Science and Technology Co., Ltd.","Hangzhou Landscaping Co.,Ltd.","Zhe Jiang Li Zi Yuan Food Co.,Ltd.","Henan Lantian Gas Co.,Ltd.","Zhejiang Mustang Battery Co., Ltd.","JiangSu Changling Hydraulic Co.,Ltd","Shanghai New Centurion Network Information Technology Co., Ltd.","Zhuzhou Huarui Precision Cutting Tools.Co.,Ltd","Chengdu Jouav Automation Tech Co.,Ltd.","Hangzhou Mdk Opto Electronic Corporation Limited","Zwsoft Co.,Ltd.(Guangzhou)","Hangzhou Iecho Science &amp; Technology Co., Ltd.","Hangzhou Pinming Software Co., Ltd","Shengyi Electronics Co., Ltd.","Zhiyang Innovation Technology Co.,Ltd.","Optowide Technologies Co., Ltd.","Beijing Infosec Technologies Co.,Ltd.","Suzhou Gyz Electronic Technology Co., Ltd.","Novogene Co., Ltd.","QingCloud Technologies Corp.","Shanghai ZJ Bio-Tech Co., Ltd.","Shenzhen S-king Intelligent Equipment Co., Ltd.","Suzhou Iron Technology Co.,Ltd.","Jiangsu Feymer Technology Co., Ltd.","GRIPM Advanced Materials Co., Ltd.","Chemclin Diagnostics Co., Ltd.","Suzhou Sonavox Electronics Co.,Ltd.","Hangzhou Alltest Biotech Co., Ltd.","CareRay Digital Medical Technology Co., Ltd.","Unionman Technology Co., Ltd.","Hangzhou Kelin Electric Co.Ltd.","Hangzhou Xili Intelligent Technology Co.,Ltd.","Apt Medical Inc.","Ropeok Technology Group Co.,Ltd.","Xiangyu Medical Co.,Ltd.","Uni-Trend Technology (China) Co.,Ltd.","Circuit Fabology Microelectronics Equipment Co.,Ltd.","Nantong Xingqiu Graphite Co., Ltd.","Chengdu Zhimingda Electronics Co., Ltd.","Anhui Huaheng Biotechnology Co., Ltd.","Hob Biotech Group Corp., Ltd.","Anhui Yuanchen Environmental Protection Science &amp; Technology Co., Ltd.","Suzhou Uigreen Micro&amp;Nano Technologies Co.,Ltd","Guangdong Fuxin Technology Co., Ltd.","WindSun Science&amp;Technology Co.,Ltd.","Cubic Sensor and Instrument Co.,Ltd","Wuhan LinControl Automotive Electronics Co., Ltd.","Polyrocks Chemical Co.,Ltd.","Hainan Jinpan Smart Technology Co., Ltd.","Qingdao Novelbeam Technology Co.,Ltd.","Shanghai Hiuv New Materials Co.,Ltd.","Shanghai Hollywave Electronic System Co., Ltd.","GuangDong Leary New Material Technology Co.,Ltd","Beijing Kawin Technology Share-Holding Co., Ltd.","Changzhou Galaxy Century Microelectronics Co.,Ltd.","Chengdu Xgimi Technology Co., Ltd.","Tianneng Battery Group Co.,Ltd."],["中小板","中小板","中小板","中小板","中小板","中小板","中小板","中小板","中小板","中小板","中小板","中小板","中小板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","创业板","主板","主板","主板","主板","主板","主板","主板","主板","主板","主板","主板","主板","主板","主板","主板","主板","主板","主板","主板","主板","主板","主板","主板","主板","主板","主板","主板","主板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板","科创板"],["SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SZSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE","SSE"],["CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY","CNY"],["L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L","L"],["20210106","20210104","20210112","20210111","20210119","20210128","20210204","20210210","20210308","20210322","20210406","20210406","20210406","20210107","20210107","20210106","20210120","20210121","20210121","20210122","20210122","20210120","20210126","20210127","20210127","20210128","20210203","20210209","20210209","20210210","20210210","20210208","20210210","20210225","20210226","20210303","20210226","20210311","20210318","20210324","20210326","20210325","20210329","20210322","20210329","20210330","20210409","20210409","20210402","20210409","20210413","20210415","20210412","20210412","20210415","20210419","20210415","20210421","20210419","20210420","20210421","20210420","20210205","20210415","20210205","20210407","20210326","20210119","20210421","20210129","20210301","20210209","20210209","20210416","20210421","20210420","20210310","20210224","20210308","20210120","20210224","20210106","20210322","20210301","20210301","20210208","20210129","20210412","20210322","20210121","20210208","20210210","20210302","20210311","20210319","20210330","20210225","20210408","20210326","20210421","20210406","20210413","20210316","20210118","20210309","20210329","20210128","20210317","20210409","20210419","20210325","20210201","20210323","20210412","20210318","20210107","20210223","20210331","20210201","20210401","20210324","20210408","20210422","20210113","20210331","20210329","20210401","20210413","20210209","20210312","20210125","20210309","20210226","20210122","20210420","20210412","20210208","20210127","20210303","20210118"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],["N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","H","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N","N"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>ts_code<\/th>\n      <th>symbol<\/th>\n      <th>name<\/th>\n      <th>area<\/th>\n      <th>industry<\/th>\n      <th>fullname<\/th>\n      <th>enname<\/th>\n      <th>market<\/th>\n      <th>exchange<\/th>\n      <th>curr_type<\/th>\n      <th>list_status<\/th>\n      <th>list_date<\/th>\n      <th>delist_date<\/th>\n      <th>is_hs<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["print"],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="操纵数据" class="section level3">
+<h3>2 操纵数据</h3>
+<p>操纵数据主要有增、删、改，查，对应的主要函数为insert、remove、update,find和drop。具体示例如下：</p>
+<pre class="r"><code>### 加载软件包
+pacman::p_load(data.table,plyr,stringr,dplyr,mongolite,future.apply,future,flextable,DT)
+
+###在test表中创建文件iris
+test&lt;-mongo(&quot;iris&quot;,&quot;test&quot;)
+
+###产生数据
+str &lt;- c(&#39;{&quot;name&quot; : &quot;jerry&quot;}&#39; , &#39;{&quot;name&quot;: &quot;anna&quot;, &quot;age&quot; : 23}&#39;, &#39;{&quot;name&quot;: &quot;joe&quot;}&#39;)
+
+###在test表文件iris中插入数据
+test$insert(str)</code></pre>
+<pre><code>## List of 6
+##  $ nInserted  : int 3
+##  $ nMatched   : int 0
+##  $ nModified  : int 0
+##  $ nRemoved   : int 0
+##  $ nUpserted  : int 0
+##  $ writeErrors: list()</code></pre>
+<pre class="r"><code>###查找iris文件中的数据
+test$find()</code></pre>
+<pre><code>##    name age
+## 1 jerry  NA
+## 2  anna  23
+## 3   joe  NA</code></pre>
+<pre class="r"><code>###补全缺失年龄
+test$update(&#39;{&quot;name&quot;:&quot;jerry&quot;}&#39;,&#39;{&quot;$set&quot;:{&quot;age&quot;:&quot;12&quot;}}&#39;)</code></pre>
+<pre><code>## List of 3
+##  $ modifiedCount: int 1
+##  $ matchedCount : int 1
+##  $ upsertedCount: int 0</code></pre>
+<pre class="r"><code>###查看结果
+test$find()</code></pre>
+<pre><code>##    name  age
+## 1 jerry   12
+## 2  anna   23
+## 3   joe &lt;NA&gt;</code></pre>
+<pre class="r"><code>###删除name为joe的记录
+test$remove(&#39;{&quot;name&quot;:&quot;joe&quot;}&#39;)
+
+###查看结果
+test$find()</code></pre>
+<pre><code>##    name age
+## 1 jerry  12
+## 2  anna  23</code></pre>
+<pre class="r"><code>###删除表test
+test$drop()</code></pre>
+</div>

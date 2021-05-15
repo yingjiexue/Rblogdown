@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Yingjie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 03 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 23 Apr 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>blogdown package 更新中的一些新变化</title>
+      <link>/post/blogdown-package-%E6%9B%B4%E6%96%B0%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E5%8F%98%E5%8C%96/</link>
+      <pubDate>Fri, 23 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/blogdown-package-%E6%9B%B4%E6%96%B0%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E5%8F%98%E5%8C%96/</guid>
+      <description>R语言作为一种免费开源语言，备受使用者的喜爱，源程序和package一直不断地优化并推出新版本，为了感受新款程序的魅力，我们不得不定期更新R</description>
+    </item>
     
     <item>
       <title>机构投资者提高了价格效率吗？</title>

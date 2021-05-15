@@ -12,6 +12,24 @@
     
     
     <item>
+      <title>R与Mongo数据库交互演示</title>
+      <link>/2021/04/24/r%E4%B8%8Emongo%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%A4%E4%BA%92%E6%BC%94%E7%A4%BA/</link>
+      <pubDate>Sat, 24 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/04/24/r%E4%B8%8Emongo%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%A4%E4%BA%92%E6%BC%94%E7%A4%BA/</guid>
+      <description>MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。同时，他也是一个介于关系数据库和非关系数据</description>
+    </item>
+    
+    <item>
+      <title>blogdown package 更新中的一些新变化</title>
+      <link>/post/blogdown-package-%E6%9B%B4%E6%96%B0%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E5%8F%98%E5%8C%96/</link>
+      <pubDate>Fri, 23 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/blogdown-package-%E6%9B%B4%E6%96%B0%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E5%8F%98%E5%8C%96/</guid>
+      <description>R语言作为一种免费开源语言，备受使用者的喜爱，源程序和package一直不断地优化并推出新版本，为了感受新款程序的魅力，我们不得不定期更新R</description>
+    </item>
+    
+    <item>
       <title>What is  Short Interest?</title>
       <link>/2021/04/07/what-is-short-intrest/</link>
       <pubDate>Wed, 07 Apr 2021 00:00:00 +0000</pubDate>

@@ -1,0 +1,120 @@
+---
+title: R与Mongo数据库交互演示
+author: 薛英杰
+date: '2021-04-24'
+slug: r与mongo数据库交互演示
+categories:
+  - cn
+tags:
+  - diary
+---
+
+MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。同时，他也是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的。而R语言作为一种统计数据分析语言，必然需要输入数据才能进行各种运算，那么当R语言偶遇MongoDB时，该怎么从MongoDB中读入数据，又该如何将数据写入MongoDB呢？
+
+我们都知道R是“包治百病”，与MongoDB交互自然也离不开package。链接MongoDB的R package有三个，分别为：rmongodb、RMongo、Mongolite，他们版本和使用手册如下：
+
+Package:[rmongodb(2011)](https://cran.r-project.org/src/contrib/Archive/rmongodb/)、[RMongo(2011)](https://cran.r-project.org/src/contrib/Archive/RMongo/)、[Mongolite(2014)](https://cran.r-project.org/web/packages/mongolite/index.html)
+
+User Manual:[rmongodb Usage](https://www.rdocumentation.org/packages/rmongodb/versions/1.8.0) [RMongo Usage](https://www.rdocumentation.org/packages/RMongo/versions/0.0.25/topics/RMongo-package) [Mongolite Usage](https://jeroen.github.io/mongolite/)
+
+目前rmongodb和RMongo都已下架，上面的package和User Manual均为历史遗留版本，不过也都能使用。今天重点介绍一下Mongolite包，通过他来实现R语言与MongoDB的交互，可以参考Presentation: [UseR 2015 slides](http://jeroen.github.io/mongo-slides)。
+
+要实现R语言与MongoDB的交互，首先需要开启MongoDB，在命令行窗口中输入：
+
+        D:Mongo\bin\mongod --dbpath D:Mongo\data\db
+        
+![](/cn/2021-04-24-r与mongo数据库交互演示_files/mongs.PNG)
+
+接下来在R环境中加载相关软件包，建立R与MongoDB链接，具体如下：
+```{r}
+##加载软件包
+pacman::p_load(data.table,plyr,stringr,dplyr,mongolite,future.apply,future)
+
+##建立R与MongoDB数据库的链接，collection为数据表对应的文件，db为数据库中的表
+m<-mongo(collection = "tradedatadaily",db="stockdata")
+
+##断开链接
+rm()
+gc()
+```
+
+### 1.查询数据
+
+> 假设我们需要从MongoDB数据库中查找2021-04-21股票交易数据，统计各收益水平下的上市公司数量，具体代码如下：
+
+```{r}
+##加载软件包
+pacman::p_load(data.table,plyr,stringr,dplyr,mongolite,future.apply,future)
+
+##建立R与MongoDB数据库的链接，collection为数据表对应的文件，db为数据库中的表
+m<-mongo(collection = "tradedatadaily",db="stockdata")
+
+##查询字段有上市公司代码（symbol）、收盘价(close)、前收盘价(pre_close)，查询条件为交易日期(trade_date)等于2021-04-21
+
+tradedata<-m$find(query = '{"trade_date":"20210421"}',
+                  fields = '{"symbol":"ture","trade_date":"ture","close":"ture","pre_close":"ture"}')
+head(tradedata)
+
+##计算收益并分组统计上市公司数量
+fdstb<-tradedata%>%mutate(rets=close/pre_close-1)%>%mutate(groups=cut(rets,c(-0.25,-0.15,-0.1,-0.05,-0.03,-.01,0,0.01,0.03,0.05,0.1,0.15,0.25),labels = c("<-15%","<-10%","<-5%","<-3%","<-1%","<0%","0%<","1%<","3%<","5%<","10%<","15%<"),right=F))%>%group_by(groups)%>%summarise(cout=n())
+
+barplot(fdstb$cout,names.arg = fdstb$groups,col =c(rep("green",6),rep("red",6)),cex.names = 0.7,ylim = c(0,1350),axes = F)
+text(c(0.7,1.9,3.1,4.3,5.5,6.7,7.9,9.1,10.3,11.5,12.6,13.9),fdstb$cout+c(8,8,8,8,8,10,10,10,10.3,9,9,9)+32,fdstb$cout,cex = 0.8)
+```
+
+> 从MongoDB数据库中提取2021年IPO且市值的公司
+
+```{r}
+##加载软件包
+pacman::p_load(data.table,plyr,stringr,dplyr,mongolite,future.apply,future,flextable,DT)
+
+##建立R与MongoDB数据库的链接，collection为数据表对应的文件，db为数据库中的表
+m<-mongo(collection = "stockbase",db="stockdata")
+
+##查询字段有上市公司代码（symbol）、股票名称(name)、上市日期(list_date)，查询条件为上市日期(list_date)大于2021-01-01
+
+newfirm<-m$find(query = '{"list_date":{"$gt":"20210101"}}'
+                  )
+DT::datatable(newfirm,rownames = FALSE,extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c( 'print')))
+```
+
+### 2 操纵数据
+
+操纵数据主要有增、删、改，查，对应的主要函数为insert、remove、update,find和drop。具体示例如下：
+```{r}
+### 加载软件包
+pacman::p_load(data.table,plyr,stringr,dplyr,mongolite,future.apply,future,flextable,DT)
+
+###在test表中创建文件iris
+test<-mongo("iris","test")
+
+###产生数据
+str <- c('{"name" : "jerry"}' , '{"name": "anna", "age" : 23}', '{"name": "joe"}')
+
+###在test表文件iris中插入数据
+test$insert(str)
+
+###查找iris文件中的数据
+test$find()
+
+###补全缺失年龄
+test$update('{"name":"jerry"}','{"$set":{"age":"12"}}')
+
+###查看结果
+test$find()
+
+###删除name为joe的记录
+test$remove('{"name":"joe"}')
+
+###查看结果
+test$find()
+
+###删除表test
+test$drop()
+
+
+
+
+
+```
+

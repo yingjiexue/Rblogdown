@@ -244,6 +244,14 @@ and little stocks in diverse companies** 对应国内短期投资者
 
 ## [Information,Participation, and Passive Investing](https://dx.doi.org/10.2139/ssrn.3299280)
 
+```
+   George Malikov
+
+   SSN working paper
+
+```
+   
+
 ### 摘要
 
 > 我们研究了基本面信息挖掘成本对价格信息含量和被动投资的影响，在多个风险资产和一个冗余市场指数的REE模型框架下，我们把被动投资定义为搭乘主动交易者努力获取基本面信息的便车和放弃主动选股策略之间的最优决策。信息成本下降有一个对偶效应，一方面降低了市场择时成本，进而降低了被动持股份额，另一方面，降低了选股成本，增加了被动持股份额。如果选股效应主导市场择时效应，被动持股增加伴随着更大的股价信息含量。我们利用SEC的扩展业务报告语言任务作为对信息成本的负面冲击，提供了信息成本下降导致了被动投资上升的证据。
@@ -275,7 +283,7 @@ and little stocks in diverse companies** 对应国内短期投资者
 
 
 
-## [Distracted passive institutional shareholders and firm transparency]()
+## [Distracted passive institutional shareholders and firm transparency](https://www.sciencedirect.com/science/article/pii/S0148296320300448)
 
 ```
    Xiaolin Xue, Junrui Zhang, Yangxin Yu
@@ -283,4 +291,92 @@ and little stocks in diverse companies** 对应国内短期投资者
    Journal of Business Research
 ```
 
-###
+### 摘要
+
+> 这篇文章研究了被动机构持股的分散程度是否会影响公司的透明度。为了捕获持股分散程度，我们利用发生在投资者组合内部分股票上的冲击引起投资者的注意力偏离不相关的股票来捕获持股分散度。与降低监督强度一致，我们发现分散的被动机构投资者持股公司的信息环境透明度较低，这个效应在被动机构持股越集中的公司上更为明显。进一步研究表明，对于竞争行行业和新任CEO的公司来说，被动机构持股分散程度与公司信息透明度之间的负向关系更为明显，表明当管理层使公司不透明的动机越大时，监督强烈程度下降将会导致公司信息透明度下降。这篇文章为投资者对公司行为有限注意和被动机构股东监督提供了证据。
+
+### 研究问题
+
+> 在过去十年中，被动机构投资者的数量迅速增长。相应地，积极管理的共同基金持有的5750亿美元资产流出，被动管理的共同基金从2007年至2013年获得了7950亿美元的累计净新现金和再投资股息。，到2014年底，多达33.5％的股权共同基金资产由被动管理型基金持有，由于其在资本市场中的地位越来越突出，理解被动基金持股对公司行为的影响成为一个重要问题。
+
+> 以前的文献主要集中在被动机构持股和公司行为的研究上，[Kempf et al.(2017)](https://doi.org/10.1093/rfs/hhw082)^[E. Kempf, A. Manconi, O. Spalt
+Distracted shareholders and corporate actions
+Review of Financial Studies, 30 (5) (2017), pp. 1660-1695]将投资者注意与监督能力分配联系起来，认为机构投资者有限注意也是影响公司行为的一个因素。本文跟随 Kemf et al.（2017）的研究，利用行业冲击捕获了机构持股的分散程度，研究了外生的被动机构持股分散程度如何影响公司信息透明度，以及这种影响在被动机构持股集中度差异的公司上有何不同。
+
+### 研究思路
+
+> 透明的信息环境降低了监督成本和交易相关的流动性成本。因此，当被动机构投资者认为当前公司的信息披露水平不足时，会鼓励更多的管理层披露，为了影响经理人的披露政策，投资者可以采用代理投票或采取非正式渠道对经理人和董事施加压力。但是，被动机构股东的监督能力受到他们有限的关注约束。在其投资组合中的一部分股票上发生的行业冲击使他们的注意力从无关的股票上转移了出来，从而导致监管强度的暂时降低。想要最大程度地提高私人利益的管理者将利用暂时减轻监督力度和减少公开披露的机会，以寻求一个不透明的环境，从而为他们提供机会隐藏其机会主义行动或阻碍外界监督。因此，当被动的机构股东分散注意力时，我们预计公司的不透明性会增加。
+
+> 我们采用肯普夫等人。（2017）一种方法来利用外在的行业冲击，这些冲击发生在其投资组合中的一部分股票上，并使他们的注意力从无关的股票上转移了出来。使用2000年至2017年期间的样本，我们发现，被动机构股东的分散注意力与较低的公司透明度相关联，该透明度是通过使用买卖差价，交易量，分析师关注度和分析师预测误差构建的不透明度指数来衡量的。在稳健性测试中，我们采用一个更直接的变量，即管理预测，来代表管理者的信息披露和公司透明度。我们发现一致的结果。
+
+### 相关文献
+
+> 1. 透明的信息环境降低了监督成本和交易相关的流动性成本([Diamond and Verrecchia，1991](https://doi.org/10.1111/j.1540-6261.1991.tb04620.x) ^[D.W. Diamond, R.E. Verrecchia
+Disclosure, liquidity, and the cost of capital
+The Journal of Finance, 46 (4) (1991), pp. 1325-1359]；[Schoenfeld，2017](https://www.sciencedirect.com/science/article/pii/S0165410116300763/pdfft?md5=e5e3e66c29a68f538960a5e60c26011f&pid=1-s2.0-S0165410116300763-main.pdf) ^[J. Schoenfeld
+The effect of voluntary disclosure on stock liquidity: New evidence from index funds
+Journal of Accounting and Economics, 63 (1) (2017), pp. 51-74])。
+
+> 2. 为了影响经理人的披露政策，投资者可以采用代理投票或采取非正式渠道对经理人和董事施加压力（[Appel et al., 2016](https://www.sciencedirect.com/science/article/pii/S0304405X16300319/pdfft?md5=6867162c86cad3481e56172ede0ed737&pid=1-s2.0-S0304405X16300319-main.pdf) ^[I.R. Appel, T.A. Gormley, D.B. Keim
+Passive investors, not passive owners
+Journal of Financial Economics,]; [Crane et al., 2016](https://doi.org/10.1093/rfs/hhw012) ^[A.D. Crane, S. Michenaud, J.P. Weston
+The effect of institutional ownership on payout policy: Evidence from index thresholds
+Review of Financial Studies, 29 (6) (2016), pp. 1377-1408], [Matvos and Ostrovsky, 2010](https://www.sciencedirect.com/science/article/pii/S0304405X10000693/pdfft?md5=dc8551c44c780f718313ce1ad95f9b76&pid=1-s2.0-S0304405X10000693-main.pdf) ^[G. Matvos, M. Ostrovsky
+Heterogeneity and peer effects in mutual fund proxy voting
+Journal of Financial Economics, 98 (1) (2010), pp. 90-]）。
+
+> 3. 所有权集中文献表明，只有当股东持股比例足够大以克服搭便车问题并赋予他们纪律管理权时，股东才有激励和能力影响公司行为（[Grossman and Hart，1980](https://doi.org/10.2307/3003400) ^[S.J. Grossman, O.D. Hart
+Takeover bids, the free-rider problem, and the theory of the corporation
+The Bell Journal of Economics (1980), pp. 42-64]；[Shleifer and Vishny，1986](https://doi.org/10.1086/261385) ^[Andrei Shleifer, Robert W. Vishny
+Large Shareholders and Corporate Control
+Journal of Political Economy, 94 (3, Part 1) (1986), pp. 461-488, 10.1086/261385]））
+
+> 4.被动的机构可能影响公司的透明度和信息生产,可以通过鼓励管理人员披露更多公司特定信息来提高公司透明度（[Boone and White，2015](https://www.sciencedirect.com/science/article/pii/S0304405X15000914/pdfft?md5=22f637fab0950d054f05278d53ed1bef&pid=1-s2.0-S0304405X15000914-main.pdf)^[A.L. Boone, J.T. White
+The effect of institutional ownership on firm transparency and information production
+Journal of Financial Economics, 117 (3) (2015), pp. 508-533]）
+
+> 5. 企业所有权或投资者投资组合的权重是机构投资者如何分配其监控能力的决定因素（[Fich et al.，2015](https://www.sciencedirect.com/science/article/pii/S0304405X15001208/pdfft?md5=a847b11fbe6eb4816e42370164c0f6ad&pid=1-s2.0-S0304405X15001208-main.pdf) ^[E.M. Fich, J. Harford, A.L. Tran
+Motivated monitors: The importance of institutional investors׳ portfolio weights
+Journal of Financial Economics, 118 (1) (2015), pp. 21-48]；[Shleifer and Vishny，1986](https://doi.org/10.1086/261385)  ^[Andrei Shleifer, Robert W. Vishny
+Large Shareholders and Corporate Control
+Journal of Political Economy, 94 (3, Part 1) (1986), pp. 461-488, 10.1086/261385]）
+
+> 6. 投资者注意力有限的文献认为，投资者的注意力是有限的，容易被热门或极端的事物吸引，这导致投资者暂时没有给予其他关注（[Baker and Wurgler，2013](https://www.sciencedirect.com/science/article/pii/B9780444535948000057/pdfft?md5=11891395733835733cc37b6e78d54a7e&pid=1-s2.0-B9780444535948000057-main.pdf) ^[M. Baker, J. Wurgler
+Chapter 5 - behavioral corporate finance: An updated survey
+G.M. Constantinides, M. Harris, R.M. Stulz (Eds.), Handbook of the economics of finance, Vol. 2, Elsevier (2013), pp. 357-424]）
+
+> 7. 共同基金有信托义务来为其客户的利益进行投票，并且在一定程度上也这样做（[Iliev and Lowry，2015](https://doi.org/10.1093/rfs/hhu062)^[P. Iliev, M. Lowry
+Are mutual funds active voters?
+Review of Financial Studies, 28 (2) (2015), pp. 446-485]）。
+
+> 8. 更高的透明度还可以提高其他利益相关者的监督效率，进而提高整体投资者的公司价值（ [Armstrong, et al., 2010](https://www.sciencedirect.com/science/article/pii/S0165410110000418/pdfft?md5=95918e99da13fbc8ea7e00823057fe38&pid=1-s2.0-S0165410110000418-main.pdf) ^[C.S. Armstrong, W.R. Guay, J.P. Weber
+The role of information and financial reporting in corporate governance and debt contracting
+Journal of Accounting and Economics, 50 (2) (2010), pp. 179-234]）,这也将增加指数基金管理的资产价值（[Guercio and Hawkins, 1999](https://www.sciencedirect.com/science/article/pii/S0304405X99000112/pdfft?md5=9c556da3b1391327ff71f2545256522c&pid=1-s2.0-S0304405X99000112-main.pdf) ^[D.D. Guercio, J. Hawkins
+The motivation and impact of pension fund activism
+Journal of Financial Economics, 52 (3) (1999), pp. 293-340]）。
+
+> 9. 因为更多的管理披露信息会降低分析师收集和分析信息的成本,具有更多管理信息披露的公司会吸引更多的跟随分析师，并且具有较低的分析师预测误差（[Healy et al., 1999](https://doi.org/10.1111/j.1911-3846.1999.tb00592.x) ^[P.M. Healy, A.P. Hutton, K.G. Palepu
+Stock performance and intermediation changes surrounding sustained increases in disclosure
+Contemporary Accounting Research, 16 (3) (1999), pp. 485-520]； [Lang and Lundholm, 1996](https://www.jstor.org/stable/248567)^[M.H. Lang, R.J. Lundholm
+Corporate disclosure policy and analyst behavior
+Accounting Review (1996), pp. 467-492] ）。
+
+> 10. 更多的管理信息披露和分析师覆盖范围共同减少了投资者之间的信息不对称并增加了流动性（ [Diamond and Verrecchia, 1991](https://doi.org/10.1111/j.1540-6261.1991.tb04620.x) ^[D.W. Diamond, R.E. Verrecchia
+Disclosure, liquidity, and the cost of capital
+The Journal of Finance, 46 (4) (1991), pp. 1325-1359]; [Leuz and Verrecchia, 2000](https://doi.org/10.2307/2672910) ^[C. Leuz, R.E. Verrecchia
+The economic consequences of increased disclosure
+Journal of Accounting Research, 38 (2000), pp. 91-124]）。
+
+> 11. [Verrecchia and Weber（2006）](https://doi.org/10.1111/j.1475-679X.2006.00216.x) ^[R.E. Verrecchia, J. Weber
+Redacted disclosure
+Journal of Accounting Research, 44 (4) (2006), pp. 791-814]发现，公司在财务报告中修改信息的可能性与他们的产品市场竞争呈正相关。
+
+
+### 研究结论
+
+> 1.机构投资者的有限关注会暂时减少监控约束，从而为自私自利的经理人提供减少公共披露以最大化私人利益的机会。
+
+> 2.被动机构投资者可以通过提高信息透明度为所有股东提供外部利益。
+
+> 3. 被动机构投资者的关注对公司透明度具有实质性影响，并且被动机构投资者在某种程度上发挥了治理作用
+

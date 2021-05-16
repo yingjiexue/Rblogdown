@@ -6,10 +6,19 @@
     <description>Recent content in research on Yingjie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 07 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 26 Apr 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/research/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>解析中国A股市场的定价异象</title>
+      <link>/post/%E8%A7%A3%E6%9E%90%E4%B8%AD%E5%9B%BDa%E8%82%A1%E5%B8%82%E5%9C%BA%E7%9A%84%E5%AE%9A%E4%BB%B7%E5%BC%82%E8%B1%A1/</link>
+      <pubDate>Mon, 26 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/%E8%A7%A3%E6%9E%90%E4%B8%AD%E5%9B%BDa%E8%82%A1%E5%B8%82%E5%9C%BA%E7%9A%84%E5%AE%9A%E4%BB%B7%E5%BC%82%E8%B1%A1/</guid>
+      <description>自Sharp and Lintner(1965)提出资本资产定价模型以来，学者们发现了许多长期存在投资异象策略，即通过这些策略可以获得超过资本资产定</description>
+    </item>
     
     <item>
       <title>What is  Short Interest?</title>

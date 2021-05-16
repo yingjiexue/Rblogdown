@@ -1,0 +1,573 @@
+<script type="text/javascript"
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>解析中国A股市场的定价异象 - Yingjie</title>
+    <meta property="og:title" content="解析中国A股市场的定价异象 - Yingjie">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+      
+    
+
+    
+      
+      <meta property="description" content="自Sharp and Lintner(1965)提出资本资产定价模型以来，学者们发现了许多长期存在投资异象策略，即通过这些策略可以获得超过资本资产定价模型预测的正常回报，并将定价模型不能解释的策略成为“投资异象”。目前，在学术界具有深远影响力的资产定价异象主要包括20世纪70年代以来逐步显现的beta异象,20世纪90年代逐步确认的动量异象、价值异象（Basu,1977）,21世纪初发现的流动性异 &amp;hellip;">
+      <meta property="og:description" content="自Sharp and Lintner(1965)提出资本资产定价模型以来，学者们发现了许多长期存在投资异象策略，即通过这些策略可以获得超过资本资产定价模型预测的正常回报，并将定价模型不能解释的策略成为“投资异象”。目前，在学术界具有深远影响力的资产定价异象主要包括20世纪70年代以来逐步显现的beta异象,20世纪90年代逐步确认的动量异象、价值异象（Basu,1977）,21世纪初发现的流动性异 &amp;hellip;">
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+
+<link href='//yingjie.org/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/fonts.css" />
+    
+  </head>
+
+  
+  <body class="post">
+    <header class="masthead">
+      <h1><a href="../../">Yingjie</a></h1>
+
+
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" />
+  <label id="menu-label" for="menu-check" class="unselectable">
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="../../">主页</a></li>
+  
+  <li><a href="../../cn/">日志</a></li>
+  
+  <li><a href="../../research/">研究</a></li>
+  
+  <li><a href="../../cn_about/">关于</a></li>
+  
+  <li><a href="../../en/">Blog</a></li>
+  
+  <li><a href="../../en_about/">About</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+<h1>解析中国A股市场的定价异象</h1>
+
+<h3>薛英杰
+  /  2021-04-26</h3>
+<hr>
+
+
+      </header>
+
+
+
+
+<script src="../../rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>自Sharp and Lintner(1965)提出资本资产定价模型以来，学者们发现了许多长期存在投资异象策略，即通过这些策略可以获得超过资本资产定价模型预测的正常回报，并将定价模型不能解释的策略成为“投资异象”。目前，在学术界具有深远影响力的资产定价异象主要包括20世纪70年代以来逐步显现的beta异象,20世纪90年代逐步确认的动量异象、价值异象（Basu,1977）,21世纪初发现的流动性异象、特质波动率异象、盈利异象、投资异象。这些异象在中国A股市场是否存在？让我们一探究竟。</p>
+<div id="市值异象" class="section level3">
+<h3>市值异象</h3>
+<p>Banz and Reinganum(1981)第一次记录了市值异象，发现小盘股收益高于大盘股收益，Fama and French(1992)将市值异象作为定价因子纳入定价模型。我们先评价市值异象在中国市场的表现，然后参考Fama and French(1992)的方法构造市值因子。</p>
+<blockquote>
+<p>1、市值与价值策略表现</p>
+</blockquote>
+<p>在t月将股票按t-1月的市值分为5组，分别统计当月等权收益和总市值加权收益，具体代码如下：</p>
+<pre class="r"><code>##加载软件包
+pacman::p_load(data.table,plyr,stringr,dplyr,mongolite,future.apply,future,data.table,gt)
+
+##建立R与MongoDB数据库的链接，collection为数据表对应的文件，db为数据库中的表
+md&lt;-mongo(collection = &quot;tradedatadaily&quot;,db=&quot;stockdata&quot;)
+mm&lt;-mongo(collection = &quot;monthlytrade&quot;,db=&quot;stockdata&quot;)
+##查询字段有上市公司代码（symbol）、收盘价(close)、前收盘价(pre_close)，总市值(total_mv)，市净率（pb）
+dailydata&lt;-as.data.table(md$find(query = &#39;{}&#39;,
+                  fields = &#39;{&quot;symbol&quot;:&quot;ture&quot;,&quot;trade_date&quot;:&quot;ture&quot;,&quot;total_mv&quot;:&quot;ture&quot;,&quot;pe&quot;:&quot;ture&quot;,&quot;_id&quot;:&quot;false&quot;}&#39;))[order(symbol,trade_date)][,yms:=gsub(&#39;^(\\d{4})(\\d{2})(\\d{2})$&#39;, &#39;\\1-\\2&#39;,trade_date)][,.SD[.N],by=.(symbol,yms)][,-c(3,4)]
+ 
+
+monthdata&lt;-as.data.table(mm$find(query = &#39;{}&#39;,
+                  fields = &#39;{&quot;symbol&quot;:&quot;ture&quot;,&quot;trade_date&quot;:&quot;ture&quot;,&quot;close&quot;:&quot;ture&quot;,&quot;pre_close&quot;:&quot;ture&quot;,&quot;_id&quot;:&quot;false&quot;}&#39;))[,yms:=gsub(&#39;^(\\d{4})(\\d{2})(\\d{2})$&#39;, &#39;\\1-\\2&#39;,trade_date)][,-c(1,3)][dailydata,on=.(symbol,yms)][,&#39;:=&#39;(lmv=lag(total_mv),lbm=lag(1/pe),rets=close/pre_close-1),by=.(symbol)][!is.na(lbm)&amp;!is.na(close)&amp;yms&gt;=&quot;1995-01&quot;,][,.(symbol,yms,lmv,lbm,rets)]
+
+portfoli&lt;-monthdata[,&#39;:=&#39;(gmv=cut(lmv,c(min(lmv)-10,quantile(lmv,seq(0.2,0.8,0.2)),max(lmv)+10),labels=1:5),
+                          gbm=cut(lbm,c(min(lbm)-10,quantile(lbm,seq(0.2,0.8,0.2)),max(lbm)+10),labels=1:5))
+                    ,by=yms][,&#39;:=&#39;(mveqrets=mean(rets),mvwret=sum(rets*lmv)/sum(lmv)),by=.(yms,gmv)
+                             ][,&#39;:=&#39;(bmeqrets=mean(rets),bmwret=sum(rets*lmv)/sum(lmv)),by=.(yms,gbm)]
+
+##序列均值t检验
+ttest&lt;-function(x){
+  tt&lt;-t.test(x)
+  return(c(round(tt$estimate,4),paste0(&quot;(&quot;,format(tt$statistic,digits=2,nsmall=2),&quot;)&quot;)))
+}
+mvp&lt;-rbind(dcast(unique(portfoli[,.(yms,gmv,mveqrets)]),yms~gmv,value.var = c(&quot;mveqrets&quot;))[,-c(1)][,lapply(.SD, ttest)],dcast(unique(portfoli[,.(yms,gmv,mvwret)]),yms~gmv,value.var = c(&quot;mvwret&quot;))[,-c(1)][,lapply(.SD, ttest)])%&gt;%gt()%&gt;%tab_header(
+    title = &quot;市值分组股票收益&quot;,
+    subtitle = &quot;1995-01-01 to 2021-04-01&quot;
+  )%&gt;%
+  tab_row_group(
+    group = &quot;等权收益&quot;,
+    rows = 1:2
+  )%&gt;%tab_row_group(
+    group = &quot;加权收益&quot;,
+    rows = 3:4
+  )
+
+mvp</code></pre>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#awxoyjcwgo .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#awxoyjcwgo .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#awxoyjcwgo .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#awxoyjcwgo .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#awxoyjcwgo .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#awxoyjcwgo .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#awxoyjcwgo .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#awxoyjcwgo .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#awxoyjcwgo .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#awxoyjcwgo .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#awxoyjcwgo .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#awxoyjcwgo .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#awxoyjcwgo .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#awxoyjcwgo .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#awxoyjcwgo .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#awxoyjcwgo .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#awxoyjcwgo .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#awxoyjcwgo .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#awxoyjcwgo .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#awxoyjcwgo .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#awxoyjcwgo .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#awxoyjcwgo .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#awxoyjcwgo .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#awxoyjcwgo .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#awxoyjcwgo .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#awxoyjcwgo .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#awxoyjcwgo .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#awxoyjcwgo .gt_left {
+  text-align: left;
+}
+
+#awxoyjcwgo .gt_center {
+  text-align: center;
+}
+
+#awxoyjcwgo .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#awxoyjcwgo .gt_font_normal {
+  font-weight: normal;
+}
+
+#awxoyjcwgo .gt_font_bold {
+  font-weight: bold;
+}
+
+#awxoyjcwgo .gt_font_italic {
+  font-style: italic;
+}
+
+#awxoyjcwgo .gt_super {
+  font-size: 65%;
+}
+
+#awxoyjcwgo .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="awxoyjcwgo" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>市值分组股票收益</th>
+    </tr>
+    <tr>
+      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>1995-01-01 to 2021-04-01</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">2</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">3</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">4</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">5</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr class="gt_group_heading_row">
+      <td colspan="5" class="gt_group_heading">加权收益</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">0.0216</td>
+      <td class="gt_row gt_left">0.0095</td>
+      <td class="gt_row gt_left">0.0053</td>
+      <td class="gt_row gt_left">0.0026</td>
+      <td class="gt_row gt_left">0.0015</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">(3.54)</td>
+      <td class="gt_row gt_left">(1.69)</td>
+      <td class="gt_row gt_left">(0.96)</td>
+      <td class="gt_row gt_left">(0.49)</td>
+      <td class="gt_row gt_left">(0.34)</td>
+    </tr>
+    <tr class="gt_group_heading_row">
+      <td colspan="5" class="gt_group_heading">等权收益</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">0.0239</td>
+      <td class="gt_row gt_left">0.0097</td>
+      <td class="gt_row gt_left">0.0054</td>
+      <td class="gt_row gt_left">0.0027</td>
+      <td class="gt_row gt_left">0.0012</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">(3.87)</td>
+      <td class="gt_row gt_left">(1.71)</td>
+      <td class="gt_row gt_left">(0.99)</td>
+      <td class="gt_row gt_left">(0.52)</td>
+      <td class="gt_row gt_left">(0.26)</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+<pre class="r"><code>cumret&lt;-dcast(unique(portfoli[,.(yms,gmv,mveqrets,mvwret)]),yms~gmv,value.var = c(&quot;mveqrets&quot;,&quot;mvwret&quot;))[,c(&quot;mveqrets_1&quot;,&quot;mveqrets_2&quot;, &quot;mveqrets_3&quot;,&quot;mveqrets_4&quot;,&quot;mveqrets_5&quot;,&quot;mvwret_1&quot;,&quot;mvwret_2&quot;,&quot;mvwret_3&quot;,&quot;mvwret_4&quot;,  &quot;mvwret_5&quot;):=lapply(.SD, cumsum),.SDcols=c(&quot;mveqrets_1&quot;,&quot;mveqrets_2&quot;, &quot;mveqrets_3&quot;,&quot;mveqrets_4&quot;,&quot;mveqrets_5&quot;,&quot;mvwret_1&quot;,&quot;mvwret_2&quot;,&quot;mvwret_3&quot;,&quot;mvwret_4&quot;,  &quot;mvwret_5&quot;)]
+
+plot(as.Date(paste0(cumret$yms,&quot;-01&quot;)),cumret$mveqrets_1,type=&quot;l&quot;,ylim = c(-1,9),ylab = &quot;累积收益&quot;,xlab = &quot;时间&quot;,lwd=2,col=&quot;red&quot;)
+lines(as.Date(paste0(cumret$yms,&quot;-01&quot;)),cumret$mveqrets_2,lwd=2,col=&quot;orange&quot;)
+lines(as.Date(paste0(cumret$yms,&quot;-01&quot;)),cumret$mveqrets_3,lwd=2,col=&quot;green&quot;)
+lines(as.Date(paste0(cumret$yms,&quot;-01&quot;)),cumret$mveqrets_4,lwd=2,col=&quot;blue&quot;)
+lines(as.Date(paste0(cumret$yms,&quot;-01&quot;)),cumret$mveqrets_5,lwd=2,col=&quot;yellow&quot;)
+legend(as.Date(paste0(&quot;2000-01&quot;,&quot;-01&quot;)),8,c(&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,&quot;5&quot;),col = c(&quot;red&quot;,&quot;orange&quot;,&quot;green&quot;,&quot;blue&quot;,&quot;yellow&quot;),lty = 1,lwd=2,horiz = T)</code></pre>
+<p><img src="../../post/2021-04-26-解析中国a股市场的定价异象_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>portfoli&lt;-monthdata[order(yms,lmv)][,lapply(.SD, head,5),by=yms][,&#39;:=&#39;(mveqrets=mean(rets),mvwret=sum(rets*lmv)/sum(lmv)),by=.(yms)
+                             ][,&#39;:=&#39;(bmeqrets=mean(rets),bmwret=sum(rets*lmv)/sum(lmv)),by=.(yms)][yms&gt;=&quot;2018-01&quot;,]</code></pre>
+</div>
+
+
+  <footer>
+  
+  
+
+
+
+<script src="//yingjie.org/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//yingjie.org/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//yingjie.org/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+  
+  <hr>
+  <div class="copyright">© <a href="../../">Yingjie Xue</a>2020| <a href="https://github.com/yingjiexue">Github</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+

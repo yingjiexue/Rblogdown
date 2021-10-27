@@ -11,6 +11,8 @@ Yihui大神开发[blogdown](https://bookdown.org/yihui/blogdown/)包后，各位
 
 一劳永逸的方法便是修改主题，可以参考；<https://github.com/yihui/hugo-xmin/pull/2>,但对非专业人士来说难度着实不小，引用自 Yihui 的 blogdown 使用文档 1.6 Other themes 最下面引用的一段话：
 
+
+
 >If you choose to dig a rather deep hole, someday you will have no choice but keep on digging, even with tears. -— Liyun Chen13
 
 如果你选择挖一个深坑，某天你别无选择的时候，含泪也要挖下去。当主题不能完全满足自己需求时，这种想挖坑的冲动难以抑制。Yihui在文档中也写到：

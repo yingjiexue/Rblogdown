@@ -1,4 +1,4 @@
-baseurl = "http://sitename.com"
+baseurl = "http://yjx.netlify.app/"
 relativeurls= true
 languageCode = "en-us"
 title = "Yingjie"

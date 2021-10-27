@@ -10,7 +10,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
 {{ $.Scratch.Set "pages" .Pages }}
 {{ end }}
 <ul>
-  {{ range (where site.RegularPages "Type" "in" site.Params.mainSections).GroupByDate "2006" }}
+  {{ range (where ($.Scratch.Get "pages") "Section" "!=" "").GroupByDate "2006" }}
     <h2 class="archive-title">{{ .Key }}</h2>
     {{ range .Pages }}
     <article class="archive-item">

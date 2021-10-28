@@ -23,7 +23,11 @@ tags:
 
 大家经常使用的方式也是方式1，如果网络没有问题直接直接用 CDN 是最省事的办法，操作简单，不占本地存储空间。理论上任何平台都允许调用 MathJax 的代码，只需要在heade标签加入引用cdn地址的mathjax文件。
 
-blogdown搭建的网页显示数学公式也是采用该方式，具体配置参考[谢老大的教材](https://bookdown.org/yihui/blogdown/themes.html),打开连接后直接搜索Mathjax，对应位置就是讲解公式文件配置。按照教程配置了不下十次还是没有解决这个问题，浏览了许多网站才发现是由于CDN关闭的缘故，不再支持MathJax的调用，所以导致我帖子中的公式无法正常显示。原来blogdown主题默认的MathJax也无法正常显示。比如：[https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js](https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML),后来找到Rstuio的MathJax：[https://mathjax.rstudio.com/latest/MathJax.js](https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML)。替换主题中对应的MathJax就正常啦。你可以将下述代码复制到txt文档中，用浏览器打开就检查公式能否正常显示。
+blogdown搭建的网页显示数学公式也是采用该方式，具体配置参考[谢老大的教材](https://bookdown.org/yihui/blogdown/themes.html),打开连接后直接搜索Mathjax，对应位置就是讲解公式文件配置。按照教程配置了不下十次还是没有解决这个问题，浏览了许多网站才发现是由于cndjs上托管的Mathjax无法打开的缘故，不再支持MathJax的调用，所以导致我帖子中的公式无法正常显示。原来blogdown主题默认的MathJax也无法正常显示。比如：[https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js](https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML)。这可能由于中美科技封锁导致，免费的MathJax资源不再让中国享用。昨天用于托管我博客的网站netlify.app在国内也无法登录，还是请远在新加坡国立的闲居帮忙重新托管了博客。
+
+后来在[hugo-xmin](https://github.com/yihui/hugo-xmin/blob/master/exampleSite/layouts/partials/foot_custom.html)主题中找到Rstuio的MathJax：[https://mathjax.rstudio.com/latest/MathJax.js](https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML)，发现还能正常使用，替换主题中对应的MathJax，我的博客就能显示公式了。
+
+你要是想测试MathJax是否有效，可以将下述代码复制到txt文档中，用浏览器打开就检查公式能否正常显示。
 
 ```
 <!DOCTYPE html>
@@ -53,6 +57,8 @@ $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
 > [MathJax中文文档](https://mathjax-chinese-doc.readthedocs.io/en/latest/index.html)
 
 > [CDN 关闭声明](https://www.mathjax.org/cdn-shutting-down/)
+
+> [cdnjs MathJax托管网站](https://cdnjs.com/)
 
 
 

@@ -47,15 +47,15 @@ rssLimit=100
     description = ""
     footer="&copy; [Yingjie Xue](/)2020| [Github](https://github.com/yingjiexue)"
     # options for highlight.js (version, additional languages, and theme)
-    highlightjsVersion = "9.11.0"
-    highlightjsCDN = "//yingjie.org"
+    highlightjsVersion = "9.12.0"
+    highlightjsCDN = "//mathjax.rstudio.com"
     highlightjsLang = ["r", "yaml"]
     highlightjsTheme = "github"
 
-    MathJaxCDN = "//yingjie.org"
-    MathJaxVersion = "2.7.1"
+    MathJaxCDN = "//mathjax.rstudio.com"
+    MathJaxVersion = "latest"
 
-    [params.logo]
+[params.logo]
     url = "logo.png"
     width = 50
     height = 50

@@ -28,6 +28,12 @@ rssLimit=100
     name = "研究"
     url = "/research/"
     weight = 3  
+    
+[[menu.main]]
+    name = "网站"
+    url = "/Int_about/"
+    weight = 4
+    
 [[menu.main]]
     name = "关于"
     url = "/cn_about/"

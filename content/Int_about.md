@@ -23,7 +23,7 @@ date: ""
 
 ## 金融咨询与量化
 
-> **<a href="https://xueqiu.com///" style="color:#00BFFF;">雪球网</a>：股票行情与交流**<br>
+> **<a href="https://xueqiu.com/" style="color:#00BFFF;">雪球网</a>：股票行情与交流**<br>
 **<a href="https://www.jisilu.cn/" style="color:#00BFFF;">集思录</a>：股票讨论与可转债数据**<br>
 **<a href="http://www.etf.group//" style="color:#00BFFF;">ETF之家</a>：指数基金话题推送**<br>
 **<a href="https://alphaarchitect.com/category/architect-academic-insights/factor-investing/momentum-investing//" style="color:#00BFFF;">Alpha architect</a>：超额收益Alpha观点分析**<br>

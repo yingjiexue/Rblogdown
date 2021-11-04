@@ -30,7 +30,7 @@ date: ""
 **<a href="https://www.joinquant.com/" style="color:#00BFFF;">优矿</a>：量化分析平台**
 
 
-## 期刊网站
+## 金融期刊
 
 > **<a href="https://onlinelibrary.wiley.com/journal/15406261" style="color:#00BFFF;">The Journal of Finance</a>：金融杂志**<br>
 **<a href="https://www.sciencedirect.com/journal/journal-of-financial-economics" style="color:#00BFFF;">Journal of Financial Economics</a>：金融经济**<br>

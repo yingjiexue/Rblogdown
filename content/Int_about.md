@@ -18,13 +18,22 @@ date: ""
 **<a href="https://rviews.rstudio.com/" style="color:#00BFFF;">R Views</a>：R Views 博客技术支持站**<br>
 **<a href="https://rviews.rstudio.com/" style="color:#00BFFF;">R-Bloggers</a>：R博客内容推送**<br>
 **<a href="https://www.r-bloggers.com/" style="color:#00BFFF;">stackoverflow</a>：软件开发问题交流**<br>
-**<a href="https://book.apeland.cn/details/417/" style="color:#00BFFF;">路飞学城</a>：python学习教程**
+**<a href="http://www.byhy.net/" style="color:#00BFFF;">路飞学城</a>：python学习教程**
 
 
 ## 金融咨询与量化
 
 > **<a href="https://xueqiu.com/" style="color:#00BFFF;">雪球网</a>：股票行情与交流**<br>
 **<a href="https://www.jisilu.cn/" style="color:#00BFFF;">集思录</a>：股票讨论与可转债数据**<br>
-**<a href="http://www.etf.group//" style="color:#00BFFF;">ETF之家</a>：指数基金话题推送**<br>
-**<a href="https://alphaarchitect.com/category/architect-academic-insights/factor-investing/momentum-investing//" style="color:#00BFFF;">Alpha architect</a>：超额收益Alpha观点分析**<br>
+**<a href="http://www.etf.group/" style="color:#00BFFF;">ETF之家</a>：指数基金话题推送**<br>
+**<a href="https://alphaarchitect.com/category/architect-academic-insights/factor-investing/momentum-investing/" style="color:#00BFFF;">Alpha architect</a>：超额收益Alpha观点分析**<br>
 **<a href="https://www.joinquant.com/" style="color:#00BFFF;">优矿</a>：量化分析平台**
+
+
+### 期刊网站
+
+> **<a href="https://onlinelibrary.wiley.com/journal/15406261" style="color:#00BFFF;">The Journal of Finance</a>：金融杂志**<br>
+**<a href="https://www.sciencedirect.com/journal/journal-of-financial-economics" style="color:#00BFFF;">Journal of Financial Economics</a>：金融经济**<br>
+**<a href="https://academic.oup.com/rfs/issue" style="color:#00BFFF;">The Review of Financial Studies</a>：金融研究预览**<br>
+**<a href="https://www.cambridge.org/core/journals/journal-of-financial-and-quantitative-analysis/latest-issue" style="color:#00BFFF;">Journal of Financial and Quantitaive Analysis </a>：金融与量化分析**<br>
+**<a href="https://www.sciencedirect.com/journal/journal-of-banking-and-finance" style="color:#00BFFF;">Journal of Banking and Finance</a>：银行与金融杂志**

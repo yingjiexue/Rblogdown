@@ -37,3 +37,13 @@ date: ""
 **<a href="https://academic.oup.com/rfs/issue" style="color:#00BFFF;">The Review of Financial Studies</a>：金融研究预览**<br>
 **<a href="https://www.cambridge.org/core/journals/journal-of-financial-and-quantitative-analysis/latest-issue" style="color:#00BFFF;">Journal of Financial and Quantitaive Analysis </a>：金融与量化分析**<br>
 **<a href="https://www.sciencedirect.com/journal/journal-of-banking-and-finance" style="color:#00BFFF;">Journal of Banking and Finance</a>：银行与金融杂志**
+
+## 论文查询
+
+**<a href="https://scholar.google.com/" style="color:#00BFFF;">谷歌学术</a>：检索论文**
+
+**<a href="https://www.connectedpapers.com/" style="color:#00BFFF;">Connect Papers</a>：呈现搜索关键词相关的论文图谱**
+
+**<a href="https://www.ssrn.com/index.cfm/en/" style="color:#00BFFF;">SSRN</a>：工作论文发布网**
+
+

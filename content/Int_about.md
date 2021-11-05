@@ -21,7 +21,7 @@ date: ""
 **<a href="http://www.byhy.net/" style="color:#00BFFF;">路飞学城</a>：python学习教程**
 
 
-## 金融咨询与量化
+## 金融资讯与量化
 
 > **<a href="https://xueqiu.com/" style="color:#00BFFF;">雪球网</a>：股票行情与交流**<br>
 **<a href="https://www.jisilu.cn/" style="color:#00BFFF;">集思录</a>：股票讨论与可转债数据**<br>

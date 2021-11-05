@@ -40,10 +40,8 @@ date: ""
 
 ## 论文查询
 
-**<a href="https://scholar.google.com/" style="color:#00BFFF;">谷歌学术</a>：检索论文**
-
-**<a href="https://www.connectedpapers.com/" style="color:#00BFFF;">Connect Papers</a>：呈现搜索关键词相关的论文图谱**
-
+> **<a href="https://scholar.google.com/" style="color:#00BFFF;">谷歌学术</a>：检索论文**<br>
+**<a href="https://www.connectedpapers.com/" style="color:#00BFFF;">Connect Papers</a>：呈现搜索关键词相关的论文图谱**<br>
 **<a href="https://www.ssrn.com/index.cfm/en/" style="color:#00BFFF;">SSRN</a>：工作论文发布网**
 
 

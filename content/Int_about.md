@@ -38,10 +38,14 @@ date: ""
 **<a href="https://www.cambridge.org/core/journals/journal-of-financial-and-quantitative-analysis/latest-issue" style="color:#00BFFF;">Journal of Financial and Quantitaive Analysis </a>：金融与量化分析**<br>
 **<a href="https://www.sciencedirect.com/journal/journal-of-banking-and-finance" style="color:#00BFFF;">Journal of Banking and Finance</a>：银行与金融杂志**
 
-## 论文查询
+## 论文查询与修改
 
 > **<a href="https://scholar.google.com/" style="color:#00BFFF;">谷歌学术</a>：检索论文**<br>
 **<a href="https://www.connectedpapers.com/" style="color:#00BFFF;">Connect Papers</a>：呈现搜索关键词相关的论文图谱**<br>
-**<a href="https://www.ssrn.com/index.cfm/en/" style="color:#00BFFF;">SSRN</a>：工作论文发布网**
+**<a href="https://www.ssrn.com/index.cfm/en/" style="color:#00BFFF;">SSRN</a>：工作论文发布网**<br>
+**<a href="https://quillbot.com/" style="color:#00BFFF;">QuillBot</a>：英文论文语法词组润色**<br>
+**<a href="https://www.linggle.com/" style="color:#00BFFF;">Linggle</a>：英文词组搭配**<br>
+**<a href="https://www.deepl.com/translator" style="color:#00BFFF;">DeepL</a>：英文翻译**
+
 
 

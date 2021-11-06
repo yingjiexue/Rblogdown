@@ -45,7 +45,8 @@ date: ""
 **<a href="https://www.ssrn.com/index.cfm/en/" style="color:#00BFFF;">SSRN</a>：工作论文发布网**<br>
 **<a href="https://quillbot.com/" style="color:#00BFFF;">QuillBot</a>：英文论文语法词组润色**<br>
 **<a href="https://www.linggle.com/" style="color:#00BFFF;">Linggle</a>：英文词组搭配**<br>
-**<a href="https://www.deepl.com/translator" style="color:#00BFFF;">DeepL</a>：英文翻译**
+**<a href="https://www.deepl.com/translator" style="color:#00BFFF;">DeepL</a>：英文翻译**<br>
+**<a href="https://www.phrasebank.manchester.ac.uk/" style="color:#00BFFF;">Academic Phrasebank</a>：英文写作讲解及高级模板句**
 
 
 

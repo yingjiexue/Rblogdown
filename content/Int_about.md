@@ -8,7 +8,8 @@ date: ""
 > **<a href="https://yihui.org/" style="color:#00BFFF;">谢益辉</a>:RStudio 软件工程师** <br>
 **<a href="https://pzhao.org/" style="color:#00BFFF;">赵鹏</a>：西交利物浦大学，R bookdownplus教程、现在统计图形的作者**<br>
 **<a href="https://bioinfo-scrounger.com/" style="color:#00BFFF;">顾凯</a>：生物统计分析师，擅长R和SAS编程**<br>
-**<a href="https://weiliu.netlify.app/" style="color:#00BFFF;">刘伟</a>：新加坡Duke-NUS博士后**
+**<a href="https://weiliu.netlify.app/" style="color:#00BFFF;">刘伟</a>：新加坡Duke-NUS博士后**<br>
+**<a href="https://xiangyun.rbind.io/" style="color:#00BFFF;">黄湘云</a>：统计之都编辑，精通R shiny开发**
 
 
 

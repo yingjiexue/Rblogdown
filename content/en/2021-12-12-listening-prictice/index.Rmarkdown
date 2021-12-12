@@ -12,7 +12,7 @@ tags:
 
 ## Prictice One
 
-Hey guys. I am Lucy from SISU. Today I'd like to  talk about American TV series. when I was in college, once it was time to grab a meal.I would joyfully rush to th cafeteria, sit in corner and start watching an episode. Watching TV series is an incredible way to learn English, You get to know how native speaker and what they talk about. In this video I will share with you what. Make sure to stay still the end, today I'm bringing you 6 binge-worthy series which are new and well received. They contain very daily topics and easy to learn English whit. 
+Hey guys. I am Lucy from SISU. Today I'd like to  talk about American TV series. when I was in college, once it was time to grab a meal.I would joyfully rush to the cafeteria, sit in corner and start watching an episode. Watching TV series is an incredible way to learn English, You get to know how native speaker and what they talk about. In this video I will share with you what. Make sure to stay still the end, today I'm bringing you 6 binge-worthy series which are new and well received. They contain very daily topics and easy to learn English whit. 
 
 No.1 is We Are Bears. The show follows three bears: Grizzly, panda and ice bear, and their awkward attempts at integrating with the human world. Suitable for both kids and adults 
 

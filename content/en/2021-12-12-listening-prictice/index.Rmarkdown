@@ -1,5 +1,5 @@
 ---
-title: Listening Prictice
+title: Listening Practice
 author: Yingjie Xue
 date: '2021-12-12'
 slug: listening-prictice

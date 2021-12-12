@@ -19,7 +19,9 @@ date: ""
 **<a href="https://rviews.rstudio.com/" style="color:#00BFFF;">R Views</a>：R Views 博客技术支持站**<br>
 **<a href="https://rviews.rstudio.com/" style="color:#00BFFF;">R-Bloggers</a>：R博客内容推送**<br>
 **<a href="https://www.r-bloggers.com/" style="color:#00BFFF;">stackoverflow</a>：软件开发问题交流**<br>
-**<a href="http://www.byhy.net/" style="color:#00BFFF;">路飞学城</a>：python学习教程**
+**<a href="http://www.byhy.net/" style="color:#00BFFF;">路飞学城</a>：python学习教程**<br>
+**<a href="https://python-forum.io/" style="color:#00BFFF;">python-forum</a>：python论坛**
+
 
 
 ## 金融资讯与量化
@@ -48,6 +50,7 @@ date: ""
 **<a href="https://www.linggle.com/" style="color:#00BFFF;">Linggle</a>：英文词组搭配**<br>
 **<a href="https://www.deepl.com/translator" style="color:#00BFFF;">DeepL</a>：英文翻译**<br>
 **<a href="https://www.phrasebank.manchester.ac.uk/" style="color:#00BFFF;">Academic Phrasebank</a>：英文写作讲解及高级模板句**<br>
+**<a href="https://www.overleaf.com/" style="color:#00BFFF;">Overleaf</a>：LaTeX模板与在线边际**<br>
 **<a href="https://www.overleaf.com/" style="color:#00BFFF;">Overleaf</a>：LaTeX模板与在线边际**
 
 

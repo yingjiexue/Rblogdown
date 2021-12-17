@@ -1,7 +1,7 @@
 baseurl = "http://yjx.netlify.app/"
 relativeurls= true
 languageCode = "en-us"
-title = "Yingjie Xue|薛英杰"
+title = "Yingjie"
 theme = "hugo-lithium"
 googleAnalytics = ""
 disqusShortname="Yingjie"

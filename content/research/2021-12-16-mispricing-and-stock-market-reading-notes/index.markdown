@@ -7,12 +7,36 @@ categories:
   - research
 tags:
   - research
-bibliography: [one.bib]
+bibliography: one.bib
 link-citations: true
 ---
 
 ## [Expected Return, Volume, and Mispricing](https://doi.org/10.1016/j.jfineco.2021.05.014)
 
-fgdTF\[1\]卡
+------------------------------------------------------------------------
 
-1.  microSD 才是正确的名称，但它常被误称为 TF 卡
+### 摘要
+
+学u都是可见的建安费[^1]，觉得积分卡圣诞节分段计费\<!-<a href="#expected-return-volume-and-mispricing">0.1</a>-# 都很发达 –> 的JFK大家[^2]
+
+1.  hjh @han2021expected
+
+> 环境监控
+
+\<\> <fdfdj>
+
+| Col1 | Col2 | Col3 |
+|:----:|:----:|:----:|
+| 786  |      |      |
+|      |      |      |
+|      |      |      |
+
+------------------------------------------------------------------------
+
+<!--#  -->
+
+`$$`
+
+[^1]: 资金监管当地警方带回
+
+[^2]: fdhfsdhfjdsj

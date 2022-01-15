@@ -7,7 +7,7 @@ categories:
   - research
 tags:
   - research
-bibliography: one.bib
+bibliography: [one.bib]
 link-citations: TRUE
 bilbio-style: "apalike"
 ---
@@ -16,8 +16,34 @@ bilbio-style: "apalike"
 
 ### 摘要
 
-> 本文研究发现，在高估的股票中，成交量与预期收益正相关，而在低估的股票中，成交量与预期收益正相关，表明交易量有放大错误定价的作用。采用不同的误定价和交易量度量、不同组合形成方法，并控制多个变量后，交易量放大误定价的结果仍然稳健。本研究将成交量归因于投资者意见分歧，认为投资者意见分歧预测股票收益是以预期差为条件，这与最近建立的理论模型结果一致。
+> 本文研究发现，在高估的股票中，成交量与预期收益正相关，而在低估的股票中，成交量与预期收益正相关，表明交易量有放大错误定价的作用。采用不同的误定价和交易量度量、不同组合形成方法，并控制多个变量后，交易量放大误定价的结果仍然稳健。本研究将成交量归因于投资者意见分歧，认为投资者意见分歧预测股票收益是以预期差为条件，这与 Atmaz and Basak ([2018](#ref-atmaz2018belief)) 最近建立的理论模型结果一致。
 
-@han2021expected
+### 研究问题
+
+> 交易量对股票市场的价格发现、风险分担和流动性供给有重要作用，由于它可能与投资者意见分歧、波动性、流动性、投资者关注、私人信息等有关，那么交易量在资产定价异象中有什么作用？其如何影响股票收益？
+
+### 相关文献
+
+> 1.  Cochrane ([2017](#ref-cochrane2017macro)) 讨论了交易量都重要作用，并声称这些研究是未来资产定价革命性成果。
+
+### 研究结论
+
+> 交易量与收益的关系是资产定价的基本问题之一，是一个仍需要研究的邻域。我们发现错误定价主要集中在高交易量的股票中，**在低估的股票中，交易量与预期收益正相关，而在高估的股票中，交易量与预期收益负相关。**在经济驱动力解释上，我们认为我们的结果可以通过 Atmaz and Basak ([2018](#ref-atmaz2018belief)) 的理论模型来解释，如果交易量捕获了投资者意见分歧并且误定价捕获了投资着预期偏差，我们的实证结果不仅有助于调和现有文献研究的争议，而且还超越了 Atmaz and Basak ([2018](#ref-atmaz2018belief)) ，我们号召建立新的资产定价模型来更具体地分析交易量、错误定价、IVOL和其他经济变量的作用，以丰富我们对交易量-收益关系的理解。
 
 ### 参考文献
+
+<div id="refs" class="references">
+
+<div id="ref-atmaz2018belief">
+
+Atmaz, Adem, and Suleyman Basak. 2018. “Belief Dispersion in the Stock Market.” *The Journal of Finance* 73 (3): 1225–79. <https://doi.org/10.1111/jofi.12618>.
+
+</div>
+
+<div id="ref-cochrane2017macro">
+
+Cochrane, John H. 2017. “Macro-Finance.” *Review of Finance* 21 (3): 945–85. <https://doi.org/10.1093/rof/rfx010>.
+
+</div>
+
+</div>

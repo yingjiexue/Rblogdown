@@ -30,13 +30,35 @@ bilbio-style: "apalike"
 
 > 3.  Conrad, Hameed, and Niden ([1994](#ref-conrad1994volume)) 发现在过去一周的亏损者中，交易量与收益存在显著的正向关系,认为这个结果与微观结构理论一致，交易量被解释为私有信息。
 
+> 4.  著名的零交易量理论表明，在完美的市场上，理性的投资者拥有相同的知识，交易量应该为零(Back [2010](#ref-back2010asset))。
+
+> 5.  为了解释现实市场上的交易量，传统模型假设投资者在信息和私有投资机会上是异质的(Lo and Wang [2010](#ref-lo2010stock))。
+
+> 6.  Novy-Marx and Velikov ([2015](#ref-Novy-Marx)) 和 Hou, Xue, and Zhang ([2018](#ref-Kewei2020)) 研究表明，在小盘股中，套利成本是一个驱动误定价的主要因素。
+
 ### 实证结果
+
+> **1. 交易量对误定价的放大作用检验**
 
 > 为了检验成交量在误定价中扮演的作用，在每月月末，本文使用误定价和成交量两个变量进行独立双重分组，形成5 `\(\times\)` 5投资组合。结果如下所示：
 
 > ![](images/citation.png)
 
 > 无论是原始收益还是风险因子模型调整收益，在在成交量高的组合内，高估股票与低估股票收益差越大，显著性也越高。
+
+> ![](images/mispricingup%20.png)
+
+> 图1呈现了不同交易量组合中，高估股票与低估股票收益差，我们发现，高估股票与低估股票收益差随着成交量上升而上升，表明交易量有放大误定价的作用。
+
+> **2.交易量对误定价的放大持久性检验**
+
+> ![](images/duration.png)
+
+> 从交易量对误定价放大效应的持久性来看，误定价代理变量对未来股票收益率的预测性可达36个月。
+
+> **3.经济解释 **
+
+> 本文尝试着利用行为金融理论来解释交易量对误定价的放大效应。
 
 ### 研究结论
 
@@ -52,6 +74,12 @@ Atmaz, Adem, and Suleyman Basak. 2018. “Belief Dispersion in the Stock Market.
 
 </div>
 
+<div id="ref-back2010asset">
+
+Back, Kerry. 2010. *Asset Pricing and Portfolio Choice Theory*. Oxford University Press. <https://toc.library.ethz.ch/objects/pdf/e01_978-0-19-538061-3_01.pdf>.
+
+</div>
+
 <div id="ref-cochrane2017macro">
 
 Cochrane, John H. 2017. “Macro-Finance.” *Review of Finance* 21 (3): 945–85. <https://doi.org/10.1093/rof/rfx010>.
@@ -61,6 +89,24 @@ Cochrane, John H. 2017. “Macro-Finance.” *Review of Finance* 21 (3): 945–8
 <div id="ref-conrad1994volume">
 
 Conrad, Jennifer S, Allaudeen Hameed, and Cathy Niden. 1994. “Volume and Autocovariances in Short-Horizon Individual Security Returns.” *The Journal of Finance* 49 (4): 1305–29. <https://doi.org/10.1111/j.1540-6261.1994.tb02455.x>.
+
+</div>
+
+<div id="ref-Kewei2020">
+
+Hou, Kewei, Chen Xue, and Lu Zhang. 2018. “Replicating Anomalies.” *The Review of Financial Studies* 33 (5): 2019–2133. <https://doi.org/10.1093/rfs/hhy131>.
+
+</div>
+
+<div id="ref-lo2010stock">
+
+Lo, Andrew W, and Jiang Wang. 2010. “Stock Market Trading Volume.” In *Handbook of Financial Econometrics: Applications*, 241–342. Elsevier. <https://doi.org/10.1016/B978-0-444-53548-1.50007-6>.
+
+</div>
+
+<div id="ref-Novy-Marx">
+
+Novy-Marx, Robert, and Mihail Velikov. 2015. “A Taxonomy of Anomalies and Their Trading Costs.” *The Review of Financial Studies* 29 (1): 104–47. <https://doi.org/10.1093/rfs/hhv063>.
 
 </div>
 

@@ -72,6 +72,12 @@ bilbio-style: "apalike"
 
 > 交易量与收益的关系是资产定价的基本问题之一，是一个仍需要研究的邻域。我们发现错误定价主要集中在高交易量的股票中， **在低估的股票中，交易量与预期收益正相关，而在高估的股票中，交易量与预期收益负相关。** 在经济驱动力解释上，我们认为我们的结果可以通过 Atmaz and Basak ([2018](#ref-atmaz_belief_2018)) 的理论模型来解释，如果交易量捕获了投资者意见分歧并且误定价捕获了投资着预期偏差，我们的实证结果不仅有助于调和现有文献研究的争议，而且还超越了 Atmaz and Basak ([2018](#ref-atmaz_belief_2018)) ，我们号召建立新的资产定价模型来更具体地分析交易量、错误定价、IVOL和其他经济变量的作用，以丰富我们对交易量-收益关系的理解。
 
+``` r
+plot(1:10)
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+
 ### 参考文献
 
 <div id="refs" class="references">

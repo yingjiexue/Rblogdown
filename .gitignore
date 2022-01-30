@@ -2,5 +2,10 @@
 .Rhistory
 .RData
 .Ruserdata
+.DS_Store
+Thumbs.db
+.hugo_build.lock
 static/figures
-blogdown
+/blogdown
+/public/
+/resources/

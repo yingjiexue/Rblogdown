@@ -9,7 +9,7 @@ date: ""
 
 ## 编程学习与咨询
 
-> <a href="https://cosx.org//" style="color:#00BFFF;">统计之都</a>：统计学讨论与研究网站<br> <a href="https://rviews.rstudio.com/" style="color:#00BFFF;">R Views</a>：R Views 博客技术支持站<br> <a href="https://rviews.rstudio.com/" style="color:#00BFFF;">R-Bloggers</a>：R博客内容推送<br> <a href="https://www.r-bloggers.com/" style="color:#00BFFF;">stackoverflow</a>：软件开发问题交流<br> <a href="http://www.byhy.net/" style="color:#00BFFF;">路飞学城</a>：python学习教程<br> <a href="https://python-forum.io/" style="color:#00BFFF;">python-forum</a>：python论坛
+> <a href="https://cosx.org//" style="color:#00BFFF;">统计之都</a>：统计学讨论与研究网站<br> <a href="https://rviews.rstudio.com/" style="color:#00BFFF;">R Views</a>：R Views 博客技术支持站<br> <a href="https://www.r-bloggers.com/" style="color:#00BFFF;">R-Bloggers</a>：R博客内容推送<br> <a href="https://stackoverflow.com/" style="color:#00BFFF;">stackoverflow</a>：软件开发问题交流<br> <a href="http://www.byhy.net/" style="color:#00BFFF;">路飞学城</a>：python学习教程<br> <a href="https://python-forum.io/" style="color:#00BFFF;">python-forum</a>：python论坛
 
 ## 金融资讯与量化
 

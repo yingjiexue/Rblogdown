@@ -32,3 +32,26 @@ The real difference between watching for fun and for English learning lies in wh
 Share with me your favorite American TV series. Happy watching and enjoy!
 
 [the source of median](https://www.bilibili.com/video/BV1wS4y1X7az)
+
+
+## Russians Seize European's  Lagest Nuclear Plant, But Fire Is Out 
+
+The fire was started in fierce fighting for plant but was later extinguished, A Ukrainian government agency said, and there was no immediate sign that radiation leaked. Across Ukraine, Russian forces are **laying siege** to cities and trying to control vital ports. 
+
+> 乌克兰政府代理机构公布，火灾是在激烈争夺工厂的战斗中发生，但随后被扑灭，没有仍然核泄漏的迹象。在整个乌克兰，俄罗斯军队正在**围攻**城市，并尝试控制重要港口。
+
+Russian troops in southeastern Ukraine have **seized** Europe's largest nuclear power plant, Ukrainian officials said on Friday,but a fire there that had raised worldwide alarms was extinguished. There had been worries that the fire could spread to nuclear reactor and lead radiation to leak, but international monitors said Friday morning that there was no immediate  sign that radiation had leaked during the battle for plant.
+
+> 乌克兰政府周五公布，在乌克兰南部的俄罗斯军队已经 **占领（夺取）** 了欧洲最大的核电厂，引发全球警觉的火灾已经被扑灭，人们曾担心火灾可能蔓延到核反应堆导致核泄漏，但国际检测人员周五早上澄清，在争夺工厂的战斗期间未有明显核泄漏的迹象。
+
+Across Ukraine, Russian forces was pressing  head, laying seize to cities and trying to control vital ports. Ruassia's continuing gains in the south could make it harder for Ukraine's armies to fight in other parts of the country.
+
+> 在整个乌克兰，俄罗斯军队持续前进占领城市并尝试控制重要港口。俄罗斯在南部继续进军可能使乌克兰军队在该国其他地区战斗更加困难。
+
+Ukraine's spirited defend has slowed the Russian advance near Kyiv, the capital, where its forces have attacked a vast **armored convoy** bearing on the city,helping stall an advance **plagued** by shortages of fuel and food. But Russia is adding forces from the south and west in its efforts to take city, and several large explosions shook central Kyiv Friday morning. It was not yet clear what had been hit. 
+
+> 乌克兰的积极防御减缓了俄罗斯在首都基辅附近的推进速度，其部队袭击了一个正在向城市进军的庞大 **装甲车队** ，帮助拖延了因燃料和食品短缺而受到 **困扰* 的推进速度。但是，俄罗斯正在从南部和西部增加部队，努力夺取该城市，周五上午基辅市中心发生了几起大型爆炸。目前还不清楚什么东西被击中了。
+
+
+
+

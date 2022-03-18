@@ -53,5 +53,22 @@ Ukraine's spirited defend has slowed the Russian advance near Kyiv, the capital,
 > 乌克兰的积极防御减缓了俄罗斯在首都基辅附近的推进速度，其部队袭击了一个正在向城市进军的庞大 **装甲车队** ，帮助拖延了因燃料和食品短缺而受到 **困扰* 的推进速度。但是，俄罗斯正在从南部和西部增加部队，努力夺取该城市，周五上午基辅市中心发生了几起大型爆炸。目前还不清楚什么东西被击中了。
 
 
+## Putin warns that leaders resisting the invasion 'risk the future of Ukranian statehood'
 
+
+President Vladimir V. Putin of Russia warned on Saturday that Ukraine might lose its **statehood** if its leaders continued to resit his military **invasion** of the country.
+
+> 俄罗斯总统普京在周六警告乌克兰，如果其领导人继续**抵制**俄罗斯军队**入侵（侵略）**，乌克兰可能会丧失其**国家地位**。
+
+"The current leadership needs to understand that if they continue doing what they are doing, they risk the future of Ukrainian statehood," he said at a meeting in Moscow on Saturday, in his first extended **remarks** since the start of the war.
+
+> 自开战以来，普京周六在莫斯科扩大会议上公开发表，乌克兰现任领导需要知道，如果他们继续做他们正在做的事情，他们将危及到乌克兰国家地位。
+
+**陌生词汇**
+
+> **statehood** `\(\hspace{0.5cm}\)` n. 建国；国家地位
+
+> **invasion**   `\(\hspace{0.7cm}\)` n. 入侵，侵略   
+
+> **resist**    `\(\hspace{1.1cm}\)` n. 抵制；反抗
 

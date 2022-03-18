@@ -154,7 +154,45 @@ bilbio-style: "biomed-central.csl"
 
 ### 相关文献
 
-(金融风险带来新挑战 需运用金融科技手段助力高质量发展)\[http://finance.sina.com.cn/roll/2021-05-23/doc-ikmxzfmm4137839.shtml\]
+[金融风险带来新挑战 需运用金融科技手段助力高质量发展](http://finance.sina.com.cn/roll/2021-05-23/doc-ikmxzfmm4137839.shtml)
+
+\[基金业高质量发展面对三大挑战】(https://baijiahao.baidu.com/s?id=1684573252044536531\&wfr=spider\&for=pc)
+
+[推动金融业高质量发展](http://www.xinhuanet.com/politics/2019-02/24/c_1210066649.htm)
+
+[着力推动金融业高质量发展](https://baijiahao.baidu.com/s?id=1636622459768961508&wfr=spider&for=pc)
+
+[大连市金融业为经济高质量发展注入新动力](https://www.financialnews.com.cn/qy/dfjr/202203/t20220314_241567.html)
+
+[“十四五”要更加重视金融服务实体经济这个发展根基](https://export.shobserver.com/baijiahao/html/322750.html)
+
+[实现金融业的高质量发展](https://news.gmw.cn/2018-06/12/content_29239273.htm)
+
+[金融业高质量发展需要把握创新平衡点](http://news.cctv.com/2018/12/03/ARTI2NDIS5zDYiW2wKokn2nm181203.shtml?ivk_sa=1023197a)
+
+[以科技创新推进金融高质量发展](https://mbd.baidu.com/newspage/data/landingsuper?rs=6262328&ruk=aRCU6d10ZdQYnDKdy2h54g&isBdboxFrom=1&pageType=1&urlext=%7B%22cuid%22%3A%22_uvlu0aIB8lKOv8pjO2ltg8i2ilSPHuFju2su08RSuKk0qqSB%22%7D&context=%7B%22nid%22%3A%22news_9515884705773705858%22%7D)
+
+[当前中国金融面临的机遇和挑战](https://xw.qq.com/cmsid/20211020A06RAC00?pgv_ref=baidutw)
+
+[金融行业的高质量发展](https://baijiahao.baidu.com/s?id=1630419923647969159&wfr=spider&for=pc)
+
+[深圳市金融业高质量发展“十四五”规划](http://www.sz.gov.cn/szzt2010/wgkzl/jcgk/jcygk/zyggfa/content/mpost_9521959.html)
+
+[积极实施数字普惠金融服务行动](https://baijiahao.baidu.com/s?id=1726424972173815922&wfr=spider&for=pc)
+
+[积极发展监管科技 保障金融业高质量发展](https://www.weiyangx.com/333435.html)
+
+[统筹发展与安全 推进金融业高质量发展](http://www.stcn.com/stock/djjd/202106/t20210608_3315683.html)
+
+[我国金融业数字化转型面临三大挑战](https://www.sohu.com/a/279276652_100105408)
+
+[平台经济治理的红灯和绿灯都在哪儿？](https://mp.weixin.qq.com/s/FFBBXb3AWxYucqk1kVfYjQ)
+
+[易纲：详谈中国金融科技的发展与监管](https://mbd.baidu.com/newspage/data/landingsuper?rs=3203603032&ruk=aRCU6d10ZdQYnDKdy2h54g&isBdboxFrom=1&pageType=1&urlext=%7B%22cuid%22%3A%22_uvlu0aIB8lKOv8pjO2ltg8i2ilSPHuFju2su08RSuKk0qqSB%22%7D&context=%7B%22nid%22%3A%22news_9514336030750032608%22%7D)
+
+[以金融服务创新助推经济高质量发展](https://xw.qq.com/cmsid/20200826A0JY5B00)
+
+[金融科技引领首都金融高质量发展](https://xw.qq.com/cmsid/20200727A0UR9C00)
 
 > 
 

@@ -156,7 +156,7 @@ bilbio-style: "biomed-central.csl"
 
 [金融风险带来新挑战 需运用金融科技手段助力高质量发展](http://finance.sina.com.cn/roll/2021-05-23/doc-ikmxzfmm4137839.shtml)
 
-\[基金业高质量发展面对三大挑战】(https://baijiahao.baidu.com/s?id=1684573252044536531\&wfr=spider\&for=pc)
+[基金业高质量发展面对三大挑战](https://baijiahao.baidu.com/s?id=1684573252044536531&wfr=spider&for=pc)
 
 [推动金融业高质量发展](http://www.xinhuanet.com/politics/2019-02/24/c_1210066649.htm)
 
@@ -194,9 +194,43 @@ bilbio-style: "biomed-central.csl"
 
 [金融科技引领首都金融高质量发展](https://xw.qq.com/cmsid/20200727A0UR9C00)
 
-> 
+[以金融业高质量发展推动经济高质量发展](http://hb.people.com.cn/n2/2021/0602/c194063-34756928.html)
 
-### 
+[全力打造普惠金融高质量发展新生态](https://mp.weixin.qq.com/s/ajHoa873awSne0R5JDoSOA)
+
+[深化改革坚持高水平开放 推进金融业高质量发展](http://www.xinhuanet.com/money/20210707/dbe2f6ba73f44183b7203925172ca6e0/c.html)
+
+[持续巩固行业领先优势推动全区金融业高质量发展](https://mp.weixin.qq.com/s/gg-Q2bOFkHfohSRAM78p3g)
+
+[深圳金融业实现高质量发展](https://mp.weixin.qq.com/s/Uj-QaGHhre8_ocNyLU0IoQ)
+
+[数字化助力金融高质量发展](https://mp.weixin.qq.com/s/iWL3tyj6ueAQ01uo2G38Zg)
+
+[以金融科技赋能消费金融高质量发展](https://mp.weixin.qq.com/s/5LY0x5-XgkLGrE1SADZaNA)
+
+[“五大目标”加快完善深圳金融高质量发展体系](https://mp.weixin.qq.com/s/gWdR0y9d8O4-1HZAlSpgzw)
+
+[“双碳”目标下金融科技如何助力高质量发展](https://mp.weixin.qq.com/s/-bIonUnzP5J_nPCEIRudXw)
+
+[数字技术推动普惠金融高质量发展](https://mp.weixin.qq.com/s/UW-SQ9ZSchj7lJzX6zxZQQ)
+
+[推动金融高质量发展需大力发展绿色金融和完善支持创新的金融体系](https://mp.weixin.qq.com/s/14iVMk-22om7-Y7ca-T_eQ)
+
+[推动小微企业金融服务高质量发展](https://mp.weixin.qq.com/s/671ZxPqK-rfarvgw6lmpNw)
+
+[标准化建设助力金融高质量发展](https://mp.weixin.qq.com/s/Abn_YDKZhRkff69AU6mC-g)
+
+[中国金融行业高质量发展之路](https://mp.weixin.qq.com/s/DxEVCBeC__rfRF6xHNvqsA)
+
+[以科学有效监管推动普惠金融高质量发展](https://mp.weixin.qq.com/s/2PM8D4NNNHYRAZWtyVcGkA)
+
+[抓住金融科技机遇 推动金融业高质量发展](https://mp.weixin.qq.com/s/3xasdR9P2He157DfSw5N3A)
+
+[金融如何支持实体经济高质量发展](https://mp.weixin.qq.com/s/HgWq5F5kU5Gs2YN5VK0O2A)
+
+[统筹发展与安全 推进金融业高质量发展](https://mp.weixin.qq.com/s/DF_5bodtJDTg6Zu4-L-1Nw)
+
+> 
 
 ### 参考文献
 

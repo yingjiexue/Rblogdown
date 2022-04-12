@@ -86,3 +86,21 @@ tags:
 [统筹发展与安全 推进金融业高质量发展](https://mp.weixin.qq.com/s/DF_5bodtJDTg6Zu4-L-1Nw)
 
 [数字金融发展面临四大挑战](https://www.01caijing.com/finds/details/270368.htm)
+
+[《关于推进社会信用体系建设高质量发展促进形成新发展格局的意见》](http://www.banyuetan.org/yw/detail/20220330/1000200033137441648602982738808375_1.html)
+
+[「政策解读」以信用体系建设促金融高质量发展](https://baijiahao.baidu.com/s?id=1728777285360870894&wfr=spider&for=pc)
+
+[更好发挥信用在促进金融服务实体经济方面重要作用](http://www.gov.cn/xinwen/2021-12/30/content_5665435.htm)
+
+[推进社会信用体系建设高质量发展](http://www.banyuetan.org/yw/detail/20220330/1000200033137441648602982738808375_1.html)
+
+[信用是金融市场的基石](https://baijiahao.baidu.com/s?id=1644917905497701400&wfr=spider&for=pc)
+
+[民营企业信用体系的完善从法院审判执行工作辅助角度出](http://jzqfy.hbfy.gov.cn/DocManage/ViewDoc?docId=f57234ea-1ee9-43a8-9c06-55c18237aa13)
+
+[SWIFT制裁之思考：人民币国际化新格局与数字人民币新机遇](https://mp.weixin.qq.com/s/IzJ3wX1EEvREUAQ-awY9bQ)
+
+[人民币国际化再获加速度](https://mp.weixin.qq.com/s/R_qkn8gK0ob0feIlSkGmLg)
+
+[新发展格局下，金融业面临新使命](http://jrj.shiyan.gov.cn/jryw/jryx/202110/t20211025_3392894.html)

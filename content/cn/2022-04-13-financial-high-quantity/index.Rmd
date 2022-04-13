@@ -1,8 +1,8 @@
 ---
-title: 金融业高质量发展资料
+title: 金融高质量发展报告材料
 author: 薛英杰
-date: '2022-04-07'
-slug: ''
+date: '2022-04-13'
+slug: financial high quantity
 categories:
   - research
 tags:

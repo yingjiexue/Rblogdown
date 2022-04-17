@@ -9,7 +9,7 @@ date: ""
 
 ## 编程学习与咨询
 
-> <a href="https://cosx.org//" style="color:#00BFFF;">统计之都</a>：统计学讨论与研究网站<br> <a href="https://rviews.rstudio.com/" style="color:#00BFFF;">R Views</a>：R Views 博客技术支持站<br> <a href="https://www.r-bloggers.com/" style="color:#00BFFF;">R-Bloggers</a>：R博客内容推送<br> <a href="https://stackoverflow.com/" style="color:#00BFFF;">stackoverflow</a>：软件开发问题交流<br> <a href="http://www.byhy.net/" style="color:#00BFFF;">路飞学城</a>：python学习教程<br> <a href="https://python-forum.io/" style="color:#00BFFF;">python-forum</a>：python论坛<br> <a href="https://python-bloggers.com/" style="color:#00BFFF;">python-Bloggers</a>：python博客内容推送<br> <a href="https://www.bigbookofr.com/" style="color:#00BFFF;">Big Book of R</a>：收集了R在各个邻域应用的书籍
+> <a href="https://cosx.org//" style="color:#00BFFF;">统计之都</a>：统计学讨论与研究网站<br> <a href="https://rviews.rstudio.com/" style="color:#00BFFF;">R Views</a>：R Views 博客技术支持站<br> <a href="https://www.r-bloggers.com/" style="color:#00BFFF;">R-Bloggers</a>：R博客内容推送<br> <a href="https://stackoverflow.com/" style="color:#00BFFF;">stackoverflow</a>：软件开发问题交流<br> <a href="http://www.byhy.net/" style="color:#00BFFF;">路飞学城</a>：python学习教程<br> <a href="https://python-forum.io/" style="color:#00BFFF;">python-forum</a>：python论坛<br> <a href="https://python-bloggers.com/" style="color:#00BFFF;">python-Bloggers</a>：python博客内容推送<br> <a href="https://www.begtut.com/python/python-tutorial.html" style="color:#00BFFF;">Beginner Tutorials</a>：python、Css和数据库教程<br> <a href="https://www.w3schools.com" style="color:#00BFFF;">Learn to Code</a>：主流语言代码学习<br> <a href="https://python-bloggers.com/" style="color:#00BFFF;">python-Bloggers</a>：python博客内容推送<br><a href="https://www.bigbookofr.com/" style="color:#00BFFF;">Big Book of R</a>：收集了R在各个邻域应用的书籍
 
 
 

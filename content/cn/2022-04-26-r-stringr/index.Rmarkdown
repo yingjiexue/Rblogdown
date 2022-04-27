@@ -11,7 +11,7 @@ tags:
 
 > 使用R处理文本数据离不开正则表达式和得心应手的函数，stringr包配合正则表达式可以解决几乎所有文本分析中遇到的问题。今天我们就来盘点一下这个包中各个函数的特异功能。
 
-> ### 1.探测要匹配字段
+> ### 1.查找文本中是否有要匹配字段
 
 > -  **str_detect(string,pattern)**: 探测文本中是否出现了某个字符
 
@@ -77,3 +77,229 @@ str_locate_all(fruit,"an")
 ```
 
 > **Warning:注意str_locate和str_locate_all的区别，如果一个文本中有多个匹配目标文本，str_locate_all是返回所有目标文本的精确位置，而str_locate只返回第一个。**
+
+> ### 2.提取文本子集
+
+> - **str_sub(string,start,end)**: 设定开始和结束长度来提前文本子集
+
+> **示例**：
+
+```{r}
+library(stringr)
+
+fruit<-c("apple","pear","banana","orange")
+
+str_sub(fruit,1,3)
+
+str_sub(fruit,-3,-1)
+
+```
+
+> - **str_subset(string,pattern)**: 返回包含特定模式的字符集
+
+> **示例**：
+
+```{r}
+library(stringr)
+
+fruit<-c("apple","pear3","banana6","orange9")
+
+str_subset(fruit,"an")
+
+str_subset(fruit,"\\d")
+
+```
+
+> - **str_extract(string,pattern)**: 返回匹配到特定模式的字符集
+
+> **示例**：
+
+```{r}
+library(stringr)
+
+fruit<-c("apple6","pear3","banana6","orange9")
+
+str_extract(fruit,"an")
+
+str_extract(fruit,"\\d")
+
+```
+
+> - **str_match(string,pattern)**: 返回匹配到特定模式的字符集
+
+> **示例**：
+
+```{r}
+library(stringr)
+
+fruit<-c("apple6","pear3","banana6","orange9")
+
+str_match(fruit,"an")
+
+str_match(fruit,"\\d")
+
+```
+
+> **Warning:注意str_match和str_extract的区别在于返回的数据类型不同，前者返回矩阵，后者返回向量。**
+
+### 3.字符长度处理
+
+> - **str_pad(string,width,side,ellipsis)**: 用字符填充文本到固定长度
+
+> **示例**：
+
+```{r}
+library(stringr)
+
+fruit<-c("1","2","3","4")
+
+str_pad(fruit,6,"left","0")
+
+```
+
+> - **str_trunc(string,width,side,ellipsis)**: 截取固定width长度的 字符，截取部分用ellipsis替代
+
+> **示例**：
+
+```{r}
+library(stringr)
+
+fruit<-c("apple6","pear3","banana6","orange9")
+
+str_trunc(fruit,2,"left","4")
+str_trunc(fruit,2,"center","4")
+str_trunc(fruit,2,"right","4")
+
+```
+
+
+> - **str_trim(string,side)**: 删除字符左右两边的空白
+
+> **示例**：
+
+```{r}
+library(stringr)
+
+fruit<-c(" apple6"," pear3","banana6 ","orange9 ")
+fruit
+str_trim(fruit,"left")
+str_trim(fruit,"both")
+str_trim(fruit,"right")
+
+```
+
+### 4. 字符操作
+
+> - **str_replace(string,pattern,replacement)**: 替代每个文本中第一次被匹配的字符
+
+> **示例**：
+
+```{r}
+library(stringr)
+
+fruit<-c(" apple6"," pear3","banana6 ","orange9 ")
+fruit
+str_replace(fruit,"\\d","数字")
+```
+
+> - **str_to_lower(string,pattern,replacement)**: 大写字母转换成小写
+
+> **示例**：
+
+```{r}
+library(stringr)
+
+fruit<-c("Apple6"," Pear3","Banana6 ",")range9 ")
+fruit
+str_to_lower(fruit)
+```
+
+> - **str_to_upper(string,pattern,replacement)**: 小写字母转换成大写
+
+> **示例**：
+
+```{r}
+library(stringr)
+
+fruit<-c("Apple6"," Pear3","Banana6 ",")range9 ")
+fruit
+str_to_upper(fruit)
+```
+
+### 文本合并与拆分
+
+> - **str_c(...,sep="",collapse=NULL)**: 文本合并
+
+> **示例**：
+
+```{r}
+library(stringr)
+
+fruit<-data.frame(ates=c("Apple6"," Pear3","Banana6 ","range9 "),
+                  btas=c("Apple6"," Pear3","Banana6 ","range9 "))
+str_c(fruit$ates,fruit$btas,collapse=NULL)
+str_c(fruit$ates,fruit$btas,collapse="")
+```
+
+**Warning:注意参数collapse=""和collapse=NULL的区别。**
+
+> - **str_dup(string,time)**: 构造重复性文本
+
+> **示例**：
+
+```{r}
+library(stringr)
+
+fruit<-c("Apple6"," Pear3","Banana6 ","range9 ")
+str_dup(fruit,3)
+```
+
+> - **str_split_fixed(string,pattern,n)**: 拆分一个文本向量成矩阵子文本
+
+> **示例**：
+
+```{r}
+library(stringr)
+
+fruit<-c("Apple6"," Pear3","Banana6 ","range9 ")
+str_split_fixed(fruit,"e",2)
+str_split_fixed(fruit,"\\d",2)
+str_split(fruit,"\\d")
+```
+> - **str_glue(string,pattern,n)**: 文本中嵌入数字并并计算
+
+> **示例**：
+
+```{r}
+library(stringr)
+bta<-1:4
+fruit<-c("Apple6"," Pear3","Banana6 ","range9 ")
+str_glue("{fruit} is {bta}")
+```
+
+
+### 文本排序
+
+> - **str_order(string)**: 返回文本向量排序索引
+
+> **示例**：
+
+```{r}
+library(stringr)
+
+fruit<-c("Apple6"," Pear3","Banana6 ","range9 ")
+str_order(fruit)
+
+```
+
+> - **str_order(string)**: 返回文本向量排序后结果
+
+> **示例**：
+
+```{r}
+library(stringr)
+
+fruit<-c("Apple6"," Pear3","Banana6 ","range9 ")
+
+str_sort(fruit)
+```

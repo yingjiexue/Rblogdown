@@ -42,10 +42,10 @@ code {
 }
 
 .nav {
-  max-width: 800px;
+  max-width: 10px;
   margin: 0 auto;
   padding: 0 15px;
-  text-align: right;
+  text-align: left;
 }
 
 .nav-logo {

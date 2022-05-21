@@ -93,6 +93,48 @@ So, that's the place I have visited and I am going to visit again in the future.
 So, that's the intelligent person I know and I really admire me.
 
 
+**经典例子：Recycle**
+
+**Question:**
+
+- Do you recycle now? why?
+
+Yes, I do recycle now. I often sort things out. and I recycle and reuse something like plastic bottles,cans and plastic bags. I also donate some of my old clothes to those in need.
+
+
+- Did you recycle when you ware a kid?
+
+Well, I would say yes, I did recycle when I ware a kid. Because my parents and teachers always said that it was great way to diminish waste and protect the environment, which made me realized the importance of recycling.  
+
+
+- Will you recycle in the future?
+
+Actually, I am recycling now and I believe I will do so in the future. Because it should be a life-long mission to help protect the environment in order to make the world more sustainable.
+
+- What kind of things do you recycle
+
+There are lots of things that I recycle,such as electronic ,glass, plastic bottles,plastic bags, paper and so on. I would put them in container for later use. I believe it's a very effective way to save money and energy.
+
+
+**高分词汇和短语**
+
+sort sth out : 对什么分类
+
+recyclable : 可回收的
+
+kitchen trash :厨余垃圾
+
+reuse 重复利用
+
+sustainable : 可持续的
+
+waste :废弃物
+
+diminish: 减少
+
+for later use :供以后使用
+
+reusable：可重复使用的
 
 
 

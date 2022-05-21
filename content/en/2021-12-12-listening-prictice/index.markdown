@@ -162,11 +162,11 @@ In the same area of the **hind** foot where the male has the poisonous spur, the
 
 > **a clutch of  一窝几个**
 
-> **incumbate  v. 孵化 培育**
+> **incubate  v. 孵化 培育**
 
 > **burrow   n.地洞，v.打洞**
 
-> **liazards  n. 蜥蜴**
+> **lizards  n. 蜥蜴**
 
 > **whitish    adj.带白色的**
 
@@ -189,3 +189,115 @@ Until the early twentieth century, platypus were widely killed for their fur. Th
 > **captivity   n. 囚禁；被关**
 
 > **legitimate  adj. 合法的**
+
+
+## FLIGHT OF THE HONEY
+
+  Honeybees are characterised by their ability to produce **liquefied** sugar (honey) and a **propensity** to construct colonial nests using **wax**, two tasks that **necessitate** a significant level of social integration among members. As a result, they maintain strict divisions of labour, based on sex, with all males functioning as **drones** to **fertilize** and care for the eggs, and all females, with the exception of the single **fertile** queen, responsible for fetching nectar for the colony’s progeny. In addition, honeybees have devised a sophisticated system of communication to relay important information from member to member.
+    
+> 蜜蜂的特点是它们能够生产**液化**糖（蜂蜜），并**倾向**于用蜡建造殖民地的巢，这两项任务要求成员之间有相当程度的社会融合。因此，它们保持着严格的劳动分工，以性别为基础，所有的雄蜂负责受精和照顾卵子，而所有的雌蜂，除了唯一能生育的蜂王外，负责为蜂群的后代采蜜。此外，蜜蜂还设计了一套复杂的通信系统，在成员之间传递重要信息。
+
+> **liquefied  adj.液化的 v.液化**
+
+> **propensity n.倾向，习性**
+
+> **wax  n. 蜡**
+
+> **necessitate v.使成为必需，需要；迫使**
+
+> **drone  v.雄峰**
+
+> **fertilize v.使受精；使肥沃**
+
+
+Perhaps the most **intriguing** feature of honeybee communication is a series of flight moves only performed by a female worker bee that has returned to the nest with **nectar** and needs to tell the rest of her colony that she has discovered food supplies and where they can be found. This so-called honeybee dance was first interpreted by German zoologist Karl von Frisch in the early 1970s. To facilitate observation, von Frisch and his students built several glass walled hives and marked a collection of worker bees, or foragers, with paint. He then trained those foragers to find nectar at designated sources at various distances from the **hives**, and when the bees returned he carefully recorded their movements, the angle and direction of their flight, and any additional visual cues offered to the colony. What von Frisch discovered was that each aspect of the dance indicated certain details about the location of the nectar reserves and recruited others to return to the site.
+
+> 也许蜜蜂交流的**最耐人寻味**的特点是一系列的飞行动作，只有带着**花蜜**回巢的雌性工蜂才会做，并且需要告诉蜂群的其他成员她已经发现了食物供应以及在哪里可以找到它们。这种所谓的蜜蜂舞蹈是由德国动物学家卡尔-冯-弗里施在20世纪70年代初首次解释的。为了便于观察，冯-弗里施和他的学生建造了几个玻璃墙的蜂巢，并用油漆标记了一批工蜂，或觅食者。然后，他训练这些觅食者在离**蜂巢**不同距离的指定地点寻找花蜜，当蜜蜂返回时，他仔细记录它们的动作、飞行的角度和方向，以及向蜂群提供的任何其他视觉线索。冯-弗里施发现，舞蹈的每个方面都表明了关于花蜜储备位置的某些细节，并招募其他蜜蜂返回该地点。
+
+> **intriguing adj.非常有趣的，引人入胜的; v.引起……的兴趣；策划阴谋；私通** 
+
+> **nectar n.花蜜；果汁;琼浆；甘美的饮料**
+
+> **hive n.蜂房，蜂箱；蜂群；**
+
+
+
+The first piece of information conveyed by dancing bees is the distance of the field to the hive, and they do this in one of three ways. If it is less than 50 meters from the colony’s nest the bee will fly around in narrow circles, and then suddenly fly in the opposite direction. She will repeat this pattern, which von Frisch’s team called the round dance, until she has recruited several other workers to return with her to the field. When the distance is greater than 50 meters, but less than 150 meters, she will perform a **sickle** dance, a **crescent** shaped flight course. If the field is farther than 150 meters, the forager will act out a **waggle** dance in which she will run straight ahead briefly before returning to her original position in a semi-circular movement. Then, she will run forward again and return from the opposite side. The length of the forward run **coincides** with the distance of the food supplies; for example, a 2.5 second run indicates that the nectar was found about 2500 meters way.
+
+
+> 跳舞的蜜蜂传达的第一条信息是田地与蜂巢的距离，它们通过三种方式之一来实现。如果它离蜂群的巢穴不到50米，蜜蜂会绕着狭窄的圆圈飞行，然后突然向相反的方向飞去。她会重复这种模式，冯-弗里施的团队称之为圆舞曲，直到她招募了其他几只工蜂和她一起回到野外。当距离大于50米，但小于150米时，她会进行**镰刀**舞，即新月形的飞行路线。如果田地的距离超过150米，觅食者会表演**摇摆舞**，她会短暂地向前跑，然后以半圆形的运动方式返回到原来的位置。然后，她会再次向前跑，并从另一侧返回。向前跑的长度与食物供应的距离相**吻合**；例如，2.5秒的跑步表示发现花蜜的距离约为2500米。
+
+> **sickle n.镰刀; adj.镰刀型的 **
+
+> **crescent n. 新月型； 新月**
+
+> **waggle v.摇摆； n.摇摆**
+
+> **coincide v.一致；复合**
+    
+Recruits also need to know the direction in which they should fly to arrive at the appropriate foraging location, and this information is communicated via the bee’s **angular** **orientation** to the hive. It, however, is not a direct connection to the position of the food supplies from the hive, but its location relative to the sun. Therefore if the food is situated directly opposite from the sun, the bee will fly a straight run vertically downward; if it is in the same direction as the sun, it will fly directly upward from the colony nest. A position 60 degrees to the right of the sun will prompt the bee to fly downwards at a 60 degrees angle toward the right of the nest. Moreover, because the sun is in constant motion throughout the day, the bee’s orientation will shift depending on the time at which the dance is performed. Sceptics of von Frisch’s findings, however, claim that visual cues are not enough to provide all the clues necessary to convey the location of a food resource. Several scientists, among them Adrian Wenner, believe that the dance is only one component of honeybee communications; **odour** is the second key element. Using robotic bees to perform the same dances, Wenner was unable to attract new recruits to the foraging activities; however, when he added a bit of nectar to the robot, workers quickly followed. He also discovered that the odors must be representative of the actual flowers containing the food source; otherwise the bees will arrive at the site, but not know which ones will be profitable.
+
+> 招募者也需要知道他们应该飞到什么方向才能到达适当的觅食地点，这一信息是通过蜜蜂与蜂巢的角度方位来传达的。然而，它并不是直接连接到食物供给与蜂巢的位置，而是其相对于太阳的位置。因此，如果食物位于太阳的正对面，蜜蜂就会垂直向下直飞；如果食物与太阳的方向相同，它就会从蜂巢直接向上飞。在太阳右侧60度的位置，将促使蜜蜂以60度角向巢穴右侧飞下。此外，由于太阳在一天中是不断运动的，蜜蜂的方向会根据跳舞的时间而改变。然而，对冯-弗里施的发现持怀疑态度的人声称，视觉线索不足以提供传达食物资源位置所需的所有线索。一些科学家，其中包括阿德里安-温纳，认为舞蹈只是蜜蜂通信的一个组成部分；气味是第二个关键因素。使用机器人蜜蜂进行同样的舞蹈，Wenner无法吸引新成员参加觅食活动；然而，当他在机器人中加入一点花蜜时，工人们很快就跟上了。他还发现，气味必须代表含有食物来源的实际花朵；否则，蜜蜂会到达现场，但不知道哪些花朵会有收益。
+
+> **odour n.（尤指难闻的）气味，臭味**
+
+
+## Recent research
+
+A. Recent research in Hong Kong indicates that staying in bed after a long week at school is just what children need to avoid becoming **obese**, The research, which focused on children aged five to fifteen, discovered that those who slept late on Saturdays and Sundays decreased the probability of having weight problems as they grew up. Published in the journal Paediatrics, the findings add to previous research that indicated a connection between regular sleep **deprivation** and obesity.
+
+>香港最近的研究表明，在学校度过漫长的一周后躺在床上正是儿童避免变得肥胖所需要的。这项研究主要针对5至15岁的儿童，发现那些在周六和周日晚睡的儿童在长大后出现体重问题的概率降低。该研究结果发表在《儿科》杂志上，是对以前的研究的补充，这些研究表明经常性的睡眠**不足**与肥胖之间存在联系。
+
+> **obese  adj.肥胖的，臃肿的**
+
+> **deprivation n.贫困，匮乏，剥夺；免职**
+
+B. The scientists involved believe the weekend lie-in is vital for school-age children to **catch up** on the sleep they lose during a busy week at school. This catch up sleep helps the children to **regulate** calorie consumption by cutting down on eating snacks during waking hours, Scientists and others in the medical fields have long known that a lack of sleep and irregular sleep patterns causes obesity as this combination affects the body’s natural **metabolism** and tends to also encourage snacking to reduce the feeling of tiredness. However, this is thought to be the first time researchers have found sleeping in at weekends to be a key factor in helping ‘reset’ children’s sleeping patterns.
+
+
+
+> 有关科学家认为，周末躺在床上对学龄儿童来说是至关重要的，因为他们可以补回在学校忙碌的一周中失去的睡眠。这种补觉有助于儿童通过减少在清醒时间吃零食来调节热量消耗。科学家和医学领域的其他人士早就知道，缺乏睡眠和不规则的睡眠模式会导致肥胖，因为这种组合会影响身体的自然代谢，并往往会鼓励吃零食以减少疲倦感。然而，这被认为是研究人员首次发现周末睡觉是帮助 "重置 "儿童睡眠模式的一个关键因素。
+
+> **catch up  v.赶上；把……缠住   catch up sleep 补觉**
+
+> **regulate v. 调整；控制；管理**
+
+> **metabolism n.新陈代谢**
+
+
+C. Since the 1980s, obesity rates among children in the UK and in the United States have been on the rise and medical and childcare experts fear a **diabetes** and heart disease epidemic is developing. Although estimates for obesity rates have recently been lowered, current expectations are that close to one in three boys aged from two to eleven are likely to be overweight or obese by the year 2020. The prediction for girls is slightly over one in four, a much lower prediction than ten years ago when forecasts were that almost half would be overweight.
+
+> 自20世纪80年代以来，英国和美国儿童的肥胖率一直在上升，医疗和儿童护理专家担心糖尿病和心脏病的流行正在形成。尽管对肥胖率的估计最近有所降低，但目前的预期是，到2020年，接近三分之一的2至11岁的男孩可能超重或肥胖。对女孩的预测是略高于四分之一，这比十年前的预测低得多，当时的预测是几乎一半的人将超重。
+
+
+> **diabetes  n.糖尿病，多尿症**
+
+D. The relationship between sleep **deficiency** and obesity has been drawing much attention in the past several years with studies showing that sleeping just a few hours a night can seriously disturb the body’s natural metabolism, leading to an increase in overall calorie intake and a much greater danger of weight-related illnesses. Yun Kwok Wing of Hong Kong University and other experts investigated the possibility that catching up on sleep at the weekends would help youngsters to overcome such disruption of the bodies metabolism. They questioned the parents of over 5,000 schoolchildren and accumulated data on diet, lifestyle, weight and sleeping habits. During school time, the average amount of sleep was a little over nine hours on average. However, a surprising number of kids slept well under eight hours a night.
+
+>在过去几年中，睡眠不足和肥胖之间的关系一直备受关注，研究表明，每晚只睡几个小时就会严重扰乱身体的自然代谢，导致总的热量摄入增加，与体重有关的疾病的危险大大增加。香港大学的尹国荣和其他专家调查了在周末补觉是否能帮助年轻人克服身体新陈代谢的这种干扰。他们询问了5000多名学童的父母，并积累了有关饮食、生活方式、体重和睡眠习惯的数据。在学校期间，平均睡眠时间略高于9小时。然而，令人惊讶的是，许多孩子每晚的睡眠时间远远低于8小时。
+
+> **deficiency n.缺乏，不足；缺陷，瑕疵；赤字**
+
+E. What the researchers found most interesting was that those children who managed to catch up on missed sleep on the weekend actually remained relatively slim while those who did not had a higher probability of putting on weight (as measured by body mass index, or BMI). A report the researches published revealed: “Overweight and obese children tended to wake up earlier and had shorter sleep durations throughout weekdays, weekends and holidays than their normal-weight peers. Our study suggests sleeping longer on weekends or holidays could lower the risk of being overweight or obese.”
+
+研究人员发现最有趣的是，那些设法在周末补回错过的睡眠的孩子实际上仍然相对苗条，而那些没有补回睡眠的孩子则有更高的发胖概率（以身体质量指数或BMI衡量）。研究人员发表的一份报告显示。"与正常体重的同龄人相比，超重和肥胖的儿童往往在整个工作日、周末和节假日更早醒来，睡眠时间更短。我们的研究表明，在周末或节假日睡得更久可以降低超重或肥胖的风险"。
+
+F. The study authors mentioned that reduced sleep duration has become a **hallmark** of modern society, with people generally sleeping one to two hours less than a few decades ago and children were no exception to this. However, the researchers were not quite sure why obese and overweight children were less likely to sleep late on weekends, but indicated that they tended to spend more time doing their homework and watching television than their normal- weight peers. Still, the researchers urged caution in the interpretation of their findings, acknowledging that “an irregular sleep-wake schedule and insufficient sleep among school-aged children and adolescents has been documented with a variety of serious **repercussions**, including increased daytime sleepiness, academic difficulties, and mood and behavioral problems.”
+
+> 研究作者提到，睡眠时间减少已经成为现代社会的一个标志，人们普遍比几十年前少睡一到两个小时，儿童也不例外。然而，研究人员并不十分确定为什么肥胖和超重儿童在周末不太可能睡得很晚，但表示他们往往比正常体重的同龄人花更多时间做作业和看电视。尽管如此，研究人员仍敦促在解释他们的发现时要谨慎，承认 "学龄儿童和青少年的不规则睡眠-觉醒时间表和睡眠不足已被记录在案，有各种严重的影响，包括白天嗜睡、学习困难、情绪和行为问题的增加。"
+
+> **hallmark n.特点，特征, 印记**
+
+> **repercussion n.持续不良影响**
+
+G. The precise nature of the link between short sleep duration and obesity remains unclear, said Mary A. Jackson, Professor of Psychiatry and Human Behavior at Brown University’s Alpert Medical School in Providence, and Director of Chronobiology at Bradley Hospital in East Providence. “Evidence has shown that there are changes in **satiety** and in levels of the **hunger** **hormones** leptin and ghrelin,” Jackson said. “But there’s also evidence that kids who are not getting enough sleep get less physical activity, perhaps simply because they’re too tired. It’s just not cut-and-dried.” The findings could be of help in slowing down the ongoing increase in childhood obesity, but for the time being, parents should be **observant** of their children’s wake-sleep cycles, and take steps to ensure they are getting enough sleep, the researchers advised. Perhaps this is a reminder to us all that despite school, homework, extracurricular activities, and family time, sleep still needs to be a priority in a child’s life.
+
+> 位于普罗维登斯的布朗大学阿尔珀特医学院精神病学和人类行为学教授、位于东普罗维登斯的布拉德利医院时间生物学主任玛丽-A-杰克逊说，睡眠时间短和肥胖之间联系的确切性质仍不清楚。"杰克逊说："有证据表明，饱腹感以及饥饿激素瘦素和胃泌素的水平有变化。"但也有证据表明，没有足够睡眠的孩子身体活动较少，也许仅仅是因为他们太累了。这只是不切实际的。" 研究人员建议，这些发现可能有助于减缓儿童肥胖症的持续增长，但就目前而言，父母应该观察他们孩子的起床-睡眠周期，并采取措施确保他们获得足够的睡眠。也许这提醒了我们所有人，尽管有学校、家庭作业、课外活动和家庭时间，睡眠仍然需要成为孩子生活中的一个优先事项。
+
+>  **satiety     n. 饱腹感,满足，饱足；过多**
+
+> **hormones n.[生理]激素；荷尔蒙**
+
+> **hunger v.饥饿，渴求 n.饥饿**
+
+> **observant adj. 善于观察的**

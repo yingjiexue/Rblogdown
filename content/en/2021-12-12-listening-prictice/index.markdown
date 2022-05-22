@@ -227,7 +227,7 @@ The first piece of information conveyed by dancing bees is the distance of the f
 
 > 跳舞的蜜蜂传达的第一条信息是田地与蜂巢的距离，它们通过三种方式之一来实现。如果它离蜂群的巢穴不到50米，蜜蜂会绕着狭窄的圆圈飞行，然后突然向相反的方向飞去。她会重复这种模式，冯-弗里施的团队称之为圆舞曲，直到她招募了其他几只工蜂和她一起回到野外。当距离大于50米，但小于150米时，她会进行**镰刀**舞，即新月形的飞行路线。如果田地的距离超过150米，觅食者会表演**摇摆舞**，她会短暂地向前跑，然后以半圆形的运动方式返回到原来的位置。然后，她会再次向前跑，并从另一侧返回。向前跑的长度与食物供应的距离相**吻合**；例如，2.5秒的跑步表示发现花蜜的距离约为2500米。
 
-> **sickle n.镰刀; adj.镰刀型的 **
+> **sickle n.镰刀; adj.镰刀型的**
 
 > **crescent n. 新月型； 新月**
 
@@ -301,3 +301,105 @@ G. The precise nature of the link between short sleep duration and obesity remai
 > **hunger v.饥饿，渴求 n.饥饿**
 
 > **observant adj. 善于观察的**
+
+
+## TEAM BUILDING
+
+Particularly in times of economic **downturn**, efficiency is of **supreme** importance across all industry bases; **whilst** companies may be looking to cut their costs, many still invest in staff motivation, training and development programmes, having developed an understanding of just how crucial strong internal relationships can be for success.
+
+> 特别是在经济不景气的时候，效率在所有行业基础上都是最重要的；虽然公司可能正在寻求削减成本，但许多公司仍然投资于员工的激励、培训和发展计划，因为他们已经了解到强大的内部关系对成功是多么重要。
+
+> **downturn n.下降 衰退期**
+
+> **supreme adj. 最高的，至高无上的**
+
+> **whilst conj当……的时候,与…同时**
+
+Louise Edwards of HR Success says that one of the barriers she comes across time and time again is that corporate heads often seem to understand that ‘team building’ is important but are not quite sure what it is or how to achieve it. In the terms of a sports club, she says, the team (i.e. what it is and how it is defined) is obvious and easy to identify. In contrast, she says, within a company – particularly a multi-layered, larger organisation, definitions may become more confused. Many define a business ‘team’ as the group of people who report to the same boss – a department, for example. However, according to Edwards, it is more productive to define a team as a group of people working towards a common goal. In training terms, therefore, this group could be members of a department with the same roles and responsibilities, such as a sales team with the common goal of selling or even the organisation as a whole, whose ‘goal’ in this case is the continued success of the organisation, their many different skills and roles all contributing to this in a number of ways.
+
+> 人力资源成功公司的路易丝-爱德华兹说，她一再遇到的障碍之一是，企业负责人似乎知道 "团队建设 "很重要，但不太清楚它是什么，也不知道如何实现它。她说，就体育俱乐部而言，团队（即它是什么以及如何定义它）是显而易见的，很容易识别。她说，相比之下，在一个公司--特别是一个多层次的大型组织，定义可能会变得更加混乱。许多人将商业 "团队"定义为向同一个老板汇报的一群人，例如一个部门。然而，根据Edwards的说法，将团队定义为一群为共同目标而工作的人，会更有成效。因此，在培训方面，这个团队可以是具有相同角色和责任的部门成员，如具有共同销售目标的销售团队，甚至是整个组织，在这种情况下，他们的 "目标 "是组织的持续成功，他们的许多不同技能和角色都以多种方式对此做出贡献。
+
+Brenda Durham of Corporate Trouble-Shooters believes it **inevitable** that to some extent conflict will exist in a successful workplace since the necessary diversity of skills and personalities required for success will also unavoidably lead to misunderstandings and **disharmony** from time to time. A **cohesive** unit that minimises friction, she believes, can however be developed in any organisation committed to investment in its people. Whilst the taking on of external expertise for staff training and team building programmes can be costly, a number of companies, particularly those with a robust human resources department, are undertaking the training themselves. Liaison Wizards, established in 2001 and headed by Jeff Blackshaw, offers free training and development advice to companies wishing to offer motivation **seminars** designed in house, in the belief that **contextualised** training is always more effective. The company’s own business model is based upon generating revenue from advertising on their popular website – a great success, so far, having surpassed financial projections for each year it has been in operation to date.
+
+> Brenda Durham of Corporate Trouble-Shooters认为，在某种程度上，成功的工作场所不可避免地会存在冲突，因为成功所需的技能和个性的多样性也不可避免地会不时地导致误解和不和谐。然而，她认为，任何致力于投资于员工的组织都可以发展出一个具有凝聚力的单位，将摩擦降到最低。虽然聘请外部专家进行员工培训和团队建设计划的成本很高，但一些公司，特别是那些拥有强大人力资源部门的公司，正在自己进行培训。Liaison Wizards成立于2001年，由Jeff Blackshaw领导，为希望提供内部设计的激励研讨会的公司提供免费的培训和发展建议，因为他们相信结合实际的培训总是更加有效。该公司自己的商业模式是基于从其受欢迎的网站上的广告产生的收入--到目前为止，这是一个巨大的成功，到目前为止，每年的财务预测都超过了预期。
+
+
+> **inevitable adj. 必然发生的，不可避免的**
+
+>  **disharmony n. 不一致；不调和；不融洽**
+
+> **cohesive adj. 团结的，有凝聚力的**
+
+> **contextualised v. 置于上下文（或背景）中**
+
+> **seminars n. 研讨会**
+
+Blackshaw likens the key to successful corporate team building to the **tactics** employed in a less formal sporting environment. He says that bonds, connections and **empathy** developed between members of a **rugby** team, for example, can also be developed within a department in the business world or even at company level. He says that good team work is **fostered** by respect, encouragement, shared enthusiasm and a caring and supportive workplace. Trying to exploit or **dictate** to personnel is sure to lead to failure, Blackshaw says.
+
+> 布莱克肖把成功的企业团队建设的关键比作在不太正式的体育环境中采用的战术。他说，例如，在橄榄球队成员之间建立的纽带、联系和同情心，也可以在商业世界的一个部门甚至在公司层面上发展。他说，良好的团队工作是由尊重、鼓励、共同的热情和一个充满关爱和支持的工作场所所培养的。Blackshaw说，试图利用或对人员发号施令肯定会导致失败。
+
+> **tactic n. 策略，手法；战术，兵法**
+
+> **rugby n.橄榄球**
+
+> **empathy n. 共鸣，同情；感同身受**
+
+> **foster  v. 促进，培养 ; adj. 代养的，寄养的**
+
+> **dictate v. 命令，规定 使听写**
+
+
+
+
+Brian Osbourne, Human Resources Director of Opmax Inc, believes that programmes developed in house are inherently more likely to be of greater success than external offerings for two main reasons. Most importantly, he says, people are much easier to motivate if they themselves can be involved in designing and deciding activities – this level of **consultation** at the planning stage being much easier to achieve for an internal department than an external consultant. Of only slightly less importance, says Osbourne, training activities must be perceived by participants as providing outcomes **geared** towards developing the individuals’ potential, Once again, programmes developed by people with an insight into the personalities and culture at hand can be more easily **tailored** to suit the **distinctive** needs of that particular audience.
+
+> Opmax公司的人力资源总监布莱恩-奥斯本（Brian Osbourne）认为，内部开发的项目本来就比外部提供的项目更有可能获得更大的成功，主要有两个原因。他说，最重要的是，如果员工自己能够参与设计和决定活动，就更容易激发他们的积极性--在计划阶段，内部部门比外部顾问更容易实现这种协商水平。奥斯本说，最不重要的是，培训活动必须被参与者认为是为开发个人潜力而提供的成果。同样，由对个人性格和文化有深入了解的人制定的方案可以更容易适应特定受众的独特需求。
+
+> **consultation n. 商讨，磋商**
+
+>  **geared v. 使与……相适应** 
+
+> **tailored adj. （衣服）定做的，合身的 v. 定做（衣服）**
+
+According to Osbourne, one of the biggest barriers to successful staff training is the **perception** that activities are too game-focussed, with no real objectives; many professionals, believing that such games are **trite** or **patronising**, are unable to appreciate the hidden benefits of building understanding and **camaraderie** within the group. If presented correctly, within the correct context and in **conjunction** with other, more **staid** approaches, Louise Edwards holds that games can be an enormous asset in staff training. In simple terms, Edwards defines the objectives of team building activities as a process, starting with the first stage – the clarification of the collective goals. This leads to the identification of the **inhibitors** preventing achievement of those goals and the introduction of enablers which will assist in goal achievement. This is followed by stage four – the final stage, where outcomes are measured and from that point on are monitored to ensure that goals are achieved and continue to be achieved. In stages 2 and 3 (identifying barriers and introducing positive alternatives) Edwards believes that the use of humour goes a long way towards relationship building on a personal level through development of empathy and removal of **antipathy**, ultimately fostering cooperation and support on a more formal level.
+
+>奥斯本认为，成功的员工培训的最大障碍之一是认为活动过于注重游戏，没有真正的目标；许多专业人员认为这种游戏是老套的或光棍的，无法理解在小组内建立理解和友谊的隐藏好处。Louise Edwards认为，如果在正确的背景下，并与其他更呆板的方法相结合，游戏可以成为员工培训的巨大财富。简单地说，爱德华兹将团队建设活动的目标定义为一个过程，从第一阶段开始--明确集体目标。这导致了对阻碍实现这些目标的抑制因素的识别，以及对有助于实现目标的促进因素的引入。接下来是第四阶段--最后一个阶段，对结果进行衡量，并从那时起进行监测，以确保目标的实现和继续实现。在第二和第三阶段（识别障碍和引入积极的替代方案），爱德华兹认为，通过发展同理心和消除反感，使用幽默感对于在个人层面上建立关系有很大的帮助，最终在更正式的层面上促进合作和支持。
+
+
+> **perception n. 看法，认识**
+
+> **trite adj. 陈腐的**
+
+> **patronising v. 以高人一等的态度对待**
+
+>**conjunction n. 结合，同时发生；连词**
+
+> **staid adj. 固定的；沉着的；沉静的；古板的，保守的**
+
+>  **inhibitors n. [助剂]抑制剂**
+
+> **antipathy n. 反感；厌恶**
+
+Alan Kidman, HR Manager of Tellam Industries agrees that the use of humour and games within a training context can go a long way towards helping an organisation achieve its goals. He has recently designed a two month long in house team building programme for senior management and will soon be delivering the first of a series of 8 **workshops** and activities. The goal of the project, he says, was to strengthen communication and support within the extremely diverse departments of the organisation. Heads of six departments, **collectively** responsible for over 200 staff members, are to **be involved in** the series of seminars. The programme, Kidman says, is experimental and if it proves to be a success is also intended for use in the organisation’s branches overseas. Previously the organisation has taken a more formalised approach to staff development training relying on methods such as **psychometric** testing discussions, motivational conferences and formal **appraisals**. The new, and as yet untried, approach will challenge participants in, by comparison, rather radical ways. One initiative, for example, requiring the writing, organisation and delivery of a **theatrical** performance to which all staff members will be invited to view.
+
+
+> Tellam Industries的人力资源经理Alan Kidman也认为，在培训中使用幽默和游戏可以在很大程度上帮助一个组织实现其目标。他最近为高级管理层设计了一个为期两个月的内部团队建设计划，并将很快提供一系列8个讲习班和活动中的第一个。他说，这个项目的目标是加强该组织中极其多样化的部门之间的沟通和支持。六个部门的负责人，总共负责200多名员工，将参与这一系列的研讨会。基德曼说，这个计划是试验性的，如果它被证明是成功的，还打算在该组织的海外分支机构使用。以前，该组织采取了一种更正式的方法来进行员工发展培训，依靠的是心理测试讨论、激励会议和正式评估等方法。相比之下，新的、尚未尝试的方法将以相当激进的方式挑战参与者。例如，有一项举措要求编写、组织和提供一个戏剧表演，并邀请所有员工观看。
+
+> **workshops n. 工作坊**
+
+> **collectively adv. 集体地，共同地**
+
+>  **psychometric  adj. 心理测量的**
+
+> **appraisal n. 评估，估价**
+
+> **theatrical adj. 戏剧的，演剧的**
+
+Team building and motivational approaches include a wide variety of methodologies, techniques, theories and tools. Experts generally agree that different options may succeed or fail depending upon the culture of the organisation in which they are implemented. A fit with the personalities involved in crucial to success. Not only is delivery of appropriate training **sessions** themselves important but professional and measurable follow up is also a must.
+
+> 团队建设和激励方法包括各种各样的方法、技术、理论和工具。专家们普遍认为，不同的方案可能成功，也可能失败，这取决于实施方案的组织的文化。与相关人员的配合是成功的关键。不仅提供适当的培训课程本身很重要，专业和可衡量的后续行动也是必须的。
+
+> **sessions  n. 会议** 
+
+
+> 

@@ -506,15 +506,129 @@ B. The concept of TPM was first developed in Japan in the late 1970s, only movin
 
 > **maintenance n. 维护，保养；保持，维持**
 
-C. TPM involves directing participating companies and industries to move away from traditional methods of production to more efficient mechanisms. This is evident in TPM’s operational focus on **lea** production rather than mass production. The lean approach favours flexibility within a team, rather than the specialisation of labour Introduced with mass production. It also involves a shift away from being driven by the financial department of the company to a more customer focused goal. Another goal of the TPM method is to introduce quality control not by being overseen by managers, but rather by engendering a sense if responsibility amongst all staff; a move from autocratic management to empowerment. This shift means that shop floor workers are being able to take a sense of pride in their work, and with that comes the desire to perform well ultimately leading to higher productivity for the company.
+C. TPM involves directing participating companies and industries to move away from traditional methods of production to more efficient mechanisms. This is evident in TPM’s operational focus on **lea** production rather than mass production. The lean approach favours flexibility within a team, rather than the specialisation of labour Introduced with mass production. It also involves a shift away from being driven by the financial department of the company to a more customer focused goal. Another goal of the TPM method is to introduce quality control not by being overseen by managers, but rather by **engendering** a sense if responsibility **amongst** all staff; a move from autocratic management to **empowerment**. This shift means that shop floor workers are being able to take a sense of pride in their work, and with that comes the desire to perform well ultimately leading to higher productivity for the company.
 
 > TPM涉及指导参与公司和行业从传统的生产方法转向更有效的机制。这在TPM的操作重点是精益生产而不是大规模生产中显而易见。精益方法有利于团队内部的灵活性，而不是大规模生产中引入的劳动专业化。它还涉及到从由公司的财务部门驱动转变为更注重客户的目标。TPM方法的另一个目标是引入质量控制，不是由管理者监督，而是在所有员工中培养责任感；从专制管理转向授权。这种转变意味着车间工人能够对他们的工作感到自豪，并由此产生了良好的表现的愿望，最终导致公司的生产力提高。
 
-D. In order to apply the concepts of TPM, a company will have to work through a number of stages. First, there must be universal agreement that the system has the potential to be successful within the company. Then a specific person or team needs to be appointed to coordinate the changes required to apply TPM methodologies, an aim that begins with training and education for all employees. Once the coordinator is convinced that the work force is sold on the TPM program and that they understand it and its implications, the first action teams are formed. These teams are usually made up of people who have a direct Impact on the problem being addressed. Operators, maintenance personnel, shift supervisors, schedulers, and upper management might all be included on a team. Each person becomes a stakeholder in the process and is encouraged to do his or her best to contribute to the success of the team effort. Usually, the TPM coordinator heads the teams until others become familiar with the process and natural team leaders emerge.
+> **lea n. 草地**
 
-E. The concept of TPM is built on what are referred to as the three pillars – work area management, risk management and equipment management. An illustration of these pillars is highlighted in the importance of recognising and eliminating defects within the machinery used in a company, This refers to issues such as the accumulation of dust and grime on equipment, gauges that are broken or too dirty to read clearly and missing or loose bolts, nuts and screws, Using a sample company, statistics collected from a three month period indicate a substantial reduction in machine maintenance costs, felling by $ 30,000 between 1996 and 1999. At the same time, the effectiveness of the equipment increased significantly, with machine uptime rising by almost 2096 over the same period.
+> **engender v. 产生，引起**
 
-F. Many observers have identified similarities between TPM and an earlier industry concept – total quality management (TQM), and in many respects, TPM and TQM resemble each other. Both require total commitment to the program by upper level management, and both promote the empowerment of all employees to initiate corrective action, Additionally, both processes require a long range outlook, as it may take a year or more to implement and is an ongoing process, Changes in employee mind-set toward their job responsibilities must take place as well, Indeed, initial results for at least the first quarter may actually lead to reduced productivity while changes are put into effect.
+> **amongst prep. 在……当中**
 
-G. The difference between the two systems, however, becomes apparent in when looking at what each system considers to be a priority. TQM is essentially an output focused system, whereas TPM is singular in that it looks more at input – the equipment used and the causes of real or potential maintenance failures. Also, although both programme stress the need for complete involvement of all parties, TPM stresses the equal importance of all levels of employee, whereas TQM has a more traditional focus on management structure, The main target of both is also slightly different; whereas TQM alms to improve quality, TPM aims to reduce wastage and minimise losses.
+> **empowerment n. 许可，授权**
+
+D. In order to apply the concepts of TPM, a company will have to work through a number of stages. First, there must be **universal** agreement that the system has the potential to be successful within the company. Then a specific person or team needs to be appointed to **coordinate** the changes required to apply TPM methodologies, an aim that begins with training and education for all employees. Once the coordinator is convinced that the work force is sold on the TPM program and that they understand it and its implications, the first action teams are formed. These teams are usually made up of people who have a direct Impact on the problem being addressed. Operators, maintenance personnel, shift supervisors, schedulers, and upper management might all be included on a team. Each person becomes a **stakeholder** in the process and is encouraged to do his or her best to contribute to the success of the team effort. Usually, the TPM coordinator heads the teams until others become familiar with the process and natural team leaders emerge.
+
+
+> 为了应用TPM的概念，公司必须经过若干阶段的工作。首先，必须普遍同意该系统有可能在公司内取得成功。然后，需要指定一个特定的人或团队来协调应用TPM方法所需的变化，这一目标始于对所有员工的培训和教育。一旦协调人确信劳动力被推销给TPM计划，并且他们理解该计划及其影响，第一批行动小组就会成立。这些团队通常是由对所要解决的问题有直接影响的人组成的。操作员、维修人员、班长、调度员和高层管理人员都可能被纳入一个团队。每个人都成为过程中的利益相关者，并被鼓励尽其所能为团队工作的成功作出贡献。通常情况下，TPM协调员会领导团队，直到其他人熟悉这个过程，并出现自然的团队领导。
+
+> **universal adj. 普遍的，全体的 n. 普遍原则，通用原理**
+
+> **coordinate v. 协调，配合；使身体协调 n. 坐标；配套服装 adj. 地位相当的，同等重要的**
+
+> **stakeholder n. 股东，利益相关者**
+
+E. The concept of TPM is built on what are referred to as the three **pillars** – work area management, risk management and equipment management. An illustration of these pillars is highlighted in the importance of recognising and eliminating **defects** within the machinery used in a company, This refers to issues such as the accumulation of **dust** and **grime** on equipment, **gauges** that are broken or too dirty to read clearly and missing or loose **bolts**, nuts and screws, Using a sample company, statistics collected from a three month period indicate a substantial reduction in machine maintenance costs, felling by $ 30,000 between 1996 and 1999. At the same time, the effectiveness of the equipment increased significantly, with machine **uptime** rising by almost 2096 over the same period.
+
+> TPM的概念是建立在被称为三大支柱的基础上的--工作区管理、风险管理和设备管理。识别和消除公司使用的机器中的缺陷的重要性突出说明了这些支柱，这指的是设备上积累的灰尘和污垢、破损或太脏而无法清晰阅读的仪表以及丢失或松动的螺栓、螺母和螺钉等问题。使用一个样本公司，从三个月期间收集的统计数据表明，机器维护成本大幅减少，在1996年至1999年间减少了30,000美元。同时，设备的效率也显著提高，机器的正常运行时间在同一时期增加了近2096。
+
+> **pillar n. 柱子，支柱；主心骨，栋梁**
+
+> **defects n. 缺点，缺陷，毛病;v. 背叛，叛变**
+
+> **dust n. 沙尘；灰尘;v. 擦去……的灰尘**
+
+> **grime n. 尘垢；污点；煤尘 vt. 使污秽；使……弄脏**
+
+> **gauges n. 计量表，仪表 v. 计量；估计**
+
+> **bolts n. [机]螺栓**
+
+> **uptime n. （计算机等的）正常运行时间**
+
+F. Many observers have identified similarities between TPM and an earlier industry concept – total quality management (TQM), and in many respects, TPM and TQM **resemble** each other. Both require total commitment to the program by upper level management, and both promote the empowerment of all employees to initiate **corrective** action, Additionally, both processes require a long range outlook, as it may take a year or more to implement and is an ongoing process, Changes in employee mind-set toward their job responsibilities must take place as well, Indeed, initial results for at least the first quarter may actually lead to reduced productivity while changes are put into effect.
+
+> 许多观察家发现TPM和早期的行业概念--全面质量管理（TQM）之间有相似之处，而且在许多方面，TPM和TQM彼此相似。两者都要求上层管理部门对该计划作出完全的承诺，并且都促进了所有员工发起纠正行动的权力。此外，这两个过程都需要有长远的眼光，因为它可能需要一年或更长的时间来实施，而且是一个持续的过程，员工对其工作职责的心态也必须发生变化，事实上，至少在第一季度的初步结果可能实际上会导致生产力下降，而变化是生效的。
+
+> **resemble v. 像，与……相似** 
+
+> **corrective adj. 纠正的，矫正的**
+
+G. The difference between the two systems, however, becomes apparent in when looking at what each system considers to be a **priority**. TQM is essentially an output focused system, whereas TPM is singular in that it looks more at input – the equipment used and the causes of real or potential maintenance failures. Also, although both programme stress the need for complete **involvement** of all parties, TPM stresses the equal importance of all levels of employee, whereas TQM has a more traditional focus on management structure, The main target of both is also slightly different; whereas TQM alms to improve quality, TPM aims to reduce wastage and minimise losses.
+
+> 然而，这两个系统之间的差异，在考察每个系统的优先级时变得很明显。TQM本质上是一个以产出为中心的系统，而TPM则是一个单一的系统，它更多的是关注投入--所使用的设备以及实际或潜在的维修故障的原因。此外，尽管两者都强调需要各方的完全参与，但TPM强调各级员工的同等重要性，而TQM则更注重传统的管理结构，两者的主要目标也略有不同；TQM旨在提高质量，TPM则旨在减少浪费和降低损失。
+
+> **priority n. 优先事项，最重要的事**
+
+> **involvement n. 参与，介入；投入**
+
+## CO- EDUCATIONAL VERSUS SINGLE SEX CLASSROOMS
+
+It seems that across the western world, an increasing number parents are opting to return to more traditional divisions with regards their children’s education, with a significant rise in most western countries of single sex classrooms, in which the classroom set up involves the teacher working with only boy’s or only girls. For many, the issue is whether to opt for a mode of teaching that improves a child’s academic learning or to choose a co-educational schooling offering a more **‘rounded’** education. There is no doubt that boys and girls have a very different way of learning, with research showing that boys learn better through movement, sound and touch, whereas girls learn better through visual and **oral** means. One clear advantage of a single sex educational setting is that the teacher **fs** able to focus on specific styles of teaching to the gender they are teaching. Naturally, the **resurgence** of single sex education has meant that many teachers have had to **undergo** additional in appropriate techniques for the environment.
+
+> 在整个西方世界，似乎有越来越多的家长选择在孩子的教育问题上回到更传统的划分，在大多数西方国家，单性别教室显著增加，在这种教室设置中，教师只与男孩或女孩一起工作。对许多人来说，问题在于是选择一种能提高孩子学术学习能力的教学模式，还是选择一种能提供更 "全面 "教育的男女混合学校教育。毫无疑问，男孩和女孩有非常不同的学习方式，研究表明，男孩通过运动、声音和触摸学习效果更好，而女孩通过视觉和口头方式学习效果更好。单一性别教育环境的一个明显优势是，教师能够专注于他们所教性别的特定教学风格。当然，单一性别教育的重新出现意味着许多教师必须接受更多适合这种环境的技术。
+
+>  **rounded adj. 圆形的；全面的；丰满的**
+
+> **fs 安全系数**
+
+> **undergo v. 经历，经受**
+
+> **resurgence n. 复兴，复苏,再次兴起 **
+
+There are many potential advantages for children studying in single sex schools, Some children succeed in single sex schools because of the lack of social pressure – children are more able to learn and grow at their own pace without the pressure commonly found between the genders in co-educational schools, Research done in a single sex school concluded that students **thrived ** what often became a **dose-knit** environment with closer interaction with teachers. In surveys of over 1000 single sex schools, it was reported that not having the opposite sex around was ‘missed’, but the absence of boys or girls allowed students to have a more direct and serious approach to their education.
+
+> 在单性别学校学习的儿童有许多潜在的优势，一些儿童在单性别学校取得成功，因为缺乏社会压力--儿童更能够按照自己的节奏学习和成长，没有男女同校中常见的性别之间的压力，在单性别学校进行的研究得出结论，学生在通常成为一个剂量紧密的环境中茁壮成长，与教师的互动更紧密。在对1000多所单性别学校的调查中，有报告称，没有异性在身边是 "令人怀念的"，但没有男孩或女孩让学生对他们的教育有一个更直接和严肃的方法。
+
+> **thrive v. 茁壮成长，兴旺，繁荣**
+
+> **dose-knit 舒适的**
+
+In many western countries, the traditional way of thinking around thirty years ago was that co-education would somehow break down gender **stereotypes**, but this hasn’t always proved to be the case, The advocates of single sex education argue that boys in coeducational settings are less likely to study the arts or advanced academic subjects just to avoid the social **categorization** of certain subjects as being more in the **feminine** **realm**. Equally, girls may tend avoid the sciences and technology subjects as this has traditional been more of a male domain. Single sex schools are **flourishing** once again as parents realise that allowing their son or daughter to learn in his or her own individual way is a very important consideration in choosing a school.
+
+> 在许多西方国家，大约三十年前的传统思维方式是，男女同校会以某种方式打破性别陈规定型观念，但事实证明并非如此。单一性别教育的倡导者认为，在男女同校的环境中，男孩不太可能学习艺术或高级学术科目，只是为了避免社会将某些科目归类为更属于女性的领域。同样，女孩可能倾向于避免科学和技术科目，因为这在传统上更像是男性的领域。单一性别学校再次蓬勃发展，因为父母意识到，允许他们的儿子或女儿以自己的方式学习是选择学校的一个非常重要的考虑因素。
+
+> **stereotypes n. 模式化的思想**
+
+> **categorization n. 分类**
+
+> **feminine adj. 女性特有的**
+
+>  **realm n. （知识、活动、思想的）领域，范围**
+
+>  *flourishing adj. 繁荣，蓬勃发展 v. 繁荣，昌盛**
+
+For students attending single-sex secondary schools, there was a slight tendency for males to outperform females. In contrast, for students attending coeducational schools, there was a clear tendency for females to outperform males. It was also noted that in single sex schools girls were more likely to be involved in leadership activities such as student **councils**, athletic associations, and other activities additional to the school timetable. Accordingly, girls have reported to have favoured single sex schools as co-educational environments tend to be dominated by males, a situation often **perpetuated** by teaching staff.
+
+> 对于在单性别中学就读的学生来说，男性的成绩略高于女性。相比之下，在男女同校的学生中，女性的表现明显优于男性。人们还注意到，在单一性别学校中，女生更有可能参与领导活动，如学生会、体育协会和其他学校时间表以外的活动。因此，据报道，女生更喜欢单性别学校，因为男女同校的环境往往由男性主导，这种情况往往由教学人员延续。
+
+> **council n. 委员会；理事会**
+
+> **perpetuate v. 使持续，使长久**
+
+Regardless of increased levels of academic performance and preference, a small percentage of people concerned about gender equality have argued against single-sex education as an **ethical** issue, in that forced separation between the sexes is forced on students. In order for schools to run single-sex classrooms, they must also offer parents the opportunity to enrol their children in a traditional co-educational classroom.
+
+
+> 无论学习成绩和偏好水平如何提高，有一小部分关注性别平等的人认为，单性别教育是一个道德问题，因为强制分离性别是强加给学生的。为了让学校开办单性别教室，他们还必须为家长提供机会，让他们的孩子在传统的男女混合教室注册。
+
+> **ethical adj. 道德的，伦理的**
+
+
+In regards to those who may oppose gender segregation in schools, many advocates of the idea believe single-sex classes actually **negate** gender stereotypes, As mentioned earlier, in a mixed classroom, boys tend to avoid tasks related to the arts while girls show Jack of interest in science and technology. However, in single-sex environments, there is no existing bias that “this is for boys” or “that is for girls”. In fact, a 2005 study released by Cambridge University showed that in single-sex rooms, as compared to to traditional settings, girls are more interested in math and science, subjects generally preferred by boys in co-educational settings.
+
+> 关于那些可能反对学校性别隔离的人，许多倡导者认为单性别班级实际上否定了性别定型观念。如前所述，在混合教室中，男孩倾向于避免与艺术有关的任务，而女孩则对科学和技术表现出杰克的兴趣。然而，在单性别环境中，不存在 "这是男孩的 "或 "那是女孩的 "的偏见。事实上，剑桥大学2005年发布的一项研究表明，与传统环境相比，在单性别教室中，女孩对数学和科学更感兴趣，而在男女同校的环境中，男孩通常更喜欢这些科目。
+
+> **negate v. 否认，否定；使无效，取消**
+
+It is important to remember that coeducation is a modern concept, introduced into mainstream education less titan fifty years ago, despite being a change which has brought huge changes to the societies in which this method is observed. It was first introduced in Switzerland, and swept quickly around most western countries, and is certainly not without its benefits. Parents have said that a coeducational classroom has been excellent for their children’s confidence levels, has helped them to overcome issues such as shyness and helped students to **converse** about everyday topics with the opposite gender, surveys have also shown that a higher percentage of girls in the classroom lower classroom disruption, also creating a better relationship between the students and the teacher.
+
+> 重要的是要记住，男女同校是一个现代概念，在不到五十年前被引入主流教育，尽管这一变化给观察这一方法的社会带来了巨大变化。它首先在瑞士引入，并迅速席卷了大多数西方国家，当然也不是没有好处。家长们说，男女同校的课堂对他们孩子的自信水平有很大帮助，帮助他们克服了害羞等问题，并帮助学生与异性交流日常话题，调查还显示，课堂上女生比例越高，课堂混乱程度越低，也在学生和老师之间建立了更好的关系。
+
+> **converse v. 谈话，交谈 n. 相反的事物,谈话，交谈；逆命题,adj. 相反的**
+
+Which type of schooling is best comes down to what suits the individual child and which environment they best thrive in, therefore parents are recommended to seek advice and do their research before making that all important decision.
+
+> 哪种类型的学校教育是最好的，要看什么适合个别孩子，以及他们在哪种环境中最能茁壮成长，因此，建议家长在做出这一重要决定之前寻求建议并做研究。
+
 

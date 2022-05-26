@@ -486,3 +486,35 @@ Up until today, there is no convincing proof to suggest that the monster is real
 > **webcams n. 网路摄影机**
 
 
+
+## Production line
+
+A. The ‘production line’ system of creating and **assembling** goods was for many years been the standard mode of operation for many industries. Cars, electronic equipment, packaging – many diverse companies have employed the same methods, and most have hit two main problems. The first is that unscheduled maintenance required on **essential** machinery has often held up production all along the line, and the second is the significant impact on employee **morale**. This has given rise to the increasingly adopted method of Total Productive Maintenance (TPM) – a maintenance program which **governs** the maintenance of plants and equipment. The goal of the TPM program is to markedly increase production while, at the same time, increasing employee morale and job satisfaction.
+
+> 多年来，创造和组装货物的 "生产线 "系统一直是许多行业的标准运作模式。汽车、电子设备、包装--许多不同的公司都采用了同样的方法，而大多数都遇到了两个主要问题。第一个问题是，基本机械所需的不定期维护往往阻碍了整个生产线的生产，第二个问题是对员工士气的重大影响。这就催生了越来越多的全面生产性维护（TPM）方法--一种管理工厂和设备维护的维护计划。TPM计划的目标是在明显提高产量的同时，提高员工的士气和工作满意度。
+
+> **essential adj. 必不可少的，非常重要的；基本的**
+
+> **morale n. 士气，精神面貌**
+
+>  **govern v. 统治，管理；控制，影响**
+
+
+B. The concept of TPM was first developed in Japan in the late 1970s, only moving to the western world a decade later, initial success of the programme in countries such as Australia was limited, but in the late 1990s a ‘westernised’ version of TPM was launched. TPM brings **maintenance** into focus as a necessary and vitally important pan of the business. It is no longer regarded as a non-profit activity. Down time for maintenance is scheduled as a part of the manufacturing day and, in some cases, as an integral part of the manufacturing process. The goal is to keep emergency and unscheduled maintenance to a minimum.
+
+> TPM的概念最早是在20世纪70年代末在日本发展起来的，十年后才传到西方世界，最初在澳大利亚等国家的成功是有限的，但在20世纪90年代末，TPM的 "西方化 "版本被推出。TPM将维护工作作为企业的一个必要的、至关重要的环节来关注。它不再被认为是一种非盈利活动。维护的停机时间被安排为生产日的一部分，在某些情况下，是生产过程的一个组成部分。目标是将紧急和不定期的维修保持在最低限度。
+
+> **maintenance n. 维护，保养；保持，维持**
+
+C. TPM involves directing participating companies and industries to move away from traditional methods of production to more efficient mechanisms. This is evident in TPM’s operational focus on **lea** production rather than mass production. The lean approach favours flexibility within a team, rather than the specialisation of labour Introduced with mass production. It also involves a shift away from being driven by the financial department of the company to a more customer focused goal. Another goal of the TPM method is to introduce quality control not by being overseen by managers, but rather by engendering a sense if responsibility amongst all staff; a move from autocratic management to empowerment. This shift means that shop floor workers are being able to take a sense of pride in their work, and with that comes the desire to perform well ultimately leading to higher productivity for the company.
+
+> TPM涉及指导参与公司和行业从传统的生产方法转向更有效的机制。这在TPM的操作重点是精益生产而不是大规模生产中显而易见。精益方法有利于团队内部的灵活性，而不是大规模生产中引入的劳动专业化。它还涉及到从由公司的财务部门驱动转变为更注重客户的目标。TPM方法的另一个目标是引入质量控制，不是由管理者监督，而是在所有员工中培养责任感；从专制管理转向授权。这种转变意味着车间工人能够对他们的工作感到自豪，并由此产生了良好的表现的愿望，最终导致公司的生产力提高。
+
+D. In order to apply the concepts of TPM, a company will have to work through a number of stages. First, there must be universal agreement that the system has the potential to be successful within the company. Then a specific person or team needs to be appointed to coordinate the changes required to apply TPM methodologies, an aim that begins with training and education for all employees. Once the coordinator is convinced that the work force is sold on the TPM program and that they understand it and its implications, the first action teams are formed. These teams are usually made up of people who have a direct Impact on the problem being addressed. Operators, maintenance personnel, shift supervisors, schedulers, and upper management might all be included on a team. Each person becomes a stakeholder in the process and is encouraged to do his or her best to contribute to the success of the team effort. Usually, the TPM coordinator heads the teams until others become familiar with the process and natural team leaders emerge.
+
+E. The concept of TPM is built on what are referred to as the three pillars – work area management, risk management and equipment management. An illustration of these pillars is highlighted in the importance of recognising and eliminating defects within the machinery used in a company, This refers to issues such as the accumulation of dust and grime on equipment, gauges that are broken or too dirty to read clearly and missing or loose bolts, nuts and screws, Using a sample company, statistics collected from a three month period indicate a substantial reduction in machine maintenance costs, felling by $ 30,000 between 1996 and 1999. At the same time, the effectiveness of the equipment increased significantly, with machine uptime rising by almost 2096 over the same period.
+
+F. Many observers have identified similarities between TPM and an earlier industry concept – total quality management (TQM), and in many respects, TPM and TQM resemble each other. Both require total commitment to the program by upper level management, and both promote the empowerment of all employees to initiate corrective action, Additionally, both processes require a long range outlook, as it may take a year or more to implement and is an ongoing process, Changes in employee mind-set toward their job responsibilities must take place as well, Indeed, initial results for at least the first quarter may actually lead to reduced productivity while changes are put into effect.
+
+G. The difference between the two systems, however, becomes apparent in when looking at what each system considers to be a priority. TQM is essentially an output focused system, whereas TPM is singular in that it looks more at input – the equipment used and the causes of real or potential maintenance failures. Also, although both programme stress the need for complete involvement of all parties, TPM stresses the equal importance of all levels of employee, whereas TQM has a more traditional focus on management structure, The main target of both is also slightly different; whereas TQM alms to improve quality, TPM aims to reduce wastage and minimise losses.
+

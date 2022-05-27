@@ -136,5 +136,292 @@ for later use :供以后使用
 
 reusable：可重复使用的
 
+## 口语素材
+
+### 家庭英语
+
+ 起床吧
+
+ Good norning!
+
+ it's time to get up!
+ 
+ Rise and shine!
+ 
+ Wake up sleephead!(懒虫起床)
+ 
+ 早餐想吃什么？
+ 
+ what would you like to have for breakfast?
+ 
+ 别忘了带夹克！
+ 
+Don't forget your jacket
+
+- 书包 backpack 
+- 水杯 water bottle
+
+在学校过的开心哦！
+
+Have a great day at school!
+
+安全第一
+
+Safety first
+
+过马路先左右看看
+
+Look both ways.
+
+Look left, then right, then left again.
+
+请说话小声点
+
+Please keep your voice(s) down.
+
+Please use your inside voice.
+
+你做的真努力
+
+You worked really hard on that.
+
+Great job.
+
+不管怎么样我永远爱你
+
+I will always love you no matter what.
+
+
+### 问路和导航
+
+我迷路了
+
+I am lost.
+
+请问你能帮我吗？
+
+could you help me?
+
+can you help me ?
+
+请问到学校怎么走？
+
+Excuse me, How can  I go to the school?
+
+你知道学校在哪吗？
+
+Do you know where the school is?
+
+which way is it to the school?
+
+地铁
+
+Subway
+
+Underground
+
+Tube
+
+Metro
+
+最近的地铁站在哪里？
+
+Where is the nearest subway station?
+
+我在找/我想找雍和宫？
+
+I'm trying to find the Lama Temple.
+
+I'm looking for ...
+
+机场离这儿有多远？
+
+How far is the airport (from here)?
+
+你需要帮助？
+
+Do you need any help?
+
+Can I help you with anything?
+
+当然可以帮你的
+
+Sure, I'am happy to help.
+
+就在前面
+
+It's just straight ahead.
+
+-up ahead
+
+it's right down the street.
+
+往前走，再往右
+
+Go straight, the take a right.
+
+在下一个路口左转
+
+Turn left at the next intersection.
+
+Take the next left.
+
+斑马线 Crosswalk
+
+十字路口 intersection
+
+过街天桥  footbridge
+
+对不起，我不知道
+
+Sorry, I don't know
+
+I have no idea.
+
+我不是这儿的人
+
+I'm not from around here.
+
+我不会太认路
+
+I have a bad sense of direction.
+
+你可以用导航
+
+you can use GPS
+
+选择避开拥堵路线
+
+Pick the route that avoids traffic.
+
+快到了吗？
+
+Are we there yet?
+
+### 亲子英语
+
+吃饭啦！
+
+Time to eat!
+
+Dinnertime!
+
+Lunch is ready!
+
+饭前要洗手
+
+Wash your hands before you eat.
+
+我吃好了，请问可以离开餐桌吗？
+
+May I be excused?
+
+今天屏幕时间已经够了
+
+That's enough screen time for today.
+
+请收拾地上的玩具
+
+Please pick up your toys.
+
+请收拾你的房子
+
+Please clean your room.
+
+该睡觉了
+
+It's time for bed.
+
+睡前刷牙
+
+Brush your teeth before you go to bed.
+
+看一本书吧
+
+Let's read a book.
+
+已经过了你该睡觉的时间了！
+
+It's past your bedtime.
+
+晚安
+
+Goodnight!
+
+Sweet dreams!
+
+Sleep tight!
+
+需要爸爸妈妈就叫我们
+
+Call us if you need us.
+
+
+
+
+# 听力场景词
+
+## 食堂吃饭场景
+
+restaurant  : 食堂
+
+appetizer : 开胃小吃
+
+fruit juice :果汁
+
+onion soup :洋葱汤
+
+tomato soup : 番茄汤
+
+main course : 主菜
+
+chicken : 鸡肉
+
+beef  :牛肉
+
+roast : 烤肉
+
+dinner : 晚餐
+
+salad : 沙拉
+
+carrot : 胡萝卜
+
+tomato :西红柿
+
+potato :土豆
+
+corn :谷物，谷粒；玉米
+
+pea :豌豆（粒）；豆角
+
+lettuce : 生菜
+
+cucumber : 黄瓜
+
+dessert : 甜点
+
+chocolate cake: 巧克力蛋糕
+
+Mango pudding: 芒果布丁
+
+Drink :饮料
+
+coffee :咖啡
+
+cola :可乐
+
+sprite　:雪碧
+
+ice cream :冰激凌
+
+souvenir: 礼物
+
+
+## 老师谈话
+
+acknowledgment: 致谢
+
+tutor arrangements : 导师安排
 
 

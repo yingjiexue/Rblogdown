@@ -113,6 +113,7 @@ B: Q3 0794441233,and what's the registration fee?
 
 
 
+
 ## Reading 
 
 Of all the creatures on the earth, the Australian **platypus**, Omithorbynchusparadoxus, is perhaps one of the most mysterious and **reclusive**. Derived from the Latin platys meaning ‘flat and broad’ and pous meaning ‘foot’, the platypus has long been an **iconic** symbol of Australia. Upon being discovered in Australia in the 1700s, **sketches** of this unusual creature were made and sent back to England whereupon they were considered by experts to be a **hoax**. Indeed, the incredible collection of its body parts – broad, flat tail, rubbery snout, webbed feet and short dense fur – make it one of the world’s most unusual animals.
@@ -632,3 +633,240 @@ Which type of schooling is best comes down to what suits the individual child an
 > 哪种类型的学校教育是最好的，要看什么适合个别孩子，以及他们在哪种环境中最能茁壮成长，因此，建议家长在做出这一重要决定之前寻求建议并做研究。
 
 
+## MOUNT EVEREST AND HILLARY
+
+Mount Everest, also known as Sagarmartha (Goddess of the Sky), is 8,348 metres tall, the highest mountain on earth above sea level. Formed about 60 million years ago and lying between Tibet and Nepal, Mount Everest appeals to climbers of every level, from **novice** to experienced climber. Each mountaineer pays a considerable amount of money to an experienced guide to help them achieve a successful climb. Everest was given its official English name in 1865 by the Royal Geographic Society upon recommendation of Andrew Waugh, the British Surveyor General of India at the time.
+
+> 珠穆朗玛峰，也被称为Sagarmartha（天空女神），高8348米，是地球上海拔最高的山峰。珠穆朗玛峰形成于大约6000万年前，位于西藏和尼泊尔之间，吸引了从新手到有经验的登山者的各种水平。每个登山者都要向有经验的向导支付相当多的钱，以帮助他们实现成功的攀登。1865年，英国皇家地理学会根据当时的英国印度测量局局长安德鲁-沃的建议，给珠穆朗玛峰起了正式的英文名字。
+    
+> **novice n.初学者，新手**
+
+When Everest was officially announced as the world’s highest mountain in 1852, it won interest from people all over the world, and the idea of climbing all (lie way to the summit was viewed as the ultimate **feat**. Nobody was able to climb Everest until 1920 when Tibet first opened its borders to outsiders, and between 1920 and 1952, seven major expeditions failed to reach the **tip** of Mount Everest, In fact, the mountain has a history of **adversity** and failure. With advances in climbing equipment in the last ten years or so, and more experienced guides, the **fatality** rates have dropped from 37% in 1990 to 4% in 2004. Nonetheless, the **deadliest** year in Mount Everest’s history was 1996, when 19 people died near the **summit**.
+
+> 当珠穆朗玛峰在1852年被正式宣布为世界上最高的山峰时，它赢得了全世界人民的兴趣，而攀登所有（谎言）山顶的想法被看作是终极壮举。直到1920年，西藏首次向外人开放边界，没有人能够攀登珠穆朗玛峰，在1920年至1952年期间，七次主要的探险队都未能到达珠穆朗玛峰的顶端，事实上，这座山有一个逆境和失败的历史。在过去十年左右的时间里，随着攀登设备的进步，以及更有经验的向导，死亡率已经从1990年的37%下降到2004年的4%。尽管如此，珠穆朗玛峰历史上最致命的一年是1996年，当时有19人在山顶附近死亡。
+
+> **feat n.功绩，壮举；武艺，adj.合适的，灵巧的**
+
+> **tip v.（使）倾斜，（使）斜侧；给小费,n.指点建议；小费；尖端；**
+
+> **adversity n.逆境，厄运**
+
+> **fatality n.（灾难、事故中的）死亡；致命性；宿命**
+
+> **deadliest     adj.最致命的**
+
+> **summit n.（政府间的）首脑会议，峰会；山顶，顶峰**
+
+In 1924, Mount Everest claimed the lives of its first two climbers. George Mallory and Andrew Irvine were two British climbers, attempting to reach the summit. The men were last seen heading for the top of the mountain until clouds surrounded Everest and they disappeared. Mallory’s body was not seen again until 75 years on, in May of 1999, and Irvine’s body is yet to be found. There is still no evidence as to whether these two men made it to the top or not, although **disputes** **rages** on, Those that believe the **pair** were the first; to climb Everest point to two specific points, firstly, Mallory’s daughter has always said that Mallory carried a photograph of his wife on his person with the intention of leaving it on the summit when he reached it. This photo was not found on the body when it was discovered. Secondly, Mallory’s snow’ goggles were in his **pocket** when the body was found, indicating that he died at night. This implies that he and Irvine had made a push for the summit and were descending very late in the day. Given their known departure time and movements, had they not made the summit, it is unlikely that they would have still been out by **nightfall**.
+
+> 1924年，珠穆朗玛峰夺走了前两名登山者的生命。乔治-马洛里和安德鲁-欧文是两名英国登山者，试图登上山顶。人们最后一次看到他们向山顶进发，直到云层包围了珠穆朗玛峰，他们才消失不见。直到75年后的1999年5月，人们才再次看到马洛里的尸体，而欧文的尸体至今仍未找到。对于这两个人是否登顶，目前还没有证据，尽管争议不断，那些认为这对夫妇是第一个；登上珠穆朗玛峰的人指出了两个具体问题，首先，马洛里的女儿一直说，马洛里身上带着一张他妻子的照片，打算在登顶时把它留在山上。这张照片在被发现时并没有在尸体上找到。其次，马洛里的雪镜在尸体被发现时在他的口袋里，表明他是在夜间死亡的。这意味着他和欧文曾为登顶而努力，并在一天中很晚才下山。考虑到他们已知的出发时间和行动，如果他们没有登顶，他们不太可能在夜幕降临时还在外面。
+
+> **dispute n.争论，辩论，纠纷 v.对……提出质疑，否认；争论**
+
+> **pair n. 一对 v.使成对，配对；**
+
+>  **pocket n.衣袋，口袋 v.把……放入口袋；把……装进腰包**
+
+>  **nightfall n.黄昏；傍晚；日暮**  
+
+> **rages n.盛怒，狂怒；粗暴的举动 v.发脾气，大怒**
+
+
+
+The first time the actual peak of this monstrous mountain was reached was in 1953, in a combined effort by Sir Edmund Hillary and Tenzing Norgay. On the 29th of May that year, the duo **conquered** this **epic** mountain, standing at the highest point in the world for a brief 15 minutes. After a brief but fruitless search for evidence of the 1924 Mallory expedition, they **buried** a cross and some candy in the snow, taking a few photographs of the historic event. As Norgay had never operated a camera, there are no photographs of Hillary on top of the mountain, just **shots** of Norgay, and some additional photos looking down the mountain, ensuring evidence of their conquest and that the **ascent** was not faked.
+
+
+> 1953年，在埃德蒙-希拉里爵士和丹增-诺尔盖的共同努力下，人们首次登上了这座巨大的山峰。这一年的5月29日，两人征服了这座史诗般的山峰，在世界最高点站了短短的15分钟。在短暂而无果的寻找1924年马洛里探险队的证据之后，他们在雪地里埋下了一个十字架和一些糖果，为这一历史事件拍了几张照片。由于诺尔盖从未操作过相机，所以没有希拉里在山顶的照片，只有诺尔盖的镜头，以及另外一些向山下看的照片，确保了他们征服的证据和登顶不是伪造的。
+
+> **conquer v.占领，攻克，征服；击败，战胜**
+
+> **epic adj.史诗般的；漫长而艰难的；宏大的，壮丽的**
+
+> **bury v.埋，埋葬；埋藏，隐藏**
+
+> **shots  n.射击；射手**
+
+> **ascent n.垂直上升；上坡路；攀登**
+
+
+When the news reached London on June 2nd, Sir Edmund Hillary was **knighted** in the Order of the British Empire and Norgay (a subject of the King of Nepal) was granted the George Medai by the UK, Sir Hillary turned to **Antarctic** exploration and led the New Zealand section of the Trans-Antarctic expedition from 1955 to 1958. In 1958, he took part in a mechanised expedition to the South Pole. Hillary continued to organise further mountain- climbing expeditions but, as the years passed, he became more and more concerned with the welfare of the Nepalese people. In the 1960s, he returned to Nepal, to aid in the development of the society, building clinics, hospitals and schools. After conquering Everest, Sir Edmund Hillary devoted most of his life to helping the Sherpa people of Nepal through the Himalayan Trust.
+
+> 6月2日消息传到伦敦，埃德蒙-希拉里爵士被授予大英帝国勋章，诺尔盖（尼泊尔国王的臣民）被英国授予乔治-梅代勋章。希拉里爵士转向南极探险，从1955年到1958年领导跨南极探险队的新西兰段。1958年，他参加了一个前往南极的机械化探险队。希拉里继续组织更多的登山探险活动，但随着时间的推移，他越来越关心尼泊尔人民的福利问题。在20世纪60年代，他回到尼泊尔，帮助社会发展，建造诊所、医院和学校。征服珠穆朗玛峰后，埃德蒙-希拉里爵士将他的大部分时间用于通过喜马拉雅信托基金帮助尼泊尔的夏尔巴人。
+
+> **knight n.骑士，武士 v.封（某人）为爵士**
+
+> **Antarctic     n.南极洲**
+
+In January 2007, Sir Edmund Hillary went to Antarctica to **commemorate** the 50th anniversary of the founding of Scott Base. He **flew** to the station on 18 January 2007 with a delegation including the Prime Minister. On the 22nd of April 2007, while on a trip to Kathmandu, he was reported to have suffered a fall. There was no comment on the nature of his illness and lie did not immediately seek treatment. He was hospitalized after returning to New Zealand. Sadly, Sir Edmund Hillary died of a heart attack on the morning of January the 11th 2008. Hillary’s life was marked by wonderful achievements, his giving nature, grand discovery, and excitement. But he was a **humble** man who did not admit to being the first man to reach the summit of Everest until long after 1386, well after the death of his climbing **companion** Tenzing Norgay.
+
+> 2007年1月，埃德蒙-希拉里爵士前往南极洲，纪念斯科特基地成立50周年。他于2007年1月18日与一个包括总理在内的代表团飞往该基地。2007年4月22日，在前往加德满都的途中，据说他摔倒了。没有人对他的疾病性质发表评论，谎言也没有立即寻求治疗。回到新西兰后，他被送进了医院。不幸的是，埃德蒙-希拉里爵士于2008年1月11日上午因心脏病发作而去世。希拉里的一生以精彩的成就、他的奉献天性、宏大的发现和激动人心为标志。但他是一个谦虚的人，直到1386年后很久才承认自己是第一个登上珠穆朗玛峰的人，也就是在他的登山同伴丹增-诺尔盖去世后很久。
+
+> **commemorate v.纪念，用以纪念**
+
+> **flew v.飞，飞翔**
+
+>  **humble adj.谦虚的，谦卑的**
+
+>  **companion n.同伴，伴侣**
+
+The latest record for climbing Mount Everest was set on the 30th of May in 2005 by Nepalese Mona Mulepati and PemDorje Sherpa, who were the first couple to get married on top of Mount Everest.
+
+> 攀登珠穆朗玛峰的最新纪录是2005年5月30日由尼泊尔人莫娜-穆勒帕蒂和佩姆多吉-夏尔巴创造的，他们是第一对在珠穆朗玛峰顶结婚的夫妇。
+
+
+##  SLEEP
+
+A. Like many things about your body, scientists and medical professionals still have a lot to learn about the process of sleep. One earlier misconception that has now been revised is that the body completely slows down during sleep; it is now dear that the body’s major organs and regulatory systems continue to work actively – the lungs, heart and stomach for example. Another important part of the body also operates at night – the **glands** and **lymph** nodes, which strengthen the **immune** system. This is commonly why the body’s natural immunity is weakened with insufficient sleep.
+
+> 像许多关于身体的事情一样，科学家和医学专家对睡眠过程仍有许多东西需要了解。早期的一个误解现在已经被修正，那就是身体在睡眠期间完全变慢；现在人们认为身体的主要器官和调节系统继续积极工作--例如肺、心脏和胃。身体的另一个重要部分也在夜间运作--腺体和淋巴结，它们加强了免疫系统。这通常就是为什么睡眠不足会削弱身体的自然免疫力。
+
+> **gland n.腺*
+
+> **lymph n.[解剖] 淋巴，淋巴液**
+
+> **immune 免疫的；不受影响的**
+
+B. In some cases, certain systems actually become more active while we sleep. **Hormones** required for muscle development and growth, for instance, as well as the growth of new nerve cells. In the brain, activity of the pathways needed for learning and memory is increased.
+
+> 在某些情况下，某些系统实际上在我们睡觉时变得更加活跃。例如，肌肉发育和生长所需的激素，以及新神经细胞的生长。在大脑中，学习和记忆所需的途径的活动会增加。
+
+> **Hormones n.[生理]激素；荷尔蒙**
+
+C. Another common myth about sleep is that the body requires less sleep the older we get. Whilst It is true that babies need 16 hours compared to 9 hours and 8 hours respectively for teenagers and adults, this does not mean that older people need less sleep. However, what is true if that for a number of different factors, they often get less sleep or find their sleep less refreshing. This is because as people age, they spend less time in the deep, **restful** stages of sleep and are more easily awakened. Older people are also more likely to have **medical conditions** that affect their sleep, such as insomnia, sleep apnoea and heart problems.
+
+> 关于睡眠的另一个常见的神话是，我们的身体越老需要的睡眠越少。虽然婴儿确实需要16个小时，而青少年和成年人则分别需要9个小时和8个小时，但这并不意味着老年人需要更少的睡眠。然而，真实的情况是，由于一些不同的因素，他们经常得到较少的睡眠或发现他们的睡眠不那么令人振奋。这是因为随着人们年龄的增长，他们在睡眠的深层休息阶段花费的时间更少，而且更容易被惊醒。老年人也更有可能有影响其睡眠的疾病，如失眠、睡眠呼吸暂停和心脏问题。
+
+> **medical conditions 医疗状况；身体状况**
+> **restful adj.宁静的；安静的**
+
+D. Getting a good sleep is not just a matter of your head hitting the pillow at night and waking up in the morning. Your sleep goes in cycles throughout the night, moving back and forth between deep **restorative** sleep and more alert stages with dreaming. As the night progresses, you spend more time in a lighter dream sleep.
+
+> 获得良好的睡眠不仅仅是晚上头碰到枕头和早上醒来的问题。你的睡眠在整个晚上都是循环进行的，在深层恢复性睡眠和更警觉的做梦阶段之间来回移动。随着时间的推移，你会花更多的时间在较轻的梦境。
+
+> **restorative adj.有助于复元的，恢复健康的**
+
+E. Sleep patterns can be broken down into two separate and distinct stages – REM and NREM sleep, REM (Rapid Eye Movement) sleep is when you dream. You usually have 3 to 5 periods of REM sleep each night, lasting from 5 minutes to over an hour, during which time your body’s activities increase. Breathing becomes fast, **shallow** and **uneven**, with an increase in brain activity, heartbeat and blood pressure. Although your major muscles generally don’t move, fingers and **toes** may **twitch** and body temperature changes and you may **sweat** or **shiver**.
+
+> 睡眠模式可分为两个独立的不同阶段--快速眼动睡眠和非快速眼动睡眠，REM（快速眼动）睡眠是你做梦的时候。你每晚通常有3到5个快速眼动睡眠期，持续5分钟到一个多小时，在此期间你的身体活动增加。呼吸变得快速、浅薄和不均匀，大脑活动、心跳和血压也随之增加。虽然你的主要肌肉一般不动，但手指和脚趾可能会抽动，体温会发生变化，你可能会出汗或发抖。
+
+> **shallow adj.浅的，不深的 平缓的**
+
+> **uneven adj.不平滑的，不平坦的；不规则的，不均匀的 **
+
+> **toes n.（人的）脚趾**
+
+> **twitch v.（使）抽搐**
+
+> **sweat v.流汗，出汗**
+
+> **shiver v.（因寒冷或害怕而）颤抖，哆嗦，发抖**
+
+F. Research has concluded that this sleep is most important for your brain. It is when it is most active, processing emotions and memories and relieving stress. The areas used for learning and developing more skills are activated. In fact, the brain waves measured during REM sleep are similar to those measured when awake.
+
+> 研究得出结论，这种睡眠对你的大脑是最重要的。这是它最活跃的时候，处理情绪和记忆，缓解压力。用于学习和发展更多技能的区域被激活。事实上，快速眼动睡眠期间测量的脑电波与清醒时测量的脑电波相似。
+
+G. NREM (Noil-Rapid Eye Movement) sleep is dreamless sleep. NREM sleep consists of four stages of deeper and deeper sleep. As you move through the stages, you become more relaxed, less aware of what is happening around you and more difficult to wake. Your body’s activity will also decrease as you move through the NREM stages, acting in the opposite manner to REM sleep. Stage 1 of NREM sleep is when you are falling to sleep. This period generally lasts between 5 and 10 minutes, during which time you can be woken easily. During stage 2, you are in a light sleep- the in-between stage before your fall into a deep sleep. It lasts about 20 minutes. In stage 3, deep sleep begins, **paving** the way for stage 4, in which you are difficult to awake and unaware of anything around you. This is when sleep walking and talking can occur. This is the most important stage for your body. Your brain has slowed right down and is recovering. Blood flow is **redirected** from your brain to your large muscles allowing them to mend any damage from your day at work. People woken quickly from stage 4 sleep often feel a sense of **disorientation**, which is why it is helpful to use an alarm clock with an ascending ring.
+
+> NREM（Noil-Rapid Eye Movement）睡眠是无梦睡眠。NREM睡眠由四个阶段组成，越睡越深。当你经过这些阶段时，你会变得更加放松，对周围发生的事情意识更少，更难被唤醒。你的身体活动也会随着你在NREM阶段的移动而减少，与REM睡眠的方式相反。非快速眼动睡眠的第1阶段是你入睡的时候。这个时期一般持续5到10分钟，在此期间你很容易被叫醒。在第2阶段，你处于轻度睡眠--在你进入深度睡眠之前的中间阶段。它持续约20分钟。在第3阶段，深度睡眠开始，为第4阶段铺平道路，在这个阶段，你很难被唤醒，对周围的任何事物都没有意识。这时可能出现梦游和说话。这是对你的身体最重要的阶段。你的大脑已经直接放慢了速度，正在恢复中。血流从你的大脑重新流向你的大肌肉，使它们能够修补你一天工作中的任何损伤。从第四阶段睡眠中迅速醒来的人往往会感到迷失方向，这就是为什么使用带有上升环的闹钟是有帮助的。
+
+> **paving v.用石板（或砖）铺（路）；为……铺平道路，创造条件**
+
+> **redirect v.（以新的方式或目的）重新使用；改寄，改变投递方向**
+
+> **disorientation n.迷失方向；迷惑**
+
+H. About an hour and a half into your sleep cycle you will go from deep Stage 4 sleep back into light Stage 2 sleep, then into REM sleep, before the cycle begins again. About 75% of your sleep is NREM sleep. If you sleep for eight hours, about six of them will be NREM sleep. As the night progresses, you spend more time in dream sleep and lighter sleep.
+
+> 在你的睡眠周期中，大约一个半小时，你会从深层的第四阶段睡眠回到浅层的第二阶段睡眠，然后进入快速眼动睡眠，然后周期再次开始。你大约75%的睡眠是非快速眼动睡眠。如果你睡了八个小时，其中大约六个小时是非快速眼动睡眠。随着夜晚的进行，你在梦境和轻度睡眠中花费更多时间。
+
+I. When you constantly get less sleep (even 1 hour less) than you need each night, it is called sleep debt. You may pay for it in daytime **drowsiness**, trouble concentrating, moodiness, lower productivity and increased risk of falls and accidents. Although a daytime **nap** cannot replace a good night’s sleep, it can help make up for some of the harm done as a result of sleep debt. But avoid taking a nap after 3 pm as late naps may stop you getting to sleep at night. And avoid napping for longer than 30 minutes as longer naps will make it harder to wake up and get back into the **swing** of things.
+
+> 当你每晚的睡眠时间持续少于你所需要的时间（甚至少1小时）时，这被称为睡眠债务。你可能会为此付出代价，白天昏昏欲睡，注意力难以集中，情绪低落，工作效率降低，跌倒和意外的风险增加。虽然白天小睡不能取代良好的夜间睡眠，但它可以帮助弥补由于睡眠债务而造成的一些伤害。但是要避免在下午3点以后小睡，因为晚间小睡可能会阻止你在晚上入睡。并避免小睡超过30分钟，因为较长的小睡会使你更难醒来并重新进入工作状态。
+
+> **drowsiness     n.睡意；困倦；假寐**
+
+> **nap  n.（尤指在白天）小睡，打盹** 
+
+> **swing 摇摆，摆动**
+
+
+###  Constellation
+
+A. A **constellation** is a group of stars which when viewed collectively appear to have a physical **proximity**’ in the sky. Constellation boundaries and definitions as used today in Western culture, and as defined by the International Astronomical Union (IAU), were formalised in 1930 by Eugene Delporte. There are 88 official constellations as recognised by the IAU, those visible in the northern hemisphere being based upon those established by the ancient Greeks, The constellations of the southern hemisphere – since invisible to the Greeks due to geographical location – were not defined until later in the early modem era.
+
+> 星座是一组恒星，当它们被集体观看时，在天空中看起来有一个物理距离。今天西方文化中使用的星座界限和定义，以及国际天文学联盟（IAU）的定义，是在1930年由Eugene Delporte正式确定的。国际天文学联盟承认的正式星座有88个，北半球可见的星座是基于古希腊人建立的星座，南半球的星座--由于地理位置的原因，希腊人看不到--直到现代早期的后期才被定义。
+
+> **constellation n.星座；一群**
+
+> **proximity n.（时间、空间、关系的）靠近，亲近**
+
+B. Arguably, the twelve constellations through which the sun passes – as used to represent the signs of the **zodiac** to define birth characteristics – are the most culturally significant and well known of those established by the ancient Greeks. Cultural differences in Interpretation and definition of star constellations mainly relate to these zodiac interpretations, Chinese constellations, for example, which are different to those defined in the western world due to the independent development of ancient Chinese astronomy, includes 28 ‘Xiu’ or ‘mansions’ instead of the 12 western zodiac **counterparts**. In Hindu/Vedic astronomy, in which constellations are known as ‘rashis’, 12 rashi corresponding directly to the twelve western star signs are acknowledged; these are however, divided again into 27 ‘Nakshatras’ or ’**lunar** houses’. Many cultures have an **intricate** **mythology** behind the stars and their constellations. In Greek mythology, for example Pegasus, the winged horse, is said to have **sprung** from the **decapitated** head of Medusa, and later was used by the God King Zeus to carry thunder and lightning to Earth, before being put into a constellation.
+
+>可以说，太阳经过的十二个星座--如用来代表黄道十二宫定义出生特征的星座--是古希腊人建立的星座中最具文化意义和最知名的。星座的解释和定义的文化差异主要与这些十二星座的解释有关，例如中国的星座，由于中国古代天文学的独立发展，与西方世界的定义不同，包括28个'秀'或'宅'，而不是西方十二星座的对应。在印度/吠陀天文学中，星座被称为 "rashis"，12个rashi直接对应于西方的12个星象被承认；然而，这些又被分为27个 "Nakshatras "或 "月宫"。许多文化在星星和它们的星座背后有一个复杂的神话故事。在希腊神话中，例如飞马，有翅膀的马，据说是从美杜莎被砍下的头颅中蹦出来的，后来被神王宙斯用来把雷和闪电带到地球，然后被放入一个星座中。
+
+> **zodiac n.黄道带,黄道十二宫图*
+
+> **counterparts n.（职位或作用）相当的人；相对应的事物**
+
+> **lunar adj.月亮的，月球的；银的；阴历的**
+
+> **intricate dj.错综复杂的；难理解的，难学会的**
+
+> **mythology n.神话，神话故事；错误的信念**
+
+> **sprung adj.装有弹簧的**
+
+> **decapitate vt.斩首；解雇；使无效**
+
+C. In Western astronomy, all modern constellation names derive from Latin, some stars within the constellations are named using the **genitive** form of the Latin word by using the usual rules of Latin grammar. For example the zodiac sign for the Fish constellation Pisces relates to Piscium. In addition, all constellation names have a standard three-letter abbreviation as assigned by the IAU, under which, for example, Pisces becomes PSC.
+
+> 在西方天文学中，所有的现代星座名称都来源于拉丁文，星座中的一些星星是通过使用拉丁文语法的通常规则，用拉丁文的属格形式命名的。例如，鱼类星座双鱼座的星座与Piscium有关。此外，所有的星座名称都有一个标准的三个字母的缩写，由IAU指定，例如，双鱼座变成了PSC。
+
+> **genitive adj.属格的** 
+
+
+D. Some star patterns often wrongly considered constellations by laymen are actually ‘asterisms’ – a group of stars that appear to form patterns in the sky -and are not in fact one of the 88 officially divided areas truly defined as a constellation. A famous example of an **asterism** oft mistaken for a constellation is the Big Dipper’ (as it is termed in North America) or the ‘Plough’ as it is known in the UK. In astronomical terms, this famous star formation is in fact considered only part of the larger constellation known as Ursa Major.
+
+> 一些经常被外行人误认为是星座的星象实际上是 "星宿"--一群看起来在天空中形成图案的星星--实际上并不是官方划分的88个真正定义为星座的区域之一。一个著名的**星宿**经常被误认为是星座的例子是北斗七星（在北美被称为 "北斗七星"），或者在英国被称为 "犁头"。在天文学上，这个著名的星阵实际上只被认为是被称为大熊座的大星座的一部分。
+
+> **asterism     n.[天] 星群；三星标**
+
+E. In order to identify the position of stars relative to the Earth, there are a number of different **celestial** coordinate systems that **cart** provide a detailed reference point in space. There are many different systems, all of which are largely similar with the exception of a difference in the position of the fundamental plane – the division between northern and southern **hemispheres**. The five most common celestial systems are the Horizontal system, the Equatorial system, the Ecliptical system, the Galactic system and the Supergalactic system.
+
+> 为了确定恒星相对于地球的位置，有一些不同的天体坐标系，车提供了空间的详细参考点。有许多不同的系统，除了基本平面的位置不同--南北半球的划分外，所有的系统都大体相似。最常见的五个天体系统是水平系统、赤道系统、黄道系统、银河系统和超银河系统。
+
+>  **celestial adj.天空的，天上的；天国的，天堂的；精美绝伦的**
+
+> **cart n.（马拉的）大车，马车 v.用车装运；搬运**
+
+> **hemisphere n.（地球的）半球；脑半球；（球体的）一半**
+
+F. The launch of the Hubble space telescope in April 1990 changed the way that astronomers saw the universe, providing detailed digital images of constellations, planets and gas- clouds that had never been seen before. Compared to ground-based telescopes, Hubble is not particularly large. With a primary mirror **diameter** of 2.4 meters (94.5 inches). Hubble would be considered a medium-size telescope on the ground. However, the combination of its precision **optics**, state-of-the-art instrumentation, and unprecedented pointing stability and control, allows Hubble to more than make up for its lack of size, giving it a range of well over 12 billion light years.
+
+> 1990年4月发射的哈勃太空望远镜改变了天文学家观察宇宙的方式，提供了以前从未见过的星座、行星和气体云的详细数字图像。与地面望远镜相比，哈勃不是特别大。它的主镜直径为2.4米（94.5英寸）。哈勃在地面上会被认为是一个中等规模的望远镜。然而，其精密的光学系统、最先进的仪器设备以及前所未有的指向稳定性和控制力的结合，使哈勃能够弥补其尺寸的不足，使其射程远远超过120亿光年。
+
+> **diameter n.直径；放大倍数**
+
+> **optics n.[光] 光学**
+
+G. The telescope’s location above the Earth’s atmosphere also has a number of significant advantages over land based telescopes. The atmosphere bends light due to a phenomenon known as **diffraction** (this is what causes starlight to appear to twinkle and leads to the often blurred images seen through ground-based telescopes). The Hubble Space Telescope can also observe **infrared** light that would otherwise be blocked by the atmosphere as the **wavelength** (distance between successive wave crests) of **ultraviolet** light is shorter than that of visible light.
+
+> 与陆基望远镜相比，该望远镜位于地球大气层之上，也有许多明显的优势。大气层由于一种被称为衍射的现象而使光线发生弯曲（这就是导致星光出现闪烁的原因，并导致通过地面望远镜看到的图像经常模糊不清）。哈勃太空望远镜还可以观察到红外光，否则会被大气层阻挡，因为紫外线的波长（连续波峰之间的距离）比可见光的波长短。
+
+> **diffraction     n.（光，声等的）衍射，绕射**
+
+> **infrared  adj.红外线的；（设备，技术）使用红外的，涉及红外的**
+
+> **wavelength  n.[物] 波长**
+
+> **ultraviolet  adj.紫外的，紫外线的 **
+
+H. Despite early **setbacks** – one of the reflective mirrors had to be replaced after finding that it had been **ground** incorrectly and did not produce the images expected – the telescope has **reignited** interest in space amongst the general public – a requirement, given that taxpayer funding paid for the research, **deployment** and maintenance of the telescope.
+
+> 尽管早期遇到了一些挫折--在发现其中一个反射镜被错误地研磨，没有产生预期的图像后，不得不将其更换--该望远镜重新激发了公众对太空的兴趣--这是一个要求，因为纳税人的资金支付了该望远镜的研究、部署和维护。
+
+> **setbacks n.挫折，阻碍 **
+
+> **grind  v.磨碎，碾碎；使锋利**
+
+> **reignite v.（使）重新燃烧；再点燃 **

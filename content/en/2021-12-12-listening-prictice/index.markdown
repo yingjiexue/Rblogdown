@@ -455,11 +455,11 @@ Some scientists believe that the Loch Ness monster could a **mirage** or a psych
 
 > **extinct adj. 灭绝的；消亡的**
 
-> **microscopic adj. 极小的，微小的；显微镜的，**
+> **microscopic adj. 极小的，微小的；显微镜的**
 
 >  **algae n. 水藻，海藻**
 
->  **penetrate v. 刺入，穿透；打进; 洞察，了解；被理解 **
+>  **penetrate v. 刺入，穿透；打进; 洞察，了解；被理解**
 
 > **inconclusive adj. 不确定的，非决定性的**
 
@@ -576,7 +576,7 @@ It seems that across the western world, an increasing number parents are opting 
 
 > **undergo v. 经历，经受**
 
-> **resurgence n. 复兴，复苏,再次兴起 **
+> **resurgence n. 复兴，复苏,再次兴起**
 
 There are many potential advantages for children studying in single sex schools, Some children succeed in single sex schools because of the lack of social pressure – children are more able to learn and grow at their own pace without the pressure commonly found between the genders in co-educational schools, Research done in a single sex school concluded that students **thrived ** what often became a **dose-knit** environment with closer interaction with teachers. In surveys of over 1000 single sex schools, it was reported that not having the opposite sex around was ‘missed’, but the absence of boys or girls allowed students to have a more direct and serious approach to their education.
 
@@ -598,7 +598,7 @@ In many western countries, the traditional way of thinking around thirty years a
 
 >  **realm n. （知识、活动、思想的）领域，范围**
 
->  *flourishing adj. 繁荣，蓬勃发展 v. 繁荣，昌盛**
+>  **flourishing adj. 繁荣，蓬勃发展 v. 繁荣，昌盛**
 
 For students attending single-sex secondary schools, there was a slight tendency for males to outperform females. In contrast, for students attending coeducational schools, there was a clear tendency for females to outperform males. It was also noted that in single sex schools girls were more likely to be involved in leadership activities such as student **councils**, athletic associations, and other activities additional to the school timetable. Accordingly, girls have reported to have favoured single sex schools as co-educational environments tend to be dominated by males, a situation often **perpetuated** by teaching staff.
 
@@ -720,7 +720,7 @@ A. Like many things about your body, scientists and medical professionals still 
 
 > 像许多关于身体的事情一样，科学家和医学专家对睡眠过程仍有许多东西需要了解。早期的一个误解现在已经被修正，那就是身体在睡眠期间完全变慢；现在人们认为身体的主要器官和调节系统继续积极工作--例如肺、心脏和胃。身体的另一个重要部分也在夜间运作--腺体和淋巴结，它们加强了免疫系统。这通常就是为什么睡眠不足会削弱身体的自然免疫力。
 
-> **gland n.腺*
+> **gland n.腺**
 
 > **lymph n.[解剖] 淋巴，淋巴液**
 
@@ -804,7 +804,7 @@ B. Arguably, the twelve constellations through which the sun passes – as used 
 
 >可以说，太阳经过的十二个星座--如用来代表黄道十二宫定义出生特征的星座--是古希腊人建立的星座中最具文化意义和最知名的。星座的解释和定义的文化差异主要与这些十二星座的解释有关，例如中国的星座，由于中国古代天文学的独立发展，与西方世界的定义不同，包括28个'秀'或'宅'，而不是西方十二星座的对应。在印度/吠陀天文学中，星座被称为 "rashis"，12个rashi直接对应于西方的12个星象被承认；然而，这些又被分为27个 "Nakshatras "或 "月宫"。许多文化在星星和它们的星座背后有一个复杂的神话故事。在希腊神话中，例如飞马，有翅膀的马，据说是从美杜莎被砍下的头颅中蹦出来的，后来被神王宙斯用来把雷和闪电带到地球，然后被放入一个星座中。
 
-> **zodiac n.黄道带,黄道十二宫图*
+> **zodiac n.黄道带,黄道十二宫图**
 
 > **counterparts n.（职位或作用）相当的人；相对应的事物**
 
@@ -859,14 +859,14 @@ G. The telescope’s location above the Earth’s atmosphere also has a number o
 
 > **wavelength  n.[物] 波长**
 
-> **ultraviolet  adj.紫外的，紫外线的 **
+> **ultraviolet  adj.紫外的，紫外线的**
 
 H. Despite early **setbacks** – one of the reflective mirrors had to be replaced after finding that it had been **ground** incorrectly and did not produce the images expected – the telescope has **reignited** interest in space amongst the general public – a requirement, given that taxpayer funding paid for the research, **deployment** and maintenance of the telescope.
 
 > 尽管早期遇到了一些挫折--在发现其中一个反射镜被错误地研磨，没有产生预期的图像后，不得不将其更换--该望远镜重新激发了公众对太空的兴趣--这是一个要求，因为纳税人的资金支付了该望远镜的研究、部署和维护。
 
-> **setbacks n.挫折，阻碍 **
+> **setbacks n.挫折，阻碍**
 
 > **grind  v.磨碎，碾碎；使锋利**
 
-> **reignite v.（使）重新燃烧；再点燃 **
+> **reignite v.（使）重新燃烧；再点燃**

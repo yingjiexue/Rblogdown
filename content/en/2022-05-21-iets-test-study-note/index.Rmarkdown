@@ -399,6 +399,73 @@ remained at this level, remained stable
 saw only a small rise.
 
 
+### Bar charts
+
+> **Fist, make a very general comparison(summary/overview paragraph)**
+
+For example:
+
+# ![](images/1653725042(1).png)
+
+I would notice than this is easily the highest figure mobile phone sales in shop a, and looking at shop b, I'd probably just say that the figures are similar for all four items,we are not going to give the number of sales, we are just going to talk in general about those highest or similar figures
+
+> **Second, compare specific numbers(details paragraphs)**
+
+### Bar chart question
+
+
+# ![](images/1653725732(1).png)
+
+
+- **Introduction** - paraphrase the question
+
+The bar chart compares the number of mobile phones sold worldwide by the five most popular manufacturers in the years 2009,2011 and 2013.
+
+- **Overview** - 2 sentences, 2 main points
+
+it is clear that Nokia sold the most mobile phones between 2009 and 2011, but Samsung became the best selling brand in 2013. Samsung and Apple saw the biggest rises in sales over the 5-year period. 
+
+- **Details** - 2 paragraphs,compare the lines
+
+In 2009, Nokia sold close to 450 million mobile phones, which was almost double the number of handsets sold by the second most successful manufacture, Samsum. Over the following four years, however, Nokia's sales figures fell by approximately 200 million units, whereas Samsung saw sales rise by a similar amount. By 2013, Samsung had become the market leader with sales reaching 450 million units.
+
+The other three top selling mobile phone brands between 2009 and 2013 were LG,ZTE and Apple. In 2009,these companies sold around 125 million, 50 million and 25 million mobile handsets respectively, but Apple overtook the other two vendors in 2011. In 2013,purchases of Apple handsets reached 150 million units, while LG saw declining sales and the figures for ZTE rose only slightly.
+
+
+- 经典词汇
+
+sold worldwide :畅销全球
+
+sales figures, purchases :销售或购买
+
+most popular, best selling brand, top selling ：销售最好
+
+second most successful manufacturer : 第二成功的
+
+market leader：市场领导者
+
+mobiles phones， handsets ：手机
+
+brands, manufacturers, companies, vendors: 销售方
+
+saw the biggest rises, saw declining sales： 销售上升和下降
+
+close to ,almost, approximately, around : 大约
+
+double the number :两倍数量
+
+rise by a similar amount : 数量同样上升
+
+
+
+
+
+
+
+
+
+
+
 ## 口语素材
 
 ### 家庭英语

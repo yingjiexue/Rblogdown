@@ -6,10 +6,51 @@
     <description>Recent content in 文献阅读 on Yingjie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 31 Jan 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Jan 2017 00:00:00 +0000</lastBuildDate><atom:link href="/research/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>倾向得分匹配——双重差分模型的背景、原理和使用条件</title>
+      <link>/research/psm-did/</link>
+      <pubDate>Mon, 09 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/research/psm-did/</guid>
+      <description>探寻事件之间的因果关系是人类不断追求真理的前进动力，因果知识在人类生存和发展中发挥了非常重要的作用，但要识别事件之间的因果关系并不是一件容易</description>
+    </item>
     
-	<atom:link href="/research/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>投资者购买基金关注什么？</title>
+      <link>/research/what-does-investor-care-about/</link>
+      <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/research/what-does-investor-care-about/</guid>
+      <description>The Mismatch Between Mutual Fund Scale and Skill 摘要 我证明了在主动管理的股票型共同基金中，技能和基金规模存在在错配问题。许多共同基金投资者在投资基金时，对基金暴露的普通系统</description>
+    </item>
     
+    <item>
+      <title>错误定价与股票收益文献阅读笔记</title>
+      <link>/research/mispricing-and-stock-market-reading-notes/</link>
+      <pubDate>Thu, 16 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/research/mispricing-and-stock-market-reading-notes/</guid>
+      <description>Expected Return, Volume, and Mispricing 摘要 本文研究发现，在高估的股票中，成交量与预期收益正相关，而在低估的股票中，成交量与预期收益正相关，表明交易量有放大错误定价的作用</description>
+    </item>
+    
+    <item>
+      <title>机构投资者提高了价格效率吗？</title>
+      <link>/research/%E6%9C%BA%E6%9E%84%E6%8A%95%E8%B5%84%E8%80%85%E6%8F%90%E9%AB%98%E4%BA%86%E4%BB%B7%E6%A0%BC%E6%95%88%E7%8E%87%E5%90%97/</link>
+      <pubDate>Sat, 03 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/research/%E6%9C%BA%E6%9E%84%E6%8A%95%E8%B5%84%E8%80%85%E6%8F%90%E9%AB%98%E4%BA%86%E4%BB%B7%E6%A0%BC%E6%95%88%E7%8E%87%E5%90%97/</guid>
+      <description>信息在金融和经济资源配置中发挥了关键作用。Fama(1970)提出了有效市场假说，认为有效的市场中，信息可以被快速、准确、完整地纳入股票价格</description>
+    </item>
+    
+    <item>
+      <title>关于流动性与交易成本</title>
+      <link>/research/%E5%85%B3%E4%BA%8E%E6%B5%81%E5%8A%A8%E6%80%A7%E4%B8%8E%E4%BA%A4%E6%98%93%E6%88%90%E6%9C%AC/</link>
+      <pubDate>Fri, 19 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/research/%E5%85%B3%E4%BA%8E%E6%B5%81%E5%8A%A8%E6%80%A7%E4%B8%8E%E4%BA%A4%E6%98%93%E6%88%90%E6%9C%AC/</guid>
+      <description>流动性在金融中是一个非常重要的概念，是指资产的变现能力。通俗来说，假如我有一个苹果，但想吃梨，所以就需要找一个手中有梨但想吃苹果的人来交换，</description>
+    </item>
     
     <item>
       <title>ETF持股影响股票定价效率的理论模型推导</title>

@@ -6,10 +6,51 @@
     <description>Recent content in cn on Yingjie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 24 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 26 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="/categories/cn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>盘点R语言处理文本包stringr的特异功能</title>
+      <link>/2022/04/26/r-stringr/</link>
+      <pubDate>Tue, 26 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/2022/04/26/r-stringr/</guid>
+      <description>使用R处理文本数据离不开正则表达式和得心应手的函数，stringr包配合正则表达式可以解决几乎所有文本分析中遇到的问题。今天我们就来盘点一下</description>
+    </item>
     
-	<atom:link href="/categories/cn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>被动投资已成为一种趋势</title>
+      <link>/2022/03/11/positive-have-been-a-trend/</link>
+      <pubDate>Fri, 11 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/2022/03/11/positive-have-been-a-trend/</guid>
+      <description>近年来被动投资似乎已成为一种趋势，公墓基金主动管理逐步退出舞台，无论是A股市场还是每股市场，被动基金的数量和规模都在不断上升。 从主动基金与被</description>
+    </item>
     
+    <item>
+      <title>Blogdown参考文献引用问题</title>
+      <link>/2021/12/24/blogdown/</link>
+      <pubDate>Fri, 24 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/12/24/blogdown/</guid>
+      <description>个人表达能力太差，感觉说清楚一个问题太难了！在统计之都论坛跟大家互动的过程中，发现用 RStudio 可视化编辑器（Visual Markdown Editor）写文档太方便</description>
+    </item>
+    
+    <item>
+      <title>“有效市场假说”的理论与实践指导意义</title>
+      <link>/2021/11/04/the-hypothes-of-market-efficiency/</link>
+      <pubDate>Thu, 04 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/11/04/the-hypothes-of-market-efficiency/</guid>
+      <description>一、有效市场假说的前世今生 首先，我们来介绍有效市场假说，聊聊他的前世今生。有效市场假说的奠基人是Eugene F. Fama，2013年Fama因</description>
+    </item>
+    
+    <item>
+      <title>Blogdown无法显示公式的坑与及解决方案</title>
+      <link>/2021/10/28/blogdown-math-exprision-cant-work/</link>
+      <pubDate>Thu, 28 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/10/28/blogdown-math-exprision-cant-work/</guid>
+      <description>一段时间没有再发帖了，昨天准备更新帖子时，发现以前发的帖子中所有公式都无法正常显示，以为是自己在更新的过程中，将关于公式显示的相关配置文件修</description>
+    </item>
     
     <item>
       <title>R与Mongo数据库交互演示</title>
@@ -22,10 +63,10 @@
     
     <item>
       <title>blogdown package 更新中的一些新变化</title>
-      <link>/post/blogdown-package-%E6%9B%B4%E6%96%B0%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E5%8F%98%E5%8C%96/</link>
+      <link>/2021/04/23/blogdown-package-%E6%9B%B4%E6%96%B0%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E5%8F%98%E5%8C%96/</link>
       <pubDate>Fri, 23 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>/post/blogdown-package-%E6%9B%B4%E6%96%B0%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E5%8F%98%E5%8C%96/</guid>
+      <guid>/2021/04/23/blogdown-package-%E6%9B%B4%E6%96%B0%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E5%8F%98%E5%8C%96/</guid>
       <description>R语言作为一种免费开源语言，备受使用者的喜爱，源程序和package一直不断地优化并推出新版本，为了感受新款程序的魅力，我们不得不定期更新R</description>
     </item>
     

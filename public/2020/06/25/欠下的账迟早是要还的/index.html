@@ -1,5 +1,5 @@
 <script type="text/javascript"
-src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
@@ -31,13 +31,22 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
     
 
 
-<link href='//yingjie.org/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+<link href='//mathjax.rstudio.com/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
 
 
 
     <link rel="stylesheet" href="../../../../css/style.css" />
     <link rel="stylesheet" href="../../../../css/fonts.css" />
-    
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<script async type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
   </head>
 
   
@@ -62,6 +71,8 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
   <li><a href="../../../../cn/">日志</a></li>
   
   <li><a href="../../../../research/">研究</a></li>
+  
+  <li><a href="../../../../int_about/">网站</a></li>
   
   <li><a href="../../../../cn_about/">关于</a></li>
   
@@ -101,7 +112,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
 <p>难归难，这事还得继续干呀，目前也只能忍受当前这种主题的诸多不便了。修改主题涉及HTML、Pandoc、markdown等相关知识，欠的帐太多，必须干掉这些拦路虎，才能有所进展。罗马不是一天建成的，索性就从HTML的基础知识学习吧！</p>
 <p>HTML语言又称超文本标记语言，是一种用于创建网页的标准标记语言,常与CSS、JavaScript一起被众多网站用于设计网页、网页应用程序以及移动应用程序的用户界面。网页浏览器可以读取HTML文件，并将其渲染成可视化网页。HTML文件的扩展名为.html或.htm,描述了一个网站的结构语义随着线索的呈现，使之成为一种标记语言而非编程语言。HTML标记包含标签（及其属性）、基于字符的数据类型、字符引用和实体引用等几个关键部分。HTML标签是最常见的，通常成对出现，比如与。这些成对出现的标签中，第一个标签是开始标签，第二个标签是结束标签。两个标签之间为元素的内容，有些标签没有内容，为空元素，如。HTML另一个重要组成部分为文档类型声明，这会触发标准模式渲染。首先给一个例子，熟悉一下HTMl的文档结构。</p>
 <p>以下是一个经典的Hello World程序的例子：</p>
-<pre><code>&lt;!DOCTYPE html&gt;
+<pre tabindex="0"><code>&lt;!DOCTYPE html&gt;
   &lt;html&gt;
   &lt;head&gt;
   &lt;title&gt;This is a title&lt;/title&gt;
@@ -119,7 +130,7 @@ HTML文档由嵌套的HTML元素构成。它们用HTML标签表示，包含于�
 <p>开始标签也可包含标签属性。这些属性有诸如标识文档区块、将样式信息绑定到文档演示和为一些如&lt;img&gt;等的标签嵌入图像、引用图像来源等作用。</p>
 <p>一些元素如换行符&lt;br&gt;，不允许嵌入任何内容，无论是文字或其他标签。这些元素只需一个单一的空标签（类似于一个开始标签），无需结束标签。</p>
 <p>许多标签是可选的，尤其是那些很常用的段落元素&lt;p&gt;的闭合端标签。HTML浏览器或其他介质可以从上下文识别出元素的闭合端以及由HTML标准所定义的结构规则。这些规则非常复杂，不是大多数HTML编码人员可以完全理解的。</p>
-<p>因此，一个HTML元素的一般形式为：&lt;tag attribute1=&quot;value1&quot;attribute2=&quot;value2&rdquo;&gt;'&lsquo;content&rsquo;'&lt;/tag&gt;。一些HTML元素被定义为空元素，其形式为&lt;tag attribute1=&quot;value1&quot;attribute2=&quot;value2&rdquo;&gt;。空元素不能封装任何内容。例如&lt;br&gt;标签或内联标签&lt;img&gt;。一个HTML元素的名称即为标签使用的名称。注意，结束标签的名称前面有一个斜杠“/”，空元素不需要也不允许结束标签。如果元素属性未标明，则使用其默认值。</p>
+<p>因此，一个HTML元素的一般形式为：&lt;tag attribute1=&ldquo;value1&quot;attribute2=&ldquo;value2&rdquo;&gt;&lsquo;&lsquo;content&rsquo;'&lt;/tag&gt;。一些HTML元素被定义为空元素，其形式为&lt;tag attribute1=&ldquo;value1&quot;attribute2=&ldquo;value2&rdquo;&gt;。空元素不能封装任何内容。例如&lt;br&gt;标签或内联标签&lt;img&gt;。一个HTML元素的名称即为标签使用的名称。注意，结束标签的名称前面有一个斜杠“/”，空元素不需要也不允许结束标签。如果元素属性未标明，则使用其默认值。</p>
 <p>2.属性</p>
 <p>大多数元素的属性以“名称-值”的形式成对出现，由“=”分离并写在开始标签元素名之后。值一般由单引号或双引号包围，有些值的内容包含特定字符，在HTML中可以去掉引号（XHTML不行）[58][59]。不加引号的属性值被认为是不安全的[60]。有些属性无需成对出现，仅存在于开始标签中即可影响元素[8]，如img 元素的ismap 属性[61]。</p>
 <p>许多元素存在一些共通的属性：</p>
@@ -130,7 +141,7 @@ HTML文档由嵌套的HTML元素构成。它们用HTML标签表示，包含于�
 </blockquote>
 <blockquote>
 <ul>
-<li>class属性提供一种将类似元素分类的方式。常被用于语义化或格式化。例如，一个HTML文档可指定类&lt;class=&quot;标记&rdquo;&gt;来表明所有具有这一类值的元素都从属于文档的主文本。格式化后，这样的元素可能会聚集在一起，并作为页面脚注而不会出现在HTML代码中。类属性也被用于微格式的语义化。类值也可进行多声明。如&lt;class=&quot;标记 重要&rdquo;&gt;将元素同时放入標記与重要两类中。</li>
+<li>class属性提供一种将类似元素分类的方式。常被用于语义化或格式化。例如，一个HTML文档可指定类&lt;class=&ldquo;标记&rdquo;&gt;来表明所有具有这一类值的元素都从属于文档的主文本。格式化后，这样的元素可能会聚集在一起，并作为页面脚注而不会出现在HTML代码中。类属性也被用于微格式的语义化。类值也可进行多声明。如&lt;class=&ldquo;标记 重要&rdquo;&gt;将元素同时放入標記与重要两类中。</li>
 </ul>
 </blockquote>
 <blockquote>
@@ -161,7 +172,7 @@ HTML文档由嵌套的HTML元素构成。它们用HTML标签表示，包含于�
 <p>HTML文档需要以文档类型声明（英语非正式说法“doctype”）开头。在浏览器中，文档类型声明有助于确定渲染模式——特别是是否使用怪异模式。文档类型声明的初衷是通过基于文档类型定义（DTD）的SGML工具来解析并验证HTML文档</p>
 <h1 id="示例总结">示例总结</h1>
 <p>以下面html文档内容来说明标签的具体含义和实际应用中的注意事项。</p>
-<pre><code>&lt;!DOCTYPE html&gt;
+<pre tabindex="0"><code>&lt;!DOCTYPE html&gt;
   &lt;html&gt;
   
   &lt;head&gt;
@@ -214,17 +225,20 @@ HTML文档由嵌套的HTML元素构成。它们用HTML标签表示，包含于�
 
 
   <footer>
+  <script src="//yihui.org/js/math-code.js"></script>
+<script async
+src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
   
-  
 
 
 
-<script src="//yingjie.org/highlight.js/9.11.0/highlight.min.js"></script>
+<script src="//mathjax.rstudio.com/highlight.js/9.12.0/highlight.min.js"></script>
 
 
 
-<script src="//yingjie.org/highlight.js/9.11.0/languages/r.min.js"></script>
-<script src="//yingjie.org/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//mathjax.rstudio.com/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//mathjax.rstudio.com/highlight.js/9.12.0/languages/yaml.min.js"></script>
 <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
 
 

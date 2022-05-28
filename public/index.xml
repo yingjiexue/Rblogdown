@@ -6,17 +6,130 @@
     <description>Recent content on Yingjie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 05 May 2016 21:48:51 -0700</lastBuildDate>
+    <lastBuildDate>Thu, 05 May 2016 21:48:51 -0700</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IETS Test Study Note</title>
+      <link>/2022/05/21/iets-test-study-note/</link>
+      <pubDate>Sat, 21 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/2022/05/21/iets-test-study-note/</guid>
+      <description>雅思口语万能模板 Part one Question: Do you like watching films? Tips : 替换like 第一句模板： Yeah! definitely, I do enjoy watching films. I&amp;rsquo;m a massive fan of &amp;hellip;&amp;hellip; I&amp;rsquo;m obsessed with &amp;hellip;&amp;hellip; 第二句表达： Because I think it&amp;rsquo;s the best way for me to chill out(放松</description>
+    </item>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>倾向得分匹配——双重差分模型的背景、原理和使用条件</title>
+      <link>/research/psm-did/</link>
+      <pubDate>Mon, 09 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/research/psm-did/</guid>
+      <description>探寻事件之间的因果关系是人类不断追求真理的前进动力，因果知识在人类生存和发展中发挥了非常重要的作用，但要识别事件之间的因果关系并不是一件容易</description>
+    </item>
     
+    <item>
+      <title>SSRN 论文按研究主题分类和订阅</title>
+      <link>/2022/05/03/ssrn/</link>
+      <pubDate>Tue, 03 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/2022/05/03/ssrn/</guid>
+      <description>指数投资 描述： 该领域包括全球股票市场、全球、区域和行业指数、基准和相对表现的内容。 查看论文：点这儿 订阅：点这儿 投资策略 描述： 该领域包括全球投</description>
+    </item>
+    
+    <item>
+      <title>盘点R语言处理文本包stringr的特异功能</title>
+      <link>/2022/04/26/r-stringr/</link>
+      <pubDate>Tue, 26 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/2022/04/26/r-stringr/</guid>
+      <description>使用R处理文本数据离不开正则表达式和得心应手的函数，stringr包配合正则表达式可以解决几乎所有文本分析中遇到的问题。今天我们就来盘点一下</description>
+    </item>
+    
+    <item>
+      <title>投资者购买基金关注什么？</title>
+      <link>/research/what-does-investor-care-about/</link>
+      <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/research/what-does-investor-care-about/</guid>
+      <description>The Mismatch Between Mutual Fund Scale and Skill 摘要 我证明了在主动管理的股票型共同基金中，技能和基金规模存在在错配问题。许多共同基金投资者在投资基金时，对基金暴露的普通系统</description>
+    </item>
+    
+    <item>
+      <title>金融高质量发展报告材料</title>
+      <link>/2022/04/13/financial-high-quantity/</link>
+      <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/2022/04/13/financial-high-quantity/</guid>
+      <description>金融风险带来新挑战 需运用金融科技手段助力高质量发展 基金业高质量发展面对三大挑战 推动金融业高质量发展 着力推动金融业高质量发展 大连市金融业为经济</description>
+    </item>
+    
+    <item>
+      <title>被动投资已成为一种趋势</title>
+      <link>/2022/03/11/positive-have-been-a-trend/</link>
+      <pubDate>Fri, 11 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/2022/03/11/positive-have-been-a-trend/</guid>
+      <description>近年来被动投资似乎已成为一种趋势，公墓基金主动管理逐步退出舞台，无论是A股市场还是每股市场，被动基金的数量和规模都在不断上升。 从主动基金与被</description>
+    </item>
+    
+    <item>
+      <title>Blogdown参考文献引用问题</title>
+      <link>/2021/12/24/blogdown/</link>
+      <pubDate>Fri, 24 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/12/24/blogdown/</guid>
+      <description>个人表达能力太差，感觉说清楚一个问题太难了！在统计之都论坛跟大家互动的过程中，发现用 RStudio 可视化编辑器（Visual Markdown Editor）写文档太方便</description>
+    </item>
+    
+    <item>
+      <title>错误定价与股票收益文献阅读笔记</title>
+      <link>/research/mispricing-and-stock-market-reading-notes/</link>
+      <pubDate>Thu, 16 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/research/mispricing-and-stock-market-reading-notes/</guid>
+      <description>Expected Return, Volume, and Mispricing 摘要 本文研究发现，在高估的股票中，成交量与预期收益正相关，而在低估的股票中，成交量与预期收益正相关，表明交易量有放大错误定价的作用</description>
+    </item>
+    
+    <item>
+      <title>Listening Practice</title>
+      <link>/2021/12/12/listening-prictice/</link>
+      <pubDate>Sun, 12 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/12/12/listening-prictice/</guid>
+      <description>Prictice One Hey guys. I am Lucy from SISU. Today I&amp;rsquo;d like to talk about American TV series. when I was in college, once it was time to grab a meal.I would joyfully rush to the cafeteria, sit in corner and start watching an episode. Watching TV series is an incredible way to learn English, You get to know how native speaker and what they talk about. In this video</description>
+    </item>
+    
+    <item>
+      <title>我姐</title>
+      <link>/2021/11/15/my-sisiter/</link>
+      <pubDate>Mon, 15 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/11/15/my-sisiter/</guid>
+      <description>子时已过，今晚心情格外沉重，所为何事？源于远嫁姐姐捉襟见肘，不知未雨绸缪，为其忧，为其愁，有时怒其不争，但更多是怜悯和心疼。众多琐事，又不该</description>
+    </item>
+    
+    <item>
+      <title>“有效市场假说”的理论与实践指导意义</title>
+      <link>/2021/11/04/the-hypothes-of-market-efficiency/</link>
+      <pubDate>Thu, 04 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/11/04/the-hypothes-of-market-efficiency/</guid>
+      <description>一、有效市场假说的前世今生 首先，我们来介绍有效市场假说，聊聊他的前世今生。有效市场假说的奠基人是Eugene F. Fama，2013年Fama因</description>
+    </item>
+    
+    <item>
+      <title>Blogdown无法显示公式的坑与及解决方案</title>
+      <link>/2021/10/28/blogdown-math-exprision-cant-work/</link>
+      <pubDate>Thu, 28 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/10/28/blogdown-math-exprision-cant-work/</guid>
+      <description>一段时间没有再发帖了，昨天准备更新帖子时，发现以前发的帖子中所有公式都无法正常显示，以为是自己在更新的过程中，将关于公式显示的相关配置文件修</description>
+    </item>
     
     <item>
       <title>解析中国A股市场的定价异象</title>
-      <link>/post/%E8%A7%A3%E6%9E%90%E4%B8%AD%E5%9B%BDa%E8%82%A1%E5%B8%82%E5%9C%BA%E7%9A%84%E5%AE%9A%E4%BB%B7%E5%BC%82%E8%B1%A1/</link>
+      <link>/2021/04/26/%E8%A7%A3%E6%9E%90%E4%B8%AD%E5%9B%BDa%E8%82%A1%E5%B8%82%E5%9C%BA%E7%9A%84%E5%AE%9A%E4%BB%B7%E5%BC%82%E8%B1%A1/</link>
       <pubDate>Mon, 26 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>/post/%E8%A7%A3%E6%9E%90%E4%B8%AD%E5%9B%BDa%E8%82%A1%E5%B8%82%E5%9C%BA%E7%9A%84%E5%AE%9A%E4%BB%B7%E5%BC%82%E8%B1%A1/</guid>
+      <guid>/2021/04/26/%E8%A7%A3%E6%9E%90%E4%B8%AD%E5%9B%BDa%E8%82%A1%E5%B8%82%E5%9C%BA%E7%9A%84%E5%AE%9A%E4%BB%B7%E5%BC%82%E8%B1%A1/</guid>
       <description>自Sharp and Lintner(1965)提出资本资产定价模型以来，学者们发现了许多长期存在投资异象策略，即通过这些策略可以获得超过资本资产定</description>
     </item>
     
@@ -31,10 +144,10 @@
     
     <item>
       <title>blogdown package 更新中的一些新变化</title>
-      <link>/post/blogdown-package-%E6%9B%B4%E6%96%B0%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E5%8F%98%E5%8C%96/</link>
+      <link>/2021/04/23/blogdown-package-%E6%9B%B4%E6%96%B0%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E5%8F%98%E5%8C%96/</link>
       <pubDate>Fri, 23 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>/post/blogdown-package-%E6%9B%B4%E6%96%B0%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E5%8F%98%E5%8C%96/</guid>
+      <guid>/2021/04/23/blogdown-package-%E6%9B%B4%E6%96%B0%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E5%8F%98%E5%8C%96/</guid>
       <description>R语言作为一种免费开源语言，备受使用者的喜爱，源程序和package一直不断地优化并推出新版本，为了感受新款程序的魅力，我们不得不定期更新R</description>
     </item>
     
@@ -59,19 +172,19 @@ What is Short Interest?Short interest refers to the number of shares sold short
     
     <item>
       <title>机构投资者提高了价格效率吗？</title>
-      <link>/post/%E6%9C%BA%E6%9E%84%E6%8A%95%E8%B5%84%E8%80%85%E6%8F%90%E9%AB%98%E4%BA%86%E4%BB%B7%E6%A0%BC%E6%95%88%E7%8E%87%E5%90%97/</link>
+      <link>/research/%E6%9C%BA%E6%9E%84%E6%8A%95%E8%B5%84%E8%80%85%E6%8F%90%E9%AB%98%E4%BA%86%E4%BB%B7%E6%A0%BC%E6%95%88%E7%8E%87%E5%90%97/</link>
       <pubDate>Sat, 03 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>/post/%E6%9C%BA%E6%9E%84%E6%8A%95%E8%B5%84%E8%80%85%E6%8F%90%E9%AB%98%E4%BA%86%E4%BB%B7%E6%A0%BC%E6%95%88%E7%8E%87%E5%90%97/</guid>
+      <guid>/research/%E6%9C%BA%E6%9E%84%E6%8A%95%E8%B5%84%E8%80%85%E6%8F%90%E9%AB%98%E4%BA%86%E4%BB%B7%E6%A0%BC%E6%95%88%E7%8E%87%E5%90%97/</guid>
       <description>信息在金融和经济资源配置中发挥了关键作用。Fama(1970)提出了有效市场假说，认为有效的市场中，信息可以被快速、准确、完整地纳入股票价格</description>
     </item>
     
     <item>
       <title>关于流动性与交易成本</title>
-      <link>/post/%E5%85%B3%E4%BA%8E%E6%B5%81%E5%8A%A8%E6%80%A7%E4%B8%8E%E4%BA%A4%E6%98%93%E6%88%90%E6%9C%AC/</link>
+      <link>/research/%E5%85%B3%E4%BA%8E%E6%B5%81%E5%8A%A8%E6%80%A7%E4%B8%8E%E4%BA%A4%E6%98%93%E6%88%90%E6%9C%AC/</link>
       <pubDate>Fri, 19 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>/post/%E5%85%B3%E4%BA%8E%E6%B5%81%E5%8A%A8%E6%80%A7%E4%B8%8E%E4%BA%A4%E6%98%93%E6%88%90%E6%9C%AC/</guid>
+      <guid>/research/%E5%85%B3%E4%BA%8E%E6%B5%81%E5%8A%A8%E6%80%A7%E4%B8%8E%E4%BA%A4%E6%98%93%E6%88%90%E6%9C%AC/</guid>
       <description>流动性在金融中是一个非常重要的概念，是指资产的变现能力。通俗来说，假如我有一个苹果，但想吃梨，所以就需要找一个手中有梨但想吃苹果的人来交换，</description>
     </item>
     
@@ -253,6 +366,15 @@ What is Short Interest?Short interest refers to the number of shares sold short
       
       <guid>/cn_about/</guid>
       <description>祖籍甘肃平凉泾州小县，个子不高、长的不帅，普通男青年一枚，本硕入坑经济统计市场调查与商务统计专业，进城下乡发问卷，走村入户搞调查，跑模型，写</description>
+    </item>
+    
+    <item>
+      <title>网站</title>
+      <link>/int_about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/int_about/</guid>
+      <description>个人主页 谢益辉:RStudio 软件工程师 赵鹏：西交利物浦大学，R bookdownplus教程、现在统计图形的作者 顾凯：生物统计分析师，擅长R</description>
     </item>
     
   </channel>

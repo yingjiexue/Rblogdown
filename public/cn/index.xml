@@ -6,10 +6,87 @@
     <description>Recent content in 中文日志 on Yingjie</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 31 Jan 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Jan 2017 00:00:00 +0000</lastBuildDate><atom:link href="/cn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SSRN 论文按研究主题分类和订阅</title>
+      <link>/2022/05/03/ssrn/</link>
+      <pubDate>Tue, 03 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/2022/05/03/ssrn/</guid>
+      <description>指数投资 描述： 该领域包括全球股票市场、全球、区域和行业指数、基准和相对表现的内容。 查看论文：点这儿 订阅：点这儿 投资策略 描述： 该领域包括全球投</description>
+    </item>
     
-	<atom:link href="/cn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>盘点R语言处理文本包stringr的特异功能</title>
+      <link>/2022/04/26/r-stringr/</link>
+      <pubDate>Tue, 26 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/2022/04/26/r-stringr/</guid>
+      <description>使用R处理文本数据离不开正则表达式和得心应手的函数，stringr包配合正则表达式可以解决几乎所有文本分析中遇到的问题。今天我们就来盘点一下</description>
+    </item>
     
+    <item>
+      <title>金融高质量发展报告材料</title>
+      <link>/2022/04/13/financial-high-quantity/</link>
+      <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/2022/04/13/financial-high-quantity/</guid>
+      <description>金融风险带来新挑战 需运用金融科技手段助力高质量发展 基金业高质量发展面对三大挑战 推动金融业高质量发展 着力推动金融业高质量发展 大连市金融业为经济</description>
+    </item>
+    
+    <item>
+      <title>被动投资已成为一种趋势</title>
+      <link>/2022/03/11/positive-have-been-a-trend/</link>
+      <pubDate>Fri, 11 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/2022/03/11/positive-have-been-a-trend/</guid>
+      <description>近年来被动投资似乎已成为一种趋势，公墓基金主动管理逐步退出舞台，无论是A股市场还是每股市场，被动基金的数量和规模都在不断上升。 从主动基金与被</description>
+    </item>
+    
+    <item>
+      <title>Blogdown参考文献引用问题</title>
+      <link>/2021/12/24/blogdown/</link>
+      <pubDate>Fri, 24 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/12/24/blogdown/</guid>
+      <description>个人表达能力太差，感觉说清楚一个问题太难了！在统计之都论坛跟大家互动的过程中，发现用 RStudio 可视化编辑器（Visual Markdown Editor）写文档太方便</description>
+    </item>
+    
+    <item>
+      <title>我姐</title>
+      <link>/2021/11/15/my-sisiter/</link>
+      <pubDate>Mon, 15 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/11/15/my-sisiter/</guid>
+      <description>子时已过，今晚心情格外沉重，所为何事？源于远嫁姐姐捉襟见肘，不知未雨绸缪，为其忧，为其愁，有时怒其不争，但更多是怜悯和心疼。众多琐事，又不该</description>
+    </item>
+    
+    <item>
+      <title>“有效市场假说”的理论与实践指导意义</title>
+      <link>/2021/11/04/the-hypothes-of-market-efficiency/</link>
+      <pubDate>Thu, 04 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/11/04/the-hypothes-of-market-efficiency/</guid>
+      <description>一、有效市场假说的前世今生 首先，我们来介绍有效市场假说，聊聊他的前世今生。有效市场假说的奠基人是Eugene F. Fama，2013年Fama因</description>
+    </item>
+    
+    <item>
+      <title>Blogdown无法显示公式的坑与及解决方案</title>
+      <link>/2021/10/28/blogdown-math-exprision-cant-work/</link>
+      <pubDate>Thu, 28 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/10/28/blogdown-math-exprision-cant-work/</guid>
+      <description>一段时间没有再发帖了，昨天准备更新帖子时，发现以前发的帖子中所有公式都无法正常显示，以为是自己在更新的过程中，将关于公式显示的相关配置文件修</description>
+    </item>
+    
+    <item>
+      <title>解析中国A股市场的定价异象</title>
+      <link>/2021/04/26/%E8%A7%A3%E6%9E%90%E4%B8%AD%E5%9B%BDa%E8%82%A1%E5%B8%82%E5%9C%BA%E7%9A%84%E5%AE%9A%E4%BB%B7%E5%BC%82%E8%B1%A1/</link>
+      <pubDate>Mon, 26 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/04/26/%E8%A7%A3%E6%9E%90%E4%B8%AD%E5%9B%BDa%E8%82%A1%E5%B8%82%E5%9C%BA%E7%9A%84%E5%AE%9A%E4%BB%B7%E5%BC%82%E8%B1%A1/</guid>
+      <description>自Sharp and Lintner(1965)提出资本资产定价模型以来，学者们发现了许多长期存在投资异象策略，即通过这些策略可以获得超过资本资产定</description>
+    </item>
     
     <item>
       <title>R与Mongo数据库交互演示</title>
@@ -18,6 +95,15 @@
       
       <guid>/2021/04/24/r%E4%B8%8Emongo%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%A4%E4%BA%92%E6%BC%94%E7%A4%BA/</guid>
       <description>MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。同时，他也是一个介于关系数据库和非关系数据</description>
+    </item>
+    
+    <item>
+      <title>blogdown package 更新中的一些新变化</title>
+      <link>/2021/04/23/blogdown-package-%E6%9B%B4%E6%96%B0%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E5%8F%98%E5%8C%96/</link>
+      <pubDate>Fri, 23 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/04/23/blogdown-package-%E6%9B%B4%E6%96%B0%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E5%8F%98%E5%8C%96/</guid>
+      <description>R语言作为一种免费开源语言，备受使用者的喜爱，源程序和package一直不断地优化并推出新版本，为了感受新款程序的魅力，我们不得不定期更新R</description>
     </item>
     
     <item>

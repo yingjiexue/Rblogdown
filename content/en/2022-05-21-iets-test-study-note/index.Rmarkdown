@@ -279,10 +279,124 @@ What we must do is make sure that the positive ones are encouraged and the negat
 It is true that to do ... brings about both positive and negative results. But we can try our best to reduce the negative influence to the least extent(最小程度). Besides, compared with the positive effects, the disadvantages would not count much.
 
 
+## 小作文
+
+**Tips:** 
+> **<p style="color:red">The task is to describe what you see. Write a report. Don't give your opinions. because you don't know why the line on graph goes down or goes up, so the report has no conclusion. you can put a summary instead </p>**
+
+
+- Question type
+
+Line graph
+
+Bar chart
+
+Pie chart 
+
+Table
+
+Above four type is about number, you should describe/compare/changes/trends
+
+Diagram-comparing
+
+Diagram-process
+
+
+- Essay structure (4 paragraphs)
+
+**1. Introduction**
+
+One sentence: paraphrase the question.
+
+
+**2. Overview**
+
+The main, general things
+
+**3. Details**
+
+**4. Details**
+
+In three and four paragraph, This makes you organize or group  the information better.
 
 
 
+### Line graph
 
+**Tips: You will not see a graph with only one line, your job is to compare the lines, not describe them separately.**
+
+> **Fist, make a very general comparison(summary/overview paragraph)**
+
+**For example:**
+
+# ![](images/1653713320(1).png)
+
+if we take a graph with four lines, the overall summary would be something very very general,like saying that blue line is the highest overall is higher than the other lines overall
+
+> **Second, compare the lines at specific points(this is your details paragraphs)**
+
+there are many details that you could compare, I would start off at beginning with the first year and compare the number there, but then many other choices and you have to select what you think of the main things, you might choose this point where the blue line becomes the highest and stays the highest for the rest of the period. You might choose to describe and compare the different increases  or rise. You might choose the peaks on one or more of the lines. You might choose a stable period  on one of the lines like this one. there many things to say and you can't describe everything. So you have to select, my tips is write at least one thing about each line, make sure you do some comparisons and if you've got one or two things that you said about each line that should be okay.   
+
+#### Line graph question
+
+## ![](images/1653715445(1).png)
+
+- **Introduction** - paraphrase the question
+
+The line graph compares  the amount of electricity produced  in France using four different sources of power over a period of 32 years. 
+
+- **Overview** - 2 sentences, 2 main points
+
+It is clear that nuclear power was **by far(目前为止)** the most important means of electricity generation over the period shown. Renewable provided the lowest amount of electricity in each year.
+
+- **Details** - 2 paragraphs,compare the lines
+
+In 1980, thermal power stations were the main source of electricity in France, generating around 120 terawatt hours of power. Nuclear and hydroelectric power stations produced just under 75 trawwatt hours of electricity each, and renewables provided a negligible amount. just one year later, nuclear power overtook termal power as the primary source of electricity.
+
+Between 1980 and  2005, electricity production from nuclear power rose dramatically to a peak of 430 terawatt hours. By contrast, the figure for thermal power fell to only 50 terawatt hours in 1985, and remained at this level for rest of the period. Hydroelectric power generation remained relatively stable, at between 50 and 80 terawatt hours, for the whole 32-year period, but renewable electricity production saw only a small rise to approximately 25 terawatt hours by 2012.
+
+
+**Warning:**
+
+You can't write:
+
+Nuclear was 75 terawatt hours of electricity.
+
+Nuclear produced 75 terawatt hours of electricity.
+
+You must write:
+
+Nuclear power was used to produce 75 terawatt hours of electricity.
+
+Nuclear power stations produced 75 terawatt hours of electricity.
+
+- 经典词汇
+
+a mount of electricity produced
+
+source of/ provided /generating
+
+means of electricity generation
+
+over a period of / over the period shown
+
+by far the most important
+
+a negligible amount
+
+nuclear power overtook thermal power
+
+as primary source of electricity
+
+rose dramatically to a peak of
+
+by contrast
+
+the figure for
+
+remained at this level, remained stable
+
+saw only a small rise.
 
 
 ## 口语素材

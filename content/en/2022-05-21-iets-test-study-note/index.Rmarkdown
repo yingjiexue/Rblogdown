@@ -279,6 +279,20 @@ What we must do is make sure that the positive ones are encouraged and the negat
 It is true that to do ... brings about both positive and negative results. But we can try our best to reduce the negative influence to the least extent(最小程度). Besides, compared with the positive effects, the disadvantages would not count much.
 
 
+## Practice One
+
+Question: Some people think students should evaluate their teachers' job performance. Other believe that will lead a loss of respect and discipline. Discuss and give your opinion.
+
+In this day and age, it is standard practice for business executive to fill out the performance-evaluation forms of their subordinates' work. When it comes to the evaluation of teacher's job by their students, people hold divergent views. Some argue that students should be allowed to evaluate their teacher work. Others believe disrespect and indiscipline will ensure if students evaluate teacher work. Personally, I contend both those two views have some merits. 
+
+Grandly, there are some possible drawback to student evaluating their teachers work. Firstly, if not well-managed, evaluation by student will be worthless and misleading, it is manifest that  not all students could give their evaluation responsibly, and even some students make mean comment about teacher work. Secondly, Some students criticize  their teachers not because their teacher have a slack attitude about their job. Rather they do so because they dislike or despite schooling.
+
+However, encouraging students to evaluate their teachers can bring more boons. In the first place, it is effective means of motivating teacher improving their lectures. Teachers have to keep adjusting their teaching to measure up to the expectation of their students.  In the second place, regular input affords the teacher objective and balance ideal about their performance.  Without those feedback, it is hard for teachers to have accurate assessment of their own teaching. In the third place, a measure of students' autonomy can make the student more better prepare for their adult life. The student becomes better at decision-making and critic-thinking.
+
+In final analysis, I contend that enabling the student to evaluate their teacher has some drawback. however,by averaging out students' apprise and encourage them to evaluate responsibly can eliminate the downside of this practice. On balance, I am convinced that allowing students to evaluate their teachers is in the best interests of students, teachers, school administrator and society as whole.
+
+
+
 ## 小作文
 
 **Tips:** 
@@ -875,6 +889,184 @@ sleep in.
 早餐想吃什么?
 
 What would you like for breakfast?
+
+### 谈恋爱
+
+我们在谈恋爱
+
+we are in a relationship
+
+we are in love.(相爱)
+
+we are going out。（经常约一起出去）
+
+we're seeing each other.
+
+we're dating.
+
+
+我喜欢她
+
+I like her.
+
+I have a crush on him.(暗恋)
+
+这周末有空吗？
+
+are you free this weekend?
+
+要不我们约吃个饭吧？
+
+Would you like to get dinner sometimes?
+
+好！
+
+Sure
+
+That would be great!
+
+I'd love to
+
+拒绝
+
+I'm really busy.
+
+你不是我喜欢的类型
+
+You're not my type.
+
+别骚扰我
+
+Stop harassing me
+
+Stop bothering me.
+
+你打扮的很好
+
+你的状态很好
+
+你真好看
+
+You look great.
+
+今天过的很愉快
+
+I had a great time today.
+
+希望近期再聚
+
+Let's get together again soon.
+
+能把电话号码给我吗？
+
+Can I have you number?
+
+
+Can we connect on...(Facebook)?
+
+Can I add you on...(Wechat)?
+
+对上眼了
+
+We really clicked. 合拍
+
+没对上眼
+
+we didn't really click.
+
+来电了
+
+We definitely had chemistry
+
+没来电
+
+We didn't have any chemistry
+
+应该就是他了
+
+I think he's the one
+
+我们是一见钟情
+
+it was love at fist sight.
+
+你们是怎么认识的
+
+How did you meet?
+
+我们通过朋友认识
+
+We met through friends.
+
+工作中认识
+
+we met at work.
+
+认识双方父母
+
+Meeting each other's parents
+
+父母在逼我结婚
+
+My parents are pressuring(pushing/forcing) me to get married.
+
+我们谈恋有5年了
+
+We've been dating for five years.
+
+We've been together for five years.
+
+我们要搬到一起了（同居）
+
+we're moving in together
+
+分手
+
+Break up
+
+结婚
+
+Get married
+
+分手的语言
+
+I think we should see other people.
+
+我们的关系不顺
+Our relationship isn't working.
+
+不是你的问题
+
+it's not you it's me.
+
+你是不是在跟我分手
+
+Are you breaking up with me?
+
+没缘分
+
+I guess we weren't meant to be.
+
+命中注定
+
+It was meant to be.
+
+我要向他求婚
+
+I'm going to propose to her.
+
+订婚戒指 engagement ring
+
+结婚戒指 wedding ring
+
+一句求婚
+
+Will you marry me ?
+
+我们订婚了
+
+We are engaged to be married.
+
 
 
 # 听力场景词

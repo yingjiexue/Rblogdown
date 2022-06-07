@@ -890,6 +890,45 @@ sleep in.
 
 What would you like for breakfast?
 
+今天在学校过的怎么样？
+
+How was school?
+
+今天过的怎么样？
+
+How was you day?
+
+今天学了什么？
+
+What did you learn today?
+
+今天帮助了谁？
+
+who did you help today?
+
+中午吃了什么？
+
+what did you have for lunch?
+
+今天在学校跟谁玩了？
+
+who did you play with at school today?
+
+今天有什么好玩的事情？
+what was a fun thing that happened
+
+今天有什么作业吗？
+
+Do you have any homework?
+
+作业做完了吗？
+
+Have you finished your homework?
+
+在学校玩的开心
+
+Have a great day at school.
+
 ### 谈恋爱
 
 我们在谈恋爱
@@ -1067,6 +1106,153 @@ Will you marry me ?
 
 We are engaged to be married.
 
+## 餐厅英语
+
+有预定吗？
+
+Do you have a reservation?
+
+您贵姓
+
+may I have your name?
+
+几位？
+
+How many ?
+
+How many are there in your party?
+
+要排位吗？
+
+is there a wait?
+
+要排多久？
+
+How long is the wait?
+
+您的餐位准备好了
+
+Your table is ready.
+
+这边请
+
+This way, please.
+
+请跟我来
+
+Please follow me.
+
+有没有安静一点的地方
+
+Is there a quieter location(table/place)?
+
+能安排个包间吗？
+
+Could we have a private room?
+
+卡座 booth
+
+点餐 order 菜单 menu
+
+你可以扫码点餐
+
+You can scan the QR code to order.
+
+Barcode 条形码
+
+有你喜欢的吗？
+
+Do you see anything you like?
+
+what looks good to you
+
+你们可以点餐了吗？
+
+May I take your order?
+
+我们还需要几分钟？
+
+we need a few more minutes.
+
+我们准备好点餐了
+
+We're ready to order.
+
+有没有什么推荐的
+
+Is there anything you recommend?
+
+我要...
+
+I'd like the ...
+
+I'll have the ...
+
+套餐 set meal/combo
+
+还需要其他的吗？
+
+Anything else?
+
+有什么忌口的吗？
+
+Any allergies? 对什么过敏吗？
+
+没做就算了
+
+If they haven't started just cancel it.
+
+饭菜怎么样？
+
+How's your meal?
+
+How is everything?
+
+挺好的
+
+It's great.
+
+It's wonderful
+
+It's delicious
+
+想吃点甜点?
+
+Would you like some dessert?
+
+Would you care for some dessert?
+
+- desert 沙漠
+
+结账
+
+Check, please.
+
+We're ready for the check.
+
+跟服务员表达“我来买单”
+
+I'll take the check, please.
+
+跟一起聚餐的人表达“我来请”
+
+It's my treat.
+
+It's on me.
+
+I got this.
+
+该我了 
+
+It's my turn 
+
+AA制
+
+Let's go Dutch.
+
+我们各付各的
+
+Let's split it.
 
 
 # 听力场景词
@@ -1127,6 +1313,67 @@ ice cream :冰激凌
 
 souvenir: 礼物
 
+
+## 机场英语
+
+请出示您的登机牌
+
+Show me your boarding pass, please.
+
+请拖鞋
+
+Please take your shoes off.
+
+请站到一边
+
+Please step to the side.
+
+边检 immigration
+
+这次为什么来美国
+
+Why are you visiting the United States?
+
+你的费用谁来承担？
+
+Who is paying for your trip?
+
+海关 customs
+
+有需要申报的东西吗？
+
+Do you have anything to declare?
+
+请提前准备号您的登机牌
+
+Please have your boarding pass ready.
+
+请把您的行李放在行李架上
+
+please stow you luggage in the overhead bin.
+
+
+安全带 safety belt; Seat belt
+
+请系好你的安全带
+
+Please fasten your seatbelt.
+
+系鞋带 tie shoelaces
+
+我们可能会经历一些颠簸
+
+乘务员 Flight attendant
+
+机组 Crew
+
+如需帮助呼叫乘务员
+
+Call the flight attendant if you need assistance.
+We may experience some turbulence.
+
+
+This is the final boarding call.
 
 ## 老师谈话
 

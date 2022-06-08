@@ -293,6 +293,23 @@ In final analysis, I contend that enabling the student to evaluate their teacher
 
 
 
+## Practice two
+
+Question: people today can perform the everyday tasks such as shopping, banking or even business transactions, without meeting others face-to-face. what effects will this phenomenon have on individuals and society as a whole?
+
+The interactivity of the internet and the mobile phone enabled a multitude of people to purchase their desired items and pay a mobile phone bills without stepping out of offices and homes. And many others can register for tests and sign contracts online. The sweeping trend of going about everyday business in the virtual world has triggered a marked implication on individuals and society as whole.
+
+The impact of this phenomenon on individuals is profound. First, individuals' efficiency in business transaction and banking will be greatly enhanced. And those who dread shopping are spared the chore of browsing around in shops. Secondly, the increasingly sedentary lifestyle will engender a higher incidence of ailment. More overweight people means more patients suffering from cardiovascular diseases such as vein hardening, diabetes and hypertension. Thirdly, the absence of face-to-face contact may induce distrust between business partners. An inherent sense of disbelief is apt to ruin a telecommunicated negotiation when negotiators can only see videos of each other transmitted via the internet.
+
+this trend also has widespread repercussions on society as a whole. In the first place, burgeoning e-commerce will, doubtless, boost corporate efficiency immeasurably. And higher efficiency means more earnings and low costs for businesses. In the second place, online fraud, be it banking or trading, retail or wholesale is sure to abound in the cyberspace. We must search for  practicable and effectual means of curbing it. In the third place, the proliferation of e-commerce may exacerbate man's overdependent on technology. And that can render our lives unspontaneous and our tempo of life too fast and furious.
+
+In sum, it is no denying that the virtual world is exerting influence on our lives in various ways. it is a key that we take advantage of the upside of this trend and in the meantime mitigate its downside as much as possible.
+
+
+
+
+
+
 ## 小作文
 
 **Tips:** 

@@ -1,0 +1,239 @@
+---
+title: 市值效应与规模因子
+author: 薛英杰
+date: '2022-06-22'
+slug: size effect and market
+categories:
+  - cn
+tags:
+  - research
+---
+
+
+
+```{r}
+pacman::p_load(data.table,stringr,dplyr,foreign,flextable)
+options(warn = F)
+fivefactort<-read.dbf("D:/科研/数据/月个股回报率文件145758441/STK_MKT_FIVEFACMONTH.dbf")%>% ## 读入月度Fama-French五因子
+  filter(Markettype=="P9714"&Portfolios==1)
+stockret<-read.dbf("D:/科研/数据/月个股回报率文件145758441/TRD_Mnth.dbf")                ##股票市值和收益数据
+
+cleandata<-stockret%>%filter(as.character(Trdmnt)>="1995-01")%>%
+  group_by(Trdmnt)%>%
+  mutate(GroupMsmvosd=cut(Msmvosd,c(min(Msmvosd)-100,quantile(Msmvosd,seq(0.1,0.9,0.1),na.rm=T),max(Msmvosd)+100),labels=1:10),
+  GroupMsmvttl=cut(Msmvttl,c(min(Msmvttl)-100,quantile(Msmvttl,seq(0.1,0.9,0.1),na.rm=T),max(Msmvttl)+100),labels=1:10))%>%
+  ungroup()%>%group_by(Stkcd)%>%
+  mutate(Groupsd=lag(GroupMsmvosd),
+  Groupmvt=lag(GroupMsmvttl),
+  LMsmvosd=lag(Msmvosd),
+  LMsmvttl=lag(Msmvttl))%>%
+  select(Stkcd,Trdmnt,Groupsd,Groupmvt,LMsmvosd,LMsmvttl,Mretnd)%>%
+  na.omit()
+
+Mvtotal<-cleandata%>%group_by(Trdmnt,Groupmvt)%>%
+  summarise(Eqret=mean(Mretnd),Wiehtret=weighted.mean(Mretnd,LMsmvttl))%>%
+  filter(Groupmvt%in%c(1,10))%>%
+  as.data.frame()%>%
+  reshape(idvar = "Trdmnt",timevar = "Groupmvt",direction = "wide")%>%
+  mutate(E10_1=Eqret.1-Eqret.10,
+  W10_1=Wiehtret.1-Wiehtret.10)
+
+Msmvosd<-cleandata%>%group_by(Trdmnt,Groupsd)%>%
+  summarise(Eqret=mean(Mretnd),Wiehtret=weighted.mean(Mretnd,LMsmvosd))%>%
+  filter(Groupsd%in%c(1,10))%>%
+  as.data.frame()%>%
+  reshape(idvar = "Trdmnt",timevar = "Groupsd",direction = "wide")%>%
+  mutate(E10_1=Eqret.1-Eqret.10,
+  W10_1=Wiehtret.1-Wiehtret.10)
+
+```
+
+
+## 总市值分组
+
+## 全样本
+
+```{r}
+factmerg<-Mvtotal%>%
+  mutate(TradingMon=Trdmnt)%>%
+  merge(fivefactort,by="TradingMon",all.x = T)%>%
+  mutate(cumretE10_1=cumsum(E10_1),
+  cumretW10_1=cumsum(W10_1),
+  cumSMB=cumsum(SMB2))
+plot(factmerg$cumretE10_1,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2)
+axis(side =1,at=seq(1,length(factmerg$Trdmnt),50),
+as.character(factmerg$Trdmnt[seq(1,length(factmerg$Trdmnt),50)]))
+axis(side =2,at=seq(0,8,1),0:8)
+box(lty = "solid")
+lines(factmerg$cumretW10_1,col="blue",lwd=2)
+lines(factmerg$cumSMB,col="red",lwd=2)
+legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
+  horiz = T,col = c("black","blue","red"),border=F)
+summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
+summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
+```
+
+## 1995年1月至2005年12月
+
+```{r echo=FALSE}
+factmerg<-Mvtotal%>%
+  filter(as.character(Trdmnt)<="2005-12")%>%
+  mutate(TradingMon=Trdmnt)%>%
+  merge(fivefactort,by="TradingMon",all.x = T)%>%
+  mutate(cumretE10_1=cumsum(E10_1),
+  cumretW10_1=cumsum(W10_1),
+  cumSMB=cumsum(SMB2))
+plot(factmerg$cumretE10_1,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2)
+axis(side =1,at=seq(1,length(factmerg$Trdmnt),10),
+as.character(factmerg$Trdmnt[seq(1,length(factmerg$Trdmnt),10)]))
+axis(side =2,at=seq(0,8,1),0:8)
+box(lty = "solid")
+lines(factmerg$cumretW10_1,col="blue",lwd=2)
+lines(factmerg$cumSMB,col="red",lwd=2)
+legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
+  horiz = T,col = c("black","blue","red"),border=F)
+summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
+summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
+```
+
+## 2006年1月至2015年12月
+
+```{r echo=FALSE}
+factmerg<-Mvtotal%>%
+  filter(as.character(Trdmnt)<"2016-1"&as.character(Trdmnt)>"2006-1")%>%
+  mutate(TradingMon=Trdmnt)%>%
+  merge(fivefactort,by="TradingMon",all.x = T)%>%
+  mutate(cumretE10_1=cumsum(E10_1),
+  cumretW10_1=cumsum(W10_1),
+  cumSMB=cumsum(SMB2))
+plot(factmerg$cumretE10_1,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2,ylim=c(-0.5,5))
+axis(side =1,at=seq(1,length(factmerg$Trdmnt),10),
+as.character(factmerg$Trdmnt[seq(1,length(factmerg$Trdmnt),10)]))
+axis(side =2,at=seq(-0.5,4,0.9),seq(-0.5,4,0.9))
+box(lty = "solid")
+lines(factmerg$cumretW10_1,col="blue",lwd=2)
+lines(factmerg$cumSMB,col="red",lwd=2)
+legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
+  horiz = T,col = c("black","blue","red"),border=F)
+summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
+summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
+```
+
+
+## 2016年1月至2022年5月
+
+```{r echo=FALSE}
+factmerg<-Mvtotal%>%
+  filter(as.character(Trdmnt)>"2016-1")%>%
+  mutate(TradingMon=Trdmnt)%>%
+  merge(fivefactort,by="TradingMon",all.x = T)%>%
+  mutate(cumretE10_1=cumsum(E10_1),
+  cumretW10_1=cumsum(W10_1),
+  cumSMB=cumsum(SMB2))
+plot(factmerg$cumretE10_1,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2,ylim=c(-0.5,1))
+axis(side =1,at=seq(1,length(factmerg$Trdmnt),10),
+as.character(factmerg$Trdmnt[seq(1,length(factmerg$Trdmnt),10)]))
+axis(side =2,at=seq(-0.5,1,0.3),seq(-0.5,1,0.3))
+box(lty = "solid")
+lines(factmerg$cumretW10_1,col="blue",lwd=2)
+lines(factmerg$cumSMB,col="red",lwd=2)
+legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
+  horiz = T,col = c("black","blue","red"),border=F)
+summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
+summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
+```
+
+
+## 流通市值分组
+
+## 全样本
+
+```{r}
+factmerg<-Msmvosd%>%
+  mutate(TradingMon=Trdmnt)%>%
+  merge(fivefactort,by="TradingMon",all.x = T)%>%
+  mutate(cumretE10_1=cumsum(E10_1),
+  cumretW10_1=cumsum(W10_1),
+  cumSMB=cumsum(SMB1))
+plot(factmerg$cumretE10_1,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2)
+axis(side =1,at=seq(1,length(factmerg$Trdmnt),50),
+as.character(factmerg$Trdmnt[seq(1,length(factmerg$Trdmnt),50)]))
+axis(side =2,at=seq(0,8,1),0:8)
+box(lty = "solid")
+lines(factmerg$cumretW10_1,col="blue",lwd=2)
+lines(factmerg$cumSMB,col="red",lwd=2)
+legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
+  horiz = T,col = c("black","blue","red"),border=F)
+summary(lm(E10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
+summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
+```
+
+## 1995年1月至2005年12月
+
+```{r echo=FALSE}
+factmerg<-Msmvosd%>%
+  filter(as.character(Trdmnt)<="2005-12")%>%
+  mutate(TradingMon=Trdmnt)%>%
+  merge(fivefactort,by="TradingMon",all.x = T)%>%
+  mutate(cumretE10_1=cumsum(E10_1),
+  cumretW10_1=cumsum(W10_1),
+  cumSMB=cumsum(SMB2))
+plot(factmerg$cumretE10_1,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2)
+axis(side =1,at=seq(1,length(factmerg$Trdmnt),10),
+as.character(factmerg$Trdmnt[seq(1,length(factmerg$Trdmnt),10)]))
+axis(side =2,at=seq(0,8,1),0:8)
+box(lty = "solid")
+lines(factmerg$cumretW10_1,col="blue",lwd=2)
+lines(factmerg$cumSMB,col="red",lwd=2)
+legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
+  horiz = T,col = c("black","blue","red"),border=F)
+summary(lm(E10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
+summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW2+CMA1,factmerg))
+```
+
+## 2006年1月至2015年12月
+
+```{r echo=FALSE}
+factmerg<-Msmvosd%>%
+  filter(as.character(Trdmnt)<"2016-1"&as.character(Trdmnt)>"2006-1")%>%
+  mutate(TradingMon=Trdmnt)%>%
+  merge(fivefactort,by="TradingMon",all.x = T)%>%
+  mutate(cumretE10_1=cumsum(E10_1),
+  cumretW10_1=cumsum(W10_1),
+  cumSMB=cumsum(SMB1))
+plot(factmerg$cumretE10_1,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2,ylim=c(-0.5,5))
+axis(side =1,at=seq(1,length(factmerg$Trdmnt),10),
+as.character(factmerg$Trdmnt[seq(1,length(factmerg$Trdmnt),10)]))
+axis(side =2,at=seq(-0.5,4,0.9),seq(-0.5,4,0.9))
+box(lty = "solid")
+lines(factmerg$cumretW10_1,col="blue",lwd=2)
+lines(factmerg$cumSMB,col="red",lwd=2)
+legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
+  horiz = T,col = c("black","blue","red"),border=F)
+summary(lm(E10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
+summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
+```
+
+
+## 2016年1月至2022年5月
+
+```{r echo=FALSE}
+factmerg<-Msmvosd%>%
+  filter(as.character(Trdmnt)>"2016-1")%>%
+  mutate(TradingMon=Trdmnt)%>%
+  merge(fivefactort,by="TradingMon",all.x = T)%>%
+  mutate(cumretE10_1=cumsum(E10_1),
+  cumretW10_1=cumsum(W10_1),
+  cumSMB=cumsum(SMB1))
+plot(factmerg$cumretE10_1,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2,ylim=c(-0.5,1))
+axis(side =1,at=seq(1,length(factmerg$Trdmnt),10),
+as.character(factmerg$Trdmnt[seq(1,length(factmerg$Trdmnt),10)]))
+axis(side =2,at=seq(-0.5,1,0.3),seq(-0.5,1,0.3))
+box(lty = "solid")
+lines(factmerg$cumretW10_1,col="blue",lwd=2)
+lines(factmerg$cumSMB,col="red",lwd=2)
+legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
+  horiz = T,col = c("black","blue","red"),border=F)
+summary(lm(E10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
+summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
+```

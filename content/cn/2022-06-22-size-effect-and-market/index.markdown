@@ -100,8 +100,9 @@ legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
+
 ```r
-summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
+summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
 ```
 
 ```
@@ -131,7 +132,7 @@ summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
 ```
 
 ```r
-summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
+summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##总市值加权收益回归
 ```
 
 ```
@@ -160,9 +161,16 @@ summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
 ## F-statistic: 43.03 on 5 and 322 DF,  p-value: < 2.2e-16
 ```
 
+
 ### 1995年1月至2005年12月
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+
+
+
+```r
+summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
+```
 
 ```
 ## 
@@ -188,6 +196,10 @@ summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
 ## Residual standard error: 0.1261 on 125 degrees of freedom
 ## Multiple R-squared:  0.07229,	Adjusted R-squared:  0.03518 
 ## F-statistic: 1.948 on 5 and 125 DF,  p-value: 0.09103
+```
+
+```r
+summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##总市值加权收益回归
 ```
 
 ```
@@ -216,9 +228,17 @@ summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
 ## F-statistic: 3.108 on 5 and 125 DF,  p-value: 0.01116
 ```
 
+
+
 ### 2006年1月至2015年12月
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+
+
+
+```r
+summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
+```
 
 ```
 ## 
@@ -244,6 +264,10 @@ summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
 ## Residual standard error: 0.05705 on 114 degrees of freedom
 ## Multiple R-squared:  0.578,	Adjusted R-squared:  0.5595 
 ## F-statistic: 31.23 on 5 and 114 DF,  p-value: < 2.2e-16
+```
+
+```r
+summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##总市值加权收益回归
 ```
 
 ```
@@ -275,7 +299,12 @@ summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
 
 ### 2016年1月至2022年5月
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+
+
+```r
+summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
+```
 
 ```
 ## 
@@ -301,6 +330,10 @@ summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
 ## Residual standard error: 0.0313 on 62 degrees of freedom
 ## Multiple R-squared:  0.6527,	Adjusted R-squared:  0.6247 
 ## F-statistic: 23.31 on 5 and 62 DF,  p-value: 4.293e-13
+```
+
+```r
+summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##总市值加权收益回归
 ```
 
 ```
@@ -353,10 +386,11 @@ legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
   horiz = T,col = c("black","blue","red"),border=F)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+
 
 ```r
-summary(lm(E10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
+summary(lm(E10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg)) ##等权收益回归
 ```
 
 ```
@@ -386,7 +420,7 @@ summary(lm(E10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
 ```
 
 ```r
-summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
+summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg)) ##流通市值加权收益回归
 ```
 
 ```
@@ -415,9 +449,18 @@ summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
 ## F-statistic: 63.01 on 5 and 322 DF,  p-value: < 2.2e-16
 ```
 
+
+
 ### 1995年1月至2005年12月
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+
+
+
+
+```r
+summary(lm(E10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg)) ##等权收益回归
+```
 
 ```
 ## 
@@ -445,35 +488,46 @@ summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
 ## F-statistic: 3.043 on 5 and 125 DF,  p-value: 0.01259
 ```
 
+```r
+summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg)) ##流通市值加权收益回归
+```
+
 ```
 ## 
 ## Call:
-## lm(formula = W10_1 ~ RiskPremiu + SMB1 + HML1 + RMW2 + CMA1, 
+## lm(formula = W10_1 ~ RiskPremiu + SMB1 + HML1 + RMW1 + CMA1, 
 ##     data = factmerg)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -0.27634 -0.04068 -0.00797  0.02235  0.68421 
+## -0.30256 -0.03617 -0.00745  0.02361  0.68325 
 ## 
 ## Coefficients:
 ##              Estimate Std. Error t value Pr(>|t|)   
-## (Intercept)  0.012109   0.008816   1.374  0.17203   
-## RiskPremiu  -0.223441   0.104776  -2.133  0.03492 * 
-## SMB1         0.766260   0.237292   3.229  0.00159 **
-## HML1        -0.533819   0.308436  -1.731  0.08597 . 
-## RMW2        -0.423403   0.319122  -1.327  0.18700   
-## CMA1         0.311384   0.279159   1.115  0.26680   
+## (Intercept)  0.011468   0.008891   1.290  0.19952   
+## RiskPremiu  -0.207630   0.106657  -1.947  0.05381 . 
+## SMB1         0.827893   0.258704   3.200  0.00174 **
+## HML1        -0.548318   0.311508  -1.760  0.08082 . 
+## RMW1        -0.127362   0.351863  -0.362  0.71799   
+## CMA1         0.435519   0.280405   1.553  0.12291   
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.09454 on 125 degrees of freedom
-## Multiple R-squared:  0.1987,	Adjusted R-squared:  0.1666 
-## F-statistic: 6.198 on 5 and 125 DF,  p-value: 3.622e-05
+## Residual standard error: 0.09515 on 125 degrees of freedom
+## Multiple R-squared:  0.1882,	Adjusted R-squared:  0.1558 
+## F-statistic: 5.797 on 5 and 125 DF,  p-value: 7.546e-05
 ```
 
 ### 2006年1月至2015年12月
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+
+
+
+
+```r
+summary(lm(E10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg)) ##等权收益回归
+```
 
 ```
 ## 
@@ -499,6 +553,10 @@ summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
 ## Residual standard error: 0.06757 on 114 degrees of freedom
 ## Multiple R-squared:  0.5692,	Adjusted R-squared:  0.5503 
 ## F-statistic: 30.13 on 5 and 114 DF,  p-value: < 2.2e-16
+```
+
+```r
+summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg)) ##流通市值加权收益回归
 ```
 
 ```
@@ -527,10 +585,15 @@ summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
 ## F-statistic: 88.32 on 5 and 114 DF,  p-value: < 2.2e-16
 ```
 
-
 ### 2016年1月至2022年5月
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+
+
+
+```r
+summary(lm(E10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg)) ##等权收益回归
+```
 
 ```
 ## 
@@ -556,6 +619,10 @@ summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
 ## Residual standard error: 0.04026 on 62 degrees of freedom
 ## Multiple R-squared:  0.537,	Adjusted R-squared:  0.4997 
 ## F-statistic: 14.38 on 5 and 62 DF,  p-value: 2.421e-09
+```
+
+```r
+summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg)) ##流通市值加权收益回归
 ```
 
 ```

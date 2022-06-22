@@ -76,9 +76,14 @@ lines(factmerg$cumretW10_1,col="blue",lwd=2)
 lines(factmerg$cumSMB,col="red",lwd=2)
 legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
   horiz = T,col = c("black","blue","red"),border=F)
-summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
-summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
+
 ```
+
+```{r}
+summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
+summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##总市值加权收益回归
+```
+
 
 ### 1995年1月至2005年12月
 
@@ -99,9 +104,16 @@ lines(factmerg$cumretW10_1,col="blue",lwd=2)
 lines(factmerg$cumSMB,col="red",lwd=2)
 legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
   horiz = T,col = c("black","blue","red"),border=F)
-summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
-summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
+
 ```
+
+
+```{r}
+summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
+summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##总市值加权收益回归
+```
+
+
 
 ### 2006年1月至2015年12月
 
@@ -122,8 +134,12 @@ lines(factmerg$cumretW10_1,col="blue",lwd=2)
 lines(factmerg$cumSMB,col="red",lwd=2)
 legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
   horiz = T,col = c("black","blue","red"),border=F)
-summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
-summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
+```
+
+
+```{r}
+summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
+summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##总市值加权收益回归
 ```
 
 
@@ -146,8 +162,11 @@ lines(factmerg$cumretW10_1,col="blue",lwd=2)
 lines(factmerg$cumSMB,col="red",lwd=2)
 legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
   horiz = T,col = c("black","blue","red"),border=F)
-summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
-summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
+```
+
+```{r}
+summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
+summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##总市值加权收益回归
 ```
 
 
@@ -171,9 +190,15 @@ lines(factmerg$cumretW10_1,col="blue",lwd=2)
 lines(factmerg$cumSMB,col="red",lwd=2)
 legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
   horiz = T,col = c("black","blue","red"),border=F)
-summary(lm(E10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
-summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
+
 ```
+
+```{r}
+summary(lm(E10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg)) ##等权收益回归
+summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg)) ##流通市值加权收益回归
+```
+
+
 
 ### 1995年1月至2005年12月
 
@@ -194,8 +219,13 @@ lines(factmerg$cumretW10_1,col="blue",lwd=2)
 lines(factmerg$cumSMB,col="red",lwd=2)
 legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
   horiz = T,col = c("black","blue","red"),border=F)
-summary(lm(E10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
-summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW2+CMA1,factmerg))
+```
+
+
+
+```{r}
+summary(lm(E10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg)) ##等权收益回归
+summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg)) ##流通市值加权收益回归
 ```
 
 ### 2006年1月至2015年12月
@@ -217,10 +247,14 @@ lines(factmerg$cumretW10_1,col="blue",lwd=2)
 lines(factmerg$cumSMB,col="red",lwd=2)
 legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
   horiz = T,col = c("black","blue","red"),border=F)
-summary(lm(E10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
-summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
 ```
 
+
+
+```{r}
+summary(lm(E10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg)) ##等权收益回归
+summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg)) ##流通市值加权收益回归
+```
 
 ### 2016年1月至2022年5月
 
@@ -241,6 +275,10 @@ lines(factmerg$cumretW10_1,col="blue",lwd=2)
 lines(factmerg$cumSMB,col="red",lwd=2)
 legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
   horiz = T,col = c("black","blue","red"),border=F)
-summary(lm(E10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
-summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
+```
+
+
+```{r}
+summary(lm(E10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg)) ##等权收益回归
+summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg)) ##流通市值加权收益回归
 ```

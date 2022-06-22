@@ -654,3 +654,632 @@ summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg)) ##流通市值加权�
 ## Multiple R-squared:  0.7366,	Adjusted R-squared:  0.7153 
 ## F-statistic: 34.67 on 5 and 62 DF,  p-value: < 2.2e-16
 ```
+
+
+
+
+
+
+
+## 总市值分组(30%)
+
+
+```r
+pacman::p_load(data.table,stringr,dplyr,foreign,flextable)
+options(warn = F)
+fivefactort<-read.dbf("D:/科研/数据/月个股回报率文件145758441/STK_MKT_FIVEFACMONTH.dbf")%>% ## 读入月度Fama-French五因子
+  filter(Markettype=="P9714"&Portfolios==1)
+```
+
+```
+## Field name: 'RiskPremiu' changed to: 'RiskPremiu.1'
+```
+
+```r
+stockret<-read.dbf("D:/科研/数据/月个股回报率文件145758441/TRD_Mnth.dbf")                ##股票市值和收益数据
+
+cleandata<-stockret%>%filter(as.character(Trdmnt)>="1995-01")%>%
+  group_by(Trdmnt)%>%filter(Msmvttl<=quantile(Msmvttl,0.3,na.rm=T))%>%
+  mutate(GroupMsmvosd=cut(Msmvosd,c(min(Msmvosd)-100,quantile(Msmvosd,seq(0.1,0.9,0.1),na.rm=T),max(Msmvosd)+100),labels=1:10),
+  GroupMsmvttl=cut(Msmvttl,c(min(Msmvttl)-100,quantile(Msmvttl,seq(0.1,0.9,0.1),na.rm=T),max(Msmvttl)+100),labels=1:10))%>%
+  ungroup()%>%group_by(Stkcd)%>%
+  mutate(Groupsd=lag(GroupMsmvosd),
+  Groupmvt=lag(GroupMsmvttl),
+  LMsmvosd=lag(Msmvosd),
+  LMsmvttl=lag(Msmvttl))%>%
+  select(Stkcd,Trdmnt,Groupsd,Groupmvt,Msmvttl,LMsmvttl,Mretnd)%>%
+  na.omit()
+
+Mvtotal<-cleandata%>%group_by(Trdmnt,Groupmvt)%>%
+  summarise(Eqret=mean(Mretnd),Wiehtret=weighted.mean(Mretnd,LMsmvttl))%>%
+  filter(Groupmvt%in%c(1,10))%>%
+  as.data.frame()%>%
+  reshape(idvar = "Trdmnt",timevar = "Groupmvt",direction = "wide")%>%
+  mutate(E10_1=Eqret.1-Eqret.10,
+  W10_1=Wiehtret.1-Wiehtret.10)
+```
+
+```
+## `summarise()` has grouped output by 'Trdmnt'. You can override using the
+## `.groups` argument.
+```
+
+
+
+
+### 全样本
+
+
+```r
+factmerg<-Mvtotal%>%
+  mutate(TradingMon=Trdmnt)%>%
+  merge(fivefactort,by="TradingMon",all.x = T)%>%
+  mutate(cumretE10_1=cumsum(E10_1),
+  cumretE10=cumsum(Eqret.10),
+  cumretE1=cumsum(Eqret.1),
+  cumSMB=cumsum(SMB2))
+plot(factmerg$cumretE10_1,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2,ylim=c(-20,26))
+axis(side =1,at=seq(1,length(factmerg$Trdmnt),50),
+as.character(factmerg$Trdmnt[seq(1,length(factmerg$Trdmnt),50)]))
+axis(side =2,at=seq(-20,26,5),seq(-20,26,5))
+box(lty = "solid")
+lines(factmerg$cumretE10,col="blue",lwd=2)
+lines(factmerg$cumretE1,col="orange",lwd=2)
+lines(factmerg$cumSMB,col="red",lwd=2)
+legend(0,25,c("多空","空头","多头","SMB"),lty=c(1,1,1,1),lwd=c(2,2,2,2),
+  horiz = T,col = c("black","blue","orange","red"),border=F)
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+
+
+```r
+summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
+```
+
+```
+## 
+## Call:
+## lm(formula = E10_1 ~ RiskPremiu + SMB2 + HML2 + RMW2 + CMA2, 
+##     data = factmerg)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.23354 -0.04855 -0.01477  0.02266  0.67698 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.078018   0.005603  13.925  < 2e-16 ***
+## RiskPremiu  -0.119356   0.070968  -1.682 0.093570 .  
+## SMB2        -0.585073   0.163826  -3.571 0.000409 ***
+## HML2        -0.213029   0.194282  -1.096 0.273684    
+## RMW2        -0.031518   0.257868  -0.122 0.902798    
+## CMA2         0.040083   0.247138   0.162 0.871260    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.09815 on 322 degrees of freedom
+## Multiple R-squared:  0.07162,	Adjusted R-squared:  0.0572 
+## F-statistic: 4.968 on 5 and 322 DF,  p-value: 0.0002134
+```
+
+```r
+ ##总市值加权收益回归
+```
+### 分样本
+
+**1995年1月至2005年12月**
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+
+
+
+```r
+summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
+```
+
+```
+## 
+## Call:
+## lm(formula = E10_1 ~ RiskPremiu + SMB2 + HML2 + RMW2 + CMA2, 
+##     data = factmerg)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.22546 -0.07153 -0.02609  0.02519  0.68621 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.07247    0.01197   6.052 1.55e-08 ***
+## RiskPremiu  -0.16351    0.14257  -1.147   0.2536    
+## SMB2        -0.56569    0.30370  -1.863   0.0649 .  
+## HML2        -0.44193    0.40618  -1.088   0.2787    
+## RMW2        -0.10773    0.44252  -0.243   0.8081    
+## CMA2        -0.06890    0.40755  -0.169   0.8660    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.1286 on 125 degrees of freedom
+## Multiple R-squared:  0.05607,	Adjusted R-squared:  0.01832 
+## F-statistic: 1.485 on 5 and 125 DF,  p-value: 0.1993
+```
+
+```r
+summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##总市值加权收益回归
+```
+
+```
+## 
+## Call:
+## lm(formula = W10_1 ~ RiskPremiu + SMB2 + HML2 + RMW2 + CMA2, 
+##     data = factmerg)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.23412 -0.07082 -0.02336  0.02884  0.70220 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.07268    0.01194   6.088  1.3e-08 ***
+## RiskPremiu  -0.12799    0.14212  -0.901   0.3696    
+## SMB2        -0.61714    0.30274  -2.039   0.0436 *  
+## HML2        -0.45001    0.40489  -1.111   0.2685    
+## RMW2        -0.07004    0.44112  -0.159   0.8741    
+## CMA2        -0.09855    0.40626  -0.243   0.8087    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.1282 on 125 degrees of freedom
+## Multiple R-squared:  0.0618,	Adjusted R-squared:  0.02427 
+## F-statistic: 1.647 on 5 and 125 DF,  p-value: 0.1525
+```
+
+
+
+**2006年1月至2015年12月**
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+
+
+
+```r
+summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
+```
+
+```
+## 
+## Call:
+## lm(formula = E10_1 ~ RiskPremiu + SMB2 + HML2 + RMW2 + CMA2, 
+##     data = factmerg)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.15750 -0.03991 -0.00834  0.01913  0.31717 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.081619   0.006572  12.420   <2e-16 ***
+## RiskPremiu  -0.045078   0.073790  -0.611    0.542    
+## SMB2        -0.223552   0.226508  -0.987    0.326    
+## HML2         0.019156   0.222116   0.086    0.931    
+## RMW2         0.609550   0.387164   1.574    0.118    
+## CMA2         0.346952   0.347523   0.998    0.320    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.06819 on 114 degrees of freedom
+## Multiple R-squared:  0.1608,	Adjusted R-squared:  0.124 
+## F-statistic: 4.369 on 5 and 114 DF,  p-value: 0.001124
+```
+
+```r
+summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##总市值加权收益回归
+```
+
+```
+## 
+## Call:
+## lm(formula = W10_1 ~ RiskPremiu + SMB2 + HML2 + RMW2 + CMA2, 
+##     data = factmerg)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.15638 -0.04136 -0.01102  0.02620  0.29380 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.088639   0.007379  12.013   <2e-16 ***
+## RiskPremiu  -0.109140   0.082848  -1.317    0.190    
+## SMB2        -0.226830   0.254314  -0.892    0.374    
+## HML2         0.097191   0.249382   0.390    0.697    
+## RMW2         0.526708   0.434692   1.212    0.228    
+## CMA2         0.250952   0.390185   0.643    0.521    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.07656 on 114 degrees of freedom
+## Multiple R-squared:  0.1525,	Adjusted R-squared:  0.1153 
+## F-statistic: 4.103 on 5 and 114 DF,  p-value: 0.001836
+```
+
+
+**2016年1月至2022年5月**
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+
+
+```r
+summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
+```
+
+```
+## 
+## Call:
+## lm(formula = E10_1 ~ RiskPremiu + SMB2 + HML2 + RMW2 + CMA2, 
+##     data = factmerg)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.090759 -0.020745 -0.004625  0.016807  0.173376 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.075916   0.005877  12.918  < 2e-16 ***
+## RiskPremiu  -0.211780   0.148151  -1.429  0.15788    
+## SMB2        -0.788373   0.239120  -3.297  0.00162 ** 
+## HML2        -0.236821   0.343454  -0.690  0.49306    
+## RMW2         0.047702   0.350131   0.136  0.89207    
+## CMA2         0.726896   0.477038   1.524  0.13265    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.0469 on 62 degrees of freedom
+## Multiple R-squared:  0.3032,	Adjusted R-squared:  0.247 
+## F-statistic: 5.395 on 5 and 62 DF,  p-value: 0.0003502
+```
+
+```r
+summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##总市值加权收益回归
+```
+
+```
+## 
+## Call:
+## lm(formula = W10_1 ~ RiskPremiu + SMB2 + HML2 + RMW2 + CMA2, 
+##     data = factmerg)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.11979 -0.03498 -0.01436  0.01506  0.34016 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.089119   0.008709  10.233 6.09e-15 ***
+## RiskPremiu  -0.066154   0.219563  -0.301    0.764    
+## SMB2        -0.472598   0.354380  -1.334    0.187    
+## HML2         0.100587   0.509006   0.198    0.844    
+## RMW2         0.291961   0.518902   0.563    0.576    
+## CMA2         0.778237   0.706980   1.101    0.275    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.06951 on 62 degrees of freedom
+## Multiple R-squared:  0.1556,	Adjusted R-squared:  0.0875 
+## F-statistic: 2.285 on 5 and 62 DF,  p-value: 0.05693
+```
+
+
+
+
+
+
+## 总市值分组(70%)
+
+
+```r
+pacman::p_load(data.table,stringr,dplyr,foreign,flextable)
+options(warn = F)
+fivefactort<-read.dbf("D:/科研/数据/月个股回报率文件145758441/STK_MKT_FIVEFACMONTH.dbf")%>% ## 读入月度Fama-French五因子
+  filter(Markettype=="P9714"&Portfolios==1)
+```
+
+```
+## Field name: 'RiskPremiu' changed to: 'RiskPremiu.1'
+```
+
+```r
+stockret<-read.dbf("D:/科研/数据/月个股回报率文件145758441/TRD_Mnth.dbf")                ##股票市值和收益数据
+
+cleandata<-stockret%>%filter(as.character(Trdmnt)>="1995-01")%>%
+  group_by(Trdmnt)%>%filter(Msmvttl>=quantile(Msmvttl,0.3,na.rm=T))%>%
+  mutate(GroupMsmvosd=cut(Msmvosd,c(min(Msmvosd)-100,quantile(Msmvosd,seq(0.1,0.9,0.1),na.rm=T),max(Msmvosd)+100),labels=1:10),
+  GroupMsmvttl=cut(Msmvttl,c(min(Msmvttl)-100,quantile(Msmvttl,seq(0.1,0.9,0.1),na.rm=T),max(Msmvttl)+100),labels=1:10))%>%
+  ungroup()%>%group_by(Stkcd)%>%
+  mutate(Groupsd=lag(GroupMsmvosd),
+  Groupmvt=lag(GroupMsmvttl),
+  LMsmvosd=lag(Msmvosd),
+  LMsmvttl=lag(Msmvttl))%>%
+  select(Stkcd,Trdmnt,Groupsd,Groupmvt,Msmvttl,LMsmvttl,Mretnd)%>%
+  na.omit()
+
+Mvtotal<-cleandata%>%group_by(Trdmnt,Groupmvt)%>%
+  summarise(Eqret=mean(Mretnd),Wiehtret=weighted.mean(Mretnd,LMsmvttl))%>%
+  filter(Groupmvt%in%c(1,10))%>%
+  as.data.frame()%>%
+  reshape(idvar = "Trdmnt",timevar = "Groupmvt",direction = "wide")%>%
+  mutate(E10_1=Eqret.1-Eqret.10,
+  W10_1=Wiehtret.1-Wiehtret.10)
+```
+
+```
+## `summarise()` has grouped output by 'Trdmnt'. You can override using the
+## `.groups` argument.
+```
+
+
+
+
+### 全样本
+
+
+```r
+factmerg<-Mvtotal%>%
+  mutate(TradingMon=Trdmnt)%>%
+  merge(fivefactort,by="TradingMon",all.x = T)%>%
+  mutate(cumretE10_1=cumsum(E10_1),
+  cumretE10=cumsum(Eqret.10),
+  cumretE1=cumsum(Eqret.1),
+  cumSMB=cumsum(SMB2))
+plot(factmerg$cumretE10_1,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2,ylim=c(-2,26))
+axis(side =1,at=seq(1,length(factmerg$Trdmnt),50),
+as.character(factmerg$Trdmnt[seq(1,length(factmerg$Trdmnt),50)]))
+axis(side =2,at=seq(-2,26,5),seq(-2,26,5))
+box(lty = "solid")
+lines(factmerg$cumretE10,col="blue",lwd=2)
+lines(factmerg$cumretE1,col="orange",lwd=2)
+lines(factmerg$cumSMB,col="red",lwd=2)
+legend(0,25,c("多空","空头","多头","SMB"),lty=c(1,1,1,1),lwd=c(2,2,2,2),
+  horiz = T,col = c("black","blue","orange","red"),border=F)
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+
+
+```r
+summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
+```
+
+```
+## 
+## Call:
+## lm(formula = E10_1 ~ RiskPremiu + SMB2 + HML2 + RMW2 + CMA2, 
+##     data = factmerg)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.103640 -0.027823 -0.008661  0.017175  0.234744 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.060916   0.002485  24.518  < 2e-16 ***
+## RiskPremiu   0.053600   0.031469   1.703  0.08949 .  
+## SMB2         1.269063   0.072646  17.469  < 2e-16 ***
+## HML2        -0.067829   0.086151  -0.787  0.43167    
+## RMW2        -0.132524   0.114347  -1.159  0.24733    
+## CMA2         0.352127   0.109589   3.213  0.00145 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.04352 on 322 degrees of freedom
+## Multiple R-squared:  0.7155,	Adjusted R-squared:  0.7111 
+## F-statistic: 161.9 on 5 and 322 DF,  p-value: < 2.2e-16
+```
+
+```r
+ ##总市值加权收益回归
+```
+
+
+### 分样本
+
+**1995年1月至2005年12月**
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+
+
+
+```r
+summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
+```
+
+```
+## 
+## Call:
+## lm(formula = E10_1 ~ RiskPremiu + SMB2 + HML2 + RMW2 + CMA2, 
+##     data = factmerg)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.100035 -0.023389 -0.009001  0.012645  0.195436 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.049545   0.004209  11.772   <2e-16 ***
+## RiskPremiu   0.158961   0.050107   3.172   0.0019 ** 
+## SMB2         1.198444   0.106736  11.228   <2e-16 ***
+## HML2        -0.143669   0.142752  -1.006   0.3162    
+## RMW2        -0.120871   0.155524  -0.777   0.4385    
+## CMA2         0.370490   0.143233   2.587   0.0108 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.0452 on 125 degrees of freedom
+## Multiple R-squared:  0.6648,	Adjusted R-squared:  0.6514 
+## F-statistic: 49.58 on 5 and 125 DF,  p-value: < 2.2e-16
+```
+
+```r
+summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##总市值加权收益回归
+```
+
+```
+## 
+## Call:
+## lm(formula = W10_1 ~ RiskPremiu + SMB2 + HML2 + RMW2 + CMA2, 
+##     data = factmerg)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.117841 -0.020349 -0.009434  0.015219  0.218992 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.04693    0.00424  11.067  < 2e-16 ***
+## RiskPremiu   0.15465    0.05048   3.063  0.00268 ** 
+## SMB2         1.33092    0.10754  12.376  < 2e-16 ***
+## HML2        -0.25088    0.14383  -1.744  0.08357 .  
+## RMW2        -0.15136    0.15670  -0.966  0.33594    
+## CMA2         0.28283    0.14431   1.960  0.05224 .  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.04554 on 125 degrees of freedom
+## Multiple R-squared:  0.691,	Adjusted R-squared:  0.6787 
+## F-statistic: 55.91 on 5 and 125 DF,  p-value: < 2.2e-16
+```
+
+
+
+**2006年1月至2015年12月**
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+
+
+
+```r
+summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
+```
+
+```
+## 
+## Call:
+## lm(formula = E10_1 ~ RiskPremiu + SMB2 + HML2 + RMW2 + CMA2, 
+##     data = factmerg)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.070253 -0.028683 -0.007654  0.016220  0.231320 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.072963   0.004474  16.309  < 2e-16 ***
+## RiskPremiu  -0.005345   0.050234  -0.106    0.915    
+## SMB2         1.358483   0.154200   8.810 1.62e-14 ***
+## HML2         0.040690   0.151210   0.269    0.788    
+## RMW2        -0.078751   0.263570  -0.299    0.766    
+## CMA2         0.211332   0.236584   0.893    0.374    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.04642 on 114 degrees of freedom
+## Multiple R-squared:  0.7529,	Adjusted R-squared:  0.742 
+## F-statistic: 69.46 on 5 and 114 DF,  p-value: < 2.2e-16
+```
+
+```r
+summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##总市值加权收益回归
+```
+
+```
+## 
+## Call:
+## lm(formula = W10_1 ~ RiskPremiu + SMB2 + HML2 + RMW2 + CMA2, 
+##     data = factmerg)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.173990 -0.026148 -0.005333  0.013227  0.161188 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.062361   0.004327  14.411   <2e-16 ***
+## RiskPremiu   0.052342   0.048588   1.077   0.2836    
+## SMB2         1.595614   0.149148  10.698   <2e-16 ***
+## HML2         0.021796   0.146256   0.149   0.8818    
+## RMW2        -0.163822   0.254935  -0.643   0.5218    
+## CMA2         0.488589   0.228833   2.135   0.0349 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.0449 on 114 degrees of freedom
+## Multiple R-squared:  0.8363,	Adjusted R-squared:  0.8291 
+## F-statistic: 116.5 on 5 and 114 DF,  p-value: < 2.2e-16
+```
+
+
+**2016年1月至2022年5月**
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+
+
+```r
+summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
+```
+
+```
+## 
+## Call:
+## lm(formula = E10_1 ~ RiskPremiu + SMB2 + HML2 + RMW2 + CMA2, 
+##     data = factmerg)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.058682 -0.018323 -0.003055  0.011747  0.085420 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.064889   0.003423  18.955  < 2e-16 ***
+## RiskPremiu  -0.025715   0.086301  -0.298    0.767    
+## SMB2         1.374167   0.139292   9.865 2.51e-14 ***
+## HML2         0.318692   0.200069   1.593    0.116    
+## RMW2        -0.308322   0.203959  -1.512    0.136    
+## CMA2        -0.011566   0.277884  -0.042    0.967    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.02732 on 62 degrees of freedom
+## Multiple R-squared:  0.7959,	Adjusted R-squared:  0.7795 
+## F-statistic: 48.36 on 5 and 62 DF,  p-value: < 2.2e-16
+```
+
+```r
+summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##总市值加权收益回归
+```
+
+```
+## 
+## Call:
+## lm(formula = W10_1 ~ RiskPremiu + SMB2 + HML2 + RMW2 + CMA2, 
+##     data = factmerg)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.056138 -0.016444 -0.003921  0.012799  0.075238 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.064709   0.003215  20.129   <2e-16 ***
+## RiskPremiu   0.012003   0.081045   0.148   0.8827    
+## SMB2         1.560911   0.130808  11.933   <2e-16 ***
+## HML2         0.148267   0.187883   0.789   0.4330    
+## RMW2        -0.495120   0.191536  -2.585   0.0121 *  
+## CMA2        -0.177652   0.260959  -0.681   0.4986    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.02566 on 62 degrees of freedom
+## Multiple R-squared:  0.8682,	Adjusted R-squared:  0.8576 
+## F-statistic: 81.71 on 5 and 62 DF,  p-value: < 2.2e-16
+```
+
+

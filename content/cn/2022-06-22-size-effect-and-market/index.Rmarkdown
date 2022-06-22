@@ -104,7 +104,7 @@ axis(side =2,at=seq(0,8,1),0:8)
 box(lty = "solid")
 lines(factmerg$cumretW10_1,col="blue",lwd=2)
 lines(factmerg$cumSMB,col="red",lwd=2)
-legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
+legend(0,2,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
   horiz = T,col = c("black","blue","red"),border=F)
 
 ```
@@ -162,7 +162,7 @@ axis(side =2,at=seq(-0.5,1,0.3),seq(-0.5,1,0.3))
 box(lty = "solid")
 lines(factmerg$cumretW10_1,col="blue",lwd=2)
 lines(factmerg$cumSMB,col="red",lwd=2)
-legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
+legend(0,0.8,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
   horiz = T,col = c("black","blue","red"),border=F)
 ```
 
@@ -221,7 +221,7 @@ axis(side =2,at=seq(0,8,1),0:8)
 box(lty = "solid")
 lines(factmerg$cumretW10_1,col="blue",lwd=2)
 lines(factmerg$cumSMB,col="red",lwd=2)
-legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
+legend(0,2,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
   horiz = T,col = c("black","blue","red"),border=F)
 ```
 
@@ -277,7 +277,7 @@ axis(side =2,at=seq(-0.5,1,0.3),seq(-0.5,1,0.3))
 box(lty = "solid")
 lines(factmerg$cumretW10_1,col="blue",lwd=2)
 lines(factmerg$cumSMB,col="red",lwd=2)
-legend(0,7,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
+legend(0,0.8,c("等权","加权","SMB"),lty=c(1,1,1),lwd=c(2,2,2),
   horiz = T,col = c("black","blue","red"),border=F)
 ```
 

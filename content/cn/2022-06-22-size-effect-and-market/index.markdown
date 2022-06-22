@@ -10,6 +10,7 @@ tags:
 ---
 
 
+读入收益率和Fama-French 五因子数据，分别按照滞后一期的总市值和流通市值分组，统计组合等权收益和对应市值加权收益，并计算市值最小组与市值最大组的收益差。
 
 
 ```r
@@ -68,9 +69,15 @@ Msmvosd<-cleandata%>%group_by(Trdmnt,Groupsd)%>%
 ```
 
 
+
+下面的结果分别为全样本和子样本的累计收益表现和Fama-French因子模型回归，回归方程左手边为小市值组合与大市值组合收益差，右手边为市场（RiskPremiu）、市值（SMB）、价值(HML)、投资(CMA)、盈利(RMW)五个因子。
+
+
 ## 总市值分组
 
-## 全样本
+
+
+### 全样本
 
 
 ```r
@@ -153,7 +160,7 @@ summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
 ## F-statistic: 43.03 on 5 and 322 DF,  p-value: < 2.2e-16
 ```
 
-## 1995年1月至2005年12月
+### 1995年1月至2005年12月
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 

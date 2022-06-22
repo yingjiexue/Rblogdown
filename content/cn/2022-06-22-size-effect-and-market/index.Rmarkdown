@@ -10,6 +10,7 @@ tags:
 ---
 
 
+读入收益率和Fama-French 五因子数据，分别按照滞后一期的总市值和流通市值分组，统计组合等权收益和对应市值加权收益，并计算市值最小组与市值最大组的收益差。
 
 ```{r}
 pacman::p_load(data.table,stringr,dplyr,foreign,flextable)
@@ -49,9 +50,15 @@ Msmvosd<-cleandata%>%group_by(Trdmnt,Groupsd)%>%
 ```
 
 
+
+下面的结果分别为全样本和子样本的累计收益表现和Fama-French因子模型回归，回归方程左手边为小市值组合与大市值组合收益差，右手边为市场（RiskPremiu）、市值（SMB）、价值(HML)、投资(CMA)、盈利(RMW)五个因子。
+
+
 ## 总市值分组
 
-## 全样本
+
+
+### 全样本
 
 ```{r}
 factmerg<-Mvtotal%>%
@@ -73,7 +80,7 @@ summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
 summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
 ```
 
-## 1995年1月至2005年12月
+### 1995年1月至2005年12月
 
 ```{r echo=FALSE}
 factmerg<-Mvtotal%>%
@@ -100,16 +107,16 @@ summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
 
 ```{r echo=FALSE}
 factmerg<-Mvtotal%>%
-  filter(as.character(Trdmnt)<"2016-1"&as.character(Trdmnt)>"2006-1")%>%
+  filter(as.character(Trdmnt)<"2016-1"&as.character(Trdmnt)>="2006-1")%>%
   mutate(TradingMon=Trdmnt)%>%
   merge(fivefactort,by="TradingMon",all.x = T)%>%
   mutate(cumretE10_1=cumsum(E10_1),
   cumretW10_1=cumsum(W10_1),
   cumSMB=cumsum(SMB2))
-plot(factmerg$cumretE10_1,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2,ylim=c(-0.5,5))
+plot(factmerg$cumretE10_1,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2,ylim=c(-0.5,7))
 axis(side =1,at=seq(1,length(factmerg$Trdmnt),10),
 as.character(factmerg$Trdmnt[seq(1,length(factmerg$Trdmnt),10)]))
-axis(side =2,at=seq(-0.5,4,0.9),seq(-0.5,4,0.9))
+axis(side =2,at=seq(-0.5,7,0.9),seq(-0.5,7,0.9))
 box(lty = "solid")
 lines(factmerg$cumretW10_1,col="blue",lwd=2)
 lines(factmerg$cumSMB,col="red",lwd=2)

@@ -216,7 +216,7 @@ summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
 ## F-statistic: 3.108 on 5 and 125 DF,  p-value: 0.01116
 ```
 
-## 2006年1月至2015年12月
+### 2006年1月至2015年12月
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
@@ -273,7 +273,7 @@ summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
 ```
 
 
-## 2016年1月至2022年5月
+### 2016年1月至2022年5月
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
@@ -332,7 +332,7 @@ summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg))
 
 ## 流通市值分组
 
-## 全样本
+### 全样本
 
 
 ```r
@@ -415,7 +415,7 @@ summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
 ## F-statistic: 63.01 on 5 and 322 DF,  p-value: < 2.2e-16
 ```
 
-## 1995年1月至2005年12月
+### 1995年1月至2005年12月
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 
@@ -471,7 +471,7 @@ summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
 ## F-statistic: 6.198 on 5 and 125 DF,  p-value: 3.622e-05
 ```
 
-## 2006年1月至2015年12月
+### 2006年1月至2015年12月
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="672" />
 
@@ -528,7 +528,7 @@ summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg))
 ```
 
 
-## 2016年1月至2022年5月
+### 2016年1月至2022年5月
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 

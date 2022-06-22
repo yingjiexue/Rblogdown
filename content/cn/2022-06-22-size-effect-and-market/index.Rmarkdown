@@ -293,7 +293,7 @@ summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg)) ##流通市值加权�
 
 
 
-## 总市值分组(30%)
+## 总市值分组(市值分位数小于30%)
 
 ```{r}
 pacman::p_load(data.table,stringr,dplyr,foreign,flextable)
@@ -451,7 +451,7 @@ summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##总市值加权收�
 
 
 
-## 总市值分组(70%)
+## 总市值分组(市值分位数大于30%)
 
 ```{r}
 pacman::p_load(data.table,stringr,dplyr,foreign,flextable)
@@ -589,10 +589,10 @@ factmerg<-Mvtotal%>%
   cumretE10=cumsum(Eqret.10),
   cumretE1=cumsum(Eqret.1),
   cumSMB=cumsum(SMB2))
-plot(factmerg$cumretE10_1,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2,ylim=c(-5,5))
+plot(factmerg$cumretE10_1,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2,ylim=c(-1,5))
 axis(side =1,at=seq(1,length(factmerg$Trdmnt),10),
 as.character(factmerg$Trdmnt[seq(1,length(factmerg$Trdmnt),10)]))
-axis(side =2,at=seq(-5,5,2),seq(-5,5,2))
+axis(side =2,at=seq(-1,5,2),seq(-1,5,2))
 box(lty = "solid")
 lines(factmerg$cumretE10,col="blue",lwd=2)
 lines(factmerg$cumretE1,col="orange",lwd=2)

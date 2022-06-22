@@ -661,7 +661,7 @@ summary(lm(W10_1~RiskPremiu+SMB1+HML1+RMW1+CMA1,factmerg)) ##流通市值加权�
 
 
 
-## 总市值分组(30%)
+## 总市值分组(市值分位数小于30%)
 
 
 ```r
@@ -973,7 +973,7 @@ summary(lm(W10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##总市值加权收�
 
 
 
-## 总市值分组(70%)
+## 总市值分组(市值分位数大于30%)
 
 
 ```r

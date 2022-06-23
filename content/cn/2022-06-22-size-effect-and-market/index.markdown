@@ -314,7 +314,7 @@ summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
 
 
 
-## 总市值分组(市值分位数小于30%)
+## 总市值分组(市值后30%的股票)
 
 
 ```r
@@ -414,10 +414,6 @@ summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
 ## Residual standard error: 0.1092 on 322 degrees of freedom
 ## Multiple R-squared:  0.08818,	Adjusted R-squared:  0.07403 
 ## F-statistic: 6.228 on 5 and 322 DF,  p-value: 1.569e-05
-```
-
-```r
- ##总市值加权收益回归
 ```
 ### 分时间段
 
@@ -536,7 +532,7 @@ summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
 
 
 
-## 总市值分组(市值分位数大于30%)
+## 总市值分组(市值前70%的股票)
 
 ```r
 pacman::p_load(data.table,stringr,dplyr,foreign,flextable)
@@ -635,10 +631,6 @@ summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
 ## Residual standard error: 0.01945 on 322 degrees of freedom
 ## Multiple R-squared:  0.908,	Adjusted R-squared:  0.9066 
 ## F-statistic: 635.6 on 5 and 322 DF,  p-value: < 2.2e-16
-```
-
-```r
- ##总市值加权收益回归
 ```
 ### 分时间段
 

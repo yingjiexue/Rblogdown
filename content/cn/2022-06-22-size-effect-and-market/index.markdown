@@ -361,7 +361,7 @@ Mvtotal<-cleandata%>%group_by(Trdmnt,Groupmvt)%>%
 
 
 
-### 所有时间
+### 所有时间(市值后30%的股票)
 
 
 ```r
@@ -417,7 +417,7 @@ summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
 ```
 ### 分时间段
 
-**1995年1月至2005年12月**
+**1995年1月至2005年12月(市值后30%的股票)**
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-30-1.png" width="672" />
 
@@ -455,7 +455,7 @@ summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
 
 
 
-**2006年1月至2015年12月**
+**2006年1月至2015年12月(市值后30%的股票)**
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" width="672" />
 
@@ -492,7 +492,7 @@ summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
 ```
 
 
-**2016年1月至2022年5月**
+**2016年1月至2022年5月(市值后30%的股票)**
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-34-1.png" width="672" />
 
@@ -578,7 +578,7 @@ Mvtotal<-cleandata%>%group_by(Trdmnt,Groupmvt)%>%
 
 
 
-### 全时间段
+### 全时间段(市值前70%的股票)
 
 
 ```r
@@ -634,7 +634,7 @@ summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
 ```
 ### 分时间段
 
-**1995年1月至2005年12月**
+**1995年1月至2005年12月(市值前70%的股票)**
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-39-1.png" width="672" />
 
@@ -672,7 +672,7 @@ summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
 
 
 
-**2006年1月至2015年12月**
+**2006年1月至2015年12月(市值前70%的股票)**
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-41-1.png" width="672" />
 
@@ -709,7 +709,7 @@ summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
 ```
 
 
-**2016年1月至2022年5月**
+**2016年1月至2022年5月(市值前70%的股票)**
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-43-1.png" width="672" />
 

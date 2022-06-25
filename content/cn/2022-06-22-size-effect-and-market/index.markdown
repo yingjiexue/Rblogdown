@@ -16,6 +16,7 @@ tags:
 
 
 
+
 下面的结果分别为全样本和子样本的累计收益表现和Fama-French因子模型回归，回归方程左手边为小市值组合与大市值组合收益差，右手边为市场（RiskPremiu）、市值（SMB）、价值(HML)、投资(CMA)、盈利(RMW)五个因子。
 
 
@@ -95,8 +96,8 @@ tags:
 ```r
 pacman::p_load(data.table,stringr,dplyr,foreign,flextable)
 options(warn = F)
-fivefactort<-read.dbf("D:/科研/数据/月个股回报率文件145758441/STK_MKT_FIVEFACMONTH.dbf")%>% ## 读入月度Fama-French五因子
-  filter(Markettype=="P9714"&Portfolios==1)
+fivefactort<-read.dbf("E:/科研/五因子模型指标（月）150835535/STK_MKT_FIVEFACMONTH.dbf")%>% ## 读入月度Fama-French五因子
+  filter(Markettype=="P9714"&Portfolios==2)
 ```
 
 ```
@@ -104,12 +105,12 @@ fivefactort<-read.dbf("D:/科研/数据/月个股回报率文件145758441/STK_MK
 ```
 
 ```r
-stockret<-read.dbf("D:/科研/数据/月个股回报率文件145758441/TRD_Mnth.dbf")                ##股票市值和收益数据
+stockret<-read.dbf("E:/科研/五因子模型指标（月）150835535/TRD_Mnth.dbf")                ##股票市值和收益数据
 
 cleandata<-stockret%>%filter(as.character(Trdmnt)>="1995-01")%>%
   group_by(Stkcd)%>%
   mutate(LMsmvosd=lag(Msmvosd),
-  LMsmvttl=lag(Msmvttl))%>%ungroup()%>%filter(!is.na(LMsmvosd)&!is.na(LMsmvttl))%>%
+  LMsmvttl=lag(Msmvttl))%>%ungroup()%>%filter(!is.na(LMsmvosd)&!is.na(LMsmvttl))%>%ungroup()%>%
   group_by(Trdmnt)%>%
   mutate(Groupsd=cut(LMsmvosd,c(min(LMsmvosd,na.rm=T)-100,quantile(LMsmvosd,seq(0.1,0.9,0.1),na.rm=T),max(LMsmvosd,na.rm=T)+100),labels=1:10),
   Groupmvt=cut(LMsmvttl,c(min(LMsmvttl,na.rm=T)-100,quantile(LMsmvttl,seq(0.1,0.9,0.1),na.rm=T),max(LMsmvttl,na.rm=T)+100),labels=1:10))%>%
@@ -172,22 +173,22 @@ summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -0.27089 -0.03623 -0.00706  0.02277  0.89973 
+## -0.24238 -0.03749 -0.00821  0.02450  0.89203 
 ## 
 ## Coefficients:
 ##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  0.022688   0.005229   4.339 1.92e-05 ***
-## RiskPremiu  -0.156186   0.066235  -2.358   0.0190 *  
-## SMB2         0.678730   0.152902   4.439 1.24e-05 ***
-## HML2        -0.397768   0.181328  -2.194   0.0290 *  
-## RMW2        -0.425770   0.240674  -1.769   0.0778 .  
-## CMA2         0.181918   0.230659   0.789   0.4309    
+## (Intercept)  0.021505   0.005236   4.107 5.08e-05 ***
+## RiskPremiu  -0.133028   0.066818  -1.991   0.0473 *  
+## SMB2         0.835571   0.144155   5.796 1.62e-08 ***
+## HML2        -0.454705   0.223981  -2.030   0.0432 *  
+## RMW2        -0.120630   0.284352  -0.424   0.6717    
+## CMA2         0.302919   0.300370   1.008   0.3140    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.09161 on 322 degrees of freedom
-## Multiple R-squared:  0.2292,	Adjusted R-squared:  0.2172 
-## F-statistic: 19.14 on 5 and 322 DF,  p-value: < 2.2e-16
+## Residual standard error: 0.09215 on 322 degrees of freedom
+## Multiple R-squared:   0.22,	Adjusted R-squared:  0.2079 
+## F-statistic: 18.17 on 5 and 322 DF,  p-value: 6.98e-16
 ```
 
 ```r
@@ -213,22 +214,22 @@ summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -0.24185 -0.05113 -0.01035  0.02440  0.91311 
+## -0.26584 -0.05417 -0.00798  0.02905  0.89594 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)  
-## (Intercept)  0.01923    0.01173   1.639   0.1037  
-## RiskPremiu  -0.14549    0.13969  -1.042   0.2997  
-## SMB2         0.37573    0.29756   1.263   0.2091  
-## HML2        -0.74497    0.39797  -1.872   0.0636 .
-## RMW2        -0.43041    0.43357  -0.993   0.3228  
-## CMA2         0.17133    0.39931   0.429   0.6686  
+## (Intercept)  0.01731    0.01147   1.510   0.1336  
+## RiskPremiu  -0.11052    0.14049  -0.787   0.4329  
+## SMB2         0.63770    0.29084   2.193   0.0302 *
+## HML2        -1.18756    0.51952  -2.286   0.0239 *
+## RMW2         0.15344    0.45962   0.334   0.7391  
+## CMA2         0.66889    0.55360   1.208   0.2292  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.126 on 125 degrees of freedom
-## Multiple R-squared:  0.07292,	Adjusted R-squared:  0.03584 
-## F-statistic: 1.966 on 5 and 125 DF,  p-value: 0.08814
+## Residual standard error: 0.1255 on 125 degrees of freedom
+## Multiple R-squared:  0.08016,	Adjusted R-squared:  0.04337 
+## F-statistic: 2.179 on 5 and 125 DF,  p-value: 0.06064
 ```
 
 
@@ -251,22 +252,22 @@ summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -0.09266 -0.03502 -0.00792  0.01315  0.35140 
+## -0.09944 -0.03149 -0.00826  0.01410  0.33016 
 ## 
 ## Coefficients:
 ##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  0.031050   0.006040   5.141 1.15e-06 ***
-## RiskPremiu  -0.067079   0.067821  -0.989    0.325    
-## SMB2         1.239719   0.208184   5.955 2.95e-08 ***
-## HML2         0.006068   0.204147   0.030    0.976    
-## RMW2         0.141735   0.355844   0.398    0.691    
-## CMA2         0.188522   0.319410   0.590    0.556    
+## (Intercept)  0.032099   0.006001   5.349 4.62e-07 ***
+## RiskPremiu  -0.087202   0.067324  -1.295    0.198    
+## SMB2         1.094593   0.195678   5.594 1.55e-07 ***
+## HML2         0.061851   0.242191   0.255    0.799    
+## RMW2        -0.480677   0.477789  -1.006    0.317    
+## CMA2        -0.562222   0.392030  -1.434    0.154    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.06268 on 114 degrees of freedom
-## Multiple R-squared:  0.5444,	Adjusted R-squared:  0.5244 
-## F-statistic: 27.24 on 5 and 114 DF,  p-value: < 2.2e-16
+## Residual standard error: 0.06264 on 114 degrees of freedom
+## Multiple R-squared:  0.5448,	Adjusted R-squared:  0.5249 
+## F-statistic: 27.29 on 5 and 114 DF,  p-value: < 2.2e-16
 ```
 
 
@@ -287,22 +288,22 @@ summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
 ## 
 ## Residuals:
 ##       Min        1Q    Median        3Q       Max 
-## -0.060392 -0.018295 -0.001647  0.013408  0.094868 
+## -0.057935 -0.020295 -0.004825  0.014548  0.095520 
 ## 
 ## Coefficients:
 ##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  0.015816   0.003938   4.016 0.000162 ***
-## RiskPremiu  -0.141409   0.099279  -1.424 0.159357    
-## SMB2         0.921483   0.160239   5.751 2.92e-07 ***
-## HML2         0.159545   0.230155   0.693 0.490769    
-## RMW2        -0.157241   0.234630  -0.670 0.505240    
-## CMA2         0.643688   0.319673   2.014 0.048399 *  
+## (Intercept)  0.016111   0.004058   3.970  0.00019 ***
+## RiskPremiu  -0.126253   0.101124  -1.248  0.21654    
+## SMB2         0.941795   0.158421   5.945 1.38e-07 ***
+## HML2         0.430247   0.249282   1.726  0.08934 .  
+## RMW2        -0.250095   0.319249  -0.783  0.43638    
+## CMA2         0.692419   0.359697   1.925  0.05882 .  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.03143 on 62 degrees of freedom
-## Multiple R-squared:  0.6531,	Adjusted R-squared:  0.6251 
-## F-statistic: 23.35 on 5 and 62 DF,  p-value: 4.155e-13
+## Residual standard error: 0.03226 on 62 degrees of freedom
+## Multiple R-squared:  0.6346,	Adjusted R-squared:  0.6051 
+## F-statistic: 21.53 on 5 and 62 DF,  p-value: 1.999e-12
 ```
 
 
@@ -320,7 +321,7 @@ summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
 ```r
 pacman::p_load(data.table,stringr,dplyr,foreign,flextable)
 options(warn = F)
-fivefactort<-read.dbf("D:/科研/数据/月个股回报率文件145758441/STK_MKT_FIVEFACMONTH.dbf")%>% ## 读入月度Fama-French五因子
+fivefactort<-read.dbf("E:/科研/五因子模型指标（月）150835535/STK_MKT_FIVEFACMONTH.dbf")%>% ## 读入月度Fama-French五因子
   filter(Markettype=="P9714"&Portfolios==1)
 ```
 
@@ -329,7 +330,7 @@ fivefactort<-read.dbf("D:/科研/数据/月个股回报率文件145758441/STK_MK
 ```
 
 ```r
-stockret<-read.dbf("D:/科研/数据/月个股回报率文件145758441/TRD_Mnth.dbf")                ##股票市值和收益数据
+stockret<-read.dbf("E:/科研/五因子模型指标（月）150835535/TRD_Mnth.dbf")                ##股票市值和收益数据
 
 cleandata<-stockret%>%filter(as.character(Trdmnt)>="1995-01")%>%
   group_by(Stkcd)%>%
@@ -537,7 +538,7 @@ summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
 ```r
 pacman::p_load(data.table,stringr,dplyr,foreign,flextable)
 options(warn = F)
-fivefactort<-read.dbf("D:/科研/数据/月个股回报率文件145758441/STK_MKT_FIVEFACMONTH.dbf")%>% ## 读入月度Fama-French五因子
+fivefactort<-read.dbf("E:/科研/五因子模型指标（月）150835535/STK_MKT_FIVEFACMONTH.dbf")%>% ## 读入月度Fama-French五因子
   filter(Markettype=="P9714"&Portfolios==1)
 ```
 
@@ -546,7 +547,7 @@ fivefactort<-read.dbf("D:/科研/数据/月个股回报率文件145758441/STK_MK
 ```
 
 ```r
-stockret<-read.dbf("D:/科研/数据/月个股回报率文件145758441/TRD_Mnth.dbf")                ##股票市值和收益数据
+stockret<-read.dbf("E:/科研/五因子模型指标（月）150835535/TRD_Mnth.dbf")                ##股票市值和收益数据
 
 cleandata<-stockret%>%filter(as.character(Trdmnt)>="1995-01")%>%
   group_by(Stkcd)%>%
@@ -743,3 +744,143 @@ summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
 ## Multiple R-squared:  0.908,	Adjusted R-squared:  0.9005 
 ## F-statistic: 122.3 on 5 and 62 DF,  p-value: < 2.2e-16
 ```
+
+
+## 总市值分组(市值后10的股票)
+
+```r
+pacman::p_load(data.table,stringr,dplyr,foreign,flextable)
+options(warn = F)
+fivefactort<-read.dbf("E:/科研/五因子模型指标（月）150835535/STK_MKT_FIVEFACMONTH.dbf")%>% ## 读入月度Fama-French五因子
+  filter(Markettype=="P9714"&Portfolios==1)
+```
+
+```
+## Field name: 'RiskPremiu' changed to: 'RiskPremiu.1'
+```
+
+```r
+stockret<-read.dbf("E:/科研/五因子模型指标（月）150835535/TRD_Mnth.dbf")                ##股票市值和收益数据
+
+cleandata<-stockret%>%filter(as.character(Trdmnt)>="1995-01")%>%
+  group_by(Stkcd)%>%
+  mutate(LMsmvosd=lag(Msmvosd),
+  LMsmvttl=lag(Msmvttl))%>%ungroup()%>%filter(!is.na(LMsmvosd)&!is.na(LMsmvttl))%>%
+  group_by(Trdmnt)%>%
+  filter(LMsmvttl<=quantile(LMsmvttl,0.3,na.rm=T))%>%
+  mutate(Groupsd=cut(LMsmvosd,c(min(LMsmvosd)-100,quantile(LMsmvosd,seq(0.1,0.9,0.1),na.rm=T),max(LMsmvosd)+100),labels=1:10),
+  Groupmvt=cut(LMsmvttl,c(min(LMsmvttl)-100,quantile(LMsmvttl,seq(0.1,0.9,0.1),na.rm=T),max(LMsmvttl)+100),labels=1:10))%>%
+  select(Stkcd,Trdmnt,Groupsd,Groupmvt,Msmvttl,LMsmvttl,Mretnd)%>%
+  ungroup()%>%
+  na.omit()
+
+
+Mvtotal<-cleandata%>%filter(Groupmvt%in%c(1))%>%
+  arrange(Trdmnt,LMsmvttl,Groupmvt)%>%
+  group_by(Trdmnt,Groupmvt)%>%
+  mutate(num=1:n())%>%filter(num<=5)%>%
+  summarise(Eqret=mean(Mretnd))%>%ungroup()%>%
+  mutate(Eret=cumsum(Eqret))
+```
+
+```
+## `summarise()` has grouped output by 'Trdmnt'. You can override using the
+## `.groups` argument.
+```
+
+```r
+plot(Mvtotal$Eret,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2)
+axis(side =1,at=seq(1,length(Mvtotal$Trdmnt),10),
+as.character(Mvtotal$Trdmnt[seq(1,length(Mvtotal$Trdmnt),10)]))
+axis(side =2,at=seq(min(Mvtotal$Eret),max(Mvtotal$Eret),(max(Mvtotal$Eret)-min(Mvtotal$Eret))/5),round(seq(min(Mvtotal$Eret),max(Mvtotal$Eret),(max(Mvtotal$Eret)-min(Mvtotal$Eret))/5),2))
+box(lty = "solid")
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-45-1.png" width="672" />
+
+
+
+
+
+**1995年1月至2005年12月(市值后5只股票)**
+
+```r
+Mvtotal<-cleandata%>%filter(Groupmvt%in%c(1))%>%filter(as.character(Trdmnt)<="2005-12")%>%
+  arrange(Trdmnt,LMsmvttl,Groupmvt)%>%
+  group_by(Trdmnt,Groupmvt)%>%
+  mutate(num=1:n())%>%filter(num<=5)%>%
+  summarise(Eqret=mean(Mretnd))%>%ungroup()%>%
+  mutate(Eret=cumsum(Eqret))
+```
+
+```
+## `summarise()` has grouped output by 'Trdmnt'. You can override using the
+## `.groups` argument.
+```
+
+```r
+plot(Mvtotal$Eret,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2)
+axis(side =1,at=seq(1,length(Mvtotal$Trdmnt),10),
+as.character(Mvtotal$Trdmnt[seq(1,length(Mvtotal$Trdmnt),10)]))
+axis(side =2,at=seq(min(Mvtotal$Eret),max(Mvtotal$Eret),(max(Mvtotal$Eret)-min(Mvtotal$Eret))/5),round(seq(min(Mvtotal$Eret),max(Mvtotal$Eret),(max(Mvtotal$Eret)-min(Mvtotal$Eret))/5),2))
+box(lty = "solid")
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-46-1.png" width="672" />
+
+**2006年1月至2015年12月(市值后5只股票)**
+
+```r
+Mvtotal<-cleandata%>%filter(Groupmvt%in%c(1))%>%
+  filter(as.character(Trdmnt)>="2006-1"&as.character(Trdmnt)<="2015-12")%>%
+  arrange(Trdmnt,LMsmvttl,Groupmvt)%>%
+  group_by(Trdmnt,Groupmvt)%>%
+  mutate(num=1:n())%>%filter(num<=5)%>%
+  summarise(Eqret=mean(Mretnd))%>%ungroup()%>%
+  mutate(Eret=cumsum(Eqret))
+```
+
+```
+## `summarise()` has grouped output by 'Trdmnt'. You can override using the
+## `.groups` argument.
+```
+
+```r
+plot(Mvtotal$Eret,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2)
+axis(side =1,at=seq(1,length(Mvtotal$Trdmnt),10),
+as.character(Mvtotal$Trdmnt[seq(1,length(Mvtotal$Trdmnt),10)]))
+axis(side =2,at=seq(min(Mvtotal$Eret),max(Mvtotal$Eret),(max(Mvtotal$Eret)-min(Mvtotal$Eret))/5),round(seq(min(Mvtotal$Eret),max(Mvtotal$Eret),(max(Mvtotal$Eret)-min(Mvtotal$Eret))/5),2))
+box(lty = "solid")
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-47-1.png" width="672" />
+
+
+
+
+**2016年1月至2022年5月(市值后5只股票)**
+
+```r
+Mvtotal<-cleandata%>%filter(Groupmvt%in%c(1))%>%
+  filter(as.character(Trdmnt)>="2016-1")%>%
+  arrange(Trdmnt,LMsmvttl,Groupmvt)%>%
+  group_by(Trdmnt,Groupmvt)%>%
+  mutate(num=1:n())%>%filter(num<=5)%>%
+  summarise(Eqret=mean(Mretnd))%>%ungroup()%>%
+  mutate(Eret=cumsum(Eqret))
+```
+
+```
+## `summarise()` has grouped output by 'Trdmnt'. You can override using the
+## `.groups` argument.
+```
+
+```r
+plot(Mvtotal$Eret,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2)
+axis(side =1,at=seq(1,length(Mvtotal$Trdmnt),10),
+as.character(Mvtotal$Trdmnt[seq(1,length(Mvtotal$Trdmnt),10)]))
+axis(side =2,at=seq(min(Mvtotal$Eret),max(Mvtotal$Eret),(max(Mvtotal$Eret)-min(Mvtotal$Eret))/5),round(seq(min(Mvtotal$Eret),max(Mvtotal$Eret),(max(Mvtotal$Eret)-min(Mvtotal$Eret))/5),2))
+box(lty = "solid")
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-48-1.png" width="672" />

@@ -10,7 +10,11 @@ tags:
 ---
 
 
-MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。同时，他也是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的。而R语言作为一种统计数据分析语言，必然需要输入数据才能进行各种运算，那么当R语言偶遇MongoDB时，该怎么从MongoDB中读入数据，又该如何将数据写入MongoDB呢？
+MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。同时，他也是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的。MongoDB的安装和具体环境配置可以参考大神的[学习笔记](https://mp.weixin.qq.com/s/elXW_aw5umSBBTzQgZUuag)
+
+
+
+R语言作为一种统计数据分析语言，必然需要输入数据才能进行各种运算，那么当R语言偶遇MongoDB时，该怎么从MongoDB中读入数据，又该如何将数据写入MongoDB呢？
 
 我们都知道R是“包治百病”，与MongoDB交互自然也离不开package。链接MongoDB的R package有三个，分别为：rmongodb、RMongo、Mongolite，他们版本和使用手册如下：
 
@@ -39,6 +43,7 @@ rm()
 gc()
 ```
 
+
 ### 1.查询数据
 
 > 假设我们需要从MongoDB数据库中查找2021-04-21股票交易数据，统计各收益水平下的上市公司数量，具体代码如下：
@@ -53,8 +58,9 @@ m<-mongo(collection = "tradedatadaily",db="stockdata")
 ##查询字段有上市公司代码（symbol）、收盘价(close)、前收盘价(pre_close)，查询条件为交易日期(trade_date)等于2021-04-23
 
 tradedata<-m$find(query = '{"trade_date":"20210423"}',
-                  fields = '{"symbol":"ture","trade_date":"ture","close":"ture","pre_close":"ture"}')
+                  fields = '{"_id":0,"symbol":1,"trade_date":1,"close":1,"pre_close":1}')
 head(tradedata)
+
 
 ##计算收益并分组统计上市公司数量
 fdstb<-tradedata%>%mutate(rets=close/pre_close-1)%>%mutate(groups=cut(rets,c(-0.25,-0.15,-0.1,-0.05,-0.03,-.01,0,0.01,0.03,0.05,0.1,0.15,0.25),labels = c("<-15%","<-10%","<-5%","<-3%","<-1%","<0%","0%<","1%<","3%<","5%<","10%<","15%<"),right=F))%>%group_by(groups)%>%summarise(cout=n())
@@ -132,8 +138,7 @@ m<-mongo(collection = "tradedatadaily",db="stockdata")
 
 ##查询字段有上市公司代码（symbol）、成交量(vol)、收盘价(close)，查询条件为交易日期(trade_date)等于2021-04-23
 
-vol<-m$find(query = '{"trade_date":"20210423","symbol":{"$in":["601318","600519","000858"]}}',fields = '{"_id":"false","symbol":"ture","trade_date":"ture","close":"ture","vol":"ture"}'
-  )%>%select(-"_id")
+vol<-m$find(query = '{"trade_date":"20210423","symbol":{"$in":["601318","600519","000858"]}}',fields = '{"_id":0,"symbol":1,"trade_date":1,"close":1,"vol":1}')
 vol
 ```
 
@@ -148,8 +153,8 @@ m<-mongo(collection = "tradedatadaily",db="stockdata")
 
 ##查询字段有上市公司代码（symbol）、成交量(vol)、收盘价(close)，查询条件为交易日期(trade_date)的结尾为0520
 
-vol<-m$find(query = '{"trade_date":{ "$regex": "(0520)$","$options":"i"},"symbol":{"$in":["601318","600519","000858"]}}',fields = '{"_id":"false","symbol":"ture","trade_date":"ture","close":"ture","vol":"ture"}'
-  )%>%select(-"_id")
+vol<-m$find(query = '{"trade_date":{ "$regex": "(0520)$","$options":"i"},"symbol":{"$in":["601318","600519","000858"]}}',fields = '{"_id":0,"symbol":1,"trade_date":1,"close":1,"vol":1}'
+  )
 vol
 ```
 

@@ -10,6 +10,7 @@ tags:
 ---
 
 
+
 读入收益率和Fama-French 五因子数据，分别按照滞后一期的总市值和流通市值分组，统计组合等权收益和对应市值加权收益，并计算市值最小组与市值最大组的收益差。
 
 ```{r include=FALSE}
@@ -19,7 +20,7 @@ fivefactort<-read.dbf("E:/科研/五因子模型指标（月）150835535/STK_MKT
   filter(Markettype=="P9714"&Portfolios==1)
 stockret<-read.dbf("E:/科研/五因子模型指标（月）150835535/TRD_Mnth.dbf")                ##股票市值和收益数据
 
-cleandata<-stockret%>%filter(as.character(Trdmnt)>="1995-01")%>%
+cleandata<-stockret%>%filter(as.character(Trdmnt)>="1995-01"&!str_detect(Stkcd,"^900|^200"))%>%
   group_by(Trdmnt)%>%
   mutate(GroupMsmvosd=cut(Msmvosd,c(min(Msmvosd)-100,quantile(Msmvosd,seq(0.1,0.9,0.1),na.rm=T),max(Msmvosd)+100),labels=1:10),
   GroupMsmvttl=cut(Msmvttl,c(min(Msmvttl)-100,quantile(Msmvttl,seq(0.1,0.9,0.1),na.rm=T),max(Msmvttl)+100),labels=1:10))%>%
@@ -306,7 +307,7 @@ fivefactort<-read.dbf("E:/科研/五因子模型指标（月）150835535/STK_MKT
   filter(Markettype=="P9714"&Portfolios==2)
 stockret<-read.dbf("E:/科研/五因子模型指标（月）150835535/TRD_Mnth.dbf")                ##股票市值和收益数据
 
-cleandata<-stockret%>%filter(as.character(Trdmnt)>="1995-01")%>%
+cleandata<-stockret%>%filter(as.character(Trdmnt)>="1995-01"&!str_detect(Stkcd,"^900|^200"))%>%
   group_by(Stkcd)%>%
   mutate(LMsmvosd=lag(Msmvosd),
   LMsmvttl=lag(Msmvttl))%>%ungroup()%>%filter(!is.na(LMsmvosd)&!is.na(LMsmvttl))%>%ungroup()%>%
@@ -461,7 +462,7 @@ fivefactort<-read.dbf("E:/科研/五因子模型指标（月）150835535/STK_MKT
   filter(Markettype=="P9714"&Portfolios==1)
 stockret<-read.dbf("E:/科研/五因子模型指标（月）150835535/TRD_Mnth.dbf")                ##股票市值和收益数据
 
-cleandata<-stockret%>%filter(as.character(Trdmnt)>="1995-01")%>%
+cleandata<-stockret%>%filter(as.character(Trdmnt)>="1995-01"&!str_detect(Stkcd,"^900|^200"))%>%
   group_by(Stkcd)%>%
   mutate(LMsmvosd=lag(Msmvosd),
   LMsmvttl=lag(Msmvttl))%>%ungroup()%>%
@@ -611,7 +612,7 @@ fivefactort<-read.dbf("E:/科研/五因子模型指标（月）150835535/STK_MKT
   filter(Markettype=="P9714"&Portfolios==1)
 stockret<-read.dbf("E:/科研/五因子模型指标（月）150835535/TRD_Mnth.dbf")                ##股票市值和收益数据
 
-cleandata<-stockret%>%filter(as.character(Trdmnt)>="1995-01")%>%
+cleandata<-stockret%>%filter(as.character(Trdmnt)>="1995-01"&!str_detect(Stkcd,"^900|^200"))%>%
   group_by(Stkcd)%>%
   mutate(LMsmvosd=lag(Msmvosd),
   LMsmvttl=lag(Msmvttl))%>%ungroup()%>%
@@ -749,33 +750,89 @@ summary(lm(E10_1~RiskPremiu+SMB2+HML2+RMW2+CMA2,factmerg)) ##等权收益回归
 ```
 
 
-## 总市值分组(市值后10的股票)
+## 总市值分组(市值后5的股票)
 ```{r}
-pacman::p_load(data.table,stringr,dplyr,foreign,flextable)
+pacman::p_load(data.table,stringr,dplyr,mongolite,foreign,flextable)
 options(warn = F)
-fivefactort<-read.dbf("E:/科研/五因子模型指标（月）150835535/STK_MKT_FIVEFACMONTH.dbf")%>% ## 读入月度Fama-French五因子
-  filter(Markettype=="P9714"&Portfolios==1)
-stockret<-read.dbf("E:/科研/五因子模型指标（月）150835535/TRD_Mnth.dbf")                ##股票市值和收益数据
 
-cleandata<-stockret%>%filter(as.character(Trdmnt)>="1995-01")%>%
-  group_by(Stkcd)%>%
-  mutate(LMsmvosd=lag(Msmvosd),
-  LMsmvttl=lag(Msmvttl))%>%ungroup()%>%filter(!is.na(LMsmvosd)&!is.na(LMsmvttl))%>%
-  group_by(Trdmnt)%>%
-  filter(LMsmvttl<=quantile(LMsmvttl,0.3,na.rm=T))%>%
-  mutate(Groupsd=cut(LMsmvosd,c(min(LMsmvosd)-100,quantile(LMsmvosd,seq(0.1,0.9,0.1),na.rm=T),max(LMsmvosd)+100),labels=1:10),
-  Groupmvt=cut(LMsmvttl,c(min(LMsmvttl)-100,quantile(LMsmvttl,seq(0.1,0.9,0.1),na.rm=T),max(LMsmvttl)+100),labels=1:10))%>%
-  select(Stkcd,Trdmnt,Groupsd,Groupmvt,Msmvttl,LMsmvttl,Mretnd)%>%
+stockret<-read.dbf("E:/科研/五因子模型指标（月）150835535/TRD_Mnth.dbf")                ##股票市值和收益数据
+# 
+# cleandata<-stockret%>%filter(as.character(Trdmnt)>="1995-01"&!str_detect(Stkcd,"^900|^200"))%>%
+#   group_by(Stkcd)%>%
+#   mutate(LMsmvosd=lag(Msmvosd),
+#   LMsmvttl=lag(Msmvttl))%>%ungroup()%>%filter(!is.na(LMsmvosd)&!is.na(LMsmvttl))%>%
+#   group_by(Trdmnt)%>%
+#   filter(LMsmvttl<=quantile(LMsmvttl,0.3,na.rm=T))%>%
+#   mutate(Groupsd=cut(LMsmvosd,c(min(LMsmvosd)-100,quantile(LMsmvosd,seq(0.1,0.9,0.1),na.rm=T),max(LMsmvosd)+100),labels=1:10),
+#   Groupmvt=cut(LMsmvttl,c(min(LMsmvttl)-100,quantile(LMsmvttl,seq(0.1,0.9,0.1),na.rm=T),max(LMsmvttl)+100),labels=1:10))%>%
+#   select(Stkcd,Trdmnt,Groupsd,Groupmvt,Msmvttl,LMsmvttl,Mretnd)%>%
+#   ungroup()%>%
+#   na.omit()
+# 
+# 
+# Mvtotal<-cleandata%>%filter(Groupmvt%in%c(1))%>%
+#   arrange(Trdmnt,LMsmvttl,Groupmvt)%>%
+#   group_by(Trdmnt,Groupmvt)%>%
+#   mutate(num=1:n())%>%filter(num<=5)%>%
+#   summarise(Eqret=mean(Mretnd))%>%ungroup()%>%
+#   mutate(Eret=cumsum(Eqret))
+
+# mdat<-mongo(collection = "trademonthly",db="stockdata")
+# datamoth<-mdat$find(query='{}')
+# tsdate<-unique(datamoth$trade_date)
+# tdate<-paste0("[\"",paste0(tsdate,collapse = "\",\""),"\"]")
+# dailydat<-mongo(collection = "dailybasic",db="stockdata")
+# mdatas<-dailydat$find(query=paste0("{\"trade_date\":{\"$in\":",tdate,"}}"),
+#                       fields = '{"_id":0,"ts_code":1,"trade_date":1,"total_mv":1,"circ_mv":1}')%>%
+#   mutate(across(.cols =total_mv:circ_mv,as.numeric ))
+
+
+# cleandata<-merge(mdatas,datamoth,by=c("ts_code","trade_date"),all.y = T)%>%
+#   mutate(Trdmnt=gsub("(\\d{4})(\\d{2})(\\d{2})","\\1-\\2",trade_date),
+#          Mretnd=change/pre_close)%>%
+#            filter(Trdmnt>="1995-01")%>%
+#   group_by(ts_code)%>%
+#   mutate(LMsmvosd=lag(circ_mv),
+#   LMsmvttl=lag(total_mv))%>%ungroup()%>%filter(!is.na(LMsmvttl))%>%
+#   ungroup()%>%
+#   group_by(Trdmnt)%>%arrange(LMsmvttl)%>%summarise_all(head,5)%>%
+#   select(ts_code,Trdmnt,LMsmvttl,Mretnd)%>%
+#   ungroup()%>%
+#   na.omit()
+# 
+# Mvtota<-cleandata%>%
+#   group_by(Trdmnt)%>%
+#   summarise(Eqret=mean(Mretnd))%>%ungroup()%>%
+#   mutate(Eret=cumsum(Eqret))
+
+mdat<-mongo(collection = "stockbase",db="stockdata")
+
+stocbas<-mdat$find(query='{}')%>%
+  mutate(Stkcd=symbol)%>%select(Stkcd,list_date)
+
+
+
+cleandata<-stockret%>%filter(as.character(Trdmnt)>="1995-01"&!str_detect(Stkcd,"^900|^200")&Mretnd<1.5)%>%
+  merge(stocbas,by="Stkcd",all.x = T)%>%
+  mutate(tradedate=paste0(paste0(Trdmnt,"-",Clsdt)))%>%
+  group_by(Stkcd)%>%arrange(Stkcd,Trdmnt)%>%
+  mutate(Ldate=lag(tradedate),
+         LMsmvosd=lag(Msmvosd),
+         LMsmvttl=lag(Msmvttl))%>%
+  mutate(datelist=as.numeric(as.Date(paste0(Trdmnt,"-",Clsdt))-as.Date(list_date,"%Y%m%d")),
+         datedr=as.numeric(as.Date(tradedate)-as.Date(Ldate)))%>%
+  filter(datelist>120&datedr<42)%>%ungroup()%>%filter(!is.na(LMsmvttl))%>%
+  group_by(Trdmnt)%>%arrange(LMsmvttl)%>%summarise_all(head,5)%>%
+  select(Stkcd,Trdmnt,Msmvttl,LMsmvttl,Mretnd)%>%
   ungroup()%>%
   na.omit()
 
-
-Mvtotal<-cleandata%>%filter(Groupmvt%in%c(1))%>%
-  arrange(Trdmnt,LMsmvttl,Groupmvt)%>%
-  group_by(Trdmnt,Groupmvt)%>%
-  mutate(num=1:n())%>%filter(num<=5)%>%
+Mvtotal<-cleandata%>%
+  group_by(Trdmnt)%>%
   summarise(Eqret=mean(Mretnd))%>%ungroup()%>%
   mutate(Eret=cumsum(Eqret))
+
+
 
 plot(Mvtotal$Eret,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2)
 axis(side =1,at=seq(1,length(Mvtotal$Trdmnt),10),
@@ -789,15 +846,21 @@ box(lty = "solid")
 
 
 
+
 **1995年1月至2005年12月(市值后5只股票)**
 ```{r}
 
-Mvtotal<-cleandata%>%filter(Groupmvt%in%c(1))%>%filter(as.character(Trdmnt)<="2005-12")%>%
-  arrange(Trdmnt,LMsmvttl,Groupmvt)%>%
-  group_by(Trdmnt,Groupmvt)%>%
-  mutate(num=1:n())%>%filter(num<=5)%>%
+Mvtotal<-cleandata%>%filter(as.character(Trdmnt)<="2005-12")%>%
+  group_by(Trdmnt)%>%
   summarise(Eqret=mean(Mretnd))%>%ungroup()%>%
   mutate(Eret=cumsum(Eqret))
+
+# Mvtotal<-cleandata%>%filter(Groupmvt%in%c(1))%>%filter(as.character(Trdmnt)<="2005-12")%>%
+#   arrange(Trdmnt,LMsmvttl,Groupmvt)%>%
+#   group_by(Trdmnt,Groupmvt)%>%
+#   mutate(num=1:n())%>%filter(num<=5)%>%
+#   summarise(Eqret=mean(Mretnd))%>%ungroup()%>%
+#   mutate(Eret=cumsum(Eqret))
 
 plot(Mvtotal$Eret,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2)
 axis(side =1,at=seq(1,length(Mvtotal$Trdmnt),10),
@@ -810,13 +873,19 @@ box(lty = "solid")
 **2006年1月至2015年12月(市值后5只股票)**
 ```{r}
 
-Mvtotal<-cleandata%>%filter(Groupmvt%in%c(1))%>%
+Mvtotal<-cleandata%>%
   filter(as.character(Trdmnt)>="2006-1"&as.character(Trdmnt)<="2015-12")%>%
-  arrange(Trdmnt,LMsmvttl,Groupmvt)%>%
-  group_by(Trdmnt,Groupmvt)%>%
-  mutate(num=1:n())%>%filter(num<=5)%>%
+  group_by(Trdmnt)%>%
   summarise(Eqret=mean(Mretnd))%>%ungroup()%>%
   mutate(Eret=cumsum(Eqret))
+
+# Mvtotal<-cleandata%>%filter(Groupmvt%in%c(1))%>%
+#   filter(as.character(Trdmnt)>="2006-1"&as.character(Trdmnt)<="2015-12")%>%
+#   arrange(Trdmnt,LMsmvttl,Groupmvt)%>%
+#   group_by(Trdmnt,Groupmvt)%>%
+#   mutate(num=1:n())%>%filter(num<=5)%>%
+#   summarise(Eqret=mean(Mretnd))%>%ungroup()%>%
+#   mutate(Eret=cumsum(Eqret))
 
 plot(Mvtotal$Eret,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2)
 axis(side =1,at=seq(1,length(Mvtotal$Trdmnt),10),
@@ -832,13 +901,19 @@ box(lty = "solid")
 **2016年1月至2022年5月(市值后5只股票)**
 ```{r}
 
-Mvtotal<-cleandata%>%filter(Groupmvt%in%c(1))%>%
+Mvtotal<-cleandata%>%
   filter(as.character(Trdmnt)>="2016-1")%>%
-  arrange(Trdmnt,LMsmvttl,Groupmvt)%>%
-  group_by(Trdmnt,Groupmvt)%>%
-  mutate(num=1:n())%>%filter(num<=5)%>%
+  group_by(Trdmnt)%>%
   summarise(Eqret=mean(Mretnd))%>%ungroup()%>%
   mutate(Eret=cumsum(Eqret))
+
+# Mvtotal<-cleandata%>%filter(Groupmvt%in%c(1))%>%
+#   filter(as.character(Trdmnt)>="2016-1")%>%
+#   arrange(Trdmnt,LMsmvttl,Groupmvt)%>%
+#   group_by(Trdmnt,Groupmvt)%>%
+#   mutate(num=1:n())%>%filter(num<=5)%>%
+#   summarise(Eqret=mean(Mretnd))%>%ungroup()%>%
+#   mutate(Eret=cumsum(Eqret))
 
 plot(Mvtotal$Eret,type="l",axes = F,ylab="累计收益",xlab="时间",lwd=2)
 axis(side =1,at=seq(1,length(Mvtotal$Trdmnt),10),

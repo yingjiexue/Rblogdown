@@ -297,7 +297,7 @@ In final analysis, I contend that enabling the student to evaluate their teacher
 
 Question: people today can perform the everyday tasks such as shopping, banking or even business transactions, without meeting others face-to-face. what effects will this phenomenon have on individuals and society as a whole?
 
-The interactivity of the internet and the mobile phone enabled a multitude of people to purchase their desired items and pay a mobile phone bills without stepping out of offices and homes. And many others can register for tests and sign contracts online. The sweeping trend of going about everyday business in the virtual world has triggered a marked implication on individuals and society as whole.
+The interactivity of the internet and the mobile phone enabled a multitude of people to purchase their desired items and pay a mobile phone bills without stepping out of offices and homes. And many others can register for tests and sign contracts online. The sweeping trend of going about everyday business in the virtual world has triggered a marked decline in face-to-face contact. thus, it is essential that we identify a implication of this trend on individuals and society as whole.
 
 The impact of this phenomenon on individuals is profound. First, individuals' efficiency in business transaction and banking will be greatly enhanced. And those who dread shopping are spared the chore of browsing around in shops. Secondly, the increasingly sedentary lifestyle will engender a higher incidence of ailment. More overweight people means more patients suffering from cardiovascular diseases such as vein hardening, diabetes and hypertension. Thirdly, the absence of face-to-face contact may induce distrust between business partners. An inherent sense of disbelief is apt to ruin a telecommunicated negotiation when negotiators can only see videos of each other transmitted via the internet.
 
@@ -307,6 +307,15 @@ In sum, it is no denying that the virtual world is exerting influence on our liv
 
 
 
+## 万能模板
+
+In recent years, weather (主题) have caused numerous controversies and drawn the public's attention. Some people insist that (主题)，and I approve of this viewpoint for individual and social reason.
+
+First and foremost, It has been argued that the individual reason is why I think it is necessary for sb to do sth. Although potentially negative impact should be taken in account, I still reckon that (主题) can bring many benefits to our daily life. For example,a well-known scientist once said that (主题) could make our life more efficient.
+
+Furthermore, some social reason should be considered, which means that (句子改写). As far as governments are concerned, the ultimate goal of society is to maintain and promote well-fare of society. So (主题) play a important role in our whole society. For instance, recent research published by Economist revealed that more than half of people think the government should value the importance of (主题) and provide more financial support.
+
+In conclusion, I firmly believe that (主题) has more advantages than disadvantages. To address this issue, Government and society should make more concerted effort.
 
 
 

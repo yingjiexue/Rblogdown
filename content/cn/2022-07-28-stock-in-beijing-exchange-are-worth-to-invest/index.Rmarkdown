@@ -1,0 +1,166 @@
+---
+title: 北交所股票的交易规则及上市表现
+author: 薛英杰
+date: '2022-07-28'
+slug: stock in beijing exchange are worth to invest
+categories:
+  - research
+tags:
+  - diary
+  - research
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+
+2021年9北交所成立以来，已有104只股票陆续在北交所上市交易，其中观典防务（832317）
+、泰祥股份（833874）和翰博高新（833994）三只股票已转至创业板交易。与主板和创业板
+定位不同，北交所的定位是为创新型中小企业提供融资服务，是专门为原来新三板的精选层
+股票建立了一个独立的交易所，北交所上市的股票主要来源于新三板的创新层。从北交所和
+新三板全国股转系统的关系来看，北交所和全国股转是是个独立法人，两者关系官方用语是
+"一体管理、独立运营"，新三板不属北交所，北交所更不属新三板，两者最直接的关系是新
+三板创新层是北交所的必要条件，同时新三板又是北交所退市的主要去处。
+
+### 北交所的上市门槛
+
+从上市条件看，发行人申请公开发行并上市，市值及财务指标应当至少符合下列标准中的一项：
+
+1.  市值不低于2亿元，最近两年净利润均不低于1500万元且加权平均净资产收益率平均不低于8%
+    ， 或者最近一年净利润不低于2500万元且加权平均净资产收益率不低于8%；
+
+2.  市值不低于4亿元，最近两年营业收入平均不低于1亿元
+    ，且最近一年营业收入增长率不低于30%，最近一年经营活动产生的现金流量净额为正；
+
+3.  市值不低于8亿元，最近一年营业收入不低于2亿元，最近两年研发投入合计占最近两年营业收入合计比例不低于8%
+
+4.  市值不低于15亿元，最近两年研发投入合计不低于5000万元
+
+### 北交所打新规则
+
+主板打新采取抽签摇号的方式进行，有运气的成分在里面，运气好就能中一签，但是北交所的打新是按比例配售，时间优先的原则进行，需要先交钱申购股份，最后按发行股份和申购股份比例配售，当申购不足1手时，申购时间靠前的先获得1签。
+
+举个例子，某个新股发行100万手（1手=100股，是打新最小单位）。而投资者踊跃申购，一共申购1,000万手。那么中签率就是100÷1000=10%。这个10%是平均分配的，
+不看运气。只要你申购了10手，那么你一定会中签1手。如果你申购了100手，那么你一定会中签10手。总之你的中签率也是10%。这里有个问题，中签的最小单位是1手，如果你的中签少于1手，那不一定能中签，还要看另一个规则，叫时间优先，先申**购不足1手的人中一签。**
+
+### 北交所上市公司概况和行业分布
+
+
+
+
+```{r message=FALSE, include=FALSE}
+#加载软件包
+pacman::p_load(data.table,stringr,dplyr,reticulate,lubridate,mongolite,
+               future.apply,zoo,haven,readxl,foreign,rlist,ggplot2,DT)
+#use_python("Users/Administrator/AppData/Local/Programs/Python")
+system('net start MongoDB',intern = F,wait = T)
+
+```
+```{r echo=FALSE}
+mogbasic<-mongo(collection = "stockbase",db="stockdata")
+
+fimid<-mogbasic$find(query='{"list_status":"L"}')%>%
+  filter(exchange=="BSE")
+webbasic<-mongo(collection = "webbase",db="stockdata")
+upfirm<-webbasic$find(query='{}')%>%filter(symbol%in%fimid$symbol)
+bjsname<-fimid%>%select(symbol,name)
+
+xianqi<-merge(bjsname,upfirm,by=c("symbol"),all.y =T)%>%group_by(industry)%>%mutate(num=n())%>%
+  arrange(desc(num))%>%select(-c(symbol,num,firmname,bussines))
+names(xianqi)<-c("股票名称","股票代码","行业","上市日期","发行量","发行价","所在地区","概念")
+DT::datatable(xianqi,rownames = T,extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel',  'print')))
+
+industu<-upfirm%>%group_by(industry)%>%summarise(num=n())%>%arrange(desc(num))%>%
+  mutate(cols=gray.colors(19))%>%
+    arrange(industry)
+  
+
+
+#barplot(industu$num,names.arg = industu$industry,cex.names =0.7,las=2,col = gray.colors(20),ylim = c(0,25))
+ggplot(data = industu,aes(x=reorder(industry,-num),y=num))+
+  geom_col(aes(fill=industry),show.legend = F)+
+  theme_classic()+
+  scale_fill_manual(values=industu$cols)+
+  scale_y_continuous(expand = c(0,0),limits = c(0,25))+
+  geom_text(aes(label=num),vjust=-0.3)+
+  theme(axis.text.x = element_text(angle = 60,hjust = 0.9))+
+  labs(x=NULL,y=NULL)
+  
+```
+
+北交所为科创版和创业版提供了充足的后备力量。从北交所上市的股票概况来看，多数公司为创新型公司，涉及新材料、新基建、新能源和创新药等领域，这些公司在北交所连续上市满一年，且满足科创版或创业版的上市条件时，可申请从北交所转至创业板或科创版。从行业分布来看，机械设备、汽车、电力设备、医药生物、计算机、基础化工和电子产业是北交所的中流砥柱，其中机械设备的上市公司最多。
+
+### 北交所公司市场表现
+
+```{r include=FALSE}
+mogdail<-mongo(collection = "qfqtradedatadaily",db="stockdata")
+
+getdat<-function(code){
+  fimid<-mogdail$find(query=paste0('{"symbol":\"',code,'\"}'))
+  return(fimid)
+}
+
+alldata<-plyr::ldply(upfirm$symbol,getdat,.progress = "text")
+
+portfoli<-merge(alldata,upfirm,by=c("symbol"),all.x =T)%>%
+  mutate(ret=change/pre_close)%>%
+  filter(industry%in%c("机械设备",'汽车','电力设备',"医药生物","计算机","基础化工",'电子'))
+
+indgoru<-portfoli%>%filter(trade_date>="20220101")%>%
+  group_by(industry,trade_date)%>%
+  summarise(returns=mean(ret,na.rm=T))%>%ungroup()%>%
+  group_by(industry)%>%mutate(cumsum=cumsum(returns))%>%
+  select(-returns)%>%as.data.frame()
+
+```
+```{r echo=FALSE}
+ggplot(data=indgoru,aes(x=as.Date(trade_date,"%Y%m%d"),
+                        y=cumsum,
+                        color=industry))+
+  geom_line(aes(group=industry),show.legend = T,size=1.5)+
+  scale_x_date(date_breaks = "1 month",date_labels = "%Y-%m")+ 
+  theme_classic()+
+  theme(axis.text.x = element_text(angle = 60,hjust = 0.9))+
+  labs(x=NULL,y=NULL)
+```
+
+从各行业上市公司收益表现来看，2022年1月至2022年5月普遍下跌，5月后市场企稳，电力设备跌幅最大，反弹也最强势，短短3个月反弹50%以上，电子与生物医药震荡下行，其余行业稳定波动。
+
+### 北交所上市公司破发情况
+
+```{r include=FALSE}
+nowprice<-alldata%>%filter(trade_date=="20220817")%>%
+  mutate(nowp=close)%>%
+  select(symbol,nowp)
+
+newfim<-upfirm%>%
+  mutate(issuprice=as.numeric(gsub("元","",ipoprice)),
+         trade_date=gsub("-","",ipodate))%>%
+  select(symbol,industry,trade_date,issuprice)%>%
+  merge(alldata,by=c("symbol","trade_date"),all.x =T)%>%
+  select(symbol,industry,trade_date,issuprice,close)%>%
+  merge(nowprice,by=c("symbol"),all.x =T)%>%
+  mutate(stpf=close/issuprice-1,npf=nowp-issuprice)%>%
+  mutate(scolor=ifelse(npf<0,"red","blue"),
+         industry=as.factor(industry))%>%na.omit()
+
+```
+```{r echo=FALSE}
+plot(newfim$industry,rep(0,length(newfim$industry)),las=3,type="n",ylim=c(-1,6),ylab="首日上跌幅")
+abline(h=0,lwd=3)
+points(newfim$industry,newfim$stpf,bg=newfim$scolor,pch=21)
+
+```
+
+在实行注册制以来，打破了A股市场申购新股稳赚不赔的神话，运气不好也可能会遇到破发股票而亏钱。上图为北交所新股上市首日涨跌幅，从整体来看，北交所上市的105只股票中有21只破发（首日涨跌幅小于0），意味着北交所新股破发概率不到20%，平均而言，未破发新股首日涨幅明显高于破发股票首日跌幅，表明申购新股仍然可以获得丰厚的回报。再看上市后表现，目前价格高于发行价的股票有40只（蓝色点），目前价格低于发行价格的股票有75只，意味着北交所大多数新股已经跌破发行价。
+
+分行业来看，国家政策支持，投资者追捧的电力设备和机械设备行业新股上市表现良好，多数股票价格高于发行价，其余行业多数股票均已跌破发行价。
+
+
+```{r echo=FALSE}
+fimes<-newfim%>%select(-c(npf,scolor))
+names(fimes)<-c("股票代码","行业","上市日期","发行价","首日收盘价","现价","首日涨跌幅")
+DT::datatable(fimes,rownames = T,extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel',  'print')))
+```
+
+

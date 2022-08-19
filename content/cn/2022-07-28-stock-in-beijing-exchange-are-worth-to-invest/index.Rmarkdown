@@ -113,6 +113,7 @@ indgoru<-portfoli%>%filter(trade_date>="20220101")%>%
   select(-returns)%>%as.data.frame()
 
 ```
+
 ```{r echo=FALSE}
 ggplot(data=indgoru,aes(x=as.Date(trade_date,"%Y%m%d"),
                         y=cumsum,

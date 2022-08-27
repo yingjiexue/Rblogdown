@@ -14,10 +14,10 @@ $$
 figue
 
 ```{r}
-
+knitr::include_url("https://www.youtube.com/embed/s3JldKoA0zw?rel=0")
 ```
 
-{{< knitr::include_url("https://yihui.org") >}}
+
 
 
 

@@ -1,0 +1,20 @@
+---
+title: cets
+author: ''
+date: '2022-08-27'
+slug: cets
+categories: []
+tags: []
+---
+
+$$
+\pi=\alpha
+$$
+
+figue
+
+```{r}
+
+```
+
+{{< knitr::include_url("https://yihui.org") >}}

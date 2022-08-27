@@ -14,7 +14,7 @@ $$
 figue
 
 ```{r}
-knitr::include_url("https://www.bilibili.com/video/BV1Sg411r7Xp?spm_id_from=333.1007.tianma.1-1-1.click&vd_source=1312148eed03d2915d234e39fdc4c179&t=161.6")
+knitr::include_url("https://www.bilibili.com/69d87b95-20e5-4eaf-b81f-4a59b3d6dd06")
 ```
 
 

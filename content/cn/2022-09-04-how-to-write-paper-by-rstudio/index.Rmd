@@ -1,0 +1,18 @@
+---
+title: 利用Rstudio”一站式”写作论文指南
+author: 薛英杰
+date: '2022-09-04'
+slug: how to write paper by rstudio
+categories:
+  - cn
+tags:
+  - diary
+---
+
+[R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/)
+
+[R Markdown 输出优雅office文档教程](https://ardata-fr.github.io/officeverse/index.html)
+
+[flextable万能表格格式设计](https://rdrr.io/cran/flextable/)
+
+

@@ -1,0 +1,59 @@
+---
+title: 如何构造投资者情绪指数
+author: 薛英杰
+date: '2022-09-07'
+slug: investor sentiment factor
+categories:
+  - research
+tags:
+  - research
+bibliography: references.bib
+csl: china-national-standard-gb-t-7714-2015-author-date.csl
+---
+
+
+
+<p>在实证资产定价中，因子是指大家公认可以用来解释投资策略收益的系统性因素。传统金融认为，风险资产的收益唯一来源于资产蕴含的风险，风险越大，收益越高，学者也从不从角度来测度股票等资产的风险，形成了风险因子，比如，市值、价值以及投资等风险因子。随着行为金融的兴起，学者们发现投资者的非理性行为也会导致资产价格出现系统性偏差，聪明的投资者可以通过纠正这种行为偏差而获得超额收益。</p>
+<p>大量研究表明投资者会受情绪影响而出现非理性的行为，通过投资策略捕获这种行为偏差导致的资产错误定价能获得显著的超收益，为了检验这种策略收益是否与投资者情绪相关，需要对投资者情绪进行测量。</p>
+<p><span class="citation">Baker 等 (<a href="#ref-baker2006investor" role="doc-biblioref">2006</a>)</span> 研究了投资者情绪与股票横截面收益的关系，从投资者行为的角度解释了情绪如何影响资产定价，并提出了投资者情绪的测度方法，发现投资者情绪较低时，未来股票收益较高，特别在盘子小、上市时间短、波动高的股票上更明显，而投资者情绪较高时，未来股票收益反而较低。前面所说的投资者情绪因子就是在该篇论文中提出的，其背后的逻辑如下：</p>
+<blockquote>
+<p><strong>情绪在横截面存在差异</strong></p>
+</blockquote>
+<p>在论文中，Baker提出投资者情绪一种可能的定义时投机倾向。在这个定义下，情绪驱动了投机投资的相对需求，即使套利能力在横截面上没有差异，投资者情绪也能驱动投机需求，影响股票横截面收益。带情绪的投资者会选择符合他们情绪特征的股票，例如，投机倾向低的投资者可能会选择有利可图、有分红的股票，这并不是因为盈利能力和分红与一些不可观察的公司属性相关，而这些属性对投资者来说是安全的，而恰恰是因为 “盈利能力”和 “分红”这些突出的特征基可以被用来反映股票是否安全，反而不盈利、不分红、上市时间短等特征被用来反映投机性。</p>
+<blockquote>
+<p><strong>套利在横截面存在差异</strong></p>
+</blockquote>
+<p>在一般意义上，投资者情绪可能被定义为对股票的乐观和悲观程度。在一部分套利能力相对较弱的股票中，情绪的不规则波动仍然会影响横截面收益。理论和实证研究都表明套利往往时有风险和成本的，特别是在上市时间短、规模小和有财务困境的股票。</p>
+<p style="color:red">
+<blockquote>
+<p><strong>在实践中，套利限制和投资者情绪可能有重叠效应，难以将他们分离开来，这两种效应只能相互加强，但为了解释明白，一般都是分别来讨论这两种渠道。</strong></p>
+</blockquote>
+</p>
+<div id="投资者情绪因子构造方法" class="section level3">
+<h3>投资者情绪因子构造方法</h3>
+<p><strong>投资者情绪指数</strong></p>
+<blockquote>
+<p>关于投资者情绪目前没有一个明确且无争议的定义，本文基于前人发现与投资者情绪相关的变量构造了投资者情绪来度量投资者情绪。主要变量包括：</p>
+<ul>
+<li><p>封闭式基金折价(<span class="math inline">\(CEFD\)</span>)</p></li>
+<li><p>纽交所股票换手率(<span class="math inline">\(TURN\)</span>)</p></li>
+<li><p>IPO数量(<span class="math inline">\(NIPO\)</span>)</p></li>
+<li><p>IPO首日平均收益(<span class="math inline">\(RIPO\)</span>)</p></li>
+<li><p>新发行股票数量(<span class="math inline">\(S\)</span>)</p></li>
+<li><p>分红溢价( <span class="math inline">\(P^{D-ND}_{t-1}\)</span> )</p></li>
+</ul>
+</blockquote>
+<p>由于这些投资者情绪的代理变量可能包括情绪成分、特质波动和非情绪成分，本文使用主成分分析法分离了他们的共同成分，提取第一主成分作为投资者情绪指数。具体如下：</p>
+<p><span class="math display">\[
+SENTIMENT_t=-0.241CEFD_t+0.242TUREN_{t-1}+0.253NIPO_t\\
++0.257RIPO_{t-1}+0.112S_T-0.28P^{D-ND}_{t-1}
+\]</span></p>
+</div>
+<div id="参考文献" class="section level2 unnumbered">
+<h2>参考文献</h2>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-baker2006investor" class="csl-entry">
+Baker M, J Wurgler, 2006. Investor sentiment and the cross-section of stock returns[J/OL]. The journal of Finance, 61(4): 1645–1680. <a href="https://doi.org/10.1111/j.1540-6261.2006.00885.x">https://doi.org/10.1111/j.1540-6261.2006.00885.x</a>.
+</div>
+</div>
+</div>

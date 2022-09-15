@@ -106,7 +106,18 @@ barplot(GNP ~ Year, data = longley)
 knitr::include_graphics("D:/Rblogdown/content/cn/2022-09-04-how-to-write-paper-by-rstudio/index_files/figure-html/new.png")
 ```
 
-表格可以通过R代码读入表格数据，然后使用flextable包对表格格式格式化后可以输出到word，flextab可以很好地支持word表格的各种格式。表格样式学习参考：[flextable 模板](https://ardata.fr/en/flextable-gallery/)，具体flextable函数介绍看网站：[flextable函数大全](https://rdrr.io/cran/flextable/)。参考样例如下：
+表格可以通过R代码读入表格数据，然后使用flextable包对表格格式格式化后可以输出到word，flextab可以很好地支持word表格的各种格式。表格样式学习参考：[flextable 模板](https://ardata.fr/en/flextable-gallery/)，或看视频教程。
+```{=html}
+<p>Any <strong>raw</strong> 如何使用Flextable :</p>
+
+<iframe width="100%" height="400"
+  src="https://www.youtube.com/embed/-EuPFZCTnHE"
+  frameborder="0" allow="autoplay; encrypted-media"
+  allowfullscreen></iframe>
+```
+
+
+具体flextable函数介绍看网站：[flextable函数大全](https://rdrr.io/cran/flextable/)。参考样例如下：
 
 ```{r echo=TRUE,tab.cap="变量定义", tab.id = "mytab", tab.cap.style = "Table Caption"}
 pacman::p_load(startowd,flextable)
@@ -196,12 +207,3 @@ knitr::include_graphics("D:/Rblogdown/content/cn/2022-09-04-how-to-write-paper-b
 
 [Markdown 中的公式命令](https://rpruim.github.io/s341/S19/from-class/MathinRmd.html)
 
-```{=html}
-<p>Any <strong>raw</strong> HTML content works here.
-For example, here is a Youtube video:</p>
-
-<iframe width="100%" height="400"
-  src="https://www.youtube.com/embed/-EuPFZCTnHE"
-  frameborder="0" allow="autoplay; encrypted-media"
-  allowfullscreen></iframe>
-```

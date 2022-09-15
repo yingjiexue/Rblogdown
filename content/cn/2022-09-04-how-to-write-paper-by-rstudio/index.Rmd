@@ -203,7 +203,11 @@ knitr::include_graphics("D:/Rblogdown/content/cn/2022-09-04-how-to-write-paper-b
 
 ### 数学公式
 
-输出word的数学公式按照markdown内公式编辑的方式即可，具体命令参考：[Markdown 中的公式命令](https://rpruim.github.io/s341/S19/from-class/MathinRmd.html)。
+输出word的数学公式按照markdown内公式编辑的方式即可，具体命令看下面。
+
+```{r, echo=FALSE}
+knitr::include_url("https://rpruim.github.io/s341/S19/from-class/MathinRmd.html")
+```
 
 这儿需要提示的是公式编号，
 利用markdown输出数学公式后并带公式编号，要实现公式自动编号，需要在yaml中加入pandoc命令：‘pandoc_args: ["-Fpandoc-crossref"]’，然后在"$$"符号后面添加标签："{#eq:eqn2}",示例如下：
@@ -242,9 +246,13 @@ csl: china-national-standard-gb-t-7714-2015-author-date.csl     #参考文献格
 > Zotero 参考文献引用格式查询编辑修改，你可以去[这儿](https://editor.citationstyles.org/about/)
 
 > Zotero 如何使用你可以找B站，直接在下面看。
+```{=html}
 
-
-```{r, echo=FALSE}
-knitr::include_url("https://www.bilibili.com/video/BV1eq4y137hM?spm_id_from=333.337.search-card.all.click&vd_source=1312148eed03d2915d234e39fdc4c179")
+<iframe width="100%" height="400"
+  src="https://www.bilibili.com/video/BV1eq4y137hM?spm_id_from=333.337.search-card.all.click&vd_source=1312148eed03d2915d234e39fdc4c179"
+  frameborder="0" allow="autoplay; encrypted-media"
+  allowfullscreen></iframe>
 ```
+
+
 

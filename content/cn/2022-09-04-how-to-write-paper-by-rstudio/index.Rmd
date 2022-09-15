@@ -197,13 +197,48 @@ fpar_2
 
 
 ```{r,echo=FALSE , message=FALSE, warning=FALSE,fig.align='center'}
-knitr::include_graphics("D:/Rblogdown/content/cn/2022-09-04-how-to-write-paper-by-rstudio/index_files/figure-html/1663227779349.png")
+knitr::include_graphics("D:/Rblogdown/content/cn/2022-09-04-how-to-write-paper-by-rstudio/index_files/figure-html/1663229659765.png")
 ```
 
 
+### 数学公式
+
+输出word的数学公式按照markdown内公式编辑的方式即可，具体命令参考：[Markdown 中的公式命令](https://rpruim.github.io/s341/S19/from-class/MathinRmd.html)。这儿需要提示的是公式编号，
+利用markdown输出数学公式后并带公式编号，要实现公式自动编号，需要在yaml中加入pandoc命令：‘pandoc_args: ["-Fpandoc-crossref"]’，然后在"$$"符号后面添加标签："{#eq:eqn2}",示例如下：
 
 
 
 
-[Markdown 中的公式命令](https://rpruim.github.io/s341/S19/from-class/MathinRmd.html)
+```
+$$
+\begin{aligned}
+  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k} 
+\end{aligned}
+$$ {#eq:eqn2}
+```
 
+### 参考文献
+
+rdox_document默认的参考文献位置实在文章最后面，但是如果要在文章末尾增加附录，就需要将参考文献出现的位置指定到附录前面，实现该功能使用代码如下：
+
+```
+<div id="refs"></div>
+```
+将以上代码放在你要列出参考文献的位置，会自动在这个地方出现参考文献。
+
+在R markdown中引用参考文献，比word方便了很多倍，我们可以借助Zotero来管理文献，个人觉得它比Endnote好用许多，优点在于其下载文献方便，还可以做笔记，最重要的一点是可以导出markdown可以应用的.bib格式的文件，当你使用R markdown写论文时，可以从Zotero中导出论文中要引用的文献成.bib格式，然后复制到markdown根目录，在yaml中添加该文件名就可以自由引用了。更方便的是，Zotero文献引用格式库几乎提供了所有文献引用格式，你将对应文献引用格式.csl文件下载，与.bib格式文件放在相同目录下，同样在yaml中配置参数后就可以按你想要的引用格式引用参考文献了。yaml配置参数如下：
+
+```
+bibliography: reference.bib      #参考文献应用
+csl: china-national-standard-gb-t-7714-2015-author-date.csl     #参考文献格式 
+```
+
+> Zotero下载安装，你可以去[这儿](https://www.zotero.org/)
+
+> Zotero 参考文献引用格式下载，你可以去[这儿](https://www.zotero.org/styles)
+
+> Zotero 参考文献引用格式查询编辑修改，你可以去[这儿](https://editor.citationstyles.org/about/)
+
+> Zotero 如何使用你可以找B站，直接在下面看。
+
+knitr::include_url("https://www.bilibili.com/video/BV1eq4y137hM?spm_id_from=333.337.search-card.all.click&vd_source=1312148eed03d2915d234e39fdc4c179")

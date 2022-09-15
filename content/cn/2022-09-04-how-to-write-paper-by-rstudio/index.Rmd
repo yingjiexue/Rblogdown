@@ -106,9 +106,9 @@ barplot(GNP ~ Year, data = longley)
 knitr::include_graphics("D:/Rblogdown/content/cn/2022-09-04-how-to-write-paper-by-rstudio/index_files/figure-html/new.png")
 ```
 
-表格可以通过R代码读入表格数据，然后使用flextable包对表格格式格式化后可以输出到word，flextab可以很好地支持word表格的各种格式。表格样式学习参考：[flextable 模板](https://ardata.fr/en/flextable-gallery/)，或看视频教程。
+表格可以通过R代码读入表格数据，然后使用flextable包对表格格式格式化后可以输出到word，flextab可以很好地支持word表格的各种格式。表格样式学习参考：[flextable 模板](https://ardata.fr/en/flextable-gallery/)，或看Youtube视频教程(可能要翻墙)。
 ```{=html}
-<p>Any <strong>raw</strong> 如何使用Flextable :</p>
+<p> 如何使用Flextable :</p>
 
 <iframe width="100%" height="400"
   src="https://www.youtube.com/embed/-EuPFZCTnHE"

@@ -245,14 +245,9 @@ csl: china-national-standard-gb-t-7714-2015-author-date.csl     #参考文献格
 
 > Zotero 参考文献引用格式查询编辑修改，你可以去[这儿](https://editor.citationstyles.org/about/)
 
-> Zotero 如何使用你可以找B站，直接在下面看。
-```{=html}
+> Zotero 如何使用?,你可以找[B站](https://www.bilibili.com/video/BV1eq4y137hM?spm_id_from=333.337.search-card.all.click&vd_source=1312148eed03d2915d234e39fdc4c179)。
 
-<iframe width="100%" height="400"
-  src="https://www.bilibili.com/video/BV1eq4y137hM?spm_id_from=333.337.search-card.all.click&vd_source=1312148eed03d2915d234e39fdc4c179"
-  frameborder="0" allow="autoplay; encrypted-media"
-  allowfullscreen></iframe>
-```
+
 
 
 

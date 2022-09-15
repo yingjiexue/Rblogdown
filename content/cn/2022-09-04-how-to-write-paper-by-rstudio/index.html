@@ -9,14 +9,277 @@ tags:
   - diary
 ---
 
+<link href="{{< blogdown/postref >}}index_files/tabwid/tabwid.css" rel="stylesheet" />
+<link href="{{< blogdown/postref >}}index_files/tabwid/scrool.css" rel="stylesheet" />
 
 
-<p>一篇科学论文是文字、图表、参考文献有机统一的格式化产品，有效快速地将这些元素有机统一并格式化可以提高科研人员的研究效率。谢益辉等大佬在重复化报告邻域做出了巨大贡献，从研究报告、期刊论文、学位论文到书籍，都提供了模板化的格式，让我们可以傻乎乎地直接在Rstudio中编辑Rmarkdown文件，通过Knit就可以输出我们想要格式的报告、论文或书籍。</p>
-<p>Rstudio最大的好处就是为科研工作者提供了一站式服务，既可以撰写文字，又可以分析数据，输出图表，不仅能管理文献，还能输出个性化格式的论文或研究报告。之所使用Rstudio撰写论文非常方便，主要由于存在大量可以利用的个性化模板，例如，article包提供了各大国际期刊的<a href="https://bookdown.org/yihui/rmarkdown/rticles-templates.html">投稿模板</a>,<a href="https://bookdown.org/baydap/bookdownplus/">bookdownplus</a>也提供了许多期刊、学位论文、书籍等<a href="https://bookdownplus.netlify.app/portfolio/">模板</a>, 如果这些模板不够，你可以为自己量身定做一个属于自己的模板。虽然这些模板提供了多样化的模板，其模板生态也比较成熟，但是这些模板都是基于latex打造的pdf模板，对国内大家习惯于word环境的学者来说，在阅读修改上可能不太方便。下面我们就基于word格式来介绍如何利用Rtudio写作期刊和学位论文。</p>
-<p><a href="https://bookdown.org/yihui/rmarkdown-cookbook/">R Markdown Cookbook</a></p>
-<p><a href="https://ardata-fr.github.io/officeverse/index.html">R Markdown 输出优雅office文档教程</a></p>
-<p><a href="https://rdrr.io/cran/flextable/">flextable万能表格格式设计</a></p>
-<p><a href="https://www.jakeruss.com/cheatsheets/stargazer/">stargazer 使用指南</a></p>
+<p>一篇科学论文是文字、图表、参考文献有机统一的格式化产品，有效快速地将这些元素有机统一并格式化可以提高科研人员的研究效率。谢益辉等大佬在重复化报告邻域做出了巨大贡献，从研究报告、期刊论文、学位论文到书籍，都提供了模板化的格式，让我们可以傻乎乎地直接在Rstudio中编辑Rmarkdown文件，通过Knit就可以输出我们想要格式的报告、论文或书籍。markdown的使用可以参考：<a href="https://bookdown.org/yihui/rmarkdown-cookbook/">R Markdown Cookbook</a></p>
+<p>Rstudio最大的好处就是为科研工作者提供了一站式服务，既可以撰写文字，又可以分析数据，输出图表，不仅能管理文献，还能输出个性化格式的论文或研究报告。之所使用Rstudio撰写论文非常方便，主要由于存在大量可以利用的个性化模板，例如，article包提供了各大国际期刊的<a href="https://bookdown.org/yihui/rmarkdown/rticles-templates.html">投稿模板</a>,<a href="https://bookdown.org/baydap/bookdownplus/">bookdownplus</a>也提供了许多期刊、学位论文、书籍等<a href="https://bookdownplus.netlify.app/portfolio/">模板</a>, 如果这些模板不够，你可以为自己量身定做一个属于自己的模板。虽然模板生态也比较成熟，但由于markdown转化word文件时公式和表格不能很好显示，这些模板是基于latex打造的pdf模板，对国内大家习惯于word环境的学者来说，在阅读修改上可能不太方便，下面我们就基于word格式来介绍如何利用Rtudio写作论文。</p>
+<div id="markdown-yaml设置" class="section level3">
+<h3>Markdown yaml设置</h3>
+<p>文档格式设定是markdown最重要的部分，关系到页面布局、表格格式、图形大小、参考文献等在word中的呈现方式。需要强调的是许多包都提供了markdown输出word文件的功能，比如markdown包提供的word_document可实现基本文档的编辑功能;bookdown提供的word_document2可以实现交叉引用，但这两者对个性化的格式、公式和表格都支持的不是很好，officedown提供的rdocx_document，可谓为大家定制个性化的word文档提供了福音，在这个环境中，可以通过officer包集成的函数对word的元素进行修改，以达到自己想要的效果。如果大家想通过Rmarkdown输出word格式文件，我极力推荐rdox_document环境，下面给出rdox_document环境下的yaml：</p>
+<pre><code>---
+title: &quot;ETF持股增加了定价效率吗？&quot;
+subtitle: &quot;——基于中国A股市场的实证&quot;
+output: 
+  officedown::rdocx_document:
+    pandoc_args: [&quot;-Fpandoc-crossref&quot;]  #用于公式编号
+    reference_docx: template.docx       #参考文档设置
+    tables:                             #表格格式设置
+      style: Table
+      layout: autofit
+      width: 1.0
+      topcaption: true
+      tab.lp: &#39;tab:&#39;
+      caption:
+        style: Table Caption
+        pre: &#39;表 &#39;
+        sep: &#39;: &#39;
+        tnd: 0
+        tns: &#39;-&#39;
+        fp_text: !expr officer::fp_text_lite(bold = TRUE)
+      conditional:
+        first_row: false
+        first_column: false
+        last_row: false
+        last_column: false
+        no_hband: false
+        no_vband: false
+    plots:                         ##图形格式设置
+      style: Normal
+      align: center
+      fig.lp: &#39;fig:&#39;
+      topcaption: false
+      caption:
+        style: Image Caption
+        pre: &#39;图 &#39;
+        sep: &#39;: &#39;
+        tnd: 0
+        tns: &#39;-&#39;
+        fp_text: !expr officer::fp_text_lite(bold = TRUE)
+    page_margins:                 ##页边距设置
+        bottom: 1
+        top: 1
+        right: 1.25
+        left: 1.25
+        header: 0
+        footer: 0
+        gutter: 0
+        
+bibliography: reference.bib      #参考文献应用
+csl: china-national-standard-gb-t-7714-2015-author-date.csl     #参考文献格式                             
+---</code></pre>
+</div>
+<div id="页面设置" class="section level3">
+<h3>页面设置</h3>
+<p>word 文档的页面设置由top、bottom、left、right、header、footer、gutter六个参数控制，top、bottom、left、right、分别对应上、下、左、右页边距，header、footer分别为页眉和页脚的高度，gutter左右两页中间的空白距离。</p>
+</div>
+<div id="word模板制作" class="section level3">
+<h3>word模板制作</h3>
+<p>由于Markdown只有标题字号大小不同，正文的字体大小、行距、段前段后间距等格式均没有设置，为了使生成的word在这些功能上自由设置，yaml中设置了参数reference_docx，让你添加一个word模板，在模板中设置好不同文字内容对应的字体、字号、行距等格式，然后将模板的文件名添加到reference_docx后面，markdown生成的文档字体、字号、行距等格式与模板完全相同。<strong>需要提醒的是，设置模板最好的办法就是用markdown先生成一个word文档，在该文档的基础上调整相应格式后，将其作为模板添加到yaml中。</strong></p>
+<p>模板制作的教程可以参考阅读<a href="https://rmarkdown.rstudio.com/articles_docx.html">网页教程</a>或观看<a href="https://vimeo.com/110804387">视频教程</a>，要是打不开，可能要翻墙去看噢。</p>
+</div>
+<div id="图表格式" class="section level3">
+<h3>图表格式</h3>
+<p>图表格式参数我挑几个比较重要的来说一下，其他的可以通过查看R帮助文档去了解详情。rdocx_document环境默认的是英文语言下的图表名称，比如图1显示出来就成figure1,表1就成Table1,而我们想把它改成中文环境下的显示，只需要将yaml中的参数’pre: figure’改为’pre: 图’，表格的修改阐述也一样，这样就可以实现图表自动编号。 图表标题是显示在图表上方还是下方有yaml参数’topcaption’控制，大家可以根据需要进行修改。</p>
+<p>文档图形可以直接通过插入的R代码块输出，比如：</p>
+<pre class="r"><code>barplot(GNP ~ Year, data = longley)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>插入以上代码就可以生成带标题的图形。但是对于来自其他软件的图片也要通过代码块载入才能自动编号，比如通过插入图片的方式就不能自动编号，具体如下：</p>
+<pre><code>![](index_files/figure-html/new.png)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/new.png" /></p>
+<p>而应该使用如下代码才能自动编号，具体如下：</p>
+<pre class="r"><code>knitr::include_graphics(&quot;D:/Rblogdown/content/cn/2022-09-04-how-to-write-paper-by-rstudio/index_files/figure-html/new.png&quot;)</code></pre>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="{{< blogdown/postref >}}index_files/figure-html/new.png" alt="中国GNP" width="672" />
+<p class="caption">
+Figure 1: 中国GNP
+</p>
+</div>
+<p>表格可以通过R代码读入表格数据，然后使用flextable包对表格格式格式化后可以输出到word，flextab可以很好地支持word表格的各种格式。表格样式学习参考：<a href="https://ardata.fr/en/flextable-gallery/">flextable 模板</a>，具体flextable函数介绍看网站：<a href="https://rdrr.io/cran/flextable/">flextable函数大全</a>。参考样例如下：</p>
+<pre class="r"><code>pacman::p_load(startowd,flextable)
+sumarydat&lt;-data.frame(vname=c(&quot;交易成本&quot;,&quot;融券比率&quot;,&quot;分析师覆盖&quot;,&quot;公司规模&quot;,
+                              &quot;账面市值比&quot;,&quot;换手率&quot;,&quot;波动率&quot;,&quot;资产收益率&quot;,
+                              &quot;机构持股比例&quot;,&quot;动量&quot;),
+                    symbosv=c(&quot;Illiqudity&quot;,&quot;Shortratio&quot;,&quot;Anlysiscover&quot;,&quot;Size&quot;,
+                                &quot;BM&quot;,&quot;Turnover&quot;,&quot;Volatility&quot;,&quot;ROE&quot;,
+                              &quot;Instituhold&quot;,&quot;Mon&quot;),
+                    vdefin=c(&quot;Amihud(2006)非流动性指标&quot;,
+                             &quot;股票融券余额与总市值之比&quot;,
+                             &quot;当月跟踪股票i的分析师数量与分析师总数量之比&quot;,
+                             &quot;上市公司市值&quot;,
+                             &quot;净资产比公司市值&quot;,
+                             &quot;交易量与流通股之比&quot;,
+                             &quot;股票收益的方差&quot;,
+                             &quot;净利润比净资产&quot;,
+                             &quot;机构持股市值占总市值之比&quot;,
+                             &quot;股票过去20个月的收益率&quot;))
+
+
+names(sumarydat)=c(&quot;变量名称&quot;,&quot;变量符号&quot;,&quot;变量定义&quot;)
+ft&lt;-fatdat(sumarydat,ftname=&quot;宋体&quot;)
+ft</code></pre>
+<template id="6e605263-11fc-4efb-8c49-02c68c7acf63"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+.katex-display {
+    margin: 0 0 !important;
+}
+</style><div class="tabwid"><style>.cl-31814252{table-layout:auto;}.cl-31650380{font-family:'\u5b8b\u4f53';font-size:9pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-31658a6c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-31658a76{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:0;padding-top:0;padding-left:0;padding-right:0;line-height: 1;background-color:transparent;}.cl-31662f80{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-31662f8a{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-31662f94{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-31662f95{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-31662f9e{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-31662f9f{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-31814252'>
+<caption class>
+<p><span id="tab:mytab">Table 1: </span>变量定义</p>
+</caption>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-31662f9e"><p class="cl-31658a6c"><span class="cl-31650380">变量名称</span></p></td><td class="cl-31662f9f"><p class="cl-31658a76"><span class="cl-31650380">变量符号</span></p></td><td class="cl-31662f9f"><p class="cl-31658a76"><span class="cl-31650380">变量定义</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-31662f8a"><p class="cl-31658a6c"><span class="cl-31650380">交易成本</span></p></td><td class="cl-31662f80"><p class="cl-31658a76"><span class="cl-31650380">Illiqudity</span></p></td><td class="cl-31662f80"><p class="cl-31658a76"><span class="cl-31650380">Amihud(2006)非流动性指标</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-31662f8a"><p class="cl-31658a6c"><span class="cl-31650380">融券比率</span></p></td><td class="cl-31662f80"><p class="cl-31658a76"><span class="cl-31650380">Shortratio</span></p></td><td class="cl-31662f80"><p class="cl-31658a76"><span class="cl-31650380">股票融券余额与总市值之比</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-31662f8a"><p class="cl-31658a6c"><span class="cl-31650380">分析师覆盖</span></p></td><td class="cl-31662f80"><p class="cl-31658a76"><span class="cl-31650380">Anlysiscover</span></p></td><td class="cl-31662f80"><p class="cl-31658a76"><span class="cl-31650380">当月跟踪股票i的分析师数量与分析师总数量之比</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-31662f8a"><p class="cl-31658a6c"><span class="cl-31650380">公司规模</span></p></td><td class="cl-31662f80"><p class="cl-31658a76"><span class="cl-31650380">Size</span></p></td><td class="cl-31662f80"><p class="cl-31658a76"><span class="cl-31650380">上市公司市值</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-31662f8a"><p class="cl-31658a6c"><span class="cl-31650380">账面市值比</span></p></td><td class="cl-31662f80"><p class="cl-31658a76"><span class="cl-31650380">BM</span></p></td><td class="cl-31662f80"><p class="cl-31658a76"><span class="cl-31650380">净资产比公司市值</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-31662f8a"><p class="cl-31658a6c"><span class="cl-31650380">换手率</span></p></td><td class="cl-31662f80"><p class="cl-31658a76"><span class="cl-31650380">Turnover</span></p></td><td class="cl-31662f80"><p class="cl-31658a76"><span class="cl-31650380">交易量与流通股之比</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-31662f8a"><p class="cl-31658a6c"><span class="cl-31650380">波动率</span></p></td><td class="cl-31662f80"><p class="cl-31658a76"><span class="cl-31650380">Volatility</span></p></td><td class="cl-31662f80"><p class="cl-31658a76"><span class="cl-31650380">股票收益的方差</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-31662f8a"><p class="cl-31658a6c"><span class="cl-31650380">资产收益率</span></p></td><td class="cl-31662f80"><p class="cl-31658a76"><span class="cl-31650380">ROE</span></p></td><td class="cl-31662f80"><p class="cl-31658a76"><span class="cl-31650380">净利润比净资产</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-31662f8a"><p class="cl-31658a6c"><span class="cl-31650380">机构持股比例</span></p></td><td class="cl-31662f80"><p class="cl-31658a76"><span class="cl-31650380">Instituhold</span></p></td><td class="cl-31662f80"><p class="cl-31658a76"><span class="cl-31650380">机构持股市值占总市值之比</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-31662f95"><p class="cl-31658a6c"><span class="cl-31650380">动量</span></p></td><td class="cl-31662f94"><p class="cl-31658a76"><span class="cl-31650380">Mon</span></p></td><td class="cl-31662f94"><p class="cl-31658a76"><span class="cl-31650380">股票过去20个月的收益率</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="9baeeeca-046c-43ca-a87f-9a82a6896f46"></div>
+<script>
+var dest = document.getElementById("9baeeeca-046c-43ca-a87f-9a82a6896f46");
+var template = document.getElementById("6e605263-11fc-4efb-8c49-02c68c7acf63");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<p>这个三线表就是本人基于flextable格式化的一个表格，也是科研论文中常用的表格格式。对于模型结果输出，stargazer包做了大量工作，可以汇总大多数模型的结果并形成漂亮的表格，但其输出格式只支持latex和html文件，word使用者只能通过复制html表格后，粘贴到word，这种手动方式肯定不适合可重复性报告，为了解决这个问题，我开发了<a href="https://github.com/yingjiexue/startowd">startowd包</a>,可以通过读入stargazer包输出的html文件，并利用flextable包将其格式化，实现了从手动到自动的过程。样例如下：</p>
+<pre class="r"><code>fname&lt;-system.file(&quot;extdata&quot;,&quot;table.html&quot;,package = &quot;startowd&quot;,mustWork = TRUE)
+library(flextable)
+library(stringi)
+library(stringr)
+library(officer)
+table&lt;-gettable(fname)[c(2:20),]
+ft&lt;-fmmodel(table)
+ft</code></pre>
+<template id="6a226379-ea5b-40ff-b648-72c5949866ef"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+.katex-display {
+    margin: 0 0 !important;
+}
+</style><div class="tabwid"><style>.cl-321d6786{table-layout:auto;}.cl-32008e90{font-family:'Time New Roma';font-size:9pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-32008e9a{font-family:'宋体';font-size:9pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-320103de{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:0;padding-top:0;padding-left:0;padding-right:0;line-height: 1;background-color:transparent;}.cl-320103f2{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:0;padding-top:0;padding-left:0;padding-right:0;line-height: 1;background-color:transparent;}.cl-320103fc{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-320184bc{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-320184c6{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-320184c7{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-320184d0{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-320184d1{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-320184d2{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-320184da{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-320184db{height:0;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-320184dc{height:0;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-320184dd{height:0;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-320184e4{height:0;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-320184e5{height:0;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-320184ee{height:0;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-321d6786'>
+<caption class>
+<p><span id="tab:unnamed-chunk-4">Table 2: </span>回归结果</p>
+</caption>
+<thead><tr><td class="cl-320184db"><p class="cl-320103de"><span class="cl-32008e90"></span></p></td><td  colspan="2"class="cl-320184dc"><p class="cl-320103f2"><span class="cl-32008e90">rating</span></p></td><td class="cl-320184dc"><p class="cl-320103f2"><span class="cl-32008e90">high.rating</span></p></td></tr><tr><td class="cl-320184dd"><p class="cl-320103de"><span class="cl-32008e90"></span></p></td><td  colspan="2"class="cl-320184e4"><p class="cl-320103f2"><span class="cl-32008e90">OLS</span></p></td><td class="cl-320184e4"><p class="cl-320103f2"><span class="cl-32008e90">probit</span></p></td></tr><tr><td class="cl-320184ee"><p class="cl-320103de"><span class="cl-32008e90"> </span></p></td><td class="cl-320184e5"><p class="cl-320103f2"><span class="cl-32008e90">(1)</span></p></td><td class="cl-320184e5"><p class="cl-320103f2"><span class="cl-32008e90">(2)</span></p></td><td class="cl-320184e5"><p class="cl-320103f2"><span class="cl-32008e90">(3)</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-320184c6"><p class="cl-320103fc"><span class="cl-32008e90">complaints</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">0.692***</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">0.682***</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-320184c6"><p class="cl-320103fc"><span class="cl-32008e90"></span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">(0.149)</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">(0.129)</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-320184c6"><p class="cl-320103fc"><span class="cl-32008e90">privileges</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">-0.104</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">-0.103</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-320184c6"><p class="cl-320103fc"><span class="cl-32008e90"></span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">(0.135)</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">(0.129)</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-320184c6"><p class="cl-320103fc"><span class="cl-32008e90">learning</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">0.249</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">0.238*</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">0.164***</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-320184c6"><p class="cl-320103fc"><span class="cl-32008e90"></span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">(0.160)</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">(0.139)</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">(0.053)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-320184c6"><p class="cl-320103fc"><span class="cl-32008e90">raises</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">-0.033</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90"></span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-320184c6"><p class="cl-320103fc"><span class="cl-32008e90"></span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">(0.202)</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90"></span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-320184c6"><p class="cl-320103fc"><span class="cl-32008e90">critical</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">0.015</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90"></span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">-0.001</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-320184c6"><p class="cl-320103fc"><span class="cl-32008e90"></span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">(0.147)</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90"></span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">(0.044)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-320184c6"><p class="cl-320103fc"><span class="cl-32008e90">advance</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90"></span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90"></span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">-0.062</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-320184c6"><p class="cl-320103fc"><span class="cl-32008e90"></span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90"></span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90"></span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">(0.042)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-320184c6"><p class="cl-320103fc"><span class="cl-32008e90">Constant</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">11.011</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">11.258</span></p></td><td class="cl-320184bc"><p class="cl-320103f2"><span class="cl-32008e90">-7.476**</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-320184d0"><p class="cl-320103fc"><span class="cl-32008e90"></span></p></td><td class="cl-320184c7"><p class="cl-320103f2"><span class="cl-32008e90">(11.704)</span></p></td><td class="cl-320184c7"><p class="cl-320103f2"><span class="cl-32008e90">(7.318)</span></p></td><td class="cl-320184c7"><p class="cl-320103f2"><span class="cl-32008e90">(3.570)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-320184d2"><p class="cl-320103fc"><span class="cl-32008e90">Observations</span></p></td><td class="cl-320184d1"><p class="cl-320103f2"><span class="cl-32008e90">30</span></p></td><td class="cl-320184d1"><p class="cl-320103f2"><span class="cl-32008e90">30</span></p></td><td class="cl-320184d1"><p class="cl-320103f2"><span class="cl-32008e90">30</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-320184d0"><p class="cl-320103fc"><span class="cl-32008e90">R2</span></p></td><td class="cl-320184c7"><p class="cl-320103f2"><span class="cl-32008e90">0.715</span></p></td><td class="cl-320184c7"><p class="cl-320103f2"><span class="cl-32008e90">0.715</span></p></td><td class="cl-320184c7"><p class="cl-320103f2"><span class="cl-32008e90"></span></p></td></tr></tbody><tfoot><tr style="overflow-wrap:break-word;"><td  colspan="4"class="cl-320184da"><p class="cl-320103fc"><span class="cl-32008e9a">注：括号内为回归系数对应的t统计量。其中***、**和*分别代表系数在1%、5%和10%的置信水平下显著。</span></p></td></tr></tfoot></table></div></template>
+<div class="flextable-shadow-host" id="de0aa6dd-9fe1-4386-acd6-32e45a9bd031"></div>
+<script>
+var dest = document.getElementById("de0aa6dd-9fe1-4386-acd6-32e45a9bd031");
+var template = document.getElementById("6a226379-ea5b-40ff-b648-72c5949866ef");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
+<p>关于stargazer包如何使用参考： <a href="https://www.jakeruss.com/cheatsheets/stargazer/">stargazer 使用指南</a>。</p>
+</div>
+<div id="文档个性化格式" class="section level3">
+<h3>文档个性化格式</h3>
+<p>要输出个性化的word文档，就需要利用officer包的函数进行特殊化处理，其使用方法参考：
+<a href="https://ardata-fr.github.io/officeverse/index.html">R Markdown 输出优雅office文档教程</a>。例如要添加作者、作者单位，并以脚注的形式添加基金信息和作者简介，可以利用officer包通过以下代码实现：</p>
+<blockquote>
+<p>代码</p>
+</blockquote>
+<pre><code>library(officer)
+
+##设置作者姓名
+author=&quot;薛英杰     汪 勇     尹玉刚 &quot;
+fpar_1 &lt;- fpar(author,  fp_p = fp_par(text.align = &quot;center&quot;) )
+fpar_1
+
+##设置作者单位
+atthinstiution&lt;-&quot;（西南财经大学 证券与期货学院，四川 成都 611130）&quot;
+
+##设置基金及作者简介
+ftcontent&lt;- &quot;基金项目：国家自然科学基金面上项目“对国有企业高杠杆的控制权网络解析”（71874145）；国家自然科学基金青年项目“上市公司产品竞争与股票市场定价：机制与实证研究”（71903154）。&quot;
+authorintr&lt;-&quot;作者简介：薛英杰（通讯作者），西南财经大学博士研究生，主要从事金融市场、资产定价研究，联系方式yingjiexuesuwfe@163.com；汪勇，西南财经大学副教授，博士，主要从事公司金融、资产定价研究；尹玉刚，西南财经大学副教授，博士，主要从事公司金融、实证资产定价研究。&quot;
+fp_refnote &lt;- fp_text_lite(vertical.align = &#39;superscript&#39;)
+ftsyle&lt;-fp_text(font.size = 8)
+ftnot&lt;-block_list(fpar(ftext(ftcontent,prop=ftsyle),fp_p = fp_par(text.align =  &#39;justify&#39;,line_spacing=1),fp_t=fp_refnote),
+                  fpar(ftext(authorintr,prop=ftsyle),fp_p = fp_par(text.align =  &#39;justify&#39;,line_spacing=1),fp_t=fp_refnote))
+fpar_2 &lt;- fpar(atthinstiution,
+               fp_p = fp_par(text.align = &quot;center&quot;,line_spacing=2) ,
+               run_footnote(x =ftnot,prop = fp_refnote))
+fpar_2
+</code></pre>
+<blockquote>
+<p>显示格式</p>
+</blockquote>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/1663227779349.png" width="202" style="display: block; margin: auto;" /></p>
+<p><a href="https://rpruim.github.io/s341/S19/from-class/MathinRmd.html">Markdown 中的公式命令</a></p>
 <p>Any <strong>raw</strong> HTML content works here.
 For example, here is a Youtube video:</p>
 
@@ -24,3 +287,4 @@ For example, here is a Youtube video:</p>
   src="https://www.youtube.com/embed/-EuPFZCTnHE"
   frameborder="0" allow="autoplay; encrypted-media"
   allowfullscreen></iframe>
+</div>

@@ -33,7 +33,7 @@ date: ""
   <a href="http://www.etf.group/" style="color:#00BFFF;">ETF之家</a>：指数基金话题推送<br>
   <a href="https://alphaarchitect.com/category/architect-academic-insights/factor-investing/momentum-investing/" style="color:#00BFFF;">Alpha architect</a>：超额收益Alpha观点分析<br>
   <a href="https://www.joinquant.com/" style="color:#00BFFF;">优矿</a>：量化分析平台<br>
-  <a href="https://www.etf.com/" style="color:#00BFFF;">Zotero </a>：Zotero ETF分析与讨论
+  <a href="https://www.etf.com/" style="color:#00BFFF;">International ETF </a>： ETF分析与讨论
 
 ## 金融期刊
 

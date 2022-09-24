@@ -13,7 +13,6 @@ editor_options:
     wrap: 72
 ---
 
-
 2021年9北交所成立以来，已有104只股票陆续在北交所上市交易，其中观典防务（832317）
 、泰祥股份（833874）和翰博高新（833994）三只股票已转至创业板交易。与主板和创业板
 定位不同，北交所的定位是为创新型中小企业提供融资服务，是专门为原来新三板的精选层
@@ -45,9 +44,6 @@ editor_options:
 
 ### 北交所上市公司概况和行业分布
 
-
-
-
 ```{r message=FALSE, include=FALSE}
 #加载软件包
 pacman::p_load(data.table,stringr,dplyr,reticulate,lubridate,mongolite,
@@ -56,6 +52,7 @@ pacman::p_load(data.table,stringr,dplyr,reticulate,lubridate,mongolite,
 system('net start MongoDB',intern = F,wait = T)
 
 ```
+
 ```{r echo=FALSE}
 mogbasic<-mongo(collection = "stockbase",db="stockdata")
 
@@ -146,6 +143,7 @@ newfim<-upfirm%>%
          industry=as.factor(industry))%>%na.omit()
 
 ```
+
 ```{r echo=FALSE}
 plot(newfim$industry,rep(0,length(newfim$industry)),las=3,type="n",ylim=c(-1,6),ylab="首日上跌幅")
 abline(h=0,lwd=3)
@@ -157,11 +155,8 @@ points(newfim$industry,newfim$stpf,bg=newfim$scolor,pch=21)
 
 分行业来看，国家政策支持，投资者追捧的电力设备和机械设备行业新股上市表现良好，多数股票价格高于发行价，其余行业多数股票均已跌破发行价。
 
-
 ```{r echo=FALSE}
 fimes<-newfim%>%select(-c(npf,scolor))
 names(fimes)<-c("股票代码","行业","上市日期","发行价","首日收盘价","现价","首日涨跌幅")
 DT::datatable(fimes,rownames = T,extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy')))
 ```
-
-

@@ -1,0 +1,124 @@
+---
+title: 把台式机主机打造成一个服务器
+author: 薛英杰
+date: '2022-09-25'
+slug: set your desktop to a service
+categories:
+  - cn
+tags:
+  - diary
+---
+
+
+
+<p>在工作中我们常常会一边找资料一边写文档，所以就衍生出对屏幕扩展功能的需求。当然，这个功能可以通过买个显示器配合笔记本就完全可以实现，但是对科研工作者来说，利用笔记本做实证分析会有些力不从心，而使用台式机就需要扯下连接笔记本的显示器连接线，然后插到台式机上。每次在台式机和笔记本之间切换不仅会加速二者接口和链接线的老化，还会增加我们的体力劳动，最麻烦的是我们还得用U盘把实证结果拷贝到笔记本上再开展论文写作。<strong>要避免这些麻烦最好的办法是将你的台式机主机设置成一台服务器，通过笔记本控制它，既能避免切换屏幕，也能有效实现数据共享。</strong> 下面介绍一下如何实现这个小目标。</p>
+<div id="开启访问权限" class="section level3">
+<h3>开启访问权限</h3>
+<p>要让其他用户远程访问你的电脑，首先要开启远程桌面，允许其他电脑通过网络连接并控制你的电脑。具体步骤如下：</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>右击”此电脑”，选择”属性”</li>
+</ol>
+</blockquote>
+</div>
+<div id="section" class="section level3">
+<h3><img src="%E8%AE%BE%E7%BD%AEfpng.png" /></h3>
+<blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>在出现的页面中点击”远程桌面”</li>
+</ol>
+</blockquote>
+<p><img src="yuanc.png" /></p>
+<blockquote>
+<ol start="3" style="list-style-type: decimal">
+<li>启动远程桌面选择”开”</li>
+</ol>
+</blockquote>
+<p><img src="ope.png" /></p>
+<blockquote>
+<ol start="4" style="list-style-type: decimal">
+<li>打开”控制面板”——&gt;选择”系统和安全”</li>
+</ol>
+</blockquote>
+<p><img src="kzmb.png" /></p>
+<blockquote>
+<ol start="5" style="list-style-type: decimal">
+<li>点击”允许远程访问”</li>
+</ol>
+</blockquote>
+<p><img src="yxycfw.png" /></p>
+<blockquote>
+<ol start="6" style="list-style-type: decimal">
+<li>选择”允许远程协助连接这台计算机”和”允许远程连接到此计算机”</li>
+</ol>
+</blockquote>
+<p><img src="xulj.png" /></p>
+</div>
+<div id="创建作为服务器的用户" class="section level3">
+<h3>创建作为服务器的用户</h3>
+<p>要通过远程来访问你的台式机，需要设置台式机登录用户名和密码（为了保证网络安全），这个很简单，你可以查看这个连接：<a href="http://www.ujiaoshou.com/xtjc/175319872.html" class="uri">http://www.ujiaoshou.com/xtjc/175319872.html</a> 。比如我的登录用户名是：Administrator，密码就不在展示了，如下图：</p>
+<p><img src="shezv.png" /></p>
+</div>
+<div id="局域网内访问" class="section level3">
+<h3>局域网内访问</h3>
+<p>局域网内访问是指访问台式机的电脑和台式机主机连接的是同一个网络，比如连接相同wifi，那么就可以将台式机主机作为服务器通过ip来访问。具体如下：</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>在任务栏搜索空中搜索”远程桌面连接”，并将其创捷快捷方式到桌面，方面以后使用。</li>
+</ol>
+</blockquote>
+<p><img src="yczlj.png" /></p>
+<blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>查看台式机ip。 在台式机上打开cmd命令窗口，输入：ipconfig，敲击回车键，就可以查到台式机ip地址。</li>
+</ol>
+</blockquote>
+<p><img src="ipdz.png" /></p>
+<blockquote>
+<p>3.打开”远程桌面连接”，输入Ip地址和用户名。</p>
+</blockquote>
+<p><img src="yczmk.png" /></p>
+<blockquote>
+<ol start="4" style="list-style-type: decimal">
+<li>点击连接后，就会提示你输入登录密码，按照提示填写就可以访问远程台式机。</li>
+</ol>
+</blockquote>
+</div>
+<div id="外部公网访问" class="section level3">
+<h3>外部公网访问</h3>
+<p>外部公网访问是指访问计算机和被访问的服务器不在同一网络连接上，据说要实现访问需要设置路由器的公网ip，并允许其他网络访问改IP，这么复杂的设置寡人不会呀，也没找到合适的资料。</p>
+<p>然而，我发现 cpolar可以实现内网穿透，帮你实现这个功能，这样你不管是在北京、上海还是远在国外，都可以远程连接到你的台式机。</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>cpolar注册与安装</li>
+</ol>
+</blockquote>
+<p>请看官网文档，<a href="https://www.cpolar.com/docs">点这儿</a>，你也可以参考：<a href="https://blog.csdn.net/LisaCpolar/article/details/124249600?spm=1001.2014.3001.5501" class="uri">https://blog.csdn.net/LisaCpolar/article/details/124249600?spm=1001.2014.3001.5501</a></p>
+<blockquote>
+<p>2.配置固定TCP端口地址</p>
+</blockquote>
+<p>都有现成教程，我就直接上链接：<a href="https://blog.csdn.net/LisaCpolar/article/details/124249674?spm=1001.2014.3001.5501" class="uri">https://blog.csdn.net/LisaCpolar/article/details/124249674?spm=1001.2014.3001.5501</a></p>
+<blockquote>
+<ol start="3" style="list-style-type: decimal">
+<li>通过远程桌面连接访问</li>
+</ol>
+</blockquote>
+<p>上面两个步骤主要是为了拿到访问地址，现在连接和区域网一样，不会就看链接：<a href="https://blog.csdn.net/LisaCpolar/article/details/124249720?spm=1001.2014.3001.5501" class="uri">https://blog.csdn.net/LisaCpolar/article/details/124249720?spm=1001.2014.3001.5501</a></p>
+</div>
+<div id="让台式机自动开关机" class="section level3">
+<h3>让台式机自动开关机</h3>
+<p>如果你去外地十天半个月，让你的台式机一直开着也不是个事（电费和损耗也着不住），当然你可以通过远程关机，但关机后，在外地想用的时候没人给你去按开机键也用不了呀。所以，让台式机定时开关机就非常重要。</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>定时开机</li>
+</ol>
+</blockquote>
+<p>设定每天开机时间，直接上B站看教程：<a href="https://www.bilibili.com/video/BV1kS4y1J7aJ/?spm_id_from=333.880.my_history.page.click&amp;vd_source=1312148eed03d2915d234e39fdc4c179&amp;t=1.3" class="uri">https://www.bilibili.com/video/BV1kS4y1J7aJ/?spm_id_from=333.880.my_history.page.click&amp;vd_source=1312148eed03d2915d234e39fdc4c179&amp;t=1.3</a></p>
+<blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>定时关机</li>
+</ol>
+</blockquote>
+<p>同样，看B站的介绍教程：<a href="https://www.bilibili.com/video/BV1wd4y1z7uB/?spm_id_from=333.880.my_history.page.click&amp;vd_source=1312148eed03d2915d234e39fdc4c179&amp;t=102.0" class="uri">https://www.bilibili.com/video/BV1wd4y1z7uB/?spm_id_from=333.880.my_history.page.click&amp;vd_source=1312148eed03d2915d234e39fdc4c179&amp;t=102.0</a></p>
+<p>实现了定时开关机，就解决了无人值守的问题，能保证你的台式机每天开机一次，就不用担心你不在没人给你按开机键了。而且你可以通过手机访问你的台式机，如果今天不用电脑，你直接在手机上就可以关机。大家根据自己的情况选择吧，局域网连接完全可以解决你切换显示屏的问题。</p>
+</div>

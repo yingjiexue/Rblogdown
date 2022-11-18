@@ -1,0 +1,50 @@
+---
+title: 那些ETF是融资融券标的？
+author: 薛英杰
+date: '2022-11-17'
+slug: which ETF is the object of short
+categories:
+  - cn
+tags:
+  - diary
+---
+
+在资本市场中，\"买比卖容易\"形象地描述了借券困难的事实，一方面，大多数股票难以满足证监会要求的融券标的标准，另一方面，以散户主导的投资者没有将手中股票借出的权限，使得股票融券标的成为一种稀缺的资源。
+
+从股票融券标的的特征来看，具有融券标的资质的股票普遍具有规模大、流动性高、业绩表现好等特征。那么，在股票衍生品ETF中，那些ETF具有做空资质？其标的资产是否全为具有融券资质的资产？
+
+```{r include=FALSE}
+pacman::p_load(data.table,plyr,dplyr,stringr,DT)
+shortETF<-fread("E:/科研/ETF mispricing/ETF融资融券交易明细表112639290/FUND_ETFMARTRA.txt")
+```
+
+1.  融券标的数量
+
+```{r echo=FALSE}
+numudely<-shortETF%>%select(TradingDate,ShortName)%>%
+    mutate(years=str_sub(TradingDate,1,4))%>%
+    select(years,ShortName)%>%
+    unique()%>%
+    group_by(years)%>%
+    summarise(num=n())
+barplot(numudely$num,width=1,names.arg = numudely$years,las=2,ylim = c(0,230))
+text(c(0.8,1.8,3.1,4.3,5.5,6.4,7.8,9,10.3,11.4,12.7,13.9),
+     numudely$num+10,numudely$num)
+```
+
+2.2022年11月可融券的ETF名称与融券数量
+
+```{r echo=FALSE}
+fimes<-shortETF%>%
+  mutate(yearmon=str_sub(TradingDate,1,7))%>%
+  filter(yearmon=="2022-11")%>%group_by(ShortName,yearmon)%>%
+  summarise(SellShares=round(mean(SellShares),0))%>%ungroup%>%
+  select(-yearmon)%>%filter(SellShares>0)%>%arrange(desc(SellShares))
+
+names(fimes)<-c("ETF简称","融券卖出量")
+DT::datatable(fimes,rownames = T,extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy')))
+```
+
+从2022年11月ETF融券卖出量看，卖出量最大的是科创50ETF、医药ETF、半导体ETF，这段时间这些基金也跌了不少，其中空头也扮演了重要的角色。到目前为止，能做空的ETF有91只，大家可以后面借券试试。
+
+从这些卖空ETF的特征来看，主要是规模较大的宽基和主流行业ETF，他们的流动性和业绩都相对较好。

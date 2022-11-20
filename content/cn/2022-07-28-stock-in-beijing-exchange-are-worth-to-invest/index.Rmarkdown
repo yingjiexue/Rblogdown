@@ -47,7 +47,8 @@ editor_options:
 ```{r message=FALSE, include=FALSE}
 #加载软件包
 pacman::p_load(data.table,stringr,dplyr,reticulate,lubridate,mongolite,
-               future.apply,zoo,haven,readxl,foreign,rlist,ggplot2,DT)
+               future.apply,zoo,haven,readxl,foreign,rlist,ggplot2,DT,
+               htmlwidgets,htmltools)
 #use_python("Users/Administrator/AppData/Local/Programs/Python")
 system('net start MongoDB',intern = F,wait = T)
 
@@ -68,7 +69,7 @@ names(xianqi)<-c("股票名称","股票代码","行业","上市日期","发行�
 DT::datatable(xianqi,rownames = T,extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy')))
 
 industu<-upfirm%>%group_by(industry)%>%summarise(num=n())%>%arrange(desc(num))%>%
-  mutate(cols=gray.colors(19))%>%
+  mutate(cols=gray.colors(20))%>%
     arrange(industry)
   
 
@@ -158,5 +159,10 @@ points(newfim$industry,newfim$stpf,bg=newfim$scolor,pch=21)
 ```{r echo=FALSE}
 fimes<-newfim%>%select(-c(npf,scolor))
 names(fimes)<-c("股票代码","行业","上市日期","发行价","首日收盘价","现价","首日涨跌幅")
-DT::datatable(fimes,rownames = T,extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy')))
+dt<-DT::datatable(fimes,rownames = T,extensions = 'Buttons', options = list(dom = 'Bfrtip',buttons = c('copy')))
+htmlwidgets::saveWidget(dt, file = "d1.html", selfcontained = TRUE)
 ```
+
+<iframe src="d1.html" width="100%" height="500"></iframe>
+
+

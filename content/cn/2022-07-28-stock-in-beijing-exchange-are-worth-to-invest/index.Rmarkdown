@@ -125,7 +125,6 @@ ggplot(data=indgoru,aes(x=as.Date(trade_date,"%Y%m%d"),
 
 从各行业上市公司收益表现来看，2022年1月至2022年5月普遍下跌，5月后市场企稳，电力设备跌幅最大，反弹也最强势，短短3个月反弹50%以上，电子与生物医药震荡下行，其余行业稳定波动。
 
-
 ### 北交所上市公司破发情况
 
 ```{r include=FALSE}
@@ -164,7 +163,8 @@ dt<-DT::datatable(fimes,rownames = T,extensions = 'Buttons', options = list(dom 
 htmlwidgets::saveWidget(dt, file = "d1.html", selfcontained = TRUE)
 ```
 
+[数据连接](d1.html)
 
-<iframe src="d1.html" width="100%" height="500"></iframe>
+<iframe src="d1.html" width="100%" height="500">
 
-
+</iframe>

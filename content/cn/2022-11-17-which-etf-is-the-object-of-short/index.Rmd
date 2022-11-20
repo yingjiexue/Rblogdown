@@ -14,7 +14,7 @@ tags:
 从股票融券标的的特征来看，具有融券标的资质的股票普遍具有规模大、流动性高、业绩表现好等特征。那么，在股票衍生品ETF中，那些ETF具有做空资质？其标的资产是否全为具有融券资质的资产？
 
 ```{r include=FALSE}
-pacman::p_load(data.table,plyr,dplyr,stringr,DT)
+pacman::p_load(data.table,plyr,dplyr,stringr,tidyverse,DT,htmlwidgets,htmltools)
 shortETF<-fread("E:/科研/ETF mispricing/ETF融资融券交易明细表112639290/FUND_ETFMARTRA.txt")
 ```
 
@@ -34,7 +34,7 @@ text(c(0.8,1.8,3.1,4.3,5.5,6.4,7.8,9,10.3,11.4,12.7,13.9),
 
 2.2022年11月可融券的ETF名称与融券数量
 
-```{r echo=FALSE}
+```{r include=FALSE}
 fimes<-shortETF%>%
   mutate(yearmon=str_sub(TradingDate,1,7))%>%
   filter(yearmon=="2022-11")%>%group_by(ShortName,yearmon)%>%
@@ -42,8 +42,11 @@ fimes<-shortETF%>%
   select(-yearmon)%>%filter(SellShares>0)%>%arrange(desc(SellShares))
 
 names(fimes)<-c("ETF简称","融券卖出量")
-DT::datatable(fimes,rownames = T)
+dt<-DT::datatable(fimes,rownames = T)
+htmlwidgets::saveWidget(dt, file = "d1.html", selfcontained = TRUE)
 ```
+
+<iframe src="d1.html" width="100%" height="500"></iframe>
 
 从2022年11月ETF融券卖出量看，卖出量最大的是科创50ETF、医药ETF、半导体ETF，这段时间这些基金也跌了不少，其中空头也扮演了重要的角色。到目前为止，能做空的ETF有91只，大家可以后面借券试试。
 

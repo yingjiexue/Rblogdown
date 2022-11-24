@@ -1,0 +1,42 @@
+---
+title: 资产定价中的Beta估计
+author: 薛英杰
+date: '2022-11-22'
+slug: beta estimate in asset pricing
+categories:
+  - cn
+tags:
+  - diary
+bibliography: [Betaestimate.bib]
+link-citations: TRUE
+bilbio-style: "biomed-central.csl"
+---
+
+在金融经济学中，单只股票对市场组合的暴露反映了该只股票承担的市场风险高低。根据资本资产定价模型[@sharpe1964; @lintner1965; @mossin1966]，资产期望收益的横截面变化应该是资产超额收益和市场组合超额收益协方差的函数，而市场超额收益对股票超额收益的回归系数被称为市场$\beta$。这儿我们不去讨论资本资产定价模型（[CAPM](https://en.wikipedia.org/wiki/Capital_asset_pricing_model)）的理论基础，仅仅说明市场$\beta$在实证上如何估计。
+
+1.  固定$\beta$估计
+
+    ```{r}
+    pacman::p_load(RSQLite,scales,slider,furrr)
+    tidy_finance <- dbConnect(
+      SQLite(),
+      "data/tidy_finance.sqlite",
+      extended_types = TRUE
+    )
+
+    crsp_monthly <- tbl(tidy_finance, "crsp_monthly") |>
+      collect()
+
+    factors_ff_monthly <- tbl(tidy_finance, "factors_ff_monthly") |>
+      collect()
+
+    crsp_monthly <- crsp_monthly |>
+      left_join(factors_ff_monthly, by = "month") |>
+      select(permno, month, industry, ret_excess, mkt_excess)
+    ```
+
+2.  滚动窗口估计
+
+3.  并行滚动估计
+
+### 参考文献

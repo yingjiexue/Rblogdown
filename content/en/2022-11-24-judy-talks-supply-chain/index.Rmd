@@ -1,0 +1,20 @@
+---
+title: Judy talks supply chain
+author: Yingjie
+date: '2022-11-24'
+slug: judy-talks-supply-chain
+categories:
+  - diary
+tags:
+  - diary
+---
+
+
+```{=html}
+<p> Judy is my wife, she is being interviewed in the following video. I am very pride for her excellent performance, congratulate her!   :</p>
+
+<iframe width="100%" height="400"
+  src="https://youtu.be/bVRTVGoQwmk"
+  frameborder="0" allow="autoplay; encrypted-media"
+  allowfullscreen></iframe>
+```

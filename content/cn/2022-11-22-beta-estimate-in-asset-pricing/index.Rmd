@@ -1,5 +1,5 @@
 ---
-title: 资产定价中的Beta估计
+title: 实证资产定价中的市场Beta估计
 author: 薛英杰
 date: '2022-11-22'
 slug: beta estimate in asset pricing

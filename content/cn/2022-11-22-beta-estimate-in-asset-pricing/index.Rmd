@@ -16,27 +16,164 @@ bilbio-style: "biomed-central.csl"
 
 1.  固定$\beta$估计
 
+    为估计资本资产定价模型系数，我们通过以下回归模型来估计：
+
+    $$
+    r_{i,t}-r_{f,t}=\alpha_i+\beta_i(r_{m,t}-r_{f,t})+\epsilon_{i,t}
+    $$
+
+    其中，$r_{i,t}-r_{f,t}$是股票超额收益，$r_{m,t}-r_{f,t}$是市场组合超额收益。
+
+    R 提供了简单的线性回归模型函数`lm()` 来估计回归模型，具体代码如下：
+
     ```{r}
-    pacman::p_load(RSQLite,scales,slider,furrr)
-    tidy_finance <- dbConnect(
-      SQLite(),
-      "data/tidy_finance.sqlite",
-      extended_types = TRUE
+    ##加载程序包
+    pacman::p_load(data.table,stringr,dplyr,Tushare,reticulate,lubridate,mongolite,future.apply,zoo,tidyr,
+     haven,readxl,foreign,scales,slider,furrr,tibble,ggplot2)
+
+    ##开启Mongo数据库
+    system('net start MongoDB',intern = F,wait = T)
+
+    ##读入无风险收益数据
+    mogFret<-mongo(collection = "DRFRet",db="IntrestRate")
+    Retf<-mogFret$find()%>%
+      mutate(Tradedate=str_sub(TradingDate,1,7),
+             MRet=(1+DRFRet)^(365/12)-1)%>%
+      group_by(Tradedate)%>%
+      summarise(rf=mean(MRet))
+
+    ##读入市场组合数据
+    mogfactor<-mongo(collection = "monthlyfactor",db="investfactor")
+    Marketportfio<-mogfactor$find(query = '{"market":"全市场"}',fields ='{"_id":0,"Tradedate":1,"MKT":1}' )
+
+    ##读入股票数据并拼接所有数据
+    mogmogth<-mongo(collection = "qfqtradedatamonthly",db="stockdata")
+    mothdata<-mogmogth$find(query='{}',
+                            fields='{"_id":0,"ts_code":1,"trade_date":1,"close":1,"pre_close":1}')%>%
+      mutate(MRet=close/pre_close-1,
+             trade_date=as.Date(trade_date,"%Y%m%d"),
+             Tradedate=str_sub(trade_date,1,7))%>%
+      merge(Marketportfio,by="Tradedate",all.x = T)%>%
+      merge(Retf,by="Tradedate",all.x = T)%>%
+      filter(Tradedate>="1995-01")%>%
+      arrange(ts_code,Tradedate)%>%
+      mutate(ret_excess=MRet-rf,
+             mkt_excess=MKT-rf)%>%
+      select(ts_code,Tradedate,trade_date,ret_excess,mkt_excess)%>%tibble::as_tibble()
+    ##计算平安银行的股票Beta
+    fit <- lm(ret_excess ~ mkt_excess,
+      data = mothdata |>
+        filter(ts_code == "000001.SZ")
     )
 
-    crsp_monthly <- tbl(tidy_finance, "crsp_monthly") |>
-      collect()
-
-    factors_ff_monthly <- tbl(tidy_finance, "factors_ff_monthly") |>
-      collect()
-
-    crsp_monthly <- crsp_monthly |>
-      left_join(factors_ff_monthly, by = "month") |>
-      select(permno, month, industry, ret_excess, mkt_excess)
+    summary(fit)
     ```
+
+    `lm()` 返回的对象包含所有我们平时关心的线性模型信息，`summary()` 返回估计系数的描述，以上结果表明平安银行的股票市场$\hat\beta$的估计值为1.15。
+
+    资本资产定价模型表明风险资产的超额收益与投资该资产承担的风险成正比，也就是说，投资者购买平安银行获得的超额收益可以表示为单位风险的价格与风险大小的乘积，而市场超额收益就是单位风险的价格，市场$\beta$则反映了投资者承担的风险大小。
 
 2.  滚动窗口估计
 
+    投资者在购买风险后，其承担的风险并不是一成不变的，会大小随市场环境的变化而变化，而采用全样本估计的市场$\beta$只能反映投资者在样本期内承担风险的平均大小，并不能描绘其投资该股票承担风险的动态变化。为了更加精确地估计投资者承担市场风险的动态变化，我们采用滚动窗口估计法，在每一个小的子样本内来估计该时段的市场$\beta$，具体如下：
+
+    ```{r}
+    ##定义市场Beta的估计函数
+    estimate_capm <- function(data, min_obs = 1) {
+      if (nrow(data) < min_obs) {
+        beta <- as.numeric(NA)
+      } else {
+        fit <- lm(ret_excess ~ mkt_excess, data = data)
+        beta <- as.numeric(coefficients(fit)[2])
+      }
+      return(beta)
+    }
+    ## 定义滚动估计函数
+    roll_capm_estimation <- function(data, months, min_obs) {
+      data <- data |>
+        arrange(trade_date)
+
+      betas <- slide_period_vec(
+        .x = data,
+        .i = data$trade_date,
+        .period = "month",
+        .f = ~ estimate_capm(., min_obs),
+        .before = months - 1,
+        .complete = FALSE
+      )
+
+      return(tibble(
+        month = unique(data$trade_date),
+        beta = betas
+      ))
+    }
+
+    beta_estimate = mothdata %>%
+        filter(ts_code == "000001.SZ")%>%
+      mutate(roll_capm_estimation(cur_data(),months = 60,min_obs = 48))%>%na.omit()
+    tail(beta_estimate,60)
+    ```
+
+    需要强调的是，在上述代码中，滚动窗口估计使用了slider包， 其在各种数据上运行非常稳定，而且速度比较快，学习教程可以参考[这儿](https://cran.r-project.org/web/packages/slider/vignettes/slider.html)。
+
+    我们可以多估计几只股票的市场$\beta$，了解不同股票在市场风险上的暴露差异，下面选择平安银行（000001.SZ）、万科（000002.SZ）、中炬高新（600872.SH）、三一重工（600031.SH），分析市场$\beta$的动态变化。
+
+    ```{r}
+    examples <- tribble(
+      ~ts_code, ~company,
+      "000001.SZ", "平安银行",
+      "000002.SZ", "万科",
+      "600872.SH", "中炬高新",
+      "600031.SH", "三一重工"
+    )
+    beta_examples = mothdata |>
+      inner_join(examples, by = "ts_code")|>
+      group_by(ts_code) |>
+      mutate(roll_capm_estimation(cur_data(), months = 60, min_obs = 48)) |>
+      ungroup() |>
+      select(ts_code, company, trade_date, beta) |>
+      na.omit()
+
+    beta_examples |>
+      ggplot(aes(
+        x = trade_date, 
+        y = beta, 
+        color = company,
+        linetype = company)) +
+      geom_line() +
+      labs(
+        x = NULL, y = NULL, color = NULL, linetype = NULL,
+        title = "Monthly beta estimates for example stocks using 20 years of data"
+      )
+    ```
+
 3.  并行滚动估计
+
+    使用月度数据，计算量并不大，很快就能计算出来，但是当数据是日度频率时，分组计算会特别慢，因此，可以使用并行计算来做滚动估计，具体如下：
+
+    ```{r}
+    plan(multisession, workers = availableCores())
+
+    pdat<-mothdata|>
+      select(ts_code,trade_date,ret_excess,mkt_excess)|>
+      nest(data=c(trade_date,ret_excess,mkt_excess))
+    beta_daily <-  pdat|>
+      mutate(beta_daily = future_map(
+        data, ~ roll_capm_estimation(., months = 60, min_obs = 50)
+      )) |>
+      unnest(c(beta_daily)) |>
+      select(ts_code,month,beta_daily = beta) |>
+      na.omit()
+    ```
+
+在不并行的代码中，我们使用`group_by()` 分组后进行滚动估计，而在并行计算中，我们需要使用`nest()` 函数按照股票代码`ts_code` 对数据进行嵌套，然后对嵌套数据在不同进程上进行运行来获得结果，嵌套前后的数据如下：
+
+```{r}
+pdat<-mothdata|>
+  select(ts_code,trade_date,ret_excess,mkt_excess)
+pdat|>head()
+pdat|>
+  nest(data=c(trade_date,ret_excess,mkt_excess))%>%head(10)
+```
 
 ### 参考文献

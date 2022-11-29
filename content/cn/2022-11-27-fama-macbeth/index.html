@@ -1,0 +1,1227 @@
+---
+title: 投资组合分析与Fama-Macbeth回归
+author: 薛英杰
+date: '2022-11-27'
+slug: fama-macbeth
+categories:
+  - research
+tags:
+  - research
+---
+
+
+
+<p>20世纪60年代，资本资产定价模型（Capital Asset Pricing Model,CAPM）问世。在CAPM被 提出前，人们对于风险如何影响一个公司的资本成本，进而影响预期收益率并没有清晰的认 识。CAPM模型的诞生首次清晰地描绘出风险和收益率之间的关系。</p>
+<p>根据CAPM理论，资产预期超额收益由一个一元线性模型决定：</p>
+<p><span class="math display">\[
+E[R_i]-R_f=\beta_i(E[R_M]-R_f)
+\]</span></p>
+<p>其中，<span class="math inline">\(E[]\)</span>是期望符号，<span class="math inline">\(R_i\)</span>为某资产的收益率，<span class="math inline">\(R_f\)</span>为无风险收益率，<span class="math inline">\(R_M\)</span>为市场组合的收益率。式中<span class="math inline">\(\beta_i=Cov(R_i,R_M)/Var(R_M)\)</span>刻画了该资产对市场收益的敏感程度，也被称为资产<span class="math inline">\(i\)</span>对市场风险的暴露程度。该模型指出资产的预期超额收益率由市场组合的预期超额收益率和资产对市场风险的暴露大小决定，而市场组合也被称为市场因子。</p>
+<p>随着大量实证研究进行，人们发现不同资产的收益率并不是由单一的市场因子决定，而是同时受其他因子的影响。以此为契机，Ross（1976）提出了著名的套利定价理论（Arbitrage Pricing Theory，APT），在CAPM的基础上做了延伸，构建了线性多因子定价模型，并假设资产<span class="math inline">\(i\)</span>的预期超额收益由以下多元线性模型决定：</p>
+<p><span class="math display">\[
+E[R_i^e]=\boldsymbol{\beta_i^\prime\lambda}
+\]</span></p>
+<p>其中，<span class="math inline">\(E[R_i^e]\)</span>是资产<span class="math inline">\(i\)</span>的超额收益，<span class="math inline">\(\boldsymbol{\beta_i^\prime}\)</span>是资产<span class="math inline">\(i\)</span>的因子暴露，<span class="math inline">\(\boldsymbol{\lambda}\)</span>是因子预期收益。</p>
+<p>那么，如何检验一个因素会影响资产收益呢？学者们提出了两种方法，一种是投资组合分析，另一种是Fama-Mechth回归。本文主要利用R语言介绍这两种方法在实证中如何应用。</p>
+<ol style="list-style-type: decimal">
+<li><p>投资组合分析</p>
+<p>（1）单变量投资组合分析</p>
+<p>CAPM模型表明资产的预期超额收益率由市场组合的预期超额收益率和资产对市场风险的暴露大小决定。在横截面上，市场组合的预期超额收益对所有资产都是一样的，即风险溢价在某一时间点对所有资产来说是不变的，某个资产<span class="math inline">\(i\)</span>的超额收益取决于该资产的风险暴露，也就是说，风险暴露越大的资产预期收益越高。因此，我们可以按照市场<span class="math inline">\(\beta\)</span>进行分组，来检验不同组合的超额收益是否有差异。</p>
+<p><strong>读入所有股票月度交易数据、市场收益数据和无风险收益数据，计算股票超额收益与市场超额收益。</strong></p>
+<pre class="r"><code>##加载程序包
+pacman::p_load(data.table,stringr,dplyr,Tushare,sandwich ,reticulate,lubridate,mongolite,future.apply,zoo,tidyr,lmtest, haven,readxl,foreign,scales,slider,furrr,tibble,ggplot2,stargazer,tidyverse,generics)
+
+##开启Mongo数据库
+system(&#39;net start MongoDB&#39;,intern = F,wait = T)</code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre class="r"><code>##读入无风险收益数据
+mogFret&lt;-mongo(collection = &quot;DRFRet&quot;,db=&quot;IntrestRate&quot;)
+Retf&lt;-mogFret$find()%&gt;%
+  mutate(Tradedate=str_sub(TradingDate,1,7),
+         MRet=(1+DRFRet)^(365/12)-1)%&gt;%
+  group_by(Tradedate)%&gt;%
+  summarise(rf=mean(MRet))
+
+##读入市场组合数据
+mogfactor&lt;-mongo(collection = &quot;monthlyfactorw&quot;,db=&quot;investfactor&quot;)
+Marketportfio&lt;-mogfactor$find(query = &#39;{&quot;market&quot;:&quot;全市场&quot;}&#39;,fields =&#39;{&quot;_id&quot;:0,&quot;Tradedate&quot;:1,&quot;MKT&quot;:1}&#39; )
+
+##读入股票数据并拼接所有数据
+mogmogth&lt;-mongo(collection = &quot;qfqtradedatamonthly&quot;,db=&quot;stockdata&quot;)
+mothdata&lt;-mogmogth$find(query=&#39;{}&#39;,
+                        fields=&#39;{&quot;_id&quot;:0,&quot;ts_code&quot;:1,&quot;trade_date&quot;:1,&quot;close&quot;:1,&quot;pre_close&quot;:1}&#39;)%&gt;%
+  mutate(MRet=close/pre_close-1,
+         trade_date=as.Date(trade_date,&quot;%Y%m%d&quot;),
+         Tradedate=str_sub(trade_date,1,7))%&gt;%
+  merge(Marketportfio,by=&quot;Tradedate&quot;,all.x = T)%&gt;%
+  merge(Retf,by=&quot;Tradedate&quot;,all.x = T)%&gt;%
+  filter(Tradedate&gt;=&quot;1995-01&quot;)%&gt;%
+  arrange(ts_code,Tradedate)%&gt;%
+  mutate(ret_excess=MRet-rf,
+         mkt_excess=MKT-rf)%&gt;%
+  select(ts_code,Tradedate,MRet,trade_date,ret_excess,mkt_excess)%&gt;%tibble::as_tibble()</code></pre>
+<p><strong>定义估计市场</strong><span class="math inline">\(\beta\)</span><strong>的函数，滚动计算月度市场</strong><span class="math inline">\(\beta\)</span>，<strong>窗口期为60个月</strong></p>
+<pre class="r"><code>##定义市场Beta的估计函数
+estimate_capm &lt;- function(data, min_obs = 1) {
+  if (nrow(data) &lt; min_obs) {
+    beta &lt;- as.numeric(NA)
+  } else {
+    fit &lt;- lm(ret_excess ~ mkt_excess, data = data)
+    beta &lt;- as.numeric(coefficients(fit)[2])
+  }
+  return(beta)
+}
+## 定义滚动估计函数
+roll_capm_estimation &lt;- function(data, months, min_obs) {
+  data &lt;- data |&gt;
+    arrange(trade_date)
+
+  betas &lt;- slide_period_vec(
+    .x = data,
+    .i = data$trade_date,
+    .period = &quot;month&quot;,
+    .f = ~ estimate_capm(., min_obs),
+    .before = months - 1,
+    .complete = FALSE
+  )
+
+  return(tibble(
+    month = unique(data$trade_date),
+    beta = betas
+  ))
+}
+
+## 并行计算市场beta
+plan(multisession, workers = availableCores())
+
+pdat&lt;-mothdata|&gt;
+  select(ts_code,trade_date,MRet,ret_excess,mkt_excess)|&gt;
+  nest(data=c(trade_date,MRet,ret_excess,mkt_excess))
+
+
+beta_daily &lt;-  pdat|&gt;
+  mutate(beta_daily = future_map(
+    data, ~ roll_capm_estimation(., months = 60, min_obs = 50)
+  )) |&gt;
+  unnest(c(data,beta_daily)) |&gt;
+  select(ts_code,month,ret_excess,mkt_excess,beta_daily = beta) |&gt;
+  na.omit()</code></pre>
+<p><strong>构造市场</strong><span class="math inline">\(\beta\)</span><strong>组合，计算组合收益</strong></p>
+<pre class="r"><code>##定义组合构造函数
+assign_portfolio &lt;- function(data, var, n_portfolios) {
+  breakpoints &lt;- data |&gt;
+    summarize(breakpoint = quantile({{ var }},
+      probs = seq(0, 1, length.out = n_portfolios + 1),
+      na.rm = TRUE
+    )) |&gt;
+    pull(breakpoint) |&gt;
+    as.numeric()
+
+  assigned_portfolios &lt;- data |&gt;
+    mutate(portfolio = findInterval({{ var }},
+      breakpoints,
+      all.inside = TRUE
+    )) |&gt;
+    pull(portfolio)
+
+  return(assigned_portfolios)
+}
+
+##计算分组收益
+beta_portfolios &lt;- beta_daily |&gt;
+  mutate(month=str_sub(month,1,7),
+         beta_lag=lag(beta_daily))|&gt;
+  group_by(month) |&gt;
+  mutate(
+    portfolio = assign_portfolio(
+      data = cur_data(),
+      var = beta_lag,
+      n_portfolios = 10
+    ),
+    portfolio = as.factor(portfolio)
+  ) |&gt;
+  group_by(portfolio, month) |&gt;
+  summarize(
+    ret = mean(ret_excess),
+    .groups = &quot;drop&quot;
+  )%&gt;%na.omit()
+
+beta_longshort &lt;- beta_portfolios |&gt;
+  pivot_wider(month, names_from = portfolio, values_from = ret) |&gt;
+  mutate(long_short = get(&quot;10&quot;) - get(&quot;1&quot;))
+
+head(beta_longshort)</code></pre>
+<pre><code>## # A tibble: 6 × 12
+##   month     `1`     `2`     `3`     `4`     `5`      `6`     `7`     `8`     `9`
+##   &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 1999… -0.0455 -0.0657 -0.0569 -0.0429 -0.0552 -0.0277  -0.0519 -0.0594 -0.0514
+## 2 1999…  0.0731  0.0963  0.124   0.0872  0.0982  0.118    0.119   0.131   0.156 
+## 3 1999… -0.0540 -0.0457 -0.0778 -0.0506 -0.0349 -0.00433 -0.0463 -0.0253 -0.0406
+## 4 1999…  0.0913  0.107   0.111   0.106   0.0779  0.0792   0.0637  0.119   0.0256
+## 5 1999…  0.348   0.275   0.282   0.326   0.283   0.254    0.358   0.310   0.310 
+## 6 1999… -0.0515 -0.0256 -0.0599 -0.0104 -0.0824 -0.106   -0.0822 -0.0912 -0.0372
+## # … with 2 more variables: `10` &lt;dbl&gt;, long_short &lt;dbl&gt;</code></pre>
+<p><strong>组合业绩评估</strong></p>
+<pre class="r"><code>names(beta_longshort)[2:11]&lt;-paste0(&quot;p&quot;,1:10)
+mktexces&lt;-beta_daily|&gt;
+  mutate(month=str_sub(month,1,7))|&gt;
+  select(month,mkt_excess)
+timeperfomance&lt;-beta_longshort|&gt;
+  pivot_longer(cols=2:12,names_to = &quot;portfolio&quot;,values_to = &quot;ret&quot;)|&gt;
+  group_by(portfolio)|&gt;
+  arrange(portfolio)|&gt;
+  left_join(mktexces,by=c(&quot;month&quot;=&quot;month&quot;))|&gt;
+  unique()|&gt;
+  mutate(Date=as.Date(paste0(month,&quot;-01&quot;)))|&gt;
+  select(portfolio,Date,ret,mkt_excess)
+
+timeperfomance|&gt;
+  filter(portfolio%in%c(&quot;p1&quot;,&quot;p10&quot;,&quot;long_short&quot;))|&gt;
+  mutate(cumret=cumsum(ret))|&gt;ggplot(aes(
+    x=Date,
+    y=cumret,
+    col=portfolio,
+    linetype=portfolio
+  ))+geom_line()+
+  labs(
+    x = NULL, y = NULL, color = NULL, linetype = NULL,
+    title = &quot;Accumuated Return for Market Beta&quot;
+  )</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>从累积收益来看，在2000年-2022年期间，高市场<span class="math inline">\(\beta\)</span>组合（p10）的收益明显高于低市场<span class="math inline">\(\beta\)</span>组合（p1）,表明风险暴露越高的股票获得收益越高。由于多空对冲组合（long_short）是对冲掉市场风险的组合，理论上属于无风险组合，其获得的收益也相对较低，20年翻一倍，相当于年化5%的收益，略高于银行存款利率，投资股票比存钱到银行划算。</p>
+<p>组合业绩的统计检验</p>
+<pre class="r"><code>##定义业绩检验函数
+perforance_evaluate&lt;-function(x,MKT){
+  data&lt;-data.frame(x,MKT)
+  fit_mode&lt;-coeftest(lm(x ~ 1+MKT, data = data), vcov = NeweyWest)
+  return(c(fit_mode[1,1],fit_mode[2,1],fit_mode[1,3],fit_mode[2,3]))
+}
+
+##进行投资组合统计检验
+
+perforance&lt;-timeperfomance|&gt;
+  group_by(portfolio)|&gt;
+  summarise(rets=list(lm(ret ~ mkt_excess)))|&gt;
+  mutate(id=ifelse(str_detect(portfolio,&quot;p&quot;),
+                          as.numeric(gsub(&quot;p&quot;,&quot;&quot;,portfolio)), 11))|&gt;
+  arrange(id)</code></pre>
+<pre><code>## Warning in ifelse(str_detect(portfolio, &quot;p&quot;), as.numeric(gsub(&quot;p&quot;, &quot;&quot;,
+## portfolio)), : NAs introduced by coercion</code></pre>
+<pre class="r"><code>for(i in 1:11){
+  assign(paste0(&quot;T&quot;,i),perforance$rets[i][[1]])
+}</code></pre>
+<table style="text-align:center">
+<caption>
+<p><strong>表1：市场组合Beta超额收益</strong></p>
+</caption>
+<tr>
+<td colspan="12" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="11">
+<p><em>Dependent variable:</em></p>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="11" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="11">
+<p>ret</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<p>(1)</p>
+</td>
+<td>
+<p>(2)</p>
+</td>
+<td>
+<p>(3)</p>
+</td>
+<td>
+<p>(4)</p>
+</td>
+<td>
+<p>(5)</p>
+</td>
+<td>
+<p>(6)</p>
+</td>
+<td>
+<p>(7)</p>
+</td>
+<td>
+<p>(8)</p>
+</td>
+<td>
+<p>(9)</p>
+</td>
+<td>
+<p>(10)</p>
+</td>
+<td>
+<p>(11)</p>
+</td>
+</tr>
+<tr>
+<td colspan="12" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<p>mkt_excess</p>
+</td>
+<td>
+<p>0.798<sup>***</sup></p>
+</td>
+<td>
+<p>0.913<sup>***</sup></p>
+</td>
+<td>
+<p>0.987<sup>***</sup></p>
+</td>
+<td>
+<p>1.010<sup>***</sup></p>
+</td>
+<td>
+<p>1.027<sup>***</sup></p>
+</td>
+<td>
+<p>1.055<sup>***</sup></p>
+</td>
+<td>
+<p>1.090<sup>***</sup></p>
+</td>
+<td>
+<p>1.113<sup>***</sup></p>
+</td>
+<td>
+<p>1.112<sup>***</sup></p>
+</td>
+<td>
+<p>1.138<sup>***</sup></p>
+</td>
+<td>
+<p>0.339<sup>***</sup></p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<p>(49.224)</p>
+</td>
+<td>
+<p>(81.922)</p>
+</td>
+<td>
+<p>(104.687)</p>
+</td>
+<td>
+<p>(110.840)</p>
+</td>
+<td>
+<p>(113.053)</p>
+</td>
+<td>
+<p>(103.816)</p>
+</td>
+<td>
+<p>(117.014)</p>
+</td>
+<td>
+<p>(107.153)</p>
+</td>
+<td>
+<p>(93.735)</p>
+</td>
+<td>
+<p>(81.152)</p>
+</td>
+<td>
+<p>(13.339)</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<p>Constant</p>
+</td>
+<td>
+<p>-0.0002</p>
+</td>
+<td>
+<p>0.003<sup>***</sup></p>
+</td>
+<td>
+<p>0.003<sup>***</sup></p>
+</td>
+<td>
+<p>0.005<sup>***</sup></p>
+</td>
+<td>
+<p>0.004<sup>***</sup></p>
+</td>
+<td>
+<p>0.005<sup>***</sup></p>
+</td>
+<td>
+<p>0.005<sup>***</sup></p>
+</td>
+<td>
+<p>0.003<sup>***</sup></p>
+</td>
+<td>
+<p>0.004<sup>***</sup></p>
+</td>
+<td>
+<p>0.002</p>
+</td>
+<td>
+<p>0.002</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<p>(-0.120)</p>
+</td>
+<td>
+<p>(2.606)</p>
+</td>
+<td>
+<p>(3.745)</p>
+</td>
+<td>
+<p>(5.840)</p>
+</td>
+<td>
+<p>(4.369)</p>
+</td>
+<td>
+<p>(5.570)</p>
+</td>
+<td>
+<p>(5.938)</p>
+</td>
+<td>
+<p>(3.325)</p>
+</td>
+<td>
+<p>(3.480)</p>
+</td>
+<td>
+<p>(1.249)</p>
+</td>
+<td>
+<p>(0.765)</p>
+</td>
+</tr>
+<tr>
+<td colspan="12" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<p>Observations</p>
+</td>
+<td>
+<p>285</p>
+</td>
+<td>
+<p>285</p>
+</td>
+<td>
+<p>285</p>
+</td>
+<td>
+<p>285</p>
+</td>
+<td>
+<p>285</p>
+</td>
+<td>
+<p>285</p>
+</td>
+<td>
+<p>285</p>
+</td>
+<td>
+<p>285</p>
+</td>
+<td>
+<p>285</p>
+</td>
+<td>
+<p>285</p>
+</td>
+<td>
+<p>285</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<p>Adjusted R<sup>2</sup></p>
+</td>
+<td>
+<p>0.895</p>
+</td>
+<td>
+<p>0.959</p>
+</td>
+<td>
+<p>0.975</p>
+</td>
+<td>
+<p>0.977</p>
+</td>
+<td>
+<p>0.978</p>
+</td>
+<td>
+<p>0.974</p>
+</td>
+<td>
+<p>0.980</p>
+</td>
+<td>
+<p>0.976</p>
+</td>
+<td>
+<p>0.969</p>
+</td>
+<td>
+<p>0.959</p>
+</td>
+<td>
+<p>0.384</p>
+</td>
+</tr>
+<tr>
+<td colspan="12" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<p><em>Note:</em></p>
+</td>
+<td colspan="11" style="text-align:right">
+<p><sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01</p>
+</td>
+</tr>
+</table>
+<pre><code>## Warning in mask$eval_all_mutate(quo): NAs introduced by coercion</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>虽然我们从图上看到不同市场$\beta$组合的累积收益有明显差异，但市场<span class="math inline">\(\beta\)</span>最高组（10）和最低组（1）的统计检验并不显著，说明市场$\beta$组合捕获的资产风险很有限，也说明市场因子并不能完全解释股票收益差异。</p>
+<p><strong>证券市场线与</strong><span class="math inline">\(\beta\)</span><strong>组合</strong></p>
+<p>按照资产定价模型预测，市场<span class="math inline">\(\beta\)</span>组合应该位于证券市场线上，证券市场线的斜率等于市场风险溢价，表明在任何时候风险收益都是公平交易。</p>
+<pre class="r"><code>sml_capm &lt;- lm(ret ~ 1 + beta, data = beta_portfolios_summary)$coefficients
+
+beta_portfolios_summary |&gt;
+  mutate(portfolio=as.factor(portfolio))|&gt;
+  ggplot(aes(
+    x = beta, 
+    y = ret, 
+    color = portfolio
+  )) +
+  geom_point() +
+  geom_abline(
+    intercept = 0,
+    slope = mean(beta_portfolios_summary$mkt_excess),
+    linetype = &quot;solid&quot;
+  ) +
+  geom_abline(
+    intercept = sml_capm[1],
+    slope = sml_capm[2],
+    linetype = &quot;dashed&quot;
+  ) +
+  scale_y_continuous(
+    labels = percent,
+    limit = c(0, mean(beta_portfolios_summary$mkt_excess) * 2)
+  ) +
+  scale_x_continuous(limits = c(0, 2)) +
+  labs(
+    x = &quot;Beta&quot;, y = &quot;Excess return&quot;, color = &quot;Portfolio&quot;,
+    title = &quot;Average portfolio excess returns and average beta estimates&quot;
+  )</code></pre>
+<pre><code>## Warning: Removed 6 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>从回归结果来看，证券市场线的斜率为正，意味着高贝塔组合意味着高的市场收益。</p>
+<p>（2） 双变量投资组合分析</p>
+<p>在实证分析中，由于代理风险的变量之间可能存在某种相关性，比如市值和账面市值比。为了避免这种相关性对结果的影响，通常采用双变量投资组合分析，同时独立地对两种因素的分组变量进行排序，形成二维投资组合，通过检验组合收益在组合排序上是否有单调性来说明排序变量是否可以有效地捕捉到某种风险。下面以市值与账面市值比两个变量来说明双变量投资组合的应用。</p>
+<pre class="r"><code>##提出市值、账面市值比数据
+mogbaic&lt;-mongo(collection = &quot;dailybasic&quot;,db=&quot;stockdata&quot;)
+MandB&lt;-mogbaic$find(query=&#39;{&quot;trade_date&quot;:{&quot;$gt&quot;:&quot;19950101&quot;}}&#39;,fields=&#39;{&quot;_id&quot;:0,&quot;ts_code&quot;:1,&quot;trade_date&quot;:1,&quot;pb&quot;:1,&quot;total_mv&quot;:1}&#39;)%&gt;%
+  mutate(trade_date=as.Date(trade_date,&quot;%Y%m%d&quot;),
+         Tradedate=str_sub(trade_date,1,7))%&gt;%
+  arrange(ts_code,trade_date)%&gt;%
+  group_by(ts_code,Tradedate)%&gt;%
+  summarise_all(tail,1)%&gt;%
+  mutate_at(c(&quot;pb&quot;,&quot;total_mv&quot;),as.numeric)
+
+mogmogth&lt;-mongo(collection = &quot;qfqtradedatamonthly&quot;,db=&quot;stockdata&quot;)
+mothdata&lt;-mogmogth$find(query=&#39;{&quot;trade_date&quot;:{&quot;$gt&quot;:&quot;19950101&quot;}}&#39;,
+                        fields=&#39;{&quot;_id&quot;:0,&quot;ts_code&quot;:1,&quot;trade_date&quot;:1,&quot;close&quot;:1,&quot;pre_close&quot;:1}&#39;)%&gt;%
+  mutate(MRet=close/pre_close-1,
+         trade_date=as.Date(trade_date,&quot;%Y%m%d&quot;),
+         Tradedate=str_sub(trade_date,1,7))%&gt;%
+  select(ts_code,Tradedate,MRet)%&gt;%
+  merge(MandB,by=c(&quot;ts_code&quot;,&quot;Tradedate&quot;),all.x = T)%&gt;%
+  arrange(ts_code,Tradedate)%&gt;%
+  group_by(ts_code)%&gt;%
+  mutate(lbm=lag(1/pb),
+         lm=lag(log(total_mv)))
+
+
+##按市值与账面市值比划分组合
+value_portfolios &lt;- mothdata |&gt;
+  drop_na() |&gt;
+  group_by(Tradedate) |&gt;
+  mutate(
+    portfolio_bm = assign_portfolio(
+      data = cur_data(),
+      var = lbm,
+      n_portfolios = 5
+    ),
+    portfolio_me = assign_portfolio(
+      data = cur_data(),
+      var = lm,
+      n_portfolios = 5
+    ),
+    portfolio_combined = str_c(portfolio_bm, portfolio_me)
+  ) |&gt;
+  group_by(portfolio_combined,Tradedate ) |&gt;
+  summarize(
+    retw = weighted.mean(MRet, lm),
+    ret = mean(MRet),
+    portfolio_bm = unique(portfolio_bm),
+    portfolio_me = unique(portfolio_me),
+    .groups = &quot;drop&quot;
+  )|&gt;select(-portfolio_combined)|&gt;
+  pivot_wider(names_from=c(&quot;portfolio_me&quot;,&quot;portfolio_bm&quot;),values_from =c(retw,ret))|&gt;
+  mutate(retw_1_LH=retw_1_5-retw_1_1,
+  retw_2_LH=retw_2_5-retw_2_1,
+  retw_3_LH=retw_3_5-retw_3_1,
+  retw_4_LH=retw_4_5-retw_4_1,
+  retw_5_LH=retw_5_5-retw_5_1,
+  ret_1_LH=ret_1_5-retw_1_1,
+  ret_2_LH=ret_2_5-retw_2_1,
+  ret_3_LH=ret_3_5-retw_3_1,
+  ret_4_LH=ret_4_5-retw_4_1,
+  ret_5_LH=ret_5_5-retw_5_1,
+  retw_LH_1=retw_5_1-retw_1_1,
+  retw_LH_2=retw_5_2-retw_1_2,
+  retw_LH_3=retw_5_3-retw_1_3,
+  retw_LH_4=retw_5_4-retw_1_4,
+  retw_LH_5=retw_5_5-retw_1_5,
+  ret_LH_1=ret_5_1-retw_1_1,
+  ret_LH_2=ret_5_2-retw_1_2,
+  ret_LH_3=ret_5_3-retw_1_3,
+  ret_LH_4=ret_5_4-retw_1_4,
+  ret_LH_5=ret_5_5-retw_1_5)|&gt;
+  pivot_longer(cols = 2:71,names_to = c(&quot;type&quot;,&quot;portfolio_me&quot;,&quot;portfolio_bm&quot;),names_sep = &quot;_&quot;,values_to = &quot;Ret&quot;)
+
+
+weighted_ret&lt;-value_portfolios|&gt;filter(type==&quot;retw&quot;)|&gt;
+  group_by(portfolio_me,portfolio_bm)|&gt;
+  summarize(eqret=sprintf(&quot;%0.2f&quot;,coeftest(lm(Ret~1),vcov = NeweyWest)[1,1]*100),eqrett=paste0(&quot;(&quot;,sprintf(&quot;%0.2f&quot;,coeftest(lm(Ret~1),vcov = NeweyWest)[1,3]),&quot;)&quot;))|&gt;
+  pivot_wider(names_from=&quot;portfolio_me&quot;,values_from =c(eqret,eqrett))|&gt;
+  select(portfolio_bm,eqret_1,eqrett_1,eqret_2,eqrett_2,eqret_3,eqrett_3,eqret_4,eqrett_4,eqret_5,eqrett_5,eqret_LH,eqrett_LH)|&gt;
+  t()|&gt;as.data.frame()|&gt;
+  add_column(portfolio_me=c(NA, 1, NA, 2, NA, 3, NA, 4, NA, 5, NA, &quot;H-L&quot;, NA),.before = 1)</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;portfolio_me&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre class="r"><code>weighted_ret$V6[1]&lt;-&quot;H-L&quot;
+names(weighted_ret)&lt;-weighted_ret[1,]
+weighted_ret&lt;-weighted_ret[-1,]
+stargazer(weighted_ret,type = &quot;html&quot;,title = &quot;表2：市值与账面市值比组合收益&quot;,digits=3, summary = FALSE, rownames = FALSE)</code></pre>
+<table style="text-align:center">
+<caption>
+<p><strong>表2：市值与账面市值比组合收益</strong></p>
+</caption>
+<tr>
+<td colspan="7" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<p>NA</p>
+</td>
+<td>
+<p>1</p>
+</td>
+<td>
+<p>2</p>
+</td>
+<td>
+<p>3</p>
+</td>
+<td>
+<p>4</p>
+</td>
+<td>
+<p>5</p>
+</td>
+<td>
+<p>H-L</p>
+</td>
+</tr>
+<tr>
+<td colspan="7" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<p>1</p>
+</td>
+<td>
+<p>1.91</p>
+</td>
+<td>
+<p>1.94</p>
+</td>
+<td>
+<p>2.64</p>
+</td>
+<td>
+<p>2.96</p>
+</td>
+<td>
+<p>3.15</p>
+</td>
+<td>
+<p>1.24</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<p>(2.84)</p>
+</td>
+<td>
+<p>(2.97)</p>
+</td>
+<td>
+<p>(3.92)</p>
+</td>
+<td>
+<p>(4.11)</p>
+</td>
+<td>
+<p>(4.06)</p>
+</td>
+<td>
+<p>(3.38)</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<p>2</p>
+</td>
+<td>
+<p>0.23</p>
+</td>
+<td>
+<p>0.50</p>
+</td>
+<td>
+<p>1.04</p>
+</td>
+<td>
+<p>1.55</p>
+</td>
+<td>
+<p>1.98</p>
+</td>
+<td>
+<p>1.76</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<p>(0.35)</p>
+</td>
+<td>
+<p>(0.87)</p>
+</td>
+<td>
+<p>(1.71)</p>
+</td>
+<td>
+<p>(2.51)</p>
+</td>
+<td>
+<p>(3.16)</p>
+</td>
+<td>
+<p>(5.97)</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<p>3</p>
+</td>
+<td>
+<p>-0.25</p>
+</td>
+<td>
+<p>0.13</p>
+</td>
+<td>
+<p>0.58</p>
+</td>
+<td>
+<p>1.10</p>
+</td>
+<td>
+<p>1.55</p>
+</td>
+<td>
+<p>1.80</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<p>(-0.41)</p>
+</td>
+<td>
+<p>(0.22)</p>
+</td>
+<td>
+<p>(0.99)</p>
+</td>
+<td>
+<p>(1.82)</p>
+</td>
+<td>
+<p>(2.26)</p>
+</td>
+<td>
+<p>(5.15)</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<p>4</p>
+</td>
+<td>
+<p>-0.54</p>
+</td>
+<td>
+<p>-0.09</p>
+</td>
+<td>
+<p>0.27</p>
+</td>
+<td>
+<p>0.84</p>
+</td>
+<td>
+<p>1.24</p>
+</td>
+<td>
+<p>1.78</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<p>(-0.98)</p>
+</td>
+<td>
+<p>(-0.16)</p>
+</td>
+<td>
+<p>(0.46)</p>
+</td>
+<td>
+<p>(1.39)</p>
+</td>
+<td>
+<p>(1.86)</p>
+</td>
+<td>
+<p>(5.00)</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<p>5</p>
+</td>
+<td>
+<p>-0.73</p>
+</td>
+<td>
+<p>-0.24</p>
+</td>
+<td>
+<p>0.22</p>
+</td>
+<td>
+<p>0.62</p>
+</td>
+<td>
+<p>0.82</p>
+</td>
+<td>
+<p>1.55</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<p>(-1.30)</p>
+</td>
+<td>
+<p>(-0.43)</p>
+</td>
+<td>
+<p>(0.40)</p>
+</td>
+<td>
+<p>(1.06)</p>
+</td>
+<td>
+<p>(1.32)</p>
+</td>
+<td>
+<p>(4.12)</p>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<p>H-L</p>
+</td>
+<td>
+<p>-2.64</p>
+</td>
+<td>
+<p>-2.18</p>
+</td>
+<td>
+<p>-2.42</p>
+</td>
+<td>
+<p>-2.33</p>
+</td>
+<td>
+<p>-2.33</p>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<p>(-5.44)</p>
+</td>
+<td>
+<p>(-5.04)</p>
+</td>
+<td>
+<p>(-5.59)</p>
+</td>
+<td>
+<p>(-4.64)</p>
+</td>
+<td>
+<p>(-5.18)</p>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="7" style="border-bottom: 1px solid black">
+</td>
+</tr>
+</table></li>
+<li><p>Fama-Mechth回归</p>
+<p>Fama-Macbeth回归是实证资产定价中常用的方法，其因Fama和Macbeth在197年首次使用而得名。该方法使用两个阶段来估计市场的风险溢价，建立了期望收益和定价因子之间的 线性关系，其基本思想是在每一个时间点映射横截面资产收益到因子暴露或捕获因子暴露的特征变量上，然后在时间序列上检验风险因子是否被定价。Fama-Macbeth分为两个步骤：</p>
+<p>第一步，使用风险暴露（特征）作为解释变量在横截面上回归，具体模型如下：<span class="math display">\[r_{i,t+1}^f=\alpha_i+\lambda_t^M\beta_{i,t}^M+\lambda_t^{SMB}\beta_{i,t}^{SMB}+\lambda_t^{HML}\beta_{i,t}^{HML}+\epsilon_{i,t}\]</span></p></li>
+</ol>
+<p>其中，在这个公式中，我们对每一个风险因子暴露<span class="math inline">\(\beta_{i,t}^f\)</span>的补偿（即风险溢价）非常感兴趣，风险因子暴露<span class="math inline">\(\beta_{i,t}^f\)</span>是一个资产的具体特征，例如，因子暴露或会计指标。在某个月，如果资产的期望收益与资产某个特征有线性关系，我们期望回归系数<span class="math inline">\(\lambda_{t}^f\neq0\)</span>。</p>
+<p>第二步，在时间序列上计算估计量<span class="math inline">\(\hat\lambda_{t}^f\neq0\)</span>的均值，即<span class="math inline">\(\frac{1}{T}\sum_{t=1}^T\hat\lambda_{t}^f\)</span>，该均值可以解释为特定风险因子<span class="math inline">\(f\)</span>的风险溢价。</p>
+<p>在这里我们通过两种方法来介绍Fama-Macbeth回归的实现，一种是按照原始方法计算，另一种则通过面板数据模型计算。</p>
+<p>（1）原始方法</p>
+<pre class="r"><code>##数据整理
+FMdata&lt;-beta_daily|&gt;
+  mutate(Tradedate=str_sub(month,1,7),beta=lag(beta_daily))|&gt;
+  select(ts_code,Tradedate,ret_excess,beta)|&gt;
+  left_join(mothdata|&gt;select(ts_code,Tradedate,lbm,lm),by=c(&quot;ts_code&quot;,&quot;Tradedate&quot;))|&gt;drop_na()
+
+names(FMdata)[5:6]&lt;-c(&quot;bm&quot;,&quot;mktcap&quot;)
+
+risk_premiums &lt;- FMdata |&gt;
+  nest(data = c(ts_code,ret_excess, beta, mktcap, bm)) |&gt;
+  mutate(estimates = map(
+    data,
+    ~ tidy(lm(ret_excess ~ beta + mktcap + bm, data = .x))
+  )) |&gt;
+  unnest(estimates)
+
+price_of_risk &lt;- risk_premiums |&gt;
+  group_by(factor = term) |&gt;
+  summarize(
+    risk_premium = mean(estimate) * 100,
+    t_statistic = mean(estimate) / sd(estimate) * sqrt(n())
+  )
+
+stargazer(price_of_risk,type = &quot;html&quot;,title = &quot;表3：Fama-Macbeth回归&quot;,digits=3, summary = FALSE, rownames = FALSE)</code></pre>
+<table style="text-align:center">
+<caption>
+<strong>表3：Fama-Macbeth回归</strong>
+</caption>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+factor
+</td>
+<td>
+risk_premium
+</td>
+<td>
+t_statistic
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+(Intercept)
+</td>
+<td>
+9.57575739607137
+</td>
+<td>
+5.11138030106505
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+beta
+</td>
+<td>
+-0.198721324538681
+</td>
+<td>
+-0.944166058324231
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+bm
+</td>
+<td>
+2.14147227760056
+</td>
+<td>
+4.69133417377029
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+mktcap
+</td>
+<td>
+-0.709711751847361
+</td>
+<td>
+-5.61203955043294
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+</table>
+<p>虽然Fama-Macbeth 回归有效地避免了异方差问题，但时间序列回归还可能存在自相关，为了解决自相关问题，学者们提出了Newywest调整，使得统计检验结果更加可信。</p>
+<pre class="r"><code>regressions_for_newey_west &lt;- risk_premiums |&gt;
+  select(Tradedate, factor = term, estimate) |&gt;
+  nest(data = c(Tradedate, estimate)) |&gt;
+  mutate(
+    model = map(data, ~ lm(estimate ~ 1, .)),
+    mean = map(model, tidy)
+  )
+
+price_of_risk_newey_west &lt;- regressions_for_newey_west |&gt;
+  mutate(newey_west_se = map_dbl(model, ~ sqrt(NeweyWest(.)))) |&gt;
+  unnest(mean) |&gt;
+  mutate(t_statistic_newey_west = estimate / newey_west_se) |&gt;
+  select(factor,
+    risk_premium = estimate,
+    t_statistic_newey_west
+  )
+
+Neweywst&lt;-left_join(price_of_risk,
+  price_of_risk_newey_west |&gt;
+    select(factor, t_statistic_newey_west),
+  by = &quot;factor&quot;
+)
+
+stargazer(Neweywst,type = &quot;html&quot;,title = &quot;表4：Fama-Macbeth回归(Neweywest调整)&quot;,digits=3, summary = FALSE, rownames = FALSE)</code></pre>
+<table style="text-align:center">
+<caption>
+<strong>表4：Fama-Macbeth回归(Neweywest调整)</strong>
+</caption>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+factor
+</td>
+<td>
+risk_premium
+</td>
+<td>
+t_statistic
+</td>
+<td>
+t_statistic_newey_west
+</td>
+</tr>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+(Intercept)
+</td>
+<td>
+9.57575739607137
+</td>
+<td>
+5.11138030106505
+</td>
+<td>
+4.30466198220526
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+beta
+</td>
+<td>
+-0.198721324538681
+</td>
+<td>
+-0.944166058324231
+</td>
+<td>
+-1.16033713121177
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+bm
+</td>
+<td>
+2.14147227760056
+</td>
+<td>
+4.69133417377029
+</td>
+<td>
+4.34350332782797
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+mktcap
+</td>
+<td>
+-0.709711751847361
+</td>
+<td>
+-5.61203955043294
+</td>
+<td>
+-4.8576633321102
+</td>
+</tr>
+<tr>
+<td colspan="4" style="border-bottom: 1px solid black">
+</td>
+</tr>
+</table>
+<p>（2）面板回归法</p>
+<pre class="r"><code>library(plm)</code></pre>
+<pre><code>## Warning: package &#39;plm&#39; was built under R version 4.2.1</code></pre>
+<pre><code>## 
+## Attaching package: &#39;plm&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     between, lag, lead</code></pre>
+<pre><code>## The following object is masked from &#39;package:data.table&#39;:
+## 
+##     between</code></pre>
+<pre class="r"><code>fpmg&lt;-pmg(ret_excess ~ beta + mktcap + bm,FMdata,index = c(&quot;Tradedate&quot;,&quot;ts_code&quot;))
+summary(fpmg)</code></pre>
+<p>Mean Groups model</p>
+<p>Call:
+pmg(formula = ret_excess ~ beta + mktcap + bm, data = FMdata,
+index = c(“Tradedate”, “ts_code”))</p>
+<p>Unbalanced Panel: n = 285, T = 273-3412, N = 430947</p>
+<p>Residuals:
+Min. 1st Qu. Median 3rd Qu. Max.
+-0.95585632 -0.05678275 -0.01048410 0.04353054 8.25318942</p>
+<p>Coefficients:
+Estimate Std. Error z-value Pr(&gt;|z|)<br />
+(Intercept) 0.0957576 0.0187342 5.1114 3.198e-07 <strong><em>
+beta -0.0019872 0.0021047 -0.9442 0.3451<br />
+mktcap -0.0070971 0.0012646 -5.6120 2.000e-08 </em></strong>
+bm 0.0214147 0.0045647 4.6913 2.714e-06 ***
+—
+Signif. codes: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ’ ’ 1
+Total Sum of Squares: 9575.1
+Residual Sum of Squares: 5931.8
+Multiple R-squared: 0.3805</p>
+<pre class="r"><code>##NeweyWest调整
+summary(fpmg,vcov=vcovNW)</code></pre>
+<p>Mean Groups model</p>
+<p>Call:
+pmg(formula = ret_excess ~ beta + mktcap + bm, data = FMdata,
+index = c(“Tradedate”, “ts_code”))</p>
+<p>Unbalanced Panel: n = 285, T = 273-3412, N = 430947</p>
+<p>Residuals:
+Min. 1st Qu. Median 3rd Qu. Max.
+-0.95585632 -0.05678275 -0.01048410 0.04353054 8.25318942</p>
+<p>Coefficients:
+Estimate Std. Error z-value Pr(&gt;|z|)<br />
+(Intercept) 0.0957576 0.0187342 5.1114 3.198e-07 <strong><em>
+beta -0.0019872 0.0021047 -0.9442 0.3451<br />
+mktcap -0.0070971 0.0012646 -5.6120 2.000e-08 </em></strong>
+bm 0.0214147 0.0045647 4.6913 2.714e-06 ***
+—
+Signif. codes: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ’ ’ 1
+Total Sum of Squares: 9575.1
+Residual Sum of Squares: 5931.8
+Multiple R-squared: 0.3805</p>
+<p>从Fama-Macbeth回归结果来看，市值和账面市值比的风险溢价<span class="math inline">\(\lambda_{t}^f\)</span>显著不为0，表明股票市值和账面市值比有效地代理了股票规模和价值相关的风险暴露。</p>

@@ -463,7 +463,7 @@ stargazer(Neweywst,type = "html",title = "表4：Fama-Macbeth回归(Neweywest调
 
 （2）面板回归法
 
-```{r results='asis'}
+```{r }
 library(plm)
 fpmg<-pmg(ret_excess ~ beta + mktcap + bm,FMdata,index = c("Tradedate","ts_code"))
 summary(fpmg)

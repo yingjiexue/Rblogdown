@@ -1184,44 +1184,52 @@ mktcap
 ##     between</code></pre>
 <pre class="r"><code>fpmg&lt;-pmg(ret_excess ~ beta + mktcap + bm,FMdata,index = c(&quot;Tradedate&quot;,&quot;ts_code&quot;))
 summary(fpmg)</code></pre>
-<p>Mean Groups model</p>
-<p>Call:
-pmg(formula = ret_excess ~ beta + mktcap + bm, data = FMdata,
-index = c(“Tradedate”, “ts_code”))</p>
-<p>Unbalanced Panel: n = 285, T = 273-3412, N = 430947</p>
-<p>Residuals:
-Min. 1st Qu. Median 3rd Qu. Max.
--0.95585632 -0.05678275 -0.01048410 0.04353054 8.25318942</p>
-<p>Coefficients:
-Estimate Std. Error z-value Pr(&gt;|z|)<br />
-(Intercept) 0.0957576 0.0187342 5.1114 3.198e-07 <strong><em>
-beta -0.0019872 0.0021047 -0.9442 0.3451<br />
-mktcap -0.0070971 0.0012646 -5.6120 2.000e-08 </em></strong>
-bm 0.0214147 0.0045647 4.6913 2.714e-06 ***
-—
-Signif. codes: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ’ ’ 1
-Total Sum of Squares: 9575.1
-Residual Sum of Squares: 5931.8
-Multiple R-squared: 0.3805</p>
+<pre><code>## Mean Groups model
+## 
+## Call:
+## pmg(formula = ret_excess ~ beta + mktcap + bm, data = FMdata, 
+##     index = c(&quot;Tradedate&quot;, &quot;ts_code&quot;))
+## 
+## Unbalanced Panel: n = 285, T = 273-3412, N = 430947
+## 
+## Residuals:
+##        Min.     1st Qu.      Median     3rd Qu.        Max. 
+## -0.95585632 -0.05678275 -0.01048410  0.04353054  8.25318942 
+## 
+## Coefficients:
+##               Estimate Std. Error z-value  Pr(&gt;|z|)    
+## (Intercept)  0.0957576  0.0187342  5.1114 3.198e-07 ***
+## beta        -0.0019872  0.0021047 -0.9442    0.3451    
+## mktcap      -0.0070971  0.0012646 -5.6120 2.000e-08 ***
+## bm           0.0214147  0.0045647  4.6913 2.714e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Total Sum of Squares: 9575.1
+## Residual Sum of Squares: 5931.8
+## Multiple R-squared: 0.3805</code></pre>
 <pre class="r"><code>##NeweyWest调整
 summary(fpmg,vcov=vcovNW)</code></pre>
-<p>Mean Groups model</p>
-<p>Call:
-pmg(formula = ret_excess ~ beta + mktcap + bm, data = FMdata,
-index = c(“Tradedate”, “ts_code”))</p>
-<p>Unbalanced Panel: n = 285, T = 273-3412, N = 430947</p>
-<p>Residuals:
-Min. 1st Qu. Median 3rd Qu. Max.
--0.95585632 -0.05678275 -0.01048410 0.04353054 8.25318942</p>
-<p>Coefficients:
-Estimate Std. Error z-value Pr(&gt;|z|)<br />
-(Intercept) 0.0957576 0.0187342 5.1114 3.198e-07 <strong><em>
-beta -0.0019872 0.0021047 -0.9442 0.3451<br />
-mktcap -0.0070971 0.0012646 -5.6120 2.000e-08 </em></strong>
-bm 0.0214147 0.0045647 4.6913 2.714e-06 ***
-—
-Signif. codes: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ’ ’ 1
-Total Sum of Squares: 9575.1
-Residual Sum of Squares: 5931.8
-Multiple R-squared: 0.3805</p>
+<pre><code>## Mean Groups model
+## 
+## Call:
+## pmg(formula = ret_excess ~ beta + mktcap + bm, data = FMdata, 
+##     index = c(&quot;Tradedate&quot;, &quot;ts_code&quot;))
+## 
+## Unbalanced Panel: n = 285, T = 273-3412, N = 430947
+## 
+## Residuals:
+##        Min.     1st Qu.      Median     3rd Qu.        Max. 
+## -0.95585632 -0.05678275 -0.01048410  0.04353054  8.25318942 
+## 
+## Coefficients:
+##               Estimate Std. Error z-value  Pr(&gt;|z|)    
+## (Intercept)  0.0957576  0.0187342  5.1114 3.198e-07 ***
+## beta        -0.0019872  0.0021047 -0.9442    0.3451    
+## mktcap      -0.0070971  0.0012646 -5.6120 2.000e-08 ***
+## bm           0.0214147  0.0045647  4.6913 2.714e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Total Sum of Squares: 9575.1
+## Residual Sum of Squares: 5931.8
+## Multiple R-squared: 0.3805</code></pre>
 <p>从Fama-Macbeth回归结果来看，市值和账面市值比的风险溢价<span class="math inline">\(\lambda_{t}^f\)</span>显著不为0，表明股票市值和账面市值比有效地代理了股票规模和价值相关的风险暴露。</p>

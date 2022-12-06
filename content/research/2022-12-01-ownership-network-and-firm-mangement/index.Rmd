@@ -136,9 +136,9 @@ bilbio-style: "biomed-central.csl"
 >
 > 3、交叉持股安排在产品市场关系中提供了战略收益[@allen2000corporate; @fee2006corporate]，导致持股者结成战略联盟[@parker1997collusive]。
 >
-> 4、[@harford2011institutional]表明交叉持股与目标收购公司盈利正相关，但并没有发现交叉持股显著地影响了投标收益。
+> 4、@harford2011institutional 表明交叉持股与目标收购公司盈利正相关，但并没有发现交叉持股显著地影响了投标收益。
 >
-> 5、[@becht2016does] 发现交叉持股太小以至于对投票结果没有影响。
+> 5、@becht2016does 发现交叉持股太小以至于对投票结果没有影响。
 >
 > 6、交叉控股公司也可能实现更大的市场份额增长，因为它们可以共享技术诀窍并协调研发工作以降低生产成本、提高产品质量并提高创新效率[@grossman1980stockholder]。
 

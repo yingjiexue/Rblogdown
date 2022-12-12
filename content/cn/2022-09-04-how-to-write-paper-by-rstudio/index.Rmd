@@ -13,8 +13,6 @@ tags:
 
 Rstudio最大的好处就是为科研工作者提供了一站式服务，既可以撰写文字，又可以分析数据，输出图表，不仅能管理文献，还能输出个性化格式的论文或研究报告。之所使用Rstudio撰写论文非常方便，主要由于存在大量可以利用的个性化模板，例如，article包提供了各大国际期刊的[投稿模板](https://bookdown.org/yihui/rmarkdown/rticles-templates.html),[bookdownplus](https://bookdown.org/baydap/bookdownplus/)也提供了许多期刊、学位论文、书籍等[模板](https://bookdownplus.netlify.app/portfolio/), 如果这些模板不够，你可以为自己量身定做一个属于自己的模板。虽然模板生态也比较成熟，但由于markdown转化word文件时公式和表格不能很好显示，这些模板是基于latex打造的pdf模板，对国内大家习惯于word环境的学者来说，在阅读修改上可能不太方便，下面我们就基于word格式来介绍如何利用Rtudio写作论文。
 
-
-
 ### Markdown yaml设置
 
 文档格式设定是markdown最重要的部分，关系到页面布局、表格格式、图形大小、参考文献等在word中的呈现方式。需要强调的是许多包都提供了markdown输出word文件的功能，比如markdown包提供的word_document可实现基本文档的编辑功能;bookdown提供的word_document2可以实现交叉引用，但这两者对个性化的格式、公式和表格都支持的不是很好，officedown提供的rdocx_document，可谓为大家定制个性化的word文档提供了福音，在这个环境中，可以通过officer包集成的函数对word的元素进行修改，以达到自己想要的效果。如果大家想通过Rmarkdown输出word格式文件，我极力推荐rdox_document环境，下面给出rdox_document环境下的yaml：
@@ -91,13 +89,10 @@ word 文档的页面设置由top、bottom、left、right、header、footer、gut
 barplot(GNP ~ Year, data = longley)
 ```
 
-
-
 插入以上代码就可以生成带标题的图形。但是对于来自其他软件的图片也要通过代码块载入才能自动编号，比如通过插入图片的方式就不能自动编号，具体如下：
 
-```
-![](index_files/figure-html/new.png)
-```
+    ![](index_files/figure-html/new.png)
+
 ![](index_files/figure-html/new.png)
 
 而应该使用如下代码才能自动编号，具体如下：
@@ -107,6 +102,7 @@ knitr::include_graphics("D:/Rblogdown/content/cn/2022-09-04-how-to-write-paper-b
 ```
 
 表格可以通过R代码读入表格数据，然后使用flextable包对表格格式格式化后可以输出到word，flextab可以很好地支持word表格的各种格式。表格样式学习参考：[flextable 模板](https://ardata.fr/en/flextable-gallery/)，或看Youtube视频教程(可能要翻墙)。
+
 ```{=html}
 <p> 如何使用Flextable :</p>
 
@@ -115,8 +111,6 @@ knitr::include_graphics("D:/Rblogdown/content/cn/2022-09-04-how-to-write-paper-b
   frameborder="0" allow="autoplay; encrypted-media"
   allowfullscreen></iframe>
 ```
-
-
 具体flextable函数介绍看网站：[flextable函数大全](https://rdrr.io/cran/flextable/)。参考样例如下：
 
 ```{r echo=TRUE,tab.cap="变量定义", tab.id = "mytab", tab.cap.style = "Table Caption"}
@@ -161,45 +155,37 @@ ft
 
 ### 文档个性化格式
 
-要输出个性化的word文档，就需要利用officer包的函数进行特殊化处理，其使用方法参考：
-[R Markdown 输出优雅office文档教程](https://ardata-fr.github.io/officeverse/index.html)。例如要添加作者、作者单位，并以脚注的形式添加基金信息和作者简介，可以利用officer包通过以下代码实现：
+要输出个性化的word文档，就需要利用officer包的函数进行特殊化处理，其使用方法参考： [R Markdown 输出优雅office文档教程](https://ardata-fr.github.io/officeverse/index.html)。例如要添加作者、作者单位，并以脚注的形式添加基金信息和作者简介，可以利用officer包通过以下代码实现：
 
 > 代码
 
+    library(officer)
 
-```
-library(officer)
+    ##设置作者姓名
+    author="薛英杰     汪 勇     尹玉刚 "
+    fpar_1 <- fpar(author,  fp_p = fp_par(text.align = "center") )
+    fpar_1
 
-##设置作者姓名
-author="薛英杰     汪 勇     尹玉刚 "
-fpar_1 <- fpar(author,  fp_p = fp_par(text.align = "center") )
-fpar_1
+    ##设置作者单位
+    atthinstiution<-"（西南财经大学 证券与期货学院，四川 成都 611130）"
 
-##设置作者单位
-atthinstiution<-"（西南财经大学 证券与期货学院，四川 成都 611130）"
-
-##设置基金及作者简介
-ftcontent<- "基金项目：国家自然科学基金面上项目“对国有企业高杠杆的控制权网络解析”（71874145）；国家自然科学基金青年项目“上市公司产品竞争与股票市场定价：机制与实证研究”（71903154）。"
-authorintr<-"作者简介：薛英杰（通讯作者），西南财经大学博士研究生，主要从事金融市场、资产定价研究，联系方式yingjiexuesuwfe@163.com；汪勇，西南财经大学副教授，博士，主要从事公司金融、资产定价研究；尹玉刚，西南财经大学副教授，博士，主要从事公司金融、实证资产定价研究。"
-fp_refnote <- fp_text_lite(vertical.align = 'superscript')
-ftsyle<-fp_text(font.size = 8)
-ftnot<-block_list(fpar(ftext(ftcontent,prop=ftsyle),fp_p = fp_par(text.align =  'justify',line_spacing=1),fp_t=fp_refnote),
-                  fpar(ftext(authorintr,prop=ftsyle),fp_p = fp_par(text.align =  'justify',line_spacing=1),fp_t=fp_refnote))
-fpar_2 <- fpar(atthinstiution,
-               fp_p = fp_par(text.align = "center",line_spacing=2) ,
-               run_footnote(x =ftnot,prop = fp_refnote))
-fpar_2
-
-```
-
+    ##设置基金及作者简介
+    ftcontent<- "基金项目：国家自然科学基金面上项目“对国有企业高杠杆的控制权网络解析”（71874145）；国家自然科学基金青年项目“上市公司产品竞争与股票市场定价：机制与实证研究”（71903154）。"
+    authorintr<-"作者简介：薛英杰（通讯作者），西南财经大学博士研究生，主要从事金融市场、资产定价研究，联系方式yingjiexuesuwfe@163.com；汪勇，西南财经大学副教授，博士，主要从事公司金融、资产定价研究；尹玉刚，西南财经大学副教授，博士，主要从事公司金融、实证资产定价研究。"
+    fp_refnote <- fp_text_lite(vertical.align = 'superscript')
+    ftsyle<-fp_text(font.size = 8)
+    ftnot<-block_list(fpar(ftext(ftcontent,prop=ftsyle),fp_p = fp_par(text.align =  'justify',line_spacing=1),fp_t=fp_refnote),
+                      fpar(ftext(authorintr,prop=ftsyle),fp_p = fp_par(text.align =  'justify',line_spacing=1),fp_t=fp_refnote))
+    fpar_2 <- fpar(atthinstiution,
+                   fp_p = fp_par(text.align = "center",line_spacing=2) ,
+                   run_footnote(x =ftnot,prop = fp_refnote))
+    fpar_2
 
 > 显示格式
-
 
 ```{r,echo=FALSE , message=FALSE, warning=FALSE,fig.align='center'}
 knitr::include_graphics("D:/Rblogdown/content/cn/2022-09-04-how-to-write-paper-by-rstudio/index_files/figure-html/1663229659765.png")
 ```
-
 
 ### 数学公式
 
@@ -209,35 +195,26 @@ knitr::include_graphics("D:/Rblogdown/content/cn/2022-09-04-how-to-write-paper-b
 knitr::include_url("https://rpruim.github.io/s341/S19/from-class/MathinRmd.html")
 ```
 
-这儿需要提示的是公式编号，
-利用markdown输出数学公式后并带公式编号，要实现公式自动编号，需要在yaml中加入pandoc命令：‘pandoc_args: ["-Fpandoc-crossref"]’，然后在"$$"符号后面添加标签："{#eq:eqn2}",示例如下：
+这儿需要提示的是公式编号， 利用markdown输出数学公式后并带公式编号，要实现公式自动编号，需要在yaml中加入pandoc命令：'pandoc_args: ["-Fpandoc-crossref"]'，然后在"\$\$"符号后面添加标签："{#eq:eqn2}",示例如下：
 
-
-
-
-```
-$$
-\begin{aligned}
-  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k} 
-\end{aligned}
-$$ {#eq:eqn2}
-```
+    $$
+    \begin{aligned}
+      f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k} 
+    \end{aligned}
+    $$ {#eq:eqn2}
 
 ### 参考文献
 
 rdox_document默认的参考文献位置实在文章最后面，但是如果要在文章末尾增加附录，就需要将参考文献出现的位置指定到附录前面，实现该功能使用代码如下：
 
-```
-<div id="refs"></div>
-```
+    <div id="refs"></div>
+
 将以上代码放在你要列出参考文献的位置，会自动在这个地方出现参考文献。
 
 在R markdown中引用参考文献，比word方便了很多倍，我们可以借助Zotero来管理文献，个人觉得它比Endnote好用许多，优点在于其下载文献方便，还可以做笔记，最重要的一点是可以导出markdown可以应用的.bib格式的文件，当你使用R markdown写论文时，可以从Zotero中导出论文要引用的文献成.bib文件，然后复制到markdown根目录，在yaml中添加该文件名就可以自由引用了。更方便的是，Zotero文献引用格式库几乎提供了所有文献引用格式，你将对应文献引用格式.csl文件下载，与.bib格式文件放在相同目录下，同样在yaml中配置参数后就可以按你想要的引用格式引用参考文献了。yaml配置参数如下：
 
-```
-bibliography: reference.bib      #参考文献应用
-csl: china-national-standard-gb-t-7714-2015-author-date.csl     #参考文献格式 
-```
+    bibliography: reference.bib      #参考文献应用
+    csl: china-national-standard-gb-t-7714-2015-author-date.csl     #参考文献格式 
 
 > Zotero下载安装，你可以去[这儿](https://www.zotero.org/)
 
@@ -249,10 +226,10 @@ csl: china-national-standard-gb-t-7714-2015-author-date.csl     #参考文献格
 
 现在Rstudio 1.4以上版本自带可视化编辑器，引用文献更加方便快捷，具体方法可以点击[这儿](https://rstudio.github.io/visual-markdown-editing/citations.html)。
 
-
 ### 中文论文模板
 
 上面讲了这么多，我把自己使用officedown构造的中文模板已上床github，需要的可以拿走使用，[点这儿](https://github.com/yingjiexue/chinese_word_template)。
 
+### 相关讲座
 
-
+[B站视频](https://www.bilibili.com/video/BV1jG4y1n7vy)

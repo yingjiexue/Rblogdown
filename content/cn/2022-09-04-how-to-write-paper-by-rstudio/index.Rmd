@@ -101,7 +101,8 @@ barplot(GNP ~ Year, data = longley)
 knitr::include_graphics("D:/Rblogdown/content/cn/2022-09-04-how-to-write-paper-by-rstudio/index_files/figure-html/new.png")
 ```
 
-表格可以通过R代码读入表格数据，然后使用flextable包对表格格式格式化后可以输出到word，flextab可以很好地支持word表格的各种格式。表格样式学习参考：[flextable 模板](https://ardata.fr/en/flextable-gallery/)，或看Youtube视频教程(可能要翻墙)。
+表格可以通过R代码读入表格数据，然后使用flextable包对表格格式格式化后可以输出到word，flextab可以很好地支持word表格的各种格式。表格样式学习参考：[flextable 模板](https://ardata.fr/en/flextable-gallery/)，[函数分类](https://davidgohel.github.io/flextable/)，或看Youtube视频教程(可能要翻墙)。
+
 
 ```{=html}
 <p> 如何使用Flextable :</p>
@@ -233,3 +234,4 @@ rdox_document默认的参考文献位置实在文章最后面，但是如果要�
 ### 相关讲座
 
 [B站视频](https://www.bilibili.com/video/BV1jG4y1n7vy)
+

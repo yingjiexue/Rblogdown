@@ -35,7 +35,8 @@ date: ""
   <a href="https://alphaarchitect.com/category/architect-academic-insights/factor-investing/momentum-investing/" style="color:#00BFFF;">Alpha architect</a>：超额收益Alpha观点分析<br>
   <a href="https://www.joinquant.com/" style="color:#00BFFF;">优矿</a>：量化分析平台<br>
   <a href="https://www.etf.com/" style="color:#00BFFF;">International ETF </a>： ETF分析与讨论<br>
-  <a href="https://www.factorwar.com/" style="color:#00BFFF;">Beta Pluss 小组 </a>： 专注于多因子模型和异象研究
+  <a href="https://www.factorwar.com/" style="color:#00BFFF;">Beta Pluss 小组 </a>： 专注于多因子模型和异象研究<br>
+  <a href="https://xyj90.shinyapps.io/quant//" style="color:#00BFFF;">Quant</a>：股票分析平台
 
 ## 金融期刊
 

@@ -23,7 +23,8 @@ date: ""
   <a href="https://www.begtut.com/python/python-tutorial.html" style="color:#00BFFF;">Beginner Tutorials</a>：python、Css和数据库教程<br>
   <a href="https://www.w3schools.com" style="color:#00BFFF;">Learn to Code</a>：主流语言代码学习<br>
   <a href="https://www.bigbookofr.com/" style="color:#00BFFF;">Big Book of R</a>：收集了R在各个邻域应用的书籍<br>
-  <a href="https://dashboard.cpolar.com//" style="color:#00BFFF;">cpolar</a>：配置服务器地址到公网
+  <a href="https://dashboard.cpolar.com//" style="color:#00BFFF;">cpolar</a>：配置服务器地址到公网<br>
+  <a href="https://cran.r-project.org/doc/FAQ/R-FAQ.html" style="color:#00BFFF;">R FAQ</a>：Frequently Asked Questions on R
 
 
 

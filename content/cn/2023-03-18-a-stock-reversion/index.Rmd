@@ -1,0 +1,19 @@
+---
+title: 中国A股市场的反转效应
+author: 薛英杰
+date: '2023-03-18'
+slug: a stock reversion
+categories:
+  - research
+tags:
+  - research
+comments: true
+---
+
+反转效应
+
+```{r}
+
+disqus_shortname("https-yjx-netlify-app-1")
+
+```

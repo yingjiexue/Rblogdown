@@ -49,10 +49,12 @@ rssLimit=100
     weight = 7  
  
  
- 
-[params.comments]
-  enable = true
-  repo = "<yingjiexue>/<comments>"
+[params.utterances]
+  repo = "yingjiexue/comments"
+  issueTerm = "pathname"
+  label = "blog-comments"
+  theme = "github-ligh" 
+
   
     
 [params]

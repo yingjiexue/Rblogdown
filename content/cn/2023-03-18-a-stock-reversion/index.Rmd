@@ -11,9 +11,3 @@ comments: true
 ---
 
 反转效应
-
-```{r}
-
-disqus_shortname("https-yjx-netlify-app-1")
-
-```

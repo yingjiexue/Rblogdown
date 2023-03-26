@@ -8,11 +8,17 @@ categories:
 tags:
   - research
   
-output:
-  rblogdown::html_page:
-    comments: true
-    social: true
-github-repo: yingjiexue/comments
+comments: true
 ---
 
 反转效应
+
+output:
+
+rblogdown::html_page:
+
+comments: true
+
+social: true
+
+github-repo: yingjiexue/comments

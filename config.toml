@@ -47,6 +47,12 @@ rssLimit=100
     name = "About"
     url = "/en_about/"
     weight = 7  
+ 
+ 
+ 
+[params.comments]
+  enable = true
+  repo = "<yingjiexue>/<comments>"
   
     
 [params]

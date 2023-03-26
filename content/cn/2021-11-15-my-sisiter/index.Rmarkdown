@@ -7,6 +7,7 @@ categories:
   - diary
 tags:
   - diary
+comments: true
 ---
 
 

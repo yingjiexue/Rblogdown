@@ -10,6 +10,7 @@ tags:
 bibliography: [Betaestimate.bib]
 link-citations: TRUE
 bilbio-style: "biomed-central.csl"
+comments: true
 ---
 
 
@@ -70,18 +71,18 @@ summary(fit)</code></pre>
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -0.38779 -0.06263 -0.00632  0.04950  0.68312 
+## -0.38942 -0.06252 -0.00644  0.04893  0.68285 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 0.002422   0.005838   0.415    0.678    
-## mkt_excess  0.829464   0.063053  13.155   &lt;2e-16 ***
+## (Intercept) 0.002797   0.005839   0.479    0.632    
+## mkt_excess  0.821452   0.062841  13.072   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.1063 on 330 degrees of freedom
-## Multiple R-squared:  0.344,  Adjusted R-squared:  0.342 
-## F-statistic: 173.1 on 1 and 330 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 0.1069 on 334 degrees of freedom
+## Multiple R-squared:  0.3384,	Adjusted R-squared:  0.3365 
+## F-statistic: 170.9 on 1 and 334 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><code>lm()</code> 返回的对象包含所有我们平时关心的线性模型信息，<code>summary()</code> 返回估计系数的描述，以上结果表明平安银行的股票市场<span class="math inline">\(\hat\beta\)</span>的估计值为1.15。</p>
 <p>资本资产定价模型表明风险资产的超额收益与投资该资产承担的风险成正比，也就是说，投资者购买平安银行获得的超额收益可以表示为单位风险的价格与风险大小的乘积，而市场超额收益就是单位风险的价格，市场<span class="math inline">\(\beta\)</span>则反映了投资者承担的风险大小。</p></li>
 <li><p>滚动窗口估计</p>
@@ -118,21 +119,26 @@ roll_capm_estimation &lt;- function(data, months, min_obs) {
 
 beta_estimate = mothdata %&gt;%
     filter(ts_code == &quot;000001.SZ&quot;)%&gt;%
-  mutate(roll_capm_estimation(cur_data(),months = 60,min_obs = 48))%&gt;%na.omit()
-tail(beta_estimate,60)</code></pre>
+  mutate(roll_capm_estimation(cur_data(),months = 60,min_obs = 48))%&gt;%na.omit()</code></pre>
+<pre><code>## Warning: There was 1 warning in `mutate()`.
+## ℹ In argument: `roll_capm_estimation(cur_data(), months = 60, min_obs = 48)`.
+## Caused by warning:
+## ! `cur_data()` was deprecated in dplyr 1.1.0.
+## ℹ Please use `pick()` instead.</code></pre>
+<pre class="r"><code>tail(beta_estimate,60)</code></pre>
 <pre><code>## # A tibble: 60 × 7
 ##    ts_code   Tradedate trade_date ret_excess mkt_excess month       beta
 ##    &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;          &lt;dbl&gt;      &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt;
-##  1 000001.SZ 2017-11   2017-11-30    0.156     -0.0702  2017-11-30 0.606
-##  2 000001.SZ 2017-12   2017-12-29   -0.00992   -0.0224  2017-12-29 0.560
-##  3 000001.SZ 2018-01   2018-01-31    0.0526    -0.0321  2018-01-31 0.525
-##  4 000001.SZ 2018-02   2018-02-28   -0.146     -0.0518  2018-02-28 0.534
-##  5 000001.SZ 2018-03   2018-03-30   -0.0993     0.0353  2018-03-30 0.519
-##  6 000001.SZ 2018-04   2018-04-27   -0.00797   -0.0491  2018-04-27 0.512
-##  7 000001.SZ 2018-05   2018-05-31   -0.0651    -0.0355  2018-05-31 0.500
-##  8 000001.SZ 2018-06   2018-06-29   -0.111     -0.129   2018-06-29 0.351
-##  9 000001.SZ 2018-07   2018-07-31    0.0334    -0.00789 2018-07-31 0.356
-## 10 000001.SZ 2018-08   2018-08-31    0.0730    -0.0827  2018-08-31 0.327
+##  1 000001.SZ 2018-03   2018-03-30   -0.0993     0.0374  2018-03-30 0.505
+##  2 000001.SZ 2018-04   2018-04-27   -0.00797   -0.0494  2018-04-27 0.499
+##  3 000001.SZ 2018-05   2018-05-31   -0.0651    -0.0358  2018-05-31 0.487
+##  4 000001.SZ 2018-06   2018-06-29   -0.111     -0.130   2018-06-29 0.340
+##  5 000001.SZ 2018-07   2018-07-31    0.0334    -0.00742 2018-07-31 0.345
+##  6 000001.SZ 2018-08   2018-08-31    0.0730    -0.0832  2018-08-31 0.316
+##  7 000001.SZ 2018-09   2018-09-28    0.0885    -0.00851 2018-09-28 0.305
+##  8 000001.SZ 2018-10   2018-10-31   -0.0150    -0.0983  2018-10-31 0.313
+##  9 000001.SZ 2018-11   2018-11-30   -0.0529     0.0519  2018-11-30 0.313
+## 10 000001.SZ 2018-12   2018-12-28   -0.0972    -0.0476  2018-12-28 0.314
 ## # … with 50 more rows</code></pre>
 <p>需要强调的是，在上述代码中，滚动窗口估计使用了slider包， 其在各种数据上运行非常稳定，而且速度比较快，学习教程可以参考<a href="https://cran.r-project.org/web/packages/slider/vignettes/slider.html">这儿</a>。</p>
 <p>我们可以多估计几只股票的市场<span class="math inline">\(\beta\)</span>，了解不同股票在市场风险上的暴露差异，下面选择平安银行（000001.SZ）、万科（000002.SZ）、中炬高新（600872.SH）、三一重工（600031.SH），分析市场<span class="math inline">\(\beta\)</span>的动态变化。</p>
@@ -186,26 +192,26 @@ pdat|&gt;head()</code></pre>
 ##   ts_code   trade_date ret_excess mkt_excess
 ##   &lt;chr&gt;     &lt;date&gt;          &lt;dbl&gt;      &lt;dbl&gt;
 ## 1 000001.SZ 1995-01-27   0.000175    -0.131 
-## 2 000001.SZ 1995-02-28   0.00299     -0.0211
+## 2 000001.SZ 1995-02-28   0.00299     -0.0208
 ## 3 000001.SZ 1995-03-31   0.00668      0.136 
 ## 4 000001.SZ 1995-04-28  -0.105       -0.115 
-## 5 000001.SZ 1995-05-31   0.00580      0.149 
-## 6 000001.SZ 1995-06-30  -0.0698      -0.102</code></pre>
+## 5 000001.SZ 1995-05-31   0.00580      0.150 
+## 6 000001.SZ 1995-06-30  -0.0698      -0.101</code></pre>
 <pre class="r"><code>pdat|&gt;
   nest(data=c(trade_date,ret_excess,mkt_excess))%&gt;%head(10)</code></pre>
 <pre><code>## # A tibble: 10 × 2
 ##    ts_code   data              
 ##    &lt;chr&gt;     &lt;list&gt;            
-##  1 000001.SZ &lt;tibble [332 × 3]&gt;
-##  2 000002.SZ &lt;tibble [328 × 3]&gt;
+##  1 000001.SZ &lt;tibble [336 × 3]&gt;
+##  2 000002.SZ &lt;tibble [332 × 3]&gt;
 ##  3 000003.SZ &lt;tibble [84 × 3]&gt; 
-##  4 000004.SZ &lt;tibble [325 × 3]&gt;
-##  5 000005.SZ &lt;tibble [318 × 3]&gt;
-##  6 000006.SZ &lt;tibble [329 × 3]&gt;
-##  7 000007.SZ &lt;tibble [310 × 3]&gt;
-##  8 000008.SZ &lt;tibble [328 × 3]&gt;
-##  9 000009.SZ &lt;tibble [331 × 3]&gt;
-## 10 000010.SZ &lt;tibble [287 × 3]&gt;</code></pre>
+##  4 000004.SZ &lt;tibble [329 × 3]&gt;
+##  5 000005.SZ &lt;tibble [322 × 3]&gt;
+##  6 000006.SZ &lt;tibble [333 × 3]&gt;
+##  7 000007.SZ &lt;tibble [314 × 3]&gt;
+##  8 000008.SZ &lt;tibble [332 × 3]&gt;
+##  9 000009.SZ &lt;tibble [335 × 3]&gt;
+## 10 000010.SZ &lt;tibble [291 × 3]&gt;</code></pre>
 <div id="参考文献" class="section level3 unnumbered">
 <h3>参考文献</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">

@@ -9,7 +9,6 @@ tags:
   - research
   
 enable: true
-disable_commnets=false
 ---
 
 反转效应

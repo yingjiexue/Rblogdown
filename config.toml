@@ -79,7 +79,7 @@ rssLimit=100
 
 
 [params.utterances]
-  enable = false
+  enable = ture
   
   repo = "yingjiexue/comments"
   issueTerm = "pathname"

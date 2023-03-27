@@ -51,6 +51,7 @@ rssLimit=100
  
 [params.utterances]
   enable = false
+  disable_commnets=false
   repo = "yingjiexue/comments"
   issueTerm = "pathname"
   label = "blog-comments"

@@ -1,7 +1,7 @@
 ---
 title: "网站"
 date: ""
-disable_comments: true
+disable_comments: false
 ---
 
 ## 个人主页

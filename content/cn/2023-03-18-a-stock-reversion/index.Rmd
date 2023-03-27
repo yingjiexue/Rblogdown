@@ -8,15 +8,7 @@ categories:
 tags:
   - research
   
-output:
-
-rblogdown::html_page:
-
-  enable: true
-  
-  social: true
-  
-  github-repo: yingjiexue/comments
+enable: true
 ---
 
 反转效应

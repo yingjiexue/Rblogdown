@@ -260,6 +260,14 @@ thead, tfoot, tr:nth-child(even) {
   background: #f8f8f8;
 }
 
+section {
+   display: flex;
+   justify-content: center;
+}
+
+
+
+
 /**
  * Utility Styles
  */

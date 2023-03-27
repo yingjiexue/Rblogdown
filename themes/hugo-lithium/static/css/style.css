@@ -32,9 +32,7 @@ body {
   line-height: 1.75;
 }
 
-section {
-  padding-left: 100%;
-}
+
 
 h1, h2, h3, h4, h5, h6 {
   padding: 0;
@@ -128,6 +126,10 @@ hr {
   margin: 50px auto;
   padding: 0;
   max-width: 300px;
+}
+
+.utterances-frame {
+  padding-left: 100%;
 }
 
 .copyright {

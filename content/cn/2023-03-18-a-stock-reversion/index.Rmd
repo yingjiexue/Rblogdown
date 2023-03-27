@@ -8,7 +8,7 @@ categories:
 tags:
   - research
   
-comments: true
+enable: true
 ---
 
 反转效应

@@ -49,13 +49,7 @@ rssLimit=100
     weight = 7  
  
  
-[params.utterances]
-  enable = false
-  
-  repo = "yingjiexue/comments"
-  issueTerm = "pathname"
-  label = "blog-comments"
-  theme = "github-ligh" 
+
 
   
     
@@ -82,3 +76,12 @@ rssLimit=100
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+
+[params.utterances]
+  enable = false
+  
+  repo = "yingjiexue/comments"
+  issueTerm = "pathname"
+  label = "blog-comments"
+  theme = "github-ligh" 

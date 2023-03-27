@@ -65,6 +65,13 @@ rssLimit=100
     MathJaxCDN = "//mathjax.rstudio.com"
     MathJaxVersion = "latest"
 
+[params.utterances]
+  enable = ture
+  repo = "yingjiexue/comments"
+  issueTerm = "pathname"
+  label = "blog-comments"
+  theme = "github-ligh" 
+
 [params.logo]
     url = "logo.png"
     width = 50
@@ -78,10 +85,3 @@ rssLimit=100
       unsafe = true
 
 
-[params.utterances]
-  enable = ture
-  
-  repo = "yingjiexue/comments"
-  issueTerm = "pathname"
-  label = "blog-comments"
-  theme = "github-ligh" 

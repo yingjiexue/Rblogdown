@@ -5,8 +5,10 @@ src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
 {{ if .Params.show_toc }} {{ .TableOfContents }} {{ end }}
 {{ .Content }}
 
+{{if and (.Site.Params.utteranc.enable)(and(not.Params.disable_commnets)(or(eq.Kind "404")(and(not.IsHome).Content))) }} {{ partial "comments.html" . }} {{ end }}
+
 
 {{ partial "footer.html" . }}
 
-{{if and (.Site.Params.utteranc.enable)(and(not.Params.disable_commnets)(or(eq.Kind "404")(and(not.IsHome).Content))) }} {{ partial "comments.html" . }} {{ end }}
+
 

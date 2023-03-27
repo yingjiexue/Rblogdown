@@ -128,10 +128,10 @@ hr {
   max-width: 300px;
 }
 
-.utterances-frame {
-  padding-left: 100%;
-}
 
+.utterances-frame {
+  padding-left: 700px;
+}
 .copyright {
   text-align: center;
 }
@@ -152,9 +152,9 @@ hr {
 }
 
 .comments {
-  padding-left: 70%;
+  padding-left: 70px;
   margin-top: 20px;
-  margin-left:70%;
+  margin-left:700px;
 }
 
 /* Layout */

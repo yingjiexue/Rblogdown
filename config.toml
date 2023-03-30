@@ -50,7 +50,7 @@ rssLimit=100
  
  
 [params.utterances]
-  enable = ture
+  enable = true
   repo = "yingjiexue/comments"
   issueTerm = "pathname"
   label = "blog-comments"

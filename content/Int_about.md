@@ -26,7 +26,7 @@ enable: false
   <a href="https://www.bigbookofr.com/" style="color:#00BFFF;">Big Book of R</a>：收集了R在各个邻域应用的书籍<br>
   <a href="https://cran.r-project.org/doc/FAQ/R-FAQ.html" style="color:#00BFFF;">R FAQ</a>：Frequently Asked Questions on R<br>
   <a href="https://deanattali.com/blog/advanced-shiny-tips/" style="color:#00BFFF;">Shiny tips & tricks for improving your apps and solving common problems</a>：改善和提高shiny App的绝巧<br>
-  <a href="https://github.com/nanxstats/awesome-webr" style="color:#00BFFF;">WebR</a>：用于收集 webR 的相关学习资源
+  <a href="https://github.com/nanxstats/awesome-webr" style="color:#00BFFF;">WebR</a>：用于收集 webR 的相关学习资源<br>
   <a href="https://dashboard.cpolar.com//" style="color:#00BFFF;">cpolar</a>：配置服务器地址到公网
 
 

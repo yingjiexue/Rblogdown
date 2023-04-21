@@ -61,4 +61,4 @@ enable: false
   <a href="https://www.deepl.com/translator" style="color:#00BFFF;">DeepL</a>：英文翻译<br>
   <a href="https://www.phrasebank.manchester.ac.uk/" style="color:#00BFFF;">Academic Phrasebank</a>：英文写作讲解及高级模板句<br>
   <a href="https://www.overleaf.com/" style="color:#00BFFF;">Overleaf</a>：LaTeX模板与在线编辑<br>
-  <a href="https://annas-archive.org/search" style="color:#00BFFF;">Overleaf</a>：免费英文图书下载
+  <a href="https://annas-archive.org/search" style="color:#00BFFF;">Anna’s Archive</a>：免费英文图书下载

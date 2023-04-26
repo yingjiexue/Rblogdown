@@ -18,29 +18,30 @@ bilbio-style: "annual-review-of-law-and-social-science.csl"
 ### 思维导图
 
 ```{r echo=FALSE, warning=FALSE}
-library(mindr)
-from<-c("# 研究问题",
-        "## ETF供给者如何对投资者的需求进行反应？",
-        "## ETF行业创新的动态和产品业绩的潜在意义是什么？",
-        "## ETF发展格局的演变",
-        "### 低成本与高度分散化的宽基ETF",
-        "### 高成本迎合投资者特殊需求的专业化ETF",
-        "# 研究设计",
-        "## 问题分析",
-        "### 宽基ETF和专业ETF的产品竞争：价格竞争vs质量竞争",
-        "### 投资者投资宽基ETF的目的是分散风险，产品倾向于价格竞争，",
-        "### 投资者配置专业ETF的目的是以获取超额收益为目的，应该以品质竞争为主",
-        "### 宽基ETF和专业ETF在费用扣除后均无法获得超额收益，甚至专业ETF超额收益低于宽基ETF",
-        "## 机制分析",
-        "### 专业化ETF作为风险对冲的工具，具有保险属性，其期望收益为负",
-        "### 投资者愿意牺牲基金业绩而持有专业化ETF，可能因为其可以为投资者带来非货币收益",
-        "### 专业化ETF可满足投资者追逐市场热点的需求，其可以迎合投资者的这种情绪",
-        
-        "# 研究结论"
-        )
-markmap(from,root="Attention in ETF",widget_options = markmapOption(nodeHeight = 30, nodeWidth = 100,linkShape = "diagonal",spacingHorizontal = 60,
-  renderer = "basic"))
+# library(mindr)
+# from<-c("# 研究问题",
+#         "## ETF供给者如何对投资者的需求进行反应？",
+#         "## ETF行业创新的动态和产品业绩的潜在意义是什么？",
+#         "## ETF发展格局的演变",
+#         "### 低成本与高度分散化的宽基ETF",
+#         "### 高成本迎合投资者特殊需求的专业化ETF",
+#         "# 研究设计",
+#         "## 问题分析",
+#         "### 宽基ETF和专业ETF的产品竞争：价格竞争vs质量竞争",
+#         "### 投资者投资宽基ETF的目的是分散风险，产品倾向于价格竞争，",
+#         "### 投资者配置专业ETF的目的是以获取超额收益为目的，应该以品质竞争为主",
+#         "### 宽基ETF和专业ETF在费用扣除后均无法获得超额收益，甚至专业ETF超额收益低于宽基ETF",
+#         "## 机制分析",
+#         "### 专业化ETF作为风险对冲的工具，具有保险属性，其期望收益为负",
+#         "### 投资者愿意牺牲基金业绩而持有专业化ETF，可能因为其可以为投资者带来非货币收益",
+#         "### 专业化ETF可满足投资者追逐市场热点的需求，其可以迎合投资者的这种情绪",
+#         
+#         "# 研究结论"
+#         )
+# markmap(from,root="Attention in ETF",widget_options = markmapOption(nodeHeight = 30, nodeWidth = 100,linkShape = "diagonal",spacingHorizontal = 60,
+#   renderer = "basic"))
 ```
+
 
 
 ### 摘要

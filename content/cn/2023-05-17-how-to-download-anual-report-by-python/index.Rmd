@@ -57,8 +57,9 @@ markmap(from,root="网络爬虫",widget_options = markmapOption(nodeHeight = 30,
 我们想获得的数据为每年每个上市公司的年报，因此，巨潮网的公告数据就是我们爬取的目标数据。 比如一下公告：
 
 ```{r, echo=FALSE}
-knitr::include_url("http://www.cninfo.com.cn/new/disclosure/detail?stockCode=001979&announcementId=1216844159&orgId=GD014107&announcementTime=2023-05-18")
+knitr::include_url("http://www.cninfo.com.cn/new/disclosure/detail?plate=szse&orgId=9900002009&stockCode=002109&announcementId=1216643408&announcementTime=2023-04-28")
 ```
+
 
 下载公告的关键在于获取公告pdf文件的下载链接，在获取链接后下载文档即可。
 

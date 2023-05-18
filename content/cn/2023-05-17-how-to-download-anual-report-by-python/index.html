@@ -29,6 +29,162 @@ tags:
 <iframe src="http://www.cninfo.com.cn/new/disclosure/detail?stockCode=001979&amp;announcementId=1216844159&amp;orgId=GD014107&amp;announcementTime=2023-05-18" width="672" height="400px" data-external="1">
 </iframe>
 <p>下载公告的关键在于获取公告pdf文件的下载链接，在获取链接后下载文档即可。</p>
-<p>###获取链接</p>
+</div>
+<div id="获取链接" class="section level3">
+<h3>获取链接</h3>
 <p><img src="1684338027708.png" /></p>
+<p>上图呈现了网页内部包含下载pdf文件的链接，因此，我需要获取所有上市公司每年年报链接。具体步骤如下：</p>
+<ol style="list-style-type: decimal">
+<li>获取上市公司年报网页信息</li>
+</ol>
+<pre><code># -*- coding: utf-8 -*-
+import urllib.parse
+import urllib.request
+import json
+import pandas as pd
+import math
+
+##获取股票基本信息
+def getbasic(marktname):
+        url=&#39;http://www.cninfo.com.cn/new/data/&#39;+marktname+&#39;_stock.json&#39;
+        reqdat=urllib.request.Request(url, method=&#39;GET&#39;)
+        response = urllib.request.urlopen(reqdat)
+        for i in response:
+                weblink = i
+        dats = json.loads(weblink)
+        return (dats)
+
+def outputdata(market):
+        import pymongo
+        client = pymongo.MongoClient()
+        db = client.juchaowang
+        table1 = db.stockbasic
+        basic=getbasic(market)[&#39;stockList&#39;]
+        for i in range(len(basic)):
+            basic[i][&quot;_id&quot;] = basic[i][&quot;code&quot;] + basic[i][&quot;orgId&quot;]
+            celld={&#39;_id&#39;:basic[i][&#39;_id&#39;],&#39;code&#39;: basic[i][&#39;code&#39;], &#39;pinyin&#39;: basic[i][&#39;pinyin&#39;], &#39;category&#39;: basic[i][&#39;category&#39;], &#39;orgId&#39;: basic[i][&#39;orgId&#39;], &#39;zwjc&#39;: basic[i][&#39;zwjc&#39;]}
+            print(celld)
+            try:
+                    table1.insert_one(celld)
+            except:
+                    continue
+
+if __name__ == &#39;__main__&#39;:
+    outputdata(&quot;bj&quot;)
+    outputdata(&quot;szse&quot;)
+    # stockbasicszse=pd.DataFrame(getbasic(&#39;szse&#39;)[&#39;stockList&#39;])
+    # stockbasicbj=pd.DataFrame(getbasic(&#39;bj&#39;)[&#39;stockList&#39;])
+    # stockbasic=pd.concat([stockbasicszse,stockbasicbj],axis=0)
+    # stockbasic.to_csv(&quot;F:\project\juchaowang\stockbasic.csv&quot;,index=True)
+</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>获取上市公司所有年报链接</li>
+</ol>
+<pre><code># -*- coding: utf-8 -*-
+import time
+import urllib.parse
+import urllib.request
+import json
+import pandas as pd
+import math
+
+def getdata(code,ptcode,page):
+       url = &#39;http://www.cninfo.com.cn/new/hisAnnouncement/query&#39;
+       data = {&quot;pageNum&quot;: page,
+               &quot;pageSize&quot;: &quot;30&quot;,
+               &quot;column&quot;: &quot;szse&quot;,
+               &quot;tabName&quot;: &quot;fulltext&quot;,
+               &quot;plate&quot;: &quot;sz,sh,bj&quot;,
+               &quot;stock&quot;: code+&quot;,&quot;+ptcode,
+               &quot;searchkey&quot;: &quot;&quot;,
+               &quot;secid&quot;: &quot;&quot;,
+               &quot;category&quot;: &quot;category_ndbg_szsh&quot;,
+               &quot;trade&quot;: &quot;&quot;,
+               &quot;seDate&quot;: &#39;2000-01-01~2023-05-31&#39;,
+               &quot;sortName&quot;: &quot;&quot;,
+               &quot;sortType&quot;: &quot;&quot;,
+               &quot;isHLtitle&quot;: &quot;true&quot;
+               }
+       encoded_data = urllib.parse.urlencode(data).encode(&#39;utf-8&#39;)
+       req = urllib.request.Request(url, data=encoded_data, method=&#39;POST&#39;)
+       req.add_header(&#39;Content-Type&#39;, &#39;application/x-www-form-urlencoded&#39;)
+       response = urllib.request.urlopen(req)
+       for i in response:
+           weblink=i
+       dats=json.loads(weblink)
+       return(dats)
+
+def getlink(code,ptcode):
+       import pymongo
+       client = pymongo.MongoClient()
+       db = client.juchaowang
+       table2 = db.anualreportlink
+       fpage=getdata(code,ptcode,1)
+       totalpage=math.ceil(fpage[&#39;totalAnnouncement&#39;]/30)
+       print(code)
+       for page in range(1,totalpage):
+              time.sleep(2)
+              otherpage=getdata(code, ptcode, page)[&#39;announcements&#39;]
+              for i in range(len(otherpage)):
+                      otherpage[i][&quot;_id&quot;] = otherpage[i][&quot;secCode&quot;] + otherpage[i][&quot;orgId&quot;]+otherpage[i][&#39;announcementTitle&#39;]
+                      celld = {&#39;_id&#39;: otherpage[i][&#39;_id&#39;], &#39;secCode&#39;: otherpage[i][&#39;secCode&#39;], &#39;secName&#39;: otherpage[i][&#39;secName&#39;],
+                               &#39;orgId&#39;: otherpage[i][&#39;orgId&#39;], &#39;announcementId&#39;: otherpage[i][&#39;announcementId&#39;], &#39;announcementTitle&#39;: otherpage[i][&#39;announcementTitle&#39;],
+                               &#39;announcementTime&#39;: otherpage[i][&#39;announcementTime&#39;], &#39;adjunctUrl&#39;: otherpage[i][&#39;adjunctUrl&#39;], &#39;adjunctSize&#39;: otherpage[i][&#39;adjunctSize&#39;],
+                               &#39;adjunctType&#39;: otherpage[i][&#39;adjunctType&#39;], &#39;columnId&#39;: otherpage[i][&#39;columnId&#39;],
+                               &#39;pageColumn&#39;: otherpage[i][&#39;pageColumn&#39;], &#39;announcementType&#39;: otherpage[i][&#39;announcementType&#39;], &#39;tileSecName&#39;: otherpage[i][&#39;tileSecName&#39;],
+                               &#39;shortTitle&#39;: otherpage[i][&#39;shortTitle&#39;]}
+                      print(celld)
+                      try:
+                              table2.insert_one(celld)
+                      except:
+                              continue
+
+
+
+
+if __name__ == &#39;__main__&#39;:
+   import pymongo
+   client = pymongo.MongoClient()
+   db = client.juchaowang
+   table1 = db.stockbasic
+   stockid=table1.find({},{&#39;_id&#39;:0,&#39;code&#39;:1,&#39;orgId&#39;:1})
+   stockbase=[]
+   for data in stockid:
+       time.sleep(2)
+       getlink(data[&#39;code&#39;],data[&#39;orgId&#39;])
+       table1.delete_one({&#39;code&#39;:data[&#39;code&#39;]})
+
+
+</code></pre>
+</div>
+<div id="下载年报" class="section level3">
+<h3>下载年报</h3>
+<pre><code># -*- coding: utf-8 -*-
+import io
+import requests
+import time
+def download_pdf(save_path,pdf_name,pdf_url):
+    send_headers = {
+        &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36&quot;,
+        &quot;Connection&quot;: &quot;keep-alive&quot;,
+        &quot;Accept&quot;: &quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&quot;,
+        &quot;Accept-Language&quot;: &quot;zh-CN,zh;q=0.8&quot;}
+    response = requests.get(pdf_url, headers=send_headers)
+    bytes_io = io.BytesIO(response.content)
+    with open(save_path + &quot;%s.PDF&quot; % pdf_name, mode=&#39;wb&#39;) as f:
+        f.write(bytes_io.getvalue())
+        print(&#39;%s.PDF,下载成功！&#39; % (pdf_name))
+if __name__ == &#39;__main__&#39;:
+    save_path = &#39;F:/project/juchaowang/report/&#39;
+    import pymongo
+    client = pymongo.MongoClient()
+    db = client.juchaowang
+    table1 = db.anualreportlink
+    stockid = table1.find({}, {&#39;_id&#39;: 0, &#39;adjunctUrl&#39;: 1, &#39;secCode&#39;: 1,&#39;announcementTitle&#39;: 1})
+    for data in stockid:
+        time.sleep(2)
+        pdf_name=data[&#39;announcementTitle&#39;].replace(&quot;*&quot;,&quot;&quot;)+data[&#39;secCode&#39;]
+        pdf_url=&#39;http://static.cninfo.com.cn/&#39;+data[&#39;adjunctUrl&#39;]
+        download_pdf(save_path, pdf_name, pdf_url)
+        table1.delete_one({&#39;announcementTitle&#39;: data[&#39;announcementTitle&#39;]})</code></pre>
 </div>

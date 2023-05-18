@@ -1,0 +1,34 @@
+---
+title: 利用python从巨潮网爬取上市公司年报
+author: 薛英杰
+date: '2023-05-17'
+slug: how to download anual report by python
+categories:
+  - diary
+tags:
+  - diary
+---
+
+<script src="{{< blogdown/postref >}}index_files/htmlwidgets/htmlwidgets.js"></script>
+<script src="{{< blogdown/postref >}}index_files/d3/d3.min.js"></script>
+<link href="{{< blogdown/postref >}}index_files/markmap/view.mindmap.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index_files/markmap/view.mindmap.js"></script>
+<script src="{{< blogdown/postref >}}index_files/markmap/plugins/parsemd.min.js"></script>
+<script src="{{< blogdown/postref >}}index_files/markmap-binding/markmap.js"></script>
+
+
+<p>随着互联网的发展，网络数据越来越多，从网站上搜集数据成为科学研究中必不可少的环节。 而且，网络数据量之巨大已经超出了人工手动收集数据的能力，随之而来网络爬虫技术在收集 网络数据中广泛应用。今天，我们通过从巨潮网爬取上市公司年报来探讨如何使用python获取 网上的数据。</p>
+<div id="网络爬虫流程及需要的技术" class="section level3">
+<h3>网络爬虫流程及需要的技术</h3>
+<div class="markmap html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-1" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"data":"# 网络爬虫\n## 确定目标数据\n### 文本\n### 表格\n### 文件\n### 链接\n## 分析网站结构\n### 动态or静态\n#### HTML\n#### CSS\n#### Javascript\n### 数据同步加载or异步加载\n### 有无反爬机制\n#### 表单验证\n#### 二维码\n## 爬虫框架选择\n### Scrapy\n### Request\n#### Get请求\n#### POST 请求\n### Selenium\n#### Xpath\n#### click\n#### Key\n## 数据爬取与存储\n### 数据格式化\n#### 正则表达式\n#### Pandas\n### 数据存储\n#### SQL\n#### Mongo\n#### Oracle","options":{"nodeHeight":30,"nodeWidth":100,"spacingVertical":10,"spacingHorizontal":60,"duration":750,"layout":"tree","color":"gray","linkShape":"diagonal","renderer":"basic","autoFit":true}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="确定爬取目标" class="section level3">
+<h3>确定爬取目标</h3>
+<p>我们想获得的数据为每年每个上市公司的年报，因此，巨潮网的公告数据就是我们爬取的目标数据。 比如一下公告：</p>
+<iframe src="http://www.cninfo.com.cn/new/disclosure/detail?stockCode=001979&amp;announcementId=1216844159&amp;orgId=GD014107&amp;announcementTime=2023-05-18" width="672" height="400px" data-external="1">
+</iframe>
+<p>下载公告的关键在于获取公告pdf文件的下载链接，在获取链接后下载文档即可。</p>
+<p>###获取链接</p>
+<p><img src="1684338027708.png" /></p>
+</div>

@@ -49,6 +49,17 @@ enable: false
   <a href="https://academic.oup.com/rfs/issue" style="color:#00BFFF;">The Review of Financial Studies</a>：金融研究评论<br>
   <a href="https://www.cambridge.org/core/journals/journal-of-financial-and-quantitative-analysis/latest-issue" style="color:#00BFFF;">Journal of Financial and Quantitaive Analysis </a>：金融与量化分析杂志<br>
   <a href="https://www.sciencedirect.com/journal/journal-of-banking-and-finance" style="color:#00BFFF;">Journal of Banking and Finance</a>：银行与金融杂志
+  
+## 著名大学主页
+> <a href="https://www.wharton.upenn.edu/faculty-research-publications/" style="color:#00BFFF;">wharton</a>：沃顿商学院<br>
+  <a href="https://www.hbs.edu/faculty/Pages/browse.aspx?q=Finance" style="color:#00BFFF;">Harvard Business School</a>：哈佛商学院<br>
+  <a href="https://www.gsb.stanford.edu/faculty-research/faculty" style="color:#00BFFF;">Stanford GSB</a>：斯坦福商学院<br>
+  <a href="https://www.fmg.ac.uk/people-fmg" style="color:#00BFFF;">FMG</a>：伦敦经济政治学院金融市场组<br>
+  <a href="https://www.sbs.ox.ac.uk/research/research-areas/finance" style="color:#00BFFF;">SIAD Business School</a>：牛津大学赛德商学院<br>
+  <a href="https://www.chicagobooth.edu/faculty/academic-areas/finance#sort=%40foldingchild%20ascending" style="color:#00BFFF;">Booth shool</a>：芝加哥大学Booth商学院<br>
+  
+  
+
 
 ## 论文查询写作与修改
 

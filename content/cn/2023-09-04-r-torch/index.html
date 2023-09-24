@@ -1,0 +1,630 @@
+---
+title: 用R torch 做深度学习和科学计算
+author: 薛英杰
+date: '2023-09-04'
+slug: r-torch
+categories:
+  - cn
+  - research
+tags:
+  - research
+---
+
+
+
+<p>PyTorch是业界和学术界广泛使用的深度学习和科学计算的框架，R语言使用者开发了torch，为其使用该框架提供了一个R接口。我们分三个部分来介绍torch的使用。</p>
+<div id="torch基本模块" class="section level2">
+<h2>torch基本模块</h2>
+<div id="tensors" class="section level3">
+<h3>1.Tensors</h3>
+<p>为了使用torch，我们需要了解tensors。Tensor并不是数学或物理上的张量，在机器学习框架下，tensors仅仅是为了快速计算而使用的多维度的数组。事实上，一个torch tensor 像一个任意维度的数组，为了快速标准化的数学计算而被设计，你可以将他移到GPU中。</p>
+<p>技术上，一个tensor非常像一个R6对象，你可以使用$符号获取它的字段。具体如下：</p>
+<pre class="r"><code>library(torch)
+library(torchvision)
+library(luz)
+t1&lt;-torch_tensor(1)
+t1</code></pre>
+<pre><code>## torch_tensor
+##  1
+## [ CPUFloatType{1} ]</code></pre>
+<pre class="r"><code>t1$dtype</code></pre>
+<pre><code>## torch_Float</code></pre>
+<pre class="r"><code>t1$device</code></pre>
+<pre><code>## torch_device(type=&#39;cpu&#39;)</code></pre>
+<pre class="r"><code>t1$shape</code></pre>
+<pre><code>## [1] 1</code></pre>
+<p>我们可以使用tensor对象<span class="math inline">\(\$to\)</span>方法来设置tensor属性，例如：</p>
+<pre class="r"><code>t2 &lt;- t1$to(dtype = torch_int())
+t2$dtype</code></pre>
+<pre><code>## torch_Int</code></pre>
+<pre class="r"><code># only applicable if you have a GPU
+t2 &lt;- t1$to(device = &quot;cuda&quot;)
+t2$device</code></pre>
+<pre><code>## torch_device(type=&#39;cuda&#39;, index=0)</code></pre>
+<p>关于tensor的形状，我们单独讨论，我们可以将一维向量tensor转换为二维矩阵tensor。例如：</p>
+<pre class="r"><code>t3 &lt;- t1$view(c(1, 1))
+t3$shape</code></pre>
+<pre><code>## [1] 1 1</code></pre>
+<p>从概念上讲，这类似于在 R 中我们可以拥有一个单元素向量和一个单元素矩阵，比如：</p>
+<pre class="r"><code>c(1)</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code>matrix(1)</code></pre>
+<pre><code>##      [,1]
+## [1,]    1</code></pre>
+<p><strong>2.创建tensors</strong></p>
+<p>前面我们调用<code>torch_tensor()</code> 传递值。这种方法可以产生多维对象。当我们需要传递许多不同数值时，可以使用<code>torch_tensor()</code> 。</p>
+<p>例如，传递一维数组时，我们可以传一个长向量给<code>torch_tensor()</code> 。具体如下：</p>
+<pre class="r"><code>torch_tensor(1:5)</code></pre>
+<pre><code>## torch_tensor
+##  1
+##  2
+##  3
+##  4
+##  5
+## [ CPULongType{5} ]</code></pre>
+<pre class="r"><code>torch_tensor(1:5,dtype=torch_float())</code></pre>
+<pre><code>## torch_tensor
+##  1
+##  2
+##  3
+##  4
+##  5
+## [ CPUFloatType{5} ]</code></pre>
+<pre class="r"><code>torch_tensor(1:5,device=&quot;cuda&quot;)</code></pre>
+<pre><code>## torch_tensor
+##  1
+##  2
+##  3
+##  4
+##  5
+## [ CUDALongType{5} ]</code></pre>
+<p>我们也可以用同样的方式传递一个矩阵。</p>
+<pre class="r"><code>torch_tensor(matrix(1:9, ncol = 3))</code></pre>
+<pre><code>## torch_tensor
+##  1  4  7
+##  2  5  8
+##  3  6  9
+## [ CPULongType{3,3} ]</code></pre>
+<pre class="r"><code>torch_tensor(matrix(1:9, ncol = 3, byrow = TRUE))</code></pre>
+<pre><code>## torch_tensor
+##  1  2  3
+##  4  5  6
+##  7  8  9
+## [ CPULongType{3,3} ]</code></pre>
+<p>对于更高维的数据，遵循同样的原则，传递一个数组即可。</p>
+<pre class="r"><code>torch_tensor(array(1:24, dim = c(4, 3, 2)))</code></pre>
+<pre><code>## torch_tensor
+## (1,.,.) = 
+##    1  13
+##    5  17
+##    9  21
+## 
+## (2,.,.) = 
+##    2  14
+##    6  18
+##   10  22
+## 
+## (3,.,.) = 
+##    3  15
+##    7  19
+##   11  23
+## 
+## (4,.,.) = 
+##    4  16
+##    8  20
+##   12  24
+## [ CPULongType{4,3,2} ]</code></pre>
+<p>当你不关心tensor内部的具体数值，而关心其分布时，你可以使用 <code>torch_randn()</code> 。例如，产生一个[0,1]之间的均匀分布。</p>
+<pre class="r"><code>torch_randn(3, 3)</code></pre>
+<pre><code>## torch_tensor
+## -1.5090 -1.9471 -1.0123
+##  0.4907 -0.6271  0.1965
+##  1.2400  0.0293  0.5151
+## [ CPUFloatType{3,3} ]</code></pre>
+<p>如果我们要设置所有tensor值为0或1时，我们可以使用如下代码：</p>
+<pre class="r"><code>torch_zeros(2, 5)</code></pre>
+<pre><code>## torch_tensor
+##  0  0  0  0  0
+##  0  0  0  0  0
+## [ CPUFloatType{2,5} ]</code></pre>
+<pre class="r"><code>torch_ones(2, 2)</code></pre>
+<pre><code>## torch_tensor
+##  1  1
+##  1  1
+## [ CPUFloatType{2,2} ]</code></pre>
+<p>创建线性代数中的单位阵</p>
+<pre class="r"><code>torch_eye(n = 5)</code></pre>
+<pre><code>## torch_tensor
+##  1  0  0  0  0
+##  0  1  0  0  0
+##  0  0  1  0  0
+##  0  0  0  1  0
+##  0  0  0  0  1
+## [ CPUFloatType{5,5} ]</code></pre>
+<p>创建对角阵</p>
+<pre class="r"><code>torch_diag(c(1, 2, 3))</code></pre>
+<pre><code>## torch_tensor
+##  1  0  0
+##  0  2  0
+##  0  0  3
+## [ CPUFloatType{3,3} ]</code></pre>
+<p>创建tensor数据集</p>
+<pre class="r"><code>torch_tensor(JohnsonJohnson)</code></pre>
+<pre><code>## torch_tensor
+##   0.7100
+##   0.6300
+##   0.8500
+##   0.4400
+##   0.6100
+##   0.6900
+##   0.9200
+##   0.5500
+##   0.7200
+##   0.7700
+##   0.9200
+##   0.6000
+##   0.8300
+##   0.8000
+##   1.0000
+##   0.7700
+##   0.9200
+##   1.0000
+##   1.2400
+##   1.0000
+##   1.1600
+##   1.3000
+##   1.4500
+##   1.2500
+##   1.2600
+##   1.3800
+##   1.8600
+##   1.5600
+##   1.5300
+##   1.5900
+## ... [the output was truncated (use n=-1 to disable)]
+## [ CPUFloatType{84} ]</code></pre>
+<p><strong>3. tensors的运算操作</strong></p>
+<p>在<code>torch_tensor()</code> 中，我们可以进行正常的数学运算：加、减、乘、除等。这些运算可以作为函数或方法来使用，例如：</p>
+<p><strong>加法运算</strong></p>
+<pre class="r"><code>t1 &lt;- torch_tensor(c(1, 2))
+t2 &lt;- torch_tensor(c(3, 4))
+
+torch_add(t1, t2)</code></pre>
+<pre><code>## torch_tensor
+##  4
+##  6
+## [ CPUFloatType{2} ]</code></pre>
+<pre class="r"><code># equivalently
+t1$add(t2)</code></pre>
+<pre><code>## torch_tensor
+##  4
+##  6
+## [ CPUFloatType{2} ]</code></pre>
+<pre class="r"><code>##修改t1
+t1$add_(t2)</code></pre>
+<pre><code>## torch_tensor
+##  4
+##  6
+## [ CPUFloatType{2} ]</code></pre>
+<pre class="r"><code>t1</code></pre>
+<pre><code>## torch_tensor
+##  4
+##  6
+## [ CPUFloatType{2} ]</code></pre>
+<p><strong>向量点乘</strong></p>
+<pre class="r"><code>t1 &lt;- torch_tensor(1:3)
+t2 &lt;- torch_tensor(4:6)
+t1$dot(t2)</code></pre>
+<pre><code>## torch_tensor
+## 32
+## [ CPULongType{} ]</code></pre>
+<pre class="r"><code>t1</code></pre>
+<pre><code>## torch_tensor
+##  1
+##  2
+##  3
+## [ CPULongType{3} ]</code></pre>
+<pre class="r"><code>t1 &lt;- torch_tensor(1:3)
+t2 &lt;- torch_tensor(4:6)
+t1$t()$dot(t2) #转置与否结果等价</code></pre>
+<pre><code>## torch_tensor
+## 32
+## [ CPULongType{} ]</code></pre>
+<p><strong>向量与矩阵乘法</strong></p>
+<pre class="r"><code>t1 &lt;- torch_tensor(1:3)
+t3 &lt;- torch_tensor(matrix(1:12, ncol = 3, byrow = TRUE))
+t3$matmul(t1)</code></pre>
+<pre><code>## torch_tensor
+##  14
+##  32
+##  50
+##  68
+## [ CPULongType{4} ]</code></pre>
+<pre class="r"><code>torch_multiply(t1, t2)</code></pre>
+<pre><code>## torch_tensor
+##   4
+##  10
+##  18
+## [ CPULongType{3} ]</code></pre>
+<p><strong>描述性运算</strong></p>
+<p>求和</p>
+<pre class="r"><code>m &lt;- outer(1:3, 1:6)
+
+sum(m)</code></pre>
+<pre><code>## [1] 126</code></pre>
+<pre class="r"><code>apply(m, 1, sum)</code></pre>
+<pre><code>## [1] 21 42 63</code></pre>
+<pre class="r"><code>apply(m, 2, sum)</code></pre>
+<pre><code>## [1]  6 12 18 24 30 36</code></pre>
+<pre class="r"><code>t &lt;- torch_outer(torch_tensor(1:3), torch_tensor(1:6))
+t$sum()</code></pre>
+<pre><code>## torch_tensor
+## 126
+## [ CPULongType{} ]</code></pre>
+<pre class="r"><code>t$sum(dim = 1)</code></pre>
+<pre><code>## torch_tensor
+##   6
+##  12
+##  18
+##  24
+##  30
+##  36
+## [ CPULongType{6} ]</code></pre>
+<pre class="r"><code>t$sum(dim = 2)</code></pre>
+<pre><code>## torch_tensor
+##  21
+##  42
+##  63
+## [ CPULongType{3} ]</code></pre>
+<p>均值</p>
+<pre class="r"><code>t &lt;- torch_randn(4, 3, 2)
+t</code></pre>
+<pre><code>## torch_tensor
+## (1,.,.) = 
+##   1.0909  0.7280
+##  -0.9649  0.0656
+##   0.6603 -0.1091
+## 
+## (2,.,.) = 
+##   0.6917 -1.8887
+##  -0.7837 -0.4657
+##  -1.9810  0.8186
+## 
+## (3,.,.) = 
+##  -0.3341  0.4803
+##   1.4476 -0.4953
+##   0.0839 -1.2790
+## 
+## (4,.,.) = 
+##   0.5520  0.1349
+##  -2.5736  0.5080
+##   0.5140 -0.8253
+## [ CPUFloatType{4,3,2} ]</code></pre>
+<pre class="r"><code>t$mean(dim = c(1, 2))</code></pre>
+<pre><code>## torch_tensor
+## -0.1331
+## -0.1940
+## [ CPUFloatType{2} ]</code></pre>
+<pre class="r"><code>t$mean(dim = 2)</code></pre>
+<pre><code>## torch_tensor
+##  0.2621  0.2282
+## -0.6910 -0.5119
+##  0.3991 -0.4313
+## -0.5025 -0.0608
+## [ CPUFloatType{4,2} ]</code></pre>
+<p><strong>切片</strong></p>
+<pre class="r"><code>t &lt;- torch_tensor(matrix(1:9, ncol = 3, byrow = TRUE))
+t[1, ]</code></pre>
+<pre><code>## torch_tensor
+##  1
+##  2
+##  3
+## [ CPULongType{3} ]</code></pre>
+<pre class="r"><code>t[1, , drop = FALSE]</code></pre>
+<pre><code>## torch_tensor
+##  1  2  3
+## [ CPULongType{1,3} ]</code></pre>
+<pre class="r"><code>t &lt;- torch_rand(3, 3, 3)
+t[1:2, 2:3, c(1, 3)]</code></pre>
+<pre><code>## torch_tensor
+## (1,.,.) = 
+##   0.0366  0.7073
+##   0.3949  0.6707
+## 
+## (2,.,.) = 
+##   0.8056  0.1895
+##   0.0173  0.1867
+## [ CPUFloatType{2,2,2} ]</code></pre>
+</div>
+</div>
+<div id="函数最优化" class="section level2">
+<h2>函数最优化</h2>
+<p>许多机器学习模型都需要最优化，求解函数的最大或最小值。</p>
+<pre class="r"><code>a &lt;- 1
+b &lt;- 5
+
+rosenbrock &lt;- function(x) {
+  x1 &lt;- x[1]
+  x2 &lt;- x[2]
+  (a - x1)^2 + b * (x2 - x1^2)^2
+}
+
+library(torch)
+num_iterations &lt;- 1000
+
+lr &lt;- 0.01
+
+x &lt;- torch_tensor(c(-1, 1), requires_grad = TRUE)
+
+for (i in 1:num_iterations) {
+  if (i %% 100 == 0) cat(&quot;Iteration: &quot;, i, &quot;\n&quot;)
+
+  value &lt;- rosenbrock(x)
+  if (i %% 100 == 0) {
+    cat(&quot;Value is: &quot;, as.numeric(value), &quot;\n&quot;)
+  }
+
+  value$backward()
+  if (i %% 100 == 0) {
+    cat(&quot;Gradient is: &quot;, as.matrix(x$grad), &quot;\n&quot;)
+  }
+
+  with_no_grad({
+    x$sub_(lr * x$grad)
+    x$grad$zero_()
+  })
+}</code></pre>
+<pre><code>## Iteration:  100 
+## Value is:  0.3502924 
+## Gradient is:  -0.667685 -0.5771312 
+## Iteration:  200 
+## Value is:  0.07398106 
+## Gradient is:  -0.1603189 -0.2532476 
+## Iteration:  300 
+## Value is:  0.02483024 
+## Gradient is:  -0.07679074 -0.1373911 
+## Iteration:  400 
+## Value is:  0.009619333 
+## Gradient is:  -0.04347242 -0.08254051 
+## Iteration:  500 
+## Value is:  0.003990697 
+## Gradient is:  -0.02652063 -0.05206227 
+## Iteration:  600 
+## Value is:  0.001719962 
+## Gradient is:  -0.01683905 -0.03373682 
+## Iteration:  700 
+## Value is:  0.0007584976 
+## Gradient is:  -0.01095017 -0.02221584 
+## Iteration:  800 
+## Value is:  0.0003393509 
+## Gradient is:  -0.007221781 -0.01477957 
+## Iteration:  900 
+## Value is:  0.0001532408 
+## Gradient is:  -0.004811743 -0.009894371 
+## Iteration:  1000 
+## Value is:  6.962555e-05 
+## Gradient is:  -0.003222887 -0.006653666</code></pre>
+<p><strong>神经网络模型</strong></p>
+<pre class="r"><code># input dimensionality (number of input features)
+d_in &lt;- 3
+# number of observations in training set
+n &lt;- 100
+
+x &lt;- torch_randn(n, d_in)
+coefs &lt;- c(0.2, -1.3, -0.5)
+y &lt;- x$matmul(coefs)$unsqueeze(2) + torch_randn(n, 1)
+
+# dimensionality of hidden layer
+d_hidden &lt;- 32
+# output dimensionality (number of predicted features)
+d_out &lt;- 1
+
+net &lt;- nn_sequential(
+  nn_linear(d_in, d_hidden),
+  nn_relu(),
+  nn_linear(d_hidden, d_out)
+)
+
+opt &lt;- optim_adam(net$parameters)
+
+### training loop --------------------------------------
+
+for (t in 1:200) {
+  
+  ### -------- Forward pass --------
+  y_pred &lt;- net(x)
+  
+  ### -------- Compute loss -------- 
+  loss &lt;- nnf_mse_loss(y_pred, y)
+  if (t %% 10 == 0)
+    cat(&quot;Epoch: &quot;, t, &quot;   Loss: &quot;, loss$item(), &quot;\n&quot;)
+  
+  ### -------- Backpropagation --------
+  opt$zero_grad()
+  loss$backward()
+  
+  ### -------- Update weights -------- 
+  opt$step()
+
+}</code></pre>
+<pre><code>## Epoch:  10    Loss:  2.553179 
+## Epoch:  20    Loss:  2.40357 
+## Epoch:  30    Loss:  2.258252 
+## Epoch:  40    Loss:  2.116031 
+## Epoch:  50    Loss:  1.97622 
+## Epoch:  60    Loss:  1.840057 
+## Epoch:  70    Loss:  1.708541 
+## Epoch:  80    Loss:  1.582341 
+## Epoch:  90    Loss:  1.461682 
+## Epoch:  100    Loss:  1.347009 
+## Epoch:  110    Loss:  1.242465 
+## Epoch:  120    Loss:  1.150654 
+## Epoch:  130    Loss:  1.073239 
+## Epoch:  140    Loss:  1.010069 
+## Epoch:  150    Loss:  0.9601057 
+## Epoch:  160    Loss:  0.9214334 
+## Epoch:  170    Loss:  0.8922321 
+## Epoch:  180    Loss:  0.871074 
+## Epoch:  190    Loss:  0.8558359 
+## Epoch:  200    Loss:  0.8449585</code></pre>
+<div id="深度学习方法的应用" class="section level3">
+<h3>深度学习方法的应用</h3>
+<p><strong>加载数据</strong></p>
+<p>在较小的数据集上，我们能传递所有观测值到模型中，但当数据量较大时，torch深度学习框架含有让你分批传递数据到输入层。你可以使用<code>dataset()</code>和<code>dataloader()</code> 。</p>
+<p><code>dataset()</code> 是一个torch对象，它知道如何处理一件事情——传递一个条目到调用层。条目通常是一个list，包含一个输入和一个目标tensor。</p>
+<p><code>dataloader()</code> 的作用是分批为模型载入数据，这会占用内存。许多<code>dataset()</code> 太大以至于不能一次传入模型，但分批处理有他的好处，由于梯度计算是分批进行，这个过程本身就有随机性，这种随机性有助于模型训练。</p>
+<p>dataset设定</p>
+<pre class="r"><code>library(torch)
+library(palmerpenguins)
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>penguins %&gt;% glimpse()</code></pre>
+<pre><code>## Rows: 344
+## Columns: 8
+## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
+## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…
+## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …
+## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …
+## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…
+## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …
+## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…
+## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</code></pre>
+<pre class="r"><code>penguins_dataset &lt;- dataset(
+  name = &quot;penguins_dataset()&quot;,
+  initialize = function(df) {
+    df &lt;- na.omit(df)
+    self$x &lt;- as.matrix(df[, 3:6]) %&gt;% torch_tensor()
+    self$y &lt;- torch_tensor(
+      as.numeric(df$species)
+    )$to(torch_long())
+  },
+  .getitem = function(i) {
+    list(x = self$x[i, ], y = self$y[i])
+  },
+  .length = function() {
+    dim(self$x)[1]
+  }
+)
+
+ds &lt;- penguins_dataset(penguins)
+length(ds)</code></pre>
+<pre><code>## [1] 333</code></pre>
+<p>机器学习中最重要的两件事情是数据准备和模型设定，具体如下：</p>
+<pre class="r"><code># input dimensionality (number of input features)
+d_in &lt;- 3
+# number of observations in training set
+n &lt;- 1000
+
+x &lt;- torch_randn(n, d_in)
+coefs &lt;- c(0.2, -1.3, -0.5)
+y &lt;- x$matmul(coefs)$unsqueeze(2) + torch_randn(n, 1)
+
+ds &lt;- tensor_dataset(x, y)
+
+dl &lt;- dataloader(ds, batch_size = 100, shuffle = TRUE)
+
+train_ids &lt;- sample(1:length(ds), size = 0.6 * length(ds))
+valid_ids &lt;- sample(setdiff(
+  1:length(ds),
+  train_ids
+), size = 0.2 * length(ds))
+test_ids &lt;- setdiff(1:length(ds), union(train_ids, valid_ids))
+
+train_ds &lt;- dataset_subset(ds, indices = train_ids)
+valid_ds &lt;- dataset_subset(ds, indices = valid_ids)
+test_ds &lt;- dataset_subset(ds, indices = test_ids)
+
+train_dl &lt;- dataloader(train_ds,
+  batch_size = 100,
+  shuffle = TRUE
+)
+valid_dl &lt;- dataloader(valid_ds, batch_size = 100)
+test_dl &lt;- dataloader(test_ds, batch_size = 100)
+
+# dimensionality of hidden layer
+d_hidden &lt;- 32
+# output dimensionality (number of predicted features)
+d_out &lt;- 1
+
+net &lt;- nn_module(
+  initialize = function(d_in, d_hidden, d_out) {
+    self$net &lt;- nn_sequential(
+      nn_linear(d_in, d_hidden),
+      nn_relu(),
+      nn_linear(d_hidden, d_out)
+    )
+  },
+  forward = function(x) {
+    self$net(x)
+  }
+)</code></pre>
+<p>调用luz,关注你的训练和验证集的损失。</p>
+<pre class="r"><code>fitted &lt;- net %&gt;%
+  setup(
+    loss = nn_mse_loss(),
+    optimizer = optim_adam
+  ) %&gt;%
+  set_hparams(
+    d_in = d_in,
+    d_hidden = d_hidden, d_out = d_out
+  ) %&gt;%
+  fit(train_dl, epochs = 200, valid_data = valid_dl)</code></pre>
+<p>如果你安装了CUDA，移动网络权重到GPU。</p>
+</div>
+</div>
+<div id="图像分类" class="section level2">
+<h2>图像分类</h2>
+<pre class="r"><code>library(torch)
+
+convnet &lt;- nn_module(
+  &quot;convnet&quot;,
+  
+  initialize = function() {
+    
+    # nn_conv2d(in_channels, out_channels, kernel_size)
+    self$conv1 &lt;- nn_conv2d(1, 16, 3)
+    self$conv2 &lt;- nn_conv2d(16, 32, 3)
+    self$conv3 &lt;- nn_conv2d(32, 64, 3)
+    
+    self$output &lt;- nn_linear(2304, 3)
+
+  },
+  
+  forward = function(x) {
+    
+    x %&gt;% 
+      self$conv1() %&gt;% 
+      nnf_relu() %&gt;%
+      nnf_max_pool2d(2) %&gt;%
+      self$conv2() %&gt;% 
+      nnf_relu() %&gt;%
+      nnf_max_pool2d(2) %&gt;%
+      self$conv3() %&gt;% 
+      nnf_relu() %&gt;%
+      nnf_max_pool2d(2) %&gt;%
+      torch_flatten(start_dim = 2) %&gt;%
+      self$output()
+      
+  }
+)
+
+model &lt;- convnet()
+img &lt;- torch_randn(1, 1, 64, 64)
+model(img)</code></pre>
+<pre><code>## torch_tensor
+##  0.1491 -0.0458 -0.0643
+## [ CPUFloatType{1,3} ][ grad_fn = &lt;AddmmBackward0&gt; ]</code></pre>
+</div>
+<div id="资料" class="section level2">
+<h2>资料</h2>
+<p><a href="https://torch.mlverse.org/using_torch/">torch for R</a></p>
+<p><a href="https://skeydan.github.io/Deep-Learning-and-Scientific-Computing-with-R-torch/">Deep Learning and Scientific computing with R torch</a></p>
+<p><a href="https://dahtah.github.io/imager/imager.html">image process</a></p>
+</div>

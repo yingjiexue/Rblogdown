@@ -1,0 +1,506 @@
+---
+title: 用R torch 做深度学习和科学计算
+author: 薛英杰
+date: '2023-09-04'
+slug: r-torch
+categories:
+  - cn
+  - research
+tags:
+  - research
+---
+
+PyTorch是业界和学术界广泛使用的深度学习和科学计算的框架，R语言使用者开发了torch，为其使用该框架提供了一个R接口。我们分三个部分来介绍torch的使用。
+
+## torch基本模块
+
+### 1.Tensors
+
+为了使用torch，我们需要了解tensors。Tensor并不是数学或物理上的张量，在机器学习框架下，tensors仅仅是为了快速计算而使用的多维度的数组。事实上，一个torch tensor 像一个任意维度的数组，为了快速标准化的数学计算而被设计，你可以将他移到GPU中。
+
+技术上，一个tensor非常像一个R6对象，你可以使用\$符号获取它的字段。具体如下：
+
+```{r}
+library(torch)
+library(torchvision)
+library(luz)
+t1<-torch_tensor(1)
+t1
+t1$dtype
+t1$device
+t1$shape
+```
+
+我们可以使用tensor对象$\$to$方法来设置tensor属性，例如：
+
+```{r}
+t2 <- t1$to(dtype = torch_int())
+t2$dtype
+# only applicable if you have a GPU
+t2 <- t1$to(device = "cuda")
+t2$device
+```
+
+关于tensor的形状，我们单独讨论，我们可以将一维向量tensor转换为二维矩阵tensor。例如：
+
+```{r}
+t3 <- t1$view(c(1, 1))
+t3$shape
+```
+
+从概念上讲，这类似于在 R 中我们可以拥有一个单元素向量和一个单元素矩阵，比如：
+
+```{r}
+c(1)
+matrix(1)
+```
+
+**2.创建tensors**
+
+前面我们调用`torch_tensor()` 传递值。这种方法可以产生多维对象。当我们需要传递许多不同数值时，可以使用`torch_tensor()` 。
+
+例如，传递一维数组时，我们可以传一个长向量给`torch_tensor()` 。具体如下：
+
+```{r}
+torch_tensor(1:5)
+torch_tensor(1:5,dtype=torch_float())
+torch_tensor(1:5,device="cuda")
+```
+
+我们也可以用同样的方式传递一个矩阵。
+
+```{r}
+torch_tensor(matrix(1:9, ncol = 3))
+torch_tensor(matrix(1:9, ncol = 3, byrow = TRUE))
+```
+
+对于更高维的数据，遵循同样的原则，传递一个数组即可。
+
+```{r}
+torch_tensor(array(1:24, dim = c(4, 3, 2)))
+```
+
+当你不关心tensor内部的具体数值，而关心其分布时，你可以使用 `torch_randn()` 。例如，产生一个[0,1]之间的均匀分布。
+
+```{r}
+torch_randn(3, 3)
+```
+
+如果我们要设置所有tensor值为0或1时，我们可以使用如下代码：
+
+```{r}
+torch_zeros(2, 5)
+torch_ones(2, 2)
+```
+
+创建线性代数中的单位阵
+
+```{r}
+torch_eye(n = 5)
+```
+
+创建对角阵
+
+```{r}
+torch_diag(c(1, 2, 3))
+```
+
+创建tensor数据集
+
+```{r}
+torch_tensor(JohnsonJohnson)
+```
+
+**3. tensors的运算操作**
+
+在`torch_tensor()` 中，我们可以进行正常的数学运算：加、减、乘、除等。这些运算可以作为函数或方法来使用，例如：
+
+**加法运算**
+
+```{r}
+t1 <- torch_tensor(c(1, 2))
+t2 <- torch_tensor(c(3, 4))
+
+torch_add(t1, t2)
+# equivalently
+t1$add(t2)
+
+##修改t1
+t1$add_(t2)
+t1
+```
+
+**向量点乘**
+
+```{r}
+t1 <- torch_tensor(1:3)
+t2 <- torch_tensor(4:6)
+t1$dot(t2)
+t1
+t1 <- torch_tensor(1:3)
+t2 <- torch_tensor(4:6)
+t1$t()$dot(t2) #转置与否结果等价
+```
+
+**向量与矩阵乘法**
+
+```{r}
+t1 <- torch_tensor(1:3)
+t3 <- torch_tensor(matrix(1:12, ncol = 3, byrow = TRUE))
+t3$matmul(t1)
+torch_multiply(t1, t2)
+```
+
+**描述性运算**
+
+求和
+
+```{r}
+m <- outer(1:3, 1:6)
+
+sum(m)
+apply(m, 1, sum)
+apply(m, 2, sum)
+
+t <- torch_outer(torch_tensor(1:3), torch_tensor(1:6))
+t$sum()
+t$sum(dim = 1)
+t$sum(dim = 2)
+```
+
+均值
+
+```{r}
+t <- torch_randn(4, 3, 2)
+t
+t$mean(dim = c(1, 2))
+t$mean(dim = 2)
+```
+
+**切片**
+
+```{r}
+t <- torch_tensor(matrix(1:9, ncol = 3, byrow = TRUE))
+t[1, ]
+t[1, , drop = FALSE]
+t <- torch_rand(3, 3, 3)
+t[1:2, 2:3, c(1, 3)]
+```
+
+## 函数最优化
+
+许多机器学习模型都需要最优化，求解函数的最大或最小值。
+
+```{r}
+
+a <- 1
+b <- 5
+
+rosenbrock <- function(x) {
+  x1 <- x[1]
+  x2 <- x[2]
+  (a - x1)^2 + b * (x2 - x1^2)^2
+}
+
+library(torch)
+num_iterations <- 1000
+
+lr <- 0.01
+
+x <- torch_tensor(c(-1, 1), requires_grad = TRUE)
+
+for (i in 1:num_iterations) {
+  if (i %% 100 == 0) cat("Iteration: ", i, "\n")
+
+  value <- rosenbrock(x)
+  if (i %% 100 == 0) {
+    cat("Value is: ", as.numeric(value), "\n")
+  }
+
+  value$backward()
+  if (i %% 100 == 0) {
+    cat("Gradient is: ", as.matrix(x$grad), "\n")
+  }
+
+  with_no_grad({
+    x$sub_(lr * x$grad)
+    x$grad$zero_()
+  })
+}
+```
+
+**神经网络模型**
+
+```{r}
+# input dimensionality (number of input features)
+d_in <- 3
+# number of observations in training set
+n <- 100
+
+x <- torch_randn(n, d_in)
+coefs <- c(0.2, -1.3, -0.5)
+y <- x$matmul(coefs)$unsqueeze(2) + torch_randn(n, 1)
+
+# dimensionality of hidden layer
+d_hidden <- 32
+# output dimensionality (number of predicted features)
+d_out <- 1
+
+net <- nn_sequential(
+  nn_linear(d_in, d_hidden),
+  nn_relu(),
+  nn_linear(d_hidden, d_out)
+)
+
+opt <- optim_adam(net$parameters)
+
+### training loop --------------------------------------
+
+for (t in 1:200) {
+  
+  ### -------- Forward pass --------
+  y_pred <- net(x)
+  
+  ### -------- Compute loss -------- 
+  loss <- nnf_mse_loss(y_pred, y)
+  if (t %% 10 == 0)
+    cat("Epoch: ", t, "   Loss: ", loss$item(), "\n")
+  
+  ### -------- Backpropagation --------
+  opt$zero_grad()
+  loss$backward()
+  
+  ### -------- Update weights -------- 
+  opt$step()
+
+}
+```
+
+### 深度学习方法的应用
+
+**加载数据**
+
+在较小的数据集上，我们能传递所有观测值到模型中，但当数据量较大时，torch深度学习框架含有让你分批传递数据到输入层。你可以使用`dataset()`和`dataloader()` 。
+
+`dataset()` 是一个torch对象，它知道如何处理一件事情------传递一个条目到调用层。条目通常是一个list，包含一个输入和一个目标tensor。
+
+`dataloader()` 的作用是分批为模型载入数据，这会占用内存。许多`dataset()` 太大以至于不能一次传入模型，但分批处理有他的好处，由于梯度计算是分批进行，这个过程本身就有随机性，这种随机性有助于模型训练。
+
+dataset设定
+
+```{r}
+library(torch)
+library(palmerpenguins)
+library(dplyr)
+
+penguins %>% glimpse()
+
+penguins_dataset <- dataset(
+  name = "penguins_dataset()",
+  initialize = function(df) {
+    df <- na.omit(df)
+    self$x <- as.matrix(df[, 3:6]) %>% torch_tensor()
+    self$y <- torch_tensor(
+      as.numeric(df$species)
+    )$to(torch_long())
+  },
+  .getitem = function(i) {
+    list(x = self$x[i, ], y = self$y[i])
+  },
+  .length = function() {
+    dim(self$x)[1]
+  }
+)
+
+ds <- penguins_dataset(penguins)
+length(ds)
+```
+
+机器学习中最重要的两件事情是数据准备和模型设定，具体如下：
+
+```{r}
+# input dimensionality (number of input features)
+d_in <- 3
+# number of observations in training set
+n <- 1000
+
+x <- torch_randn(n, d_in)
+coefs <- c(0.2, -1.3, -0.5)
+y <- x$matmul(coefs)$unsqueeze(2) + torch_randn(n, 1)
+
+ds <- tensor_dataset(x, y)
+
+dl <- dataloader(ds, batch_size = 100, shuffle = TRUE)
+
+train_ids <- sample(1:length(ds), size = 0.6 * length(ds))
+valid_ids <- sample(setdiff(
+  1:length(ds),
+  train_ids
+), size = 0.2 * length(ds))
+test_ids <- setdiff(1:length(ds), union(train_ids, valid_ids))
+
+train_ds <- dataset_subset(ds, indices = train_ids)
+valid_ds <- dataset_subset(ds, indices = valid_ids)
+test_ds <- dataset_subset(ds, indices = test_ids)
+
+train_dl <- dataloader(train_ds,
+  batch_size = 100,
+  shuffle = TRUE
+)
+valid_dl <- dataloader(valid_ds, batch_size = 100)
+test_dl <- dataloader(test_ds, batch_size = 100)
+
+# dimensionality of hidden layer
+d_hidden <- 32
+# output dimensionality (number of predicted features)
+d_out <- 1
+
+net <- nn_module(
+  initialize = function(d_in, d_hidden, d_out) {
+    self$net <- nn_sequential(
+      nn_linear(d_in, d_hidden),
+      nn_relu(),
+      nn_linear(d_hidden, d_out)
+    )
+  },
+  forward = function(x) {
+    self$net(x)
+  }
+)
+```
+
+调用luz,关注你的训练和验证集的损失。
+
+```{r}
+fitted <- net %>%
+  setup(
+    loss = nn_mse_loss(),
+    optimizer = optim_adam
+  ) %>%
+  set_hparams(
+    d_in = d_in,
+    d_hidden = d_hidden, d_out = d_out
+  ) %>%
+  fit(train_dl, epochs = 200, valid_data = valid_dl)
+```
+
+如果你安装了CUDA，移动网络权重到GPU。
+
+```{r eval=FALSE, include=FALSE}
+device <- torch_device(if
+(cuda_is_available()) {
+  "cuda"
+} else {
+  "cpu"
+})
+
+model <- net(d_in = d_in, d_hidden = d_hidden, d_out = d_out)
+model <- model$to(device = device)
+
+optimizer <- optim_adam(model$parameters)
+
+train_batch <- function(b) {
+  optimizer$zero_grad()
+  output <- model(b[[1]]$to(device = device))
+  target <- b[[2]]$to(device = device)
+
+  loss <- nn_mse_loss(output, target)
+  loss$backward()
+  optimizer$step()
+
+  loss$item()
+}
+
+valid_batch <- function(b) {
+  output <- model(b[[1]]$to(device = device))
+  target <- b[[2]]$to(device = device)
+
+  loss <- nn_mse_loss(output, target)
+  loss$item()
+}
+
+num_epochs <- 200
+
+for (epoch in 1:num_epochs) {
+  model$train()
+  train_loss <- c()
+
+  # use coro::loop() for stability and performance
+  coro::loop(for (b in train_dl) {
+    loss <- train_batch(b)
+    train_loss <- c(train_loss, loss)
+  })
+
+  cat(sprintf(
+    "\nEpoch %d, training: loss: %3.5f \n",
+    epoch, mean(train_loss)
+  ))
+
+  model$eval()
+  valid_loss <- c()
+
+  # disable gradient tracking to reduce memory usage
+  with_no_grad({ 
+    coro::loop(for (b in valid_dl) {
+      loss <- valid_batch(b)
+      valid_loss <- c(valid_loss, loss)
+    })  
+  })
+  
+  cat(sprintf(
+    "\nEpoch %d, validation: loss: %3.5f \n",
+    epoch, mean(valid_loss)
+  ))
+}
+
+```
+
+## 图像分类
+
+```{r}
+library(torch)
+
+convnet <- nn_module(
+  "convnet",
+  
+  initialize = function() {
+    
+    # nn_conv2d(in_channels, out_channels, kernel_size)
+    self$conv1 <- nn_conv2d(1, 16, 3)
+    self$conv2 <- nn_conv2d(16, 32, 3)
+    self$conv3 <- nn_conv2d(32, 64, 3)
+    
+    self$output <- nn_linear(2304, 3)
+
+  },
+  
+  forward = function(x) {
+    
+    x %>% 
+      self$conv1() %>% 
+      nnf_relu() %>%
+      nnf_max_pool2d(2) %>%
+      self$conv2() %>% 
+      nnf_relu() %>%
+      nnf_max_pool2d(2) %>%
+      self$conv3() %>% 
+      nnf_relu() %>%
+      nnf_max_pool2d(2) %>%
+      torch_flatten(start_dim = 2) %>%
+      self$output()
+      
+  }
+)
+
+model <- convnet()
+img <- torch_randn(1, 1, 64, 64)
+model(img)
+```
+
+## 资料
+
+[torch for R](https://torch.mlverse.org/using_torch/)
+
+[Deep Learning and Scientific computing with R torch](https://skeydan.github.io/Deep-Learning-and-Scientific-Computing-with-R-torch/)
+
+[image process](https://dahtah.github.io/imager/imager.html)

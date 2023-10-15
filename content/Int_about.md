@@ -69,7 +69,7 @@ enable: false
 ## 论文查询写作与修改
 
 > <a href="http://www.4243.net/" style="color:#00BFFF;">大木虫</a>：科研网站导航<br>
-  <a href="https://scholar.google.com/" style="color:#00BFFF;">谷歌学术</a>：检索论文<br>
+  <a href="https://ac.scmor.com/" style="color:#00BFFF;">谷歌学术</a>：检索论文<br>
   <a href="https://www.connectedpapers.com/" style="color:#00BFFF;">Connect Papers</a>：呈现搜索关键词相关的论文图谱<br>
   <a href="https://www.ssrn.com/index.cfm/en/" style="color:#00BFFF;">SSRN</a>：工作论文发布网<br>   <a href="https://yjx.netlify.app/2022/05/03/ssrn/" style="color:#00BFFF;">SSRN 论文分类</a>：工作论文按主题分类查看和订阅<br>
   <a href="https://quillbot.com/" style="color:#00BFFF;">QuillBot</a>：英文论文语法词组润色<br>

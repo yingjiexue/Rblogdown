@@ -1,0 +1,327 @@
+---
+title: 回归方程带约束模型检验
+author: 薛英杰
+date: '2023-11-07'
+slug: constrain linear model text
+categories:
+  - research
+tags:
+  - research
+---
+
+
+
+<div id="读入数据" class="section level3">
+<h3>读入数据</h3>
+<pre class="r"><code>pacman::p_load(data.table,plyr,stringr,dplyr,mongolite,future.apply,future,xlsx,
+               zoo,readxl,foreign,plyr,stringr,pglm,doSNOW,mongolite,
+               dplyr,tidyr,officer,flextable,formattable,semPlot,future.apply,
+               stargazer,ggthemes,ggplot2,Rmisc,plot3D,panelvar,lubridate,
+               readr,rlist,AER,psych,mediation,lavaan,imager,ldt,systemfit,car)
+
+
+##读入数据
+data&lt;-read_excel(&quot;E:\\科研\\中航基金\\SUR\\模拟结果2.xlsx&quot;)
+names(data)[10]&lt;-&quot;IRR_annR&quot;</code></pre>
+</div>
+<div id="宽基" class="section level2">
+<h2>宽基</h2>
+<div id="iir检验" class="section level3">
+<h3>IIR检验</h3>
+<pre class="r"><code>kuanji&lt;-data|&gt;
+  filter(portfolio_name==&quot;宽基&quot;)
+kuanjifitIRR=lm(IRR~MKT+SMB+HML+CMA+RMW,kuanji)
+summary(kuanjifitIRR)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = IRR ~ MKT + SMB + HML + CMA + RMW, data = kuanji)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.117388 -0.012287  0.000365  0.013220  0.076020 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.041485   0.001387  29.906  &lt; 2e-16 ***
+## MKT          1.061054   0.008054 131.740  &lt; 2e-16 ***
+## SMB         -0.231025   0.012292 -18.794  &lt; 2e-16 ***
+## HML          0.115616   0.025115   4.603 4.69e-06 ***
+## CMA         -0.160606   0.028045  -5.727 1.36e-08 ***
+## RMW          0.044932   0.025831   1.739   0.0823 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.02158 on 994 degrees of freedom
+## Multiple R-squared:  0.9472,	Adjusted R-squared:  0.9469 
+## F-statistic:  3567 on 5 and 994 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="iir约束模型检验" class="section level3">
+<h3>IIR约束模型检验</h3>
+<pre class="r"><code>linearHypothesis(kuanjifitIRR,c(&quot;MKT=0&quot;,&quot;SMB=0&quot;,&quot;HML=0&quot;,&quot;CMA=0&quot;,&quot;RMW=0&quot;))</code></pre>
+<pre><code>## Linear hypothesis test
+## 
+## Hypothesis:
+## MKT = 0
+## SMB = 0
+## HML = 0
+## CMA = 0
+## RMW = 0
+## 
+## Model 1: restricted model
+## Model 2: IRR ~ MKT + SMB + HML + CMA + RMW
+## 
+##   Res.Df    RSS Df Sum of Sq      F    Pr(&gt;F)    
+## 1    999 8.7725                                  
+## 2    994 0.4631  5    8.3095 3567.2 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="annr检验" class="section level3">
+<h3>annR检验</h3>
+<pre class="r"><code>kuanjifitannR=lm(annR~MKT+SMB+HML+CMA+RMW,kuanji)
+
+summary(kuanjifitannR)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = annR ~ MKT + SMB + HML + CMA + RMW, data = kuanji)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0256120 -0.0046797 -0.0002308  0.0046581  0.0279637 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.0252826  0.0004858   52.04  &lt; 2e-16 ***
+## MKT          1.0172863  0.0028208  360.63  &lt; 2e-16 ***
+## SMB         -0.2185653  0.0043052  -50.77  &lt; 2e-16 ***
+## HML          0.1269163  0.0087962   14.43  &lt; 2e-16 ***
+## CMA         -0.1793383  0.0098222  -18.26  &lt; 2e-16 ***
+## RMW          0.0591668  0.0090470    6.54 9.83e-11 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.00756 on 994 degrees of freedom
+## Multiple R-squared:  0.9926,	Adjusted R-squared:  0.9926 
+## F-statistic: 2.676e+04 on 5 and 994 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="annr约束模型检验" class="section level3">
+<h3>annR约束模型检验</h3>
+<pre class="r"><code>linearHypothesis(kuanjifitannR,c(&quot;MKT=0&quot;,&quot;SMB=0&quot;,&quot;HML=0&quot;,&quot;CMA=0&quot;,&quot;RMW=0&quot;))</code></pre>
+<pre><code>## Linear hypothesis test
+## 
+## Hypothesis:
+## MKT = 0
+## SMB = 0
+## HML = 0
+## CMA = 0
+## RMW = 0
+## 
+## Model 1: restricted model
+## Model 2: annR ~ MKT + SMB + HML + CMA + RMW
+## 
+##   Res.Df    RSS Df Sum of Sq     F    Pr(&gt;F)    
+## 1    999 7.7039                                 
+## 2    994 0.0568  5    7.6471 26762 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="iir-annr检验" class="section level3">
+<h3>IIR-annR检验</h3>
+<pre class="r"><code>kuanjifitIIR_annR=lm(IRR_annR~MKT+SMB+HML+CMA+RMW,kuanji)
+summary(kuanjifitIIR_annR)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = IRR_annR ~ MKT + SMB + HML + CMA + RMW, data = kuanji)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.12122 -0.01140  0.00038  0.01207  0.07721 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.016202   0.001334  12.144  &lt; 2e-16 ***
+## MKT          0.043768   0.007747   5.650  2.1e-08 ***
+## SMB         -0.012460   0.011823  -1.054    0.292    
+## HML         -0.011300   0.024157  -0.468    0.640    
+## CMA          0.018732   0.026974   0.694    0.488    
+## RMW         -0.014235   0.024845  -0.573    0.567    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.02076 on 994 degrees of freedom
+## Multiple R-squared:  0.03284,	Adjusted R-squared:  0.02797 
+## F-statistic: 6.749 on 5 and 994 DF,  p-value: 3.378e-06</code></pre>
+</div>
+<div id="iir-annr约束模型检验" class="section level3">
+<h3>IIR-annR约束模型检验</h3>
+<pre class="r"><code>linearHypothesis(kuanjifitIIR_annR,c(&quot;MKT=0&quot;,&quot;SMB=0&quot;,&quot;HML=0&quot;,&quot;CMA=0&quot;,&quot;RMW=0&quot;))</code></pre>
+<pre><code>## Linear hypothesis test
+## 
+## Hypothesis:
+## MKT = 0
+## SMB = 0
+## HML = 0
+## CMA = 0
+## RMW = 0
+## 
+## Model 1: restricted model
+## Model 2: IRR_annR ~ MKT + SMB + HML + CMA + RMW
+## 
+##   Res.Df     RSS Df Sum of Sq      F    Pr(&gt;F)    
+## 1    999 0.44296                                  
+## 2    994 0.42842  5  0.014545 6.7493 3.378e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
+<div id="主动基金" class="section level2">
+<h2>主动基金</h2>
+<div id="iir检验-1" class="section level3">
+<h3>IIR检验</h3>
+<pre class="r"><code>zhudong&lt;-data|&gt;
+  filter(portfolio_name!=&quot;宽基&quot;)
+zhudongfitIRR=lm(IRR~MKT+SMB+HML+CMA+RMW,zhudong)
+summary(zhudongfitIRR)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = IRR ~ MKT + SMB + HML + CMA + RMW, data = zhudong)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.155560 -0.037638 -0.001402  0.035994  0.189476 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.104876   0.003261  32.164  &lt; 2e-16 ***
+## MKT          0.920985   0.018932  48.648  &lt; 2e-16 ***
+## SMB         -0.116014   0.028893  -4.015 6.39e-05 ***
+## HML         -0.699282   0.059034 -11.845  &lt; 2e-16 ***
+## CMA          0.124728   0.065920   1.892   0.0588 .  
+## RMW          0.156617   0.060717   2.579   0.0100 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.05074 on 994 degrees of freedom
+## Multiple R-squared:  0.7156,	Adjusted R-squared:  0.7141 
+## F-statistic: 500.1 on 5 and 994 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="iir约束模型检验-1" class="section level3">
+<h3>IIR约束模型检验</h3>
+<pre class="r"><code>linearHypothesis(zhudongfitIRR,c(&quot;MKT=0&quot;,&quot;SMB=0&quot;,&quot;HML=0&quot;,&quot;CMA=0&quot;,&quot;RMW=0&quot;))</code></pre>
+<pre><code>## Linear hypothesis test
+## 
+## Hypothesis:
+## MKT = 0
+## SMB = 0
+## HML = 0
+## CMA = 0
+## RMW = 0
+## 
+## Model 1: restricted model
+## Model 2: IRR ~ MKT + SMB + HML + CMA + RMW
+## 
+##   Res.Df    RSS Df Sum of Sq     F    Pr(&gt;F)    
+## 1    999 8.9949                                 
+## 2    994 2.5586  5    6.4363 500.1 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="annr检验-1" class="section level3">
+<h3>annR检验</h3>
+<pre class="r"><code>zhudongfitannR=lm(annR~MKT+SMB+HML+CMA+RMW,zhudong)
+
+
+summary(zhudongfitannR)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = annR ~ MKT + SMB + HML + CMA + RMW, data = zhudong)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.033308 -0.006450  0.000064  0.006126  0.036040 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.1011244  0.0006257 161.611  &lt; 2e-16 ***
+## MKT          0.9367917  0.0036331 257.852  &lt; 2e-16 ***
+## SMB         -0.0933475  0.0055448 -16.835  &lt; 2e-16 ***
+## HML         -0.5396732  0.0113289 -47.637  &lt; 2e-16 ***
+## CMA          0.0510452  0.0126504   4.035 5.88e-05 ***
+## RMW          0.1728307  0.0116519  14.833  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.009736 on 994 degrees of freedom
+## Multiple R-squared:  0.9857,	Adjusted R-squared:  0.9857 
+## F-statistic: 1.373e+04 on 5 and 994 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="annr约束模型检验-1" class="section level3">
+<h3>annR约束模型检验</h3>
+<pre class="r"><code>linearHypothesis(zhudongfitannR,c(&quot;MKT=0&quot;,&quot;SMB=0&quot;,&quot;HML=0&quot;,&quot;CMA=0&quot;,&quot;RMW=0&quot;))</code></pre>
+<pre><code>## Linear hypothesis test
+## 
+## Hypothesis:
+## MKT = 0
+## SMB = 0
+## HML = 0
+## CMA = 0
+## RMW = 0
+## 
+## Model 1: restricted model
+## Model 2: annR ~ MKT + SMB + HML + CMA + RMW
+## 
+##   Res.Df    RSS Df Sum of Sq     F    Pr(&gt;F)    
+## 1    999 6.6024                                 
+## 2    994 0.0942  5    6.5082 13731 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="iir-annr检验-1" class="section level3">
+<h3>IIR-annR检验</h3>
+<pre class="r"><code>zhudongfitIIR_annR=lm(IRR_annR~MKT+SMB+HML+CMA+RMW,zhudong)
+summary(zhudongfitIIR_annR)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = IRR_annR ~ MKT + SMB + HML + CMA + RMW, data = zhudong)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.153221 -0.037540 -0.000542  0.032758  0.177668 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)  0.003752   0.003208   1.170   0.2424   
+## MKT         -0.015807   0.018624  -0.849   0.3962   
+## SMB         -0.022667   0.028424  -0.797   0.4254   
+## HML         -0.159609   0.058074  -2.748   0.0061 **
+## CMA          0.073683   0.064848   1.136   0.2561   
+## RMW         -0.016213   0.059730  -0.271   0.7861   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.04991 on 994 degrees of freedom
+## Multiple R-squared:  0.01036,	Adjusted R-squared:  0.005378 
+## F-statistic:  2.08 on 5 and 994 DF,  p-value: 0.06558</code></pre>
+</div>
+<div id="iir-annr约束模型检验-1" class="section level3">
+<h3>IIR-annR约束模型检验</h3>
+<pre class="r"><code>linearHypothesis(zhudongfitIIR_annR,c(&quot;MKT=0&quot;,&quot;SMB=0&quot;,&quot;HML=0&quot;,&quot;CMA=0&quot;,&quot;RMW=0&quot;))</code></pre>
+<pre><code>## Linear hypothesis test
+## 
+## Hypothesis:
+## MKT = 0
+## SMB = 0
+## HML = 0
+## CMA = 0
+## RMW = 0
+## 
+## Model 1: restricted model
+## Model 2: IRR_annR ~ MKT + SMB + HML + CMA + RMW
+## 
+##   Res.Df    RSS Df Sum of Sq      F  Pr(&gt;F)  
+## 1    999 2.5020                              
+## 2    994 2.4761  5   0.02591 2.0803 0.06558 .
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>

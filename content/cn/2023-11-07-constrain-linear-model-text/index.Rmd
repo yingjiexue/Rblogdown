@@ -1,0 +1,103 @@
+---
+title: 回归方程带约束模型检验
+author: 薛英杰
+date: '2023-11-07'
+slug: constrain linear model text
+categories:
+  - research
+tags:
+  - research
+---
+
+### 读入数据
+```{r}
+pacman::p_load(data.table,plyr,stringr,dplyr,mongolite,future.apply,future,xlsx,
+               zoo,readxl,foreign,plyr,stringr,pglm,doSNOW,mongolite,
+               dplyr,tidyr,officer,flextable,formattable,semPlot,future.apply,
+               stargazer,ggthemes,ggplot2,Rmisc,plot3D,panelvar,lubridate,
+               readr,rlist,AER,psych,mediation,lavaan,imager,ldt,systemfit,car)
+
+
+##读入数据
+data<-read_excel("E:\\科研\\中航基金\\SUR\\模拟结果2.xlsx")
+names(data)[10]<-"IRR_annR"
+
+```
+
+## 宽基
+
+### IIR检验
+```{r}
+kuanji<-data|>
+  filter(portfolio_name=="宽基")
+kuanjifitIRR=lm(IRR~MKT+SMB+HML+CMA+RMW,kuanji)
+summary(kuanjifitIRR)
+```
+### IIR约束模型检验
+```{r}
+linearHypothesis(kuanjifitIRR,c("MKT=0","SMB=0","HML=0","CMA=0","RMW=0"))
+```
+
+### annR检验
+```{r}
+kuanjifitannR=lm(annR~MKT+SMB+HML+CMA+RMW,kuanji)
+
+summary(kuanjifitannR)
+```
+### annR约束模型检验
+```{r}
+linearHypothesis(kuanjifitannR,c("MKT=0","SMB=0","HML=0","CMA=0","RMW=0"))
+```
+
+
+### IIR-annR检验
+```{r}
+kuanjifitIIR_annR=lm(IRR_annR~MKT+SMB+HML+CMA+RMW,kuanji)
+summary(kuanjifitIIR_annR)
+```
+### IIR-annR约束模型检验
+```{r}
+linearHypothesis(kuanjifitIIR_annR,c("MKT=0","SMB=0","HML=0","CMA=0","RMW=0"))
+```
+
+
+## 主动基金
+
+### IIR检验
+```{r}
+zhudong<-data|>
+  filter(portfolio_name!="宽基")
+zhudongfitIRR=lm(IRR~MKT+SMB+HML+CMA+RMW,zhudong)
+summary(zhudongfitIRR)
+```
+### IIR约束模型检验
+```{r}
+linearHypothesis(zhudongfitIRR,c("MKT=0","SMB=0","HML=0","CMA=0","RMW=0"))
+```
+
+### annR检验
+```{r}
+zhudongfitannR=lm(annR~MKT+SMB+HML+CMA+RMW,zhudong)
+
+
+summary(zhudongfitannR)
+```
+### annR约束模型检验
+```{r}
+linearHypothesis(zhudongfitannR,c("MKT=0","SMB=0","HML=0","CMA=0","RMW=0"))
+```
+
+
+### IIR-annR检验
+```{r}
+zhudongfitIIR_annR=lm(IRR_annR~MKT+SMB+HML+CMA+RMW,zhudong)
+summary(zhudongfitIIR_annR)
+```
+
+
+### IIR-annR约束模型检验
+```{r}
+linearHypothesis(zhudongfitIIR_annR,c("MKT=0","SMB=0","HML=0","CMA=0","RMW=0"))
+```
+
+

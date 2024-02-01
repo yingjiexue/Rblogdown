@@ -10,13 +10,15 @@ enable: false
   <a href="https://pzhao.org/" style="color:#00BFFF;">赵鹏</a>：西交利物浦大学，R bookdownplus教程、现在统计图形的作者<br> 
   <a href="https://bioinfo-scrounger.com/" style="color:#00BFFF;">顾凯</a>：生物统计分析师，擅长R和SAS编程<br> 
   <a href="https://weiliu.netlify.app/" style="color:#00BFFF;">刘伟</a>：新加坡Duke-NUS博士后<br> 
-  <a href="https://xiangyun.rbind.io/" style="color:#00BFFF;">黄湘云</a>：统计之都编辑，精通R shiny开发
+  <a href="https://xiangyun.rbind.io/" style="color:#00BFFF;">黄湘云</a>：统计之都编辑，精通R shiny开发<br> 
+  <a href="https://statsandr.com/blog/" style="color:#00BFFF;">Stata and R</a>：统计与R专题
 
 ## 编程学习与咨询
 
 > <a href="https://cosx.org//" style="color:#00BFFF;">统计之都</a>：统计学讨论与研究网站<br> 
   <a href="https://rviews.rstudio.com/" style="color:#00BFFF;">R Views</a>：R Views 博客技术支持站<br>
   <a href="https://www.r-bloggers.com/" style="color:#00BFFF;">R-Bloggers</a>：R博客内容推送<br> 
+  <a href="https://developer.feedspot.com/r_programming_blogs/#rightModal" style="color:#00BFFF;">40 Best R Programming Blogs and Websites</a>：R编程博客和网站汇总<br> 
   <a href="https://stackoverflow.com/" style="color:#00BFFF;">stackoverflow</a>：软件开发问题交流<br> 
   <a href="http://www.byhy.net/" style="color:#00BFFF;">路飞学城</a>：python学习教程<br>
   <a href="https://python-forum.io/" style="color:#00BFFF;">python-forum</a>：python论坛<br>

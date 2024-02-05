@@ -1,0 +1,30 @@
+---
+title: 资产定价因子序列相关
+author: 薛英杰
+date: '2024-02-05'
+slug: factor autregresion
+categories:
+  - research
+tags:
+  - research
+---
+
+###因子自相关性检验
+
+```{r}
+pacman::p_load(AER,readxl,dynlm,vars,quantmod,scales,fGarch,dplyr)
+load("D:\\Rblogdown\\content\\cn\\2024-02-05-factor-autregresion\\VAR.RData")
+fama<-Famafactor|>
+  mutate(TradingMon=as.yearmon(TradingMon))
+
+MKT<-ts(fama$MKT,start = c(1994,1),end = c(2023,9),frequency = 12)
+SMB<-ts(fama$SMB,start = c(1994,1),end = c(2023,9),frequency = 12)
+HML<-ts(fama$HML,start = c(1994,1),end = c(2023,9),frequency = 12)
+CMA<-ts(fama$CMA,start = c(1994,1),end = c(2023,9),frequency = 12)
+RMW<-ts(fama$RMW,start = c(1994,1),end = c(2023,9),frequency = 12)
+
+VARdat<-window(ts.union(MKT,SMB,HML,CMA,RMW))
+VAR_est=VAR(y=VARdat,p=1)
+summary(VAR_est)
+```
+

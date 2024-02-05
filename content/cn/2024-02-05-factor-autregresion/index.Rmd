@@ -1,5 +1,5 @@
 ---
-title: 资产定价因子序列相关
+title: 资产定价因子序列相关检验
 author: 薛英杰
 date: '2024-02-05'
 slug: factor autregresion
@@ -9,7 +9,17 @@ tags:
   - research
 ---
 
-###因子自相关性检验
+### 因子自相关性检验
+
+向量自回归模型如下：
+
+$$
+MKT_t=\alpha_1+\beta_{11}MKT_{t-1}+\beta_{12}SMB_{t-1}+\beta_{13}HML_{t-1}+\beta_{14}CMA_{t-1}+\beta_{15}RMW_{t-1}+\epsilon_1\\
+SMB_t=\alpha_2+\beta_{21}MKT_{t-1}+\beta_{22}SMB_{t-1}+\beta_{23}HML_{t-1}+\beta_{24}CMA_{t-1}+\beta_{25}RMW_{t-1}+\epsilon_2\\
+HML_t=\alpha_3+\beta_{31}MKT_{t-1}+\beta_{32}SMB_{t-1}+\beta_{33}HML_{t-1}+\beta_{34}CMA_{t-1}+\beta_{35}RMW_{t-1}+\epsilon_3\\
+CMA_t=\alpha_4+\beta_{41}MKT_{t-1}+\beta_{42}SMB_{t-1}+\beta_{43}HML_{t-1}+\beta_{44}CMA_{t-1}+\beta_{45}RMW_{t-1}+\epsilon_4\\
+RMW_t=\alpha_5+\beta_{51}MKT_{t-1}+\beta_{52}SMB_{t-1}+\beta_{53}HML_{t-1}+\beta_{54}CMA_{t-1}+\beta_{55}RMW_{t-1}+\epsilon_5
+$$
 
 ```{r}
 pacman::p_load(AER,readxl,dynlm,vars,quantmod,scales,fGarch,dplyr)

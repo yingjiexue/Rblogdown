@@ -24,6 +24,9 @@ names(data)[10]<-"IRR_annR"
 
 ```
 
+
+
+
 ## 宽基
 
 ### IIR检验

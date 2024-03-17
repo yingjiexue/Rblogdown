@@ -1,0 +1,160 @@
+---
+title: 资产定价理论概览
+author: 薛英杰
+date: '2024-01-24'
+slug: asset pricing theory
+categories:
+  - research
+tags:
+  - research
+---
+
+
+
+<div id="资产定价研究的问题" class="section level3">
+<h3>资产定价研究的问题</h3>
+<blockquote>
+<p>资产定价是对未来现金流不确定资产的定价。资产定价理论尝试着理解不确定的现金流的价值和价格，资产价格越高，意味着收益率越低。因此，资产定价理论也被用来解释不同资产收益率存在的差异。</p>
+</blockquote>
+<blockquote>
+<p>过去50年，美国市场的股票平均收益率为9%，而债券的平均收益率仅有2%。过去10年，中国A股市场股票平均收益率为11%，而债券平均收益为5%。之所以股票与债券收益之间存在显著的差，核心原因在于他们的现金流不确定性的差异。</p>
+</blockquote>
+</div>
+<div id="资产定价的理论基础" class="section level3">
+<h3>资产定价的理论基础</h3>
+<blockquote>
+<p>资产定价理论来自于一个非常简单的概念：资产价格等于期望现金流折现。即：</p>
+</blockquote>
+<p><span class="math display">\[
+𝑝_𝑡=𝐸_𝑡  (𝑚_{𝑡+1} 𝑥_{𝑡+1})
+\]</span></p>
+<blockquote>
+<p>其中，<span class="math inline">\(𝑝_𝑡\)</span>是资产在t期的价格，<span class="math inline">\(𝑥_(𝑡+1)\)</span>是资产在t+1期的现金流，<span class="math inline">\(𝑚_(𝑡+1)\)</span>是资产现金流对应的随机折现因子。</p>
+</blockquote>
+<blockquote>
+<p>之所以资产的价格可以表现为未来现金流的折现，来源于消费者对消费和投资的选择，以最大化其效用。每一个家庭或投资者都必须决定自己的收入多少用来消费，多少用来投资以及持有什么资产组合，以实现终生效用最大化。该问题可以表示为：</p>
+</blockquote>
+<p><span class="math display">\[
+\max_{\xi}{\hspace{1cm}⁡𝑈= 𝑢(𝑐_𝑡 )+𝐸_𝑡 [𝛽𝑢(c_{t+1})}\\
+s.t : c_t=e_t-p_t\xi\\
+\hspace{2.2cm}c_{t+1}=e_{t+1}+x_{t+1}\xi
+\]</span></p>
+<blockquote>
+<p>其中， <span class="math inline">\(𝑢\)</span> 是投资者的效用函数， <span class="math inline">\(𝑐\)</span> 是投资者的消费， <span class="math inline">\(𝑝\)</span> 是投资者购买资产的价格，<span class="math inline">\(𝜉\)</span> 是投资购买资产的数量， <span class="math inline">\(𝑥\)</span> 是投资卖出资产获得的现金流。</p>
+</blockquote>
+<blockquote>
+<p>效用最大化的一阶条件：</p>
+<p><span class="math display">\[
+\begin{equation}
+\begin{aligned}
+\frac{\partial{U}}{\partial{\xi}}&amp;=\frac{\partial{u(c_t)}}{\partial{c_t}}\frac{\partial{c_t}}{\partial{\xi}}+E_t[\beta\frac{\partial{u(c_{t+1})}}{\partial{c_{t+1}}}\frac{\partial{c_{t+1}}}{\partial{\xi}}]\\
+&amp;=-p_tu^{\prime}(c_t)+E_t[x_{t+1}\beta u^{\prime}(c_{t+1})]\\
+&amp;=0
+\end{aligned}
+\end{equation}
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>解得：</p>
+</blockquote>
+<blockquote>
+<p><span class="math display">\[
+p_t=E_t(\beta\frac{u^{\prime}(c_{t+1})}{u^{\prime}(c_{t})}x_{t+1})
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>让<span class="math inline">\(m_{t+1}=\beta\frac{u^{\prime}(c_{t+1})}{u^{\prime}(c_{t})}\)</span>,就可得到定价公式：</p>
+</blockquote>
+<blockquote>
+<p><span class="math display">\[
+𝑝_𝑡=𝐸_𝑡  (𝑚_{𝑡+1} 𝑥_{𝑡+1})
+\]</span></p>
+</blockquote>
+</div>
+<div id="资产定价模型的经济含义" class="section level3">
+<h3>资产定价模型的经济含义</h3>
+<blockquote>
+<p>1.无风险资产</p>
+</blockquote>
+<blockquote>
+<p>对于无风险资产来说，投资收益确定的，与风险无关，无风险资产的价格可以表示为期望折现因子与现金流的乘积：</p>
+</blockquote>
+<blockquote>
+<p><span class="math display">\[
+\begin{equation}
+\begin{aligned}
+p_t&amp;=E_t(m_{t+1}x_{t+1})\\
+   &amp;=E_t(m_{t+1})x_{t+1}
+\end{aligned}
+\end{equation}
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>即：</p>
+</blockquote>
+<blockquote>
+<p><span class="math display">\[
+R^f=\frac{x_{t+1}}{p_t}=\frac{1}{E_t(m_{t+1})}
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>也就是说无风险收益率等于1元使用期望折现因子进行折现。</p>
+</blockquote>
+<blockquote>
+<p>2.风险资产</p>
+</blockquote>
+<blockquote>
+<p>对于风险资产来说，投资者获得的现金流与随机贴现因子相关，根据<span class="math inline">\(Cov(x,y)=E(xy)-E(x)E(y)\)</span>，风险资产价格可表示如下：</p>
+</blockquote>
+<blockquote>
+<p><span class="math display">\[
+\begin{equation}
+\begin{aligned}
+p_t&amp;=E_t(m_{t+1}x_{t+1})\\
+   &amp;=E_t(m_{t+1})E_t(x_{t+1})+Cov(m_{t+1},x_{t+1})\\
+   &amp;=\frac{E_t(x_{t+1})}{R^f}+Cov(m_{t+1},x_{t+1})
+\end{aligned}
+\end{equation}
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>即：</p>
+</blockquote>
+<blockquote>
+<p><span class="math display">\[
+\begin{equation}
+\begin{aligned}
+E_t(R_i)&amp;=R^f+(\frac{Cov(m_{t+1,R_i})}{Var(m_{t+1})})(\frac{Var(m_{t+1})}{E_t(m_{t+1})})\\
+   &amp;=R^f++\beta_{im}\lambda_m
+\end{aligned}
+\end{equation}
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>风险资产期望收益等于无风险资产收益加风险调整收益，<span class="math inline">\(\lambda\)</span>表示风险价格，<span class="math inline">\(\beta\)</span>表示风险数量，风险数量越高，资产期望收益越高。</p>
+</blockquote>
+</div>
+<div id="资产定价的实证分析" class="section level3">
+<h3>资产定价的实证分析</h3>
+<blockquote>
+<p>相比资产现金流的时间价值来说，学者和业界人士更加关注资产的风险溢价，因此，他们分别从横截面和时间序列两个维度来研究不同资产收益率的差异。</p>
+</blockquote>
+<blockquote>
+<p>令<span class="math inline">\(R_i^e=R_i-R^f\)</span>，则资产定价模型可以表示为：<span class="math inline">\(E_t(R_i^e)=(\frac{Cov(m_{t+1,R_i})}{Var(m_{t+1})})(\frac{Var(m_{t+1})}{E_t(m_{t+1})})\)</span>，其计量模型为：</p>
+</blockquote>
+<blockquote>
+<p><span class="math display">\[
+E_t(R_i^e)=\alpha+(\frac{Cov(m_{t+1,R_i})}{Var(m_{t+1})})(\frac{Var(m_{t+1})}{E_t(m_{t+1})})
+\]</span></p>
+<h1 id="section"><img src="images/mox-01.JPG" style="margin:0 auto" /></h1>
+</blockquote>
+<blockquote>
+<p>关于资产定价的实证分别从横截面和时间序列两个维度讨论，横截面分析不同风险的资产获得的风险价格<span class="math inline">\(\lambda\)</span>是否为0，而时间序列则关注的是给定风险价格，检验风险数量是不是为0.</p>
+</blockquote>
+</div>
+<div id="资产定价对学术界和业界的指导意义" class="section level3">
+<h3>资产定价对学术界和业界的指导意义</h3>
+</div>
+<div id="section-1" class="section level1">
+<h1><img src="images/aplication.PNG" /></h1>
+</div>

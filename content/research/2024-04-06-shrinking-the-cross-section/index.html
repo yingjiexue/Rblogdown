@@ -7,6 +7,7 @@ categories:
   - research
 tags:
   - research
+bibliography: references.bib
 ---
 
 
@@ -26,6 +27,7 @@ tags:
 <h3>研究问题</h3>
 <blockquote>
 <p>实证资产定价已经发现了大量可以帮助预测股票横截面收益变化的特征。学者已经尝试着使用少数介个因子特征概括这些横截面变化，企图寻找一个由少数因子线性组合构成的特征稀疏随机贴现因子。然而，由于新的横截面预测变量的出现，传统的因子模型需要别修正并进行扩展才能捕获新的异象。<strong>但这些研究并没有告诉我们如果我们面临大量股票横截面收益预测变量，这些特征稀疏因子模型如何？</strong></p>
+<p>正如以前的讨论，缺乏令人信服的理由来解释为什么利用少数几个公司特征就可以概括股票横截面收益。而且由于股票组合收益的集合有一个由少数高方差主成分主导的因子结构，一个稀疏的因子足够捕捉这些风险溢价。</p>
 </blockquote>
 </div>
 <div id="研究思路" class="section level3">
@@ -34,7 +36,72 @@ tags:
 <ol style="list-style-type: decimal">
 <li>从特征稀疏随机贴现因子出发，讨论了其经济理论基础。如果有可能用几个特征来描述横截面特征，这将意味着在几十只个已知的异象中存在极端的冗余。</li>
 <li>由于使用股票收益和因子回归的协方差估计的随机贴现因子存在过拟合的问题，为了克服这个问题，我们使用了设定先验信念的贝叶斯方法。</li>
+<li>我们构建了反映经济因素的先验分布，在该分布下，我们比较了普通最小二乘估计和后验贝叶斯缩减随机贴现因子的系数，发现应用更多后验分布缩减的随机贴现因子与更低的特征值主成分相联系。我们拓展贝叶斯方法允许其自动筛选因子，寻找一个稀疏随机贴现因子的近似。</li>
+<li>我们利用Lasso和弹性网络方法实现了两个目标：（1）基于先验信息正则化：（2）通过设置随机贴现因子系数为零考虑了稀疏性问题。</li>
 </ol>
 </blockquote>
+</div>
+<div id="相关文献" class="section level3">
+<h3>相关文献</h3>
+<blockquote>
+<p>1. <span class="citation">Stambaugh and Yuan (<a href="#ref-stambaugh2017">2017</a>)</span> 使用方差聚类分析识别了两组相关的异象，然后基于组内平均特征排序构建了因子。</p>
+<ol start="2" style="list-style-type: decimal">
+<li>当回归变量之间存在相关时，Lasso回归的表现并不是很好，反而岭回归和弹性网络比Lasso表现出更强的预测性<span class="citation">(<a href="#ref-tibshirani1996regression">Tibshirani 1996</a>; <a href="#ref-zou2005">Zou and Hastie 2005</a>)</span>。</li>
+</ol>
+</blockquote>
+</div>
+<div id="研究贡献" class="section level3">
+<h3>研究贡献</h3>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>我们的文章贡献了在资产定价邻域应用机器学习技术处理高维挑战的问题。</li>
+<li>我们的方法与大多数资产定价文献的重要差异在于研究目标不同。许多论文关注的是风险溢价的估计，而我们关注的是风险价格的估计。</li>
+<li>我们的分析也与研究人员对横截面回报预测的数据挖掘所产生的统计问题有关。</li>
+</ol>
+</blockquote>
+</div>
+</div>
+<div id="基于因子特征的资产定价" class="section level2">
+<h2>基于因子特征的资产定价</h2>
+<blockquote>
+<p>我们研究从基于因子模型特征的基本资产定价模型框架开始。首先从总体矩的角度来描述这个框架，暂时不考虑估计问题。</p>
+<p>在任何时间点<span class="math inline">\(t\)</span>，让<span class="math inline">\(R_t\)</span>表示 <span class="math inline">\(N\)</span> 个股票超额收益的<span class="math inline">\(N\times1\)</span>维向量，典型的缩减因子模型可以表示随机贴现因子为股票组合超额收益的线性组合。所以可以从超额收益的线性组合中发现一个随机贴现因子，即：</p>
+<p><span class="math display">\[
+\begin{equation}
+\tag{1}
+M_t=1-b_{t-1}^{\prime}(R_t-ER_t)
+\end{equation}
+\]</span></p>
+<p>通过求解满足条件定价方程<span class="math inline">\(E_{t-1}[M_tR_t]=0\)</span>中随机贴现因子的载荷<span class="math inline">\(b_{t-1}\)</span>，我们可发现一个随机贴现因子。</p>
+</blockquote>
+<div id="基于因子特征的随机贴现因子" class="section level3">
+<h3>基于因子特征的随机贴现因子</h3>
+<blockquote>
+<p>基于定价模型特征确定因子载荷如下：</p>
+<p><span class="math display">\[
+\begin{equation}
+\tag{2}
+b_{t-1}=Z_{t-1}b
+\end{equation}
+\]</span></p>
+<p>其中，<span class="math inline">\(Z_{t-1}\)</span>是一个<span class="math inline">\(N\times H\)</span>的资产特征矩阵，<span class="math inline">\(b\)</span>是一个<span class="math inline">\(H\times 1\)</span>的固定的向量。 为了获得实证模型，研究者通常会利用少数可度量的资产属性来近似<span class="math inline">\(b_{t-1}\)</span>，例如，Fama-French使用市值和账面市值比两个特征。</p>
+</blockquote>
+<blockquote>
+<p><strong>我们的目标是建立统计方法来处理大量的候选特征，并在高维背景下估计系数<span class="math inline">\(b\)</span>。</strong></p>
+</blockquote>
+</div>
+<div id="参考文献" class="section level3 unnumbered">
+<h3>参考文献</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-stambaugh2017" class="csl-entry">
+Stambaugh, Robert F., and Yu Yuan. 2017. <span>“Mispricing Factors.”</span> <em>The Review of Financial Studies</em> 30 (4): 1270–1315. <a href="https://doi.org/10.1093/rfs/hhw107">https://doi.org/10.1093/rfs/hhw107</a>.
+</div>
+<div id="ref-tibshirani1996regression" class="csl-entry">
+Tibshirani, Robert. 1996. <span>“Regression Shrinkage and Selection via the Lasso.”</span> <em>Journal of the Royal Statistical Society Series B: Statistical Methodology</em> 58 (1): 267–88.
+</div>
+<div id="ref-zou2005" class="csl-entry">
+Zou, Hui, and Trevor Hastie. 2005. <span>“Regularization and Variable Selection Via the Elastic Net.”</span> <em>Journal of the Royal Statistical Society Series B: Statistical Methodology</em> 67 (2): 301–20. <a href="https://doi.org/10.1111/j.1467-9868.2005.00503.x">https://doi.org/10.1111/j.1467-9868.2005.00503.x</a>.
+</div>
+</div>
 </div>
 </div>

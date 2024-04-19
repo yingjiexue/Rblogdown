@@ -236,7 +236,85 @@ E[b^\prime b]=\frac{\kappa^2}{\tau}\sum_{i=1}^{H}d^{\eta-2}
 \]</span></p>
 <p>其中，<span class="math inline">\(d_i\)</span>是对角阵D中的特征值。在资产收益数据集中，由于最小特征值<span class="math inline">\(d_H\)</span>非常接近于0，如果<span class="math inline">\(\eta\le2\)</span>,相应的求和项<span class="math inline">\(d^{\eta-2}\)</span>是较大的。这说明当<span class="math inline">\(\eta\le2\)</span>时，先验将意味着理性投资者的最优投资组合可能会在最低特征值PC上下大赌注。设置<span class="math inline">\(\eta&gt;2\)</span>可以避免这种不切实际的投资组合权重。</p>
 </blockquote>
+<blockquote>
+<p>为了确保先验分布合理，同时也尽可能有较少的限制，我们设置<span class="math inline">\(\eta=2\)</span>。在此假设下，我们得到了因子系数先验分布，<span class="math inline">\(b\sim N(0,\frac{K^2}{\tau}I)\)</span>。综合样本均值<span class="math inline">\(\mu\)</span>的先验信息，假设一个多元正太的似然函数，我们得到系数<span class="math inline">\(b\)</span>的后验均值，具体如下：</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{equation}
+\tag{11}
+\hat{b}=(\sum+\gamma I)^{-1}\bar{\mu}
+\end{equation}
+\]</span></p>
+<blockquote>
+<p>其中，<span class="math inline">\(\gamma=\frac{\tau}{\kappa^2T}\)</span>。</p>
+</blockquote>
+<blockquote>
+<p>随机贴现因子系数的后验方差如下：</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{equation}
+\tag{12}
+Var(b)=\frac{1}{T}(\sum+\gamma I)^{-1}
+\end{equation}
+\]</span></p>
 </div>
+<div id="经济解释" class="section level3">
+<h3>经济解释</h3>
+<blockquote>
+<p>为了给这个估计量提供一个经济学解释，将收益原始空间旋转到主成分空间，将方程（11）表示的随机贴现因子系数表示为主成分收益系数，我们可以获得如下系数向量：</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{equation}
+\tag{13}
+\hat{b}=(\frac{d_j}{d_j+\gamma})\frac{\hat{u}_{p,j}}{d_j}
+\end{equation}
+\]</span></p>
+<blockquote>
+<p>与简单可识别的GMM估计量<span class="math inline">\(\hat{b}_{P,j}^{ols}=\frac{\hat{u}_{p,j}}{d_j}\)</span>相比，我们的贝叶斯估计量用缩减因子<span class="math inline">\(\frac{d_j}{d_j+\gamma&lt;1}\)</span>缩减随机贴现因子系数到0。最重要的是，加强了最小特征值与主成分的联系，其经济解释是我们认为低特征值的主成分对随机因子的波动有贡献是不合理的。由于这个原因，缩减低特征值主成分随机贴现因子系数的效应特别强。</p>
+</blockquote>
+</div>
+<div id="作为惩罚估计量的表示" class="section level3">
+<h3>作为惩罚估计量的表示</h3>
+<blockquote>
+<p>我们现在展示了我们的贝叶斯估计量隐射到机器学习文献中常用的惩罚估计量。如果我们最大化模型的横截面<span class="math inline">\(R^2\)</span>，并且该目标隐含一个最大化平方夏普比率<span class="math inline">\(\gamma b^\prime\sum b\)</span>的的惩罚,即：</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{equation}
+\tag{14}
+\hat{b}=\arg\min_b\{(\bar{\mu}-\sum b)^\prime(\bar{\mu}-\sum b)+\gamma b^\prime\sum b\}
+\end{equation}
+\]</span></p>
+<blockquote>
+<p>这个问题和方程（11）有相同的解。也等价于以下方程的解：</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{equation}
+\tag{15}
+\hat{b}=\arg\min_b\{(\bar{\mu}-\sum b)^\prime(\bar{\mu}-\sum b)+\gamma b^\prime b\}
+\end{equation}
+\]</span></p>
+<blockquote>
+<p>方程（14）和（15）与流行的机器学习方法——岭回归类似，但存在一些重要的差异，一个标准的岭回归目标函数将对系数<span class="math inline">\(b\prime b\)</span>施加<span class="math inline">\(L^2\)</span>范数的约束。在方程（27）中，用对单位阵加权的定价误差被<span class="math inline">\(\sum^{-1}\)</span>。标准的岭回归对应前面<span class="math inline">\(\eta=3\)</span>的情形，相比<span class="math inline">\(\eta=2\)</span>,更多的低特征值主成分被缩减。</p>
+</blockquote>
+</div>
+</div>
+<div id="稀疏性" class="section level2">
+<h2>稀疏性</h2>
+<blockquote>
+<p>到目前为止，我们已经通过缩减随机贴现因子系数为0展示了处理高维挑战的方法，但没有一个系数被精确的设置为0。也就是说，我们获得的解不是系数的。考虑某些因子是对随机贴现因子的贡献是否冗余是非常有用的。在经济上，我们期望在主成分上稀疏的随机贴现因子的表示可能提供了一个很好的近似。</p>
+</blockquote>
+<blockquote>
+<p>由于以上原因，我们在（27）给出的惩罚回归中引入惩罚参数<span class="math inline">\(\gamma_1\sum_{j=1}^H|b_j|\)</span>，由于<span class="math inline">\(L^1\)</span>范数的几何形式，将使得一些<span class="math inline">\(\hat{b}\)</span>元素的系数被设置为0，这将完成了稀疏性和自动因子选择，稀疏度由惩罚的强度控制。综合惩罚<span class="math inline">\(L^1\)</span>和<span class="math inline">\(L^2\)</span>，我们的估计量可以从解以下问题获得：</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{equation}
+\tag{16}
+\hat{b}=\arg\min_b(\bar{\mu}-\sum b)^\prime(\bar{\mu}-\sum b)+\gamma_2 b^\prime b+\gamma_1\sum_{i=1}^H{|b_i|}
+\end{equation}
+\]</span></p>
+<blockquote>
+<p>让数据说话，根据数据来估计惩罚参数<span class="math inline">\(\gamma_1\)</span>和<span class="math inline">\(\gamma_2\)</span>的最优值。</p>
+</blockquote>
 <div id="参考文献" class="section level3 unnumbered">
 <h3>参考文献</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">

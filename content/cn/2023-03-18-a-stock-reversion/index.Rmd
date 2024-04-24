@@ -11,14 +11,228 @@ tags:
 enable: true
 ---
 
-反转效应
+> 马克思的价值规律告诉我们：“商品价格围绕价值波动”。股票市场也不例外，股票价格也会围绕其内在价值波动，当价格偏离内在价值时，价格会向内在价值回归。也就是说，股票价格会发生反转。**那么，中国A股的价格反转是否有周期性？如果有，平均周期是多久？投资者是否可以利用股价反转获得超额收益？**
 
-output:
+> 为了检验这个问题，我们按照股票历史收益对其分组，讨论不同周期组合的股票反转效应强弱。
 
-rblogdown::html_page:
+```{r echo=FALSE, results='asis'}
+##加载程序包
+pacman::p_load(data.table,stringr,dplyr,Tushare,reticulate,lubridate,mongolite,future.apply,zoo,tidyr,stargazer,
+ haven,readxl,foreign,scales,slider,furrr,tibble,ggplot2)
 
-comments: true
+##开启Mongo数据库
+system('net start MongoDB',intern = F,wait = T)
 
-social: true
+##读入无风险收益数据
+mogFret<-mongo(collection = "DRFRet",db="IntrestRate")
+Retf<-mogFret$find()%>%
+  mutate(Tradedate=str_sub(TradingDate,1,7),
+         MRet=(1+DRFRet)^(365/12)-1)%>%
+  group_by(Tradedate)%>%
+  summarise(rf=mean(MRet))
 
-github-repo: yingjiexue/comments
+
+##读入市场组合数据
+mogfactor<-mongo(collection = "monthlyfactor",db="investfactor")
+Marketportfio<-mogfactor$find(query = '{"market":"全市场"}',fields ='{"_id":0,"Tradedate":1,"MKT":1}' )
+
+
+
+##读入股票数据并拼接所有数据
+mogmogth<-mongo(collection = "qfqtradedatamonthly",db="stockdata")
+mothdata<-mogmogth$find(query='{}',
+                  fields='{"_id":0,"ts_code":1,"trade_date":1,"close":1,"pre_close":1}')%>%
+  mutate(MRet=close/pre_close-1,
+         trade_date=as.Date(trade_date,"%Y%m%d"),
+         Tradedate=str_sub(trade_date,1,7))%>%
+  group_by(ts_code)|>
+  mutate(lmon_1=lag(MRet),
+         cumsret=cumsum(MRet),
+         lmon_3=lag(cumsret-lag(cumsret,3),1),
+         lmon_6=lag(cumsret-lag(cumsret,6),1),
+         lmon_9=lag(cumsret-lag(cumsret,9),1),
+         lmon_12=lag(cumsret-lag(cumsret,12),1)
+         )|>
+  na.omit()|>
+  merge(Marketportfio,by="Tradedate",all.x = T)%>%
+  merge(Retf,by="Tradedate",all.x = T)%>%
+  filter(Tradedate>="2010-01")%>%
+  arrange(ts_code,Tradedate)%>%
+  mutate(ret_excess=MRet-rf)%>%
+  select(ts_code,Tradedate,trade_date,lmon_1,lmon_3,lmon_6,lmon_9,lmon_12,ret_excess)%>%tibble::as_tibble()
+
+
+##定义组合构造函数
+assign_portfolio <- function(data, var, n_portfolios) {
+  breakpoints <- data |>
+    summarize(breakpoint = quantile({{ var }},
+      probs = seq(0, 1, length.out = n_portfolios + 1),
+      na.rm = TRUE
+    )) |>
+    pull(breakpoint) |>
+    as.numeric()
+
+  assigned_portfolios <- data |>
+    mutate(portfolio = findInterval({{ var }},
+      breakpoints,
+      all.inside = TRUE
+    )) |>
+    pull(portfolio)
+
+  return(assigned_portfolios)
+}
+
+##1个月反转
+revertion<-function(data,varb){
+  revert<-data |>
+  group_by(Tradedate) |>
+  mutate(
+    portfolio = assign_portfolio(
+      data = cur_data(),
+      var = get(varb),
+      n_portfolios = 10
+    ),
+    portfolio = as.factor(portfolio)
+  ) |>
+  group_by(portfolio, Tradedate) |>
+  summarize(
+    ret = mean(ret_excess),
+    .groups = "drop"
+  )%>%na.omit()
+
+  rev_longshort <- revert |>
+    pivot_wider(Tradedate, names_from = portfolio, values_from = ret) |>
+    mutate(long_short = get("1") - get("10"))
+  
+  names(rev_longshort)[2:11]<-paste0("p",1:10)
+  
+  timeperfomance<-rev_longshort|>
+    pivot_longer(cols=2:12,names_to = "portfolio",values_to = "ret")|>
+    group_by(portfolio)|>
+    arrange(portfolio)|>
+    unique()|>
+    mutate(Date=as.Date(paste0(Tradedate,"-01")))|>
+    select(portfolio,Date,ret)
+  
+  
+  return(timeperfomance)
+
+}
+
+plotfigure<-function(data,mont){
+  data|>
+    filter(portfolio%in%c("p1","p10","long_short"))|>
+    mutate(cumret=cumsum(ret))|>ggplot(aes(
+      x=Date,
+      y=cumret,
+      col=portfolio,
+      linetype=portfolio
+    ))+geom_line()+
+    labs(
+      x = NULL, y = NULL, color = NULL, linetype = NULL,
+      title = paste0("Accumuated Return for Revertion ", mont, " month")
+    )
+}
+
+
+revert1=revertion(mothdata,'lmon_1')
+revert3=revertion(mothdata,'lmon_3')
+revert6=revertion(mothdata,'lmon_6')
+revert12=revertion(mothdata,'lmon_12')
+plotfigure(revert1,1)
+plotfigure(revert3,3)
+plotfigure(revert6,6)
+plotfigure(revert12,12)
+
+
+```
+
+
+> 组合收益检验
+
+```{r}
+##定义业绩检验函数
+perforance_evaluate<-function(x,MKT){
+  data<-data.frame(x,MKT)
+  fit_mode<-coeftest(lm(x ~ 1+MKT, data = data), vcov = NeweyWest)
+  return(c(fit_mode[1,1],fit_mode[2,1],fit_mode[1,3],fit_mode[2,3]))
+}
+
+
+
+
+```
+
+
+
+```{r echo=FALSE, results='asis'}
+##进行投资组合统计检验
+
+perforance<-revert1|>
+  group_by(portfolio)|>
+  summarise(rets=list(lm(ret ~ 1)))|>
+  mutate(id=ifelse(str_detect(portfolio,"p"),
+                          as.numeric(gsub("p","",portfolio)), 11))|>
+  arrange(id)|>
+  select(-id)
+
+
+stargazer(perforance$rets, type = "html",column.labels=c("L",as.character(2:9),"H","L-H"),title = "表1：1个月反转组合的收益",digits=3,align = F, report = "vc*t",no.space = TRUE,  omit.stat = c("rsq", "f","ser"))
+```
+
+
+
+
+
+```{r echo=FALSE, results='asis'}
+##进行投资组合统计检验
+
+perforance<-revert3|>
+  group_by(portfolio)|>
+  summarise(rets=list(lm(ret ~ 1)))|>
+  mutate(id=ifelse(str_detect(portfolio,"p"),
+                          as.numeric(gsub("p","",portfolio)), 11))|>
+  arrange(id)|>
+  select(-id)
+
+
+stargazer(perforance$rets, type = "html",column.labels=c("L",as.character(2:9),"H","L-H"),title = "表3：3个月反转组合的收益",digits=3,align = F, report = "vc*t",no.space = TRUE,  omit.stat = c("rsq", "f","ser"))
+```
+
+
+
+
+```{r echo=FALSE, results='asis'}
+##进行投资组合统计检验
+
+perforance<-revert6|>
+  group_by(portfolio)|>
+  summarise(rets=list(lm(ret ~ 1)))|>
+  mutate(id=ifelse(str_detect(portfolio,"p"),
+                          as.numeric(gsub("p","",portfolio)), 11))|>
+  arrange(id)|>
+  select(-id)
+
+
+stargazer(perforance$rets, type = "html",column.labels=c("L",as.character(2:9) ,"H","L-H"),title = "表3：6个月反转组合的收益",digits=3,align = F, report = "vc*t",no.space = TRUE,  omit.stat = c("rsq", "f","ser"))
+```
+
+
+
+
+```{r echo=FALSE, results='asis'}
+##进行投资组合统计检验
+
+perforance<-revert12|>
+  group_by(portfolio)|>
+  summarise(rets=list(lm(ret ~ 1)))|>
+  mutate(id=ifelse(str_detect(portfolio,"p"),
+                          as.numeric(gsub("p","",portfolio)), 11))|>
+  arrange(id)|>
+  select(-id)
+
+
+stargazer(perforance$rets, type = "html",column.labels=c("L",as.character(2:9),"H","L-H"),title = "表4：12个月反转组合的收益",digits=3,align = F, report = "vc*t",no.space = TRUE,  omit.stat = c("rsq", "f","ser"))
+```
+
+

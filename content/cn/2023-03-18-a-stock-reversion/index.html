@@ -19,82 +19,12 @@ enable: true
 <blockquote>
 <p>为了检验这个问题，我们按照股票历史收益对其分组，讨论不同周期组合的股票反转效应强弱。</p>
 </blockquote>
-<p>[1] 2</p>
-<pre><code>## Warning: There were 172 warnings in `mutate()`.
-## The first warning was:
-## ℹ In argument: `portfolio = assign_portfolio(data = cur_data(), var =
-##   get(varb), n_portfolios = 10)`.
-## ℹ In group 1: `Tradedate = &quot;2010-01&quot;`.
-## Caused by warning:
-## ! `cur_data()` was deprecated in dplyr 1.1.0.
-## ℹ Please use `pick()` instead.
-## ℹ Run `dplyr::last_dplyr_warnings()` to see the 171 remaining warnings.</code></pre>
-<pre><code>## Warning: Specifying the `id_cols` argument by position was deprecated in tidyr 1.3.0.
-## ℹ Please explicitly name `id_cols`, like `id_cols = Tradedate`.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
-<pre><code>## Warning: There were 171 warnings in `mutate()`.
-## The first warning was:
-## ℹ In argument: `portfolio = assign_portfolio(data = cur_data(), var =
-##   get(varb), n_portfolios = 10)`.
-## ℹ In group 1: `Tradedate = &quot;2010-01&quot;`.
-## Caused by warning:
-## ! Returning more (or less) than 1 row per `summarise()` group was deprecated in
-##   dplyr 1.1.0.
-## ℹ Please use `reframe()` instead.
-## ℹ When switching from `summarise()` to `reframe()`, remember that `reframe()`
-##   always returns an ungrouped data frame and adjust accordingly.
-## ℹ Run `dplyr::last_dplyr_warnings()` to see the 170 remaining warnings.</code></pre>
-<pre><code>## Warning: Specifying the `id_cols` argument by position was deprecated in tidyr 1.3.0.
-## ℹ Please explicitly name `id_cols`, like `id_cols = Tradedate`.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
-<pre><code>## Warning: There were 171 warnings in `mutate()`.
-## The first warning was:
-## ℹ In argument: `portfolio = assign_portfolio(data = cur_data(), var =
-##   get(varb), n_portfolios = 10)`.
-## ℹ In group 1: `Tradedate = &quot;2010-01&quot;`.
-## Caused by warning:
-## ! Returning more (or less) than 1 row per `summarise()` group was deprecated in
-##   dplyr 1.1.0.
-## ℹ Please use `reframe()` instead.
-## ℹ When switching from `summarise()` to `reframe()`, remember that `reframe()`
-##   always returns an ungrouped data frame and adjust accordingly.
-## ℹ Run `dplyr::last_dplyr_warnings()` to see the 170 remaining warnings.</code></pre>
-<pre><code>## Warning: Specifying the `id_cols` argument by position was deprecated in tidyr 1.3.0.
-## ℹ Please explicitly name `id_cols`, like `id_cols = Tradedate`.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
-<pre><code>## Warning: There were 171 warnings in `mutate()`.
-## The first warning was:
-## ℹ In argument: `portfolio = assign_portfolio(data = cur_data(), var =
-##   get(varb), n_portfolios = 10)`.
-## ℹ In group 1: `Tradedate = &quot;2010-01&quot;`.
-## Caused by warning:
-## ! Returning more (or less) than 1 row per `summarise()` group was deprecated in
-##   dplyr 1.1.0.
-## ℹ Please use `reframe()` instead.
-## ℹ When switching from `summarise()` to `reframe()`, remember that `reframe()`
-##   always returns an ungrouped data frame and adjust accordingly.
-## ℹ Run `dplyr::last_dplyr_warnings()` to see the 170 remaining warnings.</code></pre>
-<pre><code>## Warning: Specifying the `id_cols` argument by position was deprecated in tidyr 1.3.0.
-## ℹ Please explicitly name `id_cols`, like `id_cols = Tradedate`.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-2.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-3.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-4.png" width="672" /></p>
+<p>[1] 2
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-2.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-3.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-4.png" width="672" /></p>
 <blockquote>
+<p>从多空组合收益来看，以3个月为周期的反转效应最强，但是，反转效应在多头（p1）上效果并不明显，其超额收益主要来自空头。这是由于卖空限制有关，中国市场卖空限制严重，投资者无法获取空头收益。</p>
 <p>组合收益检验</p>
 </blockquote>
-<pre class="r"><code>##定义业绩检验函数
-perforance_evaluate&lt;-function(x,MKT){
-  data&lt;-data.frame(x,MKT)
-  fit_mode&lt;-coeftest(lm(x ~ 1+MKT, data = data), vcov = NeweyWest)
-  return(c(fit_mode[1,1],fit_mode[2,1],fit_mode[1,3],fit_mode[2,3]))
-}</code></pre>
-<pre><code>## Warning: There was 1 warning in `mutate()`.
-## ℹ In argument: `id = ifelse(...)`.
-## Caused by warning in `ifelse()`:
-## ! NAs introduced by coercion</code></pre>
 <table style="text-align:center">
 <caption>
 <strong>表1：1个月反转组合的收益</strong>
@@ -369,10 +299,6 @@ Adjusted R<sup>2</sup>
 </td>
 </tr>
 </table>
-<pre><code>## Warning: There was 1 warning in `mutate()`.
-## ℹ In argument: `id = ifelse(...)`.
-## Caused by warning in `ifelse()`:
-## ! NAs introduced by coercion</code></pre>
 <table style="text-align:center">
 <caption>
 <strong>表3：3个月反转组合的收益</strong>
@@ -647,10 +573,6 @@ Adjusted R<sup>2</sup>
 </td>
 </tr>
 </table>
-<pre><code>## Warning: There was 1 warning in `mutate()`.
-## ℹ In argument: `id = ifelse(...)`.
-## Caused by warning in `ifelse()`:
-## ! NAs introduced by coercion</code></pre>
 <table style="text-align:center">
 <caption>
 <strong>表3：6个月反转组合的收益</strong>
@@ -925,10 +847,6 @@ Adjusted R<sup>2</sup>
 </td>
 </tr>
 </table>
-<pre><code>## Warning: There was 1 warning in `mutate()`.
-## ℹ In argument: `id = ifelse(...)`.
-## Caused by warning in `ifelse()`:
-## ! NAs introduced by coercion</code></pre>
 <table style="text-align:center">
 <caption>
 <strong>表4：12个月反转组合的收益</strong>
@@ -1203,3 +1121,6 @@ Adjusted R<sup>2</sup>
 </td>
 </tr>
 </table>
+<blockquote>
+<p>从投资组合结果来看，与累计收益的结果类似，以三个月为周期的反转收益更高，而且空头可以显著地获得超额收益。</p>
+</blockquote>

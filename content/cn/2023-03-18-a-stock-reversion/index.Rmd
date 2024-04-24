@@ -17,6 +17,8 @@ enable: true
 
 ```{r echo=FALSE, results='asis'}
 ##加载程序包
+options(warn = -1)
+
 pacman::p_load(data.table,stringr,dplyr,Tushare,reticulate,lubridate,mongolite,future.apply,zoo,tidyr,stargazer,
  haven,readxl,foreign,scales,slider,furrr,tibble,ggplot2)
 
@@ -147,27 +149,13 @@ plotfigure(revert12,12)
 
 ```
 
-
+> 从多空组合收益来看，以3个月为周期的反转效应最强，但是，反转效应在多头（p1）上效果并不明显，其超额收益主要来自空头。这是由于卖空限制有关，中国市场卖空限制严重，投资者无法获取空头收益。
+>
 > 组合收益检验
-
-```{r}
-##定义业绩检验函数
-perforance_evaluate<-function(x,MKT){
-  data<-data.frame(x,MKT)
-  fit_mode<-coeftest(lm(x ~ 1+MKT, data = data), vcov = NeweyWest)
-  return(c(fit_mode[1,1],fit_mode[2,1],fit_mode[1,3],fit_mode[2,3]))
-}
-
-
-
-
-```
-
-
 
 ```{r echo=FALSE, results='asis'}
 ##进行投资组合统计检验
-
+options(warn = -1)
 perforance<-revert1|>
   group_by(portfolio)|>
   summarise(rets=list(lm(ret ~ 1)))|>
@@ -180,13 +168,9 @@ perforance<-revert1|>
 stargazer(perforance$rets, type = "html",column.labels=c("L",as.character(2:9),"H","L-H"),title = "表1：1个月反转组合的收益",digits=3,align = F, report = "vc*t",no.space = TRUE,  omit.stat = c("rsq", "f","ser"))
 ```
 
-
-
-
-
 ```{r echo=FALSE, results='asis'}
 ##进行投资组合统计检验
-
+options(warn = -1)
 perforance<-revert3|>
   group_by(portfolio)|>
   summarise(rets=list(lm(ret ~ 1)))|>
@@ -199,12 +183,9 @@ perforance<-revert3|>
 stargazer(perforance$rets, type = "html",column.labels=c("L",as.character(2:9),"H","L-H"),title = "表3：3个月反转组合的收益",digits=3,align = F, report = "vc*t",no.space = TRUE,  omit.stat = c("rsq", "f","ser"))
 ```
 
-
-
-
 ```{r echo=FALSE, results='asis'}
 ##进行投资组合统计检验
-
+options(warn = -1)
 perforance<-revert6|>
   group_by(portfolio)|>
   summarise(rets=list(lm(ret ~ 1)))|>
@@ -217,12 +198,9 @@ perforance<-revert6|>
 stargazer(perforance$rets, type = "html",column.labels=c("L",as.character(2:9) ,"H","L-H"),title = "表3：6个月反转组合的收益",digits=3,align = F, report = "vc*t",no.space = TRUE,  omit.stat = c("rsq", "f","ser"))
 ```
 
-
-
-
 ```{r echo=FALSE, results='asis'}
 ##进行投资组合统计检验
-
+options(warn = -1)
 perforance<-revert12|>
   group_by(portfolio)|>
   summarise(rets=list(lm(ret ~ 1)))|>
@@ -235,4 +213,4 @@ perforance<-revert12|>
 stargazer(perforance$rets, type = "html",column.labels=c("L",as.character(2:9),"H","L-H"),title = "表4：12个月反转组合的收益",digits=3,align = F, report = "vc*t",no.space = TRUE,  omit.stat = c("rsq", "f","ser"))
 ```
 
-
+> 从投资组合结果来看，与累计收益的结果类似，以三个月为周期的反转收益更高，而且空头可以显著地获得超额收益。

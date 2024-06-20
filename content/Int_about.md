@@ -11,7 +11,8 @@ enable: false
   <a href="https://bioinfo-scrounger.com/" style="color:#00BFFF;">顾凯</a>：生物统计分析师，擅长R和SAS编程<br> 
   <a href="https://weiliu.netlify.app/" style="color:#00BFFF;">刘伟</a>：新加坡Duke-NUS博士后<br> 
   <a href="https://xiangyun.rbind.io/" style="color:#00BFFF;">黄湘云</a>：统计之都编辑，精通R shiny开发<br> 
-  <a href="https://statsandr.com/blog/" style="color:#00BFFF;">Stata and R</a>：统计与R专题
+  <a href="https://statsandr.com/blog/" style="color:#00BFFF;">Stata and R</a>：统计与R专题<br> 
+  <a href="https://www.johnhcochrane.com/" style="color:#00BFFF;">Cochrane</a>：芝加哥大学金融学教授
 
 ## 编程学习与咨询
 

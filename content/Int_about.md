@@ -12,7 +12,8 @@ enable: false
   <a href="https://weiliu.netlify.app/" style="color:#00BFFF;">刘伟</a>：新加坡Duke-NUS博士后<br> 
   <a href="https://xiangyun.rbind.io/" style="color:#00BFFF;">黄湘云</a>：统计之都编辑，精通R shiny开发<br> 
   <a href="https://statsandr.com/blog/" style="color:#00BFFF;">Stata and R</a>：统计与R专题<br> 
-  <a href="https://www.johnhcochrane.com/" style="color:#00BFFF;">Cochrane</a>：芝加哥大学金融学教授
+  <a href="https://www.johnhcochrane.com/" style="color:#00BFFF;">Cochrane</a>：芝加哥大学金融学教授<br> 
+  <a href="https://dachxiu.chicagobooth.edu/" style="color:#00BFFF;">修大成</a>：芝加哥大学统计学教授
 
 ## 编程学习与咨询
 

@@ -84,4 +84,5 @@ enable: false
   <a href="https://www.phrasebank.manchester.ac.uk/" style="color:#00BFFF;">Academic Phrasebank</a>：英文写作讲解及高级模板句<br>
   <a href="https://www.overleaf.com/" style="color:#00BFFF;">Overleaf</a>：LaTeX模板与在线编辑<br>
   <a href="https://annas-archive.org/search" style="color:#00BFFF;">Anna’s Archive</a>：免费英文图书下载<br>
-  <a href="https://dictionary.cambridge.org/dictionary/english/" style="color:#00BFFF;">Cambrage Dictionary</a>：剑桥英语词典
+  <a href="https://dictionary.cambridge.org/dictionary/english/" style="color:#00BFFF;">Cambrage Dictionary</a>：剑桥英语词典<br>
+  <a href="https://learnenglish.britishcouncil.org/" style="color:#00BFFF;">LearnEnglish</a>：英语学习

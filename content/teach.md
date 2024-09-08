@@ -83,7 +83,7 @@ enable: false
       <a style="color:#00BFFF;">股票交易数据: </a>
       </th>
       <th>
-      <a href="https://www.jianguoyun.com/p/DQnVY8wQlLvvDBiemNUFIAA/">下载</a>
+      <a href="https://www.jianguoyun.com/p/DQnVY8wQlLvvDBiemNUFIAA">下载</a>
       </th>
    </tr>
    <tr>
@@ -91,7 +91,7 @@ enable: false
       <a style="color:#00BFFF;">课堂小练习-表2: </a>
       </th>
       <th>
-      <a https://www.jianguoyun.com/p/DQC1t7UQlLvvDBifmNUFIAA/">下载</a>
+      <a https://www.jianguoyun.com/p/DQC1t7UQlLvvDBifmNUFIAA">下载</a>
       </th>
    </tr>
 </table>

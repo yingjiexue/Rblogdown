@@ -72,10 +72,10 @@ enable: false
 <table style="border-style:none;text-align:left">
    <tr>
       <th>
-      <a style="color:#00BFFF;">变量类型与案例: </a>
+      <a style="color:#00BFFF;">变量类型回顾: </a>
       </th>
       <th>
-      <a href="https://statsandr.com/blog/variable-types-and-examples/">下载</a>
+      <a href="https://statsandr.com/blog/variable-types-and-examples/">点这儿</a>
       </th>
    </tr>
    <tr>

@@ -35,6 +35,36 @@ enable: false
 
 > **相关软件**
 
+<table style="border-style:none;text-align:left">
+       <tr>
+          <th>
+           <a style="color:#00BFFF;">虚拟机: </a>
+          </th>
+          <th>
+          <a href="https://www.https://www.jianguoyun.com/p/DYahxd0QlLvvDBiltdUFIAA">VitualBox</a>
+          </th>
+       </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">远程连接工具: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DSTUVBQQlLvvDBimtdUFIAA">Xshell</a>
+          </th>
+       </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">远程文件传输: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DYrCfWsQlLvvDBintdUFIAA">Xftp</a>
+          </th>
+       </tr>
+</table>
+
+
+
+
 
 
 # 商务统计分析

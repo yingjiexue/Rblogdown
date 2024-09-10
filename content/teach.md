@@ -46,6 +46,14 @@ enable: false
        </tr>
        <tr>
           <th>
+          <a style="color:#00BFFF;">Ubuntu系统: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DciZAzIQlLvvDBjHtdUFIAA">Ubuntu</a>
+          </th>
+       </tr>
+       <tr>
+          <th>
           <a style="color:#00BFFF;">远程连接工具: </a>
           </th>
           <th>

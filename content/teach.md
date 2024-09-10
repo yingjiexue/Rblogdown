@@ -41,7 +41,7 @@ enable: false
            <a style="color:#00BFFF;">虚拟机: </a>
           </th>
           <th>
-          <a href="https://www.https://www.jianguoyun.com/p/DYahxd0QlLvvDBiltdUFIAA">VitualBox</a>
+          <a href="https://www.jianguoyun.com/p/DYahxd0QlLvvDBiltdUFIAA">VitualBox</a>
           </th>
        </tr>
        <tr>

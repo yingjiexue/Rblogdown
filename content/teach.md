@@ -41,7 +41,7 @@ enable: false
            <a style="color:#00BFFF;">虚拟机: </a>
           </th>
           <th>
-          <a href="https://www.jianguoyun.com/p/DYahxd0QlLvvDBiltdUFIAA">VitualBox</a>
+          <a href="https://download.virtualbox.org/virtualbox/6.1.50/VirtualBox-6.1.50-161033-Win.exe">VitualBox</a>
           </th>
        </tr>
        <tr>
@@ -49,7 +49,7 @@ enable: false
           <a style="color:#00BFFF;">Ubuntu系统: </a>
           </th>
           <th>
-          <a href="https://www.jianguoyun.com/p/DciZAzIQlLvvDBjHtdUFIAA">Ubuntu</a>
+          <a href="https://releases.ubuntu.com/xenial/ubuntu-16.04.7-desktop-amd64.iso">Ubuntu</a>
           </th>
        </tr>
        <tr>

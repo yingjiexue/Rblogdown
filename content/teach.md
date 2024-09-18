@@ -43,7 +43,7 @@ enable: false
            <a style="color:#00BFFF;">虚拟机: </a>
           </th>
           <th>
-          <a href="https://download.virtualbox.org/virtualbox/6.1.50/VirtualBox-6.1.50-161033-Win.exe">VitualBox</a>
+          <a href="https://download.virtualbox.org/virtualbox/7.0.20/VirtualBox-7.0.20-163906-Win.exe">VitualBox</a>
           </th>
        </tr>
        <tr>

@@ -14,7 +14,7 @@ enable: false
 <table style="border-style:none;text-align:left">
        <tr>
           <th>
-           <a style="color:#00BFFF;">第一周: </a>
+           <a style="color:#00BFFF;">课程导论: </a>
           </th>
           <th>
           <a href="https://www.jianguoyun.com/p/DQfEQToQlLvvDBjaxdQFIAA">导论</a>
@@ -22,8 +22,10 @@ enable: false
        </tr>
        <tr>
           <th>
+          <a style="color:#00BFFF;">第一章: </a>
           </th>
           <th>
+          <a href="https://www.jianguoyun.com/p/DaqR3ogQlLvvDBilxtYFIAA">实验环境的准备</a>
           </th>
        </tr>
 </table>
@@ -84,7 +86,7 @@ enable: false
 <table style="border-style:none;text-align:left">
    <tr>
       <th>
-      <a style="color:#00BFFF;">第一周: </a>
+      <a style="color:#00BFFF;">课程导论: </a>
       </th>
       <th>
       <a href="https://www.jianguoyun.com/p/DeatT5EQlLvvDBikltUFIAA">导论</a>
@@ -92,9 +94,18 @@ enable: false
    </tr>
    <tr>
       <th>
+      <a style="color:#00BFFF;">第一章: </a>
       </th>
       <th>
       <a style="color:#00BFFF;">      </a><a href="https://www.jianguoyun.com/p/DZs4--4QlLvvDBixltUFIAA">数据与统计分析</a>
+      </th>
+   </tr>
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第二章: </a>
+      </th>
+      <th>
+      <a style="color:#00BFFF;">      </a><a href="https://www.jianguoyun.com/p/DfO7Z0kQlLvvDBiYxtYFIAA">数据的图表描述</a>
       </th>
    </tr>
 </table>

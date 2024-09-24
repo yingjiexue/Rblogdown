@@ -28,6 +28,14 @@ enable: false
           <a href="https://www.jianguoyun.com/p/DaqR3ogQlLvvDBilxtYFIAA">实验环境的准备</a>
           </th>
        </tr>
+              <tr>
+          <th>
+          <a style="color:#00BFFF;">第二章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DZ2bib0QlLvvDBir3NcFIAA">Hadoop的部署与运维</a>
+          </th>
+       </tr>
 </table>
 
 
@@ -106,6 +114,14 @@ enable: false
       </th>
       <th>
       <a style="color:#00BFFF;">      </a><a href="https://www.jianguoyun.com/p/DfO7Z0kQlLvvDBiYxtYFIAA">数据的图表描述</a>
+      </th>
+   </tr>
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第三章: </a>
+      </th>
+      <th>
+      <a style="color:#00BFFF;">      </a><a href="https://www.jianguoyun.com/p/DUASsecQlLvvDBiq3NcFIAA">数据的数字描述</a>
       </th>
    </tr>
 </table>

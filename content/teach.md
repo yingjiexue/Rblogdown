@@ -163,6 +163,21 @@ enable: false
 
 
 
+# 统计与数据分析
+
+
+## 课堂练习文件
+
+<table style="border-style:none;text-align:left">
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">chap01: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DXHzGx4QlLvvDBi38tcFIAA">table1_1</a>
+      </th>
+   </tr>
+</table>
 
 
 

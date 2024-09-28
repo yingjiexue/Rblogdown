@@ -165,34 +165,36 @@ enable: false
 
 # 统计与数据分析
 
+## 课件与代码
+
+<table style="border-style:none;text-align:left">
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">第一章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DYHSBsEQlLvvDBiLsdgFIAA">数据与python语言</a>
+          </th>
+       </tr>
+            
+</table>
+
+
+
+
 
 ## 课堂练习文件
 
 <table style="border-style:none;text-align:left">
    <tr>
       <th>
-      <a style="color:#00BFFF;">chap01: </a>
+      <a style="color:#00BFFF;">教材配套数据: </a>
       </th>
       <th>
-      <a href="https://www.jianguoyun.com/p/DXHzGx4QlLvvDBi38tcFIAA">table1_1</a>
+      <a href="https://www.jianguoyun.com/p/DRwikh8QlLvvDBiQsdgFIAA">pydata</a>
       </th>
    </tr>
-   <tr>
-      <th>
-      <a style="color:#00BFFF;">chap01: </a>
-      </th>
-      <th>
-      <a href="https://www.jianguoyun.com/p/Deg5RawQlLvvDBjWrNgFIAA">table2_1</a>
-      </th>
-   </tr>
-      <tr>
-      <th>
-      <a style="color:#00BFFF;">chap01: </a>
-      </th>
-      <th>
-      <a href="https://www.jianguoyun.com/p/DfT4PAoQlLvvDBjZrNgFIAA">table2_3</a>
-      </th>
-   </tr>
+   
    
 </table>
 

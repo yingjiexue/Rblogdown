@@ -78,6 +78,14 @@ enable: false
           <a href="https://www.jianguoyun.com/p/DYrCfWsQlLvvDBintdUFIAA">Xftp</a>
           </th>
        </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">Java JDK: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DaMmP3AQlLvvDBjmxNkFIAA">JDK</a>
+          </th>
+       </tr>
 </table>
 
 

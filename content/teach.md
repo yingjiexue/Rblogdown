@@ -86,6 +86,14 @@ enable: false
           <a href="https://www.jianguoyun.com/p/DaMmP3AQlLvvDBjmxNkFIAA">JDK</a>
           </th>
        </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">课程代码: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DUii4y8QlLvvDBjR5toFIAA">课件代码</a>
+          </th>
+       </tr>
 </table>
 
 

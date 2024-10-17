@@ -1,0 +1,58 @@
+---
+title: 公司网络与资产收益
+author: ''
+date: '2024-10-11'
+slug: ''
+categories:
+  - research
+tags:
+  - research
+---
+
+
+
+<blockquote>
+<p>公司并不是作为一个独立的实体进行运转。相反，他们之间通过多种多样的关系建立了内在联系，
+例如战略联盟，合资企业、研发伙伴、供应链关系。最近的一些研究表明，这些关系可能作为冲击在
+公司之间传导的机制潜在影响着资产收益。尽管存在这些证据，但这些冲击传导对资产定价影响的理解
+仍然不够。</p>
+</blockquote>
+<blockquote>
+<p>因此，本文建立了一个均衡模型来研究源于公司网络特质冲击的传导对资产定价的影响，以及这种冲击
+多大程度上定量解释了资本市场现象。该模型有两个特征：一个是公司网络的拓扑结构，另一个是特质冲击传递
+的关系倾向。关系倾向假设随时间变动，这种变动捕获了网络关系特征的临时特征，使公司更容易遭受相邻公司的影响。</p>
+</blockquote>
+<div id="基准模型" class="section level2">
+<h2>基准模型</h2>
+<blockquote>
+<p>基准模型来自于公司生产决策的抽象，考虑了单一商品经济中企业现金流通过长期网络关系相关关联。</p>
+</blockquote>
+<div id="经济环境" class="section level3">
+<h3>经济环境</h3>
+<blockquote>
+<p>本文建立了一种易消耗商品且无限期存在的经济，时间是离散的，通过<span class="math inline">\(t\in \{0,1,2,\dots\}\)</span>刻画。在每个时期，单一的商品由<span class="math inline">\(n\)</span>个无限存活的公司生产，<span class="math inline">\(n\)</span>潜在无限大。
+企业的产出，也就是现金流，通过一个长期关系网络联系在一起。由于我们关注公司网络对资产收益的影响，而非
+战略网络形成，所以我们假设公司网络关系是外生决定的。除过公司外，有大量同质且无限存活的代表性投资者，他们
+持有所有经济中的资产。</p>
+</blockquote>
+<p><strong>1.公司网络和公司的现金流</strong></p>
+<blockquote>
+<p>公司现金流随着时间变化，由公司层面的总冲击决定。投入劳动、资本被标准化到1。公司<span class="math inline">\(i\)</span>在<span class="math inline">\(t\)</span>期的现金流如下：</p>
+</blockquote>
+<p><span class="math display">\[
+log(\frac{y_{it}}{Y_{t-1}})\equiv \tilde{a}_t+\tilde{z}_{it} , i\in \{1,\dots,n\}
+\]</span></p>
+<blockquote>
+<p>其中，<span class="math inline">\(Y_{t-1}\)</span>代表经济在<span class="math inline">\(t-1\)</span>期的总产出，<span class="math inline">\(\tilde{a}_t\rightarrow i.i.d.N(0,2\sigma^2_a)\)</span> 是<span class="math inline">\(t\)</span>时期影响所有公司的冲击，<span class="math inline">\(\tilde{z}_t\)</span> 是<span class="math inline">\(t\)</span>时期影响公司<span class="math inline">\(i\)</span>的冲击。</p>
+</blockquote>
+<blockquote>
+<p>该模型的关键特征是公司网络决定了公司冲击相关联的结构。在模型中，长期持久的关系有双重性质，一方面，这种关系通过效率提升增加了公司的增长机会；另一方面，随着公司对其相邻公司的依赖性增加，这种网络关系可能会产生额外的后果，这样，增加了企业对负向特质风险的暴露，为了捕获这种对冲关系，<span class="math inline">\(\tilde{z}_{i,t+1}\)</span>被定义如下：</p>
+</blockquote>
+<p><span class="math display">\[
+\tilde{z}_{i,t}=\alpha_1d_i-\alpha_2\tilde{\epsilon}_{i,t+1}, i \in\{1,\dots,n\}
+\]</span></p>
+<blockquote>
+<p>其中，参数<span class="math inline">\(\alpha_1\)</span>和<span class="math inline">\(\alpha_2\)</span>是非负参数，所有公司都相等。参数<span class="math inline">\(d_i\)</span>代表与公司i有直接关系的公司数量。在<span class="math inline">\(\tilde{z}_{i,t+1}\)</span>上的不确定性通过伯努利随机变量<span class="math inline">\(\tilde{\epsilon}_{i,t+1}\)</span>引入。如果公司<span class="math inline">\(i\)</span>遭受特质冲击的直接影响，或者遭受其相邻公司的特质冲击影响，<span class="math inline">\(\tilde{\epsilon}_{i,t+1}=1\)</span>，否则，<span class="math inline">\(\tilde{\epsilon}_{i,t+1}=0\)</span>。</p>
+</blockquote>
+</div>
+</div>

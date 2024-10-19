@@ -27,15 +27,14 @@ tags:
 <blockquote>
 <p>基准模型来自于公司生产决策的抽象，考虑了单一商品经济中企业现金流通过长期网络关系相关关联。</p>
 </blockquote>
-<div id="经济环境" class="section level3">
-<h3>经济环境</h3>
+<p><strong>1.经济环境</strong></p>
 <blockquote>
 <p>本文建立了一种易消耗商品且无限期存在的经济，时间是离散的，通过<span class="math inline">\(t\in \{0,1,2,\dots\}\)</span>刻画。在每个时期，单一的商品由<span class="math inline">\(n\)</span>个无限存活的公司生产，<span class="math inline">\(n\)</span>潜在无限大。
 企业的产出，也就是现金流，通过一个长期关系网络联系在一起。由于我们关注公司网络对资产收益的影响，而非
 战略网络形成，所以我们假设公司网络关系是外生决定的。除过公司外，有大量同质且无限存活的代表性投资者，他们
 持有所有经济中的资产。</p>
 </blockquote>
-<p><strong>1.公司网络和公司的现金流</strong></p>
+<p><strong>2.公司网络和公司的现金流</strong></p>
 <blockquote>
 <p>公司现金流随着时间变化，由公司层面的总冲击决定。投入劳动、资本被标准化到1。公司<span class="math inline">\(i\)</span>在<span class="math inline">\(t\)</span>期的现金流如下：</p>
 </blockquote>
@@ -54,5 +53,74 @@ log(\frac{y_{it}}{Y_{t-1}})\equiv \tilde{a}_t+\tilde{z}_{it} , i\in \{1,\dots,n\
 <blockquote>
 <p>其中，参数<span class="math inline">\(\alpha_1\)</span>和<span class="math inline">\(\alpha_2\)</span>是非负参数，所有公司都相等。参数<span class="math inline">\(d_i\)</span>代表与公司i有直接关系的公司数量。在<span class="math inline">\(\tilde{z}_{i,t+1}\)</span>上的不确定性通过伯努利随机变量<span class="math inline">\(\tilde{\epsilon}_{i,t+1}\)</span>引入。如果公司<span class="math inline">\(i\)</span>遭受特质冲击的直接影响，或者遭受其相邻公司的特质冲击影响，<span class="math inline">\(\tilde{\epsilon}_{i,t+1}=1\)</span>，否则，<span class="math inline">\(\tilde{\epsilon}_{i,t+1}=0\)</span>。</p>
 </blockquote>
+<blockquote>
+<p>为了简化模型，<span class="math inline">\(\tilde{\epsilon}_{i,t+1}\)</span>的分布由随机过程决定，该随机过程从临时的特质冲击的传播抽象所得。在<span class="math inline">\(t=1\)</span>期初，每个公司以<span class="math inline">\(0&lt;q&lt;1\)</span>的概率面临一个与其他公司独立的负向冲击，公司<span class="math inline">\(i\)</span>的负向特质冲击在<span class="math inline">\(t+1\)</span>期也会影响公司<span class="math inline">\(j\)</span>。当存在连接公司<span class="math inline">\(i\)</span>和公司<span class="math inline">\(j\)</span>的关系序列，并且该序列中的每个关系传递冲击时，<span class="math inline">\(\tilde{\epsilon}_{i,t+1}=\tilde{\epsilon}_{j,t+1}=1\)</span>。如果公司<span class="math inline">\(i\)</span>和公司<span class="math inline">\(j\)</span>在<span class="math inline">\(t+1\)</span>时期没有传递冲击，其将依概率<span class="math inline">\(\tilde{p}_{ij,t}\)</span>独立于其他关系。为了简化，这种关系被假设是间接的，<span class="math inline">\(\tilde{p}_{i,jt}=\tilde{p}_{ijt}\)</span>，所以，<span class="math inline">\(\tilde{p}_{ij,t+1}\)</span>测量了特质冲击从公司<span class="math inline">\(i\)</span>传递到公司<span class="math inline">\(j\)</span>的关系倾向。</p>
+</blockquote>
+<blockquote>
+<p>在基本层面，<span class="math inline">\(\tilde{p}_{ij,t+1}\)</span>值捕获了公司<span class="math inline">\(i\)</span>与公司<span class="math inline">\(j\)</span>在现金流上的内部依赖性。该内部相依性并不能通过中心节点缓解。<span class="math inline">\(\tilde{p}_{ij,t+1}\)</span>值越高，冲击对公司<span class="math inline">\(i\)</span>现金流影响的可能性越高。概率<span class="math inline">\(\{\tilde{p}_{ij,t+1}\}_{(i,j)}\)</span>来自于参数为<span class="math inline">\(\zeta_{1,t=1}\)</span>和<span class="math inline">\(\zeta_{2,t=1}\)</span>的Beta分布。</p>
+</blockquote>
+<p><strong>3.特质冲击的传播</strong></p>
+<blockquote>
+<p>让<span class="math inline">\(G\)</span>代表<span class="math inline">\(n\)</span>个公司之间的网络关系，其中节点代表公司，边代表连接关系。给定特质冲击如何沿网络传播，<span class="math inline">\(\tilde{\epsilon}_{i,t}\)</span>由<span class="math inline">\(G\)</span>,<span class="math inline">\(q\)</span>和随机转移矩阵<span class="math inline">\(\tilde{p}_t\equiv [\tilde{p}_{ijt}]\)</span>。<span class="math inline">\(\tilde{\epsilon{i,t}}\)</span>基于条件<span class="math inline">\(\tilde{p}_t\)</span>的条件分布为<span class="math inline">\(q\)</span>,网络G以及公司i在网络G中的位置。即：</p>
+</blockquote>
+<p><span class="math display">\[
+P(\tilde{\epsilon}_{i,t}=1|\tilde{p}_t)=f(q,G,location \space{} of \space{} firm \space{} i \space{} in \space{} G)
+\]</span></p>
+<blockquote>
+<p>其中，<span class="math inline">\(P(\tilde{\epsilon}_{i,t}=0|\tilde{p}_t))=1-P(\tilde{\epsilon}_{i,t}=1|\tilde{p}_t)\)</span>，<span class="math inline">\(f\)</span>是一个由随机过程刻画的映射，由于<span class="math inline">\(\tilde{p}_t\)</span>随着时间变化，<span class="math inline">\(f\)</span>产生了公司现金流增长的时变相关结构。</p>
+</blockquote>
+<blockquote>
+<p>在<span class="math inline">\(n\)</span>非常大的时候，映射<span class="math inline">\(f\)</span>很难刻画，但是描述给定的随机分布的性质很容易。首先，在没有关系的情况下，<span class="math inline">\(\forall i\)</span>和<span class="math inline">\(\forall t\)</span>，<span class="math inline">\(P(\tilde{\epsilon}_{i,t}=1|\tilde{p}_t)=P(\tilde{\epsilon}_{i,t}=1)=q\)</span>，所以公司层面的冲击在公司和时间维度上是独立的。第二，如果两个序列之间的关系存在顺序，序列越长，公司之间冲击的关系越小。</p>
+</blockquote>
+<p><strong>4.冲击传播的临时变化</strong></p>
+<blockquote>
+<p>为了捕获具体关系的临时变化，形状参数<span class="math inline">\(\zeta_{it}={1,2}\)</span>也是随时间变动的。形状参数的变化可能是由于企业活动之间互补性的变化或新技术的到来重塑了经济的长期增长前景，具体来说，<span class="math inline">\(\zeta_{it}\)</span>取两个值，<span class="math inline">\(\zeta_{iL}\)</span>或<span class="math inline">\(\zeta_{iH}\)</span>。其中，<span class="math inline">\(\zeta_{iL}&lt;\zeta_{iH}\)</span>,并且形状参数向量<span class="math inline">\(\zeta_t \equiv [\zeta_{1t} \zeta_{2t}]\)</span>服从四个状态遍历的马尔可夫过程，转换矩阵为<span class="math inline">\(\omega\)</span>，状态<span class="math inline">\(\zeta_{LL}\equiv[\zeta_{1L}\zeta_{2L}]\)</span>，<span class="math inline">\(\zeta_{LH}\equiv[\zeta_{1L}\zeta_{2H}]\)</span>，<span class="math inline">\(\zeta_{HL}\equiv[\zeta_{1H}\zeta_{2L}]\)</span>，<span class="math inline">\(\zeta_{HH}\equiv[\zeta_{1H}\zeta_{2H}]\)</span>。</p>
+</blockquote>
 </div>
+<div id="总消费增长" class="section level2">
+<h2>总消费增长</h2>
+<blockquote>
+<p>除了总量冲击之外，该模型的两个特征对于理解总量消费增长的分布也很重要，一个是网络结构，另一个是特质冲击如何沿网络传播。在这部分，我们研究这两个特征的变化如何影响总消费增长，进而改变定价核的分布。</p>
+</blockquote>
+<blockquote>
+<p>让<span class="math inline">\(\Delta\tilde{c}_{t+1}\equiv log(\frac{c_{t+1}}{c_t})\)</span>和<span class="math inline">\(\Delta\tilde{x}_{t+1}\equiv log(\frac{Y_{t+1}}{Y_t})\)</span>分别表示<span class="math inline">\(t+1\)</span>年对数消费增长和产出增长。而不是假设总消费是所有投资财富组合的红利。</p>
+</blockquote>
+<blockquote>
+<p>我们参考Campbell(1986)和Cecchetti et al.(1993)的研究，做出了更一般的假设，假设股票市场的总红利等于总消费的幂。这样<span class="math inline">\(\Delta\tilde{c}_{t+1}\)</span>和<span class="math inline">\(\Delta\tilde{x}_{t+1}\)</span>满足：</p>
+</blockquote>
+<p><span class="math display">\[
+\Delta\tilde{x}_{t+1}=(\frac{1}{\tau})\Delta\tilde{c}_{t+1}
+\]</span></p>
+<blockquote>
+<p>其中，<span class="math inline">\(\tau\)</span>是一个常数，这样，代表性的投资者被假设能获得劳动收入。Abel(1999)在论文中提出，<span class="math inline">\((1/\tau)\)</span>表示股票的杠杆率，如果<span class="math inline">\(tau=1\)</span>，市场组合是对总财富的索赔。为了简化，让<span class="math inline">\(Y_t\equiv \prod_{i=1}^{n}{y_{i,t}^{1/n}}\)</span>，我们可以得到：</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{align*}
+\Delta\tilde{c}_{t+1}&amp;=\tau\tilde{x}_{t+1}\\
+                     &amp;=\tau log\left ( \prod_{i=1}^{n}\big ({\frac{y_{i,t}}{Y_t}\big )^{1/n}}\right)\\
+                     &amp;=\tau \left (\tilde{a}_{t+1}+\alpha_1 \big( \frac{1}{n}\sum_{i=1}^{n}d_i \big)-\alpha_2 \big( \frac{1}{n}\sum_{i=1}^{n}\epsilon_{i,t+1} \big) \right)\\
+                     &amp;=\tau \left (\tilde{a}_{t+1}+\alpha_1 \bar{d} -\alpha_2 \tilde{W}_{n,t+1} \right)
+\end{align*}
+\]</span></p>
+<blockquote>
+<p>其中，<span class="math inline">\(\bar{b}\)</span>代表在经济中每个公司关联关系的平均数量，而<span class="math inline">\(\tilde{W}_{n,t+1}\)</span>表示<span class="math inline">\(t+1\)</span>期遭受特质冲击公司的平均数量。这样<span class="math inline">\(\Delta\tilde{c}_{t+1}\)</span>的分布取决于<span class="math inline">\(\tilde{W}_{n,t+1}\)</span>，给定特质冲击如何沿网络传播，<span class="math inline">\(\Delta\tilde{c}_{t+1}\)</span>的分布受概率<span class="math inline">\(\tilde{p}_{t+1}\)</span>和网络<span class="math inline">\(G\)</span>的拓扑结构的影响。</p>
+</blockquote>
+<blockquote>
+<p>为了理解概率<span class="math inline">\(\tilde{p}_{t+1}\)</span>和网络<span class="math inline">\(G\)</span>的拓扑结构对<span class="math inline">\(\Delta\tilde{c}_{t+1}\)</span>影响的重要性，考虑两种情况。</p>
+</blockquote>
+<blockquote>
+<p><strong>（1）假设公司网络没有相关性</strong></p>
+</blockquote>
+<blockquote>
+<p>如果公司网络之间没有相关性，那么<span class="math inline">\(\{\tilde{\epsilon}_{i,t+1}\}_i^n\)</span>是一个独立二项分布的随机变量序列，并且<span class="math inline">\(n\tilde{W}_{n,t+1}\)</span>服从二项分布，根据中心极限定理，随着<span class="math inline">\(n\)</span>的增加，<span class="math inline">\(\sqrt{n}(\tilde{W}_{n,t+1}-q)\)</span>服从正态分布。此时，<span class="math inline">\(\sqrt{n}\tilde{W}_{n,t+1}\)</span>的均值和方差分别为<span class="math inline">\(q\)</span>和<span class="math inline">\(\frac{q(1-q)}{n}\)</span>。</p>
+</blockquote>
+<blockquote>
+<p><strong>（1）假设每个公司有两个关联关系</strong></p>
+</blockquote>
+<blockquote>
+<p>假设每个公司有两个关联关系，每个关系有一个不随时间变化的倾向<span class="math inline">\(p\)</span>，那么<span class="math inline">\(\{\tilde{\epsilon}_{i,t+1}\}_i^n\)</span>是一个相互依赖的二项分布随机变量序列，如果<span class="math inline">\(p\)</span>足够小，<span class="math inline">\(n\tilde{W}_{n,t+1}\)</span>将服从二项分布。在这种情况下，<span class="math inline">\(p\)</span>将影响消费增长的分布，此时，<span class="math inline">\(\tilde{W}_{n,t+1}\)</span>的均值和方差分别为<span class="math inline">\(pi\)</span>和<span class="math inline">\(\frac{\pi(1-pi)}{n}\)</span>,<span class="math inline">\(\pi\)</span>可以从以下方程获得:</p>
+</blockquote>
+<p><span class="math display">\[
+\pi=q+(1-q)\pi p(\pi p+2[p(1-\pi)+\pi(1-p)])
+\]</span></p>
 </div>

@@ -124,3 +124,49 @@ P(\tilde{\epsilon}_{i,t}=1|\tilde{p}_t)=f(q,G,location \space{} of \space{} firm
 \pi=q+(1-q)\pi p(\pi p+2[p(1-\pi)+\pi(1-p)])
 \]</span></p>
 </div>
+<div id="资产定价" class="section level2">
+<h2>资产定价</h2>
+<blockquote>
+<p>为了捕获网络结构<span class="math inline">\(G\)</span>及其结构变化对资产收益的影响，我将企业网络生成的产出相关性结构嵌入到标准资产定价框架中。为了解释资产定价现象并处理二次效用函数带来的挑战，本文利用Epstein-Zin-Weil递归偏好效用函数来处理该问题。在公司i总收益约束下的资产定价模型如下：</p>
+</blockquote>
+<p><span class="math display">\[
+E_t[\tilde{M}_{t+1}\tilde{R}_{i,t+1}]=1
+\]</span></p>
+<blockquote>
+<p>其中，<span class="math inline">\(\tilde{M}_{t+1}\equiv \left[\beta(e^{\Delta \tilde{c}_{t+1} }) ^{-\rho}\right]^{\frac{1-\gamma}{1-\rho}}\left[\tilde{R}_{a,t+1}\right]^{\frac{1-\gamma}{1-\rho}-1}\)</span> 表示<span class="math inline">\(t+1\)</span>期的定价核，<span class="math inline">\(\tilde{R}_{a,t+1}\)</span> 代表总财富上的总收益。</p>
+</blockquote>
+<blockquote>
+<p>为了解这个模型，我们寻找均衡资产价格，使得价格-红利比率平稳。由于均衡价值是经济状态的时变函数，由状态向量<span class="math inline">\(\zeta\)</span>决定，所以，<span class="math inline">\(s\in S \equiv \{LL,LH,HL,HH\}\)</span>表示状态向量的当前特征。此时，在当前状态下的期望总收益为：</p>
+</blockquote>
+<p><span class="math display">\[
+E(R_a|s)=e^{\tau (\alpha_1d+\tau\sigma_a^2)}\sum_{s^\prime\in S}w_{s,s^\prime}\left(\frac{w_{s^\prime}^a+1}{w_{s^\prime}^a}\right)E\left(e^{-\tau\alpha_2\tilde{W}_{n,t+1}}|s^\prime\right)
+\]</span>
+&gt; 其中，<span class="math inline">\(w_s^a\)</span>是当前总财富的价格，该变量来自于下面系统方程：</p>
+<p><span class="math display">\[
+w_s^a=\beta e^{\tau(1-\rho)(\tau(1-\gamma)\sigma_a^2+\alpha_1\bar{d})}\left(\sum_{s^\prime \in S}w_{s,s^\prime}E(e^{\tau(1-\gamma)\alpha_2\tilde{W}_{n,t+1}}|s^\prime)(w_{s^\prime}^\alpha+1)^\frac{1-\gamma}{1-\rho}\right)
+^\frac{1-\gamma}{1-\rho}
+\]</span>
+从上面的方程可以看出，期望收益和总财富的价格受总冲击（<span class="math inline">\(\sigma^2_\alpha\)</span>）和网络拓扑结构（<span class="math inline">\(G\)</span>）影响。</p>
+<p>对于无风险资产来说，在下一期将确定会支付一单位消费。用<span class="math inline">\(R_f(s)\)</span>代表当前状态下无风险资产的总收益，则<span class="math inline">\(R_f(s)\)</span>可以从下面方程解得：</p>
+<p><span class="math display">\[
+\frac{1}{R_f(s)}=\beta^{\frac{1-\gamma}{1-\rho}}e^{-\tau\gamma(\alpha_1\bar{d}-\tau\gamma\sigma^2_\alpha)}\left(\sum_{s^\prime \in S}w_{s,s^\prime}E(e^{\tau\gamma\alpha_2\tilde{W}_{n,t+1}}|s^\prime)(\frac{w_{s^\prime}^{a}+1}{w_{s^\prime}^{a}})^{\frac{1-\gamma}{1-\rho}}\right)
+\]</span>
+所以，均衡无风险率也由总冲击和拓扑结构驱动。</p>
+<p>现在我们研究横截面资产的期望收益，为了方便起见，我们将网络关系表示为至少两个公司关系序列的集合。如果<span class="math inline">\(G^i_n\)</span>公司i属于连接关系集合，则<span class="math inline">\(G_n\)</span>可以表示为：
+<span class="math display">\[
+G_n\equiv \bigcup_{i \in G_n}G_n^i
+\]</span></p>
+<p>定义如下平均数：</p>
+<p><span class="math display">\[
+\tilde{W}^i_{n,t+1}\equiv \frac{1}{n}\left(\sum_{j\in G_n^i}\tilde{\epsilon}_{j,t+1}\right)
+\]</span></p>
+<p><span class="math display">\[
+\tilde{W}^{-i}_{n,t+1}\equiv \frac{1}{n}\left(\sum_{j\in G_n/G_n^i}\tilde{\epsilon}_{j,t+1}\right)
+\]</span></p>
+<p>其中，<span class="math inline">\(\tilde{W}^i_{n,t+1}\)</span>表示<span class="math inline">\(t+1\)</span>期受特质冲击影响的平均公司数量，<span class="math inline">\(\tilde{W}^{-i}_{n,t+1}\)</span>表示<span class="math inline">\(G_n^i\)</span>外受特质冲击影响的平均公司数量。</p>
+<p>如果<span class="math inline">\(\nu_i(s)\)</span>代表当前公司<span class="math inline">\(i\)</span>的状态价格，则公司<span class="math inline">\(i\)</span>的期望收益表示如下：</p>
+<p><span class="math display">\[
+E(\tilde{R}_{i,t+1}|s)=\frac{e^{(1/\tau)((1/\tau)\sigma_\alpha^2+\alpha_1\bar{d})}}{\nu_i(s)}\left(\sum_{s\prime \in S}w_{s,s^\prime}\nu_i(s)E(e^{-(1/\tau)\alpha\tilde{W}_{n,t+1}}|s^\prime)\right)\\+\left(\sum_{s\prime \in S}w_{s,s^\prime}E(e^{-\alpha_2\tilde{\epsilon}_{i,t+1}}|s^\prime)\right)
+\]</span></p>
+<p>因此，公司i的预期收益由于多样化收益而下降。因此，企业的预期收益受到以下因素的影响：（a）企业对影响同一关联成分中其他企业的特质冲击的脆弱性;（B）其他关联成分中的企业受特质冲击影响的频率。</p>
+</div>

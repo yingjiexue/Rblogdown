@@ -102,21 +102,26 @@ enable: false
 <table style="border-style:none;text-align:left">
        <tr>
           <th>
-           <a style="color:#00BFFF;">Hadoop安装配置实验要求 </a>
+           <a style="color:#00BFFF;">实验1：</a>
           </th>
           <th>
-          <a href="https://www.jianguoyun.com/p/DSnRTR4QlLvvDBi5_NwFIAA</a>
+          <a href="https://www.jianguoyun.com/p/DSnRTR4QlLvvDBi5_NwFIAA">Hadoop安装配置实验要求</a>
           </th>
        </tr>
        <tr>
           <th>
-           <a style="color:#00BFFF;">Hadoop安装配置实验报告模板 </a>
+           <a style="color:#00BFFF;">  </a>
           </th>
           <th>
-          <a href="https://www.jianguoyun.com/p/Ddp3lWEQlLvvDBi7_NwFIAA</a>
+          <a href="https://www.jianguoyun.com/p/Ddp3lWEQlLvvDBi7_NwFIAA">Hadoop安装配置实验报告模板</a>
           </th>
        </tr>
 </table>
+
+
+
+
+
 
 
 # 商务统计分析

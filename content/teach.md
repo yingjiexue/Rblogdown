@@ -163,6 +163,22 @@ enable: false
       <a style="color:#00BFFF;">      </a><a href="https://www.jianguoyun.com/p/DUASsecQlLvvDBiq3NcFIAA">数据的数字描述</a>
       </th>
    </tr>
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第四章: </a>
+      </th>
+      <th>
+      <a style="color:#00BFFF;">      </a><a href="https://www.jianguoyun.com/p/DY7bIVoQlLvvDBjs_NwFIAA">抽样与抽样分布</a>
+      </th>
+   </tr>
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第五章: </a>
+      </th>
+      <th>
+      <a style="color:#00BFFF;">      </a><a href="https://www.jianguoyun.com/p/DY7bIVoQlLvvDBjs_NwFIAA">参数估计</a>
+      </th>
+   </tr>
 </table>
 
 

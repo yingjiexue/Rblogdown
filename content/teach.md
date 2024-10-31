@@ -97,8 +97,26 @@ enable: false
 </table>
 
 
+**实验报告**
 
-
+<table style="border-style:none;text-align:left">
+       <tr>
+          <th>
+           <a style="color:#00BFFF;">Hadoop安装配置实验要求 </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DSnRTR4QlLvvDBi5_NwFIAA</a>
+          </th>
+       </tr>
+       <tr>
+          <th>
+           <a style="color:#00BFFF;">Hadoop安装配置实验报告模板 </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/Ddp3lWEQlLvvDBi7_NwFIAA</a>
+          </th>
+       </tr>
+</table>
 
 
 # 商务统计分析

@@ -231,7 +231,31 @@ enable: false
           <a href="https://www.jianguoyun.com/p/DYHSBsEQlLvvDBiLsdgFIAA">数据与python语言</a>
           </th>
        </tr>
-            
+<tr>
+          <th>
+          <a style="color:#00BFFF;">第二章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DT1arbEQlLvvDBivhN4FIAA">数据可视化</a>
+          </th>
+       </tr>
+            <tr>
+          <th>
+          <a style="color:#00BFFF;">第三章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DeNmTbsQlLvvDBirhN4FIAA">数据的描述统计量</a>
+          </th>
+       </tr>
+          <tr>
+          <th>
+          <a style="color:#00BFFF;">第四章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DY7bIVoQlLvvDBjs_NwFIAA">抽样与抽样分布</a>
+          </th>
+       </tr>
+                          
 </table>
 
 
@@ -254,4 +278,17 @@ enable: false
 </table>
 
 
+## 参考书目
 
+<table style="border-style:none;text-align:left">
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">参考教材: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DXerOaQQlLvvDBizhN4FIAA">统计学</a>
+      </th>
+   </tr>
+   
+   
+</table>

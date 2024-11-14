@@ -143,7 +143,7 @@ enable: false
       <a style="color:#00BFFF;">参考教材: </a>
       </th>
       <th>
-      <a href="https://www.jianguoyun.com/p/DZqSFVQQlLvvDBiZlt8FIAA">统计学</a>
+      <a href="https://www.jianguoyun.com/p/DZqSFVQQlLvvDBiZlt8FIAA">大数据技术原理与应用</a>
       </th>
    </tr>
    

@@ -28,12 +28,20 @@ enable: false
           <a href="https://www.jianguoyun.com/p/DaqR3ogQlLvvDBilxtYFIAA">实验环境的准备</a>
           </th>
        </tr>
-              <tr>
+       <tr>
           <th>
           <a style="color:#00BFFF;">第二章: </a>
           </th>
           <th>
           <a href="https://www.jianguoyun.com/p/DZ2bib0QlLvvDBir3NcFIAA">Hadoop的部署与运维</a>
+          </th>
+       </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">第三章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DeJ_ohEQlLvvDBielt8FIAA">ZooKeeper与高可用模式Hadoop</a>
           </th>
        </tr>
 </table>
@@ -83,7 +91,15 @@ enable: false
           <a style="color:#00BFFF;">Java JDK: </a>
           </th>
           <th>
-          <a href="https://www.jianguoyun.com/p/DaMmP3AQlLvvDBjmxNkFIAA">JDK</a>
+          <a href="https://www.jianguoyun.com/p/DUjm6uMQlLvvDBihlt8FIAA">JDK</a>
+          </th>
+       </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">Hadoop安装包: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DWgVQSsQlLvvDBitlt8FIAA">Hadoop</a>
           </th>
        </tr>
        <tr>
@@ -119,6 +135,20 @@ enable: false
 </table>
 
 
+## 参考书目
+
+<table style="border-style:none;text-align:left">
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">参考教材: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DZqSFVQQlLvvDBiZlt8FIAA">统计学</a>
+      </th>
+   </tr>
+   
+   
+</table>
 
 
 

@@ -206,7 +206,7 @@ enable: false
       <a style="color:#00BFFF;">第五章: </a>
       </th>
       <th>
-      <a style="color:#00BFFF;">      </a><a href="https://www.jianguoyun.com/p/DY7bIVoQlLvvDBjs_NwFIAA">参数估计</a>
+      <a style="color:#00BFFF;">      </a><a href="https://www.jianguoyun.com/p/DYtEEiYQlLvvDBjmxt8FIAA">参数估计</a>
       </th>
    </tr>
 </table>

@@ -1,5 +1,5 @@
 ---
-title: 基于交易价格有效估计买卖价差
+title: 基于交易价格估计有效买卖价差
 author: 薛英杰
 date: '2024-11-23'
 slug: Efficient etstimation of bid-ask spreads from open high low and close prices
@@ -31,9 +31,8 @@ bilbio-style: "biomed-central.csl"
 <p>虽然从交易和报价中得出的测量结果通常更为准确，但由于获取国际市场报价数据、历史数据样本和股票以外资产类别的困难和成本，低频估算结果更容易获得，而且越来越受欢迎。然而，<strong>估计量的发展很大程度上依赖价格被连续观测的假设，但在真实的市场中，任何时间区间内交易的数量是有限的，价格在离散的时间点上被观测。我们证明了当每个观测期的交易数量较小时，估计偏差会下移。这是由于现有估计量只考虑了开盘价、最高价、最低价以及收盘价，忽略了潜在有用的信息来改善买卖价差估计，进而降低估计方差。</strong></p>
 </blockquote>
 </div>
-</div>
-<div id="文献观点" class="section level2">
-<h2>文献观点</h2>
+<div id="文献观点" class="section level3">
+<h3>文献观点</h3>
 <blockquote>
 <p>1.为了获得明确的基本面价格的代理变量，并计算他与交易价格的距离，关注高频数据的文献都依赖交易和报价数据<span class="citation">(<a href="#ref-holden2014liquidity">Holden and Jacobsen 2014</a>; <a href="#ref-stoikov2018micro">Stoikov 2018</a>; <a href="#ref-HAGSTROMER2021314">Hagströmer 2021</a>)</span>。</p>
 </blockquote>
@@ -46,8 +45,8 @@ bilbio-style: "biomed-central.csl"
 </ol>
 </blockquote>
 </div>
-<div id="有效买卖价差的计算" class="section level2">
-<h2>有效买卖价差的计算</h2>
+<div id="有效买卖价差的计算" class="section level3">
+<h3>有效买卖价差的计算</h3>
 <blockquote>
 <p>给定交易，相对有效买卖价差<span class="math inline">\(S\)</span>被定义如下：</p>
 </blockquote>
@@ -60,6 +59,7 @@ S=\frac{2D(P-\tilde{P})}{\tilde{P}}
 <blockquote>
 <p><strong>由于基本面价格</strong><span class="math inline">\(\tilde{P}\)</span>不可观测，不同买卖价差的估计量取决于不同的基本面代理变量<span class="math inline">\(\tilde{P}\)</span>，现有文献分别用高频数据和低频数据来估计基本面价格。</p>
 </blockquote>
+</div>
 <div id="高频数据度量" class="section level3">
 <h3>高频数据度量</h3>
 <blockquote>

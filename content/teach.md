@@ -44,6 +44,22 @@ enable: false
           <a href="https://www.jianguoyun.com/p/DeJ_ohEQlLvvDBielt8FIAA">ZooKeeper与高可用模式Hadoop</a>
           </th>
        </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">第四章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DUaP4voQlLvvDBi7veMFIAA">Hive数据仓库和Hbase分布式数据库</a>
+          </th>
+       </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">第五章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DV9Bo4EQlLvvDBi9veMFIAA">Spark</a>
+          </th>
+       </tr>
 </table>
 
 

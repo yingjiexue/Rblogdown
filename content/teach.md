@@ -226,6 +226,38 @@ enable: false
       <a style="color:#00BFFF;">      </a><a href="https://www.jianguoyun.com/p/DYtEEiYQlLvvDBjmxt8FIAA">参数估计</a>
       </th>
    </tr>
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第六章: </a>
+      </th>
+      <th>
+      <a style="color:#00BFFF;">      </a><a href="https://www.jianguoyun.com/p/DV0zdrEQlLvvDBi30OMFIAA">假设检验</a>
+      </th>
+   </tr>
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第七章: </a>
+      </th>
+      <th>
+      <a style="color:#00BFFF;">      </a><a href="https://www.jianguoyun.com/p/DZnpVGwQlLvvDBiy0OMFIAA">分类数据分析</a>
+      </th>
+   </tr>
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第八章: </a>
+      </th>
+      <th>
+      <a style="color:#00BFFF;">      </a><a href="https://www.jianguoyun.com/p/DYy4X7kQlLvvDBiz0OMFIAA">方差分析</a>
+      </th>
+   </tr>
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第九章: </a>
+      </th>
+      <th>
+      <a style="color:#00BFFF;">      </a><a href="https://www.jianguoyun.com/p/DUuZ5B0QlLvvDBix0OMFIAA">一元回归分析</a>
+      </th>
+   </tr>
 </table>
 
 
@@ -302,6 +334,46 @@ enable: false
           <a href="https://www.jianguoyun.com/p/DY7bIVoQlLvvDBjs_NwFIAA">抽样与抽样分布</a>
           </th>
        </tr>
+       <tr>
+      <th>
+      <a style="color:#00BFFF;">第五章: </a>
+      </th>
+      <th>
+      <a style="color:#00BFFF;">      </a><a href="https://www.jianguoyun.com/p/DYtEEiYQlLvvDBjmxt8FIAA">参数估计</a>
+      </th>
+   </tr>
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第六章: </a>
+      </th>
+      <th>
+      <a style="color:#00BFFF;">      </a><a href="https://www.jianguoyun.com/p/DV0zdrEQlLvvDBi30OMFIAA">假设检验</a>
+      </th>
+   </tr>
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第七章: </a>
+      </th>
+      <th>
+      <a style="color:#00BFFF;">      </a><a href="https://www.jianguoyun.com/p/DZnpVGwQlLvvDBiy0OMFIAA">分类数据分析</a>
+      </th>
+   </tr>
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第八章: </a>
+      </th>
+      <th>
+      <a style="color:#00BFFF;">      </a><a href="https://www.jianguoyun.com/p/DYy4X7kQlLvvDBiz0OMFIAA">方差分析</a>
+      </th>
+   </tr>
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第九章: </a>
+      </th>
+      <th>
+      <a style="color:#00BFFF;">      </a><a href="https://www.jianguoyun.com/p/DUuZ5B0QlLvvDBix0OMFIAA">一元回归分析</a>
+      </th>
+   </tr>
                           
 </table>
 

@@ -60,6 +60,14 @@ enable: false
           <a href="https://www.jianguoyun.com/p/DV9Bo4EQlLvvDBi9veMFIAA">Spark</a>
           </th>
        </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">第六章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DXPlzJQQlLvvDBjD2-UFIAA">HDFS与Mapreduce</a>
+          </th>
+       </tr>
 </table>
 
 

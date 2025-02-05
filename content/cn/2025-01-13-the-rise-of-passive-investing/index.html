@@ -19,15 +19,17 @@ bilbio-style: "biomed-central.csl"
 <div id="摘要" class="section level3">
 <h3>摘要</h3>
 <blockquote>
-<p>过去20年，被动投资策略快速发展，引起了人们关于其对市场效率和稳定性的担忧，为了 回答这些问题，本文构建了一个理性预期均衡模型，允许投资者选择不同的投资模式（主动，被动和委托主动），引入代理异质性，并使用2000年至2017年的数据估计模型。该模型认为投资费用是外生的，这些费用的变化会影响投资者选择不同投资工具的分布变化。我发现，被动投资的增长并没有增加整体价格水平，从而与常见的ETF泡沫假说相矛盾，该假说假设被动策略的快速增长可能导致这些证券的价格脱离基本面。此外，该模型表明，这种投资转变加剧了资产价格波动，这与实证研究结果一致。我们估计，目前市场波动的10%左右可以归因于被动投资的兴起。由于信息获取能力减弱，这也导致价格信息量减少。进一步降低被动管理费将加强这些效果。与委托主动投资相关的费用减少可能对被动投资的比例产生模糊的影响，但会导致价格波动加剧和信息量减少，类似于被动费用减少中观察到的动态。</p>
+<p>过去20年，被动投资策略快速发展，引起了人们关于其对市场效率和稳定性的担忧，为了 回答这些问题，本文构建了一个理性预期均衡模型，允许投资者选择不同的投资模式（主动，被动和委托主动），引入代理异质性，并使用2000年至2017年的数据估计模型。该模型认为投资费用是外生的，这些费用的变化会影响投资者选择不同投资工具的分布变化。我发现，被动投资的增长并没有增加整体价格水平，从而与常见的ETF泡沫假说相矛盾，该假说假设被动策略的快速增长可能导致这些证券的价格脱离基本面。此外，该模型表明，这种投资转变加剧了资产价格波动，这与实证研究结果一致。我们估计，目前市场波动的10%左右可以归因于被动投资的兴起。由于信息获取能力减弱，这也导致价格信息量减少。进一步降低被动管理费将加强这些效果。与委托主动投资相关<br />
+|的费用减少可能对被动投资的比例产生模糊的影响，但会导致价格波动加剧和信息量减少，类似于被动费用减少中观察到的动态。</p>
 </blockquote>
 </div>
-<div id="引言" class="section level3">
-<h3>引言</h3>
+<div id="研究问题" class="section level3">
+<h3>研究问题</h3>
 <blockquote>
 <p>近年来，人们对被动投资策略的兴趣激增，被动指数基金的数量和规模快速增长，而主动管理基金的规模逐渐减少。主动基金的业绩评价不再以绝对收益作为标准，而是将评价重点转移到其相对整个市场的超额收益。这种评价将主动投资刻画为零和游戏，一些主动基金经理能超越市场，而其他的基金经理落后市场<span class="citation">(<a href="#ref-sharpe1991arithmetic">Sharpe 1991</a>)</span>。</p>
 <p>根据 <span class="citation">Sushko and Turner (<a href="#ref-sushko">n.d.</a>)</span> ，当考虑与主动管理相关的交易成本和费用后，比较两类投资的平均收益，被动投资可能是最优的投资策略。加上被动投资的可获得性增加，使其成为投资者和散户的首选投资策略。</p>
-<p>在二十世纪末，被动投资者在资本市场中处于边缘地位，这样，被分析师和经济学家的关注也很有限。近年来，被动投资的快速增长引发了对其市场影响的研究，鉴于这一趋势快速演变，关于该话题的研究仍然有限，并且潜在的挑战似乎没有的到充分解决。</p>
+<p>在二十世纪末，被动投资者在资本市场中处于边缘地位，这样，被分析师和经济学家的关注也很有限。近年来，被动投资的快速增长引发了对其市场影响的研究，鉴于这一趋势快速演变，关于该话题的研究仍然有限，并且潜在的挑战似乎没有的到充分解决。<strong>首先，对于被动投资增加可能引起被动投资泡沫，其次，被动投资可能导致资产价格波动，最后，被动投资可能影响资产价格信息。</strong></p>
+<p>为了回答以上问题，本文建立了带噪声信号 的理性预期模型分析了资产收益。在模型中，投资者可以通过基金选择三种不同的策略：主动、被动、混合，同时引入代理人异质性，投资相关的费用被作为外生变量考虑。</p>
 </blockquote>
 </div>
 <div id="文献观点" class="section level3">
@@ -36,12 +38,187 @@ bilbio-style: "biomed-central.csl"
 <ol style="list-style-type: decimal">
 <li><span class="citation">Grossman and Stiglitz (<a href="#ref-grossman1980">1980</a>)</span> 提出了理性预期均衡模型，在这个模型中，投资者背负了获取收益信息的成本，导致资产价格不能完全反映可利用的信息。如果价格完全反映了信息，对于收集信息的投资者将没有任何好处。<strong>按照这个逻辑，如果更多的投资者选择被动投资，资产错误定价将非常普遍，反过来，将有更多的投资者变成信息交易者从错误定价中获取收益。</strong></li>
 <li><span class="citation">Liu and Wang (<a href="#ref-liu">n.d.</a>)</span> 扩展了 <span class="citation">Grossman and Stiglitz (<a href="#ref-grossman1980">1980</a>)</span> 的模型，分析了指数投资兴起对价格发现功能的影响，表明真全价格信息含量的增加或减少取决于被动投资增长的原因和信息获取的成本结构。他们推断，被动投资外生的增加无疑会导致价格信息含量的下降。</li>
+<li><span class="citation">Gârleanu and Pedersen (<a href="#ref-gârleanu2022">2022</a>)</span> 通过理论模型研究了被动投资对市场有效性的影响，发现市场有效性随着信息成本下降而上升，主动基金数量越多，市场有效性越强。同样，他们认为随着被动基金成本下降，会吸引更多的被动投资者，市场有效性将下降。其关键在于当一个稳健的共同因素存在于基本面时，宏观无效将超过微观无效。</li>
+<li><span class="citation">Anadu et al. (<a href="#ref-anadu2020">2020</a>)</span> 研究了被动投资者对金融市场波动的影响，向被动投资策略转变重塑了金融稳定的格局，增加了一些风险，同时也减轻了另一些风险。</li>
 </ol>
+</blockquote>
+</div>
+<div id="模型构建" class="section level3">
+<h3>模型构建</h3>
+<blockquote>
+<p><strong>1.择时</strong></p>
+<p>本文考虑了一个两期模型，在第0期进行信息获取和投资决策，而在第一期实现收益。具体来讲，在第0期，主动投资者可能获取私有信息并基于此做出投资决策，也可能没有获取任何信息，仅仅是委托基金以主动或别动方式进行管理。在第1期，投资收益将被实现。代理人的目标是调整风险，最大化他们在第1期的期望收益，风险大小取决于他们选择的投资模式。</p>
+<p><strong>2.资产</strong></p>
+<p>该经济包含无风险资产和风险资产，无风险资产收益标准化到0，即<span class="math inline">\(r_f=0\)</span>，风险资产的收益服从于正态分布，具体如下：</p>
+<p><span class="math display">\[
+R\sim N(\theta,\sigma^2)
+\]</span></p>
+<p>其中，<span class="math inline">\(\theta\)</span>和<span class="math inline">\(\sigma\)</span>分别为已知外生期望收益与收益的标准差。</p>
+<p>风险资产的供给<span class="math inline">\(X\)</span>是未知的，假设其服从正态分布，具体如下：</p>
+<p><span class="math display">\[
+X\sim N(\bar{x},\sigma_x^2)
+\]</span></p>
+<p>其中，<span class="math inline">\(\bar{x}\)</span>和<span class="math inline">\(\sigma_x\)</span>外生的资产供给的均值和标准差。</p>
+<p>在这个模型中，风险资产供给相关的不确定性发挥了重要作用，它防止了私人获得信息直接反映在价格中。换句话说，如果供给是已知的，没有获得私有信息的投资者将可以从价格水平中推断出其他投资者获取的私有信号的均值。因为私人信号的均值是一个足够的统计数据，从价格中推断出他的可能性完全消除了购买私有信息的动机。通过引入风险资产供给中的噪声也阻止了私有信息 直接在价格中反映。</p>
+<p><strong>3.投资者</strong></p>
+<p>有大量的投资者，用i表示，其中<span class="math inline">\(i\in(0,1)\)</span>，每一个代理人从三种投资模式中选择一种来优化决策。</p>
+<p>（1）主动投资：以成本<span class="math inline">\(C\)</span>获取关于风险资产的私有信息<span class="math inline">\(S_i\)</span>，并直接投资。</p>
+<p>（2）被动投资：支付费用<span class="math inline">\(f_p\)</span>，并被动投资资产——没有信息获取，期望收益或方差从资产价格<span class="math inline">\(P\)</span>中推断而获得。</p>
+<p>（3）委托主动投资：支付费用<span class="math inline">\(f_{MF}\)</span>，并选择委托主动投资，同时得到一些风险减少的投资收益。</p>
+<p>重要的是，代理人被假设在投资技巧上是同质性的。这捕获了教育水平、投资经验、投资渠道等因素随着总体而变化。在模型中，它通过不同代理人接受不同信息含量的信号反映。特别的，投资者<span class="math inline">\(i\)</span>可以以成本<span class="math inline">\(C_i\)</span>获得信息<span class="math inline">\(S_i\)</span>，其中<span class="math inline">\(S_i\)</span>的分布如下：</p>
+<p><span class="math display">\[
+S_i\sim N(R,\phi(i)),where \ \phi(i)=\frac{\alpha}{i^\beta}
+\]</span></p>
+<p>其中，<span class="math inline">\(\alpha,\beta&gt;0\)</span>,方差函数<span class="math inline">\(\phi(i)\)</span>的形式选择源于他是高度灵活的，并且具有期望性质以及等效幂分布。由于该函数是单调递增的，随着投资者数量增加将获得更多富有信息的信号。即信号拥有更低的方差<span class="math inline">\(\phi(i)\)</span>。它也被看着<span class="math inline">\(\lim_{i \to 0}\phi(i)=\infty\)</span>,这意味着最低技能的投资者将接收到低信息的信号，将鼓励他们选择被动投资或委托主动投资。</p>
+</blockquote>
+<blockquote>
+<p>一个代理人被动投资不获取私有信息，也不发生信息获取成本<span class="math inline">\(C\)</span>。这个代理人观测到风险资产的价格为<span class="math inline">\(P\)</span>，在这个基础上，做出风险资产购买数量的决策。在均衡时，价格将揭示了关于其他投资者私有信号的一些信息（即整个市场的知识和预期）。在这模型中的被动投资相当于股市中的投资者观察跟踪大盘的指数基金的价格，并并基于价格推断的信息决定购买的份额。在模型中，被动投资的代理人需要支付费用<span class="math inline">\(f_P\)</span>，这相当于被动基金的管理费用。</p>
+</blockquote>
+<blockquote>
+<p>在模型中，委托主动投资尝试着捕获主动管理基金和其他股票管理者的一些结构和效应。简单地来讲，委托主动投资将被视为通过共同基金的投资，在现实中，共同基金的管理费用为<span class="math inline">\(F_{MF}\)</span>，能获得一些风险资产的信息。委托主动基金的管理费用假设比被动管理基金的管理费用要高，即<span class="math inline">\(f_{MF}&gt;f_P\)</span>。</p>
+</blockquote>
+<blockquote>
+<p><strong>在模型中，存在单一风险资产，这意味着投资者是否委托多主动投资的惟一原因是能否从较低的方差中获益。</strong>因此，通过共同基金进行投资被建模为获得信号。与主动投资者的信号不同，被动基金投资者的方差对所有基金投资者都是相同的。这样，选择主动投资的投资者<span class="math inline">\(i\)</span>以方差<span class="math inline">\(V_{MF}\)</span>获得信号<span class="math inline">\(S_{i,MF}\)</span>:</p>
+</blockquote>
+<p><span class="math display">\[
+S_{i,MF} \sim N(R,V_MF(f_{MF}))
+\]</span></p>
+<blockquote>
+<p>其中，方差却决于共同基金的管理费用，具体如下：</p>
+</blockquote>
+<p><span class="math display">\[
+V_{MF}(F_{MF})=\frac{\delta}{f_{MF}^\eta}+\zeta
+\]</span></p>
+<blockquote>
+<p>其中，<span class="math inline">\(\delta,\eta,\zeta&gt;0\)</span>。方差的这种结构允许捕获共同基金在收取更高费用时能够获得更精确信息的机制。另外，<span class="math inline">\(\lim_{i \to 0}\phi(i)=\infty\)</span>意味着当不收管理费用时，共同基金没有能力获取任何有意义的信息。为了模型额外的灵活，参数<span class="math inline">\(\zeta\)</span>控制了总体方差水平。</p>
+</blockquote>
+<blockquote>
+<p>在该模型中，管理费用是外生的，在股票市场上，有许多因素影响管理费用，包括但不限于主动投资行业的外生程度，技术的变化，新的投资产品等等。</p>
+</blockquote>
+<blockquote>
+<p><strong>4.最优化问题</strong></p>
+</blockquote>
+<blockquote>
+<p>在决定投资模型后，给定信息集<span class="math inline">\(I_i\)</span>，代理人通过在第0期选择最优需求<span class="math inline">\(D_i\)</span>最大化他在时期1最终财富的期望效用，即</p>
+</blockquote>
+<p><span class="math display">\[
+\mathop{\max}_{D_i}E[U_i(W_i^1(D_i))|I_i]
+\]</span></p>
+<blockquote>
+<p>信息集取绝于代理人选择的投资模式，具体来讲，如果代理人<span class="math inline">\(i\)</span>选择被动投资，则信息集为<span class="math inline">\(I_i={P}\)</span>，对于主动投资者来说，信息集为<span class="math inline">\(I_i={P,S_i}\)</span>，对于委托投资来说，信息集为：<span class="math inline">\(I_i={P,S_{i,MF}}\)</span>。</p>
+</blockquote>
+<blockquote>
+<p>最终财富为<span class="math inline">\(W_i^1=D_iR+(W_i^0-D_iP)\)</span>，这是风险资产收益（<span class="math inline">\(D_iR\)</span>）和无风险资产收益（<span class="math inline">\(W_i^0-D_iP\)</span>）的总和。</p>
+</blockquote>
+<blockquote>
+<p>假设效用函数为指数函数，具体如下：</p>
+</blockquote>
+<p><span class="math display">\[
+U_i(W_i^1)=-e^{-\gamma W_i^1}
+\]</span></p>
+<blockquote>
+<p>其中，<span class="math inline">\(\gamma\)</span>是风险厌恶程度。</p>
+</blockquote>
+<blockquote>
+<p><strong>定理1</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>在代理人</strong><span class="math inline">\(i\)</span>的信息集<span class="math inline">\(I_i\)</span>条件下，给定风险资产均衡价格以及其收益<span class="math inline">\(R\)</span>的后验均值和方差，代理人<span class="math inline">\(i\)</span>的最优需求如下：</p>
+</blockquote>
+<p><span class="math display">\[
+D_i=\frac{E(R|I_i)-P}{\gamma Var(R|I_i)}
+\]</span></p>
+</div>
+<div id="均衡求解" class="section level3">
+<h3>均衡求解</h3>
+<blockquote>
+<p>定理1提供了每一个投资者需求函数的一般形式，但由于不同的信息集条件，具体形式不同。最优需求的推到是基于Grossman-Stiglitz步骤，先猜风险资产的价格是收益和供给的线性函数，具体如下：</p>
+</blockquote>
+<p><span class="math display">\[
+P=a+bR+cX
+\]</span></p>
+<blockquote>
+<p>其中，<span class="math inline">\(a,b\)</span>和<span class="math inline">\(c\)</span>是确定的常数。</p>
+</blockquote>
+<blockquote>
+<p>如果风险资产的价格和供给确实是线性函数，被动（P）、主动（A）、委托代（MF）理投资者的最有需求分别如下：</p>
+</blockquote>
+<p><span class="math display">\[
+D_{i,P}=D_P=\frac{1}{\gamma}\big(\frac{\theta}{\sigma^2}+\frac{b(-a-c\tilde{x})}{c^2\sigma_x^2}-P(\frac{1}{\sigma^2}+\frac{b}{c^2\sigma_x^2}(b-1)) \big)
+\]</span></p>
+<p><span class="math display">\[
+D_{i,A}=\frac{1}{\gamma}\big(\frac{\theta}{\sigma^2}+\frac{S_i}{\phi(i)}+\frac{b(-a-c\tilde{x})}{c^2\sigma_x^2}-P(\frac{1}{\sigma^2}+\frac{1}{\phi(i)}+\frac{b}{c^2\sigma_x^2}(b-1)) \big)
+\]</span></p>
+<p><span class="math display">\[
+D_{MF}=\frac{1}{\gamma}\big(\frac{\theta}{\sigma^2}+\frac{S_{iMF}}{V_{MF}(f_{MF})}+\frac{b(-a-c\tilde{x})}{c^2\sigma_x^2}-P(\frac{1}{\sigma^2}+\frac{1}{V_{MF}(f_{MF})}+\frac{b}{c^2\sigma_x^2}(b-1)) \big)
+\]</span></p>
+</div>
+<div id="市场出清" class="section level3">
+<h3>市场出清</h3>
+<blockquote>
+<p>风险资产的市场出清要求三类投资对风险资产的需求等于风险资产的供给。不损失一般性，假设有<span class="math inline">\(i\in (0,\lambda_{MF}]\)</span>的投资者选择共同基金，有<span class="math inline">\(i\in (\lambda_{MF},\lambda_{MF}+\lambda_{P}]\)</span>的投资者选择被动投资，剩余<span class="math inline">\(i\in (\lambda_{MF}+\lambda_{P},1]\)</span>的投资者选择主动投资。则投资的需求等于供给的条件如下：</p>
+</blockquote>
+<p><span class="math display">\[
+\int_0^{\lambda_{MF}}D_{i,MF}d_i+\lambda_PD_P+\int_{\lambda_{MF}+\lambda_{P}}^1D_{i,A}di=X
+\]</span></p>
+<blockquote>
+<p>从均衡条件中可以解出均衡价格，具体如下：</p>
+</blockquote>
+<p><span class="math display">\[
+P=a+bR+cX
+\]</span></p>
+<blockquote>
+<p>其中，<span class="math inline">\(a,b\)</span>和<span class="math inline">\(c\)</span>如下：</p>
+</blockquote>
+<p><span class="math display">\[
+a=\big(\frac{1}{\sigma^2} +\frac{\bar{q}^2}{\gamma^2\sigma_x^2}+\bar{q}\big)^{-1}\big(\frac{\theta}{\sigma^2} +\frac{\bar{x}\bar{q}}{\gamma^2\sigma_x^2}\big)
+\]</span></p>
+<p><span class="math display">\[
+b=\big(\frac{1}{\sigma^2} +\frac{\bar{q}^2}{\gamma^2\sigma_x^2}+\bar{q}\big)^{-1}\big(\frac{\bar{q}^2}{\gamma^2\sigma_x^2}+\bar{q}\big)
+\]</span></p>
+<p><span class="math display">\[
+c=\big(\frac{1}{\sigma^2} +\frac{\bar{q}^2}{\gamma^2\sigma_x^2}+\bar{q}\big)^{-1}\big(\frac{\bar{q}}{\gamma\sigma_x^2}+\gamma\big)
+\]</span></p>
+<blockquote>
+<p><span class="math inline">\(\bar{q}\)</span>为平均投资获得的信息准确度，具体如下：</p>
+</blockquote>
+<p><span class="math display">\[
+\bar{q}=\frac{\lambda_{MF}}{V_{MF}(f_MF)}+\int_{\lambda_{MF}+\lambda_{P}}^1(\phi(i))^{-1}di
+\]</span></p>
+</div>
+<div id="投资者比例" class="section level3">
+<h3>投资者比例</h3>
+<blockquote>
+<p>在模型中，选择不同投资模型的投资者的比例是外生的，被动投资者的比例<span class="math inline">\(\lambda_P\)</span>和委托代理投资者的比例<span class="math inline">\(\lambda_{MF}\)</span>是重要的，决定这两个比例的均衡条件如下：</p>
+</blockquote>
+<blockquote>
+<p>(1)不主动投资的代理人对于被动投资和通过共同基金投资是无差异的。该条件保证了被动投资和共同基金都有需求。通过共同基金投资成本较高，但后验方差较低。</p>
+</blockquote>
+<blockquote>
+<p>(2)代理人<span class="math inline">\(i=\lambda_{MF}+\lambda_{P}\)</span>对于投资主动还是被动无差异。</p>
+</blockquote>
+</div>
+<div id="研究结论" class="section level3">
+<h3>研究结论</h3>
+<blockquote>
+<p>过去20年被动投资的迅速增长引起了金融业经济学家和分析师对这一现象潜在后果的担忧。特别是金融业，意见分歧，也是由不同群体所代表的利益所推动的。具体而言，向被动投资的转变导致主动资产管理公司的业务损失，同时通过提供ETF为银行和其他实体创造了可观的利润，尽管ETF是低成本投资。由于被动投资仍然是一个相对较新的研究领域，经济学家考虑的模型及其分析很少，我们远远没有达成共识。</p>
+</blockquote>
+<blockquote>
+<p>本文有助于现有的文献，试图解决三个基本方面，具体而言，我们展示了被动投资的兴起如何影响2000年至2017年期间的整体价格水平、价格波动及其信息量。我们提供了一个理论模型，并使用数据来估计它。首先，该模型表明，资产的整体价格水平不会因为投资模式的转变而增加。这与一种流行的说法相反，即被动投资，特别是ETF，可能导致了所谓的ETF泡沫。其次，我们看到被动投资的增加可能对资产价格波动产生放大效应。由于这种波动性的上升并不植根于基本因素，它表明这种变化对金融市场的总体稳定产生了负面影响。第三，该模型表明，价格信息含量下降，这与该领域的绝大多数先前的研究是一致的。</p>
+</blockquote>
+<blockquote>
+<p>我们还分离了被动和委托主动管理费的影响，以显示被动投资者的比例如何变化，如果费用继续下降。外部因素，如市场竞争力的提高和技术的进步，可能会继续对收费产生负面影响。，被动费用的下降可能导致被动投资者比例的进一步增加。共同基金费用下降的影响似乎不明确，但如果出现足够大的负面变化，也可能导致这一比例进一步上升。如果费用确实继续下降，预计价格信息含量将下降，价格波动性将进一步放大。</p>
 </blockquote>
 </div>
 <div id="参考文献" class="section level3 unnumbered">
 <h3>参考文献</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-anadu2020" class="csl-entry">
+Anadu, Kenechukwu, Mathias Kruttli, Patrick McCabe, and Emilio Osambela. 2020. <span>“The Shift from Active to Passive Investing: Risks to Financial Stability?”</span> <em>Financial Analysts Journal</em> 76 (4): 23–39. <a href="https://doi.org/10.1080/0015198X.2020.1779498">https://doi.org/10.1080/0015198X.2020.1779498</a>.
+</div>
+<div id="ref-gârleanu2022" class="csl-entry">
+Gârleanu, Nicolae, and Lasse Heje Pedersen. 2022. <span>“Active and Passive Investing: Understanding Samuelson<span>’</span>s Dictum.”</span> <em>The Review of Asset Pricing Studies</em> 12 (2): 389–446. <a href="https://doi.org/10.1093/rapstu/raab020">https://doi.org/10.1093/rapstu/raab020</a>.
+</div>
 <div id="ref-grossman1980" class="csl-entry">
 Grossman, Sanford J., and Joseph E. Stiglitz. 1980. <span>“On the Impossibility of Informationally Efficient Markets.”</span> <em>The American Economic Review</em> 70 (3): 393–408. <a href="https://www.jstor.org/stable/1805228">https://www.jstor.org/stable/1805228</a>.
 </div>

@@ -39,11 +39,98 @@ bibliography: references.bib
 <h3>文献观点</h3>
 <blockquote>
 <p>1.美国股票的证券市场线要比资本资产定价模型（CAPM）更加平坦，带有借贷约束的CAPM模型比标准的CAPM模型对美股收益的解释更好<span class="citation">(<a href="#ref-mehrling2011">Mehrling and Brown 2011</a>; <a href="#ref-black1972a">Black 1972</a>)</span>。</p>
-<p>2.</p>
+<p>2.看沃伦巴菲特伯克希尔哈撒韦公司的持股，可以发现巴菲特通过购买低贝塔股票并运用刚来押注贝塔<span class="citation">(<a href="#ref-frazzini2018">Frazzini, Kabiller, and Pedersen 2018</a>)</span>。</p>
+<p>3.高贝塔的股票经风险调整后的收益率较低<span class="citation">(<a href="#ref-baker2011">Baker, Bradley, and Wurgler 2011</a>)</span>。</p>
 </blockquote>
+</div>
+<div id="理论分析" class="section level3">
+<h3>理论分析</h3>
+<blockquote>
+<p>我们考虑一个时代更替的经济，在这个经济中，每个时期<span class="math inline">\(t\)</span>，代理人<span class="math inline">\(i=1,\dots,I\)</span>出生都携带财富<span class="math inline">\(W_t^i\)</span>，并生存两期。代理人交易证券<span class="math inline">\(s=1,\dots,S\)</span>。其中，证券<span class="math inline">\(s\)</span>支付红利<span class="math inline">\(\delta_t^s\)</span>，有<span class="math inline">\(\chi^{*s}\)</span>份流通股。在每个时期<span class="math inline">\(t\)</span>，年轻的代理人选择份额为<span class="math inline">\(\chi=(\chi^1,\dots,\chi^S)^\prime\)</span>的投资组合，其余财富投资收益率为<span class="math inline">\(r^f\)</span>的无风险资产，以最大化他的效用：</p>
+</blockquote>
+<p><span class="math display">\[
+Max:  x\prime(E_t(P_{t+1}+\delta_{t+1})-(1+r^f)P_t)-\frac{\gamma^i}{2}\chi^\prime\Omega_t\chi
+\]</span></p>
+<blockquote>
+<p>其中，<span class="math inline">\(P_t\)</span>是<span class="math inline">\(t\)</span>时期的价格向量，<span class="math inline">\(\Omega\)</span>是<span class="math inline">\(P_{t+1}+\delta_{t+1}\)</span>方差-协方差矩阵，<span class="math inline">\(\gamma^i\)</span>是代理人<span class="math inline">\(i\)</span>的风险厌恶。代理人<span class="math inline">\(i\)</span>的预算约束如下：</p>
+</blockquote>
+<p><span class="math display">\[
+m_t^i\sum_{s}\chi^sP^s_t\leq W^i_t
+\]</span></p>
+<blockquote>
+<p>乘子<span class="math inline">\(m^i\)</span>为代理人的投资所使用的杠杆，这个约束要求股票份额与价格的乘积小于代理人的财富。</p>
+</blockquote>
+<blockquote>
+<p>投资约束取决于代理人<span class="math inline">\(i\)</span>。例如，一些代理人不能使用杠杆，在模型中通过<span class="math inline">\(m^i=1\)</span>来捕获。其他代理人不仅不能使用杠杆，而且必须有一部分现金财富，这个由大于<span class="math inline">\(m\)</span>大于1来捕获，而且他们面临保证金约束。</p>
+</blockquote>
+<blockquote>
+<p>我们非常感兴趣总需求等于总供给时的性质：</p>
+</blockquote>
+<p><span class="math display">\[
+\sum_i\chi^i=\chi^*
+\]</span></p>
+<blockquote>
+<p>为了求均衡解，我们让一阶条件等于0，具体如下：</p>
+</blockquote>
+<p><span class="math display">\[
+E_t(P_{t+1}+\delta_{t+1})-(1+r^f)P_t-\gamma^i\Omega \chi^i-\phi^i_tP_t=0
+\]</span></p>
+<blockquote>
+<p>其中，<span class="math inline">\(\phi^i\)</span>组合约束的拉格朗日乘数。解得<span class="math inline">\(x^i\)</span>的最优头寸为：</p>
+</blockquote>
+<p><span class="math display">\[
+x^i=\frac{1}{\gamma^i}\Omega ^{-1}(E_t(P_{t+1}+\delta_{t+1})-(1+r^f+\phi^i_t)P_t)
+\]</span></p>
+<blockquote>
+<p>对所有代理人的头寸进行加总将得到均衡条件：</p>
+</blockquote>
+<p><span class="math display">\[
+\chi^*=\frac{1}{\gamma}\Omega ^{-1}(E_t(P_{t+1}+\delta_{t+1})-(1+r^f+\phi_t)P_t)
+\]</span></p>
+<blockquote>
+<p>均衡价格和收益如下：</p>
+</blockquote>
+<p><span class="math display">\[
+P=\frac{E_t(P_{t+1}+\delta_{t+1})-\gamma\Omega\chi^*}{1+r^f+\phi_t}
+\]</span></p>
+<p><span class="math display">\[
+r_{t+1}^i=\frac{P^i_{t+1}+\delta^i_{t+1}}{P^i_t}-1
+\]</span></p>
+<blockquote>
+<p>假设市场收益为<span class="math inline">\(r_{t+1}^M\)</span>，则贝塔可以表示为：</p>
+</blockquote>
+<p><span class="math display">\[
+\beta_t^s=\frac{cov_t(r_{t+1}^s,r_{t+1}^M)}{var_t(r_{t+1}^M)}
+\]</span></p>
+<blockquote>
+<p><strong>推论1：</strong></p>
+</blockquote>
+<blockquote>
+<p>（1）对于任何资产<span class="math inline">\(s\)</span>的均衡收益为：<span class="math inline">\(E_t(r^s_{t+1})=r^f+\phi_t+\beta_t^s\lambda_t\)</span>。其中，风险溢价
+<span class="math inline">\(\lambda_t=E_t(r_{t+1}^M-r^f-\phi_t)\)</span>,<span class="math inline">\(\phi_t\)</span>平均拉格朗日乘子，测量了融资约束的紧张程度
+。</p>
+</blockquote>
+<blockquote>
+<p>（2）一个证券相对市场的超额收益<span class="math inline">\(\alpha^s=\phi_t(1-\beta_t^s)\)</span>，该<span class="math inline">\(\alpha\)</span>随着<span class="math inline">\(\beta\)</span>上升而递减。</p>
+</blockquote>
+<blockquote>
+<p>（3） 对于一个有效的投资组合，夏普比率在贝塔系数小于1的有效投资组合中最高，贝塔系数越高，夏普比率越小，贝塔系数越小。</p>
+</blockquote>
+<blockquote>
+<p><strong>下面我们将考虑做多低贝塔资产，多空高贝塔资产的因子的性质</strong>。为了构建一个因子，让<span class="math inline">\(w_L\)</span>是一个相对低贝塔资产组合权重，则低贝塔组合收益为<span class="math inline">\(r_{t+1}^L=w_Lr_{t+1}\)</span>，同时考虑类似的高贝塔资产组合收益<span class="math inline">\(r_{t+1}^H\)</span>，组合贝塔分别为<span class="math inline">\(\beta_t^L\)</span>和<span class="math inline">\(\beta_{t+1}^H\)</span>，且<span class="math inline">\(\beta_t^L&lt;\beta_t^H\)</span>。这样我们可以构建赌博贝塔因子:</p>
+</blockquote>
+<p><span class="math display">\[
+r_{t+1}^{BAB}=\frac{1}{\beta_t^L}(r_{t+1}^L-r^f)-\frac{1}{\beta_t^H}(r_{t+1}^H-r^f)
+\]</span></p>
 <div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-baker2011" class="csl-entry">
+Baker, Malcolm, Brendan Bradley, and Jeffrey Wurgler. 2011. <span>“Benchmarks as Limits to Arbitrage: Understanding the Low-Volatility Anomaly.”</span> <em>Financial Analysts Journal</em> 67 (1): 40–54. <a href="https://doi.org/10.2469/faj.v67.n1.4">https://doi.org/10.2469/faj.v67.n1.4</a>.
+</div>
 <div id="ref-black1972a" class="csl-entry">
 Black, Fischer. 1972. <span>“Capital Market Equilibrium with Restricted Borrowing.”</span> <em>The Journal of Business</em> 45 (3): 444–55. <a href="https://www.jstor.org/stable/2351499">https://www.jstor.org/stable/2351499</a>.
+</div>
+<div id="ref-frazzini2018" class="csl-entry">
+Frazzini, Andrea, David Kabiller, and Lasse Heje Pedersen. 2018. <span>“Buffett<span>’</span>s Alpha.”</span> <em>Financial Analysts Journal</em> 74 (4): 35–55. <a href="https://doi.org/10.2469/faj.v74.n4.3">https://doi.org/10.2469/faj.v74.n4.3</a>.
 </div>
 <div id="ref-mehrling2011" class="csl-entry">
 Mehrling, Perry, and Aaron Brown. 2011. <em>Fischer Black and the Revolutionary Idea of Finance</em>. John Wiley &amp; Sons.

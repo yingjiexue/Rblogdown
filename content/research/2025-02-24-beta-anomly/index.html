@@ -164,6 +164,73 @@ E_t(r_{t+1}^{BAB})=\frac{\beta_t^H-\beta_t^L}{\beta_t^H \beta_t^L}\phi_t\geq 0
 <blockquote>
 <p>不受约束的代理持有风险证券的投资组合的贝塔系数小于1;受约束的代理持有风险证券的投资组合，具有较高的贝塔系数。</p>
 </blockquote>
+</div>
+<div id="实证分析" class="section level3">
+<h3>实证分析</h3>
+<blockquote>
+<p><strong>1.估计事前beta</strong></p>
+</blockquote>
+<blockquote>
+<p>本文采用日度股票超额收益对市场超额收益的滚动回归来估计<span class="math inline">\(beta\)</span>，估计方法如下：</p>
+</blockquote>
+<p><span class="math display">\[
+\hat{\beta}_i^{ts}=\hat{\rho}\frac{\hat{\sigma_i}}{\hat{\sigma}_m}
+\]</span></p>
+<blockquote>
+<p>其中，<span class="math inline">\(\hat{\sigma_i}\)</span>和<span class="math inline">\(\hat{\sigma_m}\)</span>分别是股票和市场的波动率的估计量。<span class="math inline">\(\hat{\rho}\)</span>是相关系数的估计量。<strong>独立估计波动率和相关系数主要有两个原因：（1）股票与市场之间相关性的变化比二者的波动变化慢，则估计波动用1年期的数据，估计相关系数用5年期的数据；（2）使用日度对数收益来估计波动，使用重叠三天的收益<span class="math inline">\(r_{i,t}^{3d}=\sum_{k=0}{2}ln(1+r_{t+K}^i)\)</span>来构造非同步交易的相关性。</strong>估计波动率至少使用6个月（120个交易日数据），估计相关系数至少使用3年（750个交易日）的数据。为了降低异常值对结果的影响，本文对估计的时间序列贝塔和横截面贝塔进行加权平均处理。具体如下：</p>
+</blockquote>
+<p><span class="math display">\[
+\hat{\beta}_i=w_i\hat{\beta}_i^{TS}+(1-w_i)\hat{\beta}_i^{XS}
+\]</span></p>
+<blockquote>
+<p><strong>为了简化，对于所有时间和资产，设置<span class="math inline">\(w=0.6，\hat{\beta}_i^{XS}=1\)</span>。</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>2.构建赌博beta因子</strong></p>
+</blockquote>
+<blockquote>
+<p>我们构建了简单的投资组合，做多低贝塔证券，做空高贝塔证券(BAB因子)。为了构建每个BAB因子，资产类别中的所有证券根据其估计的beta按升序排列。按照beta排序的证券分别被分配到低贝塔和高贝塔组，低贝塔组合有贝塔中位数以下的资产构成，在每个组合中，证券收益按照贝塔排序加权，每月组合进行调仓。</p>
+</blockquote>
+<blockquote>
+<p>具体来看，让<span class="math inline">\(z\)</span>表示组合形成期贝塔排序向量<span class="math inline">\(z_i=rank(\beta_{it})\)</span>，让<span class="math inline">\(\bar{z}\)</span>表示平均排序，则组合权重如下：</p>
+</blockquote>
+<p><span class="math display">\[
+w_H=k(z-\bar{z})^+\\
+w_L=k(z-\bar{z})^-
+\]</span></p>
+<blockquote>
+<p>其中，<span class="math inline">\(k\)</span>是一个标量常数<span class="math inline">\(k=2/1_n|z-\bar{z}|\)</span>,<span class="math inline">\(x^+\)</span>和<span class="math inline">\(x^-\)</span>表示向量x的正负元素。</p>
+</blockquote>
+<blockquote>
+<p>为了构建因子，组合在形成期被标准化。具体如下：</p>
+</blockquote>
+<p><span class="math display">\[
+r_{t+1}^{BAB}=\frac{1}{\beta_t^L}(r_{t+1}^L-r^f)-\frac{1}{\beta_t^H}(r_{t+1}^H-r^f)
+\]</span></p>
+<blockquote>
+<p>其中，<span class="math inline">\(r_{t+1}^L=r_{t+1}^\prime w_L\)</span>，<span class="math inline">\(r_{t+1}^H=r_{t+1}^\prime w_H\)</span>，<span class="math inline">\(\beta^L=\beta_{t}^\prime w_L\)</span>，<span class="math inline">\(\beta^H=\beta_{t}^\prime w_H\)</span></p>
+</blockquote>
+</div>
+<div id="研究结论" class="section level3">
+<h3>研究结论</h3>
+<blockquote>
+<p>1.高贝塔资产的投资组合比低贝塔资产的投资组合具有更低的α和夏普比率。</p>
+</blockquote>
+<blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>BAB因子的回报与所有标准资产定价因子(例如，价值、动量和规模)的回报相媲美。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3" style="list-style-type: decimal">
+<li>资金流动性的恶化应导致时间序列中BAB因子的损失，并且增加的资金流动性风险将证券横截面中的贝塔系数压缩为1。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="4" style="list-style-type: decimal">
+<li>杠杆收购基金和伯克希尔哈撒韦公司都可以获得杠杆，购买平均贝塔系数低于1的股票。</li>
+</ol>
+</blockquote>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-baker2011" class="csl-entry">
 Baker, Malcolm, Brendan Bradley, and Jeffrey Wurgler. 2011. <span>“Benchmarks as Limits to Arbitrage: Understanding the Low-Volatility Anomaly.”</span> <em>Financial Analysts Journal</em> 67 (1): 40–54. <a href="https://doi.org/10.2469/faj.v67.n1.4">https://doi.org/10.2469/faj.v67.n1.4</a>.

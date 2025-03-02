@@ -38,7 +38,7 @@ bibliography: references.bib
 <div id="文献观点" class="section level3">
 <h3>文献观点</h3>
 <blockquote>
-<p>1.美国股票的证券市场线要比资本资产定价模型（CAPM）更加平坦，带有借贷约束的CAPM模型比标准的CAPM模型对美股收益的解释更好<span class="citation">(<a href="#ref-mehrling2011">Mehrling and Brown 2011</a>; <a href="#ref-black1972a">Black 1972</a>)</span>。</p>
+<p>1.美国股票的证券市场线要比资本资产定价模型（CAPM）更加平坦，带有借贷约束的CAPM模型比标准的CAPM模型对美股收益的解释更好<span class="citation">(<a href="#ref-mehrling2011">Mehrling and Brown 2011</a>; <a href="#ref-black1972a">Black 1972a</a>)</span>。</p>
 <p>2.看沃伦巴菲特伯克希尔哈撒韦公司的持股，可以发现巴菲特通过购买低贝塔股票并运用刚来押注贝塔<span class="citation">(<a href="#ref-frazzini2018">Frazzini, Kabiller, and Pedersen 2018</a>)</span>。</p>
 <p>3.高贝塔的股票经风险调整后的收益率较低<span class="citation">(<a href="#ref-baker2011">Baker, Bradley, and Wurgler 2011</a>)</span>。</p>
 </blockquote>
@@ -106,9 +106,7 @@ r_{t+1}^i=\frac{P^i_{t+1}+\delta^i_{t+1}}{P^i_t}-1
 <p><strong>推论1：</strong></p>
 </blockquote>
 <blockquote>
-<p>（1）对于任何资产<span class="math inline">\(s\)</span>的均衡收益为：<span class="math inline">\(E_t(r^s_{t+1})=r^f+\phi_t+\beta_t^s\lambda_t\)</span>。其中，风险溢价
-<span class="math inline">\(\lambda_t=E_t(r_{t+1}^M-r^f-\phi_t)\)</span>,<span class="math inline">\(\phi_t\)</span>平均拉格朗日乘子，测量了融资约束的紧张程度
-。</p>
+<p>（1）对于任何资产<span class="math inline">\(s\)</span>的均衡收益为：<span class="math inline">\(E_t(r^s_{t+1})=r^f+\phi_t+\beta_t^s\lambda_t\)</span>。其中，风险溢价 <span class="math inline">\(\lambda_t=E_t(r_{t+1}^M-r^f-\phi_t)\)</span>,<span class="math inline">\(\phi_t\)</span>平均拉格朗日乘子，测量了融资约束的紧张程度 。</p>
 </blockquote>
 <blockquote>
 <p>（2）一个证券相对市场的超额收益<span class="math inline">\(\alpha^s=\phi_t(1-\beta_t^s)\)</span>，该<span class="math inline">\(\alpha\)</span>随着<span class="math inline">\(\beta\)</span>上升而递减。</p>
@@ -142,8 +140,7 @@ E_t(r_{t+1}^{BAB})=\frac{\beta_t^H-\beta_t^L}{\beta_t^H \beta_t^L}\phi_t\geq 0
 </blockquote>
 <p><span class="math display">\[
 \frac{\partial r_t^{BAB}}{\partial m_t^k}\leq 0
-\]</span>
-<span class="math display">\[
+\]</span> <span class="math display">\[
 \frac{\partial E_t(r_t^{BAB})}{\partial m_t^k}\leq 0
 \]</span></p>
 <blockquote>
@@ -177,13 +174,13 @@ E_t(r_{t+1}^{BAB})=\frac{\beta_t^H-\beta_t^L}{\beta_t^H \beta_t^L}\phi_t\geq 0
 \hat{\beta}_i^{ts}=\hat{\rho}\frac{\hat{\sigma_i}}{\hat{\sigma}_m}
 \]</span></p>
 <blockquote>
-<p>其中，<span class="math inline">\(\hat{\sigma_i}\)</span>和<span class="math inline">\(\hat{\sigma_m}\)</span>分别是股票和市场的波动率的估计量。<span class="math inline">\(\hat{\rho}\)</span>是相关系数的估计量。<strong>独立估计波动率和相关系数主要有两个原因：（1）股票与市场之间相关性的变化比二者的波动变化慢，则估计波动用1年期的数据，估计相关系数用5年期的数据；（2）使用日度对数收益来估计波动，使用重叠三天的收益<span class="math inline">\(r_{i,t}^{3d}=\sum_{k=0}{2}ln(1+r_{t+K}^i)\)</span>来构造非同步交易的相关性。</strong>估计波动率至少使用6个月（120个交易日数据），估计相关系数至少使用3年（750个交易日）的数据。为了降低异常值对结果的影响，本文对估计的时间序列贝塔和横截面贝塔进行加权平均处理。具体如下：</p>
+<p>其中，<span class="math inline">\(\hat{\sigma_i}\)</span>和<span class="math inline">\(\hat{\sigma_m}\)</span>分别是股票和市场的波动率的估计量。<span class="math inline">\(\hat{\rho}\)</span>是相关系数的估计量。<strong>独立估计波动率和相关系数主要有两个原因：（1）股票与市场之间相关性的变化比二者的波动变化慢，则估计波动用1年期的数据，估计相关系数用5年期的数据；（2）使用日度对数收益来估计波动，使用重叠三天的收益</strong><span class="math inline">\(r_{i,t}^{3d}=\sum_{k=0}{2}ln(1+r_{t+K}^i)\)</span>来构造非同步交易的相关性。估计波动率至少使用6个月（120个交易日数据），估计相关系数至少使用3年（750个交易日）的数据。为了降低异常值对结果的影响，本文对估计的时间序列贝塔和横截面贝塔进行加权平均处理。具体如下：</p>
 </blockquote>
 <p><span class="math display">\[
 \hat{\beta}_i=w_i\hat{\beta}_i^{TS}+(1-w_i)\hat{\beta}_i^{XS}
 \]</span></p>
 <blockquote>
-<p><strong>为了简化，对于所有时间和资产，设置<span class="math inline">\(w=0.6，\hat{\beta}_i^{XS}=1\)</span>。</strong></p>
+<p><strong>为了简化，对于所有时间和资产，设置</strong><span class="math inline">\(w=0.6，\hat{\beta}_i^{XS}=1\)</span>。</p>
 </blockquote>
 <blockquote>
 <p><strong>2.构建赌博beta因子</strong></p>
@@ -231,18 +228,129 @@ r_{t+1}^{BAB}=\frac{1}{\beta_t^L}(r_{t+1}^L-r^f)-\frac{1}{\beta_t^H}(r_{t+1}^H-r
 <li>杠杆收购基金和伯克希尔哈撒韦公司都可以获得杠杆，购买平均贝塔系数低于1的股票。</li>
 </ol>
 </blockquote>
+</div>
+</div>
+<div id="the-volatility-puzzle-of-the-beta-anomaly" class="section level2">
+<h2>The volatility puzzle of the beta anomaly</h2>
+<div id="摘要-1" class="section level3">
+<h3>摘要</h3>
+<blockquote>
+<p>本文研究表明，β异象的领先理论无法解释异象的条件性能。在低于中位数的已实现波动率的情况下，即使控制了错误定价、套利限制、彩票偏好、分析师分歧和情绪，BAB因子的异常回报率和夏普比率也会在几个月后上升。此外，杠杆约束理论与事实相反地预测，市场和BAB夏普比率随着波动性而增加。我们进一步表明，机构投资者转移他们的需求从高，低贝塔股票的波动性增加，由此产生的价格影响是足够的解释高，低波动性状态之间的异常BAB回报率的差异。</p>
+</blockquote>
+</div>
+<div id="研究问题-1" class="section level3">
+<h3>研究问题</h3>
+<blockquote>
+<p>理解风险与收益之间的关系是资产定价最核心的诉求。其中最古老最为人所知的是相比CAPM模型，低市场beta的股票获得正的超额收益，而持有高贝塔股票获得负收益。这个异象可以追溯到<span class="citation">(<a href="#ref-friend1970">Friend and Blume 1970</a>)</span>以及<span class="citation">(<a href="#ref-black1972b">Black 1972b</a>)</span>，但在这些开创性研究之后的50年数据中，它仍然是稳健的，其原因仍在积极讨论中，缺乏一个普遍接受的解释 。除了学术兴趣之外，“防御性股票”策略还经历了<span class="citation">(<a href="#ref-novy-marx2022">Novy-Marx and Velikov 2022</a>)</span>所说的“大量资本流入”，并为众多交易所交易基金和其他投资产品提供了基础。</p>
+</blockquote>
+</div>
+<div id="研究思路-1" class="section level3">
+<h3>研究思路</h3>
+<blockquote>
+<p>本文采用一种新方法来评估贝塔异象的主要理论，基于理论的能力来解释贝塔异象BAB因子的条件收益<span class="citation">(<a href="#ref-cochrane">Cochrane, n.d.a</a>)</span>。本文考虑了6个贝塔异象的潜在解释，包括杠杆约束、CAPM模型缺失的风险因子、套利限制、彩票偏好、投资者情绪和分析师意见分歧。然后，我们研究其他理论是否能纠正低波动状态下FF6模型的失效。</p>
+</blockquote>
+</div>
+<div id="文献观点-1" class="section level3">
+<h3>文献观点</h3>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><p>大量证据表明，风险与风险溢价随时间而变动，一个异象的真正原因也必须与这种时间变化相匹配<span class="citation">(<a href="#ref-cochranea">Cochrane, n.d.b</a>)</span>。</p></li>
+<li><p>由于高贝塔的股票期望收益高，低风险厌恶且受杠杆约束的投资者会抬高高贝塔的股票价格，导致CAPM模型的超额收益为负<span class="citation">(<a href="#ref-frazzini2014">Frazzini and Pedersen 2014</a>; <a href="#ref-black1972c">Black 1972c</a>)</span>。</p></li>
+<li><p><span class="citation">Liu, Stambaugh, and Yuan (<a href="#ref-liu2018">2018</a>)</span> 认为贝塔异象可能来源于特质波动率（IVOL）与贝塔横截面相关，在控制特质波动后，异象收益将会消失。</p></li>
+<li><p><span class="citation">Bali et al. (<a href="#ref-bali2017">2017</a>)</span> 认为投资者对彩票股的需求抬高了高风险股票的价格，随后获得负的超额收益。</p></li>
+<li><p><span class="citation"><span>“Investor Sentiment, Beta, and the Cost of Equity Capital | Management Science”</span> (<a href="#ref-investor">n.d.</a>)</span> 认为高贝塔系数的股票尤其容易受到市场情绪的影响，并且发现只有在市场情绪高涨的月份，这种异常现象才会显著。</p></li>
+<li><p><span class="citation"><span>“Speculative Betas - HONG - 2016 - the Journal of Finance - Wiley Online Library”</span> (<a href="#ref-speculata">n.d.</a>)</span> 研究发现贝塔系数放大了对经济的分歧，再加上卖空限制，当分歧很大时，贝塔系数高的股票就会被高估。</p></li>
+<li><p><span class="citation">Asness et al. (<a href="#ref-asness2020">2020</a>)</span> 创造了一种风险因子，将贝塔的系统性风险的横截面效应从特质波动中分离出来。</p></li>
+<li><p><span class="citation"><span>“Benchmarks as Limits to Arbitrage: Understanding the Low-Volatility Anomaly: Financial Analysts Journal: Vol 67, No 1”</span> (<a href="#ref-benchmar">n.d.</a>)</span> 从理论上证明了基金经理根据标普500等基准指数来判断，即使高贝塔的收益为负，他们也要增持高贝塔股票。</p></li>
+</ol>
+</blockquote>
+</div>
+<div id="关键变量度量" class="section level3">
+<h3>关键变量度量</h3>
+<blockquote>
+<p><strong>赌博贝塔（BAB）</strong></p>
+<p>在每个月，使用前60个月（至少36个月）的数据对所有股票做如下回归：</p>
+<p><span class="math display">\[
+r_{i,t}-r_{f,t}=\alpha_{i,t}+\beta_{i,t,0}MKT_t+\beta_{i,t,1}MKT_{t
+-1}+\epsilon_t
+\]</span></p>
+<p>其中，<span class="math inline">\(MKT_t\)</span>是市场相对无风险利率的超额收益，然后，我们缩减估计结果为<span class="math inline">\(\hat{\beta}_{n,t}^{ts}=\hat{\beta}_{n,t,0}+\hat{\beta}_{n,t,1}\)</span>，为了缓解估计误差，作如下处理：</p>
+<p><span class="math display">\[
+\hat{\beta}_{n,t}=w_n\hat{\beta}_{n,t}^{ts}+(1-w_n)\times 1
+\]</span></p>
+<p>其中，</p>
+<p><span class="math display">\[
+w_n=\frac{1/\hat{\sigma}^2(\hat{\beta}_{n,t}^{ts})}{1/\hat{\sigma}(\hat{\beta}_{n,t}^{ts})+1/\hat{\sigma}^2(\beta)}
+\]</span></p>
+<p>其中，<span class="math inline">\(\hat{\sigma}(\hat{\beta}_{n,t}^{ts})\)</span>是<span class="math inline">\(\hat{\beta}_{n,t}^{ts}\)</span>的标准误。并且<span class="math inline">\(\hat{\sigma}^2(\beta)=\hat{\sigma}^{2}_{cs}(\hat{\beta}_{n,t}^{ts})-\hat{\sigma}^{2}(\hat{\beta}^{ts})\)</span>，该公式度量了真实贝塔的横截面方差，<span class="math inline">\(\hat{\sigma}^{2}_{cs}(\hat{\beta}_{n,t}^{ts})\)</span>是<span class="math inline">\(\hat{\beta}_{n,t}^{ts}\)</span>的横截面方差，<span class="math inline">\(\hat{\sigma}^{2}(\hat{\beta}^{ts})\)</span>是横截面方差<span class="math inline">\(\hat{\sigma}^{2}_{cs}(\hat{\beta}_{n,t}^{ts})\)</span>的均值。</p>
+<p><strong>BAB因子构造</strong></p>
+<p>在每个月初，我们基于t-1月的<span class="math inline">\(\hat{\beta}_{n,t}\)</span>对所有股票进行排序，并按照十分位数分成十组，用最低<span class="math inline">\(\hat{\beta}_{n,t}\)</span>组减最高组，具体如下：</p>
+<p><span class="math display">\[
+BAB_t=r_{L,t}-r_{H,t}-(\beta_{L,t-1}-\beta_{H,t-1})MKT_t
+\]</span></p>
+</blockquote>
+</div>
+<div id="研究结论-1" class="section level3">
+<h3>研究结论</h3>
+<blockquote>
+<p>50年来，金融文献一直在努力解释贝塔系数与回报之间令人费解的弱横截面关系，这挑战了资产定价的基本原则。这些文献对这种异常现象提出了广泛的解释。虽然这些解释都有实证依据，但没有基于这些条件进行严格检验。</p>
+<p>我们表明，杠杆约束理论反事实地预测了波动性和随后的贝塔因子夏普比率之间的正关系，直观地，因为它主要依赖于风险厌恶投资者的假设，他们自然要求在横截面和时间序列中进行积极的风险回报权衡。实证研究发现，多因子资产定价模型不能解释反向押注因素的条件回报。当实现的方差下降时，解释他们无条件回报的负荷通常会缩小，因此，他们恰恰在风险最低的时候获得了最异常的回报。这一事实对于控制彩票偏好和套利限制的横截面效应的β因子仍然成立。总的来说，我们引入了一个新的时间序列维度来测试贝塔异常的主要理论，并发现这些理论通常无法解释这种异常的条件表现。</p>
+<p>当波动性较低时，机构投资者对高贝塔股票有强烈的需求，但这种需求随着风险的增加而减少。我们进一步定量地表明，这种转移需求的价值影响足以解释高波动率和低波动率制度之间押注对抗贝塔策略的异常回报的全部差异。广泛使用的基于基准的绩效评估合同以及各种机构负债和风险约束的激励可以解释这些交易模式。它们促使机构在波动性较低时强烈需求高贝塔系数的股票，以超过标准普尔500指数等平均单位贝塔系数的基准;但它们也会惩罚跟踪错误，当波动性增加时，这会鼓励投资者从高贝塔系数股票撤退到低贝塔系数股票。不管激励的确切来源是什么，“反贝塔”策略的有条件表现和我们的制度需求结果，大大提高了下一代低风险异常理论的门槛。</p>
+</blockquote>
+</div>
+<div id="参考文献" class="section level3 unnumbered">
+<h3>参考文献</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-asness2020" class="csl-entry">
+Asness, Cliff, Andrea Frazzini, Niels Joachim Gormsen, and Lasse Heje Pedersen. 2020. <span>“Betting Against Correlation: Testing Theories of the Low-Risk Effect.”</span> <em>Journal of Financial Economics</em> 135 (3): 629–52. <a href="https://doi.org/10.1016/j.jfineco.2019.07.003">https://doi.org/10.1016/j.jfineco.2019.07.003</a>.
+</div>
 <div id="ref-baker2011" class="csl-entry">
 Baker, Malcolm, Brendan Bradley, and Jeffrey Wurgler. 2011. <span>“Benchmarks as Limits to Arbitrage: Understanding the Low-Volatility Anomaly.”</span> <em>Financial Analysts Journal</em> 67 (1): 40–54. <a href="https://doi.org/10.2469/faj.v67.n1.4">https://doi.org/10.2469/faj.v67.n1.4</a>.
 </div>
+<div id="ref-bali2017" class="csl-entry">
+Bali, Turan G., Stephen J. Brown, Scott Murray, and Yi Tang. 2017. <span>“A Lottery-Demand-Based Explanation of the Beta Anomaly.”</span> <em>Journal of Financial and Quantitative Analysis</em> 52 (6): 2369–97. <a href="https://doi.org/10.1017/S0022109017000928">https://doi.org/10.1017/S0022109017000928</a>.
+</div>
+<div id="ref-benchmar" class="csl-entry">
+<span>“Benchmarks as Limits to Arbitrage: Understanding the Low-Volatility Anomaly: Financial Analysts Journal: Vol 67, No 1.”</span> n.d. <a href="https://www.tandfonline.com/doi/abs/10.2469/faj.v67.n1.4">https://www.tandfonline.com/doi/abs/10.2469/faj.v67.n1.4</a>.
+</div>
 <div id="ref-black1972a" class="csl-entry">
-Black, Fischer. 1972. <span>“Capital Market Equilibrium with Restricted Borrowing.”</span> <em>The Journal of Business</em> 45 (3): 444–55. <a href="https://www.jstor.org/stable/2351499">https://www.jstor.org/stable/2351499</a>.
+Black, Fischer. 1972a. <span>“Capital Market Equilibrium with Restricted Borrowing.”</span> <em>The Journal of Business</em> 45 (3): 444–55. <a href="https://www.jstor.org/stable/2351499">https://www.jstor.org/stable/2351499</a>.
+</div>
+<div id="ref-black1972b" class="csl-entry">
+———. 1972b. <span>“Capital Market Equilibrium with Restricted Borrowing.”</span> <em>The Journal of Business</em> 45 (3): 444–55. <a href="https://www.jstor.org/stable/2351499">https://www.jstor.org/stable/2351499</a>.
+</div>
+<div id="ref-black1972c" class="csl-entry">
+———. 1972c. <span>“Capital Market Equilibrium with Restricted Borrowing.”</span> <em>The Journal of Business</em> 45 (3): 444–55. <a href="https://www.jstor.org/stable/2351499">https://www.jstor.org/stable/2351499</a>.
+</div>
+<div id="ref-cochrane" class="csl-entry">
+Cochrane, John H. n.d.a. <span>“Presidential Address: Discount Rates.”</span> <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1540-6261.2011.01671.x">https://onlinelibrary.wiley.com/doi/10.1111/j.1540-6261.2011.01671.x</a>.
+</div>
+<div id="ref-cochranea" class="csl-entry">
+———. n.d.b. <span>“Presidential Address: Discount Rates.”</span> <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1540-6261.2011.01671.x">https://onlinelibrary.wiley.com/doi/10.1111/j.1540-6261.2011.01671.x</a>.
 </div>
 <div id="ref-frazzini2018" class="csl-entry">
 Frazzini, Andrea, David Kabiller, and Lasse Heje Pedersen. 2018. <span>“Buffett<span>’</span>s Alpha.”</span> <em>Financial Analysts Journal</em> 74 (4): 35–55. <a href="https://doi.org/10.2469/faj.v74.n4.3">https://doi.org/10.2469/faj.v74.n4.3</a>.
 </div>
+<div id="ref-frazzini2014" class="csl-entry">
+Frazzini, Andrea, and Lasse Heje Pedersen. 2014. <span>“Betting Against Beta.”</span> <em>Journal of Financial Economics</em> 111 (1): 1–25. <a href="https://doi.org/10.1016/j.jfineco.2013.10.005">https://doi.org/10.1016/j.jfineco.2013.10.005</a>.
+</div>
+<div id="ref-friend1970" class="csl-entry">
+Friend, Irwin, and Marshall Blume. 1970. <span>“Measurement of Portfolio Performance Under Uncertainty.”</span> <em>The American Economic Review</em> 60 (4): 561–75. <a href="https://www.jstor.org/stable/1818402">https://www.jstor.org/stable/1818402</a>.
+</div>
+<div id="ref-investor" class="csl-entry">
+<span>“Investor Sentiment, Beta, and the Cost of Equity Capital | Management Science.”</span> n.d. <a href="https://pubsonline.informs.org/doi/10.1287/mnsc.2014.2101">https://pubsonline.informs.org/doi/10.1287/mnsc.2014.2101</a>.
+</div>
+<div id="ref-liu2018" class="csl-entry">
+Liu, Jianan, Robert F. Stambaugh, and Yu Yuan. 2018. <span>“Absolving Beta of Volatility<span>’</span>s Effects.”</span> <em>Journal of Financial Economics</em> 128 (1): 1–15. <a href="https://doi.org/10.1016/j.jfineco.2018.01.003">https://doi.org/10.1016/j.jfineco.2018.01.003</a>.
+</div>
 <div id="ref-mehrling2011" class="csl-entry">
 Mehrling, Perry, and Aaron Brown. 2011. <em>Fischer Black and the Revolutionary Idea of Finance</em>. John Wiley &amp; Sons.
+</div>
+<div id="ref-novy-marx2022" class="csl-entry">
+Novy-Marx, Robert, and Mihail Velikov. 2022. <span>“Betting Against Betting Against Beta.”</span> <em>Journal of Financial Economics</em> 143 (1): 80–106. <a href="https://doi.org/10.1016/j.jfineco.2021.05.023">https://doi.org/10.1016/j.jfineco.2021.05.023</a>.
+</div>
+<div id="ref-speculata" class="csl-entry">
+<span>“Speculative Betas - HONG - 2016 - the Journal of Finance - Wiley Online Library.”</span> n.d. <a href="https://onlinelibrary.wiley.com/doi/10.1111/jofi.12431">https://onlinelibrary.wiley.com/doi/10.1111/jofi.12431</a>.
 </div>
 </div>
 </div>

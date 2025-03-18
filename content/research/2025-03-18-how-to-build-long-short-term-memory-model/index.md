@@ -9,6 +9,8 @@ tags:
   - research
 ---
 
+### LSTM模型理论
+
 > 为了解决深度循环神经网络中的梯度消失和爆炸问题，人们开发了许多变体。其中最著名的一种是长短期记忆网络(LSTM)。从概念上讲，LSTM 循环单元试图"记住"网络迄今为止所见的所有过去知识，并"忘记"不相关的数据。这是通过为不同目的引入称为"门"的不同激活函数层来实现的。每个 LSTM 循环单元还维护一个称为内部单元状态的向量，该向量在概念上描述了前一个 LSTM 循环单元选择保留的信息。
 
 > LSTM 网络是循环神经网络 (RNN) 最常用的变体。LSTM 的关键组件是记忆单元和门（包括遗忘门和输入门），记忆单元的内部内容由输入门和遗忘门调制。假设两个 segue 都已关闭，记忆单元的内容将在一个时间步和下一个时间步之间保持不变，梯度门控结构允许信息在许多时间步中保留，因此也允许组在许多时间步中流动。这使得 LSTM 模型能够克服大多数循环神经网络模型中发生的消失梯度。
@@ -55,38 +57,38 @@ $$
 > 设$\overline{y}_{t}$是每个时间步的预测输出， $y_{t}$ 是每个时间步的实际输出。然后，每个时间步的误差由以下公式给出：
 
 $$
-E\_{t} = -y\_{t}log(\overline{y}\_{t})
+E_{t} = -y\_{t}log(\overline{y}_{t})
 $$
 
 > 因此，总误差由所有时间步的误差总和给出。
 
 $$
-E = \sum_{t} E_{t}  
+E=\sum_t E_t
 $$
 
 $$
-\Rightarrow E = \sum_{t} -y_{t}log(\overline{y}_{t})
+\Rightarrow E=\sum_{t}-y_tlog(\overline{y}_t)
 $$
 
 > 类似地，可以将值 $\frac{\partial E}{\partial W}$ 计算为每个时间步的梯度总和。
 
 $$
-\frac{\partial E}{\partial W} = \sum_{t} \frac{\partial E_{t}}{\partial W}
+\frac{\partial E}{\partial W}=\sum_{t} \frac{\partial E_{t}}{\partial W}
 $$
 
-> 使用链式法则并利用 $\overline{y}_{t}$ 是的函数$h_{t}$, 并且实际上是的函数 这一事实$t_{t}$ ，得出以下表达式：
+> 使用链式法则，并利用$\overlie{y}_{t}$是$h_t$的函数，实际上是$c_t$的函数 ，得出以下表达式：
 
 $$
-\frac{\partial E_{t}}{\partial W} = \frac{\partial E_{t}}{\partial \overline{y}_{t}} \frac{\partial \overline{y}_t }{\partial h_t}\frac{\partial h_t}{\partial c_t}\frac{\partial c_t}{\partial c_{t-1}} \dots\frac{\partial c_0}{\partial W}
+\frac{\partial E_{t}}{\partial W} = \frac{\partial E_{t}}{\partial \overline{y}_{t}} \frac{\partial \overline{y}_t }{\partial h_t}\frac{\partial h_t}{\partial c_t} \dots\frac{\partial c_0}{\partial W}
 $$
 
 > 因此，总误差梯度由以下公式给出：
 
 $$
-\frac{\partial E}{\partial W} = \sum_{t} \frac{\partial E_{t}}{\partial \overline{y}_{t}}\frac{\partial \overline{y}_{t}}{\partial h_{t}}\frac{\partial h\_{t}}{\partial c_{t}}\frac{\partial c_{t}}{\partial c_{t-1}}\frac{\partial c_{t-1}}{\partial c_{t-2}}.......\frac{\partial c_{0}}{\partial W}
+\frac{\partial E}{\partial W} = \sum_{t} \frac{\partial E_{t}}{\partial \overline{y}_{t}}\frac{\partial \overline{y}_t}{\partial h_t}\frac{\partial h_t}{\partial c_t}\frac{\partial c_t}\dots\frac{\partial c_0}{\partial W}
 $$
 
-> 请注意，对于 LSTM 反向传播，梯度方程涉及链$\partial c_{t}$， 而对于基本循环神经网络， 梯度方程涉及链$\partial h\_{t}$。LSTM如何解决梯度消失和爆炸的问题？回想一下的表达式$c_t$ 。
+> 请注意，对于 LSTM 反向传播，梯度方程涉及链 $\partial c_{t}$ ， 而对于基本循环神经网络，梯度方程涉及链 $\partial h\_{t}$ 。LSTM如何解决梯度消失和爆炸的问题？回想一下的表达式$c_t$ 。
 
 $$
 c_{t} = i\odot g + f\odot c_{t-1}
@@ -99,3 +101,84 @@ $$
 $$
 
 > 对于基本 RNN， 在一定时间之后，该项 $\frac{\partial h_{t}}{\partial h_{t-1}}$ 开始取大于 1 或小于 1 的值，但始终在同一范围内。这是梯度消失和爆炸问题的根本原因。在 LSTM 中，该项$\frac{\partial c_{t}}{\partial c_{t-1}}$没有固定的模式，可以在任何时间步骤中取任何正值。因此，不能保证在无限数量的时间步骤中，该项将收敛到 0 或完全发散。如果梯度开始向零收敛，则可以相应调整门的权重以使其更接近 1。由于在训练阶段，网络仅调整这些权重，因此它会学习何时让梯度收敛到零以及何时保留它。
+
+### LSTM模型的训练
+
+> 在 R 中训练 LSTM 模型通常使用 keras 包，该包提供了对 TensorFlow 和 Keras API 的接口。以下是完整的 LSTM 训练流程，包括数据预处理、模型构建、训练和评估。
+
+> **1. 安装和加载必要的库**
+
+``` R
+#install.packages("keras")
+#library(keras)
+```
+
+> 然后安装 TensorFlow（如果未安装）
+
+``` R
+#install_keras()
+```
+
+> **2. 数据准备**
+
+?这里以一个简单的时间序列预测任务为例，假设我们有一组时间序列数据，并希望使用 LSTM 进行预测。
+
+> #### **(1) 生成示例时间序列数据**
+
+``` R
+set.seed(123) 
+time_steps <- 100 data <- sin(seq(1, time_steps) * 0.1) + rnorm(time_steps, sd=0.1)  # 生成带噪声的正弦数据 
+plot(data, type="l", col="blue", main="示例时间序列数据") 
+```
+
+> #### **(2) 创建 LSTM 训练数据**
+>
+> LSTM 需要输入序列数据，因此我们需要将时间序列转换为 (样本数, 时间步长, 特征数) 形式：
+
+``` R
+create_sequences <- function(data, seq_length) {   
+    X <- array(dim = c(length(data) - seq_length, seq_length, 1))   
+    Y <- array(dim = c(length(data) - seq_length, 1))      
+    for (i in 1:(length(data) - seq_length)) {     
+       X[i,,1] <- data[i:(i + seq_length - 1)]     
+       Y[i] <- data[i + seq_length]   }      
+       return(list(X,Y)) 
+}  
+seq_length <- 10  # 设定时间步长 train_size <- round(0.8 * length(data))  
+train_data <- create_sequences(data[1:train_size], seq_length) test_data <- create_sequences(data[(train_size+1):length(data)],seq_length) 
+
+X_train <- train_data[[1]] 
+Y_train <- train_data[[2]] 
+X_test <- test_data[[1]] 
+Y_test <- test_data[[2]]
+```
+
+> **3. 构建 LSTM 模型**
+
+``` R
+model <- keras_model_sequential() %>% layer_lstm(units = 50,
+        input_shape = c(seq_length, 1), return_sequences = FALSE) %>%          layer_dense(units = 1)  
+model %>% compile(   loss = "mse",   optimizer = optimizer_adam(),   metrics = list("mae") )  
+summary(model) 
+```
+
+### **4. 训练模型**
+
+``` R
+history <- model %>% fit(   X_train, Y_train,   epochs = 50,   batch_size = 16,   validation_data = list(X_test, Y_test),   verbose = 1 ) 
+```
+
+### **5. 评估模型**
+
+``` R
+model %>% evaluate(X_test, Y_test)  
+preds <- model %>% predict(X_test)  
+plot(Y_test, type = "l", col = "blue", main = "LSTM 预测 vs 真实值") lines(preds, col = "red") legend("topright", legend=c("真实值", "预测值"), col=c("blue", "red"), lty=1) 
+```
+
+### **6. 保存和加载模型**
+
+``` R
+save_model_hdf5(model, "lstm_model.h5") 
+model <- load_model_hdf5("lstm_model.h5")
+```

@@ -167,6 +167,14 @@ enable: false
           <a href="https://www.jianguoyun.com/p/DUii4y8QlLvvDBjR5toFIAA">课件代码</a>
           </th>
        </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">实验数据: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DWuGWOUQlLvvDBjKu_IFIAA">stu.txt</a>
+          </th>
+       </tr>
 </table>
 
 

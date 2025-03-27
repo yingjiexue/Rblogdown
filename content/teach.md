@@ -129,6 +129,38 @@ enable: false
        </tr>
        <tr>
           <th>
+          <a style="color:#00BFFF;">Hive安装包: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DasaDB8QlLvvDBj2tfIFIAA">Hive</a>
+          </th>
+       </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">Hbase安装包: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DawKqQcQlLvvDBj9tfIFIAA">Hbase</a>
+          </th>
+       </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">Spark安装包: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DaNLtJkQlLvvDBiFtvIFIAA">Spark</a>
+          </th>
+       </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">mesos安装包: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DTLmmK4QlLvvDBiJtvIFIAA">mesos</a>
+          </th>
+       </tr>
+       <tr>
+          <th>
           <a style="color:#00BFFF;">课程代码: </a>
           </th>
           <th>

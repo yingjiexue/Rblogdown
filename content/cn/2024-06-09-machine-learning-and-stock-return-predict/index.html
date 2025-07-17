@@ -91,8 +91,8 @@ bilbio-style: "biomed-central.csl"
 <blockquote>
 <ul>
 <li>套利限制源于多种多样的摩擦<span class="citation">(<a href="#ref-gromb2010">Gromb and Vayanos 2010</a>)</span>。</li>
-<li>在 <span class="citation">GÂRLEANU and PEDERSEN (<a href="#ref-gârleanu2013">2013</a>)</span> 、 <span class="citation">Gârleanu and Pedersen (<a href="#ref-gârleanu2016">2016</a>)</span> 和 <span class="citation">Dong, Kang, and Peress (<a href="#ref-dong2020fast">2020</a>)</span> 建立的模型中，风险承受能力有限和交易成本等摩擦导致套利者纠正错误定价的速度很慢。</li>
-<li>在实证研究中，套利限制的主要变量有总流动性<span class="citation">(<a href="#ref-pástor2003">Pástor and Stambaugh 2003</a>)</span>、特质风险<span class="citation">(<a href="#ref-ang2006">Ang et al. 2006</a>; <a href="#ref-pontiff2006">Pontiff 2006</a>)</span>、交易噪声<span class="citation">(<a href="#ref-hu2013">Hu, Pan, and Wang 2013</a>)</span>、经济不确定性<span class="citation">(<a href="#ref-jurado2015">Jurado, Ludvigson, and Ng 2015</a>)</span>、风险厌恶指数<span class="citation">(<a href="#ref-bekaert2022a">Bekaert, Engstrom, and Xu 2022</a>)</span>、卖空成本<span class="citation">(<a href="#ref-asness2018">Asness et al. 2018</a>)</span>。</li>
+<li>在 <span class="citation">GÂRLEANU and PEDERSEN (<a href="#ref-g%C3%A2rleanu2013">2013</a>)</span> 、 <span class="citation">Gârleanu and Pedersen (<a href="#ref-g%C3%A2rleanu2016">2016</a>)</span> 和 <span class="citation">Dong, Kang, and Peress (<a href="#ref-dong2020fast">2020</a>)</span> 建立的模型中，风险承受能力有限和交易成本等摩擦导致套利者纠正错误定价的速度很慢。</li>
+<li>在实证研究中，套利限制的主要变量有总流动性<span class="citation">(<a href="#ref-p%C3%A1stor2003">Pástor and Stambaugh 2003</a>)</span>、特质风险<span class="citation">(<a href="#ref-ang2006">Ang et al. 2006</a>; <a href="#ref-pontiff2006">Pontiff 2006</a>)</span>、交易噪声<span class="citation">(<a href="#ref-hu2013">Hu, Pan, and Wang 2013</a>)</span>、经济不确定性<span class="citation">(<a href="#ref-jurado2015">Jurado, Ludvigson, and Ng 2015</a>)</span>、风险厌恶指数<span class="citation">(<a href="#ref-bekaert2022a">Bekaert, Engstrom, and Xu 2022</a>)</span>、卖空成本<span class="citation">(<a href="#ref-asness2018">Asness et al. 2018</a>)</span>。</li>
 </ul>
 </blockquote>
 </div>
@@ -105,9 +105,124 @@ bilbio-style: "biomed-central.csl"
 <p>本文的实证结果显示，多头和空头收益与未来市场收益正相关，而样本外预测能力较弱意味着错误定价修正更强，导致多空异象收益对未来收益有负向预测作用。</p>
 </blockquote>
 </div>
+</div>
+<div id="deep-learning-in-asset-pricing" class="section level2">
+<h2><a href="https://doi.org/10.1287/mnsc.2023.4695">Deep Learning in Asset Pricing</a></h2>
+<div id="摘要-1" class="section level3">
+<h3>摘要</h3>
+<blockquote>
+<p>我们通过深度学习模型利用大量条件信息的优势来估计个股收益的资产定价模型，该模型同时可以保持灵活的形式，并考虑时变特征。本文的关键创新在于，使用了基本面无套利条件作为评价函数，从许多宏观经济时间序列中提取了经济状态，用对抗性方法构造了最有信息含量的测试资产。我们的资产定价模型样本外的夏普比率超过了所有基准方法，解释了定价误差，并识别了关键资产定价的因素。</p>
+</blockquote>
+</div>
+<div id="研究问题" class="section level3">
+<h3>研究问题</h3>
+<blockquote>
+<p>资产定价的基本问题是解释资产平均收益的差异，无套利定价理论为该问题提出了明确的答案，认为不同资产收益不同是由于这些资产在随机贴现因子或定价核上的暴露不同。过去40年来，资产定价的实证的探索一直是估计一个可以解释所有资产预期收益的随机贴现因子。迄今为止，学者们在一个统一的框架中努力克服了四个主要挑战：</p>
+</blockquote>
+<blockquote>
+<p>(1)构造的随机贴现因子（SDF）依赖于所有可用的信息，这意味着SDF是一个可能非常大的变量集的函数。</p>
+</blockquote>
+<blockquote>
+<p>(2)随机贴现因子（SDF）的函数形式是未知的，可能很复杂。</p>
+</blockquote>
+<blockquote>
+<p>(3)随机贴现因子（SDF）具有复杂的动态结构，单个资产的风险敞口可能随着时间的推移而变化，这取决于经济状况和资产特定属性的变化。</p>
+</blockquote>
+<blockquote>
+<p>(4)个股的风险溢价具有较低的信噪比，这使得解释所有股票预期收益的随机贴现因子（SDF）的估计变得复杂。</p>
+</blockquote>
+<blockquote>
+<p>为了应付这些挑战，本文使用深度学习模型基于大量宏观经济和公司特征信息来估计一个广义的非线性资产定价模型。主要回答了三个问题：</p>
+</blockquote>
+<blockquote>
+<p>（1）基于信息集的随机贴现因子（SDF）的函数形式是什么?(<strong>FF五因子模型认为随机贴现因子（SDF）是少数几个公司特征的线性组合，但线性模型似乎被错误设定，因子动物园意味着有更多的特征包含定价信息。</strong>)</p>
+</blockquote>
+<blockquote>
+<p>（2）什么是正确的检验资产？（<strong>传统的方法是在少量预先指定的检验资产上校准和评估资产定价模型，例如Fama和French(1992)的25个规模和账面对市场的双重分类投资组合。然而，可以很好地解释这25个投资组合的资产定价模型不需要捕获其他特征分类投资组合或单个股票收益的定价信息。我们的方法以数据驱动的方式构建了最具信息量的测试资产，这些资产是最难解释和识别SDF参数的</strong>）</p>
+</blockquote>
+<blockquote>
+<ol start="3" style="list-style-type: decimal">
+<li>经济状态是什么？（<strong>考虑到数百个具有复杂动态的宏观经济时间序列，这是一组非常粗糙的信息。我们的模型提取了少量的状态过程，这些过程基于大量宏观经济时间序列的完整动态，并且与资产定价最相关。</strong>）</li>
+</ol>
+</blockquote>
+</div>
+<div id="研究思路" class="section level3">
+<h3>研究思路</h3>
+<blockquote>
+<p>机器学习工具是为了在高信噪比环境中很好地完成预测任务。由于有效市场中的资产回报似乎由不可预测的消息主导，用现成的方法很难预测它们的风险溢价。本文在无套利条件矩约束下，估计了随机贴现因子，用其来解释所有股票收益。具体来讲，使用深度神经网络等机器学习技术来处理高维和复杂的函数依赖关系，通过长短期记忆模型（LSTM）考虑经济结构来估计随机贴现因子，通过生成式对抗网络通过识别具有最无法解释的定价信息的投资组合和状态来构建测试资产，进而改善风险溢价信号，解释个股收益。</p>
+</blockquote>
+</div>
+<div id="文献观点-1" class="section level3">
+<h3>文献观点</h3>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="citation">Gu, Kelly, and Xiu (<a href="#ref-gu2020empirical">2020</a>)</span> 比较了在预测美股收益中的机器学习方法，说明了灵活函数模型的好处。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li><span class="citation">Freyberger, Neuhierl, and Weber (<a href="#ref-freyberger2020dissecting">2020</a>)</span> 使用Lasso方法作为公司特征的非线性函数来估计股票的风险溢价。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3" style="list-style-type: decimal">
+<li><span class="citation">Feng et al. (<a href="#ref-feng2024deep">2024</a>)</span> 利用一组预先设定的线性资产定价因子施加无套利约束，并利用深度神经网络估计风险载荷。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="4" style="list-style-type: decimal">
+<li><span class="citation">Rossi (<a href="#ref-rossi2018predicting">2018</a>)</span> 基于市场投资组合和无风险资产，利用增强回归树形成条件均值方差有效投资组合。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="4" style="list-style-type: decimal">
+<li><span class="citation">Lettau and Pelger (<a href="#ref-lettau2020factors">2020</a>)</span> 扩展主成分分析(PCA)来解释无套利。他们表明，无套利惩罚项可以克服金融数据中的低信噪比问题，并找到与定价核相关的信息。</li>
+</ol>
+</blockquote>
+</div>
+<div id="核心技术路线如何估计" class="section level3">
+<h3>核心技术路线——如何估计</h3>
+<blockquote>
+<p><strong>(1)损失函数与模型构建</strong></p>
+</blockquote>
+<blockquote>
+<p>我们模型的实证的损失函数使加权样本矩最小化，加权样本矩可以解释为加权样本平均定价误差:</p>
+</blockquote>
+<p>$$</p>
+<p>L(w|,I_t,I_{ti})=<sup>{N}</sup>*||^2</p>
+<p>$$</p>
+<blockquote>
+<p>我们处理一个不平衡面板，其中每个资产的时间序列观测数<span class="math inline">\(T_i\)</span>变化。由于矩在适当条件下的收敛率为<span class="math inline">\(\sqrt{1/T_i}\)</span>，我们对每个横截面矩条件进行<span class="math inline">\(\sqrt{Ti/T}\)</span>加权，这为更精确估计的矩分配了更高的权重，并降低了仅在短时间内观察到的资产的矩的权重。</p>
+</blockquote>
+<blockquote>
+<p>对于给定的条件函数<span class="math inline">\(g(.)\)</span>和信息集的选择随机贴现因子（SDF）的组合权重，该权重由前馈网络估计，使定价误差损失最小化：</p>
+</blockquote>
+<p><span class="math display">\[
+\hat{w}=\min_{w}L(w|\hat{g},I_t,I_{ti})
+\]</span></p>
+<p>我们通过一个具有类似神经网络结构的条件网络构造条件函数<span class="math inline">\(\hat{g}\)</span>。条件网络作为对手，与估计随机贴现因子（SDF）的网络竞争，以确定最难解释的资产和投资组合策略。宏观经济信息动态由具有长短期记忆单元的递归神经网络(RNN)得到的宏观经济状态变量<span class="math inline">\(h_t\)</span>来概括。模型体系结构在图1中进行了总结，并且在下一小节中将详细描述每个不同的组件。</p>
+<p><img src="%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%CD%BC_20250715162656.png" /></p>
+<blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>模型训练的步骤</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>条件函数g是第二个前馈网络的输出。受生成对抗网络(GAN)的启发，我们通过让两个网络相互竞争来选择导致最大定价差异的时刻条件。一个网络创建随机贴现因子（SDF） Mt+1，另一个网络创建条件作用函数g。我们用三步来训练模型。我们最初的第一步是训练随机贴现因子（SDF）使无条件损失最小化。其次，给定这个随机贴现因子（SDF），我们通过优化条件网络中的参数来最大化损失。最后，给定条件网络，我们更新随机贴现因子（SDF）网络以最小化条件损失。</p>
+</blockquote>
+</div>
+<div id="研究结论-2" class="section level3">
+<h3>研究结论</h3>
+<blockquote>
+<p>本文提出了一种新的方法来估计个股收益的资产定价模型，该模型可以利用大量的条件信息，同时保持完全灵活的形式并考虑时间变化。为此，我们以一种新颖的方式组合了三种不同的深度神经网络结构:一个前馈网络用于捕获非线性，一个循环(LSTM)网络用于寻找一小组经济状态过程，一个生成对抗网络用于识别具有最无法解释的定价信息的投资组合策略。我们的关键创新是使用无套利条件作为神经网络算法的一部分。我们从无套利隐含的条件矩约束中估计解释所有股票收益的随机折现因子。我们的SDF是所有交易资产的投资组合，具有时变的投资组合权重，这些权重是可观察到的公司特定变量和宏观经济变量的一般函数。我们的模型使我们能够理解驱动资产价格的关键因素，识别股票的错误定价，并生成条件均值方差有效投资组合。</p>
+</blockquote>
+<blockquote>
+<p>我们的主要结论有四个方面。首先，我们展示了机器学习方法在资产定价中的潜力。我们能够确定驱动资产价格的关键因素，以及这种关系的功能形式，其普遍性和准确性是传统计量经济学方法无法做到的。其次，我们展示并量化了在机器学习资产定价模型的估计中包含无套利条件的重要性。深度学习的“厨房水槽”预测方法并不优于无套利约束的线性模型。这说明，在金融领域成功使用机器学习方法既需要特定学科的领域知识，也需要最先进的技术实现。第三，财务数据具有时间维度，因此必须考虑到时间维度。即使是最灵活的模型也无法弥补这样一个问题:如果只把最后的增量作为输入，宏观经济数据似乎无法为资产定价提供信息。我们表明宏观经济条件对资产定价很重要，并且可以通过少数经济状态变量来总结，这些变量依赖于所有时间序列的完整动态。第四，资产定价实际上是惊人的“线性”。只要我们孤立地考虑异常，线性因子模型就提供了一个很好的近似。然而，资产定价的多维挑战不能用线性模型来解决，需要一套不同的工具。</p>
+</blockquote>
+</div>
 <div id="参考文献" class="section level3 unnumbered">
 <h3>参考文献</h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-ang2006" class="csl-entry">
 Ang, Andrew, Robert J. Hodrick, Yuhang Xing, and Xiaoyan Zhang. 2006. <span>“The Cross<span>-</span>Section of Volatility and Expected Returns.”</span> <em>The Journal of Finance</em> 61 (1): 259–99. <a href="https://doi.org/10.1111/j.1540-6261.2006.00836.x">https://doi.org/10.1111/j.1540-6261.2006.00836.x</a>.
 </div>
@@ -120,6 +235,12 @@ Bekaert, Geert, Eric C. Engstrom, and Nancy R. Xu. 2022. <span>“The Time Varia
 <div id="ref-dong2020fast" class="csl-entry">
 Dong, Xi, Namho Kang, and Joel Peress. 2020. <span>“Fast and Slow Arbitrage: Fund Flows and Mispricing in the Frequency Domain.”</span> <a href="https://www.insead.edu/sites/insead/files/assets/faculty-personal-site/joel-peress/documents/Dong%20Kang%20Peress%20Aug2020.pdf">https://www.insead.edu/sites/insead/files/assets/faculty-personal-site/joel-peress/documents/Dong%20Kang%20Peress%20Aug2020.pdf</a>.
 </div>
+<div id="ref-feng2024deep" class="csl-entry">
+Feng, Guanhao, Jingyu He, Nicholas G Polson, and Jianeng Xu. 2024. <span>“Deep Learning in Characteristics-Sorted Factor Models.”</span> <em>Journal of Financial and Quantitative Analysis</em> 59 (7): 3001–36.
+</div>
+<div id="ref-freyberger2020dissecting" class="csl-entry">
+Freyberger, Joachim, Andreas Neuhierl, and Michael Weber. 2020. <span>“Dissecting Characteristics Nonparametrically.”</span> <em>The Review of Financial Studies</em> 33 (5): 2326–77.
+</div>
 <div id="ref-gârleanu2013" class="csl-entry">
 GÂRLEANU, NICOLAE, and LASSE HEJE PEDERSEN. 2013. <span>“Dynamic Trading with Predictable Returns and Transaction Costs.”</span> <em>The Journal of Finance</em> 68 (6): 2309–40. <a href="https://doi.org/10.1111/jofi.12080">https://doi.org/10.1111/jofi.12080</a>.
 </div>
@@ -129,17 +250,26 @@ Gârleanu, Nicolae, and Lasse Heje Pedersen. 2016. <span>“Dynamic Portfolio Ch
 <div id="ref-gromb2010" class="csl-entry">
 Gromb, Denis, and Dimitri Vayanos. 2010. <span>“Limits of Arbitrage.”</span> <em>Annual Review of Financial Economics</em> 2 (1): 251–75. <a href="https://doi.org/10.1146/annurev-financial-073009-104107">https://doi.org/10.1146/annurev-financial-073009-104107</a>.
 </div>
+<div id="ref-gu2020empirical" class="csl-entry">
+Gu, Shihao, Bryan Kelly, and Dacheng Xiu. 2020. <span>“Empirical Asset Pricing via Machine Learning.”</span> <em>The Review of Financial Studies</em> 33 (5): 2223–73.
+</div>
 <div id="ref-hu2013" class="csl-entry">
 Hu, Grace Xing, Jun Pan, and Jiang Wang. 2013. <span>“Noise as Information for Illiquidity.”</span> <em>The Journal of Finance</em> 68 (6): 2341–82. <a href="https://doi.org/10.1111/jofi.12083">https://doi.org/10.1111/jofi.12083</a>.
 </div>
 <div id="ref-jurado2015" class="csl-entry">
 Jurado, Kyle, Sydney C. Ludvigson, and Serena Ng. 2015. <span>“Measuring Uncertainty.”</span> <em>American Economic Review</em> 105 (3): 1177–1216. <a href="https://doi.org/10.1257/aer.20131193">https://doi.org/10.1257/aer.20131193</a>.
 </div>
+<div id="ref-lettau2020factors" class="csl-entry">
+Lettau, Martin, and Markus Pelger. 2020. <span>“Factors That Fit the Time Series and Cross-Section of Stock Returns.”</span> <em>The Review of Financial Studies</em> 33 (5): 2274–2325.
+</div>
 <div id="ref-pástor2003" class="csl-entry">
 Pástor, Ľuboš, and Robert F. Stambaugh. 2003. <span>“Liquidity Risk and Expected Stock Returns.”</span> <em>Journal of Political Economy</em> 111 (3): 642–85. <a href="https://doi.org/10.1086/374184">https://doi.org/10.1086/374184</a>.
 </div>
 <div id="ref-pontiff2006" class="csl-entry">
 Pontiff, Jeffrey. 2006. <span>“Costly Arbitrage and the Myth of Idiosyncratic Risk.”</span> <em>Journal of Accounting and Economics</em> 42 (1-2): 35–52. <a href="https://doi.org/10.1016/j.jacceco.2006.04.002">https://doi.org/10.1016/j.jacceco.2006.04.002</a>.
+</div>
+<div id="ref-rossi2018predicting" class="csl-entry">
+Rossi, Alberto G. 2018. <span>“Predicting Stock Market Returns with Machine Learning.”</span> <em>Georgetown University</em>.
 </div>
 </div>
 </div>

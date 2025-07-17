@@ -141,9 +141,7 @@ bilbio-style: "biomed-central.csl"
 <p>（2）什么是正确的检验资产？（<strong>传统的方法是在少量预先指定的检验资产上校准和评估资产定价模型，例如Fama和French(1992)的25个规模和账面对市场的双重分类投资组合。然而，可以很好地解释这25个投资组合的资产定价模型不需要捕获其他特征分类投资组合或单个股票收益的定价信息。我们的方法以数据驱动的方式构建了最具信息量的测试资产，这些资产是最难解释和识别SDF参数的</strong>）</p>
 </blockquote>
 <blockquote>
-<ol start="3" style="list-style-type: decimal">
-<li>经济状态是什么？（<strong>考虑到数百个具有复杂动态的宏观经济时间序列，这是一组非常粗糙的信息。我们的模型提取了少量的状态过程，这些过程基于大量宏观经济时间序列的完整动态，并且与资产定价最相关。</strong>）</li>
-</ol>
+<p>（3） 经济状态是什么？（<strong>考虑到数百个具有复杂动态的宏观经济时间序列，这是一组非常粗糙的信息。我们的模型提取了少量的状态过程，这些过程基于大量宏观经济时间序列的完整动态，并且与资产定价最相关。</strong>）</p>
 </blockquote>
 </div>
 <div id="研究思路" class="section level3">
@@ -189,7 +187,7 @@ bilbio-style: "biomed-central.csl"
 <p>我们模型的实证的损失函数使加权样本矩最小化，加权样本矩可以解释为加权样本平均定价误差:</p>
 </blockquote>
 <p>$$</p>
-<p>L(w|,I_t,I_{ti})=<sup>{N}</sup>*||^2</p>
+<p>L(w|,I_t,I_{ti})=_{i=1}<sup>{N}||</sup>2</p>
 <p>$$</p>
 <blockquote>
 <p>我们处理一个不平衡面板，其中每个资产的时间序列观测数<span class="math inline">\(T_i\)</span>变化。由于矩在适当条件下的收敛率为<span class="math inline">\(\sqrt{1/T_i}\)</span>，我们对每个横截面矩条件进行<span class="math inline">\(\sqrt{Ti/T}\)</span>加权，这为更精确估计的矩分配了更高的权重，并降低了仅在短时间内观察到的资产的矩的权重。</p>

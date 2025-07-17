@@ -125,9 +125,7 @@ bilbio-style: "biomed-central.csl"
 > 我们模型的实证的损失函数使加权样本矩最小化，加权样本矩可以解释为加权样本平均定价误差:
 
 $$
-
-L(w|\hat{g},I_t,I_{ti})=\frac{1}{N}\sum_{i=1}^{N}\frac{T_i}{T}\|\frac{1}{T_i}\sum*{t*\in T_i}{M{t+1}R_{t+1,i}{e}\hat{g}(I_t,I{ti})}\|^2
-
+L(w|\hat{g},I_t,I_{ti})=\frac{1}{N}\sum_{i=1}^{N}\frac{T_i}{T}\|\frac{1}{T_i}\sum_{t\in T_i}{M_{t+1}R_{t+1,i}^{e}\hat{g}(I_t,I{ti})}\|^2
 $$
 
 > 我们处理一个不平衡面板，其中每个资产的时间序列观测数$T_i$变化。由于矩在适当条件下的收敛率为$\sqrt{1/T_i}$，我们对每个横截面矩条件进行$\sqrt{Ti/T}$加权，这为更精确估计的矩分配了更高的权重，并降低了仅在短时间内观察到的资产的矩的权重。

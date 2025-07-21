@@ -1,0 +1,76 @@
+---
+title: 带约束的投资组合均值方差最优化求解
+author: 薛英杰
+date: '2025-07-20'
+slug: constrained Optimization in investment portfolio
+categories: []
+tags: []
+bibliography: references.bib
+---
+
+
+
+<div id="标准均值方差有效组合权重估计" class="section level3">
+<h3>标准均值方差有效组合权重估计</h3>
+<blockquote>
+<p>均值-方差有效组合是给定期望收益，通过调整组合权重实现投资组合风险最小化，或给定 风险，通过调整组合权重实现投资组合收益最大化。该问题可以用数学表达式表示如下：</p>
+</blockquote>
+<p><span class="math display">\[
+w_{mvp}=\min_w w^\prime \Sigma w  \\  s.t. wl=1 \\ w\mu=\bar{\mu}
+\]</span></p>
+<blockquote>
+<p>其中，<span class="math inline">\(\Sigma\)</span> 是投资组合中资产收益的协方差,<span class="math inline">\(l\)</span>为所有元素为1得向量，<span class="math inline">\(\mu\)</span>为股票收益向量，<span class="math inline">\(\bar{u}\)</span>为投资组合期望收益。</p>
+</blockquote>
+<blockquote>
+<p>该优化问题可以进一步表述为带有均值方差偏好和风险厌恶因子表达式,具体如下：</p>
+</blockquote>
+<p><span class="math display">\[
+w_{mvp}=\max_w w^\prime\mu- \frac{\gamma}{2} w^\prime\Sigma w  \\  s.t. wl=1
+\]</span></p>
+<blockquote>
+<p>其中，<span class="math inline">\(\gamma\)</span>为风险厌恶系数。</p>
+</blockquote>
+<blockquote>
+<p><strong>最优组合问题的解如下：</strong></p>
+</blockquote>
+<p><span class="math display">\[
+w_{\gamma}^{*}=\frac{1}{\gamma}(\Sigma^{-1}-\frac{1}{l^{\prime}\Sigma^{-1}l}\Sigma^{-1}ll^{\prime}\Sigma^{-1})\mu+\frac{1}{l^{\prime}\Sigma^{-1}l}\Sigma^{-1}l
+\]</span></p>
+<blockquote>
+<p>在实证中，估计该系数常常存在很多问题。例如，在短期内，<span class="math inline">\(\mu\)</span>和<span class="math inline">\(\Sigma\)</span>的估计有很大的噪声；甚至当资产的数量<span class="math inline">\(N\)</span>超过收益率时间序列长度（<span class="math inline">\(T\)</span>）时，收益率的方差协方差矩阵<span class="math inline">\(\Sigma\)</span>将不再是正定矩阵，其逆矩阵将不存在。为了解决这个问题，一些正则化技术应用而生<span class="citation">(<a href="#ref-ledoit2004">Ledoit and Wolf 2004</a>, <a href="#ref-ledoit2003">2003</a>, <a href="#ref-ledoit2004">2004</a>, <a href="#ref-ledoit2012">2012</a>; <a href="#ref-fan2008">Fan, Fan, and Lv 2008</a>)</span>。</p>
+</blockquote>
+</div>
+<div id="考虑估计不确定性与交易成本的均值方差有效组合权重估计" class="section level3">
+<h3>考虑估计不确定性与交易成本的均值方差有效组合权重估计</h3>
+<blockquote>
+<p>由于资产收益噪声较大，估计的参数具有很强的不确定性，因此，在不确定性条件下估计参数将面临重大挑战，<span class="citation">Wang (<a href="#ref-wang2005shrinkage">2005</a>)</span> 在模型和不确定性下对投资组合选择提供了理论分析；<span class="citation">Pflug, Pichler, and Wozabal (<a href="#ref-pflug2012">2012</a>)</span> 证明了在所有资产上等权配置是对抗模型不确定性的最优选择。</p>
+<p>在估计参数的不确定性中，交易成本是大家担心的主要问题，组合调整是有成本的，最优选择应该取决于投资者当前的持仓。在实证中，只给的收益率<span class="math inline">\(\hat{\mu}\)</span>与其方差-协方差矩阵<span class="math inline">\(\hat{\Sigma}\)</span>，得到的最优估计权重非常糟糕，文献提出了很多办法来克服该问题。例如，一种办法是对方差-协方差矩阵<span class="math inline">\(\hat{\Sigma}\)</span>施加正则化，利用资产定价模型估计得到的先验信息<span class="citation">(<a href="#ref-kan2007">Kan and Zhou 2007</a>)</span>；或者使用高频数据来改善预测。</p>
+<p>一个操作简便、有效（即使在高维度情况下）且纯粹受经济论据启发的统一框架是对交易成本进行事前调整<span class="citation">(<a href="#ref-hautsch2019">Hautsch and Voigt 2019</a>)</span>。</p>
+</blockquote>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-fan2008" class="csl-entry">
+Fan, Jianqing, Yingying Fan, and Jinchi Lv. 2008. <span>“High Dimensional Covariance Matrix Estimation Using a Factor Model.”</span> <em>Journal of Econometrics</em> 147 (1): 186–97. <a href="https://doi.org/10.1016/j.jeconom.2008.09.017">https://doi.org/10.1016/j.jeconom.2008.09.017</a>.
+</div>
+<div id="ref-hautsch2019" class="csl-entry">
+Hautsch, Nikolaus, and Stefan Voigt. 2019. <span>“Large-Scale Portfolio Allocation Under Transaction Costs and Model Uncertainty.”</span> <em>Journal of Econometrics</em> 212 (1): 221–40. <a href="https://doi.org/10.1016/j.jeconom.2019.04.028">https://doi.org/10.1016/j.jeconom.2019.04.028</a>.
+</div>
+<div id="ref-kan2007" class="csl-entry">
+Kan, Raymond, and Guofu Zhou. 2007. <span>“Optimal Portfolio Choice with Parameter Uncertainty.”</span> <em>Journal of Financial and Quantitative Analysis</em> 42 (3): 621–56. <a href="https://doi.org/10.1017/s0022109000004129">https://doi.org/10.1017/s0022109000004129</a>.
+</div>
+<div id="ref-ledoit2003" class="csl-entry">
+Ledoit, Olivier, and Michael Wolf. 2003. <span>“Improved Estimation of the Covariance Matrix of Stock Returns with an Application to Portfolio Selection.”</span> <em>Journal of Empirical Finance</em> 10 (5): 603–21. <a href="https://doi.org/10.1016/s0927-5398(03)00007-0">https://doi.org/10.1016/s0927-5398(03)00007-0</a>.
+</div>
+<div id="ref-ledoit2004" class="csl-entry">
+———. 2004. <span>“Honey, I Shrunk the Sample Covariance Matrix.”</span> <em>The Journal of Portfolio Management</em> 30 (4): 110–19. <a href="https://doi.org/10.3905/jpm.2004.110">https://doi.org/10.3905/jpm.2004.110</a>.
+</div>
+<div id="ref-ledoit2012" class="csl-entry">
+———. 2012. <span>“Nonlinear Shrinkage Estimation of Large-Dimensional Covariance Matrices.”</span> <em>The Annals of Statistics</em> 40 (2). <a href="https://doi.org/10.1214/12-aos989">https://doi.org/10.1214/12-aos989</a>.
+</div>
+<div id="ref-pflug2012" class="csl-entry">
+Pflug, Georg Ch., Alois Pichler, and David Wozabal. 2012. <span>“The 1/N Investment Strategy Is Optimal Under High Model Ambiguity.”</span> <em>Journal of Banking &amp; Finance</em> 36 (2): 410–17. <a href="https://doi.org/10.1016/j.jbankfin.2011.07.018">https://doi.org/10.1016/j.jbankfin.2011.07.018</a>.
+</div>
+<div id="ref-wang2005shrinkage" class="csl-entry">
+Wang, Zhenyu. 2005. <span>“A Shrinkage Approach to Model Uncertainty and Asset Allocation.”</span> <em>Review of Financial Studies</em>, 673–705.
+</div>
+</div>
+</div>

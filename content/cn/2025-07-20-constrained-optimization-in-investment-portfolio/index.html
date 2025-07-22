@@ -45,8 +45,99 @@ w_{\gamma}^{*}=\frac{1}{\gamma}(\Sigma^{-1}-\frac{1}{l^{\prime}\Sigma^{-1}l}\Sig
 <blockquote>
 <p>由于资产收益噪声较大，估计的参数具有很强的不确定性，因此，在不确定性条件下估计参数将面临重大挑战，<span class="citation">Wang (<a href="#ref-wang2005shrinkage">2005</a>)</span> 在模型和不确定性下对投资组合选择提供了理论分析；<span class="citation">Pflug, Pichler, and Wozabal (<a href="#ref-pflug2012">2012</a>)</span> 证明了在所有资产上等权配置是对抗模型不确定性的最优选择。</p>
 <p>在估计参数的不确定性中，交易成本是大家担心的主要问题，组合调整是有成本的，最优选择应该取决于投资者当前的持仓。在实证中，只给的收益率<span class="math inline">\(\hat{\mu}\)</span>与其方差-协方差矩阵<span class="math inline">\(\hat{\Sigma}\)</span>，得到的最优估计权重非常糟糕，文献提出了很多办法来克服该问题。例如，一种办法是对方差-协方差矩阵<span class="math inline">\(\hat{\Sigma}\)</span>施加正则化，利用资产定价模型估计得到的先验信息<span class="citation">(<a href="#ref-kan2007">Kan and Zhou 2007</a>)</span>；或者使用高频数据来改善预测。</p>
-<p>一个操作简便、有效（即使在高维度情况下）且纯粹受经济论据启发的统一框架是对交易成本进行事前调整<span class="citation">(<a href="#ref-hautsch2019">Hautsch and Voigt 2019</a>)</span>。</p>
+<p>一个操作简便、有效（即使在高维度情况下）且纯粹受经济论据启发的统一框架是对交易成本进行事前调整<span class="citation">(<a href="#ref-hautsch2019">Hautsch and Voigt 2019</a>)</span>。假设资产收益来自于均值为<span class="math inline">\(\mu\)</span>，方差与协方差矩阵为<span class="math inline">\(\Sigma\)</span>的正太分布，并进一步假设组合调整的交易成本的函数形式如下：</p>
+<p><span class="math display">\[
+v(w_{t+1},w_{t+},\beta)=\frac{\beta}{2}(w_{t+1}-w_{t+})^\prime (w_{t+1}-w_{t+})
+\]</span></p>
+<p>其中，成本参数<span class="math inline">\(\beta&gt;0\)</span>，<span class="math inline">\(w_{t+1}=w_t \circ (1+r_t)/l^\prime (w_t \circ (1+r_t))\)</span>,<span class="math inline">\(w_{t+}\)</span>代表组合调整前的权重。<span class="math inline">\(w_{t+1}\)</span>与<span class="math inline">\(w_{t+}\)</span>不同主要由上期收益造成。当组合权重从<span class="math inline">\(w_{t+}\)</span>调整到<span class="math inline">\(w_{t+1}\)</span>时，交易成本是对组合业绩的惩罚。</p>
+<p>在以上设定中，交易成本不是线性增加的，组合调整越大，对组合收益影响越大。这时，投资者的组合最优化问题为：</p>
+<p><span class="math display">\[
+w_{mvp}=\max_w w^\prime\mu- v(w_{t+1},w_{t+},\beta)-\frac{\gamma}{2} w^\prime\Sigma w\\
+  =max_w w^\prime\mu^\star- \frac{\gamma}{2} w^\prime\Sigma^\star w\\  
+s.t. wl=1
+\]</span></p>
+<p>其中，<span class="math inline">\(\mu^\star=\mu+\beta w_{t+}\)</span>,<span class="math inline">\(\Sigma^\star=\Sigma+\frac{\beta}{\gamma}I\)</span></p>
+<p>所以，交易成本的调整意味着一个带有收益参数调整（<span class="math inline">\(\mu^\star\)</span>,<span class="math inline">\(\Sigma^\star\)</span>）的均值方差最优组合选择。求解的组合权重如下：</p>
+<p><span class="math display">\[
+w_{\gamma}^{*}=\frac{1}{\gamma}(\Sigma^{\star-1}-\frac{1}{l^{\prime}\Sigma^{\star-1}l}\Sigma^{\star-1}ll^{\prime}\Sigma^{\star-1})\mu+\frac{1}{l^{\prime}\Sigma^{\star-1}l}\Sigma^{\star-1}l
+\]</span></p>
 </blockquote>
+</div>
+<div id="最优组合选择求解代码" class="section level3">
+<h3>最优组合选择求解代码</h3>
+<blockquote>
+<p>我们考虑均值-方差最优组合权重求解的一般形式，beta为交易成本<span class="math inline">\(\beta\)</span>（以调整前持有股票为条件），<span class="math inline">\(\beta=0\)</span>为标准的均值-方差有效组合形式，gama为投资者的风险厌恶参数<span class="math inline">\(\gamma\)</span>，w_pre为组合调整前的权重<span class="math inline">\(w_{t+}\)</span>。计算组合权重的函数如下：</p>
+</blockquote>
+<pre class="r"><code>compute_efficient_weight &lt;- function(Sigma,
+                                     mu,
+                                     gamma = 2,
+                                     beta = 0, # transaction costs
+                                     w_prev = rep(
+                                       1 / ncol(Sigma),
+                                       ncol(Sigma)
+                                     )) {
+  iota &lt;- rep(1, ncol(Sigma))
+  Sigma_processed &lt;- Sigma + beta / gamma * diag(ncol(Sigma))
+  mu_processed &lt;- mu + beta * w_prev
+
+  Sigma_inverse &lt;- solve(Sigma_processed)
+
+  w_mvp &lt;- Sigma_inverse %*% iota
+  w_mvp &lt;- as.vector(w_mvp / sum(w_mvp))
+  w_opt &lt;- w_mvp + 1 / gamma *
+    (Sigma_inverse - w_mvp %*% t(iota) %*% Sigma_inverse) %*%
+      mu_processed
+  
+  return(as.vector(w_opt))
+}</code></pre>
+<blockquote>
+<p><strong>数据准备</strong></p>
+</blockquote>
+<pre class="r"><code>pacman::p_load(tidyfinance,tidyverse,scales,tidyquant,mongolite,ggrepel,dplyr,zoo)
+url &lt;- &quot;mongodb://yingjie:19901225xyj@8.tcp.vip.cpolar.cn:14798/stockdata&quot;
+mb&lt;-mongo(collection = &quot;stockbase&quot;, db = &quot;stockdata&quot;, url = url)
+code&lt;-mb$find()|&gt;
+  head(30)|&gt;
+  select(ts_code)|&gt;
+  pull()
+m &lt;- mongo(collection = &quot;qfqtradedatadaily&quot;, db = &quot;stockdata&quot;, url = url)
+# 构造 MongoDB 查询符号（&quot;$in&quot; 语法）和日期范围
+symbol_query &lt;- paste(sprintf(&#39;&quot;%s&quot;&#39;, code), collapse = &quot;, &quot;)
+
+query &lt;- sprintf(&#39;{
+  &quot;ts_code&quot;: { &quot;$in&quot;: [%s] },
+  &quot;trade_date&quot;:{&quot;$gte&quot;:&quot;20000101&quot;,
+  &quot;$lte&quot;:&quot;20241231&quot;}
+}&#39;, symbol_query)
+
+prices_daily&lt;-m$find(query=query)|&gt;
+  mutate(trade_date=as.Date(trade_date,&quot;%Y%m%d&quot;))|&gt;
+  as_tibble()
+
+##计算收益率
+
+returns_daily &lt;- prices_daily |&gt;
+  group_by(symbol) |&gt;
+  mutate(ret = close / lag(close) - 1) |&gt;
+  select(symbol, trade_date, ret) |&gt;
+  drop_na(ret)
+
+returns_wide &lt;- returns_daily |&gt; 
+  pivot_wider(names_from = symbol, values_from = ret) |&gt; 
+  na.omit()
+
+sigma &lt;- returns_wide |&gt; 
+  select(-trade_date) |&gt; 
+  cov()</code></pre>
+<blockquote>
+<p><strong>计算最优权重</strong></p>
+</blockquote>
+<pre class="r"><code>mu&lt;-colMeans(returns_wide|&gt;select(-trade_date))
+w_efficient &lt;- compute_efficient_weight(sigma, mu)
+round(w_efficient, 3)</code></pre>
+<pre><code>##  [1] -0.669  0.049  0.174  0.299 -0.249 -0.539  0.306 -0.076 -0.235  0.530
+## [11]  0.508 -0.497  0.347  0.197  0.279 -0.249 -0.087 -0.041  0.735  0.238
+## [21]  0.594 -0.415 -0.110  0.284  0.034 -0.512  0.415 -0.053  0.815 -1.073</code></pre>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-fan2008" class="csl-entry">
 Fan, Jianqing, Yingying Fan, and Jinchi Lv. 2008. <span>“High Dimensional Covariance Matrix Estimation Using a Factor Model.”</span> <em>Journal of Econometrics</em> 147 (1): 186–97. <a href="https://doi.org/10.1016/j.jeconom.2008.09.017">https://doi.org/10.1016/j.jeconom.2008.09.017</a>.

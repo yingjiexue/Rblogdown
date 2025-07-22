@@ -40,4 +40,107 @@ $$
 >
 > 在估计参数的不确定性中，交易成本是大家担心的主要问题，组合调整是有成本的，最优选择应该取决于投资者当前的持仓。在实证中，只给的收益率$\hat{\mu}$与其方差-协方差矩阵$\hat{\Sigma}$，得到的最优估计权重非常糟糕，文献提出了很多办法来克服该问题。例如，一种办法是对方差-协方差矩阵$\hat{\Sigma}$施加正则化，利用资产定价模型估计得到的先验信息[@kan2007]；或者使用高频数据来改善预测。
 >
-> 一个操作简便、有效（即使在高维度情况下）且纯粹受经济论据启发的统一框架是对交易成本进行事前调整[@hautsch2019]。
+> 一个操作简便、有效（即使在高维度情况下）且纯粹受经济论据启发的统一框架是对交易成本进行事前调整[@hautsch2019]。假设资产收益来自于均值为$\mu$，方差与协方差矩阵为$\Sigma$的正太分布，并进一步假设组合调整的交易成本的函数形式如下：
+>
+> $$
+> v(w_{t+1},w_{t+},\beta)=\frac{\beta}{2}(w_{t+1}-w_{t+})^\prime (w_{t+1}-w_{t+})
+> $$
+>
+> 其中，成本参数$\beta>0$，$w_{t+1}=w_t \circ (1+r_t)/l^\prime (w_t \circ (1+r_t))$,$w_{t+}$代表组合调整前的权重。$w_{t+1}$与$w_{t+}$不同主要由上期收益造成。当组合权重从$w_{t+}$调整到$w_{t+1}$时，交易成本是对组合业绩的惩罚。
+>
+> 在以上设定中，交易成本不是线性增加的，组合调整越大，对组合收益影响越大。这时，投资者的组合最优化问题为：
+>
+> $$
+> w_{mvp}=\max_w w^\prime\mu- v(w_{t+1},w_{t+},\beta)-\frac{\gamma}{2} w^\prime\Sigma w\\
+>   =max_w w^\prime\mu^\star- \frac{\gamma}{2} w^\prime\Sigma^\star w\\  
+> s.t. wl=1 
+> $$
+>
+> 其中，$\mu^\star=\mu+\beta w_{t+}$,$\Sigma^\star=\Sigma+\frac{\beta}{\gamma}I$
+>
+> 所以，交易成本的调整意味着一个带有收益参数调整（$\mu^\star$,$\Sigma^\star$）的均值方差最优组合选择。求解的组合权重如下：
+>
+> $$
+> w_{\gamma}^{*}=\frac{1}{\gamma}(\Sigma^{\star-1}-\frac{1}{l^{\prime}\Sigma^{\star-1}l}\Sigma^{\star-1}ll^{\prime}\Sigma^{\star-1})\mu+\frac{1}{l^{\prime}\Sigma^{\star-1}l}\Sigma^{\star-1}l
+> $$
+
+### 最优组合选择求解代码
+
+> 我们考虑均值-方差最优组合权重求解的一般形式，beta为交易成本$\beta$（以调整前持有股票为条件），$\beta=0$为标准的均值-方差有效组合形式，gama为投资者的风险厌恶参数$\gamma$，w_pre为组合调整前的权重$w_{t+}$。计算组合权重的函数如下：
+
+```{r}
+compute_efficient_weight <- function(Sigma,
+                                     mu,
+                                     gamma = 2,
+                                     beta = 0, # transaction costs
+                                     w_prev = rep(
+                                       1 / ncol(Sigma),
+                                       ncol(Sigma)
+                                     )) {
+  iota <- rep(1, ncol(Sigma))
+  Sigma_processed <- Sigma + beta / gamma * diag(ncol(Sigma))
+  mu_processed <- mu + beta * w_prev
+
+  Sigma_inverse <- solve(Sigma_processed)
+
+  w_mvp <- Sigma_inverse %*% iota
+  w_mvp <- as.vector(w_mvp / sum(w_mvp))
+  w_opt <- w_mvp + 1 / gamma *
+    (Sigma_inverse - w_mvp %*% t(iota) %*% Sigma_inverse) %*%
+      mu_processed
+  
+  return(as.vector(w_opt))
+}
+
+
+```
+
+> **数据准备**
+
+```{r}
+pacman::p_load(tidyfinance,tidyverse,scales,tidyquant,mongolite,ggrepel,dplyr,zoo)
+url <- "mongodb://yingjie:19901225xyj@8.tcp.vip.cpolar.cn:14798/stockdata"
+mb<-mongo(collection = "stockbase", db = "stockdata", url = url)
+code<-mb$find()|>
+  head(30)|>
+  select(ts_code)|>
+  pull()
+m <- mongo(collection = "qfqtradedatadaily", db = "stockdata", url = url)
+# 构造 MongoDB 查询符号（"$in" 语法）和日期范围
+symbol_query <- paste(sprintf('"%s"', code), collapse = ", ")
+
+query <- sprintf('{
+  "ts_code": { "$in": [%s] },
+  "trade_date":{"$gte":"20000101",
+  "$lte":"20241231"}
+}', symbol_query)
+
+prices_daily<-m$find(query=query)|>
+  mutate(trade_date=as.Date(trade_date,"%Y%m%d"))|>
+  as_tibble()
+
+##计算收益率
+
+returns_daily <- prices_daily |>
+  group_by(symbol) |>
+  mutate(ret = close / lag(close) - 1) |>
+  select(symbol, trade_date, ret) |>
+  drop_na(ret)
+
+returns_wide <- returns_daily |> 
+  pivot_wider(names_from = symbol, values_from = ret) |> 
+  na.omit()
+
+sigma <- returns_wide |> 
+  select(-trade_date) |> 
+  cov()
+
+```
+
+> **计算最优权重**
+
+```{r}
+mu<-colMeans(returns_wide|>select(-trade_date))
+w_efficient <- compute_efficient_weight(sigma, mu)
+round(w_efficient, 3)
+```

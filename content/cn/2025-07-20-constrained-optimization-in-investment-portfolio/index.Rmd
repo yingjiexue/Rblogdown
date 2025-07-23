@@ -98,7 +98,7 @@ compute_efficient_weight <- function(Sigma,
 > **数据准备**
 
 ```{r}
-pacman::p_load(tidyfinance,tidyverse,scales,tidyquant,mongolite,ggrepel,dplyr,zoo)
+pacman::p_load(tidyfinance,tidyverse,scales,tidyquant,mongolite,ggrepel,dplyr,zoo,ggplot2,nloptr)
 url <- "mongodb://yingjie:19901225xyj@8.tcp.vip.cpolar.cn:14798/stockdata"
 mb<-mongo(collection = "stockbase", db = "stockdata", url = url)
 code<-mb$find()|>
@@ -144,3 +144,146 @@ mu<-colMeans(returns_wide|>select(-trade_date))
 w_efficient <- compute_efficient_weight(sigma, mu)
 round(w_efficient, 3)
 ```
+
+> 以上计算结果是交易成本为0，风险厌恶系数为2的情形，权重为负的意味着做空。那么，不同水平的交易成本和风险厌恶水平下，最优投资组合如何选择？下面将通过代码来说明该问题。
+
+```{r}
+gammas <- c(2, 4, 8, 20)
+betas <- 20 * qexp((1:99) / 100)
+w_mvp <- solve(sigma) %*% rep(1, 30)
+w_mvp <- as.vector(w_mvp / sum(w_mvp))                   
+transaction_costs <- expand_grid(
+  gamma = gammas,
+  beta = betas
+) |>
+  mutate(
+    weights = map2(
+      gamma,
+      beta,
+      \(x, y) compute_efficient_weight(
+        sigma,
+        mu,
+        gamma = x,
+        beta = y / 10000,
+        w_prev = w_mvp
+      )
+    ),
+    concentration = map_dbl(weights, \(x) sum(abs(x - w_mvp)))
+  )
+
+
+transaction_costs |>
+  mutate(risk_aversion = as_factor(gamma)) |>
+  ggplot(aes(
+    x = beta,
+    y = concentration,
+    color = risk_aversion,
+    linetype = risk_aversion
+  )) +
+  geom_line() +
+  guides(linetype = "none") + 
+  labs(
+    x = "Transaction cost parameter",
+    y = "Distance from MVP",
+    color = "Risk aversion",
+    title = "Portfolio weights for different risk aversion and transaction cost"
+  )+theme(
+    legend.position = "bottom",            # 图例位置在底部
+    legend.justification = "center",       # 图例居中
+    legend.box.just = "center",            # 图例盒子居中
+    legend.box = "horizontal"              # 图例方向水平排列
+  )
+```
+
+### 均值-方差投资组合约束最优化求解
+
+> 最长见的约束是卖空限制，这意味着负权重将不被允许（即$w_i\ge0$）。在最优过程中引入约束，我们可以通过数值最优化方法来求解组合权重。这需要使用 nloptr 包来求解最优权重，该包提供了数值优化方法的通用接口，特别地，我们使用了序列最小二乘程序（SLSOP）算法，该算法允许同时处理多个不等式约束的二阶可导的目标函数，要求提供优化的目标函数、目标函数对应梯度、约束条件及雅可比矩阵。
+>
+> **注意**，`near()` 是一种用于成对比较两个向量是否相等的安全方法。相比之下，使用 `==` 对浮点数进行比较时对微小差异非常敏感，而这些差异可能是由于计算机中浮点数的表示方式造成的；而 `near()` 则内置了一个容差机制。
+>
+> 具体求解代码如下：
+>
+> (1)
+
+```{r}
+n_industries=30
+w_initial <- rep(1 / n_industries, n_industries)
+
+objective_mvp <- function(w) {
+  0.5 * t(w) %*% sigma %*% w
+}
+
+gradient_mvp <- function(w) {
+  sigma %*% w
+}
+
+equality_constraint <- function(w) {
+  sum(w) - 1
+}
+
+jacobian_equality <- function(w) {
+  rep(1, n_industries)
+}
+
+options <- list(
+  "xtol_rel"=1e-20, 
+  "algorithm" = "NLOPT_LD_SLSQP", 
+  "maxeval" = 10000
+)
+
+w_mvp_numerical <- nloptr(
+  x0 = w_initial, 
+  eval_f = objective_mvp, 
+  eval_grad_f = gradient_mvp,
+  eval_g_eq = equality_constraint,
+  eval_jac_g_eq = jacobian_equality,
+  opts = options
+)
+
+all(near(w_mvp, w_mvp_numerical$solution))
+
+
+
+
+```
+
+```{r}
+objective_efficient <- function(w) {
+  2 * 0.5 * t(w) %*% sigma %*% w - sum((1 + mu) * w)
+}
+
+gradient_efficient <- function(w) {
+  2 * sigma %*% w - (1 + mu)
+}
+
+w_efficient_numerical <- nloptr(
+  x0 = w_initial, 
+  eval_f = objective_efficient, 
+  eval_grad_f = gradient_efficient,
+  eval_g_eq = equality_constraint, 
+  eval_jac_g_eq = jacobian_equality,
+  opts = options
+)
+
+all(near(w_efficient, w_efficient_numerical$solution))
+```
+
+> 上述结果表明，在我们已知解析解的情形下，数值方法确实成功地恢复了最优权重。对于更复杂的优化问题，R 的优化任务视图（optimization task view）提供了对广泛优化方法的概览。
+>
+> 接下来，我们将处理一些不存在解析解的问题。首先，我们加入空头卖出限制（short-sale constraints），这意味着需要引入不等式约束。我们可以通过设定一个下界向量 lb = rep(0, n_industries) 来实现空头卖出限制。接下来，我们将处理一些不存在解析解的问题。首先，我们加入空头卖出限制（short-sale constraints），这意味着需要引入不等式约束。我们可以通过设定一个下界向量 lb = rep(0, n_industries) 来实现空头卖出限制。
+
+```{r}
+w_no_short_sale <- nloptr(
+  x0 = w_initial, 
+  eval_f = objective_efficient, 
+  eval_grad_f = gradient_efficient,
+  eval_g_eq = equality_constraint, 
+  eval_jac_g_eq = jacobian_equality,
+  lb = rep(0, n_industries),
+  opts = options
+)
+
+round(w_no_short_sale$solution, 3)
+```
+
+### 参考文献

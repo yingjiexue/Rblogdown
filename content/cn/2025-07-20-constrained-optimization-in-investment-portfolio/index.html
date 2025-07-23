@@ -93,7 +93,7 @@ w_{\gamma}^{*}=\frac{1}{\gamma}(\Sigma^{\star-1}-\frac{1}{l^{\prime}\Sigma^{\sta
 <blockquote>
 <p><strong>数据准备</strong></p>
 </blockquote>
-<pre class="r"><code>pacman::p_load(tidyfinance,tidyverse,scales,tidyquant,mongolite,ggrepel,dplyr,zoo)
+<pre class="r"><code>pacman::p_load(tidyfinance,tidyverse,scales,tidyquant,mongolite,ggrepel,dplyr,zoo,ggplot2,nloptr)
 url &lt;- &quot;mongodb://yingjie:19901225xyj@8.tcp.vip.cpolar.cn:14798/stockdata&quot;
 mb&lt;-mongo(collection = &quot;stockbase&quot;, db = &quot;stockdata&quot;, url = url)
 code&lt;-mb$find()|&gt;
@@ -138,6 +138,142 @@ round(w_efficient, 3)</code></pre>
 <pre><code>##  [1] -0.669  0.049  0.174  0.299 -0.249 -0.539  0.306 -0.076 -0.235  0.530
 ## [11]  0.508 -0.497  0.347  0.197  0.279 -0.249 -0.087 -0.041  0.735  0.238
 ## [21]  0.594 -0.415 -0.110  0.284  0.034 -0.512  0.415 -0.053  0.815 -1.073</code></pre>
+<blockquote>
+<p>以上计算结果是交易成本为0，风险厌恶系数为2的情形，权重为负的意味着做空。那么，不同水平的交易成本和风险厌恶水平下，最优投资组合如何选择？下面将通过代码来说明该问题。</p>
+</blockquote>
+<pre class="r"><code>gammas &lt;- c(2, 4, 8, 20)
+betas &lt;- 20 * qexp((1:99) / 100)
+w_mvp &lt;- solve(sigma) %*% rep(1, 30)
+w_mvp &lt;- as.vector(w_mvp / sum(w_mvp))                   
+transaction_costs &lt;- expand_grid(
+  gamma = gammas,
+  beta = betas
+) |&gt;
+  mutate(
+    weights = map2(
+      gamma,
+      beta,
+      \(x, y) compute_efficient_weight(
+        sigma,
+        mu,
+        gamma = x,
+        beta = y / 10000,
+        w_prev = w_mvp
+      )
+    ),
+    concentration = map_dbl(weights, \(x) sum(abs(x - w_mvp)))
+  )
+
+
+transaction_costs |&gt;
+  mutate(risk_aversion = as_factor(gamma)) |&gt;
+  ggplot(aes(
+    x = beta,
+    y = concentration,
+    color = risk_aversion,
+    linetype = risk_aversion
+  )) +
+  geom_line() +
+  guides(linetype = &quot;none&quot;) + 
+  labs(
+    x = &quot;Transaction cost parameter&quot;,
+    y = &quot;Distance from MVP&quot;,
+    color = &quot;Risk aversion&quot;,
+    title = &quot;Portfolio weights for different risk aversion and transaction cost&quot;
+  )+theme(
+    legend.position = &quot;bottom&quot;,            # 图例位置在底部
+    legend.justification = &quot;center&quot;,       # 图例居中
+    legend.box.just = &quot;center&quot;,            # 图例盒子居中
+    legend.box = &quot;horizontal&quot;              # 图例方向水平排列
+  )</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="均值-方差投资组合约束最优化求解" class="section level3">
+<h3>均值-方差投资组合约束最优化求解</h3>
+<blockquote>
+<p>最长见的约束是卖空限制，这意味着负权重将不被允许（即<span class="math inline">\(w_i\ge0\)</span>）。在最优过程中引入约束，我们可以通过数值最优化方法来求解组合权重。这需要使用 nloptr 包来求解最优权重，该包提供了数值优化方法的通用接口，特别地，我们使用了序列最小二乘程序（SLSOP）算法，该算法允许同时处理多个不等式约束的二阶可导的目标函数，要求提供优化的目标函数、目标函数对应梯度、约束条件及雅可比矩阵。</p>
+<p><strong>注意</strong>，<code>near()</code> 是一种用于成对比较两个向量是否相等的安全方法。相比之下，使用 <code>==</code> 对浮点数进行比较时对微小差异非常敏感，而这些差异可能是由于计算机中浮点数的表示方式造成的；而 <code>near()</code> 则内置了一个容差机制。</p>
+<p>具体求解代码如下：</p>
+<ol style="list-style-type: decimal">
+<li></li>
+</ol>
+</blockquote>
+<pre class="r"><code>n_industries=30
+w_initial &lt;- rep(1 / n_industries, n_industries)
+
+objective_mvp &lt;- function(w) {
+  0.5 * t(w) %*% sigma %*% w
+}
+
+gradient_mvp &lt;- function(w) {
+  sigma %*% w
+}
+
+equality_constraint &lt;- function(w) {
+  sum(w) - 1
+}
+
+jacobian_equality &lt;- function(w) {
+  rep(1, n_industries)
+}
+
+options &lt;- list(
+  &quot;xtol_rel&quot;=1e-20, 
+  &quot;algorithm&quot; = &quot;NLOPT_LD_SLSQP&quot;, 
+  &quot;maxeval&quot; = 10000
+)
+
+w_mvp_numerical &lt;- nloptr(
+  x0 = w_initial, 
+  eval_f = objective_mvp, 
+  eval_grad_f = gradient_mvp,
+  eval_g_eq = equality_constraint,
+  eval_jac_g_eq = jacobian_equality,
+  opts = options
+)
+
+all(near(w_mvp, w_mvp_numerical$solution))</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>objective_efficient &lt;- function(w) {
+  2 * 0.5 * t(w) %*% sigma %*% w - sum((1 + mu) * w)
+}
+
+gradient_efficient &lt;- function(w) {
+  2 * sigma %*% w - (1 + mu)
+}
+
+w_efficient_numerical &lt;- nloptr(
+  x0 = w_initial, 
+  eval_f = objective_efficient, 
+  eval_grad_f = gradient_efficient,
+  eval_g_eq = equality_constraint, 
+  eval_jac_g_eq = jacobian_equality,
+  opts = options
+)
+
+all(near(w_efficient, w_efficient_numerical$solution))</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<blockquote>
+<p>上述结果表明，在我们已知解析解的情形下，数值方法确实成功地恢复了最优权重。对于更复杂的优化问题，R 的优化任务视图（optimization task view）提供了对广泛优化方法的概览。</p>
+<p>接下来，我们将处理一些不存在解析解的问题。首先，我们加入空头卖出限制（short-sale constraints），这意味着需要引入不等式约束。我们可以通过设定一个下界向量 lb = rep(0, n_industries) 来实现空头卖出限制。接下来，我们将处理一些不存在解析解的问题。首先，我们加入空头卖出限制（short-sale constraints），这意味着需要引入不等式约束。我们可以通过设定一个下界向量 lb = rep(0, n_industries) 来实现空头卖出限制。</p>
+</blockquote>
+<pre class="r"><code>w_no_short_sale &lt;- nloptr(
+  x0 = w_initial, 
+  eval_f = objective_efficient, 
+  eval_grad_f = gradient_efficient,
+  eval_g_eq = equality_constraint, 
+  eval_jac_g_eq = jacobian_equality,
+  lb = rep(0, n_industries),
+  opts = options
+)
+
+round(w_no_short_sale$solution, 3)</code></pre>
+<pre><code>##  [1] 0.000 0.000 0.000 0.000 0.000 0.000 0.066 0.000 0.000 0.198 0.040 0.000
+## [13] 0.019 0.000 0.000 0.000 0.000 0.000 0.124 0.000 0.192 0.000 0.000 0.000
+## [25] 0.000 0.000 0.000 0.000 0.361 0.000</code></pre>
+</div>
+<div id="参考文献" class="section level3 unnumbered">
+<h3>参考文献</h3>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-fan2008" class="csl-entry">
 Fan, Jianqing, Yingying Fan, and Jinchi Lv. 2008. <span>“High Dimensional Covariance Matrix Estimation Using a Factor Model.”</span> <em>Journal of Econometrics</em> 147 (1): 186–97. <a href="https://doi.org/10.1016/j.jeconom.2008.09.017">https://doi.org/10.1016/j.jeconom.2008.09.017</a>.

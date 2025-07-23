@@ -194,9 +194,6 @@ transaction_costs |&gt;
 <p>最长见的约束是卖空限制，这意味着负权重将不被允许（即<span class="math inline">\(w_i\ge0\)</span>）。在最优过程中引入约束，我们可以通过数值最优化方法来求解组合权重。这需要使用 nloptr 包来求解最优权重，该包提供了数值优化方法的通用接口，特别地，我们使用了序列最小二乘程序（SLSOP）算法，该算法允许同时处理多个不等式约束的二阶可导的目标函数，要求提供优化的目标函数、目标函数对应梯度、约束条件及雅可比矩阵。</p>
 <p><strong>注意</strong>，<code>near()</code> 是一种用于成对比较两个向量是否相等的安全方法。相比之下，使用 <code>==</code> 对浮点数进行比较时对微小差异非常敏感，而这些差异可能是由于计算机中浮点数的表示方式造成的；而 <code>near()</code> 则内置了一个容差机制。</p>
 <p>具体求解代码如下：</p>
-<ol style="list-style-type: decimal">
-<li></li>
-</ol>
 </blockquote>
 <pre class="r"><code>n_industries=30
 w_initial &lt;- rep(1 / n_industries, n_industries)

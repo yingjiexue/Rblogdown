@@ -16,7 +16,9 @@ bibliography: references.bib
 
 $$
 Equity Duration=-\frac{1}{P_E} \frac{\partial P_E}{\partial y}
-$$ \> 其中，$P_E$为股票价格或公司市值，$y$为利率（通常指无风险收益率）。
+$$
+
+> 其中，$P_E$为股票价格或公司市值，$y$为利率（通常指无风险收益率）。
 
 > 这意味着利率上升 1%，股票价值大约会变化（久期 × 1%）。
 

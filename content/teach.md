@@ -78,3 +78,17 @@ enable: false
                           
 </table>
 
+### 其他资料
+
+<table style="border-style:none;text-align:left">
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">课程结构图: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DXs53roQ-eLVDRjpo4YGIAA">链接</a>
+          </th>
+       </tr>
+       
+                          
+</table>

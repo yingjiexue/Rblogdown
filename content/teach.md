@@ -22,8 +22,17 @@ enable: false
           <a href="https://www.jianguoyun.com/p/DRGyYkgQupbVDRjkvogGIAA">绪论</a>
           </th>
        </tr>
+        <tr>
+          <th>
+          <a style="color:#00BFFF;">第二章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DQi5tHwQupbVDRiOsIkGIAA">古典一元线性回归</a>
+          </th>
+       </tr>
                           
 </table>
+
 
 
 

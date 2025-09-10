@@ -81,7 +81,7 @@ enable: false
           <a style="color:#00BFFF;">第二章: </a>
           </th>
           <th>
-          <a href="https://www.jianguoyun.com/p/DdEixjIQ-eLVDRiZo4YGIAA">python基本语法与运算符</a>
+          <a href="https://www.jianguoyun.com/p/DbuHwhQQ-eLVDRiVrIcGIAA">python基本语法与运算符</a>
           </th>
        </tr>
                           
@@ -101,3 +101,4 @@ enable: false
        
                           
 </table>
+

@@ -62,6 +62,14 @@ enable: false
           <a href="https://www.jianguoyun.com/p/DdEixjIQ-eLVDRiZo4YGIAA">python编程基础</a>
           </th>
        </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">第三章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DWaE_usQ-eLVDRjBl4gGIAA">数据收集方法</a>
+          </th>
+       </tr>
                           
 </table>
 
@@ -83,6 +91,14 @@ enable: false
           </th>
           <th>
           <a href="https://www.jianguoyun.com/p/DbuHwhQQ-eLVDRiVrIcGIAA">python基本语法与运算符</a>
+          </th>
+       </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">第三章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/De7UW4MQ-eLVDRjCl4gGIAA">数据收集方法</a>
           </th>
        </tr>
                           

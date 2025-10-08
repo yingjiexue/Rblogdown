@@ -30,8 +30,18 @@ enable: false
           <a href="https://www.jianguoyun.com/p/DQi5tHwQupbVDRiOsIkGIAA">古典一元线性回归</a>
           </th>
        </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">第三章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/Dfm92vUQupbVDRiBi40GIAA">古典多元线性回归</a>
+          </th>
+       </tr>
                           
 </table>
+
+
 
 
 
@@ -121,6 +131,14 @@ enable: false
           </th>
           <th>
           <a href="https://www.jianguoyun.com/p/DUMrGN0Q-eLVDRi6nIkGIAA">链接</a>
+          </th>
+       </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">实验报告模板: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DRR5VEoQ-eLVDRiLwYoGIAA">链接</a>
           </th>
        </tr>
                           

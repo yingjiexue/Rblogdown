@@ -44,13 +44,13 @@ editor_options:
 
 ### 线性因子模型
 
-> 本文重点关注横截面收益的经典线性因子模型。假设有$K$个因子，$\mathbf{f_t}=(f_{1t},\dots,f_{Kt})^T,t=1,\dots,T$。
-> 为了简化阐述，我们考虑因子均值为0的情况，因此，$E(\mathbf{f_t})=\mathbf{0_K}$，并且$\mathbf{\bar{f}}=\mathbf{0_K}$，而且，N个资产的超额收益为$\mathbf{R_t}=(R_{1t},\dots,R_{1t })$。
+> 本文重点关注横截面收益的经典线性因子模型。假设有 $K$ 个因子， $\mathbf{f_t}=(f_{1t},\dots,f_{Kt})^T,t=1,\dots,T$ 。
+> 为了简化阐述，我们考虑因子均值为0的情况，因此， $E(\mathbf{f_t})=\mathbf{0_K}$ ，并且 $\mathbf{\bar{f}}=\mathbf{0_K}$ ，而且，N个资产的超额收益为 $\mathbf{R_t}=(R_{1t},\dots,R_{1t })$ 。
 >
-> 在FM过程中，资产收益的因子暴露$\mathbf{\beta_f}$来自如下回归：
+> 在FM过程中，资产收益的因子暴露 $\mathbf{\beta_f}$ 来自如下回归：
 >
 > $$
 > \mathbf{R_t}=\mathbf{\alpha}+\mathbf{\beta_tf_t}+\mathbf{\epsilon_t}
 > $$
 >
-> 给定均值标准化的因子$f_t$，则$E(\mathbf{R_t})=\alpha$
+> 给定均值标准化的因子 $f_t$ ，则 $E(\mathbf{R_t})=\alpha$

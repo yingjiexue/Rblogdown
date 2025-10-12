@@ -44,6 +44,9 @@ editor_options:
 
 ### 线性因子模型
 
+$K$
+
+
 > 本文重点关注横截面收益的经典线性因子模型。假设有 $K$ 个因子， $\mathbf{f_t}=(f_{1t},\dots,f_{Kt})^T,t=1,\dots,T$ 。
 > 为了简化阐述，我们考虑因子均值为0的情况，因此， $E(\mathbf{f_t})=\mathbf{0_K}$ ，并且 $\mathbf{\bar{f}}=\mathbf{0_K}$ ，而且，N个资产的超额收益为 $\mathbf{R_t}=(R_{1t},\dots,R_{1t })$ 。
 >

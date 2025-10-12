@@ -73,6 +73,7 @@ rssLimit=100
 
     # MathJaxCDN = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
     # MathJaxVersion = "latest"
+    math=true
     highlightjsVersion = "9.12.0"
     highlightjsCDN = "//cdnjs.cloudflare.com/ajax/libs/highlight.js"
     highlightjsLang = ["r", "yaml", "python", "javascript"]  # 根据需要添加语言

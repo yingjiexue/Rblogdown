@@ -7,7 +7,9 @@ categories:
   - research
 tags:
   - research
-
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ### 摘要
@@ -41,8 +43,6 @@ tags:
 > 并且可以处理潜在的大量可能的模型以及交易和非交易因素，这对于经验资产定价至关重要。
 
 ### 线性因子模型
-
-$$K$$
 
 > 本文重点关注横截面收益的经典线性因子模型。假设有 $K$ 个因子，
 > $\mathbf{f_t}=(f_{1t},\dots,f_{Kt})^T,t=1,\dots,T$ 。

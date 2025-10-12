@@ -37,7 +37,9 @@ include_in_header:math.html
 > 在FM过程中，资产收益的因子暴露 $\mathbf{\beta_f}$ 来自如下回归：
 >
 > $$
-> \mathbf{R_t}=\mathbf{a}+\mathbf{\beta_tf_t}+\mathbf{\epsilon_t}
+> \begin{equation}
+> \mathbf{R_t}=\mathbf{a}+\mathbf{\beta_tf_t}+\mathbf{\epsilon_t} \tag{1}
+> \end{equation}
 > $$
 >
 > 给定均值标准化的因子 $f_t$ ，则 $E(\mathbf{R_t})=\alpha$。
@@ -45,7 +47,7 @@ include_in_header:math.html
 > 与因子相关的风险溢价$\mathbf{\lambda_f}$,从横截面回归估计获得，具体回归模型如下：
 >
 > $$
-> \mathbf{\bar{R}}=\lambda_c\mathbf{1_N}+\mathbf{\hat{\beta}\lambda_f}+\mathbf{\alpha}
+> \mathbf{\bar{R}}=\lambda_c\mathbf{1_N}+\mathbf{\hat{\beta}\lambda_f}+\mathbf{\alpha} \tag{2}
 > $$
 >
 > 其中，$\mathbf{\hat{\beta}}$是通过时间序列估计的因子系数，$\lambda_c$是平均定价误差，在模型正确设定的条件下应该等于0，$\alpha$为超额定价误差，如果模型设定正确，意味着存在如下参数限制：
@@ -57,7 +59,7 @@ include_in_header:math.html
 > 因此，我们可以重新将Fama-MacBeth回归两步写成一个式子，具体如下：
 >
 > $$
-> \mathbf{R_t}=\lambda_c\mathbf{1_N}+\mathbf{\beta\lambda_f}+\mathbf{\beta_tf_t}+\mathbf{\epsilon_t}
+> \mathbf{R_t}=\lambda_c\mathbf{1_N}+\mathbf{\beta\lambda_f}+\mathbf{\beta_tf_t}+\mathbf{\epsilon_t}\tag{3}
 > $$
 >
 > 这个方程可以用于因子模拟研究。需要注意的是，截距项$\lambda_c$被包括在方程中

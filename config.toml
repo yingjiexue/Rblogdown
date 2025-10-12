@@ -79,8 +79,8 @@ rssLimit=100
     highlightjsTheme = "github"
     
     # 数学公式配置（分开设置）
-    MathJaxCDN = "//mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-    MathJaxVersion = "latest"
+    MathJaxCDN = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    MathJaxVersion = "3.2.2"
 
  
 

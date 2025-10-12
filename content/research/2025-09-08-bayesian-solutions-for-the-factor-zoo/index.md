@@ -44,7 +44,7 @@ editor_options:
 
 ### 线性因子模型
 
-$K$
+$$K$$
 
 > 本文重点关注横截面收益的经典线性因子模型。假设有 $K$ 个因子，
 > $\mathbf{f_t}=(f_{1t},\dots,f_{Kt})^T,t=1,\dots,T$ 。

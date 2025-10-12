@@ -66,22 +66,14 @@ rssLimit=100
     description = ""
     footer="&copy; [Yingjie Xue](/)2020| [Github](https://github.com/yingjiexue)"
     # options for highlight.js (version, additional languages, and theme)
-    # highlightjsVersion = "9.12.0"
-    # highlightjsCDN = "//mathjax.rstudio.com"
-    # highlightjsLang = ["r", "yaml"]
-    # highlightjsTheme = "github"
-
-    # MathJaxCDN = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
-    # MathJaxVersion = "latest"
-    math:true
     highlightjsVersion = "9.12.0"
-    highlightjsCDN = "//cdnjs.cloudflare.com/ajax/libs/highlight.js"
-    highlightjsLang = ["r", "yaml", "python", "javascript"]  # 根据需要添加语言
+    highlightjsCDN = "//mathjax.rstudio.com"
+    highlightjsLang = ["r", "yaml"]
     highlightjsTheme = "github"
+
+    MathJaxCDN = "https://mathjax.rstudio.com/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"
+    MathJaxVersion = "latest"
     
-    # 数学公式配置（分开设置）
-    MathJaxCDN = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-    MathJaxVersion = "3.2.2"
 
  
 

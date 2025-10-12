@@ -1,0 +1,80 @@
+---
+title: 因子动物园的贝叶斯解
+author: 薛英杰
+date: '2025-09-08'
+slug: Bayesian Solutions for the factor zoo
+categories:
+  - research
+tags:
+  - research
+editor_options: 
+  markdown: 
+    wrap: 72
+bibliography: references.bib
+---
+
+
+
+<div id="摘要" class="section level3">
+<h3>摘要</h3>
+<blockquote>
+<p>我们提出了一个关于横截面资产定价的新的，简单的贝叶斯估计和模型选择程序。我们的方
+法允许交易和不可交易的因子，并适用于高维情况，有几个理想的性质。首先，微弱和虚
+假的因子导致其市场风险价格的后验扩散并集中于零，使这些因子易于被发现。其次，后验
+推理对这些因子的存在具有稳健的。第三，我们发现平坦的风险溢价先验导致不适当的边际
+似然，使得模型选择无效。因此，我们提供了一种新的先验，它对强因子是扩散的，但会缩
+小无用的因子，在这种情况下，后验概率表现良好，可用于大规模问题中的因子和(不一定嵌
+套的)模型选择，以及模型平均。我们将我们的方法应用于文献中提出的一组非常大的因子，
+并分析了2.25千万亿种可能的模型，获得了关于资产回报的经验驱动因子的新见解。</p>
+</blockquote>
+</div>
+<div id="研究背景与问题" class="section level3">
+<h3>研究背景与问题</h3>
+<blockquote>
+<p>在过去十年左右的时间里，有两个观察结果出现在实证资产定价文献的前沿。一是，在不久
+的将来，将有更多识别风险来源的实证，这被称为”因子动物园”现象。二是，使用实证资产定价中
+普遍使用的方法，无用因子可能出现实证相关性，使得有关风险真实来源的推断无效。</p>
+</blockquote>
+<blockquote>
+<p>然而，据我所知，到目前为止。没有一般性方法可以同时处理可以同时处理可交易因子和
+不可交易因子、处理庞大的因子动物园、在模型错误设定后仍保持有效性以及对于虚假问题保持有效性。
+因此，提出这样一个方法对于解决这些问题非常迫切。</p>
+</blockquote>
+</div>
+<div id="研究方法" class="section level3">
+<h3>研究方法</h3>
+<blockquote>
+<p>我们构建了一个非常简单的贝叶斯版本的经典Fama-MacBeth回归，这个方法对可交易因子
+和不可交易因子都适用。在有限样本中，这个方法使无用因子很容易被检测到，同时，为强势因子
+的风险溢价提供后验信息。</p>
+</blockquote>
+<blockquote>
+<p>然而，鉴于文献中提出的风险因素过多<span class="citation">(<a href="#ref-cochrane2011">COCHRANE 2011</a>)</span>，本文一种稳健的方法可以跨非必要嵌套模型进行模型选择，
+并且可以处理潜在的大量可能的模型以及交易和非交易因素，这对于经验资产定价至关重要。</p>
+</blockquote>
+</div>
+<div id="线性因子模型" class="section level3">
+<h3>线性因子模型</h3>
+<blockquote>
+<p>本文重点关注横截面收益的经典线性因子模型。假设有 <span class="math inline">\(K\)</span> 个因子，
+<span class="math inline">\(\mathbf{f_t}=(f_{1t},\dots,f_{Kt})^T,t=1,\dots,T\)</span> 。
+为了简化阐述，我们考虑因子均值为0的情况，因此，
+<span class="math inline">\(E(\mathbf{f_t})=\mathbf{0_K}\)</span> ，并且 <span class="math inline">\(\mathbf{\bar{f}}=\mathbf{0_K}\)</span>
+，而且，N个资产的超额收益为 <span class="math inline">\(\mathbf{R_t}=(R_{1t},\dots,R_{1t })\)</span> 。</p>
+<p>在FM过程中，资产收益的因子暴露 <span class="math inline">\(\mathbf{\beta_f}\)</span> 来自如下回归：</p>
+<p><span class="math display">\[
+\mathbf{R_t}=\mathbf{\alpha}+\mathbf{\beta_tf_t}+\mathbf{\epsilon_t}
+\]</span></p>
+<p>给定均值标准化的因子 <span class="math inline">\(f_t\)</span> ，则 <span class="math inline">\(E(\mathbf{R_t})=\alpha\)</span>。</p>
+<p>与因子相关的风险溢价<span class="math inline">\(\mathbf{\lambda_f}\)</span>,从横截面回归估计获得，具体回归模型如下：</p>
+<p><span class="math display">\[
+\mathbf{\bar{R}}=\lambda_c\mathbf{1_N}+\mathbf{\hat{\beta}\lambda_f}+\mathbf{\alpha}
+\]</span></p>
+<p>其中</p>
+</blockquote>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-cochrane2011" class="csl-entry">
+COCHRANE, JOHN H. 2011. <span>“Presidential Address: Discount Rates.”</span> <em>The Journal of Finance</em> 66 (4): 1047–1108. <a href="https://doi.org/10.1111/j.1540-6261.2011.01671.x">https://doi.org/10.1111/j.1540-6261.2011.01671.x</a>.
+</div>
+</div>
+</div>

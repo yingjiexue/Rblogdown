@@ -10,6 +10,7 @@ tags:
 editor_options: 
   markdown: 
     wrap: 72
+bibliography: references.bib
 ---
 
 ### 摘要
@@ -39,7 +40,7 @@ editor_options:
 > 和不可交易因子都适用。在有限样本中，这个方法使无用因子很容易被检测到，同时，为强势因子
 > 的风险溢价提供后验信息。
 
-> 然而，鉴于文献中提出的风险因素过多，本文一种稳健的方法可以跨非必要嵌套模型进行模型选择，
+> 然而，鉴于文献中提出的风险因素过多[@cochrane2011]，本文一种稳健的方法可以跨非必要嵌套模型进行模型选择，
 > 并且可以处理潜在的大量可能的模型以及交易和非交易因素，这对于经验资产定价至关重要。
 
 ### 线性因子模型
@@ -56,4 +57,12 @@ editor_options:
 > \mathbf{R_t}=\mathbf{\alpha}+\mathbf{\beta_tf_t}+\mathbf{\epsilon_t}
 > $$
 >
-> 给定均值标准化的因子 $f_t$ ，则 $E(\mathbf{R_t})=\alpha$
+> 给定均值标准化的因子 $f_t$ ，则 $E(\mathbf{R_t})=\alpha$。
+>
+> 与因子相关的风险溢价$\mathbf{\lambda_f}$,从横截面回归估计获得，具体回归模型如下：
+>
+> $$
+> \mathbf{\bar{R}}=\lambda_c\mathbf{1_N}+\mathbf{\hat{\beta}\lambda_f}+\mathbf{\alpha}
+> $$
+>
+> 其中

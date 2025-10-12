@@ -80,7 +80,21 @@ bibliography: references.bib
 <p><span class="math display">\[
 \mathbf{R_t}=\lambda_c\mathbf{1_N}+\mathbf{\beta\lambda_f}+\mathbf{\beta_tf_t}+\mathbf{\epsilon_t}\tag{3}
 \]</span></p>
-<p>这个方程可以用于因子模拟研究。需要注意的是，截距项<span class="math inline">\(\lambda_c\)</span>被包括在方程中</p>
+<p>这个方程可以用于因子模拟研究。需要注意的是，截距项<span class="math inline">\(\lambda_c\)</span>被包括在方程(2）和（3）中是为了独立评估模型解释股权溢价及资产横截面收益的能力。</p>
+<p>让<span class="math inline">\(\mathbf{B}^\mathsf{T}=(\mathbf{\alpha,\beta_f})\)</span>,<span class="math inline">\(\mathbf{F_t^\mathsf{T}}=(\mathbf{1,f_t^\mathsf{T}})\)</span>，让观测值在时间序列上进行堆叠，具体如下：</p>
+<p><span class="math display">\[
+\mathbf{R} = \begin{pmatrix} R_1^\mathsf{T} \\ \vdots \\  R_T^\mathsf{T} \end{pmatrix},
+\mathbf{F} = \begin{pmatrix} F_1^\mathsf{T} \\ \vdots \\  F_T^\mathsf{T} \end{pmatrix},
+\mathbf{\epsilon} = \begin{pmatrix} \epsilon_1^\mathsf{T} \\ \vdots \\  \epsilon_T^\mathsf{T} \end{pmatrix}
+\]</span></p>
+<p>这样，方程（1）可以被写为<span class="math inline">\(\mathbf{R}=\mathbf{FB}+\mathbf{\epsilon}\)</span>，系数和残差的协方差矩阵被估计如下：</p>
+<p><span class="math display">\[
+\mathbf{\hat{B}} = \begin{pmatrix} \hat{\alpha}^\mathsf{T} \\ \hat{\beta}_\mathbf{f}^\mathsf{T} \end{pmatrix}=( \mathbf{F}^\mathsf{T}\mathbf{F})^{-1}\mathbf{F}^\mathsf{T}\mathsf{R},\space \mathbf{\hat{\Sigma}}=\frac{1}{T}(\mathsf{R}-\mathbf{F\hat{B}})^\mathsf{T}(\mathsf{R}-\mathbf{F\hat{B}})
+\]</span></p>
+<p>在第二步中，因子风险溢价的估计如下：</p>
+<p><span class="math display">\[
+\mathbf{\hat{\lambda}} = (\hat{\beta}^\mathsf{T}\hat{\beta})^{-1}\hat{\beta}^\mathsf{T}\mathsf{\bar{R}}
+\]</span></p>
 </blockquote>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-cochrane2011" class="csl-entry">

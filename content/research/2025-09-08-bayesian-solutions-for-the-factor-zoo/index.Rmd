@@ -79,4 +79,24 @@ bibliography: references.bib
 > \mathbf{R_t}=\lambda_c\mathbf{1_N}+\mathbf{\beta\lambda_f}+\mathbf{\beta_tf_t}+\mathbf{\epsilon_t}\tag{3}
 > $$
 >
-> 这个方程可以用于因子模拟研究。需要注意的是，截距项$\lambda_c$被包括在方程中
+> 这个方程可以用于因子模拟研究。需要注意的是，截距项$\lambda_c$被包括在方程(2）和（3）中是为了独立评估模型解释股权溢价及资产横截面收益的能力。
+>
+> 让$\mathbf{B}^\mathsf{T}=(\mathbf{\alpha,\beta_f})$,$\mathbf{F_t^\mathsf{T}}=(\mathbf{1,f_t^\mathsf{T}})$，让观测值在时间序列上进行堆叠，具体如下：
+>
+> $$
+> \mathbf{R} = \begin{pmatrix} R_1^\mathsf{T} \\ \vdots \\  R_T^\mathsf{T} \end{pmatrix},
+> \mathbf{F} = \begin{pmatrix} F_1^\mathsf{T} \\ \vdots \\  F_T^\mathsf{T} \end{pmatrix},
+> \mathbf{\epsilon} = \begin{pmatrix} \epsilon_1^\mathsf{T} \\ \vdots \\  \epsilon_T^\mathsf{T} \end{pmatrix}
+> $$
+>
+> 这样，方程（1）可以被写为$\mathbf{R}=\mathbf{FB}+\mathbf{\epsilon}$，系数和残差的协方差矩阵被估计如下：
+>
+> $$
+> \mathbf{\hat{B}} = \begin{pmatrix} \hat{\alpha}^\mathsf{T} \\ \hat{\beta}_\mathbf{f}^\mathsf{T} \end{pmatrix}=( \mathbf{F}^\mathsf{T}\mathbf{F})^{-1}\mathbf{F}^\mathsf{T}\mathsf{R},\space \mathbf{\hat{\Sigma}}=\frac{1}{T}(\mathsf{R}-\mathbf{F\hat{B}})^\mathsf{T}(\mathsf{R}-\mathbf{F\hat{B}})
+> $$
+>
+> 在第二步中，因子风险溢价的估计如下：
+>
+> $$
+> \mathbf{\hat{\lambda}} = (\hat{\beta}^\mathsf{T}\hat{\beta})^{-1}\hat{\beta}^\mathsf{T}\mathsf{\bar{R}}
+> $$

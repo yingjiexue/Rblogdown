@@ -63,20 +63,22 @@ bibliography: references.bib
 ，而且，N个资产的超额收益为 <span class="math inline">\(\mathbf{R_t}=(R_{1t},\dots,R_{1t })\)</span> 。</p>
 <p>在FM过程中，资产收益的因子暴露 <span class="math inline">\(\mathbf{\beta_f}\)</span> 来自如下回归：</p>
 <p><span class="math display">\[
-\mathbf{R_t}=\mathbf{a}+\mathbf{\beta_tf_t}+\mathbf{\epsilon_t}
+\begin{equation}
+\mathbf{R_t}=\mathbf{a}+\mathbf{\beta_tf_t}+\mathbf{\epsilon_t} \tag{1}
+\end{equation}
 \]</span></p>
 <p>给定均值标准化的因子 <span class="math inline">\(f_t\)</span> ，则 <span class="math inline">\(E(\mathbf{R_t})=\alpha\)</span>。</p>
 <p>与因子相关的风险溢价<span class="math inline">\(\mathbf{\lambda_f}\)</span>,从横截面回归估计获得，具体回归模型如下：</p>
 <p><span class="math display">\[
-\mathbf{\bar{R}}=\lambda_c\mathbf{1_N}+\mathbf{\hat{\beta}\lambda_f}+\mathbf{\alpha}
+\mathbf{\bar{R}}=\lambda_c\mathbf{1_N}+\mathbf{\hat{\beta}\lambda_f}+\mathbf{\alpha} \tag{2}
 \]</span></p>
 <p>其中，<span class="math inline">\(\mathbf{\hat{\beta}}\)</span>是通过时间序列估计的因子系数，<span class="math inline">\(\lambda_c\)</span>是平均定价误差，在模型正确设定的条件下应该等于0，<span class="math inline">\(\alpha\)</span>为超额定价误差，如果模型设定正确，意味着存在如下参数限制：</p>
 <p><span class="math display">\[
-\mathbf{a}=E[R]=\lambda_c\mathbf{1_N}+\mathbf{\hat{\beta}\lambda_f} \label{eq:einstein}
+\mathbf{a}=E[R]=\lambda_c\mathbf{1_N}+\mathbf{\hat{\beta}\lambda_f}
 \]</span></p>
 <p>因此，我们可以重新将Fama-MacBeth回归两步写成一个式子，具体如下：</p>
 <p><span class="math display">\[
-\mathbf{R_t}=\lambda_c\mathbf{1_N}+\mathbf{\beta\lambda_f}+\mathbf{\beta_tf_t}+\mathbf{\epsilon_t}
+\mathbf{R_t}=\lambda_c\mathbf{1_N}+\mathbf{\beta\lambda_f}+\mathbf{\beta_tf_t}+\mathbf{\epsilon_t}\tag{3}
 \]</span></p>
 <p>这个方程可以用于因子模拟研究。需要注意的是，截距项<span class="math inline">\(\lambda_c\)</span>被包括在方程中</p>
 </blockquote>

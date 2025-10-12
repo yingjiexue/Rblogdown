@@ -7,9 +7,7 @@ categories:
   - research
 tags:
   - research
-editor_options: 
-  markdown: 
-    wrap: 72
+
 ---
 
 ### 摘要

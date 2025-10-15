@@ -64,7 +64,7 @@ bibliography: references.bib
 <p>在FM过程中，资产收益的因子暴露 <span class="math inline">\(\mathbf{\beta_f}\)</span> 来自如下回归：</p>
 <p><span class="math display">\[
 \begin{equation}
-\mathbf{R_t}=\mathbf{a}+\mathbf{\beta_tf_t}+\mathbf{\epsilon_t} \tag{1}
+\mathbf{R_t}=a+\mathbf{\beta_tf_t}+\mathbf{\epsilon_t} \tag{1}
 \end{equation}
 \]</span></p>
 <p>给定均值标准化的因子 <span class="math inline">\(f_t\)</span> ，则 <span class="math inline">\(E(\mathbf{R_t})=\alpha\)</span>。</p>
@@ -74,7 +74,7 @@ bibliography: references.bib
 \]</span></p>
 <p>其中，<span class="math inline">\(\mathbf{\hat{\beta}}\)</span>是通过时间序列估计的因子系数，<span class="math inline">\(\lambda_c\)</span>是平均定价误差，在模型正确设定的条件下应该等于0，<span class="math inline">\(\alpha\)</span>为超额定价误差，如果模型设定正确，意味着存在如下参数限制：</p>
 <p><span class="math display">\[
-\mathbf{a}=E[R]=\lambda_c\mathbf{1_N}+\mathbf{\hat{\beta}\lambda_f}
+a=E[R]=\lambda_c\mathbf{1_N}+\mathbf{\hat{\beta}\lambda_f}
 \]</span></p>
 <p>因此，我们可以重新将Fama-MacBeth回归两步写成一个式子，具体如下：</p>
 <p><span class="math display">\[
@@ -93,8 +93,75 @@ bibliography: references.bib
 \]</span></p>
 <p>在第二步中，因子风险溢价的估计如下：</p>
 <p><span class="math display">\[
-\mathbf{\hat{\lambda}} = (\hat{\beta}^\mathsf{T}\hat{\beta})^{-1}\hat{\beta}^\mathsf{T}\mathsf{\bar{R}}
+\mathbf{\hat{\lambda}} = \mathbf{(\hat{\beta}^\mathsf{T}\hat{\beta})^{-1}\hat{\beta}^\mathsf{T}\mathsf{\bar{R}}}
 \]</span></p>
+<p>其中，<span class="math inline">\(\hat{\beta}=(\mathbf{1_N,\hat{\beta_f}})\)</span>,<span class="math inline">\(\mathbf{\hat{\lambda}}=\mathbf{(\lambda_c,\lambda_f^{\mathsf{T}})}\)</span>。</p>
+<p>估计的风险溢价<span class="math inline">\(\mathbf{\hat{\lambda}}\)</span>的修正的协方差矩阵为：</p>
+<p><span class="math display">\[
+\mathbf{\hat{\sigma}^2(\hat{\lambda})}=\frac{1}{T}[(\hat{\beta}^\mathsf{T}\hat{\beta})^{-1}\hat{\beta}^\mathsf{T}\mathbf{\hat{\Sigma}}\hat{\beta}(\hat{\beta}^\mathsf{T}\beta)^{-1}](1+\hat{\lambda}_f^\mathsf{T}\mathbf{\hat{\Sigma}_f}^{-1}\hat{\lambda}_f)
+\]</span></p>
+<p>其中，<span class="math inline">\(\hat{\Sigma}_f\)</span>是用样本估计的因子<span class="math inline">\(f_t\)</span>方差协方差矩阵。使用最小二乘法估计<span class="math inline">\(\mathbf{\lambda}\)</span>具有不确定性。首先，由于我们不知道检验资产的期望收益，只能用样本均值去替代。第二，如果<span class="math inline">\(\beta\)</span>已知，<span class="math inline">\(\hat\lambda\)</span>的渐进协方差矩阵为
+<span class="math inline">\(\frac{1}{T}[(\hat{\beta}^\mathsf{T}\hat{\beta})^{-1}\hat{\beta}^\mathsf{T}\hat{\Sigma}\hat{\beta}(\hat{\beta}\mathsf{T}\beta)^{-1}]\)</span>，额外项考虑了<span class="math inline">\(\beta\)</span>估计的事实。</p>
+<p>另外，在第二阶段可以用广义最小二乘法来估计，具体如下： <span class="math display">\[
+\mathbf{\hat{\lambda}} = \mathbf{(\hat{\beta}^\mathsf{T}\mathbf{\hat{\Sigma}}^{-1}\hat{\beta})^{-1}\hat{\beta}^\mathsf{T}\mathsf{\bar{R}}}
+\]</span></p>
+</blockquote>
+<blockquote>
+<p><span class="math display">\[
+\mathbf{\hat{\sigma}^2(\hat{\lambda})}=\frac{1}{T}(\hat{\beta}^\mathsf{T}\mathbf{\hat{\Sigma}}\hat{\beta})^{-1}(1+\hat{\lambda}_f^\mathsf{T}\mathbf{\hat{\Sigma}_f}^{-1}\hat{\lambda}_f)
+\]</span></p>
+<h3 id="贝叶斯fama-macbeth回归">贝叶斯Fama-MacBeth回归</h3>
+<p>这部分我们解释贝叶斯Fama-Macbeth估计方法。首先我们考虑一个时间序列回归，并假设时间序列的误差项服从独立的多元正态分布，即：</p>
+<p><span class="math display">\[
+\mathbf{\epsilon} \sim MVN(\mathbf(0_{T\times N},\Sigma \otimes I_{T}))
+\]</span></p>
+<p>那么，数据<span class="math inline">\(（\mathbf{R,F}）\)</span>的似然函数为：</p>
+<p><span class="math display">\[
+p(data|B,\Sigma)=(2\pi)^{-\frac{NT}{2}}\left|\mathbf{\Sigma} \right|^{-\frac{T}{2}}exp\{-\frac{1}{2}tr[\Sigma^{-1}(R-FB)^\mathsf{T}(R-FB)]\}
+\]</span></p>
+<p>即使存在虚假因子，时间序列回归也是有效的。</p>
+<p>因此，<span class="math inline">\(（B,\Sigma）\)</span>的后验分布为：</p>
+<p><span class="math display">\[
+B|\Sigma,data \sim MVN(\hat{B}_{ols},\Sigma\otimes(F^TF)^{-1})\\
+\Sigma|data \sim W^{-1}(T-K-1,T\hat{\Sigma})
+\]</span></p>
+<p>其中，<span class="math inline">\(\hat{B}_{ols}\)</span>和<span class="math inline">\(\hat{\Sigma}\)</span>基于经典最小二乘法估计。<span class="math inline">\(W^{-1}\)</span>为逆威沙特分布。</p>
+<p><strong>第一步，从基于数据的逆威沙特分布中抽取协方差矩阵</strong><span class="math inline">\(\Sigma\)</span><strong>，然后从参数为</strong><span class="math inline">\(\hat{B}_{osl}\)</span><strong>和</strong><span class="math inline">\(\Sigma\)</span><strong>的多元正态分布中抽取</strong><span class="math inline">\(B\)</span><strong>。</strong></p>
+<p><strong>第二步，如果模型设定正确，所有的真实因子将被包括在内，资产收益应该被风险暴露</strong><span class="math inline">\(\beta\)</span><strong>和风险溢价</strong><span class="math inline">\(\lambda\)</span><strong>完全解释,即：</strong></p>
+<p><span class="math display">\[
+E(R_t)=\beta\lambda
+\]</span></p>
+<p>由于因子去均值化，则有：</p>
+<p><span class="math display">\[
+E[R_t]=a
+\]</span></p>
+<p>在贝叶斯框架下，在第二阶段数据产生过程为：</p>
+<p><span class="math display">\[
+a=\beta\lambda+\alpha
+\]</span></p>
+<p>如果进一步假设<span class="math inline">\(\alpha_i\)</span>服从于独立的正态分布<span class="math inline">\(N(0,\sigma^2)\)</span>，则第二步的似然函数为：</p>
+<p><span class="math display">\[
+p(data|\mathbf{\lambda,\sigma^2,\mathbf{\beta}})=(2\pi\sigma^2)^{-\frac{N}{2}}exp\{-\frac{1}{2\sigma^2}(a-\beta\lambda)^{T}(a-\beta\lambda)\}
+\]</span></p>
+<h3 id="结论">结论</h3>
+<p>我们开发了一种新的(贝叶斯)方法来分析资产定价中的线性因素模型。该方法可以处理
+由交易和非交易因素动物园生成的千万亿模型，并提供对由无用因素引起的常见识别
+失败和虚假推理问题具有鲁棒性的推理。</p>
+<p>我们已经将我们的方法应用于超过两个千万亿因素模型规范的研究，并发现:1)只
+有少数几个因素(Fama和French(1992)对价值溢价的“高负低”代理，以及Daniel、Mota、
+Rottke和Santos(2018)对市场和规模因素的调整版本)似乎是资产回报横截面的有力解释;
+2)这四个稳健因素共同提供了一个模型，即与之前的实证文献相比，一个数量级更有可
+能产生观察到的资产回报(其后验概率约为90%);3)以非常高的概率，“真正的”潜在随
+机贴现因子在先前文献中提出的因子空间中是密集的，即捕获其特征需要使用24-25个
+因子(在SDF稀疏度的后验均值处);4)尽管在因子空间中是密集的，但sdf隐含的最大夏普
+比率并不过高，这表明就捕获的风险而言，动物园中的因素之间具有高度的共性。</p>
+<p>作为我们的新经验资产定价框架的副产品，我们提供了一个非常简单的Fama和
+MacBeth(1973)回归方法(BFM)的贝叶斯版本。我们表明，这个简单的过程(既不需要优
+化也不需要调整参数，并且并不比Shanken(1992)校正标准误差更难实现)使得在有限样
+本中很容易检测到无用的因素。在大量的模拟中，BFM及其GLS模拟(BFM-GLS)即使
+在相对较小的时间和较大的横截面尺寸下也表现良好。我们将BFM和BFM-GLS应用于
+几个值得注意的因素模型，并记录了一系列非贸易因素，如消费代理、劳动因素或消
+费与财富比率，充其量只能弱识别，并且具有很大程度的模型错误规范和不确定性。</p>
 </blockquote>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-cochrane2011" class="csl-entry">

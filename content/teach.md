@@ -108,7 +108,7 @@ enable: false
           <a style="color:#00BFFF;">第三章: </a>
           </th>
           <th>
-          <a href="https://www.jianguoyun.com/p/De7UW4MQ-eLVDRjCl4gGIAA">数据收集方法</a>
+          <a href="https://www.jianguoyun.com/p/Db2j-psQ-eLVDRjqv4sGIAA">数据收集方法</a>
           </th>
        </tr>
                           
@@ -131,6 +131,14 @@ enable: false
           </th>
           <th>
           <a href="https://www.jianguoyun.com/p/DUMrGN0Q-eLVDRi6nIkGIAA">链接</a>
+          </th>
+       </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">谷歌浏览器下载: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DdstXPgQ-eLVDRjrv4sGIAA">链接</a>
           </th>
        </tr>
        <tr>

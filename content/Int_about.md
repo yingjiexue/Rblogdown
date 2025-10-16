@@ -14,7 +14,8 @@ enable: false
   <a href="https://statsandr.com/blog/" style="color:#00BFFF;">Stata and R</a>：统计与R专题<br> 
   <a href="https://www.johnhcochrane.com/" style="color:#00BFFF;">Cochrane</a>：芝加哥大学金融学教授<br> 
   <a href="https://dachxiu.chicagobooth.edu/" style="color:#00BFFF;">修大成</a>：芝加哥大学统计学教授<br>
-  <a href="https://r-journalism.com/" style="color:#00BFFF;">Journalism</a>：Reproducible Journalism
+  <a href="https://r-journalism.com/" style="color:#00BFFF;">Journalism</a>：Reproducible Journalism<br>
+  <a href="https://bookdown.org/wangminjie/R4DS/" style="color:#00BFFF;">王敏杰</a>：数据科学中的 R 语言
 
 ## 编程学习与咨询
 

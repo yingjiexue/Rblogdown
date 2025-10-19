@@ -38,8 +38,41 @@ enable: false
           <a href="https://www.jianguoyun.com/p/Dfm92vUQupbVDRiBi40GIAA">古典多元线性回归</a>
           </th>
        </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">第四章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DY30z9kQupbVDRihv44GIAA">违反古典假定的线性回归模型</a>
+          </th>
+       </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">第五章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DTNiTw8QupbVDRikv44GIAA">非线性回归模型</a>
+          </th>
+       </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">第六章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DbunbCUQupbVDRilv44GIAA">拓展的回归模型</a>
+          </th>
+       </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">第七章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DT6AQuUQupbVDRiov44GIAA">概率回归模型</a>
+          </th>
+       </tr>
                           
 </table>
+
 
 
 

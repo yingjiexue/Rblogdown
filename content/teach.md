@@ -140,7 +140,7 @@ enable: false
           <a style="color:#00BFFF;">第四章: </a>
           </th>
           <th>
-          <a href="https://www.jianguoyun.com/p/DSfGGigQ-eLVDRigo4wGIAA">机器学习方法与应用</a>
+          <a href="https://www.jianguoyun.com/p/DW1xzpcQ-eLVDRjAo4wGIAA">机器学习方法与应用</a>
           </th>
        </tr>
                           

@@ -77,6 +77,28 @@ enable: false
 
 
 
+### 数据与代码
+<table style="border-style:none;text-align:left">
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">第二章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DbqiGEkQupbVDRiy6o4GIAA">古典一元线性回归</a>
+          </th>
+       </tr>
+        <tr>
+          <th>
+          <a style="color:#00BFFF;">第三章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DRmM58UQupbVDRiz6o4GIAA">古典多元线性回归</a>
+          </th>
+       </tr>
+                          
+</table>
+
+
 
 
 
@@ -113,6 +135,14 @@ enable: false
           <a href="https://www.jianguoyun.com/p/DWaE_usQ-eLVDRjBl4gGIAA">数据收集方法</a>
           </th>
        </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">第四章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DSfGGigQ-eLVDRigo4wGIAA">机器学习方法与应用</a>
+          </th>
+       </tr>
                           
 </table>
 
@@ -142,6 +172,14 @@ enable: false
           </th>
           <th>
           <a href="https://www.jianguoyun.com/p/Db2j-psQ-eLVDRjqv4sGIAA">数据收集方法</a>
+          </th>
+       </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">第四章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DSfGGigQ-eLVDRigo4wGIAA">机器学习方法与应用</a>
           </th>
        </tr>
                           

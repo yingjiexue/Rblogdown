@@ -220,6 +220,14 @@ enable: false
           <a href="https://www.jianguoyun.com/p/DRR5VEoQ-eLVDRiLwYoGIAA">链接</a>
           </th>
        </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">机器学习数据: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DZRkvYwQ-eLVDRj4p4wGIAA">链接</a>
+          </th>
+       </tr>
                           
 </table>
 

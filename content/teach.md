@@ -87,12 +87,20 @@ enable: false
           <a href="https://www.jianguoyun.com/p/DbqiGEkQupbVDRiy6o4GIAA">古典一元线性回归</a>
           </th>
        </tr>
-        <tr>
+       <tr>
           <th>
           <a style="color:#00BFFF;">第三章: </a>
           </th>
           <th>
           <a href="https://www.jianguoyun.com/p/DRmM58UQupbVDRiz6o4GIAA">古典多元线性回归</a>
+          </th>
+       </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">第四章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DTSEZsoQupbVDRi1jZEGIAA">违反古典假定的线性回归模型</a>
           </th>
        </tr>
        

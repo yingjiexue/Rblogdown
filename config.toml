@@ -71,6 +71,8 @@ rssLimit=100
     highlightjsLang = ["r", "yaml"]
     highlightjsTheme = "github"
 
+    custom_head = ["head_custom.html"]
+
 
     MathJaxCDN = "https://mathjax.rstudio.com/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"
     MathJaxVersion = "latest"

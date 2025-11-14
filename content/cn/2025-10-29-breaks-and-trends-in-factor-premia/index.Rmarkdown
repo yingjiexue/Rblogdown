@@ -57,29 +57,34 @@ editor_options:
 > 本文提出了一个专为具有时变系数的高维预测因子设计的面板回归框架，该框架专为具有时变系数的高维预测因子设计。为了实现这一
 > 点，我们引入了一个双重惩罚程序，该程序识别驱动时间特定变化的关键变量。时变系数面板回归模型如下：
 >
-> $$
-> r_{i,t+1}=z_{i,t}^\prime f_{t+1}+\epsilon_{i,t}, i=1,\dots N, t=1,\dots T
-> $$
->
-> 其中，$r_{i,t+1}$ 是股票$i$在$t$时期的收益，$z_{i,t}$ 是一个外生的回归变量，$f_{t+1}=\gamma_t+v_{t+1}$ 代表不可观测的风险因子，$\gamma_t=E(f_{t+1})$ 表示因子溢价。
+
+$$
+r_{i,t+1}=z_{i,t}^\prime f_{t+1}+\epsilon_{i,t}, i=1,\dots N, t=1,\dots T
+$$
+
+> 其中，$r_{i,t+1}$是股票$i$在$t$时期的收益，$z_{i,t}$ 是一个外生的回归变量，$f_{t+1}=\gamma_t+v_{t+1}$ 代表不可观测的风险因子，$\gamma_t=E(f_{t+1})$ 表示因子溢价。
 >
 > 一种是因子溢价为常数的情形，即$\gamma_t=\gamma$，此时，面板回归模型为：
 >
-> $$
-> r_{i,t+1}=z_{i,t}^ \prime \gamma+\epsilon_{i,t}
-> $$
->
-> 另一种是因子溢价随时间变动，即： $$
-> r_{i,t+1}=z_{i,t}^ \prime \gamma_t+\epsilon_{i,t}
-> $$
+
+$$
+r_{i,t+1}=z_{i,t}^ \prime \gamma+\epsilon_{i,t}
+$$
+
+
+> 另一种是因子溢价随时间变动，即： 
+
+$$
+ r_{i,t+1}=z_{i,t}^ \prime \gamma_t+\epsilon_{i,t}
+$$
 >
 > ![](images/clipboard-374120977.png)
 >
 > 在实践中，虽然可能会有中断，但在不同时期的时变预测系数值$\gamma_t$存在相似之处。我们建议从以下双罚面板预测回归过程中获得$\gamma_t$，具体如下：
->
-> $$
-> \min_{\gamma_{i,t}}\frac{1}{NT}\sum_{i,t}(r_{i,t+1}-z_{i,t}^\prime\gamma_t)^2+\lambda\sum_{j=1}^p\sum_{t=2}^T|\gamma_{t,j}-\gamma_{t-1,j}|+\eta\sum_{j=1}^p\sum_{t=1}^T|\gamma_{t,j}|
-> $$
+ 
+$$
+ \min_{\gamma_{i,t}}\frac{1}{NT}\sum_{i,t}(r_{i,t+1}-z_{i,t}^\prime\gamma_t)^2+\lambda\sum_{j=1}^p\sum_{t=2}^T|\gamma_{t,j}-\gamma_{t-1,j}|+\eta\sum_{j=1}^p\sum_{t=1}^T|\gamma_{t,j}|
+$$
 >
 > 其中，$\sum_{j=1}^p\sum_{t=2}^T|\gamma_{t,j}-\gamma_{t-1,j}|$采样期间结构断裂的总数，促进了稀疏区的识别，第二成惩罚项用于消除影响为零的因子。
 >

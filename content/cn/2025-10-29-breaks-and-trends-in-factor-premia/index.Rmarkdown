@@ -85,7 +85,8 @@ $$
 $$
  \min_{\gamma_{i,t}}\frac{1}{NT}\sum_{i,t}(r_{i,t+1}-z_{i,t}^\prime\gamma_t)^2+\lambda\sum_{j=1}^p\sum_{t=2}^T|\gamma_{t,j}-\gamma_{t-1,j}|+\eta\sum_{j=1}^p\sum_{t=1}^T|\gamma_{t,j}|
 $$
->
+
+
 > 其中，$\sum_{j=1}^p\sum_{t=2}^T|\gamma_{t,j}-\gamma_{t-1,j}|$采样期间结构断裂的总数，促进了稀疏区的识别，第二成惩罚项用于消除影响为零的因子。
 >
 > ![](images/clipboard-981203276.png)

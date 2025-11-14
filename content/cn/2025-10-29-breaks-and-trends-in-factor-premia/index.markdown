@@ -12,10 +12,6 @@ editor_options:
     wrap: 72
 ---
 
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"</script>
-
-fd
-
 ### 摘要
 
 > 本文提出了一个横截面资产定价模型，该模型结合了因子溢价中的结构性中断和

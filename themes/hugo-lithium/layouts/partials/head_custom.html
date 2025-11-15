@@ -1,3 +1,8 @@
+{{ if .Site.Params.highlightjs }}
+<link rel="stylesheet" 
+      href="{{ .Site.Params.highlightjsCDN }}/styles/{{ .Site.Params.highlightjsTheme }}.min.css">
+{{ end }}
+
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   tex2jax: {

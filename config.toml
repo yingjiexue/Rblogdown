@@ -66,8 +66,8 @@ rssLimit=100
     description = ""
     footer="&copy; [Yingjie Xue](/)2020| [Github](https://github.com/yingjiexue)"
     # options for highlight.js (version, additional languages, and theme)
-    highlightjsVersion = "9.12.0"
-    highlightjsCDN = "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0"
+    highlightjsVersion = "11.9.0"
+    highlightjsCDN = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0"
     highlightjsLang = ["r", "yaml"]
     highlightjsTheme = "github"
 

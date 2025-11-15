@@ -29,6 +29,10 @@ code {
   background-color: rgba(0, 0, 0, 0.02);
 }
 
+img {
+  max-width: 100%;
+}
+
 .wrapper {
   overflow: hidden;
   position: relative;
@@ -42,10 +46,10 @@ code {
 }
 
 .nav {
-  max-width: 10px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 0 15px;
-  text-align: left;
+  text-align: right;
 }
 
 .nav-logo {
@@ -92,7 +96,7 @@ code {
 
 .content {
   max-width: 700px;
-  margin: 25px auto 25px;
+  margin: 40px auto 10px;
   padding: 0 15px;
   font-size: 16px;
   line-height: 1.7;
@@ -104,7 +108,6 @@ code {
   color: #222;
   margin: 0;
   line-height: 1.3;
-  font-family:"Source Han Serif CN";
 }
 
 .article-date {
@@ -154,7 +157,6 @@ code {
   position: relative;
   margin: 40px 0;
   font-size: 14px;
-  font-family:"Source Han Serif CN";
 }
 
 .highlight pre {
@@ -173,7 +175,6 @@ code {
 .archive-title {
   font-size: 32px;
   margin-top: 60px;
-  font-family:"Source Han Serif CN";
 }
 
 .archive-item {
@@ -187,7 +188,6 @@ code {
   padding: 5px 0;
   margin-top: 5px;
   display: block;
-  font-family:"Source Han Serif CN";
 }
 
 .archive-item-link {
@@ -274,13 +274,11 @@ code {
   .content {
     font-size: 19px;
     line-height: 1.8;
-    font-family:"Source Han Serif CN";
   }
 
   .highlight {
     font-size: 16px;
-    margin: 40px -2px;
-    font-family:"Source Han Serif CN";
+    margin: 40px -20px;
   }
 
   .archive {
@@ -289,14 +287,12 @@ code {
 
   .archive-title {
     font-size: 38px;
-    font-family:"Source Han Serif CN";
   }
 
   .archive-item-date {
     font-size: 19px;
     text-align: right;
     float: right;
-    font-family:"Source Han Serif CN";
   }
 
   .archive-item-link {
@@ -308,12 +304,10 @@ code {
 
   .article-title {
     font-size: 42px;
-    font-family:"Source Han Serif CN";
   }
 
   .article-duration {
     font-size: 12px;
-    font-family:"Source Han Serif CN";
   }
 
   .footer-links {

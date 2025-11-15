@@ -13,6 +13,9 @@
 
 {{ if eq .URL "/" }}
 <meta property="description" content="{{ .Site.Params.description }}">
+{{ .Hugo.Generator }}
+
+<!-- 其余内容保持不变 -->
 {{ else }}
   {{ if .Description }}
   <meta property="description" content="{{ .Description }}">

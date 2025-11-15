@@ -1,4 +1,20 @@
-<script type="text/x-mathjax-config">
+{{ if or (.Params.math) (.Site.Params.math) }}
+<!-- MathJax v3 Configuration -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+{{ end }}
+
+<!--
+script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   tex2jax: {
     inlineMath: [['$', '$'], ['\\(', '\\)']],  // 开启 $...$ 和 \( ... \)
@@ -10,4 +26,4 @@ MathJax.Hub.Config({
 <script async type="text/javascript"
   src="https://mathjax.rstudio.com/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
-
+-->

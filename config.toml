@@ -7,7 +7,7 @@ googleAnalytics = ""
 disqusShortname="https-yjx-netlify-app-1"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$",  "_cache$"]
 hasCJKLanguage= true
-
+math = true
 enableEmoji=true
 footnotereturnlinkcontents= "↩"
 rssLimit=100
@@ -70,13 +70,10 @@ rssLimit=100
     highlightjsCDN = "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0"
     highlightjsLang = ["r", "yaml"]
     highlightjsTheme = "github"
-    MathJaxCDN = "https://mathjax.rstudio.com/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"
-    MathJaxVersion = "latest"
-    math = true
- 
-[params.math.mathjax]
-  cdn = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 
+
+
+    
 
  
 

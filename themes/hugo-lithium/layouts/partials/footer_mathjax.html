@@ -1,5 +1,48 @@
+{{ if or (.Params.math) (.Site.Params.math) }}
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    tags: 'ams',
+    autoload: {
+      color: [],
+      colorV2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  chtml: {
+    scale: 1.1,
+    displayAlign: 'center',
+    displayIndent: '2em'
+  },
+  svg: {
+    fontCache: 'global'
+  },
+  startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(() => {
+        console.log('MathJax v3 initialized successfully');
+      });
+    }
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+{{ end }}
+
+
+<!--
 {{ if and (not .Params.disable_mathjax) (or (in (string .Content) "\\") (in (string .Content) "$")) }}
 <script src="{{ "/js/math-code.js" | relURL }}"></script>
 <script async src="{{ .Site.Params.MathJaxCDN | default "//mathjax.rstudio.com" }}/{{ .Site.Params.MathJaxVersion | default "latest" }}/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 {{ end }}
-
+-->

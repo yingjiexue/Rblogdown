@@ -1,35 +1,26 @@
+<script type="text/javascript"
+src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 {{ partial "header.html" . }}
 
-<main class="content" role="main">
+{{ .Content }}
 
-  {{ if .Content }}
-  <article class="article">
-    {{ if .Title }}
-    <h1 class="article-title">{{ .Title }}</h1>
-    {{ end }}
-    <div class="article-content">
-      {{ .Content }}
-    </div>
-  </article>
-  {{ end }}
-  <div class="archive">
-    {{ $pages := .Pages }}
-    {{ if .IsHome }}
-    {{ $pages = .Site.RegularPages }}
-    {{ end }}
-    {{ range (where $pages "Section" "!=" "").GroupByDate "2006" }}
+{{ if .IsHome }}
+{{ $.Scratch.Set "pages" .Site.RegularPages }}
+{{ else }}
+{{ $.Scratch.Set "pages" .Pages }}
+{{ end }}
+<ul>
+  {{ range (where ($.Scratch.Get "pages") "Section" "!=" "").GroupByDate "2006" }}
     <h2 class="archive-title">{{ .Key }}</h2>
     {{ range .Pages }}
     <article class="archive-item">
-      <a href="{{ .RelPermalink }}" class="archive-item-link">{{ .Title }}</a>
       <span class="archive-item-date">
-        {{ .Date.Format "2006-01-02" }}
+        {{ .Date.Format "2006/01/02" }}
       </span>
+      <a href="{{ .Permalink }}" class="archive-item-link">{{ .Title }}</a>
     </article>
     {{ end }}
     {{ end }}
-  </div>
-
-</main>
+</ul>
 
 {{ partial "footer.html" . }}

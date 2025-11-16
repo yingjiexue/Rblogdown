@@ -103,7 +103,14 @@ enable: false
           <a href="https://www.jianguoyun.com/p/DTSEZsoQupbVDRi1jZEGIAA">违反古典假定的线性回归模型</a>
           </th>
        </tr>
-       
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">第五章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DYRoLYkQupbVDRiUqpIGIAA">非线性回归模型</a>
+          </th>
+       </tr>
                           
 </table>
 

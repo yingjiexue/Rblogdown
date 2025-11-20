@@ -111,8 +111,17 @@ enable: false
           <a href="https://www.jianguoyun.com/p/DYRoLYkQupbVDRiUqpIGIAA">非线性回归模型</a>
           </th>
        </tr>
+       <tr>
+          <th>
+          <a style="color:#00BFFF;">第六章: </a>
+          </th>
+          <th>
+          <a href="https://www.jianguoyun.com/p/DToagFUQupbVDRi5-pIGIAA">拓展的回归模型</a>
+          </th>
+       </tr>
                           
 </table>
+
 
 
 

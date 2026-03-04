@@ -261,3 +261,21 @@ enable: false
       </th>
    </tr>
 </table>
+
+
+
+# 时间序列分析
+
+
+> **课件**
+
+<table style="border-style:none;text-align:left">
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第一章: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DcxjEuEQhsWJDhiw3ZoGIAA">时间序列分析简介</a>
+      </th>
+   </tr>
+</table>

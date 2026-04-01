@@ -29,21 +29,27 @@ tags:
 <li><strong>基金所有权比率</strong>：<span class="math inline">\(\Omega_t = \frac{AUM_t}{MarketCap_t}\)</span>，即基金规模占整个市场总市值的比例。</li>
 <li><strong>股票所有权比率</strong>：<span class="math inline">\(\Omega_{i,t} = \frac{SharesHeld_{i,t}}{SharesOutstanding_{i,t}}\)</span>，即基金持有的某只股票的股数占该股票总流通股数的比例。</li>
 </ul>
-<p><strong>核心等式</strong>：
-- 一个严格跟踪价值加权指数的基金，必须满足：
+<p><strong>核心等式</strong>：</p>
+<ul>
+<li><p>一个严格跟踪价值加权指数的基金，必须满足：
 <span class="math display">\[
-  \Omega_t = \Omega_{i,t} \quad \forall i
-  \]</span>
-- 这意味着：<strong>基金持有每只股票相同比例（即基金规模占市场的比例）的流通股份</strong>。</p>
+\Omega_t = \Omega_{i,t} \quad \forall i
+\]</span></p></li>
+<li><p>这意味着：<strong>基金持有每只股票相同比例（即基金规模占市场的比例）的流通股份</strong>。</p></li>
+</ul>
 </div>
 <div id="这个框架揭示了什么" class="section level4">
 <h4>2.2 这个框架揭示了什么？</h4>
 <p><strong>关键洞察1：股价波动不引发交易</strong>
-- 假设某只股票价格上涨，其市值占市场总市值的比重会上升。但根据所有权比率框架，基金持有的股数不变，该股票在基金中的权重自然上升——这正是价值加权指数所要求的。
-- 因此，<strong>仅由股价波动引起的权重变化，不需要任何交易</strong>。</p>
-<p><strong>关键洞察2：只有两类事件会引发交易</strong>
-- <strong>资金流事件（缩放）</strong>：当基金有申购或赎回时，<span class="math inline">\(AUM\)</span>变化，<span class="math inline">\(\Omega_t\)</span>变化。为了恢复<span class="math inline">\(\Omega_t = \Omega_{i,t}\)</span>，基金必须按比例增持或减持所有股票。
-- <strong>市场构成变化（再平衡）</strong>：当某只股票的流通股数发生变化（增发、回购、IPO、退市）时，<span class="math inline">\(\Omega_{i,t}\)</span>和<span class="math inline">\(\Omega_t\)</span>都会变化。为了恢复等式，基金必须<strong>差异化地</strong>交易——买入增发较多的股票，卖出增发较少或回购较多的股票。</p>
+- 假设某只股票价格上涨，其市值占市场总市值的比重会上升。但根据所有权比率框架，基金持有的股数不变，该股票在基金中的权重自然上升——这正是价值加权指数所要求的。</p>
+<ul>
+<li>因此，<strong>仅由股价波动引起的权重变化，不需要任何交易</strong>。</li>
+</ul>
+<p><strong>关键洞察2：只有两类事件会引发交易</strong></p>
+<ul>
+<li><p><strong>资金流事件（缩放）</strong>：当基金有申购或赎回时，<span class="math inline">\(AUM\)</span>变化，<span class="math inline">\(\Omega_t\)</span>变化。为了恢复<span class="math inline">\(\Omega_t = \Omega_{i,t}\)</span>，基金必须按比例增持或减持所有股票。</p></li>
+<li><p><strong>市场构成变化（再平衡）</strong>：当某只股票的流通股数发生变化（增发、回购、IPO、退市）时，<span class="math inline">\(\Omega_{i,t}\)</span>和<span class="math inline">\(\Omega_t\)</span>都会变化。为了恢复等式，基金必须<strong>差异化地</strong>交易——买入增发较多的股票，卖出增发较少或回购较多的股票。</p></li>
+</ul>
 <p><strong>关键洞察3：指数设计者的自由裁量权</strong>
 - 所有权比率框架揭示了：一个价值加权指数，其设计者实际上只有两个可以选择的参数：
 - <strong>再平衡频率</strong>：多久更新一次“指数合格股份”（即多久重新计算一次<span class="math inline">\(\Omega_{i,t}\)</span>）。
@@ -293,23 +299,14 @@ MIR = \frac{\mathbb{E}[r_{idx} - r_{mkt}]}{MTE}
 <li><strong>未考虑其他指数类型</strong>：论文聚焦于价值加权指数。等权指数、因子指数等其他类型的指数可能有不同的再平衡逻辑。</li>
 </ul>
 </div>
-<div id="九与北交所话题的关联" class="section level3">
-<h3>九、与北交所话题的关联</h3>
-<ul>
-<li>回到你最初的问题——北交所股票涨跌幅30%。这篇论文与北交所的关系在于：
-<ul>
-<li><strong>指数规则的重要性</strong>：北交所也有一系列指数（如北证50），这些指数的再平衡规则同样会影响跟踪基金的收益。投资者在选择北交所指数基金时，也应关注其再平衡频率和股份数据更新规则。</li>
-<li><strong>市场构成的特殊性</strong>：北交所的IPO、增发、回购活动可能更为频繁，这意味着指数基金的再平衡成本可能更高。论文的分析框架可以用于评估北交所指数基金的实际成本。</li>
-<li><strong>投资者启示</strong>：在北交所这样波动较大的市场，“快速响应”的指数规则可能带来更大的择时损失。一个“更懒”的指数设计可能更适合北交所投资者。</li>
-</ul></li>
-</ul>
-</div>
-<div id="十总结" class="section level3">
-<h3>十、总结</h3>
+<div id="九总结" class="section level3">
+<h3>九、总结</h3>
 <ul>
 <li>这篇论文通过一个简洁优雅的“所有权比率”框架，揭示了指数基金再平衡的本质，并首次量化了其隐性成本。</li>
-<li>核心结论是：
-&gt; 指数基金的再平衡交易构成了一种负面的市场择时策略，每年给投资者带来约50个基点的业绩拖累——这是指数费率的10倍以上。通过“更懒”的指数设计（延迟1-2年再纳入股份变动），可以显著改善收益。</li>
-<li>这篇论文挑战了“被动投资就是低成本”的传统认知，也为指数设计提供了实证指导。对于任何关心指数基金实际成本的投资者，这都是必读之作。</li>
+<li>核心结论是：</li>
 </ul>
+<blockquote>
+<p>指数基金的再平衡交易构成了一种负面的市场择时策略，每年给投资者带来约50个基点的业绩拖累——这是指数费率的10倍以上。通过“更懒”的指数设计（延迟1-2年再纳入股份变动），可以显著改善收益。
+- 这篇论文挑战了“被动投资就是低成本”的传统认知，也为指数设计提供了实证指导。对于任何关心指数基金实际成本的投资者，这都是必读之作。</p>
+</blockquote>
 </div>

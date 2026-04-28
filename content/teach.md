@@ -257,7 +257,32 @@ enable: false
       <a style="color:#00BFFF;">第三章: </a>
       </th>
       <th>
-      <a href="https://www.jianguoyun.com/p/Daa17HwQ-eKIDhjVzp0GIAA">利息度量</a>
+      <a href="https://www.jianguoyun.com/p/Daa17HwQ-eKIDhjVzp0GIAA">变额年金</a>
+      </th>
+   </tr>
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第四章: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DTGsTxAQ-eKIDhjKzqIGIAA">收益率和收益分配</a>
+      </th>
+   </tr>
+    <tr>
+      <th>
+      <a style="color:#00BFFF;">第五章: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/Dal1TH4Q-eKIDhjPzp0GIAA">债务偿还方法</a>
+      </th>
+   </tr>
+   </tr>
+    <tr>
+      <th>
+      <a style="color:#00BFFF;">第六章: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DWB3jcQQ-eKIDhii0aIGIAA">债券价值分析</a>
       </th>
    </tr>
 </table>

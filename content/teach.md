@@ -303,17 +303,70 @@ enable: false
       <a href="https://www.jianguoyun.com/p/DcxjEuEQhsWJDhiw3ZoGIAA">时间序列分析简介</a>
       </th>
    </tr>
+      <tr>
+      <th>
+      <a style="color:#00BFFF;">第二章: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DW2xraAQhsWJDhjf6Z8GIAA">时间序列的预处理</a>
+      </th>
+   </tr>
+      <tr>
+      <th>
+      <a style="color:#00BFFF;">第三章: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/Ddtc7jcQhsWJDhji6Z8GIAA">ARMA模型的性质</a>
+      </th>
+   </tr>
+      <tr>
+      <th>
+      <a style="color:#00BFFF;">第四章: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DWo3thEQhsWJDhjj6Z8GIAA">平稳序列的拟合与预测</a>
+      </th>
+   </tr>
+      <tr>
+      <th>
+      <a style="color:#00BFFF;">第五章: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DbnxqIwQhsWJDhjk6Z8GIAA">无季节效应的非平稳序列</a>
+      </th>
+   </tr>
+      <tr>
+      <th>
+      <a style="color:#00BFFF;">第六章: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DS_xtl8QhsWJDhjl6Z8GIAA">有季节效应的非平稳序列分析</a>
+      </th>
+   </tr>
+      <tr>
+      <th>
+      <a style="color:#00BFFF;">第七章: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DXxabFIQhsWJDhjm6Z8GIAA">多元时间序列分析</a>
+      </th>
+   </tr>
 </table>
 
 
 
-> **软件**
+> **软件与数据**
 
 <table style="border-style:none;text-align:left">
 
    <tr>
       <th>
       <a href="https://www.jianguoyun.com/p/DatHhV0QhsWJDhjp4ZoGIAA">Anconda下载</a>
+      </th>
+   </tr>
+      <tr>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DRZ9KpcQhsWJDhjn6Z8GIAA">数据</a>
       </th>
    </tr>
 </table>

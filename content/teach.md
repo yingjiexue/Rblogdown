@@ -273,7 +273,7 @@ enable: false
       <a style="color:#00BFFF;">第五章: </a>
       </th>
       <th>
-      <a href="https://www.jianguoyun.com/p/Dal1TH4Q-eKIDhjPzp0GIAA">债务偿还方法</a>
+      <a href="https://www.jianguoyun.com/p/DQ_CA8UQ-eKIDhid0aIGIAA">债务偿还方法</a>
       </th>
    </tr>
    </tr>

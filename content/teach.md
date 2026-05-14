@@ -375,4 +375,10 @@ enable: false
       <a href="https://www.jianguoyun.com/p/DXEdnq0QhsWJDhjl8p8GIAA">课后习题数据</a>
       </th>
    </tr>
+    </tr>
+      <tr>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DeFtvNIQhsWJDhj3858GIAA">第四章代码</a>
+      </th>
+   </tr>
 </table>

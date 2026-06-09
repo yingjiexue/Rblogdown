@@ -285,6 +285,14 @@ enable: false
       <a href="https://www.jianguoyun.com/p/DWB3jcQQ-eKIDhii0aIGIAA">债券价值分析</a>
       </th>
    </tr>
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第七章: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DdHPHBUQ-eKIDhiX8qUGIAA">利率风险管理</a>
+      </th>
+   </tr>
 </table>
 
 

@@ -1,0 +1,244 @@
+---
+title: 机器学习与投资组合管理文献阅读
+author: 薛英杰
+date: '2026-06-10'
+slug: 'meachin learning and investment portforlio management'
+categories:
+  - research
+tags:
+  - research
+---
+
+
+
+<p>机器学习与投资组合优化的融合，是过去十年量化金融领域最重要的发展之一。Lee等人（2024）提供了一份全面的综述，阐述了机器学习技术如何改变投资组合管理的两个基本阶段：（1）关键参数估计（收益、协方差及相关指标），（2）基于这些预测优化投资组合权重。</p>
+<p>经典的Markowitz（1952）均值-方差框架提供了理论基础：</p>
+<p><span class="math inline">\(\max_{\mathbf{w}} \quad \boldsymbol{\mu}^\top \mathbf{w} - \frac{\gamma}{2} \mathbf{w}^\top \boldsymbol{\Sigma} \mathbf{w}\)</span></p>
+<p>满足约束条件 <span class="math inline">\(\mathbf{1}^\top \mathbf{w} = 1\)</span>，其中 <span class="math inline">\(\boldsymbol{\mu}\)</span> 是预期收益向量，<span class="math inline">\(\boldsymbol{\Sigma}\)</span> 是协方差矩阵，<span class="math inline">\(\gamma\)</span> 是风险厌恶系数，<span class="math inline">\(\mathbf{w}\)</span> 是投资组合权重向量。</p>
+<p>其根本挑战在于 <span class="math inline">\(\boldsymbol{\mu}\)</span> 和 <span class="math inline">\(\boldsymbol{\Sigma}\)</span> 均未知且需要估计。机器学习方法在两个阶段都能提供潜在的改进，以及绕过显式估计的端到端方法。</p>
+<p>机器学习与投资组合优化一般分为两个阶段：</p>
+<p><img src="two%20stages.png" /></p>
+<pre class="r"><code># Two-stage framework taxonomy
+taxonomy &lt;- list(
+  Stage1 = list(
+    Return_Prediction = c(&quot;GKX (2020)&quot;, &quot;Chen-Pelger-Zhu (2020)&quot;, &quot;Bianchi et al. (2021)&quot;),
+    Covariance_Prediction = c(&quot;kNN&quot;, &quot;Graph-based&quot;, &quot;RMT&quot;, &quot;HRP&quot;),
+    Similarity = c(&quot;Equity2Vec&quot;, &quot;SimStock&quot;, &quot;LLMs&quot;),
+    Dynamic_Adjustment = c(&quot;HMM&quot;, &quot;SVM&quot;, &quot;GAN-anomaly&quot;)
+  ),
+  Stage2 = list(
+    Large_Scale_Opt = c(&quot;Clustering&quot;, &quot;SDDP&quot;, &quot;Neural SDDP&quot;, &quot;VFGL&quot;, &quot;DVFN&quot;, &quot;TransSDDP&quot;),
+    Nonconvex_Opt = c(&quot;MIP&quot;, &quot;Cardinality Constraints&quot;, &quot;Constraint Prediction&quot;)
+  ),
+  Combined = list(
+    DFL = c(&quot;Regret Minimization&quot;, &quot;Gradient-through-Optimization&quot;, &quot;Surrogate Functions&quot;),
+    E2E = c(&quot;Softmax&quot;, &quot;CNN&quot;, &quot;RNN-LSTM Sharpe Max&quot;),
+    RL = c(&quot;Single-Asset&quot;, &quot;Portfolio&quot;)
+  )
+)</code></pre>
+<div id="第一阶段关键参数估计" class="section level3">
+<h3>第一阶段：关键参数估计</h3>
+<p><strong>（1） 收益预测</strong></p>
+<div id="gu-kelly-and-xiu-2020-神经网络" class="section level4">
+<h4>Gu, Kelly, and Xiu (2020) — 神经网络</h4>
+<p>GKX（2020）的开创性工作表明，神经网络在预测股票收益方面显著优于传统方法。他们利用94个公司特征、74个行业虚拟变量和8个宏观预测变量（共920个预测变量），证明了：</p>
+<p><span class="math inline">\(r_{i,t+1} = g(\mathbf{x}_{i,t}) + \varepsilon_{i,t+1}\)</span></p>
+<p>主要发现：</p>
+<ul>
+<li><p>具有2-5个隐藏层的神经网络实现了0.4%-0.8%的样本外<span class="math inline">\(R^2\)</span></p></li>
+<li><p>多空十分位投资组合的月度夏普比率达到2.0以上</p></li>
+<li><p>非线性模型显著优于线性基准 - 表现在不同子时期内保持一致</p></li>
+</ul>
+</div>
+<div id="chen-pelger-and-zhu-2020-深度学习sdf" class="section level4">
+<h4>Chen, Pelger, and Zhu (2020) — 深度学习SDF</h4>
+<p>CPZ（2020）利用深度学习提取潜在定价因子，融入了随机贴现因子（SDF）约束：</p>
+<p>Chen, Pelger, and Zhu (2020) 提出的生成对抗网络（GAN）架构，用于生成逼真的金融时间序列数据。随机贴现因子（SDF）形式为：</p>
+<p><span class="math inline">\(M_{t+1} = 1 - \boldsymbol{\lambda}^\top \mathbf{F}_{t+1}\)</span></p>
+<p>其中 <span class="math inline">\(M_{t+1}\)</span> 是SDF，满足 <span class="math inline">\(\mathbb{E}[M_{t+1} r_{i,t+1}^e] = 0\)</span>。他们的深度学习方法联合估计因子和因子载荷，在解释收益横截面方面取得了优越的性能。</p>
+</div>
+<div id="bianchi-et-al.-2021-自助聚合bagging" class="section level4">
+<h4>Bianchi et al. (2021) — 自助聚合（Bagging）</h4>
+<p>Bianchi等人（2021）将自助聚合（bagging）应用于收益预测，以降低方差并提高预测稳定性：</p>
+<p><span class="math inline">\(\hat{r}_{i,t+1} = \frac{1}{B}\sum_{b=1}^{B}\hat{g}_b(\mathbf{x}_{i,t})\)</span></p>
+<p>其中 <span class="math inline">\(B\)</span> 是自助样本的数量，<span class="math inline">\(\hat{g}_b\)</span> 是基于第 <span class="math inline">\(b\)</span> 个自助样本训练的模型。他们对1964年至2016年的美国股票数据进行了广泛的实证分析，发现bagging策略持续提高了预测性能，尤其是在预测误差方差较高的时期。</p>
+<pre class="r"><code># -----------------------------------------------------------------------
+# Return prediction using neural networks (Gu, Kelly, and Xiu, 2020)
+# -----------------------------------------------------------------------
+
+#&#39; Build a neural network return predictor
+#&#39;
+#&#39; @param X_train Training features (matrix)
+#&#39; @param y_train Training returns (vector)
+#&#39; @param X_test Test features (matrix)
+#&#39; @param y_test Test returns (vector)
+#&#39; @param layers Hidden layer architecture (vector of units)
+#&#39; @param learning_rate Learning rate for Adam optimizer
+#&#39; @param epochs Number of training epochs
+#&#39; @param batch_size Batch size
+#&#39; @return List containing predictions and model object
+build_return_predictor &lt;- function(X_train, y_train, X_test, y_test,
+                                    layers = c(64, 32, 16),
+                                    learning_rate = 0.001,
+                                    epochs = 100,
+                                    batch_size = 256) {
+
+  # Input dimension
+  p &lt;- ncol(X_train)
+
+  # Build model architecture
+  model &lt;- keras::keras_model_sequential()
+  model %&gt;%
+    keras::layer_dense(units = layers[1], input_shape = p) %&gt;%
+    keras::layer_activation_elu() %&gt;%
+    keras::layer_batch_normalization() %&gt;%
+    keras::layer_dropout(0.1)
+
+  for (units in layers[-1]) {
+    model %&gt;%
+      keras::layer_dense(units = units) %&gt;%
+      keras::layer_activation_elu() %&gt;%
+      keras::layer_batch_normalization() %&gt;%
+      keras::layer_dropout(0.1)
+  }
+
+  # Output layer
+  model %&gt;%
+    keras::layer_dense(units = 1)
+
+  # Compile with Adam optimizer
+  model %&gt;%
+    keras::compile(
+      optimizer = keras::optimizer_adam(learning_rate = learning_rate),
+      loss = &quot;mse&quot;
+    )
+
+  # Early stopping callback
+  early_stop &lt;- keras::callback_early_stopping(
+    monitor = &quot;val_loss&quot;,
+    patience = 10,
+    restore_best_weights = TRUE
+  )
+
+  # Train model
+  history &lt;- model %&gt;%
+    keras::fit(
+      x = X_train,
+      y = y_train,
+      epochs = epochs,
+      batch_size = batch_size,
+      validation_split = 0.2,
+      callbacks = list(early_stop),
+      verbose = 0
+    )
+
+  # Predictions
+  y_pred &lt;- model %&gt;% keras::predict(X_test) %&gt;% as.numeric()
+
+  # OOS R-squared
+  r2_oos &lt;- 1 - sum((y_test - y_pred)^2) / sum(y_test^2)
+
+  list(
+    predictions = y_pred,
+    r2_oos = r2_oos,
+    model = model,
+    history = history
+  )
+}</code></pre>
+<p><strong>（2） 协方差预测</strong></p>
+</div>
+<div id="k近邻knn" class="section level4">
+<h4>k近邻（kNN）</h4>
+<p>kNN方法通过识别具有相似特征的时期来改进协方差估计。对于任意两只股票 <span class="math inline">\(i\)</span> 和 <span class="math inline">\(j\)</span>，我们筛选两者都具有相似市场状态的时期子集：</p>
+<p><span class="math inline">\(\hat{\Sigma}_{ij} = \frac{1}{|\mathcal{N}_{ij}|}\sum_{t \in \mathcal{N}_{ij}} (r_{i,t} - \bar{r}_i)(r_{j,t} - \bar{r}_j)\)</span></p>
+<p>其中 <span class="math inline">\(\mathcal{N}_{ij}\)</span> 是由特征空间中的k近邻识别的时期集合。这种方法在特征与协方差结构相关时特别有效。</p>
+</div>
+<div id="基于图的方法" class="section level4">
+<h4>基于图的方法</h4>
+<p>图论方法通过将股票表示为节点、将关系表示为边来建模协方差结构。拉普拉斯矩阵 <span class="math inline">\(\mathbf{L} = \mathbf{D} - \mathbf{A}\)</span> 的伪逆直接提供了协方差估计：</p>
+<p><span class="math inline">\(\hat{\Sigma} = \mathbf{L}^+\)</span></p>
+<p>这种方法自然地施加了稀疏性和条件独立性（由图的拓扑结构决定），这与市场存在有限数量共同因子的直觉一致。</p>
+</div>
+<div id="随机矩阵理论rmt" class="section level4">
+<h4>随机矩阵理论（RMT）</h4>
+<p>RMT方法通过将经验协方差矩阵的特征值与随机矩阵的Marchenko-Pastur（MP）分布进行比较来分离信号与噪声。令 <span class="math inline">\(\lambda_1 &gt; \lambda_2 &gt; \ldots &gt; \lambda_N\)</span> 为样本协方差矩阵 <span class="math inline">\(\mathbf{S}\)</span> 的特征值。MP分布的上界为：</p>
+<p><span class="math inline">\(\lambda_{\text{MP}} = \bar{\sigma}^2 \left(1 + \sqrt{\frac{N}{T}}\right)^2\)</span></p>
+<p>其中 <span class="math inline">\(\bar{\sigma}^2\)</span> 是平均特征方差。修正后的协方差估计仅保留超过MP界限的特征值：</p>
+<p><span class="math inline">\(\hat{\Sigma}_{\text{RMT}} = \sum_{i: \lambda_i &gt; \lambda_{\text{MP}}} \lambda_i \mathbf{v}_i \mathbf{v}_i^\top + \bar{\sigma}^2 \mathbf{I}\)</span></p>
+<p>其中 <span class="math inline">\(\mathbf{v}_i\)</span> 是对应的特征向量。</p>
+</div>
+<div id="层次风险平价hrp" class="section level4">
+<h4>层次风险平价（HRP）</h4>
+<p>López de Prado（2016）提出的HRP方法利用层次聚类来构建对噪声更具鲁棒性的多样化投资组合。该算法包含三个步骤：</p>
+<ol style="list-style-type: decimal">
+<li><strong>层次聚类</strong>：基于相关距离 <span class="math inline">\(d_{ij} = \sqrt{\frac{1}{2}(1 - \rho_{ij})}\)</span> 构建树状图</li>
+<li><strong>准对角化</strong>：根据聚类结果重新排列协方差矩阵</li>
+<li><strong>递归二分</strong>：沿着树状图递归分配权重</li>
+</ol>
+<p><span class="math inline">\(\mathbf{w} = \text{HRP}(\boldsymbol{\Sigma})\)</span></p>
+<p>HRP的主要优势在于它不需要协方差矩阵的完全可逆性——这在资产数量接近或超过时间周期数量时是一个关键优势。</p>
+<pre class="r"><code># -----------------------------------------------------------------------
+# Hierarchical Risk Parity (HRP) Implementation
+# López de Prado (2016)
+# -----------------------------------------------------------------------
+
+#&#39; Compute Hierarchical Risk Parity Portfolio
+#&#39;
+#&#39; @param Sigma Covariance matrix
+#&#39; @param method Linkage method for hierarchical clustering
+#&#39; @return HRP weight vector
+
+hrp_portfolio &lt;- function(Sigma, method = &quot;single&quot;) {
+  N &lt;- ncol(Sigma)
+
+  # Step 1: Compute correlation-based distance
+  corr &lt;- stats::cov2cor(Sigma)
+  dist_matrix &lt;- stats::as.dist(sqrt(0.5 * (1 - corr)))
+
+  # Step 2: Hierarchical clustering
+  clustering &lt;- stats::hclust(dist_matrix, method = method)
+
+  # Step 3: Quasi-diagonalization (reorder by cluster)
+  order_index &lt;- clustering$order
+
+  # Step 4: Recursive bisection
+  weights &lt;- recursive_bisection(Sigma, order_index)
+
+  return(weights)
+}
+
+#&#39; Recursive bisection helper
+#&#39;
+#&#39; @param Sigma Covariance matrix
+#&#39; @param asset_order Ordered asset indices from clustering
+#&#39; @return Weight vector for the given cluster
+
+recursive_bisection &lt;- function(Sigma, asset_order) {
+  n &lt;- length(asset_order)
+
+  if (n == 1) {
+    return(setNames(1, colnames(Sigma)[asset_order]))
+  }
+
+  # Split into two sub-clusters
+  mid &lt;- floor(n / 2)
+  left_indices &lt;- asset_order[1:mid]
+  right_indices &lt;- asset_order[(mid + 1):n]
+
+  # Compute inverse-variance weights for each sub-cluster
+  var_left &lt;- sum(diag(Sigma[left_indices, left_indices, drop = FALSE]))
+  var_right &lt;- sum(diag(Sigma[right_indices, right_indices, drop = FALSE]))
+  alpha &lt;- 1 - var_left / (var_left + var_right)
+
+  # Recursively compute weights within each sub-cluster
+  left_weights &lt;- recursive_bisection(Sigma, left_indices)
+  right_weights &lt;- recursive_bisection(Sigma, right_indices)
+
+  # Scale and combine
+  weights &lt;- c(alpha * left_weights / sum(left_weights),
+               (1 - alpha) * right_weights / sum(right_weights))
+
+  return(weights)
+}</code></pre>
+</div>
+</div>

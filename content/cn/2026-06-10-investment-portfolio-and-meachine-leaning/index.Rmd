@@ -1,0 +1,275 @@
+---
+title: 机器学习与投资组合管理文献阅读
+author: 薛英杰
+date: '2026-06-10'
+slug: 'meachin learning and investment portforlio management'
+categories:
+  - research
+tags:
+  - research
+---
+
+机器学习与投资组合优化的融合，是过去十年量化金融领域最重要的发展之一。Lee等人（2024）提供了一份全面的综述，阐述了机器学习技术如何改变投资组合管理的两个基本阶段：（1）关键参数估计（收益、协方差及相关指标），（2）基于这些预测优化投资组合权重。
+
+经典的Markowitz（1952）均值-方差框架提供了理论基础：
+
+$\max_{\mathbf{w}} \quad \boldsymbol{\mu}^\top \mathbf{w} - \frac{\gamma}{2} \mathbf{w}^\top \boldsymbol{\Sigma} \mathbf{w}$
+
+满足约束条件 $\mathbf{1}^\top \mathbf{w} = 1$，其中 $\boldsymbol{\mu}$ 是预期收益向量，$\boldsymbol{\Sigma}$ 是协方差矩阵，$\gamma$ 是风险厌恶系数，$\mathbf{w}$ 是投资组合权重向量。
+
+其根本挑战在于 $\boldsymbol{\mu}$ 和 $\boldsymbol{\Sigma}$ 均未知且需要估计。机器学习方法在两个阶段都能提供潜在的改进，以及绕过显式估计的端到端方法。
+
+机器学习与投资组合优化一般分为两个阶段：
+
+![](two%20stages.png)
+
+```{r taxonomy, eval=FALSE}
+# Two-stage framework taxonomy
+taxonomy <- list(
+  Stage1 = list(
+    Return_Prediction = c("GKX (2020)", "Chen-Pelger-Zhu (2020)", "Bianchi et al. (2021)"),
+    Covariance_Prediction = c("kNN", "Graph-based", "RMT", "HRP"),
+    Similarity = c("Equity2Vec", "SimStock", "LLMs"),
+    Dynamic_Adjustment = c("HMM", "SVM", "GAN-anomaly")
+  ),
+  Stage2 = list(
+    Large_Scale_Opt = c("Clustering", "SDDP", "Neural SDDP", "VFGL", "DVFN", "TransSDDP"),
+    Nonconvex_Opt = c("MIP", "Cardinality Constraints", "Constraint Prediction")
+  ),
+  Combined = list(
+    DFL = c("Regret Minimization", "Gradient-through-Optimization", "Surrogate Functions"),
+    E2E = c("Softmax", "CNN", "RNN-LSTM Sharpe Max"),
+    RL = c("Single-Asset", "Portfolio")
+  )
+)
+```
+
+### 第一阶段：关键参数估计
+
+**（1） 收益预测**
+
+#### Gu, Kelly, and Xiu (2020) — 神经网络
+
+GKX（2020）的开创性工作表明，神经网络在预测股票收益方面显著优于传统方法。他们利用94个公司特征、74个行业虚拟变量和8个宏观预测变量（共920个预测变量），证明了：
+
+$r_{i,t+1} = g(\mathbf{x}_{i,t}) + \varepsilon_{i,t+1}$
+
+主要发现：
+
+-   具有2-5个隐藏层的神经网络实现了0.4%-0.8%的样本外$R^2$
+
+-   多空十分位投资组合的月度夏普比率达到2.0以上
+
+-   非线性模型显著优于线性基准 - 表现在不同子时期内保持一致
+
+#### Chen, Pelger, and Zhu (2020) — 深度学习SDF
+
+CPZ（2020）利用深度学习提取潜在定价因子，融入了随机贴现因子（SDF）约束：
+
+Chen, Pelger, and Zhu (2020) 提出的生成对抗网络（GAN）架构，用于生成逼真的金融时间序列数据。随机贴现因子（SDF）形式为：
+
+$M_{t+1} = 1 - \boldsymbol{\lambda}^\top \mathbf{F}_{t+1}$
+
+其中 $M_{t+1}$ 是SDF，满足 $\mathbb{E}[M_{t+1} r_{i,t+1}^e] = 0$。他们的深度学习方法联合估计因子和因子载荷，在解释收益横截面方面取得了优越的性能。
+
+#### Bianchi et al. (2021) — 自助聚合（Bagging）
+
+Bianchi等人（2021）将自助聚合（bagging）应用于收益预测，以降低方差并提高预测稳定性：
+
+$\hat{r}_{i,t+1} = \frac{1}{B}\sum_{b=1}^{B}\hat{g}_b(\mathbf{x}_{i,t})$
+
+其中 $B$ 是自助样本的数量，$\hat{g}_b$ 是基于第 $b$ 个自助样本训练的模型。他们对1964年至2016年的美国股票数据进行了广泛的实证分析，发现bagging策略持续提高了预测性能，尤其是在预测误差方差较高的时期。
+
+```{r return-prediction}
+# -----------------------------------------------------------------------
+# Return prediction using neural networks (Gu, Kelly, and Xiu, 2020)
+# -----------------------------------------------------------------------
+
+#' Build a neural network return predictor
+#'
+#' @param X_train Training features (matrix)
+#' @param y_train Training returns (vector)
+#' @param X_test Test features (matrix)
+#' @param y_test Test returns (vector)
+#' @param layers Hidden layer architecture (vector of units)
+#' @param learning_rate Learning rate for Adam optimizer
+#' @param epochs Number of training epochs
+#' @param batch_size Batch size
+#' @return List containing predictions and model object
+build_return_predictor <- function(X_train, y_train, X_test, y_test,
+                                    layers = c(64, 32, 16),
+                                    learning_rate = 0.001,
+                                    epochs = 100,
+                                    batch_size = 256) {
+
+  # Input dimension
+  p <- ncol(X_train)
+
+  # Build model architecture
+  model <- keras::keras_model_sequential()
+  model %>%
+    keras::layer_dense(units = layers[1], input_shape = p) %>%
+    keras::layer_activation_elu() %>%
+    keras::layer_batch_normalization() %>%
+    keras::layer_dropout(0.1)
+
+  for (units in layers[-1]) {
+    model %>%
+      keras::layer_dense(units = units) %>%
+      keras::layer_activation_elu() %>%
+      keras::layer_batch_normalization() %>%
+      keras::layer_dropout(0.1)
+  }
+
+  # Output layer
+  model %>%
+    keras::layer_dense(units = 1)
+
+  # Compile with Adam optimizer
+  model %>%
+    keras::compile(
+      optimizer = keras::optimizer_adam(learning_rate = learning_rate),
+      loss = "mse"
+    )
+
+  # Early stopping callback
+  early_stop <- keras::callback_early_stopping(
+    monitor = "val_loss",
+    patience = 10,
+    restore_best_weights = TRUE
+  )
+
+  # Train model
+  history <- model %>%
+    keras::fit(
+      x = X_train,
+      y = y_train,
+      epochs = epochs,
+      batch_size = batch_size,
+      validation_split = 0.2,
+      callbacks = list(early_stop),
+      verbose = 0
+    )
+
+  # Predictions
+  y_pred <- model %>% keras::predict(X_test) %>% as.numeric()
+
+  # OOS R-squared
+  r2_oos <- 1 - sum((y_test - y_pred)^2) / sum(y_test^2)
+
+  list(
+    predictions = y_pred,
+    r2_oos = r2_oos,
+    model = model,
+    history = history
+  )
+}
+```
+
+**（2） 协方差预测**
+
+#### k近邻（kNN）
+
+kNN方法通过识别具有相似特征的时期来改进协方差估计。对于任意两只股票 $i$ 和 $j$，我们筛选两者都具有相似市场状态的时期子集：
+
+$\hat{\Sigma}_{ij} = \frac{1}{|\mathcal{N}_{ij}|}\sum_{t \in \mathcal{N}_{ij}} (r_{i,t} - \bar{r}_i)(r_{j,t} - \bar{r}_j)$
+
+其中 $\mathcal{N}_{ij}$ 是由特征空间中的k近邻识别的时期集合。这种方法在特征与协方差结构相关时特别有效。
+
+#### 基于图的方法
+
+图论方法通过将股票表示为节点、将关系表示为边来建模协方差结构。拉普拉斯矩阵 $\mathbf{L} = \mathbf{D} - \mathbf{A}$ 的伪逆直接提供了协方差估计：
+
+$\hat{\Sigma} = \mathbf{L}^+$
+
+这种方法自然地施加了稀疏性和条件独立性（由图的拓扑结构决定），这与市场存在有限数量共同因子的直觉一致。
+
+#### 随机矩阵理论（RMT）
+
+RMT方法通过将经验协方差矩阵的特征值与随机矩阵的Marchenko-Pastur（MP）分布进行比较来分离信号与噪声。令 $\lambda_1 > \lambda_2 > \ldots > \lambda_N$ 为样本协方差矩阵 $\mathbf{S}$ 的特征值。MP分布的上界为：
+
+$\lambda_{\text{MP}} = \bar{\sigma}^2 \left(1 + \sqrt{\frac{N}{T}}\right)^2$
+
+其中 $\bar{\sigma}^2$ 是平均特征方差。修正后的协方差估计仅保留超过MP界限的特征值：
+
+$\hat{\Sigma}_{\text{RMT}} = \sum_{i: \lambda_i > \lambda_{\text{MP}}} \lambda_i \mathbf{v}_i \mathbf{v}_i^\top + \bar{\sigma}^2 \mathbf{I}$
+
+其中 $\mathbf{v}_i$ 是对应的特征向量。
+
+#### 层次风险平价（HRP）
+
+López de Prado（2016）提出的HRP方法利用层次聚类来构建对噪声更具鲁棒性的多样化投资组合。该算法包含三个步骤：
+
+1.  **层次聚类**：基于相关距离 $d_{ij} = \sqrt{\frac{1}{2}(1 - \rho_{ij})}$ 构建树状图
+2.  **准对角化**：根据聚类结果重新排列协方差矩阵
+3.  **递归二分**：沿着树状图递归分配权重
+
+$\mathbf{w} = \text{HRP}(\boldsymbol{\Sigma})$
+
+HRP的主要优势在于它不需要协方差矩阵的完全可逆性——这在资产数量接近或超过时间周期数量时是一个关键优势。
+
+```{r hrp-implementation}
+# -----------------------------------------------------------------------
+# Hierarchical Risk Parity (HRP) Implementation
+# López de Prado (2016)
+# -----------------------------------------------------------------------
+
+#' Compute Hierarchical Risk Parity Portfolio
+#'
+#' @param Sigma Covariance matrix
+#' @param method Linkage method for hierarchical clustering
+#' @return HRP weight vector
+
+hrp_portfolio <- function(Sigma, method = "single") {
+  N <- ncol(Sigma)
+
+  # Step 1: Compute correlation-based distance
+  corr <- stats::cov2cor(Sigma)
+  dist_matrix <- stats::as.dist(sqrt(0.5 * (1 - corr)))
+
+  # Step 2: Hierarchical clustering
+  clustering <- stats::hclust(dist_matrix, method = method)
+
+  # Step 3: Quasi-diagonalization (reorder by cluster)
+  order_index <- clustering$order
+
+  # Step 4: Recursive bisection
+  weights <- recursive_bisection(Sigma, order_index)
+
+  return(weights)
+}
+
+#' Recursive bisection helper
+#'
+#' @param Sigma Covariance matrix
+#' @param asset_order Ordered asset indices from clustering
+#' @return Weight vector for the given cluster
+
+recursive_bisection <- function(Sigma, asset_order) {
+  n <- length(asset_order)
+
+  if (n == 1) {
+    return(setNames(1, colnames(Sigma)[asset_order]))
+  }
+
+  # Split into two sub-clusters
+  mid <- floor(n / 2)
+  left_indices <- asset_order[1:mid]
+  right_indices <- asset_order[(mid + 1):n]
+
+  # Compute inverse-variance weights for each sub-cluster
+  var_left <- sum(diag(Sigma[left_indices, left_indices, drop = FALSE]))
+  var_right <- sum(diag(Sigma[right_indices, right_indices, drop = FALSE]))
+  alpha <- 1 - var_left / (var_left + var_right)
+
+  # Recursively compute weights within each sub-cluster
+  left_weights <- recursive_bisection(Sigma, left_indices)
+  right_weights <- recursive_bisection(Sigma, right_indices)
+
+  # Scale and combine
+  weights <- c(alpha * left_weights / sum(left_weights),
+               (1 - alpha) * right_weights / sum(right_weights))
+
+  return(weights)
+}
+```

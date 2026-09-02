@@ -5,7 +5,7 @@ enable: false
 ---
 
 
-
+<!--
 
 # 大数据技术与应用
 
@@ -393,6 +393,95 @@ enable: false
       <tr>
       <th>
       <a href="https://www.jianguoyun.com/p/DdWI6vEQhsWJDhimiaEGIAA">第六章代码</a>
+      </th>
+   </tr>
+</table>
+
+-->
+
+
+# 统计分析软件课程设计
+
+
+
+> **课件**
+
+<table style="border-style:none;text-align:left">
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第一章: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DUY1GxAQ-eLVDRiYo4YGIAA">导论</a>
+      </th>
+   </tr>
+   
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第二章: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DdEixjIQ-eLVDRiZo4YGIAA">Python编程基础</a>
+      </th>
+   </tr>
+   
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第三章: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DWaE_usQ-eLVDRjBl4gGIAA">数据收集方法</a>
+      </th>
+   </tr>
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第四章: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DW1xzpcQ-eLVDRjAo4wGIAA">机器学习方法与应用</a>
+      </th>
+   </tr>
+   
+</table>
+
+> **相关附件**
+
+<table style="border-style:none;text-align:left">
+   <tr>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DUMrGN0Q-eLVDRi6nIkGIAA">地图数据</a>
+      </th>
+   </tr>
+   
+   <tr>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DZRkvYwQ-eLVDRj4p4wGIAA">股票数据</a>
+      </th>
+   </tr>
+   
+   <tr>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DdstXPgQ-eLVDRjrv4sGIAA">谷歌浏览器</a>
+      </th>
+   </tr>
+   <tr>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DfU3SPMQ-eLVDRj_6IcGIAA">代码1</a>
+      </th>
+   </tr>
+   <tr>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DbuHwhQQ-eLVDRiVrIcGIAA">代码2</a>
+      </th>
+   </tr>
+   <tr>
+      <th>
+      <a href="https://www.jianguoyun.com/p/Db2j-psQ-eLVDRjqv4sGIAA">代码3</a>
+      </th>
+   </tr>
+   <tr>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DSfGGigQ-eLVDRigo4wGIAA">代码4</a>
       </th>
    </tr>
 </table>

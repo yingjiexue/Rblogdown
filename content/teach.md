@@ -485,3 +485,31 @@ enable: false
       </th>
    </tr>
 </table>
+
+
+
+# 机器学习与人工智能
+
+
+
+> **课件**
+
+<table style="border-style:none;text-align:left">
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第一章: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DeZOX58QwsTCDhjDl6gGIAA">机器学习与人工智能概述</a>
+      </th>
+   </tr>
+   
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第二章: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DRrsv5kQwsTCDhi-l6gGIAA">机器学习基本方法</a>
+      </th>
+   </tr>
+  </table>

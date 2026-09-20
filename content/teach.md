@@ -512,4 +512,17 @@ enable: false
       <a href="https://www.jianguoyun.com/p/DRrsv5kQwsTCDhi-l6gGIAA">机器学习基本方法</a>
       </th>
    </tr>
+</table>
+  
+> **代码与数据**
+
+<table style="border-style:none;text-align:left">
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">身高预测: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/Dd6Pk4oQwsTCDhipr6kGIAA">下载</a>
+      </th>
+   </tr>
   </table>

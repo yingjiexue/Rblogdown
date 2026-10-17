@@ -519,10 +519,24 @@ enable: false
 <table style="border-style:none;text-align:left">
    <tr>
       <th>
-      <a style="color:#00BFFF;">身高预测: </a>
+      <a style="color:#00BFFF;">第二章 练习: </a>
       </th>
       <th>
-      <a href="https://www.jianguoyun.com/p/Dd6Pk4oQwsTCDhipr6kGIAA">下载</a>
+      <a href="https://www.jianguoyun.com/p/Dd03vUEQwsTCDhjDvqoGIAA">下载</a>
       </th>
    </tr>
+  </table>
+  
+  > **作业**
+
+<table style="border-style:none;text-align:left">
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">作业1: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DUNU6zMQwsTCDhjCvqoGIAA">下载</a>
+      </th>
+   </tr>
+   
   </table>

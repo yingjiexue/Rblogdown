@@ -512,6 +512,14 @@ enable: false
       <a href="https://www.jianguoyun.com/p/DRrsv5kQwsTCDhi-l6gGIAA">机器学习基本方法</a>
       </th>
    </tr>
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第三章: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DcTJssQQwsTCDhji-qoGIAA">决策树与分类算法</a>
+      </th>
+   </tr>
 </table>
   
 > **代码与数据**

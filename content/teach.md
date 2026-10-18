@@ -533,6 +533,14 @@ enable: false
       <a href="https://www.jianguoyun.com/p/Dd03vUEQwsTCDhjDvqoGIAA">下载</a>
       </th>
    </tr>
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第三章 练习: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DcTJssQQwsTCDhji-qoGIAA">下载</a>
+      </th>
+   </tr>
   </table>
   
   > **作业**

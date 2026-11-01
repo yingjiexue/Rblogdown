@@ -520,6 +520,14 @@ enable: false
       <a href="https://www.jianguoyun.com/p/DcTJssQQwsTCDhji-qoGIAA">决策树与分类算法</a>
       </th>
    </tr>
+      <tr>
+      <th>
+      <a style="color:#00BFFF;">第四章: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DawOFMMQwsTCDhiliqwGIAA">聚类分析</a>
+      </th>
+   </tr>
 </table>
   
 > **代码与数据**
@@ -541,6 +549,14 @@ enable: false
       <a href="https://www.jianguoyun.com/p/DS17YMsQwsTCDhjGhKsGIAA">下载</a>
       </th>
    </tr>
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第四章 练习: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/Da5M17YQwsTCDhikiqwGIAA">下载</a>
+      </th>
+   </tr>
   </table>
   
   > **作业**
@@ -560,6 +576,14 @@ enable: false
       </th>
       <th>
       <a href="https://www.jianguoyun.com/p/DbDalSsQwsTCDhj2y6sGIAA">下载</a>
+      </th>
+   </tr>
+      <tr>
+      <th>
+      <a style="color:#00BFFF;">作业3: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DcTJssQQwsTCDhji-qoGIAA">下载</a>
       </th>
    </tr>
   </table>

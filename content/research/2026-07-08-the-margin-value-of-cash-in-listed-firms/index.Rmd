@@ -1,0 +1,455 @@
+---
+title: 上市公司边际价值文献阅读报告
+author: 薛英杰
+date: '2026-07-08'
+slug: the margin value of cash in listed firms
+categories:
+  - research
+tags:
+  - research
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+options(stringsAsFactors = FALSE)
+```
+
+# 阅读摘要
+
+本报告围绕上一轮检索列出的16篇现金边际价值及相关现金估值研究展开，逐篇整理研究问题、作用机制、主要发现与使用边界，并讨论其对“上市母公司与子公司现金的相对估值”研究的启示。
+
+综合阅读表明，现金价值取决于其能够支持的投资、节约的融资成本以及内部人可能攫取或耗散的收益。治理、所有权结构和现金位置通过改变这些条件进入市场定价。不过，现金边际价值高并不总意味着治理好：严重融资约束也可能使内部流动性更加稀缺，从而抬高现金的边际价值。与此同时，常用收益回归估计近年来受到方法论质疑，估计系数与经济意义上的现金影子价值不能未经论证直接画等号。
+
+对拟开展的母子公司现金位置研究，最有价值的推进是：先明确上市母公司股东的估值视角，再把少数股东正常享有的权益份额与额外位置差异分开，最后检验内部配置和监督机制。不能仅凭子公司现金系数较低，就认定发生了掏空或测得了精确摩擦损失。
+
+# 阅读范围与证据说明
+
+## 阅读材料和版本分类
+
+报告采用三种材料状态，避免将摘要阅读表述为全文精读。
+
+- **A 正文可得**：获取到正式发表文本或接受稿正文，阅读其研究设计、核心分析和结论相关部分；不表示复核全部附录或复现数据。
+- **W 工作稿正文与正式发表信息对照**：可读工作稿正文，同时核对正式题录、摘要或机构记录。工作稿中的具体数值和设计可能与正式版不同。
+- **B 摘要及公开页面核读**：未获取完整正文；依据出版方、作者或作者机构公开摘要及可读片段总结。不据此补写样本量、模型细节或因果识别结论。
+
+| 编号 | 文献 | 材料状态 | 本次阅读依据 |
+|---|---|---|---|
+| 1 | Faulkender与Wang 2006 | B | 作者机构记录及正式摘要 |
+| 2 | Pinkowitz等 2006 | A | 作者机构提供的期刊正文 |
+| 3 | Dittmar与Mahrt-Smith 2007 | W | 2005年5月工作稿正文与正式发表摘要 |
+| 4 | Denis与Sibilkov 2010 | A | 期刊正文公开副本 |
+| 5 | Frésard与Salva 2010 | A | 作者网站提供的期刊正文 |
+| 6 | Louis等 2012 | B | 作者工作稿摘要与机构题录 |
+| 7 | Belkhir等 2014 | B | 作者机构摘要及正式题录 |
+| 8 | Gao与Jia 2016 | B | 出版方摘要及公开页面 |
+| 9 | Ward等 2018 | A | 作者机构接受稿正文 |
+| 10 | Tong 2011 | B | 作者机构摘要及正式题录 |
+| 11 | Harford等 2017 | B | 正式摘要与作者介绍文章的公开信息 |
+| 12 | Hsu与Liu 2018 | B | 出版方摘要、注释及公开页面 |
+| 13 | Campbell等 2025 | A | 开放获取的正式全文 |
+| 14 | Halford等 2024 | W | 期刊站提供的2020年工作稿全文与正式题录 |
+| 15 | Dasgupta等 2025 | W | 2022年工作稿可读正文与正式发表摘要 |
+| 16 | 伊志宏等 2021 | A | 期刊网站提供的正式全文 |
+
+本次材料范围为6篇A、3篇W和7篇B。各篇末尾附检索入口；具体正式题录集中列于参考文献。逐篇的“研究内容、作用机制、主要结论”概括原文或作者摘要，“阅读评价与本研究启示”属于报告作者的分析，不冒充原文结论。
+
+## 需要特别注意的版本差异
+
+Dasgupta等论文2022年工作稿摘要写到现金和资本存量较大的企业具有较高现金边际价值，而2024年上线、2025年卷期发表的正式摘要给出较低现金边际价值的方向。报告据正式发表摘要记录最终方向，工作稿仅用于理解模型与估计思路，不将其样本数值或全部实证细节移植为正式版结果。这一差异也说明，题录中的在线发表年、卷期年和工作稿年应分别记录。
+
+Halford等可读PDF题页标注2020年5月工作稿，正式文献发表于2024年；Dittmar与Mahrt-Smith可读正文为2005年工作稿，正式论文发表于2007年。本报告不将工作稿版本包装为正式版逐表复核。
+
+# 核心概念与估计方法
+
+## 现金持有水平和现金边际价值
+
+现金持有水平是一个资产配置结果，现金边际价值则是新增现金对应的价值变化。前者通常以现金占资产比例衡量，后者关注在相关条件下增加一单位现金能够为股东创造多少价值。理论上可用下式表达：
+
+$$
+MVC_{it}=\frac{\partial V^E_{it}}{\partial C_{it}},
+$$
+
+其中$V^E$表示股权价值。该偏导需要明确被保持不变的经营状态、资金来源和其他条件。由盈利改善带来的现金增长，与外生注入一元现金，并非自动属于同一种经济变化。
+
+作为机制梳理，可以把现金价值理解为面值、流动性收益与各种成本的共同结果。这里的概括是组织阅读的工具，并非下列16篇共同采用的严格可加总模型。
+
+| 机制 | 影响现金价值的路径 | 代表文献 |
+|---|---|---|
+| 外部融资摩擦 | 内部现金支持原本无法实施的投资 | Denis与Sibilkov |
+| 管理层代理成本 | 低效率投资或私人利益减少股东可得收益 | Dittmar与Mahrt-Smith |
+| 控股股东侵占风险 | 控制权与收益承担不匹配，外部股东预期折价 | Pinkowitz等、Belkhir等 |
+| 信息与监督 | 内控、报告规则和监督激励约束资金使用 | Louis等、Gao与Jia、Ward等 |
+| 位置和资金可达性 | 税制、跨境条件和组织层级改变现金使用 | Harford等、Hsu与Liu、Campbell等 |
+| 估计误差 | 现金变化包含其他价值信息，回归系数偏离目标 | Halford等、Dasgupta等 |
+
+## 三种主要估值路线
+
+**第一，超额收益回归。** Faulkender与Wang框架把超额股票收益与经期初股权市值缩放的现金变化联系起来，并考虑现金存量、杠杆及其他财务变化。下式是便于说明的简化表达，不是原文逐项复刻：
+
+$$
+AR_{it}=\alpha+\beta_C\frac{\Delta C_{it}}{M_{i,t-1}}
++\beta_{CC}\frac{C_{i,t-1}}{M_{i,t-1}}\frac{\Delta C_{it}}{M_{i,t-1}}
++\beta_{CL}L_{it}\frac{\Delta C_{it}}{M_{i,t-1}}+\Gamma'X_{it}+\varepsilon_{it}.
+$$
+
+在这一简化模型中，回归所隐含的现金边际估值为：
+
+$$
+\widehat{MVC}_{it}=\widehat\beta_C
++\widehat\beta_{CC}\frac{C_{i,t-1}}{M_{i,t-1}}
++\widehat\beta_{CL}L_{it}.
+$$
+
+所以，基础系数$\widehat\beta_C$未必是平均公司的现金价值；交互项、变量中心化方式和评价点均影响解释。模型能估出系数，并不意味着它已识别现金注入的因果价值。
+
+**第二，价值水平或超额现金估值。** Pinkowitz等、Frésard与Salva及Belkhir等采用或扩展Fama–French类型价值回归，考察现金或超额现金对价值的贡献。超额现金又往往来自第一阶段正常现金预测，因此包含生成变量误差；价值水平模型与收益回归的系数不能不加区分地并列为同一统计对象。
+
+**第三，结构估计。** Dasgupta等在明确的动态投资、融资和代理模型内求解现金价值，再用数据估计参数。它提供更清楚的经济对象，但其可信度也依赖模型设定、参数识别和外部验证，不是天然免于误设的替代方案。
+
+# 基础框架与融资机制文献
+
+## Faulkender与Wang 2006
+
+**文献题名：** Corporate Financial Policy and the Value of Cash。[正式入口](https://doi.org/10.1111/j.1540-6261.2006.00894.x)；[作者机构摘要](https://ink.library.smu.edu.sg/lkcsb_research/1150/)。材料状态B。
+
+**研究内容。** 研究企业财务政策如何解释现金边际价值的横截面差异，使用年度超额收益与现金变化建立市场估值框架。
+
+**作用机制。** 新增现金可能节约融资成本、用于分配，或使债权人受益；因此，现金存量、融资可得性和杠杆会改变股东获得的增量价值。关键不只是现金数量，而是新增一元最可能的用途。
+
+**主要结论。** 作者报告现金边际价值随既有现金、杠杆和资本市场融资可得性提高而下降，并随股利与回购等分配安排变化。
+
+**阅读评价与本研究启示。** 本文可沿用位置拆分的计量思想，但不能把一个基础回归系数机械当成每家公司的现金价值。对母子公司现金应采用相同缩放口径，分别计算相关交互项后的边际估值。当前未获取完整正文，不在此补写原文各模型的样本量或系数表。
+
+## Pinkowitz等 2006
+
+**文献题名：** Does the Contribution of Corporate Cash Holdings and Dividends to Firm Value Depend on Governance? A Cross-Country Analysis。[正式入口](https://doi.org/10.1111/j.1540-6261.2006.01003.x)；[正文](https://bpb-us-w2.wpmucdn.com/u.osu.edu/dist/0/30211/files/2017/01/contribution-corporate-cash-holdings-1rwuv7u.pdf)。材料状态A。
+
+**研究内容。** 使用35个国家、主要报告1988—1998年的数据，以Fama–French类型估值回归考察投资者保护与现金、股利价值的关系。
+
+**作用机制。** 现金比实物资产更容易转化为控制者私人收益；投资者保护薄弱时，外部股东预期只能取得部分现金收益。支付股利减少可被侵占的内部资源，因此具有相应价值含义。
+
+**主要结论。** 弱投资者保护国家中现金与价值的联系较弱，股利与价值的联系则较强；结果支持控制权私人收益解释。
+
+**阅读评价与本研究启示。** 该文把行为风险转化为市场折价，但其“外部股东收益被侵占”不同于子公司少数股东依法分享收益。本文要明确股东群体，不能把合法权益分享归入掏空。跨国比较还可能受到会计可比性和制度共同变化影响。
+
+## Dittmar与Mahrt-Smith 2007
+
+**文献题名：** Corporate Governance and the Value of Cash Holdings。[正式入口](https://doi.org/10.1016/j.jfineco.2005.12.006)；[可读工作稿](https://www.fbv.kit.edu/symposium/10th/papers/Mahrt-Smith_Dittmar%20-%20Corporate%20Governance%20and%20the%20Value%20of%20Cash%20Holdings.pdf)。材料状态W。
+
+**研究内容。** 同时考察治理对现金价值和现金后续使用的影响；正式发表介绍涉及现金变化估值和超额现金估值两种方法。
+
+**作用机制。** 管理层防御和股东监督不足扩大资金裁量空间，使现金更可能被投入低回报用途，投资者因此提前折价。
+
+**主要结论。** 正式摘要报告治理良好企业现金价值约为治理较差企业的两倍；治理较差企业更快耗散现金，并伴随后续经营表现恶化。工作稿的行为分析与这一解释一致。
+
+**阅读评价与本研究启示。** 值得借鉴的是把价格证据接到使用证据上：若子公司现金折价与摩擦有关，应进一步考察资金受限、投资低效率或现金调拨条件。不能只在收益回归加入治理交互项就宣告机制得到验证。不同版本的具体估计值不宜混用。
+
+## Denis与Sibilkov 2010
+
+**文献题名：** Financial Constraints, Investment, and the Value of Cash Holdings。[正式入口](https://doi.org/10.1093/rfs/hhp031)；[正文副本](https://quantcorpfin.com/wp-content/uploads/2020/06/Value-of-cash-for-constrained-firms-Denis-2010.pdf)。材料状态A。
+
+**研究内容。** 解释融资受限企业为何具有较高现金价值，以及部分受限企业为何仍然现金不足，连接现金储备、投资和价值。
+
+**作用机制。** 当经营现金流不足以匹配投资需求且外部资金昂贵时，现金支持本可能被放弃的正净现值项目。储蓄需求还取决于资金生成与投资机会是否匹配。
+
+**主要结论。** 高对冲需求的受限企业中，现金与较多投资相关，投资与价值的联系也更强。部分企业低现金源于持续较弱现金流，而非缺乏现金需求。
+
+**阅读评价与本研究启示。** 这是位置折价假设的重要竞争解释：子公司资金不便上移，并不妨碍它在当地支持高价值项目。本文应区分融资约束与代理成本，并在子公司机会较好的场景允许相对溢价，而不是把所有正向结果视为异常。
+
+# 治理与信息机制文献
+
+## Frésard与Salva 2010
+
+**文献题名：** The Value of Excess Cash and Corporate Governance: Evidence from US Cross-Listings。[正式入口](https://doi.org/10.1016/j.jfineco.2010.04.004)；[作者正文](https://people.lu.usi.ch/fresal/images/Fresard_Salva_2010.PDF)。材料状态A。
+
+**研究内容。** 比较不同美国上市安排和未交叉上市企业的超额现金价值，结合正常现金预测与价值回归分析。
+
+**作用机制。** 正式法律和披露约束限制内部人；分析师等市场中介的监督也可能减少现金被侵占或低效率使用的风险。不同上市安排有助于区分正式约束与非正式监督。
+
+**主要结论。** 美国交叉上市与超额现金溢价相关，分析师关注增加进一步强化该溢价；作者同时承认跨国测量与机制区分的局限。
+
+**阅读评价与本研究启示。** 对本文最有用的是分开测量监督来源。子公司距离、审计和披露透明度可能通过不同路径影响价值。交叉上市本身具有选择性，不能把该结果简化为任何治理规则变化都具有同样因果效果。
+
+## Louis等 2012
+
+**文献题名：** Value of Cash Holdings and Accounting Conservatism。[正式入口](https://doi.org/10.1111/j.1911-3846.2011.01149.x)；[作者工作稿摘要](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1415562)。材料状态B。
+
+**研究内容。** 考察会计稳健性与新增现金市场价值的联系，将财务报告属性纳入现金价值解释。
+
+**作用机制。** 稳健报告可能促进不利信息及时反映，强化对管理者投资的监督，降低现金被低效率使用的风险。这是文献提出的治理解释，不应等同于已直接观测全部因果环节。
+
+**主要结论。** 作者摘要报告，会计稳健性越强，新增一美元现金对应的市场价值越高。
+
+**阅读评价与本研究启示。** 可据此把报告质量作为位置估值的条件变量，但必须区分合并层面稳健性与子公司层面透明度。当前材料不足以核实具体代理变量和所有识别检验，正式采用其设计前应继续核对正文。
+
+## Belkhir等 2014
+
+**文献题名：** Control–Ownership Wedge, Board of Directors, and the Value of Excess Cash。[正式入口](https://doi.org/10.1016/j.econmod.2014.02.026)；[作者机构摘要](https://research.uaeu.ac.ae/en/publications/control-ownership-wedge-board-of-directors-and-the-value-of-exces/)。材料状态B。
+
+**研究内容。** 使用法国上市公司，以Fama–French类型估值回归考察两权分离和董事会独立性对超额现金价值的影响。
+
+**作用机制。** 控股股东控制权高于现金流权时，对资金使用拥有较强影响，却只承担部分损失，增加利益侵占激励；独立董事会可能约束该风险。
+
+**主要结论。** 控制权与现金流权分离越大，超额现金价值越低；董事会更独立、董事长与经理职位分离时，折价较弱。
+
+**阅读评价与本研究启示。** “两权分离”描述激励结构，“少数股东现金权益”描述收益归属，不能互相替代。本文可用前者解释额外折价，用后者建立机械基准。摘要证据不能证明该文已经完成本文拟做的机械稀释分解。
+
+## Gao与Jia 2016
+
+**文献题名：** Internal Control over Financial Reporting and the Safeguarding of Corporate Resources: Evidence from the Value of Cash Holdings。[出版方页面](https://doi.org/10.1111/1911-3846.12164)。材料状态B。
+
+**研究内容。** 考察财务报告内控缺陷、缺陷修复及内控变化与现金价值的关系。
+
+**作用机制。** 无效内控降低对资金决策和资源流失的约束。控制环境和整体报告过程的缺陷，可能比局部问题更直接影响股东对现金安全和用途的判断。
+
+**主要结论。** 内控缺陷企业现金价值较低，相关效应集中于控制环境及整体报告过程；修复缺陷与现金价值损失逆转相联系，控制其他治理指标后关系仍然存在。
+
+**阅读评价与本研究启示。** 内控比笼统治理指数更贴近资金监督，但上市母公司内控信息不等于每家子公司的实际约束。若能识别缺陷是否涉及资金管理或下属主体，机制检验会更有针对性；当前未核读完整表格，不补写效应数值。
+
+## Ward等 2018
+
+**文献题名：** Institutional Investor Monitoring Motivation and the Marginal Value of Cash。[正式入口](https://doi.org/10.1016/j.jcorpfin.2017.10.017)；[接受稿](https://centaur.reading.ac.uk/73415/1/Motivated%20Institutional%20Investors%20and%20the%20value%20of%20cash_JCF.pdf)。材料状态A。
+
+**研究内容。** 以1995—2015年美国样本，研究一家企业在机构投资组合中的重要性是否影响机构监督及现金价值，采用收益回归并进行内生性和替代估值分析。
+
+**作用机制。** 机构注意力有限，投资组合中更重要的持仓更值得投入监督资源。企业层面的机构持股比例不能完全反映这种监督动机。
+
+**主要结论。** 监督动机较强的机构持股与较高现金价值相关，动机加权指标也支持这一关系；接受稿讨论指数调整、固定效应和不同现金状态等检验。
+
+**阅读评价与本研究启示。** 本文应优先选择能解释监督投入的变量，而非只加入机构持股总量。接受稿的指数工具变量不能直接移植到中国样本，其排除限制也需独立论证。外部机构对上市母公司的监督能否传导至远端子公司，是可进一步检验的问题。
+
+# 组织结构与现金位置文献
+
+## Tong 2011
+
+**文献题名：** Firm Diversification and the Value of Corporate Cash Holdings。[正式入口](https://doi.org/10.1016/j.jcorpfin.2009.05.001)；[作者机构摘要](https://pure.ulster.ac.uk/en/publications/firm-diversification-and-the-value-of-corporate-cash-holdings/)。材料状态B。
+
+**研究内容。** 比较多元化与单一分部企业的现金价值，讨论有效内部资本市场与代理问题两种解释。
+
+**作用机制。** 内部资本市场可以调配资源、缓解融资问题，也可能产生交叉补贴和管理者寻租。治理条件决定哪类效应更突出。
+
+**主要结论。** 多元化企业现金价值较低，融资受限和不受限企业中均存在该现象；较弱治理企业中负向关系更明显，较强治理组中相关效应不显著。
+
+**阅读评价与本研究启示。** 该文支持“结构效应依赖治理”，却不能代替母子公司位置比较。业务分部不是独立法人，分部数量也不是现金实际所在地。应把多元化作为相关组织特征或竞争解释，而非直接解释子公司现金折价。
+
+## Harford等 2017
+
+**文献题名：** Foreign Cash: Taxes, Internal Capital Markets, and Agency Problems。[正式入口](https://doi.org/10.1093/rfs/hhw109)；[作者公开介绍](https://corpgov.law.harvard.edu/2017/02/09/foreign-cash-taxes-internal-capital-markets-and-agency-problems/)。材料状态B。
+
+**研究内容。** 研究美国企业海外现金与现金估值、境内外投资配置之间的关系。
+
+**作用机制。** 汇回税既产生直接成本，也降低海外现金在境内使用的可达性；企业可能同时在境内承担昂贵融资或投资不足，在境外保留资金并过度投资。
+
+**主要结论。** 海外现金比例较高时现金估值较低，且折价不仅是直接税效应；较高汇回税、借款成本和代理问题强化相关现象。
+
+**阅读评价与本研究启示。** 这是现金位置影响定价的直接前沿，本文不能再声称既有位置研究只讨论持有量。区别应落在法人位置而非境内外标签，以及现金流权调整。境外现金机制不能未经检验推广为中国境内母子公司机制。
+
+## Hsu与Liu 2018
+
+**文献题名：** Parent-Subsidiary Investment Layers and the Value of Corporate Cash Holdings。[出版方页面](https://doi.org/10.1007/s11156-017-0684-3)。材料状态B。
+
+**研究内容。** 使用台湾上市公司，考察母公司至最底层子公司的投资层级与现金边际价值。
+
+**作用机制。** 较长控制链条可能提高监督和信息成本；但组织复杂性也可能使外部融资更贵，从而提高流动性价值，作者公开注释承认这一相反可能。
+
+**主要结论。** 投资层级越多，现金边际价值越低，且两权分离较大和家族控制企业中关系更强。
+
+**阅读评价与本研究启示。** 该文为层级机制提供直接关联证据，但层级本身不等于现金位于更深层级。本文若提出现金位置与距离互动，应尽量将现金分布和组织结构联合测量，避免用最长股权链条替代全部现金的位置。
+
+## Campbell等 2025
+
+**文献题名：** U.S. Multinationals’ Foreign Cash Holdings: An Empirical Estimate and the Impact of the Tax Cuts and Jobs Act of 2017 on the Value of Foreign Cash。[开放全文](https://doi.org/10.1007/s11142-025-09888-2)。材料状态A。
+
+**研究内容。** 利用子公司所在国等公开披露估计现金的国家分布，以模拟和专有数据验证代理变量，并检验所在地特征及税改前后的估值差异。
+
+**作用机制。** 治理薄弱、资本管制和跨境障碍可能限制股东最终获得现金收益；税制改变则改变汇回成本和“被困”资金的使用预期。
+
+**主要结论。** 海外现金的不利估值主要集中在高代理成本环境，避税地现金作用突出；2017年税改后不再观察到同样的海外现金折价。
+
+**阅读评价与本研究启示。** 最值得借鉴的是先验证位置测量，再进行定价解释。其国家分布属于估计量，不应与直接报表拆分混为一谈；税改结果也不等于所有国家、所有法人边界都已不存在摩擦。本文同样需要验证现金口径和权益权重。
+
+# 方法可靠性与结构估计文献
+
+## Halford等 2024
+
+**文献题名：** Existing Methods Provide Unreliable Estimates of the Marginal Value of Cash。[正式入口](https://doi.org/10.1561/104.00000146)；[期刊站可读工作稿](https://cfr.ivo-welch.org/published/papers/halford2020existing.pdf)。材料状态W。
+
+**研究内容。** 用理论边界、不同现金使用状态和诊断检验评估Faulkender–Wang类估计的可靠性。
+
+**作用机制。** 现金变化同时包含经营和价值信息，其他回归控制未必充分剥离这些信息，系数可能不再是新增现金本身的价值。
+
+**主要结论。** 正式摘要认为既有估计在不同样本和场景中违背合理基准；可读工作稿进一步比较现金积累与支出时期，发现估值明显不对称，若干修正未充分消除问题。
+
+**阅读评价与本研究启示。** 这是本文必须正面回应的识别约束，而非只放在稳健性末尾。母子公司现金变化可能包含不同经营信息，因此比较系数并不能保证共同偏误抵消。诊断不通过应降低解释强度；诊断通过也不等于因果识别完成。工作稿具体数值不作为正式版数值引用。
+
+## Dasgupta等 2025
+
+**文献题名：** The Marginal Value of Cash: Structural Estimates from a Model with Financing and Agency Frictions。[正式入口](https://doi.org/10.1287/mnsc.2022.01013)；[2022年工作稿](https://www.ckgsb.edu.cn/uploads/202205/05/1651736761588910.pdf)。材料状态W。
+
+**研究内容。** 在包含投资、融资成本和管理者代理问题的动态模型中定义和估计现金边际价值；工作稿用模拟矩方法连接模型与数据。
+
+**作用机制。** 现金缓解融资造成的投资扭曲，但也可为管理者提供私人收益，二者共同决定现金的影子价值。结构方法试图将这些机制显式纳入估计。
+
+**主要结论。** 正式摘要报告现金和资本存量较高时现金边际价值较低，杠杆关系呈倒U形，并以两个准自然实验验证估计。该方向与可读早期稿摘要不同。
+
+**阅读评价与本研究启示。** 结构估计提供另一种价值对象，但本文不必机械改造成结构论文。更可行的改进是界定回归估值与理论影子价值的区别，补充机制和外部验证。若未来建立集团模型，需另外加入法人边界、现金流权和内部资金转移条件，不能直接沿用单主体模型解释机械稀释。
+
+# 中国情境研究
+
+## 伊志宏等 2021
+
+**文献题名：** 投资者关系管理与公司现金价值。[期刊全文](https://glkx.hit.edu.cn/__local/E/23/B1/589853E6F78E9DD1A1C2443219B_19F84EEE_C3240.pdf)。材料状态A。
+
+**研究内容。** 以2012—2019年沪深A股非金融公司，构建投资者关系管理指标，在现金变化与超额回报框架中检验其价值作用，进一步考察代理成本和投资效率。
+
+**作用机制。** 沟通、信息披露和外部反馈可能约束管理层及大股东，使现金更少被用于私人利益或低效率投资。
+
+**主要结论。** 投资者关系管理与较高现金价值相关，在低分析师关注、低机构持股及非国有企业中更明显；作者报告两类代理成本及投资效率证据支持其解释。
+
+**阅读评价与本研究启示。** 该文把两类代理冲突纳入中国现金估值，可补充国内机制链条。但中介或分组结果不能独立识别全部因果路径，投资者关系管理的自我选择也需注意。母子公司研究应进一步区分监督改善发生在哪一层级。
+
+# 跨文献比较与综合判断
+
+## 共同结论及其边界
+
+这些研究共同表明，账面上一元现金的经济含义取决于谁控制、如何使用、收益归谁以及外部融资是否昂贵。不同治理安排可以改变现金使用的预期，法人和国家边界可以改变资金可达性。但这些共同认识不意味着所有文章估计同一个参数，也不意味着所有正相关都已被识别为因果关系。
+
+现金价值的高低至少存在两套解释。代理成本下降可以使折价现金更接近面值；融资约束上升也可以使现金更稀缺，抬高边际价值。因此，“现金价值提高”不能单独作为“治理改善”的充分证据，需要投资、融资和现金支出等外部结果帮助区分。
+
+| 比较维度 | 较高现金价值可能对应 | 较低现金价值可能对应 | 需要辅助观察 |
+|---|---|---|---|
+| 融资 | 内部资金稀缺，支持有价值投资 | 外部资金容易获得，持现边际收益较小 | 融资成本、投资机会和现金流 |
+| 治理 | 股东更可能获得现金收益 | 侵占或低效率使用风险较高 | 治理变化、现金使用和经营结果 |
+| 位置 | 当地高价值投资、融资保障 | 调拨障碍、税收及监督成本 | 资金受限、当地机会及内部流动 |
+| 权益归属 | 母公司拥有更高现金流权 | 部分收益依法属于少数股东 | 穿透现金流权和现金分布 |
+| 估计 | 真正高影子价值，也可能是遗漏信息 | 真正折价，也可能是测量偏误 | 诊断、模型替换及外生证据 |
+
+## 文献之间的互补关系
+
+Faulkender与Wang提供可实施的收益估值工具；Pinkowitz等和Dittmar与Mahrt-Smith把投资者保护与资金使用接入定价；Denis与Sibilkov解释现金价值的融资收益；会计、内控和机构监督研究细化治理机制；Tong、Harford等、Hsu与Liu及Campbell等把组织和位置纳入分析。Halford等与Dasgupta等则要求重新检查这些经验系数与理论价值之间的对应关系。
+
+因此，文献综述的写法不宜是不断增加“某因素提高现金价值”的清单，而应围绕三个问题组织：新增现金可以做什么、谁能得到其收益、现有估计是否准确度量了这一价值变化。
+
+# 对母子公司现金位置研究的具体启示
+
+## 明确比较对象与现金口径
+
+研究中的母公司应指编制合并报表的上市母公司，不应混同于其上层控制人。市场收益对应上市母公司股票，价值解释也应始终围绕该股东群体。
+
+定义$C^P$为母公司现金、$C^G$为合并现金，以$C^S\equiv C^G-C^P$构造子公司汇总现金，是一种可操作的位置拆分。但差额只有在项目口径、报告日期、合并范围及相关现金处理可比时，才具有预期的经济解释。它不是各家子公司现金的完整分布；并购、处置、合并范围变化及资金池安排均需核查。
+
+货币资金与现金及现金等价物也不应交替使用。若包含受限存款，研究对象不再只是自由可用现金，应说明并检验其影响。
+
+## 建立权益归属基准
+
+设$v_P$和$v_S$分别为上市母公司股东对母公司和子公司现金的边际估值，$\theta$为适用于所研究现金变动的有效现金流权。在其他价值条件可比的基准下：
+
+$$
+v_S^0=\theta v_P.
+$$
+
+于是：
+
+$$
+v_P-v_S=(1-\theta)v_P+(\theta v_P-v_S).
+$$
+
+第一项是权益归属差异，第二项是超出该基准的剩余差异。若$v_P>0$且估计稳定，相对形式为：
+
+$$
+1-\frac{v_S}{v_P}=(1-\theta)+\left(\theta-\frac{v_S}{v_P}\right).
+$$
+
+这一分解属于本文拟采用的分析框架，不是上述文献已经共同证明的定理。$1-\theta$只能直接解释相对机械稀释；绝对系数差应使用$(1-\theta)v_P$。同时，净资产比例不等同于现金加权现金流权，现金存量权重也不必等同于新增现金权重。
+
+## 把机制预测写成可区分的证据
+
+| 解释 | 预期观察 | 与其他解释的区分点 |
+|---|---|---|
+| 正常权益分享 | 总估值差异随非全资权益暴露变化 | 权益调整后差异应缩小，不必伴随低效率行为 |
+| 调拨摩擦 | 资金可达性差、转移成本高时剩余折价较大 | 需直接测量约束，不能只用子公司标签 |
+| 代理与监督 | 薄弱内控或较长监督链条中剩余折价较大 | 应结合现金耗散、不公允交易或投资结果 |
+| 当地投资需求 | 高机会、受限子公司现金价值较高 | 可能抵消折价，不能预设该机制不存在 |
+| 测量及信息偏误 | 系数随样本、现金增减和模型明显变化 | 需要诊断，不能把所有变化解释为机制 |
+
+## 回应估计可靠性问题
+
+首先，应报告边际估值的完整计算，明确交互项评价点，并给出差异的置信区间。比较两个系数时应使用联合协方差；“一个显著、另一个不显著”不等于二者差异显著。若$\theta$也由数据估计，其不确定性同样应纳入推断。
+
+其次，可借鉴Halford等的思路比较现金增加与减少状态，并检查并购、现金支出和融资状态对结果的影响。不过，不同状态在经济上本来可能不同，诊断应是对相同理论条件下的比较，不宜只根据两个子样本系数不同就认定模型失效。
+
+再次，可以采用价值水平或超额现金模型进行三角验证，但它们并不是收益回归的独立无偏金标准。不同估计量一致会提高解释的可信度，不一致则要求进一步分析，而不是只保留显著结果。
+
+最后，若寻求因果解释，需要位置变化的可信外生来源。税改、现金管理制度或其他政策变化是否可用，取决于其是否同时直接影响利润、融资和投资机会，不能仅凭发生时间明确就认定具有排除限制。
+
+## 研究贡献的建议表述
+
+本文可以定位为：在已有现金价值和现金位置研究基础上，利用母公司与合并报表区分现金法人位置，以现金流权建立上市母公司股东的权益归属基准，并检验超出基准的估值差异及其条件。相关结论首先是条件市场估值证据；只有在充分识别后，才进一步解释为位置摩擦或现金迁移的因果价值。
+
+# 阅读结论
+
+现金边际价值文献最稳定的贡献，是揭示现金的经济价值依赖用途、融资环境和收益实现条件；最需要谨慎的部分，是将经验回归系数直接等同于精确影子价值。对母子公司现金位置研究，权益归属调整是必要步骤，监督和资金调配是重要机制，而融资需求、投资机会与测量误差是必须保留的竞争解释。
+
+本报告对B类文献尚未完成正文层面的设计核查，对W类文献保留版本限制。因此，逐篇总结可用于研究定位和综述写作；复刻具体模型、引用精确效应值或评价最终识别强度时，仍应以正式全文为依据。
+
+# 附录 R Markdown使用与分解示例
+
+## 文档说明
+
+本文件为UTF-8编码的独立R Markdown源文件，正文、公式、来源链接和参考文献均包含于文件内，不依赖外部BibTeX文件或数据。默认输出HTML，目录与章节编号由YAML设置生成。需要本地安装R、rmarkdown、knitr及Pandoc；可在RStudio中打开后点击Knit，或执行：
+
+```{r render-command, eval=FALSE, echo=TRUE}
+rmarkdown::render("现金边际价值文献阅读报告.Rmd", encoding = "UTF-8")
+```
+
+交付时已检查YAML和文档结构；当前执行环境未提供Rscript，因此未实际完成knit，不将源文件检查表述为渲染成功。
+
+## 估值分解的示意计算
+
+以下数字仅用于演示前述恒等分解，不是任何一篇文献或中国样本的估计结果。R代码仅使用基础运算和knitr输出。
+
+```{r decomposition-example, echo=TRUE}
+v_parent <- 1.10
+v_subsidiary <- 0.72
+theta <- 0.80
+
+absolute_total <- v_parent - v_subsidiary
+absolute_mechanical <- (1 - theta) * v_parent
+absolute_residual <- theta * v_parent - v_subsidiary
+
+relative_total <- 1 - v_subsidiary / v_parent
+relative_mechanical <- 1 - theta
+relative_residual <- theta - v_subsidiary / v_parent
+
+stopifnot(abs(absolute_total - absolute_mechanical - absolute_residual) < 1e-10)
+stopifnot(abs(relative_total - relative_mechanical - relative_residual) < 1e-10)
+
+illustration <- data.frame(
+  measure = c("总估值差异", "权益归属部分", "剩余位置部分"),
+  absolute = c(absolute_total, absolute_mechanical, absolute_residual),
+  relative = c(relative_total, relative_mechanical, relative_residual)
+)
+knitr::kable(illustration, digits = 4,
+             col.names = c("示意项目", "绝对差异", "相对差异"),
+             caption = "纯示意计算 不代表实证结果")
+```
+
+# 参考文献
+
+1. Faulkender, M., & Wang, R. (2006). Corporate Financial Policy and the Value of Cash. *The Journal of Finance, 61*(4), 1957–1990. [DOI](https://doi.org/10.1111/j.1540-6261.2006.00894.x).
+2. Pinkowitz, L., Stulz, R., & Williamson, R. (2006). Does the Contribution of Corporate Cash Holdings and Dividends to Firm Value Depend on Governance? A Cross-Country Analysis. *The Journal of Finance, 61*(6), 2725–2751. [DOI](https://doi.org/10.1111/j.1540-6261.2006.01003.x).
+3. Dittmar, A., & Mahrt-Smith, J. (2007). Corporate Governance and the Value of Cash Holdings. *Journal of Financial Economics, 83*(3), 599–634. [DOI](https://doi.org/10.1016/j.jfineco.2005.12.006).
+4. Denis, D. J., & Sibilkov, V. (2010). Financial Constraints, Investment, and the Value of Cash Holdings. *The Review of Financial Studies, 23*(1), 247–269. [DOI](https://doi.org/10.1093/rfs/hhp031).
+5. Frésard, L., & Salva, C. (2010). The Value of Excess Cash and Corporate Governance: Evidence from US Cross-Listings. *Journal of Financial Economics, 98*(2), 359–384. [DOI](https://doi.org/10.1016/j.jfineco.2010.04.004).
+6. Louis, H., Sun, A. X., & Urcan, O. (2012). Value of Cash Holdings and Accounting Conservatism. *Contemporary Accounting Research, 29*(4), 1249–1271. [DOI](https://doi.org/10.1111/j.1911-3846.2011.01149.x).
+7. Belkhir, M., Boubaker, S., & Derouiche, I. (2014). Control–Ownership Wedge, Board of Directors, and the Value of Excess Cash. *Economic Modelling, 39*, 110–122. [DOI](https://doi.org/10.1016/j.econmod.2014.02.026).
+8. Gao, X., & Jia, Y. (2016). Internal Control over Financial Reporting and the Safeguarding of Corporate Resources: Evidence from the Value of Cash Holdings. *Contemporary Accounting Research, 33*(2), 783–814. [DOI](https://doi.org/10.1111/1911-3846.12164).
+9. Ward, C., Yin, C., & Zeng, Y. (2018). Institutional Investor Monitoring Motivation and the Marginal Value of Cash. *Journal of Corporate Finance, 48*, 49–75. [DOI](https://doi.org/10.1016/j.jcorpfin.2017.10.017).
+10. Tong, Z. (2011). Firm Diversification and the Value of Corporate Cash Holdings. *Journal of Corporate Finance, 17*(3), 741–758. [DOI](https://doi.org/10.1016/j.jcorpfin.2009.05.001).
+11. Harford, J., Wang, C., & Zhang, K. (2017). Foreign Cash: Taxes, Internal Capital Markets, and Agency Problems. *The Review of Financial Studies, 30*(5), 1490–1538. [DOI](https://doi.org/10.1093/rfs/hhw109).
+12. Hsu, A. W., & Liu, S. H. (2018). Parent-Subsidiary Investment Layers and the Value of Corporate Cash Holdings. *Review of Quantitative Finance and Accounting, 51*, 651–681. [DOI](https://doi.org/10.1007/s11156-017-0684-3).
+13. Campbell, J. L., Dhaliwal, D. S., Krull, L. K., & Schwab, C. M. (2025). U.S. Multinationals’ Foreign Cash Holdings: An Empirical Estimate and the Impact of the Tax Cuts and Jobs Act of 2017 on the Value of Foreign Cash. *Review of Accounting Studies, 30*, 3765–3814. [DOI](https://doi.org/10.1007/s11142-025-09888-2).
+14. Halford, J. T., McConnell, J. J., Sibilkov, V., & Zaiats, N. (2024). Existing Methods Provide Unreliable Estimates of the Marginal Value of Cash. *Critical Finance Review, 13*(3–4), 305–349. [DOI](https://doi.org/10.1561/104.00000146).
+15. Dasgupta, S., Li, D., & Li, E. X. N. (2025). The Marginal Value of Cash: Structural Estimates from a Model with Financing and Agency Frictions. *Management Science, 71*(5), 3667–3687. [DOI](https://doi.org/10.1287/mnsc.2022.01013). 2024年8月在线发表，2025年卷期。
+16. 伊志宏，丁艳平，曹嵘（2021）．投资者关系管理与公司现金价值．《管理科学》，34（6），113–126．[期刊全文](https://glkx.hit.edu.cn/__local/E/23/B1/589853E6F78E9DD1A1C2443219B_19F84EEE_C3240.pdf)。DOI：10.3969/j.issn.1672-0334.2021.06.012。

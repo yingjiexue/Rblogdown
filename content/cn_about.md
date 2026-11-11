@@ -1,9 +1,37 @@
 ---
-title: "个人简历"
-date: "2016-05-05T21:48:51-07:00"
+title: "薛英杰"
 ---
 
-# 薛英杰
+
+<style>
+/* Page-scoped overrides for the existing Yingjie theme. */
+.main:has(#about-resume) { padding-left: 48px; padding-right: 24px; }
+.main:has(#about-resume) .title h1 { text-align: left; margin: 0 0 12px; }
+.main:has(#about-resume) .title h3,
+.main:has(#about-resume) .title hr { display: none; }
+.main:has(#about-resume) h2 { text-align: left; margin: 28px 0 10px; font-size: 22px; }
+.main:has(#about-resume) h3 { margin: 18px 0 8px; font-size: 18px; }
+.main:has(#about-resume) p { margin: 8px 0; line-height: 1.7; }
+.main:has(#about-resume) ul,
+.main:has(#about-resume) ol { margin: 8px 0 14px; padding-left: 1.5em; }
+.main:has(#about-resume) li { margin: 5px 0; line-height: 1.65; }
+.main:has(#about-resume) li p { margin: 0; }
+.main:has(#about-resume) table { width: 100%; margin: 10px 0 16px; font-size: .94em; border-collapse: collapse; }
+.main:has(#about-resume) th,
+.main:has(#about-resume) td { text-align: left; padding: 7px 8px; }
+.main:has(#about-resume) a { overflow-wrap: anywhere; }
+@media (max-width: 960px) {
+  .main:has(#about-resume) { padding: 24px 18px; }
+}
+@media (max-width: 600px) {
+  .main:has(#about-resume) { padding: 20px 12px; }
+  .main:has(#about-resume) h2 { font-size: 20px; }
+  .main:has(#about-resume) h3 { font-size: 17px; }
+  .main:has(#about-resume) table { display: block; overflow-x: auto; }
+}
+</style>
+
+<div id="about-resume"></div>
 
 **数据分析｜垂直行业智能体开发｜金融与统计研究**
 

@@ -1,0 +1,831 @@
+---
+title: Machine Learning Meets Markowitz:E2E模型解析与实现代码
+author: '薛英杰'
+date: '2026-11-13'
+slug: machine-learning-meets-markowitz-e2e
+categories: []
+tags: []
+params:
+  run_python: false
+---
+
+
+
+<div id="阅读与运行方式" class="section level1">
+<h1>阅读与运行方式</h1>
+<p>依据 Wang、Gao、Harvey、Liu、Tao 的 <em>Machine Learning Meets Markowitz</em>，NBER Working Paper 34861，2026年2月用户提供版本。页码均指论文印刷页码。代码是独立教学实现，不是作者源代码；不声称复现论文收益。</p>
+<p>本文件将所有核心 Python 定义嵌入 R Markdown，各代码块按顺序共享同一 Python 会话，无须另行寻找 <code>models.py</code>。每节先列公式，再说明对应的代码对象和变量。Python 保留 PyTorch、CVXPYLayers 求解栈；R Markdown 通过 <strong>reticulate</strong> 执行 Python，并不是将数值实现重写为 R。</p>
+<p>默认 <code>run_python: false</code>，可直接生成包含全部公式与代码的阅读版。执行方法：</p>
+<pre class="r"><code>install.packages(c(&quot;rmarkdown&quot;, &quot;reticulate&quot;))
+# 在全新的 R 会话中，指定装好依赖的 Python；必须在初始化 Python 前设置。
+Sys.setenv(RETICULATE_PYTHON = &quot;/absolute/path/to/venv/bin/python&quot;)
+rmarkdown::render(&quot;E2E_Markowitz_formula_code.Rmd&quot;,
+                  params = list(run_python = TRUE))</code></pre>
+<p>Python 依赖：<code>numpy scipy torch cvxpy cvxpylayers clarabel diffcp</code>。默认关闭执行使没有 Python 依赖的 R 环境也可阅读。实际执行还需要 R、rmarkdown、Pandoc 和 reticulate。本次已核查 Python 代码与数值测试，但当前环境没有 Rscript，未实际 Knit HTML。</p>
+</div>
+<div id="统一符号与计算对象" class="section level1">
+<h1>统一符号与计算对象</h1>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>数学符号</th>
+<th>代码变量</th>
+<th>维度</th>
+<th>决策时可见性</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(X_t\)</span></td>
+<td><code>X[t]</code></td>
+<td><span class="math inline">\(N\times P\)</span></td>
+<td>已知特征</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mu_t=g_\theta(X_t)\)</span></td>
+<td><code>model(X[t])</code></td>
+<td><span class="math inline">\(N\)</span></td>
+<td>预测下一期收益</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(y_t=r_{t+1}\)</span></td>
+<td><code>Y[t]</code></td>
+<td><span class="math inline">\(N\)</span></td>
+<td>仅训练损失或事后评价可用</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(w_t\)</span></td>
+<td><code>w</code></td>
+<td><span class="math inline">\(N\)</span></td>
+<td>本期求解的目标持仓</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(p_t=w_{t-1}\)</span></td>
+<td><code>prev</code></td>
+<td><span class="math inline">\(N\)</span></td>
+<td>本期交易前持仓，简化忽略价格漂移</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(R_t^\top R_t=\widehat\Sigma_t\)</span></td>
+<td><code>R[t]</code></td>
+<td><span class="math inline">\(N\times N\)</span></td>
+<td>历史收益估计，不能使用未来数据</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(v_t\)</span></td>
+<td><code>market_cap</code></td>
+<td><span class="math inline">\(N\)</span></td>
+<td>决策时市值，严格正数</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(c,\eta,\gamma,\zeta\)</span></td>
+<td><code>cfg.cap/eta/gamma/zeta</code></td>
+<td>标量</td>
+<td>预先设定或仅在训练/验证期选择</td>
+</tr>
+</tbody>
+</table>
+<p>所有收益和费率使用十进制单位。共同可行域为</p>
+<p><span class="math display">\[
+\mathcal C(c)=\{w\in\mathbb R^N: \mathbf1^\top w=1,\ 0\le w_i\le c\},\qquad Nc\ge1.\tag{D1}
+\]</span></p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>模型</th>
+<th>原文</th>
+<th>下层目标（省略约束）</th>
+<th>代码参数</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>均值—方差</td>
+<td>§3.2，p.20</td>
+<td><span class="math inline">\(-\mu^\top w+\eta w^\top\Sigma w\)</span></td>
+<td><code>kind="mv", zeta=0, cap=1</code></td>
+</tr>
+<tr class="even">
+<td>等权硬选股</td>
+<td>式(14)</td>
+<td><span class="math inline">\(-\mu^\top w\)</span></td>
+<td><code>kind="ew", zeta=0, cap=10/N</code></td>
+</tr>
+<tr class="odd">
+<td>原文平滑选股</td>
+<td>式(15)</td>
+<td><span class="math inline">\(-\mu^\top w+\zeta\|w\|_2\)</span></td>
+<td><code>kind="ew", regularizer="l2"</code></td>
+</tr>
+<tr class="even">
+<td>平方正则替代</td>
+<td>本报告另列</td>
+<td><span class="math inline">\(-\mu^\top w+\zeta\|w\|_2^2\)</span></td>
+<td><code>regularizer="squared"</code></td>
+</tr>
+<tr class="odd">
+<td>市值加权</td>
+<td>式(16)–(17)</td>
+<td>先选股，再按市值归一化</td>
+<td><code>kind="vw"</code></td>
+</tr>
+<tr class="even">
+<td>交易成本</td>
+<td>式(20)</td>
+<td><span class="math inline">\(-\mu^\top w+\frac\gamma2\|w-p\|_1\)</span></td>
+<td><code>kind="tc", zeta=0</code></td>
+</tr>
+<tr class="odd">
+<td>均值—标准差</td>
+<td>式(21)</td>
+<td><span class="math inline">\(-\mu^\top w+\frac\gamma2\|w-p\|_1+\eta\|Rw\|_2\)</span></td>
+<td><code>kind="sd", zeta=0, cap=.1</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>重要：式(15)的正则是未平方的 L2 范数；式(21)是标准差而非方差。</strong> 开启 <code>zeta&gt;0</code> 用于 MV、TC、SD 时属于本报告的数值扩展，不是这些原式本身。</p>
+</div>
+<div id="一般-e2e-与反向传播" class="section level1">
+<h1>一般 E2E 与反向传播</h1>
+<div id="双层目标" class="section level2">
+<h2>双层目标</h2>
+<p><span class="math display">\[
+\min_\theta L(\theta)=\frac1T\sum_{t=1}^T\ell_t(w_t^*,y_t),\qquad
+w_t^*=\arg\min_{w\in\mathcal C}f_l(w,g_\theta(X_t)).\tag{D2}
+\]</span></p>
+<p>前向中先预测收益，再求最优持仓，最后用真实收益评价。反向中求解器需要返回持仓相对于预测收益的敏感性：</p>
+<p><span class="math display">\[
+\nabla_\theta L=\frac1T\sum_t
+\left(\frac{\partial\mu_t}{\partial\theta}\right)^\top
+\left(\frac{\partial w_t^*}{\partial\mu_t}\right)^\top
+\nabla_{w_t}\ell_t.\tag{D3}
+\]</span></p>
+<p>式(D3)仅在各期下层独立时直接适用；含历史持仓时采用后文时序递推。下层凸不意味着对网络参数的上层目标凸，因此整体训练不保证全局最优。</p>
+</div>
+<div id="kkt-隐式求导" class="section level2">
+<h2>KKT 隐式求导</h2>
+<p>下层为 <span class="math inline">\(\min_w f(w,\mu)\)</span>，满足 <span class="math inline">\(Aw=b\)</span>、<span class="math inline">\(h(w,\mu)\le0\)</span>。令</p>
+<p><span class="math display">\[
+\mathscr L=f+\lambda^\top h+\nu^\top(Aw-b).
+\]</span></p>
+<p>KKT 条件包括驻点、原始可行性、对偶可行性及互补松弛。取 <span class="math inline">\(z=(w,\lambda,\nu)\)</span>，统一残差顺序：</p>
+<p><span class="math display">\[
+G(z,\mu)=
+\begin{bmatrix}\nabla_w\mathscr L\\\lambda\odot h\\Aw-b\end{bmatrix}=0.
+\]</span></p>
+<p><span class="math display">\[
+K=G_z=
+\begin{bmatrix}
+H &amp; J_h^\top &amp; A^\top\\
+\operatorname{diag}(\lambda)J_h &amp; \operatorname{diag}(h)&amp;0\\
+A&amp;0&amp;0
+\end{bmatrix},\quad
+H=\nabla^2_{ww}\mathscr L,\quad
+\frac{\partial z}{\partial\mu}=-K^{-1}G_\mu.\tag{D4}
+\]</span></p>
+<p>实现不显式存储大雅可比。求解伴随系统</p>
+<p><span class="math display">\[
+K^\top a=(\nabla_w\ell,0,0)^\top,\qquad
+\nabla_\mu\ell=-G_\mu^\top a.\tag{D5}
+\]</span></p>
+<p>KKT 的必要性要求适当约束资格条件；解映射的经典隐式导数还需要局部非退化。L1、锥边界或活跃集切换处不保证处处可微。CVXPYLayers 将问题规范化为锥规划后求导，不是对 <code>abs</code> 机械使用光滑 Hessian。</p>
+<p><strong>代码对应：</strong> <code>CvxpyLayer(...)</code> 建立式(D4)–(D5)的可微求解路径；<code>loss.backward()</code> 负责式(D3)的完整链式传播。</p>
+</div>
+</div>
+<div id="预测层linear-与-nn1nn5" class="section level1">
+<h1>预测层：Linear 与 NN1–NN5</h1>
+<p><span class="math display">\[
+\mu_{i,t}=g_\theta(x_{i,t}),\qquad
+h^{(j)}=\operatorname{Dropout}_{.05}\!\left[
+\operatorname{BN}(\operatorname{ReLU}(W_jh^{(j-1)}+b_j))\right].\tag{D6}
+\]</span></p>
+<p>输入首先使用 LayerNorm；隐藏层宽度依次为32、16、8、4、2。<code>depth=0</code>使用线性模型，<code>depth=1..5</code>分别为NN1–NN5。这是同一优化框架的不同预测架构。</p>
+<p>下面是后续各代码块共享的导入和参数定义。</p>
+<pre class="python"><code>from dataclasses import dataclass
+import copy
+import numpy as np
+import cvxpy as cp
+import torch
+from torch import nn
+from cvxpylayers.torch import CvxpyLayer
+torch.set_default_dtype(torch.float64)
+
+@dataclass
+class Config:
+    kind: str = &#39;sd&#39;  # mv, ew, vw, tc, sd
+    eta: float = 1.0
+    gamma: float = 0.002
+    zeta: float = 1e-4  # lower-level smoothing strength
+    regularizer: str = &quot;l2&quot;  # paper Eq15: norm, NOT squared norm; alternative: squared
+    cap: float = 0.1</code></pre>
+<pre class="python"><code>class Predictor(nn.Module):
+    def __init__(self, features, depth=3):
+        super().__init__()
+        if depth not in range(6):
+            raise ValueError(&#39;depth must be 0 (linear) or 1..5&#39;)
+        if depth == 0:
+            self.net = nn.Linear(features, 1)
+        else:
+            layers = [nn.LayerNorm(features)]
+            last = features
+            for width in [32,16,8,4,2][:depth]:
+                layers += [nn.Linear(last,width), nn.ReLU(), nn.BatchNorm1d(width), nn.Dropout(.05)]
+                last = width
+            self.net = nn.Sequential(*layers,nn.Linear(last,1))
+    def forward(self,x):
+        return self.net(x).squeeze(-1)</code></pre>
+</div>
+<div id="均值方差模型解析解到-qp" class="section level1">
+<h1>均值—方差模型：解析解到 QP</h1>
+<div id="等式约束下的解析解" class="section level2">
+<h2>等式约束下的解析解</h2>
+<p>先取 <span class="math inline">\(\zeta=0\)</span>，<span class="math inline">\(H=2\eta\Sigma\)</span>；平方正则扩展时 <span class="math inline">\(H=2\eta\Sigma+2\zeta I\)</span>。则</p>
+<p><span class="math display">\[
+\min_w\frac12w^\top Hw-\mu^\top w,\quad\mathbf1^\top w=1.
+\]</span></p>
+<p>当 <span class="math inline">\(H\succ0\)</span>，驻点条件给出</p>
+<p><span class="math display">\[
+w=H^{-1}(\mu-\nu\mathbf1),\qquad
+\nu=\frac{\mathbf1^\top H^{-1}\mu-1}{\mathbf1^\top H^{-1}\mathbf1}.\tag{D7}
+\]</span></p>
+<p><span class="math display">\[
+J=\frac{\partial w}{\partial\mu}=
+H^{-1}-\frac{H^{-1}\mathbf1\mathbf1^\top H^{-1}}{\mathbf1^\top H^{-1}\mathbf1}.\tag{D8}
+\]</span></p>
+<p>下面使用线性方程求解，而不是显式求逆。仅适用于预算等式约束；存在非负或持仓上限时使用后文通用优化层。</p>
+<pre class="python"><code>def mv_equality_solution(mu, Sigma, eta, zeta=0.0):
+    n = len(mu)
+    H = 2 * eta * Sigma + 2 * zeta * torch.eye(n, dtype=mu.dtype)
+    e = torch.ones_like(mu)
+    a = torch.linalg.solve(H, mu)
+    b = torch.linalg.solve(H, e)
+    nu = (e @ a - 1) / (e @ b)
+    return a - nu * b  # 式(D7)</code></pre>
+</div>
+<div id="非负与上限约束" class="section level2">
+<h2>非负与上限约束</h2>
+<p>固定自由资产集合 <span class="math inline">\(F=\{i:0&lt;w_i&lt;c\}\)</span>，其余资产在局部固定为0或 <span class="math inline">\(c\)</span>。导数满足</p>
+<p><span class="math display">\[
+\begin{bmatrix}H_{FF}&amp;\mathbf1_F\\\mathbf1_F^\top&amp;0\end{bmatrix}
+\begin{bmatrix}dw_F\\d\nu\end{bmatrix}
+=\begin{bmatrix}d\mu_F\\0\end{bmatrix}.\tag{D9}
+\]</span></p>
+<p>上层实现损失及其梯度：</p>
+<p><span class="math display">\[
+\ell_{MV}=-y^\top w+\eta w^\top\Sigma w,
+\qquad\nabla_w\ell_{MV}=-y+2\eta\Sigma w.\tag{D10}
+\]</span></p>
+<p><strong>代码对应：</strong> <code>cp.sum_squares(R @ w)</code>为下层方差；<code>(R @ w).square().sum()</code>为上层方差。数值稳定正则只进入下层，避免将其混入投资者效用。</p>
+</div>
+</div>
+<div id="等权模型lp原文范数与平方范数" class="section level1">
+<h1>等权模型：LP、原文范数与平方范数</h1>
+<div id="硬排序-lp" class="section level2">
+<h2>硬排序 LP</h2>
+<p><span class="math display">\[
+w^*=\arg\min_{w\in\mathcal C(10/N)}-\mu^\top w.\tag{D11}
+\]</span></p>
+<p>最优解按预测收益降序填满持仓上限。只有 <span class="math inline">\(N/10\)</span> 为整数且排名无并列时，才严格等于前10%等权；否则最后一只股票获得残余权重。排名不变时权重局部不变，导数为0；排名切换时可能不连续或多值。</p>
+</div>
+<div id="原文式15未平方-l2" class="section level2">
+<h2>原文式(15)：未平方 L2</h2>
+<p><span class="math display">\[
+w^*=\arg\min_{w\in\mathcal C(c)}-\mu^\top w+\zeta\|w\|_2.\tag{D12}
+\]</span></p>
+<p>由于预算约束，<span class="math inline">\(r=\|w\|_2&gt;0\)</span>。正则梯度和 Hessian 为</p>
+<p><span class="math display">\[
+\nabla_w\zeta r=\zeta\frac wr,\qquad
+\nabla^2_w\zeta r=\zeta\left(\frac Ir-\frac{ww^\top}{r^3}\right).\tag{D13}
+\]</span></p>
+<p>将此 Hessian 放入式(D9)得到自由集合内的导数。也可引入 <span class="math inline">\(s\ge\|w\|_2\)</span>，使目标成为 <span class="math inline">\(-\mu^\top w+\zeta s\)</span>，得到 SOCP。</p>
+<p>两资产、<span class="math inline">\(c=1\)</span>、<span class="math inline">\(d=\mu_1-\mu_2\)</span>时：</p>
+<p><span class="math display">\[
+w_1^*=\begin{cases}
+0,&amp;d\le-\zeta,\\
+\frac12+\frac{d}{2\sqrt{2\zeta^2-d^2}},&amp;|d|&lt;\zeta,\\
+1,&amp;d\ge\zeta.
+\end{cases}\tag{D14}
+\]</span></p>
+<p><strong>代码对应：</strong> <code>regularizer="l2"</code>选择 <code>cp.norm(w, 2)</code>；不是 <code>sum_squares</code>。范数在预算超平面上的可行线段严格凸，因而解唯一，但活跃集切换处仍不保证经典导数存在。</p>
+</div>
+<div id="平方-l2明确区分的替代方案" class="section level2">
+<h2>平方 L2：明确区分的替代方案</h2>
+<p><span class="math display">\[
+w^*=\arg\min_{w\in\mathcal C(c)}-\mu^\top w+\zeta\|w\|_2^2
+=\Pi_{\mathcal C(c)}\left(\frac\mu{2\zeta}\right).\tag{D15}
+\]</span></p>
+<p><span class="math display">\[
+w_i^*=\operatorname{clip}\left(\frac{\mu_i-\nu}{2\zeta},0,c\right),
+\qquad\sum_iw_i^*=1.\tag{D16}
+\]</span></p>
+<p>固定自由集合时</p>
+<p><span class="math display">\[
+\frac{\partial w_i^*}{\partial\mu_j}
+=\frac1{2\zeta}\left(\delta_{ij}-\frac1{|F|}\right),\quad i,j\in F,\tag{D17}
+\]</span></p>
+<p>其余坐标局部导数为0。两资产解为 <span class="math inline">\(w_1=\operatorname{clip}(1/2+d/(4\zeta),0,1)\)</span>，与式(D14)不同。</p>
+<p><strong>代码对应：</strong> <code>regularizer="squared"</code>选择 <code>cp.sum_squares(w)</code>。这不是原文式(15)。平滑权重通常不再严格等权，甚至在某些顶点区域仍可能梯度为0；不能宣称所有梯度都得到恢复。</p>
+</div>
+</div>
+<div id="市值加权模型两阶段导数" class="section level1">
+<h1>市值加权模型：两阶段导数</h1>
+<p>第一阶段得到选股权重 <span class="math inline">\(a\)</span>，第二阶段用市值 <span class="math inline">\(v\)</span> 转换：</p>
+<p><span class="math display">\[
+s=v^\top a&gt;0,\qquad q_i=\frac{v_i a_i}{s}.\tag{D18}
+\]</span></p>
+<p><span class="math display">\[
+\frac{\partial q}{\partial a}=\frac{\operatorname{diag}(v)}s
+-\frac{(v\odot a)v^\top}{s^2},\qquad
+\frac{\partial(-y^\top q)}{\partial a_j}
+=-\frac{v_j}{s}(y_j-q^\top y).\tag{D19}
+\]</span></p>
+<p><strong>代码对应：</strong> <code>w = w * market_cap; w = w / w.sum()</code>。PyTorch 自动将式(D19)与优化层导数相乘。式(16)字面使用硬LP，因此仅增加归一化不能恢复其梯度；训练时需显式启用选股平滑。</p>
+<p>最终 <span class="math inline">\(q\)</span> 可能超过第一阶段的上限 <span class="math inline">\(c\)</span>，不能把 <span class="math inline">\(a_i\le c\)</span> 解释为 <span class="math inline">\(q_i\le c\)</span>。若约束最终权重，需重新设计可行域。</p>
+</div>
+<div id="交易成本模型lp-与时序梯度" class="section level1">
+<h1>交易成本模型：LP 与时序梯度</h1>
+<p>令 <span class="math inline">\(\kappa=\gamma/2\)</span>。论文式(20)的下层及上层分别为</p>
+<p><span class="math display">\[
+w_t^*=\arg\min_{w\in\mathcal C(c)}
+-\mu_t^\top w+\kappa\|w-p_t\|_1,\quad p_t=w_{t-1}^*,\tag{D20}
+\]</span></p>
+<p><span class="math display">\[
+L_{TC}=\frac1T\sum_t\left[-y_t^\top w_t+\kappa\|w_t-p_t\|_1\right].\tag{D21}
+\]</span></p>
+<p>引入 <span class="math inline">\(u\ge0\)</span>，成本项可写为 <span class="math inline">\(\kappa\mathbf1^\top u\)</span>，约束 <span class="math inline">\(w-p\le u\)</span>、<span class="math inline">\(p-w\le u\)</span>。原问题为LP；加平方正则得到QP；加未平方L2正则得到SOCP。这些正则是式(20)的可选扩展。</p>
+<p><strong>代码对应：</strong> 下层 <code>cfg.gamma/2 * cp.norm1(w-prev)</code>；上层 <code>cfg.gamma/2 * (w-prev).abs().sum()</code>。费率口径遵循论文的 <span class="math inline">\(\gamma/2\)</span>，实际单边收费定义若不同，需要先统一。</p>
+<p>令 <span class="math inline">\(w_t=h_t(\mu_t,w_{t-1})\)</span>，<span class="math inline">\(A_t=\partial h_t/\partial\mu_t\)</span>，<span class="math inline">\(B_t=\partial h_t/\partial w_{t-1}\)</span>，则</p>
+<p><span class="math display">\[
+D_t=\frac{\partial w_t}{\partial\theta}
+=A_t\frac{\partial\mu_t}{\partial\theta}+B_tD_{t-1}.\tag{D22}
+\]</span></p>
+<p>对单期损失 <span class="math inline">\(\ell_t(w_t,w_{t-1})\)</span>，总反向伴随满足</p>
+<p><span class="math display">\[
+a_t=\partial_1\ell_t+\partial_2\ell_{t+1}+B_{t+1}^\top a_{t+1},\quad
+\nabla_\theta L=\frac1T\sum_t
+\left(\frac{\partial\mu_t}{\partial\theta}\right)^\top A_t^\top a_t.\tag{D23}
+\]</span></p>
+<p>最后一期没有未来项。式(D23)对未平均的损失和定义伴随，最终统一除以 <span class="math inline">\(T\)</span>。代码用 <code>torch.stack(losses).mean()</code> 自动完成尺度处理。</p>
+<p><strong>代码对应：</strong> <code>rollout</code>内部每期 <code>prev = w</code>，不调用 <code>detach()</code>，以保留式(D22)的跨期梯度。按日打乱或逐日detach会破坏这条链。连续8期分块并detach是截断反传近似，不是完整梯度。</p>
+<p>若考虑价格漂移，可改为</p>
+<p><span class="math display">\[
+p_t=\frac{w_{t-1}\odot(1+r_t)}{1+w_{t-1}^\top r_t},
+\]</span></p>
+<p>同时保留这个变换的梯度；<span class="math inline">\(r_t\)</span>必须在决策时已经实现。当前代码遵循论文简化，无资产池变化与价格漂移处理。</p>
+</div>
+<div id="风险偏好模型meansd-与-socp" class="section level1">
+<h1>风险偏好模型：Mean–SD 与 SOCP</h1>
+<p>论文式(21)为</p>
+<p><span class="math display">\[
+w_t^*=\arg\min_{w\in\mathcal C(.1)}
+-\mu_t^\top w+\kappa\|w-p_t\|_1+\eta\sqrt{w^\top\Sigma_tw}.\tag{D24}
+\]</span></p>
+<p>使用 <span class="math inline">\(R_t^\top R_t=\Sigma_t\)</span>，风险项为 <span class="math inline">\(\eta\|R_tw\|_2\)</span>，引入辅助变量 <span class="math inline">\(s\ge\|R_tw\|_2\)</span> 即可表示为SOCP。上层用真实收益替换预测收益，其余经济惩罚保持相同。</p>
+<p>对 <span class="math inline">\(\sigma=\sqrt{w^\top\Sigma w}&gt;0\)</span>，</p>
+<p><span class="math display">\[
+\nabla_w\sigma=\frac{\Sigma w}{\sigma},\qquad
+\nabla_w^2\sigma=\frac\Sigma\sigma-
+\frac{(\Sigma w)(\Sigma w)^\top}{\sigma^3}.\tag{D25}
+\]</span></p>
+<p>因而 <span class="math inline">\(\nabla_w\ell=-y+\kappa\operatorname{sign}(w-p)+\eta\Sigma w/\sigma\)</span>，在L1折点使用次梯度或锥求导。</p>
+<p><strong>代码对应：</strong> 下层 <code>cp.norm(R @ w, 2)</code>，上层 <code>torch.linalg.vector_norm(R @ w)</code>。不能写成方差。Mean–SD的Hessian在径向方向具有零曲率，不能据此承诺强凸或普遍更稳定。相同 <span class="math inline">\(\eta\)</span> 也不意味着Mean–SD与Mean–Var持仓相同；在同一候选最优点匹配一阶条件时有 <span class="math inline">\(\eta_{SD}=2\eta_{MV}\sigma(w)\)</span>。</p>
+</div>
+<div id="通用优化层把上述公式集中为可执行代码" class="section level1">
+<h1>通用优化层：把上述公式集中为可执行代码</h1>
+<p>以下完整定义覆盖式(D10)–(D24)的下层问题：</p>
+<table>
+<thead>
+<tr class="header">
+<th>代码位置</th>
+<th>对应公式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>obj = -mu @ w + ...</code></td>
+<td>D12、D15</td>
+<td>预测收益与可选正则</td>
+</tr>
+<tr class="even">
+<td><code>cp.norm1(w-prev)</code></td>
+<td>D20</td>
+<td>交易成本</td>
+</tr>
+<tr class="odd">
+<td><code>cp.sum_squares(R@w)</code></td>
+<td>D10</td>
+<td>方差</td>
+</tr>
+<tr class="even">
+<td><code>cp.norm(R@w,2)</code></td>
+<td>D24</td>
+<td>标准差</td>
+</tr>
+<tr class="odd">
+<td><code>[w&gt;=0,w&lt;=cap,cp.sum(w)==1]</code></td>
+<td>D1</td>
+<td>共同可行域</td>
+</tr>
+<tr class="even">
+<td><code>CvxpyLayer</code></td>
+<td>D4–D5</td>
+<td>可微锥求解与伴随梯度</td>
+</tr>
+<tr class="odd">
+<td>市值归一化两行</td>
+<td>D18–D19</td>
+<td>市值权重及链式传播</td>
+</tr>
+</tbody>
+</table>
+<p>用 <span class="math inline">\(R\)</span> 而非直接把可变协方差放入 <code>quad_form</code>，使参数化问题满足DPP要求。求解器使用Clarabel。</p>
+<pre class="python"><code>class Portfolio(nn.Module):
+    def __init__(self,n,cfg):
+        super().__init__()
+        if cfg.kind not in {&#39;mv&#39;,&#39;ew&#39;,&#39;vw&#39;,&#39;tc&#39;,&#39;sd&#39;}:
+            raise ValueError(&#39;unknown model&#39;)
+        if cfg.cap*n &lt; 1-1e-12 or not 0 &lt; cfg.cap &lt;= 1:
+            raise ValueError(&#39;infeasible concentration cap&#39;)
+        if min(cfg.eta,cfg.gamma,cfg.zeta)&lt;0:
+            raise ValueError(&#39;penalties must be nonnegative&#39;)
+        self.cfg = cfg
+        w=cp.Variable(n)
+        mu=cp.Parameter(n)
+        prev=cp.Parameter(n)
+        # R.T @ R = Sigma. Passing the factor makes the problem DPP.
+        R=cp.Parameter((n,n))
+        if cfg.regularizer not in {&quot;l2&quot;, &quot;squared&quot;}:
+            raise ValueError(&quot;regularizer must be l2 or squared&quot;)
+        penalty = cp.norm(w,2) if cfg.regularizer==&quot;l2&quot; else cp.sum_squares(w)
+        obj=-mu@w+cfg.zeta*penalty
+        params=[mu]
+        if cfg.kind in {&#39;tc&#39;,&#39;sd&#39;}:
+            obj += cfg.gamma/2*cp.norm1(w-prev)
+            params.append(prev)
+        if cfg.kind in {&#39;mv&#39;,&#39;sd&#39;}:
+            obj += cfg.eta*(cp.sum_squares(R@w) if cfg.kind==&#39;mv&#39; else cp.norm(R@w,2))
+            params.append(R)
+        problem=cp.Problem(cp.Minimize(obj),[w&gt;=0,w&lt;=cfg.cap,cp.sum(w)==1])
+        assert problem.is_dpp()
+        self.layer=CvxpyLayer(problem,parameters=params,variables=[w])
+    def forward(self,mu,prev,R,market_cap=None):
+        args=[mu]
+        if self.cfg.kind in {&#39;tc&#39;,&#39;sd&#39;}: args.append(prev)
+        if self.cfg.kind in {&#39;mv&#39;,&#39;sd&#39;}: args.append(R)
+        (w,)=self.layer(*args,solver_args={&#39;solve_method&#39;:&#39;Clarabel&#39;, &#39;tol_gap_abs&#39;:1e-10, &#39;tol_gap_rel&#39;:1e-10, &#39;tol_feas&#39;:1e-10})
+        if self.cfg.kind==&#39;vw&#39;:
+            if market_cap is None or bool((market_cap&lt;=0).any()):
+                raise ValueError(&#39;strictly positive market caps required&#39;)
+            w=w*market_cap
+            w=w/w.sum()
+        return w</code></pre>
+<div id="协方差估计与矩阵方向" class="section level2">
+<h2>协方差估计与矩阵方向</h2>
+<p>若 Cholesky 返回 <span class="math inline">\(\Sigma=LL^\top\)</span>，应传入 <span class="math inline">\(R=L^\top\)</span>，才能保证 <span class="math inline">\(\|Rw\|_2^2=w^\top\Sigma w\)</span>。默认对角估计对应原文风险设定；额外ridge属于数值处理。估计窗口必须截止于决策时点。</p>
+<pre class="python"><code>def covariance_factor(history, ridge=1e-8, diagonal=True):
+    &quot;&quot;&quot;Use only returns observable at decision time. Output R.T R = Sigma.&quot;&quot;&quot;
+    cov=np.atleast_2d(np.cov(np.asarray(history),rowvar=False,ddof=1))
+    if diagonal: cov=np.diag(np.diag(cov))
+    cov=(cov+cov.T)/2+ridge*np.eye(cov.shape[0])
+    return torch.tensor(np.linalg.cholesky(cov).T)</code></pre>
+</div>
+</div>
+<div id="上层效用与时序展开" class="section level1">
+<h1>上层效用与时序展开</h1>
+<p>以下两段分别对应上层经济损失和式(D22)的顺序展开。<code>realized_loss</code>不包含下层平滑正则。VW传入的<code>w</code>已经是最终市值权重。</p>
+<pre class="python"><code>def realized_loss(w,y,prev,R,cfg):
+    loss=-(w*y).sum()
+    if cfg.kind in {&#39;tc&#39;,&#39;sd&#39;}: loss=loss+cfg.gamma/2*(w-prev).abs().sum()
+    if cfg.kind==&#39;mv&#39;: loss=loss+cfg.eta*(R@w).square().sum()
+    if cfg.kind==&#39;sd&#39;: loss=loss+cfg.eta*torch.linalg.vector_norm(R@w)
+    return loss</code></pre>
+<pre class="python"><code>def rollout(model,layer,X,Y,R,w0,market_caps=None):
+    &quot;&quot;&quot;No detach inside a sequence: full BPTT through previous holdings.&quot;&quot;&quot;
+    prev=w0
+    losses=[]
+    weights=[]
+    for t in range(len(X)):
+        w=layer(model(X[t]),prev,R[t],None if market_caps is None else market_caps[t])
+        losses.append(realized_loss(w,Y[t],prev,R[t],layer.cfg))
+        weights.append(w)
+        prev=w
+    return torch.stack(losses).mean(),torch.stack(weights)</code></pre>
+</div>
+<div id="预训练adam-与验证早停" class="section level1">
+<h1>预训练、Adam 与验证早停</h1>
+<p>预训练目标为</p>
+<p><span class="math display">\[
+L_{MSE}(\theta)=\frac1T\sum_t\frac1N\|g_\theta(X_t)-y_t\|_2^2.\tag{D26}
+\]</span></p>
+<p>然后以 <span class="math inline">\(L_{E2E}\)</span> 替换训练目标，保留网络参数作为warm start。MSE只用于初始化，不在本实现的E2E损失中额外混入。</p>
+<p><code>fit</code>每轮训练都从指定初始持仓重新推进；更新参数后，用当前参数重新计算训练段末持仓，再推进验证段。验证标签只用于损失，不进入下层决策。记录最佳验证参数并恢复。</p>
+<p>本实现全序列反传，未逐字实现论文8个横截面的梯度累积安排；大规模应用需选择完整反传或明确标注的截断近似。学习率采用论文的一般设置，另加入梯度裁剪用于稳定数值。原文验证集为9个月且按季度滚动重训，本演示仅做合成时间切分。</p>
+<pre class="python"><code>def pretrain(model,X,Y,epochs=10,lr=1e-3):
+    model.train()
+    opt=torch.optim.Adam(model.parameters(),lr=lr)
+    for _ in range(epochs):
+        opt.zero_grad()
+        loss=torch.stack([(model(x)-y).square().mean() for x,y in zip(X,Y)]).mean()
+        loss.backward(); opt.step()</code></pre>
+<pre class="python"><code>def fit(model,layer,train,valid,w0,epochs=50,patience=10):
+    &quot;&quot;&quot;train/valid=(X,Y,R,caps). Full-sequence reference training, not 8-day TBPTT.
+    Validation holdings are recomputed from training under current fixed parameters.
+    &quot;&quot;&quot;
+    import copy
+    opt=torch.optim.Adam(model.parameters(),lr=1e-4 if layer.cfg.eta&lt;1 else 1e-3)
+    best=float(&#39;inf&#39;); state=None; stale=0; log=[]
+    for epoch in range(epochs):
+        model.train(); opt.zero_grad()
+        loss,_=rollout(model,layer,*train[:3],w0,train[3])
+        loss.backward(); torch.nn.utils.clip_grad_norm_(model.parameters(),10); opt.step()
+        model.eval()
+        with torch.no_grad():
+            _,train_w=rollout(model,layer,*train[:3],w0,train[3])
+            val,_=rollout(model,layer,*valid[:3],train_w[-1],valid[3])
+        score=float(val); log.append([epoch,float(loss.detach()),score])
+        if score&lt;best:
+            best=score; state=copy.deepcopy(model.state_dict()); stale=0
+        else: stale+=1
+        if stale&gt;=patience: break
+    model.load_state_dict(state)
+    return log</code></pre>
+</div>
+<div id="可执行合成数据示例" class="section level1">
+<h1>可执行合成数据示例</h1>
+<p>下列示例按顺序运行：构造数据、预训练、E2E训练、验证。为了观察小型横截面的稳定自由集，示例使用较强的<strong>平方正则替代模型</strong>。它不是论文默认超参数。<span class="math inline">\(N=20,c=.1\)</span>最多单只10%，并不表示前10%选股；若要前10%，应设 <span class="math inline">\(c=10/N=.5\)</span>。</p>
+<p>真实数据应提供 <code>X:[T,N,P]</code>、<code>Y:[T,N]</code>、<code>R:[T,N,N]</code>、<code>market_caps:[T,N]</code>和初始持仓<code>w0:[N]</code>。初始均匀持仓意味着未计入首次由现金建仓的费用。</p>
+<pre class="python"><code>torch.manual_seed(17)
+T, N, P = 12, 20, 5
+X = torch.randn(T, N, P)
+Y = .004 * X[:, :, 0] + .01 * torch.randn(T, N)
+R = torch.diag(torch.linspace(.015, .03, N)).repeat(T, 1, 1)
+market_caps = torch.exp(torch.randn(T, N))
+w0 = torch.ones(N) / N
+
+training_summary = {}
+for kind in [&quot;mv&quot;, &quot;ew&quot;, &quot;vw&quot;, &quot;tc&quot;, &quot;sd&quot;]:
+    cfg = Config(kind=kind, eta=1, gamma=.002, zeta=.02,
+                 regularizer=&quot;squared&quot;, cap=.1)
+    model = Predictor(P, depth=0)
+    layer = Portfolio(N, cfg)
+    pretrain(model, X[:8], Y[:8], epochs=2)
+    train = (X[:8], Y[:8], R[:8], market_caps[:8])
+    valid = (X[8:], Y[8:], R[8:], market_caps[8:])
+    log = fit(model, layer, train, valid, w0, epochs=3)
+    model.eval()
+    with torch.no_grad():
+        loss, W = rollout(model, layer, X, Y, R, w0, market_caps)
+    assert torch.isfinite(W).all()
+    assert torch.max(abs(W.sum(1) - 1)) &lt; 1e-5
+    assert W.min() &gt; -1e-5
+    if kind != &quot;vw&quot;:
+        assert W.max() &lt; cfg.cap + 1e-5
+    training_summary[kind] = {&quot;loss&quot;: float(loss), &quot;epochs&quot;: len(log)}
+print(training_summary)</code></pre>
+</div>
+<div id="解析公式与自动微分的数值核查" class="section level1">
+<h1>解析公式与自动微分的数值核查</h1>
+<div id="核查原文范数式d14" class="section level2">
+<h2>核查原文范数式(D14)</h2>
+<p>先检验两资产权重，再检验内点导数：</p>
+<p><span class="math display">\[
+\frac{\partial w_1}{\partial\mu_1}=
+\frac{\zeta^2}{(2\zeta^2-d^2)^{3/2}},\quad |d|&lt;\zeta.\tag{D27}
+\]</span></p>
+<pre class="python"><code>norm_solution_errors = []
+for d in [-.15, -.07, 0, .07, .15]:
+    w_cp = cp.Variable(2)
+    prob = cp.Problem(cp.Minimize(-np.array([d, 0]) @ w_cp + .1 * cp.norm(w_cp, 2)),
+                      [w_cp &gt;= 0, cp.sum(w_cp) == 1])
+    prob.solve(solver=&quot;CLARABEL&quot;, tol_gap_abs=1e-10, tol_feas=1e-10)
+    exact = (0 if d &lt;= -.1 else 1 if d &gt;= .1
+             else .5 + d / (2 * np.sqrt(.02 - d*d)))
+    norm_solution_errors.append(abs(float(w_cp.value[0]) - exact))
+
+norm_layer = Portfolio(2, Config(kind=&quot;ew&quot;, cap=1, zeta=.1, regularizer=&quot;l2&quot;))
+mu = torch.tensor([.03, 0.], requires_grad=True)
+w = norm_layer(mu, torch.ones(2)/2, torch.eye(2))
+grad = torch.autograd.grad(w[0], mu)[0][0]
+exact_grad = .01 / (.02 - .03**2)**1.5
+assert max(norm_solution_errors) &lt; 1e-4
+assert abs(float(grad)-exact_grad) &lt; 1e-3
+print({&quot;max_weight_error&quot;: max(norm_solution_errors),
+       &quot;derivative_error&quot;: abs(float(grad)-exact_grad)})</code></pre>
+</div>
+<div id="核查式d3中的优化层方向导数" class="section level2">
+<h2>核查式(D3)中的优化层方向导数</h2>
+<p>对固定评价向量 <span class="math inline">\(b\)</span> 和方向 <span class="math inline">\(d\)</span>，检查</p>
+<p><span class="math display">\[
+d^\top\nabla_\mu[b^\top w^*(\mu)]
+\approx\frac{b^\top w^*(\mu+hd)-b^\top w^*(\mu-hd)}{2h}.\tag{D28}
+\]</span></p>
+<p>测试点应远离活跃集切换与L1折点。步长太小会放大求解器误差；这里使用 <span class="math inline">\(h=10^{-3}\)</span>。成本模型的测试锚点使用零向量，仅为使L1符号在邻域中固定，不表示真实账户的预算持仓。</p>
+<pre class="python"><code>gradient_checks = {}
+for kind in [&quot;mv&quot;, &quot;ew&quot;, &quot;vw&quot;, &quot;tc&quot;, &quot;sd&quot;]:
+    layer_check = Portfolio(N, Config(kind=kind, eta=1, gamma=.002,
+                            zeta=.02, cap=.1, regularizer=&quot;squared&quot;))
+    mu0 = torch.zeros(N, requires_grad=True)
+    anchor = torch.zeros(N) if kind in {&quot;tc&quot;, &quot;sd&quot;} else w0
+    direction = torch.linspace(-1, 1, N)
+    direction = direction / direction.norm()
+    reward = torch.cos(torch.arange(N, dtype=torch.float64))
+    def scalar(m):
+        return (layer_check(m, anchor, R[0], market_caps[0]) * reward).sum()
+    automatic = torch.autograd.grad(scalar(mu0), mu0)[0] @ direction
+    h = 1e-3
+    finite_diff = (scalar(mu0.detach()+h*direction)
+                   - scalar(mu0.detach()-h*direction)) / (2*h)
+    error = float(abs(automatic-finite_diff)/(1+abs(finite_diff)))
+    assert error &lt; 2e-3, (kind, error)
+    gradient_checks[kind] = error
+print(gradient_checks)</code></pre>
+</div>
+<div id="已有测试记录与范围" class="section level2">
+<h2>已有测试记录与范围</h2>
+<p>以下是上一版独立Python脚本实际执行得到的记录，不伪装成R Knit输出。当前文档的全部12个Python代码块也已按顺序提取并独立执行通过，结果一致。</p>
+<table>
+<thead>
+<tr class="header">
+<th>模型</th>
+<th align="right">优化层方向导数误差</th>
+<th align="right">完成训练轮数</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>mv</td>
+<td align="right">0.0011764</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td>ew</td>
+<td align="right">0.0000956</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td>vw</td>
+<td align="right">0.0005764</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td>tc</td>
+<td align="right">0.0000228</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td>sd</td>
+<td align="right">0.0000920</td>
+<td align="right">3</td>
+</tr>
+</tbody>
+</table>
+<p>误差定义为式(D28)两边差的绝对值除以 <span class="math inline">\(1+|\text{中心差分}|\)</span>。原文未平方范数两资产权重误差约 <span class="math inline">\(2.68\times10^{-7}\)</span>，内点导数绝对误差约 <span class="math inline">\(5.16\times10^{-7}\)</span>。</p>
+<p>这些检查覆盖小规模可行性、训练接口和单期优化层梯度；不等于核查了所有活跃集边界、完整时序梯度、大规模股票池或全部NN深度。未取得真实研究样本，不能声称复现收益与显著性。</p>
+</div>
+</div>
+<div id="公式代码定位总表" class="section level1">
+<h1>公式—代码定位总表</h1>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>推导编号</th>
+<th>概念</th>
+<th>对应代码块</th>
+<th>关键对象</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>D1</td>
+<td>预算、非负、持仓上限</td>
+<td><code>portfolio-optimization-layer</code></td>
+<td><code>cp.Problem</code>约束</td>
+</tr>
+<tr class="even">
+<td>D2–D3</td>
+<td>E2E损失与链式法则</td>
+<td><code>temporal-rollout</code>, <code>e2e-fit</code></td>
+<td><code>mean</code>, <code>backward</code></td>
+</tr>
+<tr class="odd">
+<td>D4–D5</td>
+<td>隐式求导与伴随</td>
+<td><code>portfolio-optimization-layer</code></td>
+<td><code>CvxpyLayer</code>内部实现</td>
+</tr>
+<tr class="even">
+<td>D6</td>
+<td>线性/神经网络预测</td>
+<td><code>prediction-layer</code></td>
+<td><code>Predictor</code></td>
+</tr>
+<tr class="odd">
+<td>D7–D8</td>
+<td>等式约束MV解析解</td>
+<td><code>mv-equality-solution</code></td>
+<td><code>torch.linalg.solve</code></td>
+</tr>
+<tr class="even">
+<td>D9</td>
+<td>活跃集导数</td>
+<td><code>portfolio-optimization-layer</code></td>
+<td>可微锥求解器处理约束</td>
+</tr>
+<tr class="odd">
+<td>D10</td>
+<td>MV上下层效用</td>
+<td><code>portfolio-optimization-layer</code>, <code>realized-objective</code></td>
+<td>方差分支</td>
+</tr>
+<tr class="even">
+<td>D11–D14</td>
+<td>LP与原文L2平滑</td>
+<td><code>portfolio-optimization-layer</code>, <code>check-original-norm</code></td>
+<td><code>norm</code>与解析核查</td>
+</tr>
+<tr class="odd">
+<td>D15–D17</td>
+<td>平方L2替代</td>
+<td><code>portfolio-optimization-layer</code></td>
+<td><code>sum_squares</code></td>
+</tr>
+<tr class="even">
+<td>D18–D19</td>
+<td>市值归一化与导数</td>
+<td><code>portfolio-optimization-layer</code></td>
+<td><code>kind="vw"</code></td>
+</tr>
+<tr class="odd">
+<td>D20–D21</td>
+<td>成本上下层目标</td>
+<td>优化层、<code>realized-objective</code></td>
+<td><code>norm1</code>, <code>abs</code></td>
+</tr>
+<tr class="even">
+<td>D22–D23</td>
+<td>跨期依赖与反传</td>
+<td><code>temporal-rollout</code>, <code>e2e-fit</code></td>
+<td><code>prev=w</code>, <code>backward</code></td>
+</tr>
+<tr class="odd">
+<td>D24–D25</td>
+<td>Mean–SD及风险导数</td>
+<td>优化层、<code>realized-objective</code></td>
+<td>二阶锥风险分支</td>
+</tr>
+<tr class="even">
+<td>D26</td>
+<td>MSE预训练</td>
+<td><code>mse-pretrain</code></td>
+<td>MSE均值</td>
+</tr>
+<tr class="odd">
+<td>D27–D28</td>
+<td>解析/数值梯度核查</td>
+<td>最后两个检查块</td>
+<td><code>autograd.grad</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="复现边界与扩展" class="section level1">
+<h1>复现边界与扩展</h1>
+<ol style="list-style-type: decimal">
+<li>MSE-Opt：先独立训练MSE预测器，冻结参数，再调用同一个优化层；不要反向传播经济损失。MSE-Top：冻结后用硬top-k；硬排序仅供评价，不能当成可训练梯度层。PPP直接输出权重，和本文E2E并非同一结构。</li>
+<li>原文EW/VW/TC上限为 <span class="math inline">\(10/N\)</span>，Mean–SD上限为 <span class="math inline">\(.1\)</span>，MV示例仅非负与预算。代码参数必须按所分析的模型选择。</li>
+<li>平滑训练后若切换硬top-k评价，须额外报告这一切换的效果。VW归一化后不承诺保留初始上限。</li>
+<li>真实研究需隔离训练、验证、测试，避免未来协方差与标签泄漏，并处理证券退出、停牌、可成交性、特征缺失和持有期重叠。这里固定资产池，不额外承诺可实盘成交。</li>
+<li>后续若采用连续时间块截断反传，应明确标为近似，并验证截断长度的敏感性。完整时序计算图内不能随意detach。</li>
+</ol>
+</div>
+<div id="参考定位" class="section level1">
+<h1>参考定位</h1>
+<ul>
+<li>Wang et al. (2026), <em>Machine Learning Meets Markowitz</em>, NBER Working Paper 34861。</li>
+<li>§3.2，pp.19–22：一般E2E、均值—方差示例及链式法则。</li>
+<li>§3.3，pp.23–25：KKT与可微凸优化。</li>
+<li>§3.4–3.6，pp.26–29：等权、市值加权、跨期依赖。</li>
+<li>§4.3，式(20)，p.36：交易成本E2E。</li>
+<li>§4.4，式(21)，pp.40–42：均值—标准差、风险偏好。</li>
+<li>附录A.2，pp.70–74：网络结构、训练程序与求解环境；A.3，pp.74–75：LP梯度退化与L2范数示例。</li>
+</ul>
+</div>

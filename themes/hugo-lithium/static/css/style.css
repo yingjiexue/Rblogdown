@@ -130,7 +130,7 @@ hr {
 
 
 .utterances-frame {
-  padding-left: 700px;
+  max-width: 100%;
 }
 .copyright {
   text-align: center;
@@ -152,9 +152,7 @@ hr {
 }
 
 .comments {
-  padding-left: 70px;
-  margin-top: 20px;
-  margin-left:700px;
+  margin-top: 2em;
 }
 
 /* Layout */
@@ -167,9 +165,8 @@ body {
 
 
 .utterances {
-  float: right;
-  margin-left: 20px;
-  width: 50%;
+  max-width: 100%;
+  margin: 0;
 }
 
 

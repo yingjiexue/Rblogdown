@@ -53,12 +53,14 @@ rssLimit=100
     weight = 8  
  
  
+# 评论区（utterances）：文章 front matter 中写 comments: true 才显示评论，
+# 不写或 comments: false 则不显示；enable 为全站总开关。
 [params.utterances]
   enable = true
-  repo = "yingjiexue/comments"
-  issueTerm = "pathname"
-  label = "blog-comments"
-  theme = "github-ligh"
+  repo = "yingjiexue/comments"   # 存放评论 Issue 的 GitHub 仓库（需安装 utterances 应用并开启 Issues）
+  issue_term = "pathname"        # 页面映射到 Issue 的方式：pathname / url / title / og:title
+  label = "blog-comments"        # 评论 Issue 使用的标签（标签需已在仓库中创建）
+  theme = "github-light"         # 评论区主题
 
   
     

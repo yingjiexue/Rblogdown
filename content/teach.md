@@ -528,6 +528,15 @@ enable: false
       <a href="https://www.jianguoyun.com/p/DawOFMMQwsTCDhiliqwGIAA">聚类分析</a>
       </th>
    </tr>
+   </tr>
+      <tr>
+      <th>
+      <a style="color:#00BFFF;">第五章: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DcDC150QwsTCDhjjkq0GIAA">文本分析</a>
+      </th>
+   </tr>
 </table>
   
 > **代码与数据**
@@ -557,6 +566,14 @@ enable: false
       <a href="https://www.jianguoyun.com/p/Da5M17YQwsTCDhikiqwGIAA">下载</a>
       </th>
    </tr>
+   <tr>
+      <th>
+      <a style="color:#00BFFF;">第五章 练习: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DeUeFSIQwsTCDhjikq0GIAA">下载</a>
+      </th>
+   </tr>
   </table>
   
   > **作业**
@@ -584,6 +601,15 @@ enable: false
       </th>
       <th>
       <a href="https://www.jianguoyun.com/p/DbDeqZsQwsTCDhimiqwGIAA">下载</a>
+      </th>
+   </tr>
+   </tr>
+      <tr>
+      <th>
+      <a style="color:#00BFFF;">作业4: </a>
+      </th>
+      <th>
+      <a href="https://www.jianguoyun.com/p/DaiLlnMQwsTCDhjhkq0GIAA">下载</a>
       </th>
    </tr>
   </table>

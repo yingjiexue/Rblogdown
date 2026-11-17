@@ -2,6 +2,7 @@
 title: "教学"
 date: ""
 enable: false
+comments: true
 ---
 
 

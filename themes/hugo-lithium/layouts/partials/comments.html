@@ -1,13 +1,10 @@
-{{ $utterances := .Site.Params.utterances }}
-{{ if and $utterances.repo $utterances.issue_term }}
-<section id="comments">
-  <script src="https://utteranc.es/client.js"
-          repo="{{ $utterances.repo }}"
-          issue-term="{{ $utterances.issue_term }}"
-          {{ with $utterances.label }}label="{{ . }}"{{ end }}
-          {{ with $utterances.theme }}theme="{{ . }}"{{ end }}
-          crossorigin="anonymous"
-          async>
-  </script>
+{{ $api := .Site.Params.comments.api }}
+{{ if $api }}
+<section class="comments">
+  <h2 class="comments-title">评论</h2>
+  <div id="comments-app" data-path="{{ .RelPermalink }}" data-api="{{ $api }}"></div>
+  <link rel="stylesheet" href="{{ "css/comments.css" | relURL }}">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+  <script src="{{ "js/comments.js" | relURL }}" defer></script>
 </section>
 {{ end }}

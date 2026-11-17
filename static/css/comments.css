@@ -1,0 +1,309 @@
+/* 自建评论系统样式（简洁，与 yihui.org 评论风格一致） */
+
+.comments-title {
+  font-size: 1.05em;
+  font-weight: 700;
+  text-align: left;
+  margin: 0 0 1em;
+}
+
+.comments-user {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-bottom: 1em;
+}
+
+.comments-user-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comments-user-name {
+  font-weight: 600;
+}
+
+.comments-login,
+.comments-logout {
+  padding: 0.3em 0.9em;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background: #333;
+  color: #fff;
+  font-size: 0.85em;
+  cursor: pointer;
+}
+
+.comments-login:hover {
+  background: #000;
+}
+
+.comments-logout {
+  background: transparent;
+  color: #888;
+  border-color: #ddd;
+}
+
+.comments-logout:hover {
+  color: #000;
+  background: transparent;
+  border-color: #999;
+}
+
+.comments-list {
+  list-style: none;
+  margin: 0 0 1.5em;
+  padding: 0;
+}
+
+.comment-item {
+  display: flex;
+  gap: 0.8em;
+  padding: 0.8em 0;
+  border-top: 1px solid #eee;
+}
+
+.comment-avatar {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+img.comment-avatar {
+  object-fit: cover;
+}
+
+.comment-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.comment-item:first-child {
+  border-top: none;
+}
+
+.comment-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6em;
+  margin-bottom: 0.15em;
+}
+
+.comment-name {
+  font-weight: 600;
+  font-size: 0.75em;
+}
+
+.comment-date {
+  color: #888;
+  font-size: 0.625em;
+}
+
+.comment-content {
+  font-size: 0.625em;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.comment-reply-to {
+  color: #888;
+  font-size: 0.9em;
+}
+
+/* 回复：子评论缩进 */
+.comments-children {
+  list-style: none;
+  margin: 0.4em 0 0 1.5em;
+  padding: 0;
+}
+
+.comment-actions {
+  display: flex;
+  gap: 1em;
+  margin-top: 0.4em;
+}
+
+.comment-reply-btn {
+  padding: 0;
+  border: none;
+  background: none;
+  color: #888;
+  font-size: 0.625em;
+  cursor: pointer;
+}
+
+.comment-reply-btn:hover {
+  color: #000;
+}
+
+.comment-delete-btn {
+  padding: 0;
+  border: none;
+  background: none;
+  color: #888;
+  font-size: 0.625em;
+  cursor: pointer;
+}
+
+.comment-delete-btn:hover {
+  color: #c00;
+}
+
+.reactions-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+  margin-bottom: 1.2em;
+}
+
+.reaction-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  padding: 0.25em 0.7em;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  background: #fff;
+  color: #333;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.reaction-btn:hover {
+  border-color: #999;
+}
+
+.reaction-btn.active {
+  border-color: #0969da;
+  background: #ddf4ff;
+}
+
+.reaction-count {
+  font-size: 0.85em;
+}
+
+.comments-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.8em;
+}
+
+.comments-sort {
+  font-size: 0.8em;
+  padding: 0.2em 0.5em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fff;
+  color: #333;
+}
+
+/* Markdown 渲染内容 */
+.comment-content a {
+  color: #0969da;
+  text-decoration: none;
+}
+
+.comment-content a:hover {
+  text-decoration: underline;
+}
+
+.comment-content code {
+  background: #f6f8fa;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  font-size: 0.95em;
+}
+
+.comment-content pre {
+  background: #f6f8fa;
+  padding: 0.6em;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.comment-content pre code {
+  background: none;
+  padding: 0;
+}
+
+.comment-content ul,
+.comment-content ol {
+  margin: 0.3em 0;
+  padding-left: 1.4em;
+}
+
+.comment-content blockquote {
+  margin: 0.4em 0;
+  padding-left: 0.8em;
+  border-left: 2px solid #ddd;
+  color: #666;
+}
+
+.comments-form,
+.reply-form {
+  margin-top: 1.5em;
+}
+
+.comments-form input[type="text"],
+.comments-form textarea,
+.reply-form input[type="text"],
+.reply-form textarea {
+  width: 100%;
+  padding: 0.5em 0.7em;
+  margin-bottom: 0.6em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font: inherit;
+  box-sizing: border-box;
+}
+
+.comments-form input[type="text"]:focus,
+.comments-form textarea:focus,
+.reply-form input[type="text"]:focus,
+.reply-form textarea:focus {
+  outline: none;
+  border-color: #999;
+}
+
+.comments-form button,
+.reply-form button {
+  padding: 0.45em 1.4em;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background: #333;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.comments-form button:hover,
+.reply-form button:hover {
+  background: #000;
+}
+
+/* 蜜罐字段：对用户不可见 */
+.comments-hp {
+  position: absolute;
+  left: -9999px;
+}
+
+.comments-empty,
+.comments-loading,
+.comments-msg {
+  color: #888;
+}
+
+.comments-msg {
+  margin: 0.6em 0 0;
+}

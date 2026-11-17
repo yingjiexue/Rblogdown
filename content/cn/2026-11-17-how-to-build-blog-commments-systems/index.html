@@ -13,14 +13,14 @@ comments: true
 
 <p>静态博客最大的遗憾是它真的只是一堆静态文件。文章写完了、发出去了，读者读完想留一句话，却发现页面底部空空如也。这篇文章记录我用 FastAPI + MongoDB 搭一套自托管评论系统的过程：从三十行的评论接口开始，一路加到 GitHub 登录、楼层回复和表情反应，中间踩过的坑也一并写下来。</p>
 <p>如果你也用 blogdown 或者 Hugo 写博客，又不想把评论区交给别人，这套方案可以直接照搬。</p>
-<div id="为什么不直接用现成的" class="section level2">
-<h2>为什么不直接用现成的</h2>
+<div id="为什么不直接用现成的" class="section level3">
+<h3>为什么不直接用现成的</h3>
 <p>最常见的两个选择是 Disqus 和 utterances，但它们各有各的别扭。</p>
 <p>Disqus 是第三方脚本，会在你的页面里塞进一堆追踪代码，加载慢，国内能不能打开还要看运气，评论数据也不在你手里。utterances 轻得多，评论存进 GitHub Issues，但代价是每条评论都要走一次 GitHub 授权，读者没有账号就只能看不能说。</p>
 <p>自己写的方案则简单得多：一套 HTTP 接口，数据落在本机 MongoDB，前端一个 <code>fetch</code> 就接上了。总代码量不到 350 行，一个人两天能写完，之后维护成本几乎为零。</p>
 </div>
-<div id="最终的形态" class="section level2">
-<h2>最终的形态</h2>
+<div id="最终的形态" class="section level3">
+<h3>最终的形态</h3>
 <p>整个链路只有四个组件：</p>
 <pre class="text"><code>浏览器 (comments.html)
    │  HTTPS
@@ -70,8 +70,8 @@ MongoDB  blog.comments / blog.reactions</code></pre>
 </table>
 <p>数据库只用了两个集合：<code>comments</code> 存评论，<code>reactions</code> 存表情。索引建在 <code>(path, created_at)</code> 和 <code>(approved, created_at)</code> 上，因为所有查询都绕不开”某篇文章”和”是否已审核”这两个条件。</p>
 </div>
-<div id="一先把评论接口写出来" class="section level2">
-<h2>一、先把评论接口写出来</h2>
+<div id="一先把评论接口写出来" class="section level3">
+<h3>一、先把评论接口写出来</h3>
 <p>第一步不要想登录、不要想回复，只做一件事：能发、能读。请求体用 pydantic 声明，越界、空内容、超长内容都会被 FastAPI 挡在进入函数之前：</p>
 <pre class="python"><code>class CommentIn(BaseModel):
     path: str = Field(..., max_length=300)
@@ -95,8 +95,8 @@ MongoDB  blog.comments / blog.reactions</code></pre>
 <pre class="python"><code>&quot;approved&quot;: not APPROVAL_REQUIRED,</code></pre>
 <p>读接口永远只查 <code>approved=True</code>，这样审核功能就是配置项而不是分支逻辑。</p>
 </div>
-<div id="二前端只做三件事" class="section level2">
-<h2>二、前端只做三件事</h2>
+<div id="二前端只做三件事" class="section level3">
+<h3>二、前端只做三件事</h3>
 <p>评论区的 partial 里没有框架，只有原生 JavaScript。它需要做的其实就三件事。</p>
 <p>一是从页面上读出接口地址，这样换域名不用改代码：</p>
 <pre class="html"><code>&lt;section id=&quot;comments&quot; data-api=&quot;{{ .Site.Params.comments.api }}&quot;&gt;</code></pre>
@@ -106,8 +106,8 @@ MongoDB  blog.comments / blog.reactions</code></pre>
   .then(render);</code></pre>
 <p>三是渲染前转义。这里有一个容易被忽略的点：<strong>前端转义只防渲染时的 XSS，后端也必须剥一次 HTML</strong>。因为数据不只从你的页面来，别人可以直接 POST 一段 <code>&lt;script&gt;</code> 到接口里，存库之后所有读者都会中招。所以入库前过一遍 <code>re.sub(r"&lt;[^&gt;]*&gt;", "", text)</code>，前端再转义一次，两道关。</p>
 </div>
-<div id="三让它一直活着" class="section level2">
-<h2>三、让它一直活着</h2>
+<div id="三让它一直活着" class="section level3">
+<h3>三、让它一直活着</h3>
 <p>开发时 <code>uvicorn app:app --reload</code> 就够了，但服务得有人看着。用 systemd 用户级服务，不需要 sudo，也不用写 crontab：</p>
 <pre class="ini"><code>[Unit]
 Description=Blog comments API (FastAPI, 127.0.0.1:8001)
@@ -129,8 +129,8 @@ WantedBy=default.target</code></pre>
 <p><code>--proxy-headers --forwarded-allow-ips=*</code> 是因为服务躲在隧道后面，所有请求的来源 IP 都是 <code>127.0.0.1</code>。如果不让 uvicorn 信任 <code>X-Forwarded-For</code>，按 IP 限流就会变成”全站共用一个计数器”，刷五条评论所有人一起被锁。当然，反过来说，只有当你确定前置代理可信时才应该加这个参数。</p>
 <p>服务只监听 <code>127.0.0.1</code>，不对公网暴露端口，公网入口完全交给隧道。</p>
 </div>
-<div id="四https-这一关混合内容陷阱" class="section level2">
-<h2>四、HTTPS 这一关：混合内容陷阱</h2>
+<div id="四https-这一关混合内容陷阱" class="section level3">
+<h3>四、HTTPS 这一关：混合内容陷阱</h3>
 <p>博客是 HTTPS 的，评论接口如果不是 HTTPS，浏览器会直接拦掉请求，控制台报 mixed content。</p>
 <p>我第一次用的是 <code>cpolar tcp 8001</code>，它给的是一个纯 TCP 端口，没有 TLS，前端请求全部失败。改成本地 HTTP 隧道就对了：</p>
 <pre class="bash"><code>cpolar http -config=/usr/local/etc/cpolar/cpolar.yml -subdomain=comments 8001</code></pre>
@@ -139,8 +139,8 @@ WantedBy=default.target</code></pre>
   enable = true
   api = &quot;https://comments.cpolar.top&quot;</code></pre>
 </div>
-<div id="五加上-github-登录" class="section level2">
-<h2>五、加上 GitHub 登录</h2>
+<div id="五加上-github-登录" class="section level3">
+<h3>五、加上 GitHub 登录</h3>
 <p>匿名评论方便，但没法区分作者、也没法让读者删自己发的评论。加 GitHub OAuth 是性价比最高的选择：读者群体本来就多是开发者，而且 <code>read:user</code> 只读权限，不涉及仓库。</p>
 <p>整个流程三步：</p>
 <ol style="list-style-type: decimal">
@@ -169,8 +169,8 @@ req = urllib.request.Request(
 <p>验证时有一个顺序问题：<strong>必须先重算签名比对，再解析 payload</strong>。如果反过来，就等于信任了未经验证的内容。比对用 <code>hmac.compare_digest</code> 而不是 <code>==</code>，避免时序侧信道。任何异常都直接当作验证失败，返回 <code>None</code>。</p>
 <p>还有一个新手常犯的错误：<code>JWT_SECRET</code> 要写死。最初的代码是 <code>os.getenv("JWT_SECRET", 随机值)</code>，看着很安全，实际意味着服务每重启一次，所有登录用户的 token 全部失效。等读者发现”怎么又要登录”的时候，你未必能想到是重启导致的。</p>
 </div>
-<div id="六反垃圾的四道阀门" class="section level2">
-<h2>六、反垃圾的四道阀门</h2>
+<div id="六反垃圾的四道阀门" class="section level3">
+<h3>六、反垃圾的四道阀门</h3>
 <p>公开接口一定会被扫描，不需要等被刷才处理。四层防护，成本从低到高：</p>
 <table>
 <colgroup>
@@ -221,8 +221,8 @@ req = urllib.request.Request(
     _windows[key] = (start, count + 1)</code></pre>
 <p>它足够挡住随手刷屏，但要知道它的边界：字典不会自动清理，单进程有效，重启即清零。真要防有组织攻击，得换成 Redis 或者前置 WAF。</p>
 </div>
-<div id="七楼层回复的取舍" class="section level2">
-<h2>七、楼层回复的取舍</h2>
+<div id="七楼层回复的取舍" class="section level3">
+<h3>七、楼层回复的取舍</h3>
 <p>回复功能有两种实现思路：后端存树，或者后端存扁平的 <code>parent_id</code>。</p>
 <p>我选了后者。后端只做三件校验——<code>parent_id</code> 能转成 ObjectId、父评论存在、父评论属于同一篇文章——然后原样存下。层级关系交给前端解释：</p>
 <pre class="javascript"><code>var byId = {};
@@ -234,8 +234,8 @@ items.forEach(function (item) {
 });</code></pre>
 <p>好处是查询永远是”这篇文章的所有评论”一次 <code>find</code>，不需要递归拼接，也不需要维护嵌套数组的一致性。坏处是父评论被删除后，子评论会变成孤儿——这一条我确实踩了，后面细说。</p>
 </div>
-<div id="八用-r-检查接口" class="section level2">
-<h2>八、用 R 检查接口</h2>
+<div id="八用-r-检查接口" class="section level3">
+<h3>八、用 R 检查接口</h3>
 <p>博客是用 R 写的，顺手用 R 做接口冒烟测试也很自然。<code>httr2</code> 几行就能验证服务是否正常：</p>
 <pre class="r"><code>library(httr2)
 

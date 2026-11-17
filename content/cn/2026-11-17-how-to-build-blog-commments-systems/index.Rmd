@@ -5,11 +5,7 @@ date: '2026-11-17'
 slug: how to build blog commments systems
 categories:
   - cn
-
-tags:
-  - R
-  - 技术
-draft: true
+tags: 技术
 comments: true
 ---
 

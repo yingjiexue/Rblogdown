@@ -1,0 +1,284 @@
+---
+title: 如何自建博客评论系统
+author: 薛英杰
+date: '2026-11-17'
+slug: how to build blog commments systems
+categories:
+  - cn
+
+tags:
+  - R
+  - 技术
+draft: true
+comments: true
+---
+
+
+
+<p>静态博客最大的遗憾是它真的只是一堆静态文件。文章写完了、发出去了，读者读完想留一句话，却发现页面底部空空如也。这篇文章记录我用 FastAPI + MongoDB 搭一套自托管评论系统的过程：从三十行的评论接口开始，一路加到 GitHub 登录、楼层回复和表情反应，中间踩过的坑也一并写下来。</p>
+<p>如果你也用 blogdown 或者 Hugo 写博客，又不想把评论区交给别人，这套方案可以直接照搬。</p>
+<div id="为什么不直接用现成的" class="section level2">
+<h2>为什么不直接用现成的</h2>
+<p>最常见的两个选择是 Disqus 和 utterances，但它们各有各的别扭。</p>
+<p>Disqus 是第三方脚本，会在你的页面里塞进一堆追踪代码，加载慢，国内能不能打开还要看运气，评论数据也不在你手里。utterances 轻得多，评论存进 GitHub Issues，但代价是每条评论都要走一次 GitHub 授权，读者没有账号就只能看不能说。</p>
+<p>自己写的方案则简单得多：一套 HTTP 接口，数据落在本机 MongoDB，前端一个 <code>fetch</code> 就接上了。总代码量不到 350 行，一个人两天能写完，之后维护成本几乎为零。</p>
+</div>
+<div id="最终的形态" class="section level2">
+<h2>最终的形态</h2>
+<p>整个链路只有四个组件：</p>
+<pre class="text"><code>浏览器 (comments.html)
+   │  HTTPS
+   ▼
+cpolar 隧道  comments.cpolar.top
+   │  转发到 127.0.0.1:8001
+   ▼
+uvicorn  (blog-comments.service)
+   │  pymongo
+   ▼
+MongoDB  blog.comments / blog.reactions</code></pre>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>组件</th>
+<th>职责</th>
+<th>选型理由</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Web 框架</td>
+<td>路由、校验、序列化</td>
+<td>FastAPI 自带 pydantic 校验和交互式文档，单文件能跑</td>
+</tr>
+<tr class="even">
+<td>数据库</td>
+<td>存评论与反应</td>
+<td>评论是嵌套结构，文档模型免迁移</td>
+</tr>
+<tr class="odd">
+<td>进程守护</td>
+<td>挂了自动拉起</td>
+<td>systemd 用户服务，不需要 root</td>
+</tr>
+<tr class="even">
+<td>公网入口</td>
+<td>提供 HTTPS 域名</td>
+<td>博客本身是 HTTPS，评论接口也必须是</td>
+</tr>
+</tbody>
+</table>
+<p>数据库只用了两个集合：<code>comments</code> 存评论，<code>reactions</code> 存表情。索引建在 <code>(path, created_at)</code> 和 <code>(approved, created_at)</code> 上，因为所有查询都绕不开”某篇文章”和”是否已审核”这两个条件。</p>
+</div>
+<div id="一先把评论接口写出来" class="section level2">
+<h2>一、先把评论接口写出来</h2>
+<p>第一步不要想登录、不要想回复，只做一件事：能发、能读。请求体用 pydantic 声明，越界、空内容、超长内容都会被 FastAPI 挡在进入函数之前：</p>
+<pre class="python"><code>class CommentIn(BaseModel):
+    path: str = Field(..., max_length=300)
+    name: str = Field(&quot;&quot;, max_length=50)
+    content: str = Field(..., min_length=1, max_length=2000)
+    email: str = Field(&quot;&quot;, max_length=200)
+    website: str = Field(&quot;&quot;, max_length=200)   # 蜜罐字段
+    parent_id: Optional[str] = None</code></pre>
+<p>入库时有两个细节值得说。</p>
+<p>第一是<strong>不要把 <code>_id</code> 直接返回给前端</strong>。<code>ObjectId</code> 不是 JSON 可序列化类型，而且它的字符串形式和内部结构不同，前端只应该看到一个不透明的 id。所以序列化函数统一做一次转换：</p>
+<pre class="python"><code>def _serialize(doc):
+    return {
+        &quot;id&quot;: str(doc[&quot;_id&quot;]),
+        &quot;name&quot;: doc[&quot;name&quot;],
+        &quot;content&quot;: doc[&quot;content&quot;],
+        &quot;parent_id&quot;: str(doc[&quot;parent_id&quot;]) if doc.get(&quot;parent_id&quot;) else None,
+        &quot;created_at&quot;: doc[&quot;created_at&quot;].isoformat(),
+    }</code></pre>
+<p>第二是<strong>时间统一存 UTC</strong>。用 <code>datetime.now(timezone.utc)</code> 而不是 <code>datetime.now()</code>，输出 <code>isoformat()</code> 带时区偏移，前端 <code>new Date()</code> 解析后自动转成本地时间。省掉时区转换这一层，后面能少掉一半的”评论时间怎么差八小时”的问题。</p>
+<p>至于是不是要审核，交给一个开关：</p>
+<pre class="python"><code>&quot;approved&quot;: not APPROVAL_REQUIRED,</code></pre>
+<p>读接口永远只查 <code>approved=True</code>，这样审核功能就是配置项而不是分支逻辑。</p>
+</div>
+<div id="二前端只做三件事" class="section level2">
+<h2>二、前端只做三件事</h2>
+<p>评论区的 partial 里没有框架，只有原生 JavaScript。它需要做的其实就三件事。</p>
+<p>一是从页面上读出接口地址，这样换域名不用改代码：</p>
+<pre class="html"><code>&lt;section id=&quot;comments&quot; data-api=&quot;{{ .Site.Params.comments.api }}&quot;&gt;</code></pre>
+<p>二是拿当前路径去问后端要数据。用 <code>location.pathname</code> 当 key，天然和文章一一对应：</p>
+<pre class="javascript"><code>fetch(api + &quot;/api/comments?path=&quot; + encodeURIComponent(location.pathname))
+  .then(function (r) { return r.json(); })
+  .then(render);</code></pre>
+<p>三是渲染前转义。这里有一个容易被忽略的点：<strong>前端转义只防渲染时的 XSS，后端也必须剥一次 HTML</strong>。因为数据不只从你的页面来，别人可以直接 POST 一段 <code>&lt;script&gt;</code> 到接口里，存库之后所有读者都会中招。所以入库前过一遍 <code>re.sub(r"&lt;[^&gt;]*&gt;", "", text)</code>，前端再转义一次，两道关。</p>
+</div>
+<div id="三让它一直活着" class="section level2">
+<h2>三、让它一直活着</h2>
+<p>开发时 <code>uvicorn app:app --reload</code> 就够了，但服务得有人看着。用 systemd 用户级服务，不需要 sudo，也不用写 crontab：</p>
+<pre class="ini"><code>[Unit]
+Description=Blog comments API (FastAPI, 127.0.0.1:8001)
+After=network-online.target mongod.service
+
+[Service]
+WorkingDirectory=/Data/server
+EnvironmentFile=/Data/server/.env
+ExecStart=/usr/bin/python3 -m uvicorn app:app --host 127.0.0.1 --port 8001 \
+          --proxy-headers --forwarded-allow-ips=*
+Restart=always
+RestartSec=5
+KillSignal=SIGINT
+
+[Install]
+WantedBy=default.target</code></pre>
+<p>里面有两处值得解释。</p>
+<p><code>EnvironmentFile</code> 把 <code>.env</code> 直接注入进程环境，密钥文件权限设成 <code>600</code>，不用在 unit 里明文写 secret。</p>
+<p><code>--proxy-headers --forwarded-allow-ips=*</code> 是因为服务躲在隧道后面，所有请求的来源 IP 都是 <code>127.0.0.1</code>。如果不让 uvicorn 信任 <code>X-Forwarded-For</code>，按 IP 限流就会变成”全站共用一个计数器”，刷五条评论所有人一起被锁。当然，反过来说，只有当你确定前置代理可信时才应该加这个参数。</p>
+<p>服务只监听 <code>127.0.0.1</code>，不对公网暴露端口，公网入口完全交给隧道。</p>
+</div>
+<div id="四https-这一关混合内容陷阱" class="section level2">
+<h2>四、HTTPS 这一关：混合内容陷阱</h2>
+<p>博客是 HTTPS 的，评论接口如果不是 HTTPS，浏览器会直接拦掉请求，控制台报 mixed content。</p>
+<p>我第一次用的是 <code>cpolar tcp 8001</code>，它给的是一个纯 TCP 端口，没有 TLS，前端请求全部失败。改成本地 HTTP 隧道就对了：</p>
+<pre class="bash"><code>cpolar http -config=/usr/local/etc/cpolar/cpolar.yml -subdomain=comments 8001</code></pre>
+<p>隧道同样用 systemd 守护，并用 <code>After=blog-comments.service</code> 声明依赖顺序。这样拿到的 <code>https://comments.cpolar.top</code> 就可以直接写进 <code>config.toml</code>：</p>
+<pre class="toml"><code>[params.comments]
+  enable = true
+  api = &quot;https://comments.cpolar.top&quot;</code></pre>
+</div>
+<div id="五加上-github-登录" class="section level2">
+<h2>五、加上 GitHub 登录</h2>
+<p>匿名评论方便，但没法区分作者、也没法让读者删自己发的评论。加 GitHub OAuth 是性价比最高的选择：读者群体本来就多是开发者，而且 <code>read:user</code> 只读权限，不涉及仓库。</p>
+<p>整个流程三步：</p>
+<ol style="list-style-type: decimal">
+<li><code>/api/auth/github/login</code> 生成跳转地址，把 <code>client_id</code>、<code>redirect_uri</code>、<code>scope</code> 和 <code>state</code> 拼进去；</li>
+<li>用户在 GitHub 授权后回跳到 <code>/api/auth/github/callback?code=...</code>；</li>
+<li>后端用 <code>code</code> 换 <code>access_token</code>，再用它拉用户信息，签发自己的登录态，最后跳回文章页。</li>
+</ol>
+<p>换 token 那一步不需要任何 SDK，<code>urllib</code> 就够：</p>
+<pre class="python"><code>data = urllib.parse.urlencode({
+    &quot;client_id&quot;: GITHUB_CLIENT_ID,
+    &quot;client_secret&quot;: GITHUB_CLIENT_SECRET,
+    &quot;code&quot;: code,
+}).encode()
+req = urllib.request.Request(
+    &quot;https://github.com/login/oauth/access_token&quot;,
+    data=data,
+    headers={&quot;Accept&quot;: &quot;application/json&quot;, &quot;User-Agent&quot;: &quot;blog-comments&quot;},
+)</code></pre>
+<p>请求头里的 <code>Accept: application/json</code> 是关键，不带的话 GitHub 返回的是 <code>key=value&amp;</code> 形式的表单串。</p>
+<p>登录态没有引入 PyJWT，而是用 <code>hmac</code> 手写了二十来行 HS256：</p>
+<pre class="python"><code>def _create_token(payload):
+    header = _b64url(json.dumps({&quot;alg&quot;: &quot;HS256&quot;, &quot;typ&quot;: &quot;JWT&quot;}).encode())
+    body = _b64url(json.dumps(payload).encode())
+    sig = hmac.new(JWT_SECRET.encode(), f&quot;{header}.{body}&quot;.encode(), hashlib.sha256).digest()
+    return f&quot;{header}.{body}.{_b64url(sig)}&quot;</code></pre>
+<p>验证时有一个顺序问题：<strong>必须先重算签名比对，再解析 payload</strong>。如果反过来，就等于信任了未经验证的内容。比对用 <code>hmac.compare_digest</code> 而不是 <code>==</code>，避免时序侧信道。任何异常都直接当作验证失败，返回 <code>None</code>。</p>
+<p>还有一个新手常犯的错误：<code>JWT_SECRET</code> 要写死。最初的代码是 <code>os.getenv("JWT_SECRET", 随机值)</code>，看着很安全，实际意味着服务每重启一次，所有登录用户的 token 全部失效。等读者发现”怎么又要登录”的时候，你未必能想到是重启导致的。</p>
+</div>
+<div id="六反垃圾的四道阀门" class="section level2">
+<h2>六、反垃圾的四道阀门</h2>
+<p>公开接口一定会被扫描，不需要等被刷才处理。四层防护，成本从低到高：</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>手段</th>
+<th>做法</th>
+<th>挡住什么</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>蜜罐</td>
+<td>表单里放一个 CSS 隐藏的 <code>website</code> 输入框，非空即拒绝</td>
+<td>盲目填表的小机器人</td>
+</tr>
+<tr class="even">
+<td>限流</td>
+<td>按 IP 哈希计数，60 秒最多 5 条</td>
+<td>脚本连续刷屏</td>
+</tr>
+<tr class="odd">
+<td>剥离 HTML</td>
+<td>入库前正则去标签</td>
+<td>存储型 XSS</td>
+</tr>
+<tr class="even">
+<td>人工审核</td>
+<td><code>APPROVAL_REQUIRED=1</code></td>
+<td>漏网之鱼</td>
+</tr>
+</tbody>
+</table>
+<p>蜜罐字段的巧处在于它对用户完全不可见，真人永远不会填，而自动化工具倾向于把表单里的每个字段都填满。一个隐藏的 <code>website</code> 字段比任何验证码都省事，对读者零打扰。</p>
+<p>限流的实现就在进程内存里，一个字典加时间窗：</p>
+<pre class="python"><code>def _rate_limit(key, window=60, limit=5):
+    now = time.time()
+    start, count = _windows.get(key, (0.0, 0))
+    if now - start &gt; window:
+        _windows[key] = (now, 1)
+        return
+    if count &gt;= limit:
+        raise HTTPException(status_code=429, detail=&quot;评论太频繁，请稍后再试&quot;)
+    _windows[key] = (start, count + 1)</code></pre>
+<p>它足够挡住随手刷屏，但要知道它的边界：字典不会自动清理，单进程有效，重启即清零。真要防有组织攻击，得换成 Redis 或者前置 WAF。</p>
+</div>
+<div id="七楼层回复的取舍" class="section level2">
+<h2>七、楼层回复的取舍</h2>
+<p>回复功能有两种实现思路：后端存树，或者后端存扁平的 <code>parent_id</code>。</p>
+<p>我选了后者。后端只做三件校验——<code>parent_id</code> 能转成 ObjectId、父评论存在、父评论属于同一篇文章——然后原样存下。层级关系交给前端解释：</p>
+<pre class="javascript"><code>var byId = {};
+items.forEach(function (item) { byId[item.id] = item; item.children = []; });
+items.forEach(function (item) {
+  if (item.parent_id &amp;&amp; byId[item.parent_id]) {
+    byId[item.parent_id].children.push(item);
+  }
+});</code></pre>
+<p>好处是查询永远是”这篇文章的所有评论”一次 <code>find</code>，不需要递归拼接，也不需要维护嵌套数组的一致性。坏处是父评论被删除后，子评论会变成孤儿——这一条我确实踩了，后面细说。</p>
+</div>
+<div id="八用-r-检查接口" class="section level2">
+<h2>八、用 R 检查接口</h2>
+<p>博客是用 R 写的，顺手用 R 做接口冒烟测试也很自然。<code>httr2</code> 几行就能验证服务是否正常：</p>
+<pre class="r"><code>library(httr2)
+
+api &lt;- &quot;https://comments.cpolar.top&quot;
+
+# 健康检查
+request(api) |&gt;
+  req_perform() |&gt;
+  resp_body_json()
+
+# 登录入口应当返回 3xx，且 Location 指向 GitHub
+request(api) |&gt;
+  req_url_path_append(&quot;api&quot;, &quot;auth&quot;, &quot;github&quot;, &quot;login&quot;) |&gt;
+  req_url_query(return_to = &quot;/&quot;) |&gt;
+  req_options(followlocation = FALSE) |&gt;
+  req_perform() |&gt;
+  resp_header(&quot;location&quot;)</code></pre>
+<p>评论数据本身也能直接查。想看看哪几篇文章讨论最热烈：</p>
+<pre class="r"><code>library(mongolite)
+library(ggplot2)
+
+comments &lt;- mongo(&quot;comments&quot;, db = &quot;blog&quot;)
+stats &lt;- comments$aggregate(&#39;[{&quot;$group&quot;: {&quot;_id&quot;: &quot;$path&quot;, &quot;n&quot;: {&quot;$sum&quot;: 1}}}]&#39;)
+
+ggplot(head(stats[order(-stats$n), ], 10), aes(n, reorder(`_id`, n))) +
+  geom_col() +
+  labs(x = &quot;评论数&quot;, y = NULL, title = &quot;讨论最热烈的十篇文章&quot;)</code></pre>
+<p>用 <code>mongolite</code> 的好处是绕过了 HTTP 接口的审核过滤，能看到包括待审核在内的全量数据，适合做后台盘点。</p>
+</div>
+<div id="九踩过的坑" class="section level2">
+<h2>九、踩过的坑</h2>
+<p><strong>307 不是 302。</strong> FastAPI 的 <code>RedirectResponse</code> 默认 <code>status_code=307</code>。对浏览器里的 GET 跳转来说两者等价，但如果你写脚本断言”必须是 302”，测试会失败。需要字面 302 就显式传参。</p>
+<p><strong>改了 <code>.env</code> 必须重启。</strong> 环境变量在模块 import 时就被读成常量，运行期再改文件没有任何效果。同理，<code>.env</code> 里的值不要和代码里的 <code>os.getenv(..., "默认值")</code> 打架，出问题时很难判断到底用的是哪一个。</p>
+<p><strong><code>state</code> 参数必须签名。</strong> 我最初的实现把 <code>state</code> 单纯当成 <code>base64(return_to)</code>，回调时直接跳回去。问题在于 <code>return_to</code> 完全由攻击者控制：构造一个指向外部站点的 <code>state</code>，诱导受害者完成一次授权，回调就会带着 <code>token=</code> 跳到攻击者的域名，登录态当场泄露。正确做法是把 <code>state</code> 用同一个 <code>JWT_SECRET</code> 签一遍，回调时先验签，或者干脆只允许相对路径。</p>
+<p><strong>删除评论要级联。</strong> 接口文档写的是”删除评论及其所有回复”，实现里只有 <code>delete_one</code>。子评论在库里留着，因为父节点没了，前端不会渲染它们，看起来像是删掉了。补一句 <code>delete_many({"parent_id": oid})</code> 才是真的删干净。</p>
+<p><strong>表情接口要认身份。</strong> 反应接口的 <code>user</code> 字段由前端传，意味着任何人都能替别人点赞。小站点影响不大，但认真起来必须改成从 JWT 里取身份。</p>
+</div>
+<div id="小结" class="section level2">
+<h2>小结</h2>
+<p>整套系统大约三百多行 Python 加一个二十 KB 的前端 partial，跑在一台已经装着 MongoDB 的开发机上，用 systemd 和 cpolar 顶着公网流量。它没有 Disqus 那样的后台、没有邮件通知、没有社交登录之外的身份体系，但胜在每一行代码都看得懂、每一个字都在自己的硬盘里。</p>
+<p>自建的意义大概就在这里：不是为了造一个更好的轮子，而是为了让”读者的留言”这件事，不需要经过第三方的服务器。</p>
+</div>

@@ -9,3 +9,5 @@ static/figures
 /blogdown
 /public/
 /resources/
+/.quarto/
+**/*.quarto_ipynb

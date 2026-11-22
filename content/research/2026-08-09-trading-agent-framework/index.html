@@ -13,7 +13,16 @@ tags:
 
 <script type="module">
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
-mermaid.initialize({ startOnLoad: true, theme: "neutral" });
+
+document.querySelectorAll("pre.mermaid").forEach((pre) => {
+  const div = document.createElement("div");
+  div.className = "mermaid";
+  div.textContent = (pre.querySelector("code") ?? pre).textContent;
+  pre.replaceWith(div);
+});
+
+mermaid.initialize({ startOnLoad: false, theme: "neutral" });
+await mermaid.run({ querySelector: ".mermaid" });
 </script>
 <blockquote>
 <p>报告对象：<code>/Data/TradingAgents</code>，VERSION <code>3.0.0</code>，BUILD_INFO <code>3.0.0-beta.4-build20260816-221009</code>，git HEAD <code>5105a76</code>（2026-09-22，社区版首发）。</p>

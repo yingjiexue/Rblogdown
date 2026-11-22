@@ -18,7 +18,16 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```{=html}
 <script type="module">
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
-mermaid.initialize({ startOnLoad: true, theme: "neutral" });
+
+document.querySelectorAll("pre.mermaid").forEach((pre) => {
+  const div = document.createElement("div");
+  div.className = "mermaid";
+  div.textContent = (pre.querySelector("code") ?? pre).textContent;
+  pre.replaceWith(div);
+});
+
+mermaid.initialize({ startOnLoad: false, theme: "neutral" });
+await mermaid.run({ querySelector: ".mermaid" });
 </script>
 ```
 

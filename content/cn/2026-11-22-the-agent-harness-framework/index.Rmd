@@ -10,8 +10,21 @@ tags:
 comments: true
 ---
 
+```{=html}
+<script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
 
+document.querySelectorAll("pre.mermaid").forEach((pre) => {
+  const div = document.createElement("div");
+  div.className = "mermaid";
+  div.textContent = (pre.querySelector("code") ?? pre).textContent;
+  pre.replaceWith(div);
+});
 
+mermaid.initialize({ startOnLoad: false, theme: "neutral" });
+await mermaid.run({ querySelector: ".mermaid" });
+</script>
+```
 
 Harness 是模型外层的执行系统，负责组装上下文、循环调用模型、执行工具、管理会话和检查权限。下图依据官方公开资料重绘，Claude Code 图着重于公开可观察的行为。优缺点是工程分析，性能和运行成本需要同任务实测。
 
